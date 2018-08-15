@@ -229,9 +229,9 @@ textSizeSmall = მცირე
 textSizeMedium = საშუალო
 textSizeLarge = დიდი
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
-    .title = დადასტურება
-annotationTextCancelButton =
+textToolConfirmButton = თანხმობა
+    .title = თანხმობა
+textToolCancelButton = გაუქმება
     .title = გაუქმება
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
