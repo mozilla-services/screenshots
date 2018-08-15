@@ -1,6 +1,5 @@
 /* globals ADDON_DISABLE Services CustomizableUI LegacyExtensionsUtils AppConstants PageActions */
 const ADDON_ID = "screenshots@mozilla.org";
-const TELEMETRY_ENABLED_PREF = "datareporting.healthreport.uploadEnabled";
 const PREF_BRANCH = "extensions.screenshots.";
 const USER_DISABLE_PREF = "extensions.screenshots.disabled";
 const UPLOAD_DISABLED_PREF = "extensions.screenshots.upload-disabled";
@@ -178,10 +177,7 @@ function handleMessage(msg, sender, sendReply) {
     return;
   }
 
-  if (msg.funcName === "isTelemetryEnabled") {
-    const telemetryEnabled = getBoolPref(TELEMETRY_ENABLED_PREF);
-    sendReply({type: "success", value: telemetryEnabled});
-  } else if (msg.funcName === "isUploadDisabled") {
+  if (msg.funcName === "isUploadDisabled") {
     const isESR = AppConstants.MOZ_UPDATE_CHANNEL === "esr";
     const uploadDisabled = getBoolPref(UPLOAD_DISABLED_PREF);
     sendReply({type: "success", value: uploadDisabled || isESR});

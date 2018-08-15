@@ -1,4 +1,4 @@
-/* globals main, auth, catcher, deviceInfo, communication, log */
+/* globals main, auth, browser, catcher, deviceInfo, communication, log */
 
 "use strict";
 
@@ -129,13 +129,9 @@ this.analytics = (function() {
   };
 
   exports.refreshTelemetryPref = function() {
-    return communication.sendToBootstrap("isTelemetryEnabled").then((result) => {
+    return browser.telemetry.canUpload().then((result) => {
       telemetryPrefKnown = true;
-      if (result === communication.NO_BOOTSTRAP) {
-        telemetryEnabled = true;
-      } else {
-        telemetryEnabled = result;
-      }
+      telemetryEnabled = result;
     }, (error) => {
       // If there's an error reading the pref, we should assume that we shouldn't send data
       telemetryPrefKnown = true;
