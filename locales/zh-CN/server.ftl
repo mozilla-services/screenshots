@@ -164,6 +164,11 @@ timeDiffFutureHours = { $number } 小时
 timeDiffFutureDays = { $number } 天
 errorThirdPartyCookiesEnabled = 如果您无法删除截图，可能需要暂时在浏览器的设置中启用第三方 Cookie。
 
+## Shot Page New Feature Promotion Dialog.
+
+promoCloseButton =
+    .title = 关闭通知
+
 ## Annotations
 
 annotationPenButton =
