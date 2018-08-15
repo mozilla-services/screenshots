@@ -147,12 +147,12 @@ shotPageExpired = { $timediff } समाप्त
 timeDiffJustNow = बस अभी
 timeDiffMinutesAgo =
     { $number ->
-        [one] 1 मिनट पहले 
+        [one] 1 मिनट पहले
        *[other] { $number } मिनट पहले
     }
 timeDiffHoursAgo =
     { $number ->
-        [one] 1 घंटे पहले 
+        [one] 1 घंटे पहले
        *[other] { $number } घंटे पहले
     }
 timeDiffDaysAgo =
@@ -229,9 +229,9 @@ textSizeSmall = छोटा
 textSizeMedium = मध्यम
 textSizeLarge = बड़ा
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = पुष्टि करें
     .title = पुष्टि करें
-annotationTextCancelButton =
+textToolCancelButton = रद्द करें
     .title = रद्द करें
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
@@ -242,7 +242,11 @@ textToolInputPlaceholder =
 settingsDisconnectButton = असम्बद्ध करें
     .title = असम्बद्ध करें
 settingsGuestAccountMessage = अतिथि खाता
+settingsSignInInvite = उपकरणों में संकालन के लिए साइन इन करें
+settingsSignInButton = साइन इन
+    .title = साइन इन
 SettingsPageHeader = Firefox स्क्रीनशॉट सेटिंग
+settingsPageSubHeader = संकालन एवं खाते
 settingsClosePreferences =
     .title = प्राथमिकताएँ बंद करें
 
@@ -281,6 +285,7 @@ shotIndexNoExpirationSymbol = ∞
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = क्या आप आश्वस्त हैं की आप इस शॉट को मिटाना चाहते हैं?
 shotDeleteCancel = रद्द करें
     .title = रद्द करें
 shotDeleteConfirm = मिटाएँ
@@ -306,16 +311,16 @@ metricsPageUsersQueryTitle = दिन के अनुसार उपयोग
 metricsPageUsersQueryDescription = उपयोगकर्ताओं की संख्या जिसने कम से कम एक शॉट बनाया हो, एक दिन में (पिछले 30 दिन)
 metricsPageUsersQueryCount = उपयोगकर्ता
 metricsPageUsersQueryDay = दिन
-metricsPageUserShotsQueryTitle = उपयोगकर्ता की संख्या प्रति शॉट्स 
+metricsPageUserShotsQueryTitle = उपयोगकर्ता की संख्या प्रति शॉट्स
 metricsPageUserShotsQueryDescription = N कुल शॉट्स के बारे में उपयोगकर्ताओं की संख्या
 metricsPageUserShotsQueryCount = उपयोगकर्ताओं की संख्या
-metricsPageUserShotsQueryShots = लगभग सक्रिय शॉट्स (असमाप्त) की संख्या 
+metricsPageUserShotsQueryShots = लगभग सक्रिय शॉट्स (असमाप्त) की संख्या
 metricsPageRetentionQueryTitle = सप्ताह से प्रतिधारण
 metricsPageRetentionQueryDescription = प्रारंभिक सप्ताह द्वारा समूहीकृत, उपयोगकर्ता के पहले शॉट से सबसे हाल के शॉट पर दिनों की संख्या
 metricsPageRetentionQueryUsers = उपयोगकर्ताओं की संख्या
 metricsPageRetentionQueryFirstWeek = एक सप्ताह उपयोगकर्ता ने पहला शॉट बनाया
 metricsPageTotalRetentionQueryTitle = कुल प्रतिधारण
-metricsPageTotalRetentionQueryDescription = समय अवधि जिसमे उपयोगकर्ता शॉट्स बना रहे हैं, सप्ताह के अनुसार समूहबद्ध की हुई 
+metricsPageTotalRetentionQueryDescription = समय अवधि जिसमे उपयोगकर्ता शॉट्स बना रहे हैं, सप्ताह के अनुसार समूहबद्ध की हुई
 metricsPageTotalRetentionQueryUsers = उपयोगकर्ताओं की संख्या
 metricsPageTotalRetentionQueryDays = दिन उपयोगकर्ता शॉट्स बना रहा है.
 metricsPageVersionQueryTitle = ऐड-ऑन संस्करण
