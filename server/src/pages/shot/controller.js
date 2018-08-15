@@ -20,6 +20,22 @@ function shouldHighlightEditIcon(model) {
   return !hasSeen;
 }
 
+function shouldShowPromo(model) {
+  if (!model.isOwner || !model.enableAnnotations) {
+    return false;
+  }
+  let show = false;
+  const count = localStorage.hasSeenPromoDialog;
+  if (!count) {
+    localStorage.hasSeenPromoDialog = 1;
+    show = true;
+  } else if (count < 3) {
+    localStorage.hasSeenPromoDialog = parseInt(count, 10) + 1;
+    show = true;
+  }
+  return show;
+}
+
 exports.launch = function(data) {
   const firstSet = !model;
   model = data;
@@ -57,6 +73,7 @@ exports.launch = function(data) {
     }
   }
   model.highlightEditButton = shouldHighlightEditIcon(model);
+  model.promoDialog = shouldShowPromo(model);
   if (firstSet) {
     refreshHash();
   }

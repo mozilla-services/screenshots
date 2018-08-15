@@ -47,9 +47,59 @@
   }
 }
 
+.promo-panel {
+  position: absolute;
+  top: 45px;
+  right: -45px;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2);
+  width: 150px;
+  z-index: 999;
+  padding: 5px;
+  text-align: center;
+
+  .title {
+    font-size: 14px;
+    line-height: 14px;
+    margin: 5px;
+  }
+
+  .message {
+    font-size: 12px;
+    margin: 5px 2px;
+  }
+
+  .message-text {
+    margin: 0 2px;
+  }
+
+  a.box-close {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    cursor: pointer;
+    color: $black;
+    width: 15px;
+    height: 15px;
+    line-height: 12px;
+  }
+
+  .box-close:before {
+    content: "×";
+  }
+
+  .box-close:hover {
+    background-color: $light-hover;
+  }
+}
+
 .shot-alt-actions {
   #downloadIcon {
     margin-right: 4px;
+  }
+
+  .edit-shot-button {
+    position: relative;
   }
 
   @include respond-to("small") {
