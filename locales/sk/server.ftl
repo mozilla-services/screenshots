@@ -188,6 +188,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Ak ste túto snímku vytvorili, no nemôžete ju odstrániť, dočasne povoľte v možnostiach svojho prehliadača používanie cookies tretích strán.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Novinka!
+promoMessage = Aktualizované nástroje na upravovanie vám umožňujú orezať snímku, zvýrazniť ju a dokonca do nej pridať text.
+promoLink = Vyskúšajte ich
+promoCloseButton =
+    .title = Zavrieť upozornenie
+
 ## Annotations
 
 annotationPenButton =
