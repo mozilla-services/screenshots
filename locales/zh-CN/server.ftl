@@ -166,6 +166,10 @@ errorThirdPartyCookiesEnabled = 如果您无法删除截图，可能需要暂时
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = 请注意！
+promoMessage = 最新的编辑工具支持裁剪、高亮，以及为您的截图添加文字。
+promoLink = 试一试
 promoCloseButton =
     .title = 关闭通知
 
