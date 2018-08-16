@@ -205,6 +205,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Os wnaethoch chi gymryd y llun hwn, ac yn methu ei dileu, efallai y bydd angen i chi alluogi, dros dro, cwcis trydydd parti o fewn dewisiadau eich porwr.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Edrychwch!
+promoMessage = Mae'r offer golygu diweddaraf yn gadael i chi docio, amlygu ac ychwanegu testun i'ch llun.
+promoLink = Rhowch gynnig arnyn nhw
+promoCloseButton =
+    .title = Cau'r hysbysiad
+
 ## Annotations
 
 annotationPenButton =
