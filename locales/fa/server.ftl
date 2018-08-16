@@ -182,6 +182,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = اگر شما این عکس را گرفته‌اید و نمی‌تواند آن را حذف کنید، ممکن است لازم باشد به طور موقت کوکی‌های شخص ثالث را از تنظیمات مرورگر خود فعال کنید.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = برداشتن یادداشت!
+promoMessage = ابزار ویرایش‌ کردن که به شما اجازه بریدن،‌ برجسته سازی و حتی اضافه کردن متن به تصاویر گرفته شده  را می‌دهد به روزرسانی شد.
+promoLink = ‌آن ها را امتحان کنید
+promoCloseButton =
+    .title = بستن هشدار
+
 ## Annotations
 
 annotationPenButton =
@@ -233,10 +242,13 @@ textSizeSmall = کوچک
 textSizeMedium = متوسط
 textSizeLarge = بزرگ
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = تایید
     .title = تایید
-annotationTextCancelButton =
+textToolCancelButton = لغو
     .title = لغو
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = سلام
 
 ## Settings Page
 
