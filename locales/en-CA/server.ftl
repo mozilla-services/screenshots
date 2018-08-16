@@ -182,6 +182,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = If you took this shot and cannot delete it, you may need to temporarily enable third party cookies from your browser’s preferences.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Take Note!
+promoMessage = Updated editing tools let you crop, highlight, and even add text to your shot.
+promoLink = Give them a try
+promoCloseButton =
+    .title = Close notification
+
 ## Annotations
 
 annotationPenButton =
