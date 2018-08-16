@@ -194,6 +194,11 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Če ste ta posnetek zaslona zajeli vi in ga ne morete izbrisati, morate morda v nastavitvah brskalnika začasno omogočiti piškotke tretjih strani.
 
+## Shot Page New Feature Promotion Dialog.
+
+promoCloseButton =
+    .title = Zapri obvestilo
+
 ## Annotations
 
 annotationPenButton =
