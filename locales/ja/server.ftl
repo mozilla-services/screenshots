@@ -158,6 +158,15 @@ timeDiffFutureHours = { $number } 時間以内
 timeDiffFutureDays = { $number } 日以内
 errorThirdPartyCookiesEnabled = このショットを撮って削除できない場合、ブラウザーの設定画面でサードパーティ Cookie を一時的に有効化する必要があるかもしれません。
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = お知らせ！
+promoMessage = 拡張された編集ツールを使えば、ショットのトリミングやハイライト、さらに文字の追加もできます。
+promoLink = 試してみる
+promoCloseButton =
+    .title = 通知を閉じる
+
 ## Annotations
 
 annotationPenButton =
