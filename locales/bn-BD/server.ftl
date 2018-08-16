@@ -255,9 +255,14 @@ textToolInputPlaceholder =
 settingsDisconnectButton = বিচ্ছিন্ন
     .title = বিচ্ছিন্ন
 settingsGuestAccountMessage = অতিথি অ্যাকাউন্ট
+settingsSignInInvite = বিভিন্ন ডিভাইসে সিঙ্ক করতে সাইন ইন করুন
 settingsSignInButton = সাইন ইন
     .title = সাইন ইন
+SettingsPageHeader = Firefox স্ক্রিনশট সেটিংস
+settingsDescription = Firefox অ্যাকাউন্টে সাইন ইন করে, আপনার সব ডিভাইসে আপনি সবগুলো স্ক্রিনশট সিঙ্ক করতে এবং তাদের ব্যক্তিগতভাবে অ্যাক্সেস করতে পারবেন।
 settingsPageSubHeader = সিঙ্ক এবং অ্যাকাউন্ট
+settingsClosePreferences =
+    .title = পছন্দসমূহ বন্ধ করুন
 
 ## Shotindex page
 
@@ -294,6 +299,7 @@ shotIndexNoExpirationSymbol = ∞
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = আপনি কি এই শটটি মুছে ফেলতে চান?
 shotDeleteCancel = বাতিল
     .title = বাতিল
 shotDeleteConfirm = অপসারণ
