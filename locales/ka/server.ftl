@@ -178,6 +178,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = თუ გადაიღეთ სურათი, მაგრამ ვერ ახერხებთ მის წაშლას, სავარაუდოდ, დაგჭირდებათ მესამე მხარის ფუნთუშების დროებით დაშვება, ბრაუზერის პარამეტრებიდან.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = ჩაინიშნეთ!
+promoMessage = ჩასწორების ხელსაწყოები განახლებულია და საშუალება გეძლევათ მოჭრათ, გააფერადოთ და სასურველი ტექსტი დაამატოთ გადაღებულ სურათზე.
+promoLink = გამოცადეთ
+promoCloseButton =
+    .title = შეტყობინების დახურვა
+
 ## Annotations
 
 annotationPenButton =
