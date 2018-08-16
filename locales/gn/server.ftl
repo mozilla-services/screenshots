@@ -182,6 +182,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Ojejap ko japyhypy ha ndaikatúi oñembogue, ikatu hína oĩ tekotevẽ ijurujávo sapy’aitemi kookie mbohapyháva kundaha oguerohoryvévape.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = ¡Ehai kuatiápe!
+promoMessage = Umi tembipuru ñembosako’i hekopyahúva ikatu omombyky, ohechauka ha avei ombojuapy moñe’ẽrã nemba’ére.
+promoLink = Eipurúke
+promoCloseButton =
+    .title = Emboty momarandu
+
 ## Annotations
 
 annotationPenButton =
@@ -233,9 +242,9 @@ textSizeSmall = Michĩva
 textSizeMedium = Mbyteguáva
 textSizeLarge = Tuicháva
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Moneĩ
     .title = Moneĩ
-annotationTextCancelButton =
+textToolCancelButton = Heja
     .title = Heja
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
