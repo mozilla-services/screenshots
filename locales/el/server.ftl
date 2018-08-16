@@ -182,6 +182,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Αν "τραβήξατε" αυτό το στιγμιότυπο και δεν μπορείτε να το διαγράψετε, ίσως χρειαστεί να ενεργοποιήσετε προσωρινά τα cookies τρίτων από τις προτιμήσεις του προγράμματος περιήγησής σας.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Κάντε σημειώσεις!
+promoMessage = Ενημερωμένα εργαλεία επεξεργασίας για περικοπή, επισήμανση, ακόμη και προσθήκη κειμένου σε στιγμιότυπα.
+promoLink = Δοκιμάστε τα
+promoCloseButton =
+    .title = Κλείσιμο ειδοποίησης
+
 ## Annotations
 
 annotationPenButton =
