@@ -182,6 +182,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Ha Ön készítette ezt a képet, és nem tudja törölni, akkor lehet hogy ideiglenesen engedélyeznie kell a harmadik féltől származó sütiket a böngésző beállításaiban.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Figyelem!
+promoMessage = Frissített szerkesztőeszközök, melyekkel vághat, kiemelhet, és szöveget adhat hozzá a képernyőképhez.
+promoLink = Próbálja ki őket
+promoCloseButton =
+    .title = Értesítés bezárása
+
 ## Annotations
 
 annotationPenButton =
