@@ -182,6 +182,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Wenn Sie dieses Bildschirmfoto aufgenommen haben, es aber nicht löschen können, müssen Sie möglicherweise kurzzeitig Cookies von Drittanbietern in den Einstellungen Ihres Browsers zulassen.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Aufgepasst!
+promoMessage = Mit neuen Bearbeitungswerkzeugen können Sie Ihr Bildschirmfoto zuschneiden, hervorheben oder Text hinzufügen.
+promoLink = Probieren Sie sie aus!
+promoCloseButton =
+    .title = Benachrichtigung schließen
+
 ## Annotations
 
 annotationPenButton =
