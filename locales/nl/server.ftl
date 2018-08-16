@@ -182,6 +182,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Als u deze afbeelding hebt gemaakt en niet kunt verwijderen, dient u wellicht tijdelijk cookies van derden in te schakelen vanuit de voorkeuren van uw browser.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Let op!
+promoMessage = Met bijgewerkte hulpmiddelen voor bewerking kunt u een schermafbeelding bijsnijden, markeren, en er zelfs tekst aan toevoegen.
+promoLink = Probeer ze eens
+promoCloseButton =
+    .title = Melding sluiten
+
 ## Annotations
 
 annotationPenButton =
