@@ -182,6 +182,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Om du tog den här bilden och inte kan ta bort den, kan du behöva aktivera tredjepartskakor tillfälligt från din webbläsares inställningar.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Notera!
+promoMessage = Uppdaterade redigeringsverktyg låter dig beskära, markera och till och med lägga till text i din skärmbild.
+promoLink = Ge dem ett försök
+promoCloseButton =
+    .title = Stäng meddelande
+
 ## Annotations
 
 annotationPenButton =
