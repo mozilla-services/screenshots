@@ -182,6 +182,11 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Si vous avez effectué cette capture et que vous ne pouvez pas la supprimer, vous devrez peut-être activer temporairement les cookies tiers depuis les préférences de votre navigateur.
 
+## Shot Page New Feature Promotion Dialog.
+
+promoCloseButton =
+    .title = Fermer la notification
+
 ## Annotations
 
 annotationPenButton =
