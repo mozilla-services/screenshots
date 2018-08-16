@@ -188,6 +188,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Калі вы зрабілі гэты здымак і не можаце яго выдаліць, вам можа спатрэбіцца часова ўключыць прыём кукі з пабочных сайтаў у наладах вашага браўзера.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Заўважце!
+promoMessage = Абноўленыя прылады рэдагавання могуць абразаць, падсвятляць, і нават дадаваць тэкст да вашага здымку.
+promoLink = Паспрабаваць
+promoCloseButton =
+    .title = Закрыць паведамленне
+
 ## Annotations
 
 annotationPenButton =
