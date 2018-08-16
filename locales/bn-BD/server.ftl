@@ -151,7 +151,7 @@ shotPageExpired = { $timediff } মেয়াদোত্তীর্ণ
 timeDiffJustNow = এখনই
 timeDiffMinutesAgo =
     { $number ->
-        [one] ১ মিনিট আগে 
+        [one] ১ মিনিট আগে
        *[other] { $number } মিনিট আগে
     }
 timeDiffHoursAgo =
@@ -161,7 +161,7 @@ timeDiffHoursAgo =
     }
 timeDiffDaysAgo =
     { $number ->
-        [one] গতকাল 
+        [one] গতকাল
        *[other] { $number } দিন আগে
     }
 timeDiffFutureSeconds = কিছুক্ষণের মধ্যেই
@@ -182,12 +182,27 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = আপনি যদি শট নেন, কিন্তু মুছে ফেলতে না পারেন, তাহলে আপনার ব্রাউজারের অপশন থেকে তৃতীয় পক্ষের কুকিজ অস্থায়ীভাবে সক্রিয় করতে হতে পারে।
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle =   নোট করুন!
+promoMessage = আপডেট করা সম্পাদনার সরঞ্জাম আপনাকে ক্রপ, হাইলাইট এবং এমনকি আপনার শটে টেক্সট লিখতে দিবে।
+promoLink = এগুলে একবার চেষ্টা করে দেখুন
+promoCloseButton =
+    .title = বিজ্ঞপ্তি বন্ধ করুন
+
 ## Annotations
 
 annotationPenButton =
     .title = কলম
 annotationHighlighterButton =
     .title = হাইলাইটার
+annotationUndoButton =
+    .title = আনডু
+annotationRedoButton =
+    .title = পুনরায় কর
+annotationTextButton =
+    .title = টেক্সট লিখুন
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = পরিষ্কার করুন
@@ -219,9 +234,30 @@ annotationColorSeaGreen =
     .title = গাঢ় সবুজ
 annotationColorGrey =
     .title = ধূসর
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = টেক্সট আকার
+# Values shown in text size selection dropdown
+textSizeSmall = ছোট
+textSizeMedium = মধ্যম
+textSizeLarge = বড়
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = নিশ্চিত
+    .title = নিশ্চিত করুন
+textToolCancelButton = বাতিল
+    .title = বাতিল
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = স্বাগতম
 
 ## Settings Page
 
+settingsDisconnectButton = বিচ্ছিন্ন
+    .title = বিচ্ছিন্ন
+settingsGuestAccountMessage = অতিথি অ্যাকাউন্ট
+settingsSignInButton = সাইন ইন
+    .title = সাইন ইন
+settingsPageSubHeader = সিঙ্ক এবং অ্যাকাউন্ট
 
 ## Shotindex page
 
@@ -258,6 +294,10 @@ shotIndexNoExpirationSymbol = ∞
 
 ## Delete Confirmation Dialog
 
+shotDeleteCancel = বাতিল
+    .title = বাতিল
+shotDeleteConfirm = অপসারণ
+    .title = অপসারণ
 
 ## Metrics page
 ## All metrics strings are optional for translation
