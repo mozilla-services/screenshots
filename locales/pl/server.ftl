@@ -188,6 +188,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Jeśli to Twój zrzut i nie możesz go usunąć, to musisz tymczasowo włączyć ciasteczka witryn zewnętrznych podmiotów w preferencjach przeglądarki.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Nowość!
+promoMessage = Zaktualizowane narzędzia edycji umożliwiają kadrowanie, zakreślanie, a nawet dodawanie tekstu do zrzutu.
+promoLink = Wypróbuj je
+promoCloseButton =
+    .title = Zamknij powiadomienie
+
 ## Annotations
 
 annotationPenButton =
