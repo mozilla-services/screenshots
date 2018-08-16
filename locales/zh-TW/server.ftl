@@ -158,6 +158,15 @@ timeDiffFutureHours = { $number } 小時內
 timeDiffFutureDays = { $number } 天內
 errorThirdPartyCookiesEnabled = 若您拍了這張圖卻無法山圖，可能需要到瀏覽器的偏好設定中暫時允許第三方 Cookie。
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = 記下筆記！
+promoMessage = 更新過的編輯工具可讓您裁切擷圖、強調文字，甚至新增文字到圖片上。
+promoLink = 快試試看
+promoCloseButton =
+    .title = 關閉通知
+
 ## Annotations
 
 annotationPenButton =
