@@ -188,6 +188,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Jei padarėte šią nuotrauką ir negalite jos pašalinti, gali tekti laikinai įjungti trečiųjų šalių slapukus per naršyklės nuostatas.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Nauja!
+promoMessage = Atnaujinti redagavimo įrankiai leidžia apkirpti, paryškinti, ir net pridėti tekstą ant jūsų ekrano nuotraukų.
+promoLink = Išbandykite juos
+promoCloseButton =
+    .title = Užverti pranešimą
+
 ## Annotations
 
 annotationPenButton =
