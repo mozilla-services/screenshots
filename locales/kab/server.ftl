@@ -178,6 +178,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Ma txeḍmeḍ tuṭṭfa-a sakin ur tezmireḍ ara ad tt-tekseḍ, iwwi-d ahat ad tremdeḍ s wudem askudan inagan n tuqna n wis kraḍ seg Ismenyifen n iminig inek.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Aru tazmilt!
+promoMessage = Ifecka n teẓrigt yettwaleqqmen ad k-yeǧǧ ad teṭṭfeḍ, ad tessebṛurqeḍ, daɣen ad ternuḍ aḍris ar tuṭṭfa-ik.
+promoLink = Ɛerḍ-it
+promoCloseButton =
+    .title = Mdel alɣu
+
 ## Annotations
 
 annotationPenButton =
