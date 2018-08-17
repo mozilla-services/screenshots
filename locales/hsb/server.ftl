@@ -194,6 +194,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Jeli sće tute foto wobrazowki činił a njemóžeće jo zhašeć, dyrbiće nachwilu placki třećich poskićowarjow w nastajenjach swojeho wobhladowaka zmóžnić.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Kedźbu!
+promoMessage = Z nowymi wobdźěłowanskimi nastrojemi móžeće w swojim foće wobrazowki tekst wutřihać, wuzběhnyć a samo přidać.
+promoLink = Wupruwujće je!
+promoCloseButton =
+    .title = Zdźělenku začinić
+
 ## Annotations
 
 annotationPenButton =
