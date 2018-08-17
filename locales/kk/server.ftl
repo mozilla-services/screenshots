@@ -176,6 +176,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Егер сіз бұл скриншотты түсіріп, оны өшіре алмасаңыз, онда сізге браузерде уақытша үшінші жақты cookies файлдарына рұқсат беру керек болуы мүмкін.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Естелікті сақтау!
+promoMessage = Жаңартылған түзету құралдары көмегімен скриншотты қию, түспен ерекшелеу және оған тіпті мәтінді де қосуға болады.
+promoLink = Оларды қолданып көру
+promoCloseButton =
+    .title = Ескертуді жабу
+
 ## Annotations
 
 annotationPenButton =
