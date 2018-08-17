@@ -188,6 +188,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Ако сте усликали овај снимак и не можете да га обришете, можда морате привремено да омогућите колачиће трећих лица у вашим поставкама.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Забележите!
+promoMessage = Ажурирани алати за уређивање вам омогућавају да исечете, означите и чак додате текст на ваш снимак.
+promoLink = Испробајте их
+promoCloseButton =
+    .title = Затвори обавештење
+
 ## Annotations
 
 annotationPenButton =
@@ -198,6 +207,8 @@ annotationUndoButton =
     .title = Опозови
 annotationRedoButton =
     .title = Понови
+annotationTextButton =
+    .title = Додај текст
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Очисти
@@ -229,6 +240,21 @@ annotationColorSeaGreen =
     .title = Морска зелена
 annotationColorGrey =
     .title = Сива
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Величина текста
+# Values shown in text size selection dropdown
+textSizeSmall = Мала
+textSizeMedium = Средња
+textSizeLarge = Велика
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = Потврди
+    .title = Потврди
+textToolCancelButton = Откажи
+    .title = Откажи
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Здраво
 
 ## Settings Page
 
