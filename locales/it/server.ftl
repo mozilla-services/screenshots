@@ -186,6 +186,7 @@ errorThirdPartyCookiesEnabled = Se hai creato questa immagine e non riesci ad el
 
 # Note: If possible, choose a short translation to better fit into the card.
 promoTitle = Prendi nota!
+promoMessage = Gli strumenti di modifica aggiornati permettono di ritagliare, evidenziare e anche di aggiungere testo ai tuoi screenshot.
 promoLink = Provali
 promoCloseButton =
     .title = Chiudi notifica
