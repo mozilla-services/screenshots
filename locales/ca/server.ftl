@@ -186,6 +186,7 @@ errorThirdPartyCookiesEnabled = Si heu fet aquesta captura i no la podeu suprimi
 
 # Note: If possible, choose a short translation to better fit into the card.
 promoTitle = Preneu nota!
+promoMessage = Les eines d'edició actualitzades us permeten retallar la captura, ressaltar-la i afegir-hi text.
 promoLink = Proveu-ho
 promoCloseButton =
     .title = Tanca la notificació
