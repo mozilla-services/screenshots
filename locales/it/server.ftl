@@ -182,6 +182,14 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Se hai creato questa immagine e non riesci ad eliminarla, potrebbe essere necessario attivare i cookie di terze parti nelle impostazioni del browser.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Prendi nota!
+promoLink = Provali
+promoCloseButton =
+    .title = Chiudi notifica
+
 ## Annotations
 
 annotationPenButton =
