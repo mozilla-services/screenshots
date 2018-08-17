@@ -182,6 +182,14 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Si heu fet aquesta captura i no la podeu suprimir, és possible que hàgiu d'activar temporalment les galetes de tercers a les preferències del navegador.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Preneu nota!
+promoLink = Proveu-ho
+promoCloseButton =
+    .title = Tanca la notificació
+
 ## Annotations
 
 annotationPenButton =
