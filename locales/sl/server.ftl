@@ -196,6 +196,10 @@ errorThirdPartyCookiesEnabled = Če ste ta posnetek zaslona zajeli vi in ga ne m
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Novo!
+promoMessage = Posodobljena orodja za urejanje vam omogočajo posnetek obrezati, označiti in celo opremiti z besedilom.
+promoLink = Preskusite jih
 promoCloseButton =
     .title = Zapri obvestilo
 
