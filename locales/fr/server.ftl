@@ -184,6 +184,7 @@ errorThirdPartyCookiesEnabled = Si vous avez effectué cette capture et que vous
 
 ## Shot Page New Feature Promotion Dialog.
 
+promoMessage = La nouvelle version des outils d’édition vous permet de recadrer, surligner et même ajouter du texte à vos captures.
 promoCloseButton =
     .title = Fermer la notification
 
