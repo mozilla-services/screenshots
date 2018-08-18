@@ -194,6 +194,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Jolic sćo toś to foto wobrazowki gótował a njamóžośo jo wulašowaś, musyśo nachylu cookieje tśeśich póbitowarjow w nastajenjach swójogo wobglědowaka zmóžniś.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Glědajśo!
+promoMessage = Z nowymi wobźěłowańskimi rědami móžośo w swójom fośe wobrazowki tekst wurězaś, wuzwignuś a samo pśidaś.
+promoLink = Wopytajśo je!
+promoCloseButton =
+    .title = Powěźeńku zacyniś
+
 ## Annotations
 
 annotationPenButton =
