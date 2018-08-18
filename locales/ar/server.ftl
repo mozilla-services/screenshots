@@ -204,6 +204,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = إذا أخذت هذه اللقطة و لا تستطيع حذفها، فقد تحتاج إلى تمكين كعكات الأطراف الخارجية مؤقتًا من تفضيلات المتصفح.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = سجّل ملاحظة!
+promoMessage = تتيح لك أدوات التحرير المتقدّمة اقتصاص وإبراز وإضافة النصوص إلى اللقطة.
+promoLink = لمَ لا تجربها؟
+promoCloseButton =
+    .title = أغلِق التنبيه
+
 ## Annotations
 
 annotationPenButton =
@@ -255,9 +264,9 @@ textSizeSmall = صغير
 textSizeMedium = متوسط
 textSizeLarge = كبير
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
-    .title = أكِّد
-annotationTextCancelButton =
+textToolConfirmButton = أكّد
+    .title = أكّد
+textToolCancelButton = ألغِ
     .title = ألغِ
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
