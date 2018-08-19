@@ -182,6 +182,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Sche ti has fatg quest maletg dal visur e na pos betg al stizzar, stos ti eventualmain activar temporarmain cookies da terzs en las preferenzas da tes navigatur.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Adatg!
+promoMessage = Cun novs utensils per elavurar maletgs pos ti retagliar e sclerir il maletg dal visur e perfin agiuntar text.
+promoLink = Emprova
+promoCloseButton =
+    .title = Serrar l'avis
+
 ## Annotations
 
 annotationPenButton =
