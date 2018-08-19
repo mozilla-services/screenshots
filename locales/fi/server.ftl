@@ -182,6 +182,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Jos otit tämän kaappauksen etkä pysty poistamaan sitä, voit joutua sallimaan kolmannen osapuolen evästeet väliaikaisesti selaimen asetuksista.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Huomio!
+promoMessage = Päivitetyillä muokkaustyökaluilla voit rajata ja korostaa kuvaasi sekä lisätä tekstiä.
+promoLink = Kokeile niitä
+promoCloseButton =
+    .title = Sulje ilmoitus
+
 ## Annotations
 
 annotationPenButton =
