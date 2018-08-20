@@ -861,7 +861,7 @@ app.post("/api/save-edit", function(req, res) {
 });
 
 app.post("/api/set-expiration", function(req, res) {
-  if (!req.deviceId) {
+  if (!req.deviceId || !req.accountId) {
     sendRavenMessage(req, "Attempt to set expiration without login");
     simpleResponse(res, "Not logged in", 401);
     return;

@@ -290,11 +290,6 @@ These are events that an add-on user can encounter on a shot they own
   8. [x] Confirm delete from shot index `web/delete/my-shots-popup-confirm`
   9. [x] Cancel delete from shot index, `web/cancel-delete/my-shots-popup-confirm`
 7. [x] Click My Shots `web/goto-myshots/navbar`
-11. [x] Try to change expiration time `web/start-expiration-change/navbar`
-  12. [x] Cancel changing expiration time `web/cancel-expiration-change/navbar`
-  13. [x] Change expiration time `web/set-expiration/navbar`
-  14. [x] Change expiration time to specific time `web/set-expiration-to-time/navbar`
-  15. [x] Change expiration time to indefinite `web/set-expiration-to-indefinite/navbar`
 16. [x] View expired shot `web/view-expired/owner`
 17. [x] Recover expired shot `web/recover-expired`
 19. [x] Visit original page `web/view-original/navbar-owner`
@@ -316,6 +311,8 @@ These are events that an add-on user can encounter on a shot they own
 33. [x] Visit an image directly, when the image isn't embedded directly in a Screenshots shot page, `web/visit/direct-view-owner`
 34. [x] View an image directly, when the image is being shown as part of a Facebook/Twitter style preview (the og:image or twitter:image), `web/visit/direct-view-embedded-owner`
 35. [x] Close new edit tools promotion dialog, `web/promo-closed`
+1. [x] Add shot to favorites `web/set-favorite/navbar`
+1. [x] Remove shot from favorites `web-unset-favorite/navbar`
 
 #### Shot Index (My Shots)
 

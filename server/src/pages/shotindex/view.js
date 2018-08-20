@@ -63,7 +63,7 @@ class Body extends React.Component {
     const children = [];
     if (this.props.shots && this.props.shots.length) {
       for (const shot of this.props.shots) {
-        children.push(<Card shot={shot} downloadUrl={this.props.downloadUrls[shot.id]} abTests={this.props.abTests} clipUrl={shot.urlDisplay} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} key={shot.id} />);
+        children.push(<Card shot={shot} downloadUrl={this.props.downloadUrls[shot.id]} abTests={this.props.abTests} clipUrl={shot.urlDisplay} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} hasFxa={this.props.hasFxa} key={shot.id} />);
       }
     }
 
@@ -281,6 +281,7 @@ Body.propTypes = {
   downloadUrls: PropTypes.object,
   enableUserSettings: PropTypes.bool,
   hasDeviceId: PropTypes.bool,
+  hasFxa: PropTypes.bool,
   isExtInstalled: PropTypes.bool,
   isOwner: PropTypes.bool,
   pageNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -329,7 +330,11 @@ class Card extends React.Component {
 
     let neverExpireIndicator = null;
     if (!shot.expireTime) {
-      neverExpireIndicator = <Localized id="shotIndexNoExpirationSymbol"><div className="never-expires" title=""></div></Localized>;
+      if (this.props.hasFxa) {
+        neverExpireIndicator = <Localized id="shotIndexFavoriteIcon"><div className="favorite-shot" title=""></div></Localized>;
+      } else {
+        neverExpireIndicator = <Localized id="shotIndexNoExpirationSymbol"><div className="never-expires" title=""></div></Localized>;
+      }
     }
 
     const deleteConfirmationClass = this.state.deletePanelOpen ? "panel-open" : "";
@@ -462,6 +467,7 @@ class Card extends React.Component {
 Card.propTypes = {
   abTests: PropTypes.object,
   downloadUrl: PropTypes.string,
+  hasFxa: PropTypes.bool,
   isExtInstalled: PropTypes.bool,
   isOwner: PropTypes.bool,
   shot: PropTypes.object,

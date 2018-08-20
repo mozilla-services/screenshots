@@ -176,7 +176,6 @@ class Body extends React.Component {
     this.state = {
       hidden: false,
       closeBanner: false,
-      isChangingExpire: false,
       imageEditing: false
     };
   }
@@ -342,19 +341,21 @@ class Body extends React.Component {
     const linkTextShort = shot.urlDisplay;
 
     const timeDiff = <TimeDiff date={shot.createdDate} />;
-    let expiresDiff = null;
-    if (this.props.isOwner) {
-      expiresDiff = <span className="expire-widget">
-      <ExpireWidget
-        expireTime={this.props.expireTime}
-        onChanging={this.onChangingExpire.bind(this)}
-        onSaveExpire={this.onSaveExpire.bind(this)} />
-      </span>;
-    }
 
+    let favoriteShotButton = null;
     let trashOrFlagButton;
     let editButton;
     const highlight = this.state.highlightEditButton ? <div className="edit-highlight" onClick={ this.onClickEdit.bind(this) } onMouseOver={ this.onMouseOverHighlight.bind(this) } onMouseOut={ this.onMouseOutHighlight.bind(this) }></div> : null;
+
+    if (this.props.isFxaAuthenticated) {
+      const activeFavClass = this.props.expireTime ? "" : "is-fav";
+      favoriteShotButton = <div className="fav-wrapper"><button
+        className={`button favorite ${activeFavClass}`}
+        title="Favorite this shot"
+        onClick={ this.onClickFavorite.bind(this) }
+      /></div>;
+    }
+
     if (this.props.isOwner) {
       trashOrFlagButton = <DeleteShotButton
         clickDeleteHandler={ this.clickDeleteHandler.bind(this) }
@@ -419,13 +420,13 @@ class Body extends React.Component {
             <div className="shot-info">
               <EditableTitle title={shot.title} isOwner={this.props.isOwner} />
               <div className="shot-subtitle">
-                { linkTextShort && !this.state.isChangingExpire ? <a className="subtitle-link" rel="noopener noreferrer" href={ shot.url } target="_blank" onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> : null }
-                { this.state.isChangingExpire ? null : <span className="time-diff">{ timeDiff }</span> }
-                { expiresDiff }
+                { linkTextShort ? <a className="subtitle-link" rel="noopener noreferrer" href={ shot.url } target="_blank" onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> : null }
+                <span className="time-diff">{ timeDiff }</span>
               </div>
             </div>
           </div>
           <div className="shot-alt-actions">
+            { favoriteShotButton }
             { trashOrFlagButton }
             { this.props.enableAnnotations ? editButton : null }
             { highlight }
@@ -508,20 +509,6 @@ class Body extends React.Component {
     sendEvent("click-install-firefox-shot", {useBeacon: true});
   }
 
-  onSaveExpire(value) {
-    sendEvent("set-expiration", "navbar");
-    if (value === 0 || value === "0") {
-      sendEvent("set-expiration-to-indefinite", "navbar");
-    } else {
-      sendEvent("set-expiration-to-time", "navbar");
-    }
-    this.props.controller.changeShotExpiration(this.props.shot, value);
-  }
-
-  onChangingExpire(value) {
-    this.setState({isChangingExpire: value});
-  }
-
   onRestore() {
     sendEvent("recover-expired");
     this.props.controller.changeShotExpiration(this.props.shot, this.props.defaultExpiration);
@@ -543,6 +530,18 @@ class Body extends React.Component {
       sendEvent("view-original", `${label}-non-owner`, {useBeacon: true});
     }
     // Note: we allow the default action to continue
+  }
+
+  onClickFavorite() {
+    if (this.props.expireTime) {
+      sendEvent("set-favorite", "navbar");
+      const INDEFINITE = 0;
+      this.props.controller.changeShotExpiration(this.props.shot, INDEFINITE);
+    } else {
+      sendEvent("unset-favorite", "navbar");
+      const TWO_WEEKS_IN_MS = 1209600000;
+      this.props.controller.changeShotExpiration(this.props.shot, Date.now() + TWO_WEEKS_IN_MS);
+    }
   }
 
   onClickDownload() {
@@ -570,6 +569,7 @@ Body.propTypes = {
   isExtInstalled: PropTypes.bool,
   isMobile: PropTypes.bool,
   isOwner: PropTypes.bool,
+  isFxaAuthenticated: PropTypes.bool,
   loginFailed: PropTypes.bool,
   pngToJpegCutoff: PropTypes.number,
   retentionTime: PropTypes.number,
@@ -580,96 +580,6 @@ Body.propTypes = {
   userLocales: PropTypes.array
 };
 
-class ExpireWidget extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {isChangingExpire: false};
-  }
-
-  render() {
-    if (this.state.isChangingExpire) {
-      return this.renderChanging();
-    }
-    return this.renderNormal();
-  }
-
-  renderChanging() {
-    const minute = 60 * 1000;
-    const hour = minute * 60;
-    const day = hour * 24;
-    return (
-      <span className="keep-for-form">
-        <Localized id="shotPageKeepFor"><span>How long should this shot be retained?</span></Localized>
-        <select ref={expireTime => this.expireTime = expireTime}>
-          <Localized id="shotPageSelectTime"><option value="cancel">Select time</option></Localized>
-          <Localized id="shotPageKeepIndefinitelyWithSymbol"><option value="0">Indefinitely &infin;</option></Localized>
-          <Localized id="shotPageKeepTenMinutes"><option value={ 10 * minute }>10 Minutes</option></Localized>
-          <Localized id="shotPageKeepOneHour"><option value={ hour }>1 Hour</option></Localized>
-          <Localized id="shotPageKeepOneDay"><option value={ day }>1 Day</option></Localized>
-          <Localized id="shotPageKeepOneWeek"><option value={ 7 * day }>1 Week</option></Localized>
-          <Localized id="shotPageKeepTwoWeeks"><option value={ 14 * day }>2 Weeks</option></Localized>
-          <Localized id="shotPageKeepOneMonth"><option value={ 31 * day }>1 Month</option></Localized>
-        </select>
-        <Localized id="shotPageSaveExpiration"><span className="button tiny secondary" tabIndex="0" onClick={this.clickSaveExpire.bind(this)}>save</span></Localized>
-        <Localized id="shotPageCancelExpiration"><span className="button tiny secondary" tabIndex="0" onClick={this.clickCancelExpire.bind(this)}>cancel</span></Localized>
-      </span>
-    );
-  }
-
-  renderNormal() {
-    let button;
-    if (this.props.expireTime === null) {
-      button = <Localized id="shotPageDoesNotExpire"><span>does not expire</span></Localized>;
-    } else {
-      const expired = this.props.expireTime < Date.now();
-      const timediff = <TimeDiff date={this.props.expireTime} simple={this.props.simple} />;
-      if (expired) {
-        button = <Localized id="shotPageExpired" $timediff={timediff}><span>expired {timediff}</span></Localized>;
-      } else {
-        button = <Localized id="shotPageExpiresIn" $timediff={timediff}><span>expires {timediff}</span></Localized>;
-      }
-    }
-    return (
-      <button className="button tiny secondary inline" onClick={this.clickChangeExpire.bind(this)}>
-        {button}
-      </button>
-    );
-  }
-
-  clickChangeExpire() {
-    sendEvent("start-expiration-change", "navbar");
-    this.setState({isChangingExpire: true});
-    this.props.onChanging(true);
-  }
-
-  clickCancelExpire() {
-    sendEvent("cancel-expiration-change", "navbar");
-    this.setState({isChangingExpire: false});
-    this.props.onChanging(false);
-  }
-
-  clickSaveExpire() {
-    // FIXME: save the value that it was changed to?  Yes!  Not sure where to put it.
-    let value = this.expireTime.value;
-    if (value === "cancel") {
-      this.clickCancelExpire();
-      return;
-    }
-    value = parseInt(value, 10);
-    // Note: sendEvent done in onSaveExpire
-    this.props.onSaveExpire(value);
-    this.props.onChanging(false);
-    this.setState({isChangingExpire: false});
-  }
-}
-
-ExpireWidget.propTypes = {
-  expireTime: PropTypes.number,
-  onChanging: PropTypes.func,
-  onSaveExpire: PropTypes.func,
-  simple: PropTypes.bool
-};
 
 class EditableTitle extends React.Component {
 
