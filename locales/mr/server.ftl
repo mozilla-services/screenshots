@@ -189,6 +189,9 @@ annotationClearButton =
 shotIndexPageErrorDeletingShot = शॉट हटविताना त्रुटी: { $status } { $statusText }
 # { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = माझे शॉट्स: { $searchTerm } साठी शोधा
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
+shotIndexPageErrorRendering = पृष्ठ सादर करताना त्रुटी:{ $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = माझे शॉट्स शोधा
 shotIndexPageSearchButton =
@@ -197,12 +200,21 @@ shotIndexPageNoShotsMessage = कोणतेही जतन केलेले
 shotIndexPageNoShotsInvitation = चला, काही तरी तयार करा.
 shotIndexPageLookingForShots = आपले शॉट्स शोधत आहे...
 shotIndexPageNoSearchResultsIntro = हम्म
+shotIndexPageNoSearchResults = आम्ही आपल्या शोधाशी जुळणारे कोणतेही शॉट्स शोधू शकत नाही.
 shotIndexPageClearSearchButton =
     .title = शोध नष्ट करा
 shotIndexPageConfirmShotDelete = हा शॉट हटवायचा?
+shotIndexPagePreviousPage =
+    .title = मागील पृष्ठ
+shotIndexPageNextPage =
+    .title = पुढील पृष्ठ
 
 ## Delete Confirmation Dialog
 
+shotDeleteCancel = रद्द करा
+    .title = रद्द करा
+shotDeleteConfirm = नष्ट करा
+    .title = नष्ट करा
 
 ## Metrics page
 ## All metrics strings are optional for translation
@@ -224,8 +236,19 @@ metricsPageUsersQueryTitle = दिवसा नुसार वापरकर�
 metricsPageUsersQueryDescription = वापरकर्त्यांची संख्या ज्यांनी किमान एक शॉट तरी तयार केला, दिवसानुसार (मागील 30 दिवसांसाठी)
 metricsPageUsersQueryCount = वापरकर्त्यांची संख्या
 metricsPageUsersQueryDay = दिवस
+metricsPageUserShotsQueryTitle = प्रति वापरकर्ता शॉट संख्या
+metricsPageUserShotsQueryDescription = एकूण N शॉट्स असलेल्या वापरकर्त्यांची संख्या
+metricsPageUserShotsQueryCount = वापरकर्त्यांची संख्या
+metricsPageUserShotsQueryShots = सक्रिय (अनावृत्त) शॉट्सची अंदाजे संख्या
+metricsPageRetentionQueryTitle = आठवड्यातून धारणा
 metricsPageRetentionQueryUsers = वापरकर्त्यांची संख्या
+metricsPageRetentionQueryDays = वापरकर्त्याच्या प्रथमपासून सर्वात अलीकडील शॉट्स चे दिवस
+metricsPageTotalRetentionQueryTitle = एकूण धारणा
 metricsPageTotalRetentionQueryUsers = वापरकर्त्यांची संख्या
+metricsPageTotalRetentionQueryDays = वापरकर्त्यांनी शॉट्स तयार केले ते दिवस
+metricsPageVersionQueryTitle = अॅड-ऑन आवृत्ती
+metricsPageVersionQueryDescription = गेल्या 14 दिवसांमध्ये लॉगिन दरम्यान वापरली गेलेली ऍड-ऑनची आवृत्ती
+metricsPageVersionQueryUsers = लॉगिन करणाऱ्या वापरकर्त्यांची संख्या
 metricsPageVersionQueryVersion = ॲड-ऑन आवृत्ती
 metricsPageVersionQueryLastSeen = दिवस
 metricsPageHeader = मेट्रिक्स
