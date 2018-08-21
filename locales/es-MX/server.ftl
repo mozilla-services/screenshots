@@ -182,6 +182,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Si tomas esta captura y no la puedes eliminar, puedes necesitar temporalmente habilitar cookies de terceros desde las preferencias de tu navegador.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = ¡Toma nota!
+promoMessage = Las herramientas de edición actualizadas te permiten cortar, resaltar e incluso agregar texto a tu captura.
+promoLink = Pruébalas
+promoCloseButton =
+    .title = Cerrar notificación
+
 ## Annotations
 
 annotationPenButton =
