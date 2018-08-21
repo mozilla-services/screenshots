@@ -6,7 +6,7 @@ this.main = (function() {
   const exports = {};
 
   const pasteSymbol = (window.navigator.platform.match(/Mac/i)) ? "\u2318" : "Ctrl";
-  const { sendEvent } = analytics;
+  const { sendEvent, incrementCount } = analytics;
 
   const manifest = browser.runtime.getManifest();
   let backend;
@@ -229,7 +229,7 @@ this.main = (function() {
     return blobConverters.blobToArray(blob).then(buffer => {
       return browser.clipboard.setImageData(
         buffer, blob.type.split("/", 2)[1]).then(() => {
-          catcher.watchPromise(communication.sendToBootstrap("incrementCount", {scalar: "copy"}));
+          catcher.watchPromise(incrementCount("copy"));
           return browser.notifications.create({
             type: "basic",
             iconUrl: "../icons/copied-notification.svg",
@@ -256,7 +256,7 @@ this.main = (function() {
       }
     });
     browser.downloads.onChanged.addListener(onChangedCallback);
-    catcher.watchPromise(communication.sendToBootstrap("incrementCount", {scalar: "download"}));
+    catcher.watchPromise(incrementCount("download"));
     return browser.windows.getLastFocused().then(windowInfo => {
       return browser.downloads.download({
         url,
