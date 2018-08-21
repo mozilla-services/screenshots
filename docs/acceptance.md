@@ -1,110 +1,75 @@
-# Firefox Screenshots UX and Measurements Acceptance Criteria
+# Screenshots UX Acceptance Criteria
 
-This document is intended to be used as comprehensive list of all changes to UI
-and metrics required for launch. Issues will be filed from this list and
-triaged into sprints on a an as-needed basis. Items in this list may not
-correlate with issues on a 1:1 basis.
+`Last Updated: 08.21.2018`
 
-# General
-- [ ] Build DMCA capabilities [#2288](https://github.com/mozilla-services/screenshots/issues/2288)
-- [ ] Support Localization [#2205](https://github.com/mozilla-services/screenshots/issues/2205)
+## Firefox Accounts Integration Acceptance
 
-## Add-on Activation
-- [ ] It should be able to be progressively revealed/enabled by the shield recipe server [#2332](https://github.com/mozilla-services/screenshots/issues/2332)
-- [ ] It should be able to be enabled and disabled by a toggle in about:preferences [#2333](https://github.com/mozilla-services/screenshots/issues/2333)
+This document tracks requirements the implementation of new UX flows associated with [this design spec](https://mozilla.github.io/testpilot-assets/Firefox_Screenshots/NEW_FxA_Integration/).
 
-# UI/UX
+### Shot Page
 
-## General UI Revisions (ADDON + SERVER)
-- [ ] It should have a new logo and word mark that match Photon
-- [ ] It should have an overall color system that matches Photon
-- [ ] It should have buttons, inputs, controls etc. that match Photon
-- [ ] It should use the new Mozilla logo [#2211](https://github.com/mozilla-services/screenshots/issues/2211)
-- [ ] All images should be SVG or have retina versions
-- [ ] It should undergo an accessibility review prior to launch [#2251](https://github.com/mozilla-services/screenshots/issues/2251)
-- [ ] It should have a new name
-- [ ] It should be at screenshots.firefox.com [Bug 1347251](https://bugzilla.mozilla.org/show_bug.cgi?id=1347251)
+#### All Views
 
-## Shot iframe (ADDON)
-- [ ] It should match the final spec provided by the UX team [#2306](https://github.com/mozilla-services/screenshots/issues/2306)
+- [ ] It should match the linked spec [#4686](https://github.com/mozilla-services/screenshots/issues/4686)
+- [ ] It should remove the ability to change the expiration date of shots [#4688](https://github.com/mozilla-services/screenshots/issues/4688)
+- [ ] It should add a copy to clipboard button [#4776](https://github.com/mozilla-services/screenshots/issues/4776)
+- [ ] It should use a common header component that displays various items depending on user type/state[#4685](https://github.com/mozilla-services/screenshots/issues/4685)
+- [ ] It should use a common CTA with different strings depending on user type/state [#4684](https://github.com/mozilla-services/screenshots/issues/4684)
 
-## Shots Index Page UI (SERVER) [#2308](https://github.com/mozilla-services/screenshots/issues/2308)
-- [ ] It should match the final spec provided by UX team
-  - [ ] It should include the ability to download, copy link, delete and access to shot page for each shot
-  - [ ] It should make use of the CSS grid spec [NB. This is an odd requirement, but we are only supporting Firefox 54+ and unspecified future releases of Chrome. Shipping CSS grid at a large scale will give us a good Hacks post, and won’t be particularly costly given what I’ve seen of the spec]
-  - [ ] It should deemphasize search UI
-  - [ ] It should ask users to rate it occasionally
-  - [ ] It should link to a feedback form/survey
-    - [ ] *TBD: CAN WE STICK WITH SURVEY GIZMO* confirm with *ellee mirwin*
-  - [ ] *STRETCH* It should include pagination *NEW FEATURE*
-  - [ ] *STRETCH* It should be fully responsive down to 320px
+#### Owner/Non-Authenticated
 
-## Shot Owner Detail Page UI (SERVER)
-- [ ] It should match the final spec provided by the UX team
-  - [ ] It should be fully responsive
-  - [ ] It should include a loading animation until images trigger onload callbacks *NEW FEATURE*
-  - [ ] it should include all current controls with the share panel minimized by default
+- [ ] It should onboard users to the new UI [#4790](https://github.com/mozilla-services/screenshots/issues/4790)
+- [ ] It should display a marketing CTA sign in with FxA [#4789](https://github.com/mozilla-services/screenshots/issues/4789)
+- [ ] It should display a button that directs user to sign in
+- [ ] It should display the ability to *Favorite* Shots, but this functionality should be disabled
+- [ ] It should indicate that favoriting shots requires sign in [note: this is currently demonstrated in the the spec by wiggling the sign-in button if the disabled favorite button is clicked]
 
-## Non-Owner Shot Detail Page UI (SERVER)
-  - [ ] It should have three layout options that promote Firefox Screenshots for non-owner views *NEW FEATURE*
-    - [ ] Top banner
-    - [ ] Side banner
-    - [ ] Bottom banner
-    - [ ] It should provide context specific messaging for desktop browsers
-    - [ ] It should provide context specific messaging for non-ff mobile browsers
-    - [ ] It should provide context specific messaging for mobile-ff browsers
-  - [ ] It should include Firefox + Screenshots branding
-  - [ ] It should not have flagging UI in the nav bar
-  - [ ] It should have flagging UI in the footer
+#### Owner/Authenticated
 
-## Owner Expired Shot page UI
-- [ ] It should match the final spec provided by the UX team
+- [ ] It should allow users to favorite shots
+- [ ] It should indicate visually if a shot is favorited [#4781](https://github.com/mozilla-services/screenshots/issues/4791)
+- [ ] It should provide a link to get to Settings
 
-## Non-Owner Specific Expired Page UI
-- [ ] It should include promotional materials describing the utility of Firefox Screenshots and link to the landing page
+### Non-Owner
 
-## Landing Page UI [#2310](https://github.com/mozilla-services/screenshots/issues/2310)
-- [ ] It should match the final spec provided by the UX team
-- [ ] It should describe the value proposition of Firefox Screenshots
-- [ ] It should specify that Firefox Screenshots is currently only available for Firefox on Desktop for non-FF users
-- [ ] It should specify that Firefox Screenshots is ‘Coming Soon’ for Chrome users
-- [ ] It should specify for users of older versions of Firefox that they simply need to update Firefox to use it
-  - [ ] It should accomodate different messaging based on state of phased roll out
-- [ ] *STRETCH:* it should let users of Firefox 54 + trigger the add-on onboarding flow from the site
+- [ ] It should display a Firefox CTA
+- [ ] It should allow users to report shots from the footer [#4687](https://github.com/mozilla-services/screenshots/issues/4687)
 
-## Onboarding UI [#2307](https://github.com/mozilla-services/screenshots/issues/2307)
-- [ ] It should match the final spec provided by the UX team
-- [ ] It should proceed stepwise to explain the basics of the Screenshots feature
-- [ ] It should initially suggest itself by adding a Screenshots icon to the tool bar and badging it
-- [ ] *STRETCH* If a user has not engaged with the badged toolbar icon in three weeks, we should pop a tab or trigger a doorhanger asking the user if they would like to learn about the new feature
+### My Shots Page
 
-# Measurements & Dashboards
+#### Owner/Non-Authenticated
 
-## Measures
-- [ ] Reporting of all measures should be derived from the state of the Telemetry flag in the browser. [#2250](https://github.com/mozilla-services/screenshots/issues/2250)
-- [ ] It should have a documented plan for testing and verifying all new measures.
-- [ ] All measures currently in the product should be audited to ensure they’re working as intended.
-- [ ] Onboarding UI should be instrumented to measure interaction rate w/buttons/controls etc.
-- [ ] Toolbar icon should record a special event if clicked while badged & clicked to onboard
-- [ ] New screenshots.firefox.com page should be instrumented to measure interaction rate w/buttons/controls etc.
-- [ ] *STRETCH* In order to Validate Event Telemetry, we should — given time — add  Event Telemetry Pings to the following tuples:
-  - [ ] badged onboarding (see above) click
-  - [ ] Click Save `addon/save-shot/overlay-save-button`
-  - [ ] Click Cancel `addon/cancel-shot/overlay-cancel-button`
-  - [ ] Click Download `addon/download-shot/overlay-download-button`
-  - [ ] Click My Shots `addon/goto-myshots/selection-button`
-  - [ ] Click on "Save visible" `addon/capture-visible/selection-button`
-  - [ ] Click on "Save Full Page" `addon/capture-full-page/selection-button`
+- [ ] It should display a marketing CTA sign in with FxA
+- [ ] It should display a button that directs user to sign in
 
-## Dashboards
-- [ ] It should have a set of dashboards that demonstrably help us to reason about the health and direction of the product
-- [ ] It should have dashboards reflecting Screenshots in FF KPIs (Telemetry Derived)
-  - [ ] It should have a dashboard displaying time spent in browser (c/f topline FF goal)
-  - [ ] It should have a dashboard displaying page views in browser (c/f topline FF goal)
-  - [ ] It should have a dashboard displaying browser cohort retention (based on standard engagement metric common to all Telemetry)
-    - [ ] *STRETCH* Confirm exact measures/definitions with *gfritzsche*
-  - [ ] It should have a dashboard displaying browser cohort retention (based on standard engagement metric common to all Telemetry)
-- [ ] It should have dashboards reflecting Screenshots Product KPIS (GA + Server Metrics)
-  - [ ] It should have a cohort retention table based on the act of taking a shot (download or upload)
-  - [ ] It should have a dashboard displaying non-owner views and embedded views
-  - [ ] It should have a dashboard displaying download and uploads
+#### Owner/Authenticated
+
+- [ ] It should allow users to favorite shots
+- [ ] It should visually indicate which shots have been favorited [#4781](https://github.com/mozilla-services/screenshots/issues/4791)
+- [ ] It should provide a link to get to Settings
+
+### Home Page
+
+- [ ] Review and update hope page art and copy [#4792](https://github.com/mozilla-services/screenshots/issues/4792)
+
+#### Owner/Non-Authenticated
+
+- [ ] It should display a marketing CTA sign in with FxA
+- [ ] It should display a button that directs user to sign in
+
+#### Owner/Authenticated
+
+- [ ] It should provide a link to get to Settings [#4683](https://github.com/mozilla-services/screenshots/issues/4683)
+
+### Add-on
+
+- [ ] Review and update on-boarding [#4793](https://github.com/mozilla-services/screenshots/issues/4793)
+
+### STRETCH/NEEDS-UX
+- [ ] It should allow authenticated users to see full source URLS of their shots [#4774](https://github.com/mozilla-services/screenshots/issues/4774)
+- [ ] It should allow authenticated users to optionally share full source URLS of their shots
+- [ ] It should allow authenticated users to make more granular share settings (#3611)[https://github.com/mozilla-services/screenshots/issues/3611]
+- [ ] It should allow authenticated users to extract strings and images from their shots (note, this is somewhat stubbed out in the new spec) [#4689](https://github.com/mozilla-services/screenshots/issues/4689)
+
+
+
