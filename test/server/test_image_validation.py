@@ -78,7 +78,21 @@ def test_invalid_data_url():
 
 
 def test_invalid_data_jpeg_image():
-    pass
+    image = image_setup()
+    (shot_data, shot_json, user) = user_setup()
+    valid_header = "data:image/jpeg;base64,/9j/2wBDAAQDAwQDAwQEAwQFBAQ"
+    invalid_header = "data:image/jpeg;base64,BAAQ"
+    if valid_header in image:
+        for clip_id in shot_json['clips']:
+            shot_json['clips'][clip_id]['image']['url'] = invalid_header
+            break
+
+        resp = user.session.put(
+            shot_data,
+            json=shot_json,
+        )
+        print(resp.text)
+        assert resp.status_code == 500
 
 
 def invalid_data_jpeg_image_decoded():
