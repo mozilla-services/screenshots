@@ -28,6 +28,7 @@ footerLinkRemoveAllData = सर्व डेटा काढुन टाका
 # creatingPageTitleDefault.
 creatingPageTitle = { $title } तयार करत आहे
 creatingPageTitleDefault = पृष्ठ
+creatingPageWaitMessage = आपला शॉट जतन करीत आहे...
 
 ## Home page
 
@@ -39,6 +40,8 @@ homePageGetStarted = सुरूवात करा
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox स्क्रीनशॉट्स कसे काम करतात
 homePageGetStartedTitle = सुरूवात करा
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = आपल्या टूलबारवरील नवीन स्क्रिनशॉट्स चिन्ह शोधा. ते निवडा, आणि स्क्रीनशॉट मेनू आपल्या ब्राउझर विंडोच्या शीर्षस्थानी दिसेल.
 homePageCaptureRegion = क्षेत्र कॅप्चर करा
 homePageCapturePage = पृष्ठ कॅप्चर करा
 homePageSaveShare = जतन करा आणि सामायिक करा
@@ -49,6 +52,7 @@ homePageCookiesLink = कुकीज
 
 ## Leave Screenshots page
 
+leavePageRemoveAllData = सगळा डेटा काढून टाका
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = आपले खाते काढण्यासाठी आपल्याकडे Firefox स्क्रीनशॉट्स स्थापित असणे आवश्यक आहे
 leavePageErrorGeneric = एक त्रुटी आली.
@@ -113,6 +117,7 @@ shotPageDMCAContact = अधिक माहिती साठी कृपय�
 shotPageDMCAWarning = आपले शॉट्सवर जर अनेक दावे असतील, तर आम्ही आपला Firefox Screenshots वापर थांबवु शकतो.
 # Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = कृपया आपल्या इमेल मध्ये या शॉटची URLसामील करा: { $url }
+shotPageKeepFor = हा शॉट किती काळ राखून ठेवला पाहिजे?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = वेळ निवडा
 shotPageKeepTenMinutes = 10 मिनिटे
@@ -161,8 +166,18 @@ timeDiffFutureDays =
        *[other] { $number } दिवसात
     }
 
+## Shot Page New Feature Promotion Dialog.
+
+
 ## Annotations
 
+annotationPenButton =
+    .title = पेन
+annotationHighlighterButton =
+    .title = हाइलाइटर
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
+    .title = नष्ट करा
 
 ## Settings Page
 
@@ -197,7 +212,7 @@ metricsPageTitle = Firefox Screenshots मेट्रिक्स
 metricsPageTotalsQueryTitle = एकूण
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Screenshots चा आढावा
-metricsPageTotalsQueryDevices = नोंदवलेले एकुण साधने 
+metricsPageTotalsQueryDevices = नोंदवलेले एकुण साधने
 metricsPageTotalsQueryActiveShots = चालु शॉट्स
 metricsPageTotalsQueryExpiredShots = कालबाह्य (पण पुनर्प्राप्त करण्याजोगे)
 metricsPageTotalsQueryExpiredDeletedShots = कालबाह्य (आणि नष्ट झालेले)
