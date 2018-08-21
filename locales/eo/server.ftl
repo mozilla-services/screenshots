@@ -125,7 +125,7 @@ shotPageDMCAMessage = Tiu ĉi ekrankopio ne plu estas havebla pro plendo pri int
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Bonvolu skribi retpoŝte al { $dmca } por peti pli da informo.
 # Note: do not translate 'Firefox Screenshots' when translating this string
-shotPageDMCAWarning = Se viaj ekrankopioj ricevas plurajn plendojn, ni povus nuligi vian aliron al Ekrankopioj de Firefox. 
+shotPageDMCAWarning = Se viaj ekrankopioj ricevas plurajn plendojn, ni povus nuligi vian aliron al Ekrankopioj de Firefox.
 # Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Bonvolu aldoni la retadreson de tiu ĉi ekrankopio en via retpoŝto: { $url }
 shotPageKeepFor = Kiel longe tiu ĉi ekrankopio devus esti gardita?
@@ -182,6 +182,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Se vi faris tiun ĉi ekrankopion kaj ne povas ĝin forigi, vi eble bezonos provizore aktivigi nerektajn kuketojn en la preferoj de via retumilo.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Faru noton!
+promoMessage = La ĝisdatigitaj redaktiloj permesas al vi, eltondi, elstarigi kaj eĉ aldoni tekston al via ekrankopio.
+promoLink = Provu ilin
+promoCloseButton =
+    .title = Fermi sciigon
+
 ## Annotations
 
 annotationPenButton =
@@ -233,9 +242,9 @@ textSizeSmall = Eta
 textSizeMedium = Meza
 textSizeLarge = Granda
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Konfirmi
     .title = Konfirmi
-annotationTextCancelButton =
+textToolCancelButton = Nuligi
     .title = Nuligi
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =

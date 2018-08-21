@@ -182,6 +182,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Hvis du tok dette skjermbildet og ikke kan slette det, må du kanskje midlertidig aktivere tredjeparts infokapsler fra nettleserens innstillinger.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Noter!
+promoMessage = Oppdaterte redigeringsverktøy lar deg beskjære, markere og til og med legge til tekst i bildet ditt.
+promoLink = Prøv dem
+promoCloseButton =
+    .title = Lukk varselet
+
 ## Annotations
 
 annotationPenButton =
