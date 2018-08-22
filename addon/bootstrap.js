@@ -2,8 +2,6 @@
 const ADDON_ID = "screenshots@mozilla.org";
 const PREF_BRANCH = "extensions.screenshots.";
 const USER_DISABLE_PREF = "extensions.screenshots.disabled";
-const UPLOAD_DISABLED_PREF = "extensions.screenshots.upload-disabled";
-const HISTORY_ENABLED_PREF = "places.history.enabled";
 
 ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 ChromeUtils.defineModuleGetter(this, "AddonManager",
@@ -150,7 +148,6 @@ function handleStartup() {
 
 function start(webExtension) {
   return webExtension.startup(startupReason, addonData).then((api) => {
-    api.browser.runtime.onMessage.addListener(handleMessage);
     LibraryButton.init(webExtension);
   }).catch((err) => {
     // The startup() promise will be rejected if the webExtension was
@@ -168,18 +165,4 @@ function stop(webExtension, reason) {
     LibraryButton.uninit();
   }
   return Promise.resolve(webExtension.shutdown(reason));
-}
-
-function handleMessage(msg, sender, sendReply) {
-  if (!msg) {
-    return;
-  }
-
-  if (msg.funcName === "isUploadDisabled") {
-    const uploadDisabled = getBoolPref(UPLOAD_DISABLED_PREF);
-    sendReply({type: "success", value: uploadDisabled});
-  } else if (msg.funcName === "isHistoryEnabled") {
-    const historyEnabled = getBoolPref(HISTORY_ENABLED_PREF);
-    sendReply({type: "success", value: historyEnabled});
-  }
 }
