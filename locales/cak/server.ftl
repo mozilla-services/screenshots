@@ -182,6 +182,11 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = We xawelesaj re chapoj re' chuqa' man yatikïr ta nayüj el, rik'in jub'a' k'o chi ye'achüp jub'a' ri taq kikaxlanwey aj rox winäq pa ri rajowab'al okik'amaya'l.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = ¡Tatz'ib'aj Ch'utitzijol!
+
 ## Annotations
 
 annotationPenButton =
