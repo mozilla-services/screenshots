@@ -539,8 +539,7 @@ class Body extends React.Component {
       this.props.controller.changeShotExpiration(this.props.shot, INDEFINITE);
     } else {
       sendEvent("unset-favorite", "navbar");
-      const TWO_WEEKS_IN_MS = 1209600000;
-      this.props.controller.changeShotExpiration(this.props.shot, Date.now() + TWO_WEEKS_IN_MS);
+      this.props.controller.changeShotExpiration(this.props.shot, this.props.defaultExpiration);
     }
   }
 
