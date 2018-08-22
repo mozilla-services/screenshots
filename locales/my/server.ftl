@@ -68,6 +68,33 @@ notFoundPageDescription = စာမျက်နှာကို မတွေ့�
 
 # This is the HTML title tag of the page
 shotPageTitle = စာမျက်နှာ ရိုက်ချက်၊ { $originalTitle }
+shotPageAlertErrorDeletingShot = ရိုက်ကူးချက် ဖျက်နေစဉ် အမှားဖြစ်ပေါ်ခဲ့သည်
+shotPageAlertErrorUpdatingTitle = ခေါင်းစဉ်ကို သိမ်းနေစဉ် အမှားဖြစ်ပေါ်ခဲ့သည်
+shotPageConfirmDelete = ယခုရိုက်ကူးချက်ကို အပြီးတိုင် ဖျက်မည်မှာ သေချာပါသလား။
+shotPageShareButton =
+    .title = မျှဝေရန်
+shotPageCopy = ကူးပါ
+shotPageCopied = ကူးထားသည်
+shotPageShareFacebook =
+    .title = Facebook ပေါ်သို့ မျှဝေပါ
+shotPageShareTwitter =
+    .title = Twitter ပေါ်သို့ မျှဝေပါ
+shotPageSharePinterest =
+    .title = Pinterest ပေါ်သို့ မျှဝေပါ
+shotPageShareEmail =
+    .title = အီးမေးလ်ဖြင့် ဒီလင့်ခ်ကို မျှဝေပါ
+shotPageCopyImageText =
+    .label = ပုံစာသားကို ကူးယူပါ
+shotPageDeleteButton =
+    .title = ဒီရိုက်ကူးချက်ကို ဖျက်ပါ
+shotPageAbuseButton =
+    .title = စော်ကားတိုက်ခိုက်မှုများ ပါရှိသော ယခုရိုက်ကူးချက်ကို တိုင်ကြားရန်
+shotPageDownloadShot =
+    .title = ဆွဲယူပါ
+shotPageEditButton =
+    .title = ဒီပုံကို ပြုပြင်ပါ
+shotPageDownload = ဆွဲယူပါ
+shotPageUpsellFirefox = ယခုပင် Firefox ကို ရယူပါ
 
 ## Shot Page New Feature Promotion Dialog.
 
