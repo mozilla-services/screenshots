@@ -1,4 +1,4 @@
-/* globals ADDON_DISABLE Services CustomizableUI LegacyExtensionsUtils AppConstants PageActions */
+/* globals ADDON_DISABLE Services CustomizableUI LegacyExtensionsUtils PageActions */
 const ADDON_ID = "screenshots@mozilla.org";
 const PREF_BRANCH = "extensions.screenshots.";
 const USER_DISABLE_PREF = "extensions.screenshots.disabled";
@@ -8,8 +8,6 @@ const HISTORY_ENABLED_PREF = "places.history.enabled";
 ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 ChromeUtils.defineModuleGetter(this, "AddonManager",
                                "resource://gre/modules/AddonManager.jsm");
-ChromeUtils.defineModuleGetter(this, "AppConstants",
-                               "resource://gre/modules/AppConstants.jsm");
 ChromeUtils.defineModuleGetter(this, "CustomizableUI",
                                "resource:///modules/CustomizableUI.jsm");
 ChromeUtils.defineModuleGetter(this, "LegacyExtensionsUtils",
@@ -178,9 +176,8 @@ function handleMessage(msg, sender, sendReply) {
   }
 
   if (msg.funcName === "isUploadDisabled") {
-    const isESR = AppConstants.MOZ_UPDATE_CHANNEL === "esr";
     const uploadDisabled = getBoolPref(UPLOAD_DISABLED_PREF);
-    sendReply({type: "success", value: uploadDisabled || isESR});
+    sendReply({type: "success", value: uploadDisabled});
   } else if (msg.funcName === "isHistoryEnabled") {
     const historyEnabled = getBoolPref(HISTORY_ENABLED_PREF);
     sendReply({type: "success", value: historyEnabled});
