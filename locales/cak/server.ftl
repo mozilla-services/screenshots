@@ -186,6 +186,10 @@ errorThirdPartyCookiesEnabled = We xawelesaj re chapoj re' chuqa' man yatikïr t
 
 # Note: If possible, choose a short translation to better fit into the card.
 promoTitle = ¡Tatz'ib'aj Ch'utitzijol!
+promoMessage = Ri taq rusamajib'al k'exon taq nuk'uj nuya' q'ij chawe yaqupin, naya' ruq'ij chuqa' natz'aqatisaj rucholajem tzij pa ri chapoj awäch.
+promoLink = Ke'atojtob'ej
+promoCloseButton =
+    .title = Titz'apïx rutzijol
 
 ## Annotations
 
