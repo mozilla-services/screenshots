@@ -240,10 +240,12 @@ exports.handleResult = function(req) {
 };
 
 function handleNegative(record) {
+  mozlog.debug("watchdog-negative-match", {msg: `Watchdog submission ${record.id} is a negative match.`});
   return db.update("UPDATE watchdog_submissions SET positive_result = FALSE WHERE id = $1", [record.id]);
 }
 
 function handlePositive(record) {
+  mozlog.info("watchdog-positive-match", {msg: `Watchdog submission ${record.id} is a positive match.`});
   return db.transaction(client => {
     return db.queryWithClient(
       client,
@@ -256,5 +258,10 @@ function handlePositive(record) {
       "UPDATE watchdog_submissions SET positive_result = TRUE WHERE id = $1",
       [record.id]
     ));
+  }).then(() => {
+    mozlog.info("watchdog-successful-commit", {msg: `Watchdog positive match ${record.id} successfully committed to the database.`});
+  }).catch(err => {
+    mozlog.error("watchdog-failed-commit", {err: `Watchdog positive match ${record.id} not committed to the database: ${err}.`});
+    throw err;
   });
 }
