@@ -1,0 +1,15 @@
+[
+  {
+    "namespace": "experiments.screenshots",
+    "description": "Firefox Screenshots internal API",
+    "functions": [
+      {
+        "name": "getUpdateChannel",
+        "type": "function",
+        "description": "Returns the Firefox channel (AppConstants.MOZ_UPDATE_CHANNEL)",
+        "parameters": [],
+        "async": true
+      }
+    ]
+  }
+]
