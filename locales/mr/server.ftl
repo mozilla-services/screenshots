@@ -168,6 +168,8 @@ timeDiffFutureDays =
 
 ## Shot Page New Feature Promotion Dialog.
 
+promoCloseButton =
+    .title = सूचना बंद करा
 
 ## Annotations
 
@@ -175,12 +177,62 @@ annotationPenButton =
     .title = पेन
 annotationHighlighterButton =
     .title = हाइलाइटर
+annotationUndoButton =
+    .title = पूर्ववत् करा
+annotationRedoButton =
+    .title = पुन्हा करा
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = नष्ट करा
+annotationSaveEditButton = जतन करा
+    .title = संपादन जतन करा
+annotationCancelEditButton = रद्द करा
+    .title = संपादन रद्द करा
+annotationCropConfirmButton = निश्चित करा
+    .title = निवड निश्चित करा
+annotationCropCancelButton = रद्द करा
+    .title = निवड रद्द करा
+annotationColorWhite =
+    .title = पांढरा
+annotationColorBlack =
+    .title = काळा
+annotationColorRed =
+    .title = लाल
+annotationColorGreen =
+    .title = हिरवा
+annotationColorBlue =
+    .title = निळा
+annotationColorYellow =
+    .title = पिवळा
+annotationColorPurple =
+    .title = जांभळा
+annotationColorSeaGreen =
+    .title = शेवाळी
+annotationColorGrey =
+    .title = करडा
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = मजकूर आकार
+# Values shown in text size selection dropdown
+textSizeSmall = छोटा
+textSizeMedium = मध्यम
+textSizeLarge = मोठा
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = निश्चित करा
+    .title = निश्चित करा
+textToolCancelButton = रद्द करा
+    .title = रद्द करा
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = नमस्कार
 
 ## Settings Page
 
+settingsDisconnectButton = जोडणी मोडा
+    .title = जोडणी मोडा
+settingsGuestAccountMessage = अतिथी खाते
+settingsSignInButton = साइन इन
+    .title = साइन इन
 
 ## Shotindex page
 
