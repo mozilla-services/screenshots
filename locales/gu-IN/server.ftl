@@ -182,6 +182,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = જો તમે આ શોટ લીધો છે અને તેને કાઢી શકતા નથી, તો તમારે અસ્થાયી રૂપે તમારા બ્રાઉઝરની પસંદગીઓમાંથી તૃતીય પક્ષ કૂકીઝને સક્ષમ કરવાની જરૂર પડી શકે છે.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = નોંધ લો!
+promoMessage = નવા સંપાદન  સાધનો  સાથે તમે તમારા સ્ક્રીનશોટ ને કાપવું, પ્રકાશિત કરવું અને એમાં શબ્દો ઉમેરી શકો છો
+promoLink = તેમને અજમાવી જુઓ
+promoCloseButton =
+    .title = સૂચના બંધ કરો
+
 ## Annotations
 
 annotationPenButton =
@@ -233,9 +242,9 @@ textSizeSmall = નાનું
 textSizeMedium = મધ્યમ
 textSizeLarge = મોટા
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = પુષ્ટિ કરો
     .title = પુષ્ટિ કરો
-annotationTextCancelButton =
+textToolCancelButton = રદ કરો
     .title = રદ કરો
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
