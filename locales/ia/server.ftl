@@ -182,6 +182,11 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Si tu ha prendite iste instantaneo e non pote lo deler, tu pote besoniar de activar temporarimente le cookies de tertie partes in le preferentias de tu navigator.
 
+## Shot Page New Feature Promotion Dialog.
+
+promoCloseButton =
+    .title = Clauder notification
+
 ## Annotations
 
 annotationPenButton =
