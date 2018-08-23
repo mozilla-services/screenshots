@@ -122,6 +122,10 @@ shotPageDMCAIncludeLink = कृपया आपल्या इमेल मध
 shotPageKeepFor = हा शॉट किती काळ राखून ठेवला पाहिजे?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = वेळ निवडा
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = अनिश्चित काळासाठी ∞
 shotPageKeepTenMinutes = 10 मिनिटे
 shotPageKeepOneHour = 1 तास
 shotPageKeepOneDay = 1 दिवस
@@ -170,6 +174,8 @@ timeDiffFutureDays =
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = नोंद घ्या!
 promoCloseButton =
     .title = सूचना बंद करा
 
@@ -183,9 +189,13 @@ annotationUndoButton =
     .title = पूर्ववत् करा
 annotationRedoButton =
     .title = पुन्हा करा
+annotationTextButton =
+    .title = मजकूर जोडा
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = नष्ट करा
+annotationCropButton =
+    .title = क्रॉप करा
 annotationSaveEditButton = जतन करा
     .title = संपादन जतन करा
 annotationCancelEditButton = रद्द करा
@@ -235,6 +245,7 @@ settingsDisconnectButton = जोडणी मोडा
 settingsGuestAccountMessage = अतिथी खाते
 settingsSignInButton = साइन इन
     .title = साइन इन
+SettingsPageHeader = Firefox स्क्रीनशॉट्स सेटिंग्ज
 
 ## Shotindex page
 
@@ -262,9 +273,16 @@ shotIndexPagePreviousPage =
     .title = मागील पृष्ठ
 shotIndexPageNextPage =
     .title = पुढील पृष्ठ
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = ∞
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = आपल्याला खात्री आहे की आपण हा शॉट हटवू इच्छिता?
 shotDeleteCancel = रद्द करा
     .title = रद्द करा
 shotDeleteConfirm = नष्ट करा
