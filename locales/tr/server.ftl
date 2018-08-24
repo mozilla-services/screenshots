@@ -158,6 +158,15 @@ timeDiffFutureHours = { $number } saat sonra
 timeDiffFutureDays = yarın
 errorThirdPartyCookiesEnabled = Bu görüntüyü siz kaydettiyseniz ve silemiyorsanız tarayıcınızın tercihlerinden üçüncü taraf çerezlerini geçici olarak etkinleştirmeniz gerekebilir.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Not alın!
+promoMessage = Güncellenen düzenleme araçlarımızla görüntünüzü kırpabilir, işaretleyebilir, üzerine yazı yazabilirsiniz.
+promoLink = Deneyin
+promoCloseButton =
+    .title = Bildirimi kapat
+
 ## Annotations
 
 annotationPenButton =
