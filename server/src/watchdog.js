@@ -181,6 +181,11 @@ exports.submit = function(shot) {
       }
     }
 
+    // The shot id is included because there is no callback after manual
+    // verification of a positive match on Watchdog. The shot id is for looking
+    // up a shot on screenshots-admin post-verification.
+    form.append("notes", `Shot ID: ${shot.id}`);
+
     const req = {method: "POST", body: form};
     const authHeader = Hawk.client.header(config.watchdog.submissionUrl, req.method, {credentials});
     req.headers = Object.assign(
