@@ -179,6 +179,9 @@ timeDiffFutureDays =
        *[other] { $number } gün sonra
     }
 
+## Shot Page New Feature Promotion Dialog.
+
+
 ## Annotations
 
 annotationPenButton =
@@ -247,6 +250,7 @@ settingsSignInInvite = Cihazlar arasında sinxronlaşma üçün daxil olun
 settingsSignInButton = Daxil ol
     .title = Daxil ol
 SettingsPageHeader = Firefox Screenshots Tənzimləmələri
+settingsDescription = Firefox Hesabınıza daxil olaraq ekran görüntülərinizi cihazlarınız arasında paylaşa və onları məxfi olaraq işlədə bilərsiz.
 settingsPageSubHeader = Sync və Hesablar
 settingsClosePreferences =
     .title = Nizamlamaları qapat
