@@ -184,6 +184,12 @@ errorThirdPartyCookiesEnabled = Əgər bu ekran görüntüsünü siz çəkmisini
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Qeyd alın!
+promoMessage = Yenilənmiş redaktə etmə alətləri görüntülərinizi kəsməyə, işıqlandırmağa və hətta yazı da əlavə etməyə imkan verirlər.
+promoLink = Yoxlayın
+promoCloseButton =
+    .title = Bildirişi qapat
 
 ## Annotations
 
@@ -329,6 +335,7 @@ metricsPageRetentionQueryUsers = İstifadəçilərin sayı
 metricsPageRetentionQueryDays = İstifadəçinin ilk görüntüsündən sonuncusuna qədər olan günlər
 metricsPageRetentionQueryFirstWeek = İstifadəçinin ilk görüntü yaratdığı həftə
 metricsPageTotalRetentionQueryTitle = Ümumi saxlama yaddaşı
+metricsPageTotalRetentionQueryDescription = İstifadəçilərin ekran görüntülərini yaratmağa sərf etdikləri vaxt, həftəyə görə qruplaşdırılıb
 metricsPageTotalRetentionQueryUsers = İstifadəçilərin sayı
 metricsPageTotalRetentionQueryDays = İstifadəçinin görüntü yaratdığı günlər
 metricsPageVersionQueryTitle = Əlavə Versiyası
