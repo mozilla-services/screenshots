@@ -187,6 +187,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Ako ste napravili snimak ekrana i ne možete ga izbrisati, možda trebate privremeno omogućiti kolačiće trećih strana u postavkama browsera.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Zabilježite!
+promoMessage = Ažurirani alati za uređivanje vam omogućavaju sjećenje, osvjetljavanje i čak dodavanje teksta na snimak.
+promoLink = Isprobajte ih
+promoCloseButton =
+    .title = Zatvori obavještenje
+
 ## Annotations
 
 annotationPenButton =
@@ -238,9 +247,9 @@ textSizeSmall = Mala
 textSizeMedium = Srednja
 textSizeLarge = Velika
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Potvrdi
     .title = Potvrdi
-annotationTextCancelButton =
+textToolCancelButton = Otkaži
     .title = Otkaži
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
