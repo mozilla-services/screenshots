@@ -182,6 +182,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = As jo dizze ôfbylding makke hawwe en net fuortsmite kinne, moatte jo miskien tydlik cookies fan tredden ynskeakelje fan de foarkarren fan jo browser út.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Let op!
+promoMessage = Mei bywurke helpmiddelen foar bewurking kinne jo in skermôfbylding bysnije, markearje, en der sels tekst oan tafoegje.
+promoLink = Probearje se ris
+promoCloseButton =
+    .title = Melding slute
+
 ## Annotations
 
 annotationPenButton =
@@ -233,9 +242,9 @@ textSizeSmall = Lyts
 textSizeMedium = Gemiddeld
 textSizeLarge = Grut
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Befêstigje
     .title = Befêstigje
-annotationTextCancelButton =
+textToolCancelButton = Annulearje
     .title = Annulearje
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
