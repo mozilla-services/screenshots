@@ -332,6 +332,7 @@ metricsPageUserShotsQueryShots = लगभग सक्रिय शॉट्स
 metricsPageRetentionQueryTitle = सप्ताह से प्रतिधारण
 metricsPageRetentionQueryDescription = प्रारंभिक सप्ताह द्वारा समूहीकृत, उपयोगकर्ता के पहले शॉट से सबसे हाल के शॉट पर दिनों की संख्या
 metricsPageRetentionQueryUsers = उपयोगकर्ताओं की संख्या
+metricsPageRetentionQueryDays = पयोगकर्ता के पहले से  सबसे हाल के स्क्रीनशॉट
 metricsPageRetentionQueryFirstWeek = एक सप्ताह उपयोगकर्ता ने पहला शॉट बनाया
 metricsPageTotalRetentionQueryTitle = कुल प्रतिधारण
 metricsPageTotalRetentionQueryDescription = समय अवधि जिसमे उपयोगकर्ता शॉट्स बना रहे हैं, सप्ताह के अनुसार समूहबद्ध की हुई
