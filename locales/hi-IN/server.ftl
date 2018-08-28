@@ -259,6 +259,7 @@ settingsSignInInvite = उपकरणों में संकालन के
 settingsSignInButton = साइन इन
     .title = साइन इन
 SettingsPageHeader = Firefox स्क्रीनशॉट सेटिंग
+settingsDescription = आप सभी उपकरण पर अपने स्क्रीनशॉट सिंक करने और उन्हें निजी रूप से एक्सेस करने के लिए Firefox खातों के साथ साइन इन कर सकते हैं।
 settingsPageSubHeader = संकालन एवं खाते
 settingsClosePreferences =
     .title = प्राथमिकताएँ बंद करें
