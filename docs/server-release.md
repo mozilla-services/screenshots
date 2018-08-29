@@ -9,7 +9,7 @@ To release the server:
 - [ ] Tag with `git tag VERSION`
 - [ ] Push version and tags, `git push && git push --tags`
 - [ ] Merge to `server-prod`:
-  - `git checkout server-prod && git merge master && git push`
+  - `git checkout server-prod && git merge -s ours master && git push`
   - This will trigger a deploy to stage. A deploy will take about 30 minutes.
   - View the CI build of [server-prod](https://circleci.com/gh/mozilla-services/screenshots/tree/server-prod)
   - IRC will get updates (no update until deploy happens)
