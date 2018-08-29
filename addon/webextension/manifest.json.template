@@ -75,5 +75,15 @@
     "http://localhost:10080/",
     "resource://pdf.js/",
     "about:reader*"
-  ]
+  ],
+  "experiment_apis": {
+    "screenshots": {
+      "schema": "experiments/screenshots/schema.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "script": "experiments/screenshots/api.js",
+        "paths": [["experiments", "screenshots"]]
+      }
+    }
+  }
 }
