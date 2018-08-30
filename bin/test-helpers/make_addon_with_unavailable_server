@@ -17,9 +17,9 @@ fi
 export SCREENSHOTS_BACKEND=${BAD_SCREENSHOTS_BACKEND:-'http://localhost:49152'}
 echo "Setting backend to ${SCREENSHOTS_BACKEND}"
 
-make bootstrap_zip >/dev/null
-mv build/screenshots-bootstrap.zip build/screenshots-bootstrap-server-down.zip
-echo "Created build/screenshots-bootstrap-server-down.zip"
+make zip >/dev/null
+mv build/screenshots.zip build/screenshots-webextension-server-down.zip
+echo "Created build/screenshots-webextension-server-down.zip"
 
 if [ -n "$PREVIOUS_BACKEND" ]
 then
@@ -28,5 +28,4 @@ else
   unset SCREENSHOTS_BACKEND
 fi
 
-make bootstrap_zip
-
+make zip

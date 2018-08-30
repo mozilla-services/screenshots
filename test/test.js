@@ -41,7 +41,7 @@ const SLIDE_IFRAME_ID = "firefox-screenshots-onboarding-iframe";
 const PRESELECTION_IFRAME_ID = "firefox-screenshots-preselection-iframe";
 const SELECTION_IFRAME_ID = "firefox-screenshots-selection-iframe";
 const PREVIEW_IFRAME_ID = "firefox-screenshots-preview-iframe";
-const addonFileLocation = path.join(process.cwd(), "build", "screenshots-bootstrap.zip");
+const addonFileLocation = path.join(process.cwd(), "build", "screenshots.zip");
 const downloadDir = path.join(process.cwd(), "test", "addon", ".artifacts");
 
 const channel = process.env.FIREFOX_CHANNEL || "NIGHTLY";
@@ -400,7 +400,7 @@ describe("Test Screenshots", function() {
   });
 
   it("should remain on original tab with UI overlay on save failure", function(done) {
-    const badAddon = path.join(process.cwd(), "build", "screenshots-bootstrap-server-down.zip");
+    const badAddon = path.join(process.cwd(), "build", "screenshots-webextension-server-down.zip");
     driver.installAddon(badAddon)
     .then(() => startAutoSelectionShot(driver))
     .then(() => driver.wait(until.elementLocated(By.css(".highlight-button-save"))))

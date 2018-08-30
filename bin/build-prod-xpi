@@ -21,7 +21,7 @@ export SCREENSHOTS_MINOR_VERSION="0"
 
 make clean
 make addon
-make unsigned_bootstrap_xpi
+make unsigned_xpi
 mv build/screenshots.xpi $output
 echo
 echo

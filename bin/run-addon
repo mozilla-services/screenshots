@@ -5,7 +5,6 @@ cd "$(dirname ${BASH_SOURCE[0]})/.."
 base="$(pwd)"
 PATH="node_modules/.bin:$PATH"
 webext="$base/node_modules/.bin/web-ext"
-jpm="$base/node_modules/.bin/jpm"
 nodemon_pid=
 
 binary=
@@ -19,7 +18,6 @@ firefoxes=(
 )
 setup_profile=
 server=
-webextension=
 
 for firefox in "${firefoxes[@]}" ; do
   if [[ -e "${firefox}" ]] ; then
@@ -48,9 +46,6 @@ help () {
   echo "      Setup ./Profile/ and open it (can be used to make sticky changes to the test profile)"
   echo "    --scratch"
   echo "      Use a scratch profile"
-  echo "    --webextension"
-  echo "      Only runs the embedded WebExtension, leaving out bootstrap.js"
-  echo "      Note: this may be pretty broken"
   echo "    -s or --server URL"
   echo "      Use the given server (default localhost:10080)"
 }
@@ -78,10 +73,6 @@ while [[ -n "$1" ]] ; do
     --server|-s)
       server="$2"
       shift
-      shift
-      ;;
-    --webextension)
-      webextension=1
       shift
       ;;
     *)
@@ -130,11 +121,9 @@ fi
 export SCREENSHOTS_LOG_LEVEL=debug
 
 profile_option=
-jpm_profile_option=
 if [[ -z "$scratch" ]] ; then
   mkdir -p ./Profile
   profile_option="--firefox-profile ./Profile/"
-  jpm_profile_option="--profile ../Profile/ --no-copy"
 fi
 
 make addon
@@ -146,10 +135,9 @@ run_nodemon() {
     -w static/css/inline-selection.scss \
     -w static/css/onboarding.scss \
     -w static/css/partials/ \
-    -w addon/webextension/onboarding/slides.html \
-    -w addon/webextension/manifest.json.template \
-    -w addon/webextension/buildSettings.js.template \
-    -w addon/install.rdf.template \
+    -w webextension/onboarding/slides.html \
+    -w webextension/manifest.json.template \
+    -w webextension/buildSettings.js.template \
     --on-change-only \
     --exec make addon &
   nodemon_pid=$!
@@ -161,21 +149,7 @@ run_webext() {
   echo "  about:debugging"
   echo "and Debug Firefox Screenshots"
 
-  $webext run --firefox "$binary" $profile_option --browser-console --source-dir ./addon/webextension/
+  $webext run --firefox "$binary" $profile_option --browser-console --source-dir ./webextension/
 }
 
-run_jpm() {
-  echo "Running Firefox.  Reloading with jpm *will not* happen"
-  echo "If the Screenshots icon doesn't show up go to:"
-  echo "  Tools > Add-ons > Extensions and look for an error loading the add-on"
-  settings_file="./build/.jpm-settings.json"
-  echo '{"extensions.legacy.enabled": true, "xpinstall.signatures.required": false}' > "$settings_file"
-  cd addon
-  $jpm run $jpm_profile_option -b "$binary" --prefs "../$settings_file" --binary-args -jsconsole
-}
-
-if [[ -z "$webextension" ]] ; then
-  run_jpm
-else
-  run_webext
-fi
+run_webext

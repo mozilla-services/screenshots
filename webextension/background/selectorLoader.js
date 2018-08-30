@@ -89,8 +89,6 @@ this.selectorLoader = (function() {
     }));
   };
 
-  // TODO: since bootstrap communication is now required, would this function
-  // make more sense inside background/main?
   function downloadOnlyCheck(tabId) {
     return browser.experiments.screenshots.isHistoryEnabled().then((historyEnabled) => {
       return browser.experiments.screenshots.isUploadDisabled().then((uploadDisabled) => {

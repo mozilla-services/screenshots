@@ -4,5 +4,5 @@ Profile
 server
 static
 shared
-addon
-build/addon
+webextension
+build/webextension

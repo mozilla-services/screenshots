@@ -29,7 +29,6 @@ FILES_TO_NOT_REMOVE = [
 
 FILES_TO_SKIP_COPY = [
     'README.md',
-    'install.rdf.template',
     'manifest.json.template',
     'buildSettings.js.template',
     '.eslintrc.js',
@@ -106,9 +105,9 @@ def exportFilesToMC(repoDir, mcRepoLoc):
             if file not in FILES_TO_NOT_REMOVE:
                 os.remove(os.path.join(root, file))
 
-    addonDir = os.path.join(repoDir, "addon")
+    addonDir = os.path.join(repoDir, "webextension")
     testDir = os.path.join(repoDir, "test", "addon")
-    enUSFile = os.path.join(addonDir, "webextension", "_locales", "en_US", "messages.json")
+    enUSFile = os.path.join(addonDir, "_locales", "en_US", "messages.json")
 
     # Export the main add-on files.
     for root, dirs, files in os.walk(addonDir):
@@ -118,6 +117,7 @@ def exportFilesToMC(repoDir, mcRepoLoc):
             filePath = os.path.join(root, file)
             if file == "messages.json" and os.path.getsize(filePath) == 2:
                 print("Skipping empty locale file: %s" % filePath)
+            # TODO: ensure en_CA is correctly deleted here
             elif file == "messages.json" and 'en_US' not in root and filecmp.cmp(enUSFile, filePath):
                 print("Skipping same as en-US locale file: %s" % filePath)
             elif file not in FILES_TO_SKIP_COPY:

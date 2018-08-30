@@ -77,8 +77,8 @@ read
 
 git pull
 update_version $base/package.json $version
-update_version $base/addon/package.json $version
-git commit -m "Bump version to $version" $base/package.json $base/addon/package.json
+update_version $base/webextension/package.json $version
+git commit -m "Bump version to $version" $base/package.json $base/webextension/package.json
 git tag $version
 git push --tags
 git checkout stable

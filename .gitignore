@@ -18,11 +18,10 @@ cookie-jar.txt
 /.env.local
 /bin/.commit-new-version-copy
 /web-ext-artifacts
-/addon/webextension/build
-/addon/webextension/.web-extension-id
-/addon/webextension/manifest.json
-/addon/install.rdf
-/addon/webextension/_locales
+/webextension/build
+/webextension/.web-extension-id
+/webextension/manifest.json
+/webextension/_locales
 /*.xpi
 # Created by py.test:
 /test/server/.cache
