@@ -308,6 +308,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Tute foto wobrazowki njespadnje
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = To je woblubowane foto wobrazowki a njespadnje
 
 ## Delete Confirmation Dialog
 
