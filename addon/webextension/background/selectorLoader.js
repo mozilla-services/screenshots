@@ -92,8 +92,8 @@ this.selectorLoader = (function() {
   // TODO: since bootstrap communication is now required, would this function
   // make more sense inside background/main?
   function downloadOnlyCheck(tabId) {
-    return communication.sendToBootstrap("isHistoryEnabled").then((historyEnabled) => {
-      return communication.sendToBootstrap("isUploadDisabled").then((uploadDisabled) => {
+    return browser.experiments.screenshots.isHistoryEnabled().then((historyEnabled) => {
+      return browser.experiments.screenshots.isUploadDisabled().then((uploadDisabled) => {
         return browser.experiments.screenshots.getUpdateChannel().then((channel) => {
           return browser.tabs.get(tabId).then(tab => {
             const downloadOnly = !historyEnabled || uploadDisabled || channel === "esr" || tab.incognito;

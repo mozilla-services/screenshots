@@ -4,6 +4,8 @@
 
 ChromeUtils.defineModuleGetter(this, "AppConstants",
                                "resource://gre/modules/AppConstants.jsm");
+ChromeUtils.defineModuleGetter(this, "Services",
+                               "resource://gre/modules/Services.jsm");
 
 this.screenshots = class extends ExtensionAPI {
   getAPI() {
@@ -24,8 +26,14 @@ this.screenshots = class extends ExtensionAPI {
           //   'aurora' - deprecated aurora channel (still observed in dxr)
           //   'default' - local builds from source
           //   'nightly-try' - nightly Try builds (QA may occasionally need to test with these)
-          async getUpdateChannel() {
+          getUpdateChannel() {
             return AppConstants.MOZ_UPDATE_CHANNEL;
+          },
+          isHistoryEnabled() {
+            return Services.prefs.getBoolPref("places.history.enabled", true);
+          },
+          isUploadDisabled() {
+            return Services.prefs.getBoolPref("extensions.screenshots.upload-disabled", false);
           },
         },
       },
