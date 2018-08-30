@@ -156,6 +156,7 @@ h1 {
     .alt-actions-container {
       opacity: 1;
     }
+    .favorite-shot,
     .never-expires {
       display: none;
     }
@@ -244,12 +245,22 @@ h1 {
     margin: 12px;
   }
 
+  .favorite-shot,
   .never-expires {
     bottom: 0;
     color: #9e9e9e;
     font-size: 1.2em;
     position: absolute;
     right: 8px;
+  }
+
+  .favorite-shot {
+    background-image: url("../img/icon-heart.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    width: 16px;
+    height: 26px;
   }
 }
 

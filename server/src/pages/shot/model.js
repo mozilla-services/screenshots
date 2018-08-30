@@ -15,6 +15,7 @@ exports.createModel = function(req) {
   }
   const title = req.getText("shotPageTitle", {originalTitle: req.shot.title});
   const enableAnnotations = req.config.enableAnnotations;
+  const isFxaAuthenticated = req.accountId && req.accountId === req.shot.accountId;
   const serverPayload = {
     title,
     staticLink: req.staticLink,
@@ -25,7 +26,8 @@ exports.createModel = function(req) {
     id: req.shot.id,
     productName: req.config.productName,
     isExtInstalled: !!req.deviceId,
-    isOwner: req.deviceId === req.shot.ownerId || (req.accountId && req.accountId === req.shot.accountId),
+    isOwner: req.deviceId === req.shot.ownerId || isFxaAuthenticated,
+    isFxaAuthenticated,
     gaId: req.config.gaId,
     deviceId: req.deviceId,
     authenticated: !!req.deviceId,
@@ -54,7 +56,8 @@ exports.createModel = function(req) {
     id: req.shot.id,
     productName: req.config.productName,
     isExtInstalled: !!req.deviceId,
-    isOwner: req.deviceId === req.shot.ownerId || (req.accountId && req.accountId === req.shot.accountId),
+    isOwner: req.deviceId === req.shot.ownerId || isFxaAuthenticated,
+    isFxaAuthenticated,
     gaId: req.config.gaId,
     deviceId: req.deviceId,
     authenticated: !!req.deviceId,
