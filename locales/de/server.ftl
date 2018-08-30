@@ -296,6 +296,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Dieses Bildschirmfoto läuft nicht ab
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Dieses Bildschirmfoto ist ein Favorit und läuft nicht ab
 
 ## Delete Confirmation Dialog
 
