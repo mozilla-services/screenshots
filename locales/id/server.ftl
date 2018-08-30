@@ -160,7 +160,12 @@ errorThirdPartyCookiesEnabled = Jika Anda mengambil tangkapan ini dan tidak bisa
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Buat Catatan!
+promoMessage = Alat penggubahan terbaru memungkinkan Anda memotong, menyorot, dan bahkan menambahkan teks ke tangkapan Anda.
 promoLink = Coba sekarang
+promoCloseButton =
+    .title = Tutup
 
 ## Annotations
 
