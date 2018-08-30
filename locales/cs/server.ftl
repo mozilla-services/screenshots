@@ -188,6 +188,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Pokud jste pořídili tento snímek a nyní ho nemůžete smazat, dočasně v předvolbách svého prohlížeče povolte používání cookies třetích stran.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Napsat poznámku
+promoMessage = Editační nástroje byly vylepšeny, takže s nimi můžete ořezávat snímky a zvýrazňovat nebo přidávat text.
+promoLink = Vyzkoušet
+promoCloseButton =
+    .title = Zavře oznámení
+
 ## Annotations
 
 annotationPenButton =
@@ -293,6 +302,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Tento snímek je uložen navždy
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Tento snímek byl označen jako oblíbený a jeho platnost nevyprší
 
 ## Delete Confirmation Dialog
 
