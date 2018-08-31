@@ -296,6 +296,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Dizze skermôfdruk ferrint nea
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Dizze skermôfdruk is in favoryt en ferrint net
 
 ## Delete Confirmation Dialog
 
