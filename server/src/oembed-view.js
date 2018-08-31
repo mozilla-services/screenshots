@@ -20,5 +20,5 @@ exports.renderString = function(args) {
 };
 
 OEmbed.propTypes = {
-  shot: PropTypes.object
+  shot: PropTypes.object,
 };

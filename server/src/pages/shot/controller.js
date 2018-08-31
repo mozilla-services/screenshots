@@ -66,7 +66,7 @@ exports.launch = function(data) {
         if (shotFieldName && window.abTests) {
           window.abTests[testName + "_shot"] = {
             gaField: shotFieldName,
-            value: testValue
+            value: testValue,
           };
         }
       }
@@ -155,7 +155,7 @@ exports.saveEdit = function(shot, shotUrl, dimensions) {
     _csrf: model.csrfToken,
     url: shotUrl,
     x: dimensions.x,
-    y: dimensions.y
+    y: dimensions.y,
   };
 
   const postWith = body => {
@@ -163,9 +163,9 @@ exports.saveEdit = function(shot, shotUrl, dimensions) {
       method: "POST",
       credentials: "include",
       headers: new Headers({
-        "content-type": "application/json"
+        "content-type": "application/json",
       }),
-      body
+      body,
     });
     return fetch(req).then((resp) => {
       if (!resp.ok) {
@@ -237,11 +237,11 @@ function sendShowElement(clipId) {
     }
     postMessage = {
       type: "displayClip",
-      clip: clip.toJSON()
+      clip: clip.toJSON(),
     };
   } else {
     postMessage = {
-      type: "removeDisplayClip"
+      type: "removeDisplayClip",
     };
   }
 

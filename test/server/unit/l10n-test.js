@@ -5,7 +5,7 @@ const localeData = {
   "al-GO": "abc = 123\n",
   "bb-MO": "abc = 321\nsoccer = football\n",
   "cb-gb": "abc = ABC\n",
-  "en-US": "abc = abc\n"
+  "en-US": "abc = abc\n",
 };
 
 /* globals describe, it */

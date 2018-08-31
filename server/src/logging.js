@@ -4,7 +4,7 @@ exports.mozlog = require("mozlog")({
   app: "screenshots-server",
   fmt: "pretty",
   level: config.log.level,
-  debug: config.log.lint
+  debug: config.log.lint,
 });
 
 exports.installConsoleHandler = function() {

@@ -22,7 +22,7 @@ exports.Editor = class Editor extends React.Component {
       lineWidth: "",
       actionsDisabled: true,
       canUndo: false,
-      canRedo: false
+      canRedo: false,
     };
     this.onMouseUp = this.onMouseUp.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
@@ -54,7 +54,7 @@ exports.Editor = class Editor extends React.Component {
       color: "#000",
       colorName: "black",
       lineWidth: 5,
-      actionsDisabled: true
+      actionsDisabled: true,
     });
   }
 
@@ -165,7 +165,7 @@ exports.Editor = class Editor extends React.Component {
   deriveButtonStates() {
     this.setState({
       canUndo: this.history.canUndo(),
-      canRedo: this.history.canRedo()
+      canRedo: this.history.canRedo(),
     });
   }
 
@@ -336,7 +336,7 @@ exports.Editor = class Editor extends React.Component {
     this.setState({
       canvasCssWidth: Math.floor(this.props.clip.image.dimensions.x),
       canvasCssHeight: Math.floor(this.props.clip.image.dimensions.y),
-      resetCanvas: !this.state.resetCanvas
+      resetCanvas: !this.state.resetCanvas,
     });
     this.history = new EditorHistory(this.state.canvasPixelRatio);
     this.deriveButtonStates();
@@ -440,5 +440,5 @@ exports.Editor.propTypes = {
   clip: PropTypes.object,
   onCancelEdit: PropTypes.func,
   onClickSave: PropTypes.func,
-  pngToJpegCutoff: PropTypes.number
+  pngToJpegCutoff: PropTypes.number,
 };

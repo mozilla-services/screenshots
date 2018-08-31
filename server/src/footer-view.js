@@ -32,5 +32,5 @@ exports.Footer = class Footer extends React.Component {
 };
 
 exports.Footer.propTypes = {
-  authenticated: PropTypes.bool
+  authenticated: PropTypes.bool,
 };

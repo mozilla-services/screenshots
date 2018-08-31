@@ -64,7 +64,7 @@ exports.HeadTemplate.propTypes = {
   sentryPublicDSN: PropTypes.string,
   staticLink: PropTypes.func,
   title: PropTypes.string,
-  userLocales: PropTypes.array
+  userLocales: PropTypes.array,
 };
 
 exports.BodyTemplate = class Body extends React.Component {
@@ -84,7 +84,7 @@ exports.BodyTemplate = class Body extends React.Component {
 exports.BodyTemplate.propTypes = {
   children: PropTypes.node,
   messages: PropTypes.object,
-  userLocales: PropTypes.array
+  userLocales: PropTypes.array,
 };
 
 exports.Page = class Page {
@@ -145,7 +145,7 @@ exports.Page = class Page {
     if (!model.staticLink) {
       linker.setGitRevision(model.gitRevision);
       model.staticLink = linker.staticLink.bind(null, {
-        cdn: model.cdn
+        cdn: model.cdn,
       });
     }
 

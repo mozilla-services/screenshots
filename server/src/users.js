@@ -156,11 +156,11 @@ exports.tradeCode = function(code) {
     body: JSON.stringify({
       code,
       client_id: config.fxa.clientId,
-      client_secret: config.fxa.clientSecret
+      client_secret: config.fxa.clientSecret,
     }),
     headers: {
-      "content-type": "application/json"
-    }
+      "content-type": "application/json",
+    },
   }).catch(err => {
     // error with the /token endpoint
     mozlog.warn("fxa-tradecode-failed", {err});
@@ -186,7 +186,7 @@ exports.fetchProfileData = function(accessToken) {
   return fetch(userInfoEndpoint, {
     method: "GET",
     headers: {
-      authorization: `Bearer ${accessToken}`
+      authorization: `Bearer ${accessToken}`,
     },
   }).then(res => {
     return res.json();
@@ -211,7 +211,7 @@ exports.getAccountId = function(accessToken) {
   return fetch(profileURI, {
     method: "GET",
     headers: {
-      authorization: `Bearer ${accessToken}`
+      authorization: `Bearer ${accessToken}`,
     },
   }).then(res => {
     return res.json();

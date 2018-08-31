@@ -62,7 +62,7 @@ class Selection {
       top: Math.floor(this.top),
       left: Math.floor(this.left),
       bottom: Math.floor(this.bottom),
-      right: Math.floor(this.right)
+      right: Math.floor(this.right),
     };
   }
 
@@ -94,7 +94,7 @@ class Selection {
       left: this.left,
       right: this.right,
       top: this.top,
-      bottom: this.bottom
+      bottom: this.bottom,
     };
   }
 

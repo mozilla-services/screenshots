@@ -44,7 +44,7 @@ exports.createModel = function(req) {
     blockType: req.shot.blockType,
     downloadUrl,
     isMobile,
-    enableAnnotations
+    enableAnnotations,
   };
   const clientPayload = {
     title,
@@ -75,16 +75,16 @@ exports.createModel = function(req) {
     blockType: req.shot.blockType,
     downloadUrl,
     isMobile,
-    enableAnnotations
+    enableAnnotations,
   };
   if (serverPayload.expireTime !== null && Date.now() > serverPayload.expireTime) {
     clientPayload.shot = {
       url: req.shot.url,
-      docTitle: req.shot.title
+      docTitle: req.shot.title,
     };
     serverPayload.shot = Object.assign({
       urlIfDeleted: req.shot.urlIfDeleted,
-      title: req.shot.title
+      title: req.shot.title,
     }, clientPayload.shot);
   }
   return Promise.resolve({serverModel: serverPayload, jsonModel: clientPayload});

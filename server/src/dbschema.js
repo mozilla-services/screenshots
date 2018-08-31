@@ -19,7 +19,7 @@ exports.forceDbVersion = function(version) {
         if (err) {
           mozlog.error("error-patching", {
             msg: `Error patching database to level ${version}!`,
-            err
+            err,
           });
           done();
           reject(err);
@@ -51,7 +51,7 @@ exports.createTables = function() {
           if (err) {
             mozlog.error("error-patching", {
               msg: `Error patching database to level ${MAX_DB_LEVEL}!`,
-              err
+              err,
             });
             done();
             reject(err);
@@ -88,7 +88,7 @@ exports.createTables = function() {
     }
     mozlog.warn("error-creating-tables", {
       msg: "Got error creating and testing tables:",
-      err
+      err,
     });
   });
 };
@@ -140,7 +140,7 @@ exports.createKeygrip = function() {
   }).catch((err) => {
     mozlog.warn("error-creating-signing-keys", {
       msg: "Could not create signing keys:",
-      err
+      err,
     });
     throw err;
   });

@@ -45,8 +45,8 @@ const Mozilla = Mozilla || {};
       bubbles: true,
       detail: {
         action,
-        data: data || {}
-      }
+        data: data || {},
+      },
     });
 
     document.dispatchEvent(event);
@@ -185,7 +185,7 @@ const Mozilla = Mozilla || {};
    */
   Mozilla.UITour.registerPageID = function(pageID) {
     _sendEvent("registerPageID", {
-      pageID
+      pageID,
     });
   };
 
@@ -217,7 +217,7 @@ const Mozilla = Mozilla || {};
   Mozilla.UITour.showHighlight = function(target, effect) {
     _sendEvent("showHighlight", {
       target,
-      effect
+      effect,
     });
   };
 
@@ -277,7 +277,7 @@ const Mozilla = Mozilla || {};
           label: buttons[i].label,
           icon: buttons[i].icon,
           style: buttons[i].style,
-          callbackID: _waitForCallback(buttons[i].callback)
+          callbackID: _waitForCallback(buttons[i].callback),
         });
       }
     }
@@ -295,7 +295,7 @@ const Mozilla = Mozilla || {};
       icon,
       buttons: buttonData,
       closeButtonCallbackID,
-      targetCallbackID
+      targetCallbackID,
     });
   };
 
@@ -340,7 +340,7 @@ const Mozilla = Mozilla || {};
     _stopCyclingThemes();
 
     _sendEvent("previewTheme", {
-      theme: JSON.stringify(theme)
+      theme: JSON.stringify(theme),
     });
   };
 
@@ -379,7 +379,7 @@ const Mozilla = Mozilla || {};
 
       _sendEvent("previewTheme", {
         theme: JSON.stringify(theme),
-        state: true
+        state: true,
       });
 
       callback(theme);
@@ -437,7 +437,7 @@ const Mozilla = Mozilla || {};
    */
   Mozilla.UITour.hideMenu = function(name) {
     _sendEvent("hideMenu", {
-      name
+      name,
     });
   };
 
@@ -591,7 +591,7 @@ const Mozilla = Mozilla || {};
   Mozilla.UITour.showFirefoxAccounts = function(extraURLCampaignParams, email) {
     _sendEvent("showFirefoxAccounts", {
       extraURLCampaignParams: JSON.stringify(extraURLCampaignParams),
-      email
+      email,
     });
   };
 
@@ -653,7 +653,7 @@ const Mozilla = Mozilla || {};
   Mozilla.UITour.setTreatmentTag = function(name, value) {
     _sendEvent("setTreatmentTag", {
       name,
-      value
+      value,
     });
   };
 
@@ -672,7 +672,7 @@ const Mozilla = Mozilla || {};
   Mozilla.UITour.getTreatmentTag = function(name, callback) {
     _sendEvent("getTreatmentTag", {
       name,
-      callbackID: _waitForCallback(callback)
+      callbackID: _waitForCallback(callback),
     });
   };
 
@@ -686,7 +686,7 @@ const Mozilla = Mozilla || {};
    */
   Mozilla.UITour.setSearchTerm = function(term) {
     _sendEvent("setSearchTerm", {
-      term
+      term,
     });
   };
 
@@ -700,7 +700,7 @@ const Mozilla = Mozilla || {};
    */
   Mozilla.UITour.openSearchPanel = function(callback) {
     _sendEvent("openSearchPanel", {
-      callbackID: _waitForCallback(callback)
+      callbackID: _waitForCallback(callback),
     });
   };
 
@@ -746,7 +746,7 @@ const Mozilla = Mozilla || {};
    */
   Mozilla.UITour.openPreferences = function(pane) {
     _sendEvent("openPreferences", {
-      pane
+      pane,
     });
   };
 

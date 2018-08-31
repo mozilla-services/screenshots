@@ -183,7 +183,7 @@ class Shot extends AbstractShot {
       html: body,
       // I don't really understand how these relate to maxheight/maxwidth, or how we should set them:
       height: 300,
-      width: 400
+      width: 400,
     };
   }
 
@@ -317,7 +317,7 @@ class Shot extends AbstractShot {
       query: queryParts.join(" || "),
       args: texts,
       // Update this version if you update the algorithm:
-      version: SEARCHABLE_VERSION
+      version: SEARCHABLE_VERSION,
     };
   }
 
@@ -373,7 +373,7 @@ class ServerClip extends AbstractShot.prototype.Clip {
     imageData = new Buffer(imageData, "base64");
     return {
       contentType: match[1],
-      data: imageData
+      data: imageData,
     };
   }
 
@@ -457,7 +457,7 @@ Shot.getRawValue = function(id, deviceId, accountId) {
       expireTime: row.expire_time,
       deleted: row.deleted,
       blockType: row.block_type,
-      accountId: row.accountid
+      accountId: row.accountid,
     };
   });
 };
@@ -479,7 +479,7 @@ Shot.emptyShotsPage = {
   pageNumber: 1,
   totalShots: 0,
   shotsPerPage: SHOTS_PER_PAGE,
-  shots: null
+  shots: null,
 };
 
 Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pageNumber) {
@@ -491,7 +491,7 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
   }
   const shotsPage = {
     pageNumber,
-    shotsPerPage: SHOTS_PER_PAGE
+    shotsPerPage: SHOTS_PER_PAGE,
   };
   let deviceIds = [];
   let likeQuery = "";
@@ -593,7 +593,7 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
         mozlog.warn("error-parsing-json", {
           deviceid: row.deviceid,
           rowid: row.id,
-          rowvalue: row.value
+          rowvalue: row.value,
         });
       } else {
         let shot;
@@ -753,7 +753,7 @@ const ClipRewrites = class ClipRewrites {
         this.toInsert[clip.id] = {
           uuid: imageId,
           url: linker.imageLinkWithHost(imageId),
-          binary: clip.imageBinary()
+          binary: clip.imageBinary(),
         };
       } else {
         this.unedited.push(clip.id);
@@ -774,7 +774,7 @@ const ClipRewrites = class ClipRewrites {
         contentType: "image/png",
         binary: imageData,
         uuid: imageId,
-        url: linker.imageLinkWithHost(imageId)
+        url: linker.imageLinkWithHost(imageId),
       };
     } else if (this.shot.thumbnail && validUrl.isWebUri(this.shot.thumbnail)) {
       // When there is no thumbnail to insert or update, but there is a
@@ -982,7 +982,7 @@ Shot.cleanDeletedShots = function() {
       return {
         shotsDeleted: result.rowCount,
         imagesDeleted,
-        imagesFailed
+        imagesFailed,
       };
     });
   });
@@ -1021,7 +1021,7 @@ Shot.upgradeSearch = function() {
         run();
       }).then(() => {
         mozlog.info("upgraded-rows", {
-          msg: `Upgraded ${rows.length} records to SEARCHABLE_VERSION ${SEARCHABLE_VERSION}`
+          msg: `Upgraded ${rows.length} records to SEARCHABLE_VERSION ${SEARCHABLE_VERSION}`,
         });
         setTimeout(Shot.upgradeSearch.bind(Shot), 10000);
       });
