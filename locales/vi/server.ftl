@@ -164,12 +164,27 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Nếu bạn đã chụp và không thể xóa ảnh đó, bạn có thể phải tạm thời bật cookie của bên thứ ba từ tùy chọn của trình duyệt của mình.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Hãy ghi nhớ!
+promoMessage = Công cụ chỉnh sửa được cập nhật cho phép bạn cắt, tô sáng và thậm chí thêm văn bản vào ảnh của bạn.
+promoLink = Tại sao không thử nó
+promoCloseButton =
+    .title = Đóng thông báo
+
 ## Annotations
 
 annotationPenButton =
     .title = Pen
 annotationHighlighterButton =
     .title = Đánh dấu
+annotationUndoButton =
+    .title = Hoàn tác
+annotationRedoButton =
+    .title = Làm lại
+annotationTextButton =
+    .title = Thêm văn bản
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Làm sạch
@@ -201,6 +216,21 @@ annotationColorSeaGreen =
     .title = Xanh nước biển
 annotationColorGrey =
     .title = Xám
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Cỡ chữ
+# Values shown in text size selection dropdown
+textSizeSmall = Nhỏ
+textSizeMedium = Vừa
+textSizeLarge = Lớn
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = Xác nhận
+    .title = title
+textToolCancelButton = Hủy bỏ
+    .title = Cancel
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Xin chào
 
 ## Settings Page
 
@@ -210,7 +240,11 @@ settingsGuestAccountMessage = Tài khoản khách
 settingsSignInInvite = Đăng nhập để đồng bộ trên các thiết bị
 settingsSignInButton = Đăng nhập
     .title = Đăng nhập
+SettingsPageHeader = Cài đặt Firefox Screenshots
+settingsDescription = Bạn có thể đăng nhập tài khoản Firefox để đồng bộ hóa tất cả ảnh chụp màn hình của bạn trên thiết bị và truy cập chúng một cách riêng tư.
 settingsPageSubHeader = Đồng bộ & Tài khoản
+settingsClosePreferences =
+    .title = Đóng cài đặt
 
 ## Shotindex page
 
@@ -244,6 +278,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Ảnh chụp này không bao giờ hết hạn
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Đây là ảnh chụp yêu thích và nó không hết hạn
 
 ## Delete Confirmation Dialog
 
