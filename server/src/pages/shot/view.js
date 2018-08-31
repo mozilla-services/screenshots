@@ -341,6 +341,18 @@ class Body extends React.Component {
     const linkTextShort = shot.urlDisplay;
 
     const timeDiff = <TimeDiff date={shot.createdDate} />;
+    let expirationSubtitle;
+    if (this.props.expireTime === null) {
+      expirationSubtitle = <Localized id="shotPageDoesNotExpire"><span>does not expire</span></Localized>;
+    } else {
+      const expired = this.props.expireTime < Date.now();
+      const expireTimeDiff = <TimeDiff date={this.props.expireTime}/>;
+      if (expired) {
+        expirationSubtitle = <Localized id="shotPageExpired" $timediff={expireTimeDiff}><span>expired {expireTimeDiff}</span></Localized>;
+      } else {
+        expirationSubtitle = <Localized id="shotPageExpiresIn" $timediff={expireTimeDiff}><span>expires {expireTimeDiff}</span></Localized>;
+      }
+    }
 
     let favoriteShotButton = null;
     let trashOrFlagButton;
@@ -422,6 +434,7 @@ class Body extends React.Component {
               <div className="shot-subtitle">
                 { linkTextShort ? <a className="subtitle-link" rel="noopener noreferrer" href={ shot.url } target="_blank" onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> : null }
                 <span className="time-diff">{ timeDiff }</span>
+                { expirationSubtitle }
               </div>
             </div>
           </div>
