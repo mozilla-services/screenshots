@@ -302,6 +302,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Ten zrzut nie ulega przeterminowaniu
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = To ulubiony zrzut, nie ulega on przeterminowaniu
 
 ## Delete Confirmation Dialog
 
