@@ -296,6 +296,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = यह शॉट समाप्त नहीं होता है
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = यह एक पसंदीदा शॉट है और यह समाप्त नहीं होता है
 
 ## Delete Confirmation Dialog
 
