@@ -182,6 +182,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Ако сте направили тази снимка и не можете да я изтриете може да пробвате временно да включите бисквитките от трети страни в настройките на четеца.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Забележете!
+promoMessage = Обновените инструменти за редактиране на снимки ви позволяват да ги отрязвате, рисувате за подчертаване и дори да им добавяте текст.
+promoLink = Изпробвайте ги
+promoCloseButton =
+    .title = Затваряне на известието
+
 ## Annotations
 
 annotationPenButton =
@@ -192,6 +201,8 @@ annotationUndoButton =
     .title = Отменяне
 annotationRedoButton =
     .title = Повтаряне
+annotationTextButton =
+    .title = Добавяне на текст
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Изчистване
@@ -223,6 +234,21 @@ annotationColorSeaGreen =
     .title = Синьо-зелено
 annotationColorGrey =
     .title = Сиво
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Размер на текста
+# Values shown in text size selection dropdown
+textSizeSmall = Малък
+textSizeMedium = Среден
+textSizeLarge = Голям
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = Потвърждение
+    .title = Потвърждение
+textToolCancelButton = Отказ
+    .title = Отказ
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Здравейте
 
 ## Settings Page
 
@@ -270,6 +296,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Давността на тази снимка не изтича.
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Това е отбелязана снимка и тя няма срок на съхранение
 
 ## Delete Confirmation Dialog
 
@@ -282,3 +313,10 @@ shotDeleteConfirm = Изтриване
 ## Metrics page
 ## All metrics strings are optional for translation
 
+# Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Метрики на Firefox Screenshots
+metricsPageTotalsQueryTitle = Общо
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Преглед на снимките
+metricsPageTotalsQueryDevices = Общ брой регистрирани устройства
+metricsPageTotalsQueryActiveShots = Активни снимки
