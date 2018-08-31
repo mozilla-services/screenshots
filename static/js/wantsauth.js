@@ -37,7 +37,7 @@ window.wantsauth = (function() {
     savedAuthData = {
       deviceId,
       isOwner,
-      loginFailed: false
+      loginFailed: false,
     };
     let promise = Promise.resolve(true);
     if (!backupCookieRequest) {

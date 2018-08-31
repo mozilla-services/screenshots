@@ -24,7 +24,7 @@ exports.start = function() {
               ec: "server",
               ea: "clean-deleted-shot",
               ev: status.shotsDeleted,
-              ni: true
+              ni: true,
             }).send();
           }
         }
@@ -32,7 +32,7 @@ exports.start = function() {
       .catch((e) => {
         mozlog.error("error-cleaning-shots", {
           msg: "" + e,
-          err: e
+          err: e,
         });
       });
   }, checkDeletedInterval);

@@ -11,7 +11,7 @@ exports.ColorPicker = class ColorPicker extends React.Component {
     this.state = {
       pickerActive: false,
       color: props.color || "#000",
-      colorName: props.colorName || "black"
+      colorName: props.colorName || "black",
     };
     this.elRef = React.createRef();
   }
@@ -126,5 +126,5 @@ exports.ColorPicker = class ColorPicker extends React.Component {
 exports.ColorPicker.propTypes = {
   color: PropTypes.string,
   colorName: PropTypes.string,
-  setColorCallback: PropTypes.func
+  setColorCallback: PropTypes.func,
 };

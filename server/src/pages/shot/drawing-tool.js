@@ -26,7 +26,7 @@ exports.DrawingTool = class DrawingTool extends React.Component {
       baseCanvasWidth: nextProps.canvasCssWidth * nextProps.canvasPixelRatio,
       baseCanvasHeight: nextProps.canvasCssHeight * nextProps.canvasPixelRatio,
       canvasCssWidth: nextProps.canvasCssWidth,
-      canvasCssHeight: nextProps.canvasCssHeight
+      canvasCssHeight: nextProps.canvasCssHeight,
     };
     return newState;
   }
@@ -54,7 +54,7 @@ exports.DrawingTool = class DrawingTool extends React.Component {
     const boundingRect = this.canvas.current.getBoundingClientRect();
     return {
       x: e.clientX - boundingRect.left,
-      y: e.clientY - boundingRect.top
+      y: e.clientY - boundingRect.top,
     };
   }
 

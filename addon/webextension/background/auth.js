@@ -33,7 +33,7 @@ this.auth = (function() {
     const info = {
       deviceId: `anon${makeUuid()}`,
       secret: makeUuid(),
-      registered: false
+      registered: false,
     };
     return info;
   }
@@ -69,7 +69,7 @@ this.auth = (function() {
       req.send(JSON.stringify({
         deviceId: registrationInfo.deviceId,
         secret: registrationInfo.secret,
-        deviceInfo: JSON.stringify(deviceInfo())
+        deviceInfo: JSON.stringify(deviceInfo()),
       }));
     });
   }
@@ -124,7 +124,7 @@ this.auth = (function() {
         deviceId: registrationInfo.deviceId,
         secret: registrationInfo.secret,
         deviceInfo: JSON.stringify(deviceInfo()),
-        ownershipCheck
+        ownershipCheck,
       }));
     });
   }
@@ -186,7 +186,7 @@ this.auth = (function() {
           return {
             isOwner: result && result.isOwner,
             deviceId: registrationInfo.deviceId,
-            authHeaders
+            authHeaders,
           };
         });
       }

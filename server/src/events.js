@@ -16,7 +16,7 @@ module.exports = {
 
   setProfileState(profile) {
     const event = new CustomEvent("set-profile-state", {
-      detail: profile
+      detail: profile,
     });
     document.dispatchEvent(event);
   },
@@ -24,5 +24,5 @@ module.exports = {
   deleteEverything() {
     const event = new CustomEvent("delete-everything");
     document.dispatchEvent(event);
-  }
+  },
 };

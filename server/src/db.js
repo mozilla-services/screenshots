@@ -14,7 +14,7 @@ const pool = new pg.Pool(Object.assign({connectionString: constr}, config.db.poo
 pool.on("error", function(error) {
   mozlog.error("db-error", {
     msg: "Error in database:",
-    err: error
+    err: error,
   });
 });
 

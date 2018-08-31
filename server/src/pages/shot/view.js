@@ -83,7 +83,7 @@ class Clip extends React.Component {
 }
 
 Clip.propTypes = {
-  clip: PropTypes.object
+  clip: PropTypes.object,
 };
 
 class Head extends React.Component {
@@ -121,11 +121,11 @@ class Head extends React.Component {
     }
     const og = [
       <meta property="og:type" content="website" key="ogtype" />,
-      <meta property="og:title" content={this.props.shot.title} key="ogtitle" />
+      <meta property="og:title" content={this.props.shot.title} key="ogtitle" />,
     ];
     const twitter = [
       <meta name="twitter:card" content="summary_large_image" key="twittercard" />,
-      <meta name="twitter:title" content={this.props.shot.title} key="twitterTitle" />
+      <meta name="twitter:title" content={this.props.shot.title} key="twitterTitle" />,
     ];
 
     for (const clipId of this.props.shot.clipNames()) {
@@ -167,7 +167,7 @@ class Head extends React.Component {
 Head.propTypes = {
   expireTime: PropTypes.number,
   shot: PropTypes.object,
-  staticLink: PropTypes.func
+  staticLink: PropTypes.func,
 };
 
 class Body extends React.Component {
@@ -176,7 +176,7 @@ class Body extends React.Component {
     this.state = {
       hidden: false,
       closeBanner: false,
-      imageEditing: false
+      imageEditing: false,
     };
   }
 
@@ -335,7 +335,7 @@ class Body extends React.Component {
       <Localized id="shotPageAlertErrorUpdatingExpirationTime" key="error-1"><div id="shotPageAlertErrorUpdatingExpirationTime" className="clips-warning" hidden></div></Localized>,
       <Localized id="shotPageAlertErrorDeletingShot" key="error-2"><div id="shotPageAlertErrorDeletingShot" className="clips-warning" hidden></div></Localized>,
       <Localized id="shotPageAlertErrorUpdatingTitle" key="error-3"><div id="shotPageAlertErrorUpdatingTitle" className="clips-warning" hidden></div></Localized>,
-      <Localized id="shotPageConfirmDelete" key="error-4"><div id="shotPageConfirmDelete" hidden></div></Localized>
+      <Localized id="shotPageConfirmDelete" key="error-4"><div id="shotPageConfirmDelete" hidden></div></Localized>,
     ];
 
     const linkTextShort = shot.urlDisplay;
@@ -576,7 +576,7 @@ Body.propTypes = {
   shot: PropTypes.object,
   staticLink: PropTypes.func,
   userAgent: PropTypes.string,
-  userLocales: PropTypes.array
+  userLocales: PropTypes.array,
 };
 
 
@@ -652,7 +652,7 @@ class EditableTitle extends React.Component {
 
 EditableTitle.propTypes = {
   isOwner: PropTypes.bool,
-  title: PropTypes.string
+  title: PropTypes.string,
 };
 
 class LoginFailedWarning extends React.Component {

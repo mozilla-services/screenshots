@@ -27,7 +27,7 @@ const {
   saveProfileData,
   disconnectDevice,
   retrieveAccount,
-  isValidDeviceId
+  isValidDeviceId,
 } = require("./users");
 const dbschema = require("./dbschema");
 const express = require("express");
@@ -277,7 +277,7 @@ function decodeAuthHeader(header) {
 
 app.use(function(req, res, next) {
   req.staticLink = linker.staticLink.bind(null, {
-    cdn: req.config.siteCdn
+    cdn: req.config.siteCdn,
   });
   // The contentCdn config does not have a default value but contentOrigin does.
   const base = config.contentCdn || `${req.protocol}://${config.contentOrigin}`;
@@ -296,7 +296,7 @@ app.param("id", function(req, res, next, id) {
   exc.isAppError = true;
   exc.output = {
     statusCode: 400,
-    payload: "Invalid id"
+    payload: "Invalid id",
   };
   next(exc);
 });
@@ -356,7 +356,7 @@ app.get("/install-raven.js", function(req, res) {
     environment: process.env.NODE_ENV || "dev",
     release: linker.getGitRevision(),
     sanitizeKeys: ["url"],
-    serverName: req.backend
+    serverName: req.backend,
   };
   const script = `
   ${ravenClientJs}
@@ -398,7 +398,7 @@ app.post("/error", function(req, res) {
     userAgentOverride: req.headers["user-agent"],
     applicationName: "firefox",
     applicationVersion: bodyObj.version,
-    exceptionDescription: desc
+    exceptionDescription: desc,
   }).send();
   mozlog.info("remote-error", {msg: "Error received:", description: desc});
   simpleResponse(res, "OK", 200);
@@ -450,7 +450,7 @@ app.post("/event", function(req, res) {
           ea: event.action,
           el: event.label,
           ev: event.eventValue,
-          qt: (event.queueTime || 0)
+          qt: (event.queueTime || 0),
         }
       );
       if (req.headers["user-agent"]) {
@@ -490,7 +490,7 @@ app.post("/timing", function(req, res) {
         userTimingCategory: timing.timingCategory,
         userTimingVariableName: timing.timingVar,
         userTimingTime: timing.timingValue,
-        userTimingLabel: timing.timingLabel
+        userTimingLabel: timing.timingLabel,
       };
       userAnalytics.timing(params);
     });
@@ -525,7 +525,7 @@ app.post("/api/register", function(req, res) {
   registerLogin(vars.deviceId, {
     secret: vars.secret,
     nickname: vars.nickname || null,
-    avatarurl: vars.avatarurl || null
+    avatarurl: vars.avatarurl || null,
   }, canUpdate).then(function(userAbTests) {
     if (userAbTests) {
       sendAuthInfo(req, res, {deviceId: vars.deviceId, userAbTests});
@@ -535,8 +535,8 @@ app.post("/api/register", function(req, res) {
         extra: {
           hasSecret: !!vars.secret,
           hasNickname: !!vars.nickname,
-          hasAvatarurl: !!vars.avatarurl
-        }
+          hasAvatarurl: !!vars.avatarurl,
+        },
       });
       simpleResponse(res, "User exists", 401);
     }
@@ -567,7 +567,7 @@ function sendAuthInfo(req, res, params) {
     sentryPublicDSN: config.sentryPublicDSN,
     abTests: userAbTests,
     authHeader,
-    isOwner: params.isOwner
+    isOwner: params.isOwner,
   };
   // FIXME: I think there's a JSON sendResponse equivalent
   simpleResponse(res, JSON.stringify(responseJson), 200);
@@ -597,7 +597,7 @@ app.post("/api/login", function(req, res) {
     if (userAbTests) {
       const sendParams = {
         deviceId: vars.deviceId,
-        userAbTests
+        userAbTests,
       };
       let sendParamsPromise = Promise.resolve(sendParams);
       retrieveAccount(vars.deviceId).then((accountId) => {
@@ -623,7 +623,7 @@ app.post("/api/login", function(req, res) {
           ec: "server",
           ea: "api-login",
           ua: req.headers["user-agent"],
-          ni: true
+          ni: true,
         }).send();
       }
     } else if (!userAbTests) {
@@ -646,7 +646,7 @@ app.post("/api/set-login-cookie", function(req, res) {
   sendAuthInfo(req, res, {
     deviceId: req.deviceId,
     accountId: req.accountId,
-    userAbTests: req.abTests
+    userAbTests: req.abTests,
   });
 });
 
@@ -931,11 +931,11 @@ app.get("/images/:imageid", function(req, res) {
           dp: analyticsUrl,
           dh: req.backend,
           documentReferrer,
-          ua: req.headers["user-agent"]
+          ua: req.headers["user-agent"],
         }).event({
           ec: "web",
           ea: "visit",
-          el
+          el,
         }).send();
       }
       let contentType = obj.contentType;
@@ -970,7 +970,7 @@ app.get("/__version__", function(req, res) {
       commitLog: `https://github.com/mozilla-services/screenshots/commits/${linker.getGitRevision()}`,
       unincludedCommits: `https://github.com/mozilla-services/screenshots/compare/${linker.getGitRevision()}...master`,
       dbSchemaVersion: level,
-      dbSchemaVersionJS: dbschema.MAX_DB_LEVEL
+      dbSchemaVersionJS: dbschema.MAX_DB_LEVEL,
     };
     res.header("Content-Type", "application/json; charset=utf-8");
     res.send(JSON.stringify(response, null, "  "));
@@ -986,22 +986,22 @@ app.get("/contribute.json", function(req, res) {
     repository: {
       url: "https://github.com/mozilla-services/screenshots/",
       license: "MPL2",
-      tests: "https://circleci.com/gh/mozilla-services/screenshots"
+      tests: "https://circleci.com/gh/mozilla-services/screenshots",
     },
     participate: {
       home: "https://github.com/mozilla-services/screenshots/",
       irc: "irc://irc.mozilla.org/#screenshots",
-      "irc-contacts": ["ianbicking", "fzzzy"]
+      "irc-contacts": ["ianbicking", "fzzzy"],
     },
     bugs: {
       list: "https://github.com/mozilla-services/screenshots/issues",
       report: "https://github.com/mozilla-services/screenshots/issues/new",
-      goodfirstbugs: "https://github.com/mozilla-services/screenshots/labels/good%20first%20bug"
+      goodfirstbugs: "https://github.com/mozilla-services/screenshots/labels/good%20first%20bug",
     },
     urls: {
       prod: "https://screenshots.firefox.com",
       stage: "https://screenshots.stage.mozaws.net",
-      dev: "https://screenshots.dev.mozaws.net"
+      dev: "https://screenshots.dev.mozaws.net",
     },
     keywords: [
       "javascript",
@@ -1009,8 +1009,8 @@ app.get("/contribute.json", function(req, res) {
       "express",
       "react",
       "postgresql",
-      "firefox"
-    ]
+      "firefox",
+    ],
   };
   res.header("Content-Type", "application/json; charset=utf-8");
   res.send(JSON.stringify(data, null, "  "));
@@ -1153,7 +1153,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/homepage", express.static(path.join(__dirname, "static/homepage"), {
-  index: false
+  index: false,
 }));
 
 // This is a minimal heartbeat that only indicates the server process is up and responding
@@ -1211,7 +1211,7 @@ if (config.localhostSsl) {
   }
   httpsCredentials = {
     key: readFileSync(key),
-    cert: readFileSync(cert)
+    cert: readFileSync(cert),
   };
 }
 
@@ -1249,7 +1249,7 @@ app.use(function(err, req, res, next) {
     mozlog.info("entity-too-large", {
       length: err.length,
       limit: err.limit,
-      expected: err.expected
+      expected: err.expected,
     });
     res.status(err.statusCode);
     res.type("text");

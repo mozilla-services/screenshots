@@ -36,7 +36,7 @@ const prefObserver = {
       // eslint-disable-next-line promise/catch-or-return
       appStartupPromise = appStartupPromise.then(handleStartup);
     }
-  }
+  },
 };
 
 const LibraryButton = {
@@ -110,7 +110,7 @@ function shutdown(data, reason) { // eslint-disable-line no-unused-vars
   prefObserver.unregister();
   const webExtension = LegacyExtensionsUtils.getEmbeddedExtensionFor({
     id: ADDON_ID,
-    resourceURI: addonResourceURI
+    resourceURI: addonResourceURI,
   });
   // Immediately exit if Firefox is exiting, #3323
   if (reason === APP_SHUTDOWN) {
@@ -136,7 +136,7 @@ function shouldDisable() {
 function handleStartup() {
   const webExtension = LegacyExtensionsUtils.getEmbeddedExtensionFor({
     id: ADDON_ID,
-    resourceURI: addonResourceURI
+    resourceURI: addonResourceURI,
   });
 
   if (!shouldDisable() && !webExtension.started) {

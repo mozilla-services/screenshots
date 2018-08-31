@@ -19,7 +19,7 @@ class Head extends React.Component {
 }
 
 Head.propTypes = {
-  staticLink: PropTypes.func
+  staticLink: PropTypes.func,
 };
 
 class Body extends React.Component {
@@ -110,7 +110,7 @@ class Body extends React.Component {
 
 Body.propTypes = {
   accountInfo: PropTypes.object,
-  staticLink: PropTypes.func
+  staticLink: PropTypes.func,
 };
 
 exports.HeadFactory = React.createFactory(Head);

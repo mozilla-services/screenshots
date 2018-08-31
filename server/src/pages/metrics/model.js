@@ -15,8 +15,8 @@ const queries = {
       {title: "Total devices registered", name: "total_devices"},
       {title: "Active shots", name: "active_shots"},
       {title: "Expired (recoverable)", name: "expired_recoverable_shots"},
-      {title: "... (deleted)", name: "expired_deleted_shots"}
-    ]
+      {title: "... (deleted)", name: "expired_deleted_shots"},
+    ],
   },
 
   shotsCreatedByDay: {
@@ -31,8 +31,8 @@ const queries = {
     `,
     columns: [
       {title: "Number of shots", name: "number_of_shots"},
-      {title: "Day", type: "date", name: "day"}
-    ]
+      {title: "Day", type: "date", name: "day"},
+    ],
   },
 
   usersByDay: {
@@ -47,8 +47,8 @@ const queries = {
     `,
     columns: [
       {title: "Number of users", name: "number_of_users"},
-      {title: "Day", type: "date", name: "day"}
-    ]
+      {title: "Day", type: "date", name: "day"},
+    ],
   },
 
   shotsByUserHistogram: {
@@ -66,8 +66,8 @@ const queries = {
     `,
     columns: [
       {title: "Number of users", name: "count"},
-      {title: "~Number of shots", name: "number_of_shots"}
-    ]
+      {title: "~Number of shots", name: "number_of_shots"},
+    ],
   },
 
 };
@@ -138,7 +138,7 @@ exports.createModel = function(req) {
     data = JSON.parse(data);
     const model = {
       title: "Firefox Screenshots Metrics",
-      data
+      data,
     };
     return {serverModel: model, jsonModel: model};
   });

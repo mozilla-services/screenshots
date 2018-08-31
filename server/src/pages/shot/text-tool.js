@@ -48,7 +48,7 @@ exports.TextTool = class TextTool extends React.Component {
       top: INIT_TOP,
       color: this.props.color,
       colorName: this.props.colorName,
-      textSize: "large-text"
+      textSize: "large-text",
     };
   }
 
@@ -103,7 +103,7 @@ exports.TextTool = class TextTool extends React.Component {
       top: dragDivTopPx,
       left: dragDivLeftPx,
       padding: dragDivPadding,
-      cursor: "move"
+      cursor: "move",
     };
 
     // Styles used by hidden div that is used to compute width of input
@@ -111,7 +111,7 @@ exports.TextTool = class TextTool extends React.Component {
     const hiddenDivStyles = {
       position: "absolute",
       zIndex: "-999",
-      visibility: "hidden"
+      visibility: "hidden",
     };
 
     return [
@@ -122,7 +122,7 @@ exports.TextTool = class TextTool extends React.Component {
           </input>
         </Localized>
         <div id="text-width" style={hiddenDivStyles} className={`${this.state.textSize} text`} key="text-width"></div>
-      </div>
+      </div>,
     ];
   }
 
@@ -182,7 +182,7 @@ exports.TextTool = class TextTool extends React.Component {
     const newTop = clamp(this.state.top + yDelta, TEXT_DRAG_EDGE_LIMIT, maxTop);
     this.setState({
       left: newLeft,
-      top: newTop
+      top: newTop,
     });
 
     prevDragMousePos = mousePos;
@@ -199,7 +199,7 @@ exports.TextTool = class TextTool extends React.Component {
     const boundingRect = this.el.current.getBoundingClientRect();
     return {
       x: e.clientX - boundingRect.left,
-      y: e.clientY - boundingRect.top
+      y: e.clientY - boundingRect.top,
     };
   }
 

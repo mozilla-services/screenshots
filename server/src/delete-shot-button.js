@@ -92,5 +92,5 @@ exports.DeleteShotButton = class DeleteShotButton extends React.Component {
 exports.DeleteShotButton.propTypes = {
   clickDeleteHandler: PropTypes.func,
   confirmDeleteHandler: PropTypes.func,
-  cancelDeleteHandler: PropTypes.func
+  cancelDeleteHandler: PropTypes.func,
 };

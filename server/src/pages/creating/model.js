@@ -5,7 +5,7 @@ exports.createModel = function(req) {
     title,
     docTitle: title,
     docUrl: req.query.url,
-    getText: req.getText
+    getText: req.getText,
   };
   return model;
 };

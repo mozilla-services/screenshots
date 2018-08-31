@@ -36,5 +36,5 @@ exports.PromoDialog = class PromoDialog extends React.Component {
 
 exports.PromoDialog.propTypes = {
   display: PropTypes.bool,
-  promoClose: PropTypes.func
+  promoClose: PropTypes.func,
 };

@@ -17,7 +17,7 @@ exports.createModel = function(req) {
       model.accountInfo = {
         avatarUrl: rows[0].avatarurl,
         nickname: rows[0].nickname,
-        email: rows[0].email
+        email: rows[0].email,
       };
     }
     return model;

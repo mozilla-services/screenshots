@@ -19,7 +19,7 @@ exports.render = function(req, res, page) {
       cdn,
       csrfToken,
       abTests: req.abTests,
-      userLocales: req.userLocales
+      userLocales: req.userLocales,
     }, jsonModel);
     serverModel = Object.assign({
       authenticated: !!req.deviceId,
@@ -28,7 +28,7 @@ exports.render = function(req, res, page) {
       csrfToken,
       abTests: req.abTests,
       userLocales: req.userLocales,
-      messages: req.messages
+      messages: req.messages,
     }, serverModel);
     if (req.query.data === "json") {
       if (req.query.pretty !== undefined) {

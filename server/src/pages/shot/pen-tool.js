@@ -9,7 +9,7 @@ exports.PenTool = class PenTool extends DrawingTool {
     this.state = {
       strokeStyle: props.color || "#000",
       lineWidth: props.lineWidth || 5,
-      classNames: "pen"
+      classNames: "pen",
     };
   }
 

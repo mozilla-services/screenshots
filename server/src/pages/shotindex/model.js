@@ -10,7 +10,7 @@ exports.createModel = function(req) {
     title,
     hasFxa: !!req.accountId,
     hasDeviceId: req.deviceId !== undefined,
-    defaultSearch: query || null
+    defaultSearch: query || null,
   };
   serverModel.shotsPerPage = req.shotsPerPage;
   serverModel.pageNumber = req.pageNumber;
@@ -37,7 +37,7 @@ exports.createModel = function(req) {
       shot => ({
         id: shot.id,
         json: shot.asRecallJson(),
-        expireTime: shot.expireTime
+        expireTime: shot.expireTime,
       }));
   }
   const jsonModel = Object.assign(
@@ -45,7 +45,7 @@ exports.createModel = function(req) {
     serverModel,
     {
       shots,
-      downloadUrls: serverModel.downloadUrls
+      downloadUrls: serverModel.downloadUrls,
     }
   );
   return Promise.resolve({serverModel, jsonModel});
