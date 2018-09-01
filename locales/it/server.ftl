@@ -9,9 +9,15 @@ gHomeLink = Pagina iniziale
 gNoShots =
     .alt = Nessuna immagine trovata
 gScreenshotsDescription = Realizzare screenshot non è mai stato così facile. Cattura, salva e condividi le tue immagini senza uscire da Firefox.
+gSettings = Impostazioni
+gSignIn = Accedi
 
 ## Header
 
+signInButton =
+    .aria-label = Accedi
+settingsButton =
+    .aria-label = Impostazioni
 
 ## Footer
 
@@ -120,6 +126,8 @@ shotPageDownloadShot =
     .title = Scarica
 shotPageEditButton =
     .title = Modifica immagine
+shotPagefavoriteButton =
+    .title = Aggiungi immagine ai preferiti
 shotPageDownload = Scarica
 shotPageScreenshotsDescription = Realizzare screenshot non è mai stato così facile. Cattura, salva e condividi le tue immagini senza uscire da Firefox.
 shotPageUpsellFirefox = Installa Firefox adesso
