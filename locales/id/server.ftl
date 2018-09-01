@@ -9,6 +9,15 @@ gHomeLink = Beranda
 gNoShots =
     .alt = Tidak ada tangkapan ditemukan
 gScreenshotsDescription = Screenshots membuatnya sederhana. Ambil, simpan, dan bagikan tangkapan layar tanpa meninggalkan Firefox.
+gSettings = Setelan
+gSignIn = Masuk
+
+## Header
+
+signInButton =
+    .aria-label = Masuk
+settingsButton =
+    .aria-label = Setelan
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Buka Tangkapan Saya
 homePageTeaser = Segera Hadir…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Unduh Gratis
-homePageGetStarted = Memulai
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Cara Kerja Firefox Screenshots
 homePageGetStartedTitle = Memulai
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Unduh
 shotPageEditButton =
     .title = Edit gambar ini
+shotPagefavoriteButton =
+    .title = Favoritkan tangkapan ini
 shotPageDownload = Unduh
 shotPageScreenshotsDescription = Screenshots sangat mudah. Tangkap, simpan, dan bagikan tangkapan layar tanpa meninggalkan Firefox.
 shotPageUpsellFirefox = Dapatkan Firefox sekarang
@@ -272,6 +282,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Tangkapan ini tidak kedaluwarsa
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Ini adalah tangkapan favorit dan tidak kedaluwarsa
 
 ## Delete Confirmation Dialog
 
