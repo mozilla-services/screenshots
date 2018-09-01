@@ -10,6 +10,9 @@ gNoShots =
     .alt = Aucune capture trouvée
 gScreenshotsDescription = Des captures en un clin d’œil. Capturez l’écran, enregistrez et partagez sans quitter Firefox.
 
+## Header
+
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
@@ -38,7 +41,6 @@ homePageButtonMyShots = Afficher mes captures
 homePageTeaser = Bientôt disponible…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Téléchargement gratuit
-homePageGetStarted = Prise en main
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Principes de fonctionnement de Firefox Screenshots
 homePageGetStartedTitle = Pour bien commencer
@@ -296,6 +298,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Cette capture n’expire jamais
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Cette capture d’écran n’expirera jamais, car elle fait partie de vos captures favorites
 
 ## Delete Confirmation Dialog
 
