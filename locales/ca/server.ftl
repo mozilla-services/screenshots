@@ -9,6 +9,15 @@ gHomeLink = Inici
 gNoShots =
     .alt = No s'ha trobat cap captura
 gScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures de pantalla, deseu-les i compartiu-les sense sortir del %S.
+gSettings = Paràmetres
+gSignIn = Inicia la sessió
+
+## Header
+
+signInButton =
+    .aria-label = Inicia la sessió
+settingsButton =
+    .aria-label = Paràmetres
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Vés a les meves captures
 homePageTeaser = Properament…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Baixada gratuïta
-homePageGetStarted = Primers passos
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Com funciona el Firefox Screenshots
 homePageGetStartedTitle = Primers passos
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Baixa
 shotPageEditButton =
     .title = Edita aquesta imatge
+shotPagefavoriteButton =
+    .title = Marca la captura com a favorita
 shotPageDownload = Baixa
 shotPageScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures de pantalla, deseu-les i compartiu-les sense sortir del %S.
 shotPageUpsellFirefox = Baixeu el Firefox ara
@@ -296,6 +306,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Aquesta captura no caduca
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Aquesta és una captura favorita i no caduca
 
 ## Delete Confirmation Dialog
 
