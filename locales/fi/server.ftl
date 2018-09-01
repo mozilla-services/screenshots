@@ -10,6 +10,9 @@ gNoShots =
     .alt = Kaappauksia ei löytynyt
 gScreenshotsDescription = Kuvakaappaukset helposti. Ota, tallenna ja jaa kuvakaappauksia poistumatta Firefoxista.
 
+## Header
+
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
@@ -38,7 +41,6 @@ homePageButtonMyShots = Siirry omiin kaappauksiini
 homePageTeaser = Tulossa pian…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Lataa ilmaiseksi
-homePageGetStarted = Aloitetaan
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Miten Firefox Screenshots toimii
 homePageGetStartedTitle = Aloitetaan
@@ -296,6 +298,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Tämä kaappaus ei vanhene
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Tämä on suosikkikaappaus eikä vanhene
 
 ## Delete Confirmation Dialog
 
