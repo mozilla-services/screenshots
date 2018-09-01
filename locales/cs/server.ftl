@@ -9,6 +9,15 @@ gHomeLink = Domů
 gNoShots =
     .alt = Žádné snímky nenalezeny
 gScreenshotsDescription = Jednoduchá tvorba snímků webových stránek. Vytvářejte, ukládejte i sdílejte přímo z Firefoxu.
+gSettings = Nastavení
+gSignIn = Přihlásit se
+
+## Header
+
+signInButton =
+    .aria-label = Přihlásit se
+settingsButton =
+    .aria-label = Nastavení
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Přejít na mé snímky
 homePageTeaser = Již brzy…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Stáhnout zdarma
-homePageGetStarted = Začít
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Jak služba Firefox Screenshots funguje
 homePageGetStartedTitle = Jak začít
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Stáhnout
 shotPageEditButton =
     .title = Upravit tento obrázek
+shotPagefavoriteButton =
+    .title = Označit snímek jako oblíbený
 shotPageDownload = Stáhnout
 shotPageScreenshotsDescription = Jednoduchá tvorba snímků webových stránek. Vytvářejte, ukládejte i sdílejte přímo z Firefoxu.
 shotPageUpsellFirefox = Získejte Firefox
