@@ -9,6 +9,15 @@ gHomeLink = Почетна
 gNoShots =
     .alt = Нема пронађених снимака
 gScreenshotsDescription = Веома једноставни снимци екрана. Начините, сачувајте и делите ваше снимке екрана без напуштања Firefox-а.
+gSettings = Поставке
+gSignIn = Пријавите се
+
+## Header
+
+signInButton =
+    .aria-label = Пријави се
+settingsButton =
+    .aria-label = Поставке
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Иди на моје снимке
 homePageTeaser = Доступно ускоро…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Бесплатно преузимање
-homePageGetStarted = Почните са коришћењем
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Како Firefox Screenshots ради
 homePageGetStartedTitle = Почните са коришћењем
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Преузми
 shotPageEditButton =
     .title = Уреди ову слику
+shotPagefavoriteButton =
+    .title = Фаворизуј овај снимак
 shotPageDownload = Преузми
 shotPageScreenshotsDescription = Снимци екрана, поједностављени. Ухватите, сачувајте и делите снимке екрана без напуштања Firefox-а.
 shotPageUpsellFirefox = Преузмите Firefox сада
@@ -302,6 +312,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Овај снимак нема рок трајања
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Ово је фаворизовани снимак који не истиче
 
 ## Delete Confirmation Dialog
 
