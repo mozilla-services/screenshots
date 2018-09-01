@@ -9,6 +9,15 @@ gHomeLink = 首页
 gNoShots =
     .alt = 没有找到截图
 gScreenshotsDescription = 使截图更简单。截取、保存以及分享截图，一切都在 Firefox。
+gSettings = 设置
+gSignIn = 登录
+
+## Header
+
+signInButton =
+    .aria-label = 登录
+settingsButton =
+    .aria-label = 设置
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = 转至我的截图
 homePageTeaser = 即将推出…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = 免费下载
-homePageGetStarted = 操作入门
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = 如何使用 Firefox Screenshots
 homePageGetStartedTitle = 开始使用
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = 下载
 shotPageEditButton =
     .title = 编辑此图像
+shotPagefavoriteButton =
+    .title = 收藏此截图
 shotPageDownload = 下载
 shotPageScreenshotsDescription = 使截图更简单。截取、保存以及分享截图，一切都在 Firefox。
 shotPageUpsellFirefox = 立即获取 Firefox
@@ -278,6 +288,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = 这张截图不会过期
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = 这是一张收藏的截图，不会过期
 
 ## Delete Confirmation Dialog
 
