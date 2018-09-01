@@ -9,6 +9,15 @@ gHomeLink = Pradžia
 gNoShots =
     .alt = Nuotraukų nerasta
 gScreenshotsDescription = Ekrano nuotraukos paprastai. Darykite, saugokite ir dalinkitės ekrano nuotraukomis nepalikdami „Firefox“.
+gSettings = Nuostatos
+gSignIn = Prisijungti
+
+## Header
+
+signInButton =
+    .aria-label = Prisijungti
+settingsButton =
+    .aria-label = Nuostatos
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Eiti į mano nuotraukas
 homePageTeaser = Bus jau netrukus…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Nemokamas atsisiuntimas
-homePageGetStarted = Pradėkite
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kaip veikia „Firefox“ ekrano nuotraukos
 homePageGetStartedTitle = Pradėkite
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Atsisiųsti
 shotPageEditButton =
     .title = Redaguoti paveikslą
+shotPagefavoriteButton =
+    .title = Pažymėti kaip mėgstamą
 shotPageDownload = Atsisiųsti
 shotPageScreenshotsDescription = Ekrano nuotraukos paprastai. Darykite, saugokite ir dalinkitės ekrano nuotraukomis nepalikdami „Firefox“.
 shotPageUpsellFirefox = Gauti „Firefox“ dabar
@@ -302,6 +312,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Ši nuotrauka galioja neribotą laiką
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Ši nuotrauka mėgstama, ir niekur nedings
 
 ## Delete Confirmation Dialog
 
