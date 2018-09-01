@@ -9,6 +9,15 @@ gHomeLink = Ev
 gNoShots =
     .alt = Ekran görüntüsü tapılmadı
 gScreenshotsDescription = Ekran Görüntüləri asanlaşdırıldı. Firefox-u tərk etmədən ekran görüntülərini çəkin, saxlayın və paylaşın.
+gSettings = Tənzimləmələr
+gSignIn = Daxil ol
+
+## Header
+
+signInButton =
+    .aria-label = Daxil ol
+settingsButton =
+    .aria-label = Tənzimləmələr
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Ekran görüntülərimə get
 homePageTeaser = Tezliklə…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Pulsuz Endir
-homePageGetStarted = Başla
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Ekran Görüntüləri necə işləyir
 homePageGetStartedTitle = Başla
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Endir
 shotPageEditButton =
     .title = Bu şəkli redaktə et
+shotPagefavoriteButton =
+    .title = Bu görüntünü seçilmiş et
 shotPageDownload = Endir
 shotPageScreenshotsDescription = Ekran görüntülərini almağı asanlaşdırdıq. Firefox-u tərk etmədən ekran görüntülərini alın, saxlayın və paylaşın.
 shotPageUpsellFirefox = Firefox-u indi əldə et
@@ -296,6 +306,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Bu görüntünün vaxtı çıxmır
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Bu seçilmiş görüntüdür və bunun vaxtı çıxmır
 
 ## Delete Confirmation Dialog
 
