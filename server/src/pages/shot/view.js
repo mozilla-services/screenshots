@@ -5,6 +5,7 @@ const { Localized } = require("fluent-react/compat");
 const { Footer } = require("../../footer-view");
 const sendEvent = require("../../browser-send-event.js");
 const { ShareButton } = require("../../share-buttons");
+const { SignInButton } = require("../../signin-button.js");
 const { PromoDialog } = require("./promo-dialog");
 const { DeleteShotButton } = require("../../delete-shot-button");
 const { TimeDiff } = require("./time-diff");
@@ -93,7 +94,6 @@ class Head extends React.Component {
       return (
         <reactruntime.HeadTemplate {...this.props}>
           <meta name="robots" content="noindex, nofollow, noimageindex" />
-          <script src={ this.props.staticLink("/static/js/wantsauth.js") } />
           <script src={ this.props.staticLink("/static/js/shot-bundle.js") } async />
           <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -104,7 +104,6 @@ class Head extends React.Component {
     return (
       <reactruntime.HeadTemplate {...this.props}>
         <meta name="robots" content="noindex, nofollow, noimageindex" />
-        <script src={ this.props.staticLink("/static/js/wantsauth.js") } />
         <script src={ this.props.staticLink("/static/js/shot-bundle.js") } async />
         <link rel="stylesheet" href={ this.props.staticLink("/static/css/inline-selection.css") } />
         <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
@@ -347,14 +346,13 @@ class Body extends React.Component {
     let editButton;
     const highlight = this.state.highlightEditButton ? <div className="edit-highlight" onClick={ this.onClickEdit.bind(this) } onMouseOver={ this.onMouseOverHighlight.bind(this) } onMouseOut={ this.onMouseOutHighlight.bind(this) }></div> : null;
 
-    if (this.props.isFxaAuthenticated) {
-      const activeFavClass = this.props.expireTime ? "" : "is-fav";
-      favoriteShotButton = <div className="fav-wrapper"><button
-        className={`button favorite ${activeFavClass}`}
-        title="Favorite this shot"
-        onClick={ this.onClickFavorite.bind(this) }
-      /></div>;
-    }
+    const activeFavClass = this.props.expireTime ? "" : "is-fav";
+    const shouldShow = this.props.isFxaAuthenticated ? "" : "hidden";
+    favoriteShotButton = <div className="fav-wrapper"><Localized id="shotPagefavoriteButton"><button
+      className={`button favorite ${shouldShow} ${activeFavClass}`}
+      title="Favorite this shot"
+      onClick={ this.onClickFavorite.bind(this) }
+    /></Localized></div>;
 
     if (this.props.isOwner) {
       trashOrFlagButton = <DeleteShotButton
@@ -409,7 +407,10 @@ class Body extends React.Component {
 
     const noText = this.props.abTests && this.props.abTests.downloadText
                    && this.props.abTests.downloadText.value === "no-download-text";
-
+    const signIn = this.props.isOwner ?
+                    <div className="shot-fxa-signin">
+                      <SignInButton isAuthenticated={this.props.isFxaAuthenticated} initiatePage={this.props.shot.id} />
+                    </div> : null;
     return (
       <reactruntime.BodyTemplate {...this.props}>
         { renderGetFirefox ? this.renderFirefoxRequired() : null }
@@ -441,6 +442,7 @@ class Body extends React.Component {
                     <Localized id="shotPageDownload"><span className="download-text">Download</span></Localized> }
               </a>
             </Localized>
+            { signIn }
           </div>
         </div>
         <section className="clips">

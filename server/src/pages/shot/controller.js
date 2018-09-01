@@ -36,17 +36,21 @@ function shouldShowPromo(model) {
   return show;
 }
 
+function updateModel(authData) {
+  Object.assign(model, authData);
+  model.isExtInstalled = true;
+  model.isFxaAuthenticated = model.accountId && model.accountId === model.shotAccountId;
+}
+
 exports.launch = function(data) {
   const firstSet = !model;
   model = data;
   if (window.wantsauth) {
     if (window.wantsauth.getAuthData()) {
-      Object.assign(model, window.wantsauth.getAuthData());
-      model.isExtInstalled = true;
+      updateModel(window.wantsauth.getAuthData());
     } else {
       window.wantsauth.addAuthDataListener((data) => {
-        Object.assign(model, data);
-        model.isExtInstalled = true;
+        updateModel(data);
         render();
       });
     }

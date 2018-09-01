@@ -567,7 +567,8 @@ function sendAuthInfo(req, res, params) {
     sentryPublicDSN: config.sentryPublicDSN,
     abTests: userAbTests,
     authHeader,
-    isOwner: params.isOwner
+    isOwner: params.isOwner,
+    accountId
   };
   // FIXME: I think there's a JSON sendResponse equivalent
   simpleResponse(res, JSON.stringify(responseJson), 200);
@@ -1061,9 +1062,10 @@ app.get("/oembed", function(req, res) {
   });
 });
 
-// Get OAuth client params for the client-side authorization flow.
+const END_POINT_SEPARATOR = "|";
 
-app.get("/api/fxa-oauth/login", function(req, res, next) {
+// Get OAuth client params for the client-side authorization flow.
+app.get("/api/fxa-oauth/login/*", function(req, res, next) {
   if (!req.deviceId) {
     next(errors.missingSession());
     return;
@@ -1078,6 +1080,11 @@ app.get("/api/fxa-oauth/login", function(req, res, next) {
     });
   }).then(state => {
     const redirectUri = `${req.backend}/api/fxa-oauth/confirm-login`;
+    // Use state to store post-auth redirect page inside the 'state'
+    // request parameter sent to FxA authorization API
+    // FxA returns state parameter as is upon redirection to url given in
+    // redirectUri.
+    state = `${state}${END_POINT_SEPARATOR}${req.params[0]}`;
     const profile = "profile";
     res.redirect(`${config.fxa.oAuthServer}/authorization?client_id=${encodeURIComponent(config.fxa.clientId)}&redirect_uri=${encodeURIComponent(redirectUri)}&state=${encodeURIComponent(state)}&scope=${encodeURIComponent(profile)}`);
   }).catch(next);
@@ -1088,12 +1095,19 @@ app.get("/api/fxa-oauth/confirm-login", function(req, res, next) {
     next(errors.missingSession());
     return;
   }
+
   if (!req.query) {
     next(errors.missingParams());
     return;
   }
   const { code, state } = req.query;
-  checkState(req.deviceId, state).then(isValid => {
+  // Retrieve endpoint and 32-bit value used to verify if
+  // the redirect is authentic. Use endpoint to redirect to page
+  // where the login request was initiated from.
+  const data = state.split(END_POINT_SEPARATOR, 2);
+  const endpoint = data[1];
+
+  checkState(req.deviceId, data[0]).then(isValid => {
     if (!isValid) {
       throw errors.badState();
     }
@@ -1112,7 +1126,12 @@ app.get("/api/fxa-oauth/confirm-login", function(req, res, next) {
               ua: req.headers["user-agent"],
             }).send();
           }
-          res.redirect("/settings");
+          // Redirect to endpoint with auth param indicating successful Fxa auth flow.
+          // 'auth' param is used in reactrender and reactruntime to load wantsauth.js
+          // and display Fxa SignIn button state when request doesn't have accountId
+          // right after fxa-ouath/confirm-login redirection.
+          const pageUri = endpoint ? "/" + endpoint : "/";
+          res.redirect(pageUri + "?auth=1");
         });
       }).catch(next);
     }).catch(next);

@@ -16,6 +16,10 @@
   user-select: none;
   white-space: nowrap;
 
+  &.hidden {
+    display: none;
+  }
+
   &.small {
     height: 32px;
     line-height: 32px;

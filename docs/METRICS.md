@@ -311,8 +311,9 @@ These are events that an add-on user can encounter on a shot they own
 33. [x] Visit an image directly, when the image isn't embedded directly in a Screenshots shot page, `web/visit/direct-view-owner`
 34. [x] View an image directly, when the image is being shown as part of a Facebook/Twitter style preview (the og:image or twitter:image), `web/visit/direct-view-embedded-owner`
 35. [x] Close new edit tools promotion dialog, `web/promo-closed`
-1. [x] Add shot to favorites `web/set-favorite/navbar`
-1. [x] Remove shot from favorites `web-unset-favorite/navbar`
+36. [x] Add shot to favorites `web/set-favorite/navbar`
+37. [x] Remove shot from favorites `web-unset-favorite/navbar`
+38. [x] Signin to Firefox Accounts `web/fxa-signin`
 
 #### Shot Index (My Shots)
 
@@ -352,8 +353,7 @@ These are events that an add-on user can encounter on a shot they own
 #### Home Page Events
 
 1. [x] Click `My Shots` From Home `web/goto-myshots/homepage`
-2. [x] Click `Get Started from` From Home `web/get-started/homepage`
-3. [x] Click on the "Firefox Free Download" (install Firefox) button from home: `web/click-install-firefox-home`.  Also note the link uses `?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition&utm-content=from-home` on the link.
+2. [x] Click on the "Firefox Free Download" (install Firefox) button from home: `web/click-install-firefox-home`.  Also note the link uses `?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition&utm-content=from-home` on the link.
 
 #### Other web events
 

@@ -33,12 +33,14 @@ window.wantsauth = (function() {
 
   // These events are used to communicate with sitehelper.js:
   document.addEventListener("login-successful", (event) => {
-    const {deviceId, isOwner, backupCookieRequest} = JSON.parse(event.detail);
+    const {deviceId, isOwner, accountId, backupCookieRequest} = JSON.parse(event.detail);
     savedAuthData = {
       deviceId,
       isOwner,
-      loginFailed: false
+      loginFailed: false,
+      accountId
     };
+
     let promise = Promise.resolve(true);
     if (!backupCookieRequest) {
       // The client may not support login with third party cookies turned off.

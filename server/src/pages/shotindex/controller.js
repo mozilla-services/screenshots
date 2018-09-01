@@ -25,32 +25,53 @@ exports.launch = function(m) {
     }
     Object.assign(m, extractQueryParamValues(queryParamModelPropertyMap));
     model = m;
-    render();
-    if (firstRun && m.shots === null) {
-      // The actual shot data hasn't been loaded yet, so we'll immediately request it:
-      refreshModel();
-    }
-    firstRun = false;
-    return;
   }
+
   if (window.wantsauth) {
-    if (window.wantsauth.getAuthData() && !location.search.includes("reloaded")) {
-      location.search = "reloaded";
-      return;
-    }
-    const authTimeout = setTimeout(() => {
-      // eslint-disable-next-line no-global-assign, no-native-reassign
-      location = location.origin + "/#tour";
-    }, FIVE_SECONDS);
-    window.wantsauth.addAuthDataListener((data) => {
-      if (location.search.indexOf("reloaded") > -1) {
+    // Handle non-owner my shots page redirection
+    if (!m.hasDeviceId) {
+      if (window.wantsauth.getAuthData() && !location.search.includes("reloaded")) {
+        location.search = "reloaded";
         return;
       }
-      clearTimeout(authTimeout);
-      location.search = "reloaded";
-    });
+      const authTimeout = setTimeout(() => {
+        // eslint-disable-next-line no-global-assign, no-native-reassign
+        location = location.origin + "/#tour";
+      }, FIVE_SECONDS);
+      window.wantsauth.addAuthDataListener((data) => {
+        if (location.search.indexOf("reloaded") > -1) {
+          return;
+        }
+        clearTimeout(authTimeout);
+        location.search = "reloaded";
+      });
+      return;
+    }
+    // On redirection after FxA login, check if model.hasFxa set in reactrender and
+    // model.accountId is unavailable. If yes, update model with savedAuthData returned
+    // from wantsauth API
+    if (!model.accountId && !model.hasFxa) {
+      if (window.wantsauth.getAuthData()) {
+        updateModel(window.wantsauth.getAuthData());
+      } else {
+        window.wantsauth.addAuthDataListener((data) => {
+          updateModel(data);
+        });
+      }
+    }
+  } else if (firstRun && m.shots === null) {
+    // The actual shot data hasn't been loaded yet, so we'll immediately request it:
+    refreshModel();
   }
+  firstRun = false;
+  render();
 };
+
+function updateModel(authData) {
+  Object.assign(model, authData);
+  model.hasFxa = !!model.accountId;
+  refreshModel();
+}
 
 function render() {
   page.render(model);
