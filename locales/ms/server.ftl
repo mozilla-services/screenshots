@@ -9,6 +9,15 @@ gHomeLink = Halaman utama
 gNoShots =
     .alt = Tiada syot ditemukan
 gScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skrinsyot tanpa keluar daripada Firefox.
+gSettings = Tetapan
+gSignIn = Daftar masuk
+
+## Header
+
+signInButton =
+    .aria-label = Daftar masuk
+settingsButton =
+    .aria-label = Tetapan
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Pergi Ke Syot Saya
 homePageTeaser = Akan Datang...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Muat turun Percuma
-homePageGetStarted = Mulakan
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Bagaimana Firefox Screenshots Berfungsi
 homePageGetStartedTitle = Mulakan
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Muat turun
 shotPageEditButton =
     .title = Edit imej ini
+shotPagefavoriteButton =
+    .title = Syot ini kegemaran
 shotPageDownload = Muat turun
 shotPageScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skrinsyot tanpa keluar daripada Firefox.
 shotPageUpsellFirefox = Dapatkan Firefox sekarang
