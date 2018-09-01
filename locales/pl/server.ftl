@@ -9,6 +9,15 @@ gHomeLink = Strona główna
 gNoShots =
     .alt = Brak zrzutów
 gScreenshotsDescription = Zrzuty ekranów dla wszystkich. Twórz, zapisuj i udostępniaj zrzuty ekranu prosto z Firefoksa.
+gSettings = Ustawienia
+gSignIn = Zaloguj się
+
+## Header
+
+signInButton =
+    .aria-label = Zaloguj się
+settingsButton =
+    .aria-label = Ustawienia
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Przejdź do moich zrzutów
 homePageTeaser = Wkrótce…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Darmowe pobieranie
-homePageGetStarted = Wprowadzenie
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Jak działa Firefox Screenshots
 homePageGetStartedTitle = Wprowadzenie
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Pobierz
 shotPageEditButton =
     .title = Edytuj ten obraz
+shotPagefavoriteButton =
+    .title = Dodaj ten zrzut do ulubionych
 shotPageDownload = Pobierz
 shotPageScreenshotsDescription = Zrzuty ekranu dla każdego. Twórz, zapisuj i udostępniaj zrzuty ekranu bez opuszczania Firefoksa.
 shotPageUpsellFirefox = Pobierz Firefoksa
