@@ -9,6 +9,15 @@ gHomeLink = Domov
 gNoShots =
     .alt = Ni najdenih posnetkov
 gScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in delite zaslonske posnetke, ne da bi zapustili Firefox.
+gSettings = Nastavitve
+gSignIn = Prijava
+
+## Header
+
+signInButton =
+    .aria-label = Prijava
+settingsButton =
+    .aria-label = Nastavitve
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Pojdi na moje posnetke
 homePageTeaser = Kmalu na voljo ...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Brezplačen prenos
-homePageGetStarted = Začnite
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kako Firefox Screenshots deluje
 homePageGetStartedTitle = Začnite
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Prenesi
 shotPageEditButton =
     .title = Uredi to sliko
+shotPagefavoriteButton =
+    .title = Dodaj posnetek med priljubljene
 shotPageDownload = Prenesi
 shotPageScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in delite zaslonske posnetke, ne da bi zapustili Firefox.
 shotPageUpsellFirefox = Prenesite Firefox zdaj
