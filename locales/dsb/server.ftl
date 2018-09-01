@@ -9,6 +9,15 @@ gHomeLink = Startowy bok
 gNoShots =
     .alt = Žedne fota wobrazowki namakane
 gScreenshotsDescription = Fota wobrazowki lažko nagótowane. Gótujśo, składujśo a źělśo fota wobrazowki, mimo až Firefox spušćaśo.
+gSettings = Nastajenja
+gSignIn = Pśizjawiś
+
+## Header
+
+signInButton =
+    .aria-label = Pśizjawiś
+settingsButton =
+    .aria-label = Nastajenja
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = K mójim fotam wobrazowki
 homePageTeaser = Skóro k dispoziciji...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Dermotne ześěgnjenje
-homePageGetStarted = Prědne kšace
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kak Firefox Screenshots funkcioněrujo
 homePageGetStartedTitle = Prědne kšace
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Ześěgnuś
 shotPageEditButton =
     .title = Toś ten wobraz wobźěłaś
+shotPagefavoriteButton =
+    .title = Toś to foto wobrazowki ako faworit wóznamjeniś
 shotPageDownload = Ześěgnuś
 shotPageScreenshotsDescription = Fota wobrazowki lažko nagótowane. Gótujśo, składujśo a źělśo fota wobrazowki, mimo až Firefox spušćaśo.
 shotPageUpsellFirefox = Wobstarajśo se Firefox něnto
