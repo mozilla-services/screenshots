@@ -9,6 +9,15 @@ gHomeLink = मुख्य पटल
 gNoShots =
     .alt = शॉट्स सापडले नाहीत
 gScreenshotsDescription = स्क्रीनशॉट्स आता सरळसोपे. Firefox ला न सोडता स्क्रीनशॉट घ्या, जतन करा आणि सामायिक करा.
+gSettings = सेटिंग
+gSignIn = साइन इन
+
+## Header
+
+signInButton =
+    .aria-label = साइन इन
+settingsButton =
+    .aria-label = सेटिंग
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = माझ्या शॉट्सवर जा
 homePageTeaser = लवकरच येत आहे...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = मोफत डाऊनलोड
-homePageGetStarted = सुरूवात करा
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox स्क्रीनशॉट्स कसे काम करतात
 homePageGetStartedTitle = सुरूवात करा
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = डाउनलोड
 shotPageEditButton =
     .title = ही प्रतिमा संपादित करा
+shotPagefavoriteButton =
+    .title = हा शॉट आवडता म्हणून चिन्हांकित करा
 shotPageDownload = डाउनलोड
 shotPageScreenshotsDescription = Screenshots झाले सोपे. Firefox ला न सोडता स्क्रीनशॉट्स घ्या, जतन करा आणि सामयिक करा.
 shotPageUpsellFirefox = आत्ता Firefox मिळवा
@@ -296,6 +306,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = ∞
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = हा शॉट आवडता आहे आणि कालबाह्य होत नाही
 
 ## Delete Confirmation Dialog
 
