@@ -9,6 +9,15 @@ gHomeLink = 首頁
 gNoShots =
     .alt = 沒有找到擷取圖
 gScreenshotsDescription = 拍攝畫面擷圖變得簡單。不必離開 Firefox 就能拍照、存檔、分享擷圖。
+gSettings = 設定
+gSignIn = 登入
+
+## Header
+
+signInButton =
+    .aria-label = 登入
+settingsButton =
+    .aria-label = 設定
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = 前往我的擷圖
 homePageTeaser = 即將上線…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = 免費下載
-homePageGetStarted = 開始使用
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots 的原理是什麼？
 homePageGetStartedTitle = 開始使用
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = 下載
 shotPageEditButton =
     .title = 編輯此圖片
+shotPagefavoriteButton =
+    .title = 將這張擷圖設為最愛
 shotPageDownload = 下載
 shotPageScreenshotsDescription = 拍攝擷圖變得簡單。不必離開 Firefox 就能拍攝、儲存、分享畫面擷圖。
 shotPageUpsellFirefox = 立即下載 Firefox
