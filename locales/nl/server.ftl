@@ -9,6 +9,15 @@ gHomeLink = Startpagina
 gNoShots =
     .alt = Geen afbeeldingen gevonden
 gScreenshotsDescription = Schermafbeeldingen worden makkelijk. Maak, bewaar en deel schermafbeeldingen zonder Firefox te verlaten.
+gSettings = Instellingen
+gSignIn = Aanmelden
+
+## Header
+
+signInButton =
+    .aria-label = Aanmelden
+settingsButton =
+    .aria-label = Instellingen
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Naar mijn afbeeldingen
 homePageTeaser = Binnenkort beschikbaar...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Gratis downloaden
-homePageGetStarted = Beginnen
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Hoe Firefox Screenshots werkt
 homePageGetStartedTitle = Aan de slag
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Downloaden
 shotPageEditButton =
     .title = Deze afbeelding bewerken
+shotPagefavoriteButton =
+    .title = Deze afbeelding favoriet maken
 shotPageDownload = Downloaden
 shotPageScreenshotsDescription = Schermafbeeldingen worden makkelijk. Maak, bewaar en deel schermafbeeldingen zonder Firefox te verlaten.
 shotPageUpsellFirefox = Download Firefox nu
@@ -296,6 +306,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Deze afbeelding verloopt niet
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Deze afbeelding is een favoriet en verloopt niet
 
 ## Delete Confirmation Dialog
 
