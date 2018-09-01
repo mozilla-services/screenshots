@@ -10,6 +10,9 @@ gNoShots =
     .alt = Nessuna immagine trovata
 gScreenshotsDescription = Realizzare screenshot non è mai stato così facile. Cattura, salva e condividi le tue immagini senza uscire da Firefox.
 
+## Header
+
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
@@ -38,7 +41,6 @@ homePageButtonMyShots = Vai alle mie immagini
 homePageTeaser = Prossimamente…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Download gratuito
-homePageGetStarted = Per iniziare
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Come funziona Firefox Screenshots
 homePageGetStartedTitle = Per iniziare
