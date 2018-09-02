@@ -9,6 +9,15 @@ gHomeLink = Asebter agejdan
 gNoShots =
     .alt = Ulac tuṭṭfiwin
 gScreenshotsDescription = Tuṭṭfiwin γef afus. Ṭṭef agdil, sekles sakin bḍu war ma teffγeḍ si Firefox.
+gSettings = Iɣewwaṛen
+gSignIn = Kcem
+
+## Header
+
+signInButton =
+    .aria-label = Kcem
+settingsButton =
+    .aria-label = Iɣewwaṛen
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Ddu γer tuṭṭfiwin inu
 homePageTeaser = Ad yilli ticki...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Sider baṭel
-homePageGetStarted = Bdu
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Amek iteddu Firefox Screenshots
 homePageGetStartedTitle = Bdu
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Sider
 shotPageEditButton =
     .title = Ẓreg tugna-agi
+shotPagefavoriteButton =
+    .title = Smenyif tuṭṭfa-agi
 shotPageDownload = Sider
 shotPageScreenshotsDescription = Tuṭṭfa fessusen. Ṭṭef, sekles, sakin bḍu tuṭṭfa war ma tefγeḍ seg Firefox.
 shotPageUpsellFirefox = Awi-d Firefox tura
