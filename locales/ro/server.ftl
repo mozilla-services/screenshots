@@ -9,6 +9,15 @@ gHomeLink = Start
 gNoShots =
     .alt = Nicio captură găsită
 gScreenshotsDescription = Capturile de ecran simplificate. Realizează, salvează și partajează capturile de ecran fără să părăsești Firefox.
+gSettings = Setări
+gSignIn = Autentificare
+
+## Header
+
+signInButton =
+    .aria-label = Autentificare
+settingsButton =
+    .aria-label = Setări
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Mergi la Capturile mele
 homePageTeaser = În curând…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Descărcare gratuită
-homePageGetStarted = Începe
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Cum funcționează Firefox Screenshots
 homePageGetStartedTitle = Începe
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Descarcă
 shotPageEditButton =
     .title = Editează această imagine
+shotPagefavoriteButton =
+    .title = Adaugă la favorite
 shotPageDownload = Descarcă
 shotPageScreenshotsDescription = Capturile de ecran simplificate. Realizează, salvează și partajează capturile de ecran fără să părăsești Firefox.
 shotPageUpsellFirefox = Obține Firefox acum
@@ -188,12 +198,27 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Dacă nu ai făcut această captură și nu o poți șterge, activarea temporară a cookie-urilor terțe (din preferințele browserului) ți-ar putea permite din nou accesul.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Apropo!
+promoMessage = Unelte de editare actualizate îți permit să decupezi, evidențiezi sau chiar să adaugi text la captura ta.
+promoLink = Încearcă
+promoCloseButton =
+    .title = Închide notificarea
+
 ## Annotations
 
 annotationPenButton =
     .title = Stilou
 annotationHighlighterButton =
     .title = Marker
+annotationUndoButton =
+    .title = Anulează
+annotationRedoButton =
+    .title = Refă
+annotationTextButton =
+    .title = Adaugă text
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Curăță
@@ -225,6 +250,21 @@ annotationColorSeaGreen =
     .title = Verde marin
 annotationColorGrey =
     .title = Gri
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Mărime text
+# Values shown in text size selection dropdown
+textSizeSmall = Mic
+textSizeMedium = Mediu
+textSizeLarge = Mare
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = Confirmă
+    .title = Confirmă
+textToolCancelButton = Renunță
+    .title = Renunță
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Salut
 
 ## Settings Page
 
@@ -272,6 +312,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Această captură nu expiră
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Aceasta este o captură favorită și nu expiră
 
 ## Delete Confirmation Dialog
 
