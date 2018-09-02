@@ -9,6 +9,15 @@ gHomeLink = Үйге
 gNoShots =
     .alt = Скриншоттар табылмады
 gScreenshotsDescription = Скриншоттар қарапайым түрде. Тура Firefox ішінен скриншоттарды түсіру, сақтау және олармен бөлісу.
+gSettings = Баптаулар
+gSignIn = Кіру
+
+## Header
+
+signInButton =
+    .aria-label = Кіру
+settingsButton =
+    .aria-label = Баптаулар
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Менің скриншоттарыма өту
 homePageTeaser = Жақында…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Тегін жүктеп алу
-homePageGetStarted = Бастау
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox скриншоттары қалай жұмыс жасайды
 homePageGetStartedTitle = Бастау
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Жүктеп алу
 shotPageEditButton =
     .title = Бұл суретті түзету
+shotPagefavoriteButton =
+    .title = Бұл скриншотты таңдамалы қылу
 shotPageDownload = Жүктеп алу
 shotPageScreenshotsDescription = Скриншоттар қарапайым түрде. Тура Firefox ішінен скриншоттарды түсіру, сақтау және олармен бөлісу.
 shotPageUpsellFirefox = Firefox-ты қазір алу
@@ -290,6 +300,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Бұл скриншот мерзімі аяқталмайды
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Бұл скриншот таңдамалы, оның мерзімі аяқталмайды
 
 ## Delete Confirmation Dialog
 
