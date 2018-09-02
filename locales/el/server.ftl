@@ -9,6 +9,15 @@ gHomeLink = Αρχική
 gNoShots =
     .alt = Δεν βρέθηκαν στιγμιότυπα
 gScreenshotsDescription = Η λήψη στιγμιοτύπων έγινε εύκολη. Λήψη, αποθήκευση και κοινή χρήση στιγμιοτύπων χωρίς να φύγετε από το Firefox.
+gSettings = Ρυθμίσεις
+gSignIn = Είσοδος
+
+## Header
+
+signInButton =
+    .aria-label = Είσοδος
+settingsButton =
+    .aria-label = Ρυθμίσεις
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Μετάβαση στα στιγμιότυπά μου
 homePageTeaser = Έρχεται σύντομα...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Δωρεάν λήψη
-homePageGetStarted = Ξεκινήστε
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Πώς λειτουργεί το Firefox Screenshots
 homePageGetStartedTitle = Ξεκινήστε
