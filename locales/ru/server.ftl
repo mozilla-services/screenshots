@@ -9,6 +9,15 @@ gHomeLink = Главная
 gNoShots =
     .alt = снимков не найдено
 gScreenshotsDescription = Скриншоты стали простыми. Делайте, сохраняйте и делитесь скриншотами, не покидая Firefox.
+gSettings = Параметры
+gSignIn = Войти
+
+## Header
+
+signInButton =
+    .aria-label = Войти
+settingsButton =
+    .aria-label = Параметры
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Перейти к моим снимкам
 homePageTeaser = Скоро…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Бесплатная загрузка
-homePageGetStarted = Начало
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Как работает Firefox Screenshots
 homePageGetStartedTitle = Начало
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Загрузить
 shotPageEditButton =
     .title = Изменить это изображение
+shotPagefavoriteButton =
+    .title = Добавить этот снимок в избранные
 shotPageDownload = Загрузить
 shotPageScreenshotsDescription = Скриншоты стали простыми. Делайте, сохраняйте и делитесь скриншотами, не покидая Firefox.
 shotPageUpsellFirefox = Загрузить Firefox сейчас
@@ -134,7 +144,7 @@ shotPageSelectTime = Выберите время
 # The ∞ is used to indicate that the shot won't expire. It is also used in
 # shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
 # if no such symbol is available for a language/culture, simply leave it out.
-shotPageKeepIndefinitelyWithSymbol = Бесконечно ∞
+shotPageKeepIndefinitelyWithSymbol = Бессрочно ∞
 shotPageKeepTenMinutes = 10 минут
 shotPageKeepOneHour = 1 час
 shotPageKeepOneDay = 1 день
@@ -302,6 +312,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Срок хранения этого снимка неограничен
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Это снимок является избранным и будет храниться бессрочно
 
 ## Delete Confirmation Dialog
 
