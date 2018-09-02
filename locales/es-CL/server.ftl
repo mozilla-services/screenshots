@@ -9,6 +9,15 @@ gHomeLink = Inicio
 gNoShots =
     .alt = No se econtraron capturas
 gScreenshotsDescription = Capturas de pantallas sin complicaciones. Toma, guarda y comparte capturas sin salir de Firefox.
+gSettings = Ajustes
+gSignIn = Conectarse
+
+## Header
+
+signInButton =
+    .aria-label = Conectarse
+settingsButton =
+    .aria-label = Ajustes
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Ir a mis capturas
 homePageTeaser = Próximamente…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Descarga gratuita
-homePageGetStarted = Empezar
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Cómo funciona Firefox Screenshots
 homePageGetStartedTitle = Empezar
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Descargar
 shotPageEditButton =
     .title = Editar esta imagen
+shotPagefavoriteButton =
+    .title = Marcar esta captura como favorita
 shotPageDownload = Descargar
 shotPageScreenshotsDescription = Capturas de pantallas sin complicaciones. Toma, guarda y comparte capturas sin salir de Firefox.
 shotPageUpsellFirefox = Obtén Firefox ahora
