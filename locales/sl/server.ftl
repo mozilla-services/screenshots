@@ -318,6 +318,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Ta posnetek ne poteče
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Ta posnetek je med priljubljenimi in ne preteče
 
 ## Delete Confirmation Dialog
 
