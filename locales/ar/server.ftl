@@ -9,6 +9,15 @@ gHomeLink = البداية
 gNoShots =
     .alt = لم يُعثر على لقطات
 gScreenshotsDescription = لقطات الشاشة صارت أسهل. خذ لقطات الشاشة و احفظها و شاركها دون مغادرة فَيرفُكس.
+gSettings = الإعدادات
+gSignIn = لِج
+
+## Header
+
+signInButton =
+    .aria-label = لِج
+settingsButton =
+    .aria-label = الإعدادات
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = اذهب إلى لقطاتي
 homePageTeaser = قريبًا…
 homePageDownloadFirefoxTitle = فَيرفُكس
 homePageDownloadFirefoxSubTitle = تنزيل مجاني
-homePageGetStarted = ابدأ
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = كيف تعمل لقطات فَيرفُكس
 homePageGetStartedTitle = ابدأ
