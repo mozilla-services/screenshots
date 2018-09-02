@@ -9,6 +9,15 @@ gHomeLink = Kezdőlap
 gNoShots =
     .alt = Nem találhatóak képek
 gScreenshotsDescription = Képernyőképek egyszerűen. Készítsen, mentsen és ossza meg a képernyőképeit a Firefox elhagyása nélkül.
+gSettings = Beállítások
+gSignIn = Bejelentkezés
+
+## Header
+
+signInButton =
+    .aria-label = Bejelentkezés
+settingsButton =
+    .aria-label = Beállítások
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Ugrás a képekhez
 homePageTeaser = Hamarosan elérhető...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Ingyenes letöltés
-homePageGetStarted = Kezdő lépések
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Hogyan működik a Firefox képernyőképek
 homePageGetStartedTitle = Kezdő lépések
