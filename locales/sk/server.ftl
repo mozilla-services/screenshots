@@ -9,6 +9,15 @@ gHomeLink = Domov
 gNoShots =
     .alt = Neboli nájdené žiadne snímky
 gScreenshotsDescription = Jednoduchá tvorba snímok obrazovky. Vytvorte, uložte a zdieľajte snímky obrazovky bez toho, aby ste museli opustiť Firefox.
+gSettings = Nastavenia
+gSignIn = Prihlásiť sa
+
+## Header
+
+signInButton =
+    .aria-label = Prihlásiť sa
+settingsButton =
+    .aria-label = Nastavenia
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Prejsť na moje snímky
 homePageTeaser = Už čoskoro...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Prevziať zadarmo
-homePageGetStarted = Začíname
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Ako služba Firefox Screenshots funguje
 homePageGetStartedTitle = Začíname
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Prevziať
 shotPageEditButton =
     .title = Upraviť tento obrázok
+shotPagefavoriteButton =
+    .title = Označiť snímku ako obľúbenú
 shotPageDownload = Prevziať
 shotPageScreenshotsDescription = Jednoduchá tvorba snímok obrazovky. Vytvorte, uložte a zdieľajte snímky obrazovky bez toho, aby ste museli opustiť Firefox.
 shotPageUpsellFirefox = Získajte Firefox teraz
@@ -302,6 +312,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Platnosť tejto snímky nevyprší
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Táto snímka bola označená ako obľúbená a jej platnosť nevyprší
 
 ## Delete Confirmation Dialog
 
