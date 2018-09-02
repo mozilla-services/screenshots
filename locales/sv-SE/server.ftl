@@ -9,6 +9,15 @@ gHomeLink = Hem
 gNoShots =
     .alt = Inga skärmbilder hittades
 gScreenshotsDescription = Ta enkelt skärmbilder. Fånga, spara och dela skärmbilder utan att lämna Firefox.
+gSettings = Inställningar
+gSignIn = Logga in
+
+## Header
+
+signInButton =
+    .aria-label = Logga in
+settingsButton =
+    .aria-label = Inställningar
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Gå till mina skärmbilder
 homePageTeaser = Kommer snart…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Gratis nedladdning
-homePageGetStarted = Kom igång
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Så här fungerar Firefox Screenshots
 homePageGetStartedTitle = Kom igång
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Hämta
 shotPageEditButton =
     .title = Redigera bilden
+shotPagefavoriteButton =
+    .title = Markera bilden som favorit
 shotPageDownload = Hämta
 shotPageScreenshotsDescription = Ta enkelt skärmbilder. Fånga, spara och dela skärmbilder utan att lämna Firefox.
 shotPageUpsellFirefox = Hämta Firefox nu
