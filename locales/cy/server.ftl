@@ -9,6 +9,15 @@ gHomeLink = Cartrefi
 gNoShots =
     .alt = Heb ganfod lluniau
 gScreenshotsDescription = Lluniau sgrin wedi ei wneud yn syml. Cipio, cadw a rhannu lluniau sgrin heb adael Firefox.
+gSettings = Gosodiadau
+gSignIn = Mewngofnodi
+
+## Header
+
+signInButton =
+    .aria-label = Mewngofnodi
+settingsButton =
+    .aria-label = Gosodiadau
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Mynd i Fy Lluniau
 homePageTeaser = Yn dod cyn bo hir...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Ar Gael am Ddim
-homePageGetStarted = Cychwyn Arni
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Sut mae Firefox Screenshots yn gweithio
 homePageGetStartedTitle = Cychwyn Arni
@@ -117,6 +125,8 @@ shotPageDownloadShot =
     .title = Llwytho i Lawr
 shotPageEditButton =
     .title = Golygu'r ddelwedd hon
+shotPagefavoriteButton =
+    .title = Ffefrynnu'r llun yma
 shotPageDownload = Llwytho i Lawr
 shotPageScreenshotsDescription = Lluniau sgrin hawdd. Cipio, cadw a rhannu lluniau sgrin heb adael Firefox.
 shotPageUpsellFirefox = Estyn Firefox nawr
@@ -319,6 +329,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Nid yw'r llun yma'n dod i ben
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Mae hwn yn llun ffefryn ac nid yw'n dod i ben
 
 ## Delete Confirmation Dialog
 
