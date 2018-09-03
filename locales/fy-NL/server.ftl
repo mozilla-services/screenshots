@@ -9,6 +9,15 @@ gHomeLink = Startside
 gNoShots =
     .alt = Gjin ôfbyldingen fûn
 gScreenshotsDescription = Skermôfbyldingen wurde maklik. Meitsje, bewarje en diel skermôfbyldingen sûnder Firefox te ferlitten.
+gSettings = Ynstellingen
+gSignIn = Oanmelde
+
+## Header
+
+signInButton =
+    .aria-label = Oanmelde
+settingsButton =
+    .aria-label = Ynstellingen
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Nei myn ôfbyldingen
 homePageTeaser = Ynkoarten beskikber...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Fergees downloade
-homePageGetStarted = Oan de slach
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Hoe Firefox Screenshots wurket
 homePageGetStartedTitle = Oan de slach
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Downloade
 shotPageEditButton =
     .title = Dizze ôfbylding bewurkje
+shotPagefavoriteButton =
+    .title = Dizze ôfbylding favoryt meitsje
 shotPageDownload = Downloade
 shotPageScreenshotsDescription = Skermôfbyldingen wurde maklik. Meitsje, bewarje en diel skermôfbyldingen sûnder Firefox te ferlitten.
 shotPageUpsellFirefox = Download Firefox no
