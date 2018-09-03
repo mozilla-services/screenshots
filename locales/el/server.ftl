@@ -126,6 +126,8 @@ shotPageDownloadShot =
     .title = Λήψη
 shotPageEditButton =
     .title = Επεξεργασία εικόνας
+shotPagefavoriteButton =
+    .title = Προσθήκη στιγμιότυπου στα αγαπημένα
 shotPageDownload = Λήψη
 shotPageScreenshotsDescription = Η λήψη στιγμιοτύπων έγινε εύκολη. Λήψη, αποθήκευση και κοινή χρήση στιγμιοτύπων χωρίς να φύγετε από το Firefox.
 shotPageUpsellFirefox = Λήψη του Firefox τώρα
@@ -304,6 +306,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Αυτό το στιγμιότυπο δεν λήγει
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Αυτό είναι ένα αγαπημένο στιγμιότυπο και δεν λήγει
 
 ## Delete Confirmation Dialog
 
