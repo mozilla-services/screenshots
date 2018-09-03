@@ -9,9 +9,15 @@ gHomeLink = Etusivu
 gNoShots =
     .alt = Kaappauksia ei löytynyt
 gScreenshotsDescription = Kuvakaappaukset helposti. Ota, tallenna ja jaa kuvakaappauksia poistumatta Firefoxista.
+gSettings = Asetukset
+gSignIn = Kirjaudu
 
 ## Header
 
+signInButton =
+    .aria-label = Kirjaudu sisään
+settingsButton =
+    .aria-label = Asetukset
 
 ## Footer
 
@@ -120,6 +126,8 @@ shotPageDownloadShot =
     .title = Lataa
 shotPageEditButton =
     .title = Muokkaa tätä kuvaa
+shotPagefavoriteButton =
+    .title = Merkitse tämä kaappaus suosikiksi
 shotPageDownload = Lataa
 shotPageScreenshotsDescription = Kuvakaappaukset helposti. Ota, tallenna ja jaa kuvakaappauksia poistumatta Firefoxista.
 shotPageUpsellFirefox = Lataa Firefox nyt
