@@ -9,9 +9,12 @@ gHomeLink = Accueil
 gNoShots =
     .alt = Aucune capture trouvée
 gScreenshotsDescription = Des captures en un clin d’œil. Capturez l’écran, enregistrez et partagez sans quitter Firefox.
+gSettings = Paramètres
 
 ## Header
 
+settingsButton =
+    .aria-label = Paramètres
 
 ## Footer
 
