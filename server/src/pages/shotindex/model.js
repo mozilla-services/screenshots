@@ -20,9 +20,6 @@ exports.createModel = function(req) {
   serverModel.enableUserSettings = req.config.enableUserSettings;
   let shots = req.shots;
   for (const shot of shots || []) {
-    if (shot.favicon) {
-      shot.favicon = createProxyUrl(req, shot.favicon);
-    }
     const clip = shot.getClip(shot.clipNames()[0]);
     if (clip) {
       serverModel.downloadUrls[shot.id] = createDownloadUrl(clip.image.url, shot.filename);

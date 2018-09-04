@@ -65,7 +65,6 @@ Authenticated.  Creates or updates a shot.  Takes a JSON body.  Looks like:
   "url": "https://github.com/mozilla-services/screenshots/issues/1237",
   "docTitle": "Screenshots erases everything in my clipboard · Issue #1237 · mozilla-services/pageshot",
   "createdDate": 1468983767525,
-  "favicon": "https://assets-cdn.github.com/favicon.ico",
   "images": [
     {
       "url": "https://cloud.githubusercontent.com/assets/557895/16748439/efdbf0a0-4778-11e6-9a33-d1043238addf.png",
