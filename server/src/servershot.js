@@ -208,13 +208,13 @@ class Shot extends AbstractShot {
         const title = this.title;
         oks.push({setHead: null});
         oks.push({setBody: null});
-        const searchable = this._makeSearchableText(7);
+        const searchable = this._makeSearchableText(8);
         const url = json.fullUrl || json.url || json.origin;
         return db.queryWithClient(
           client,
-          `INSERT INTO data (id, deviceid, value, url, title, searchable_version, searchable_text)
-           VALUES ($1, $2, $3, $4, $5, $6, ${searchable.query})`,
-          [this.id, this.ownerId, JSON.stringify(json), url, title, searchable.version].concat(searchable.args)
+          `INSERT INTO data (id, deviceid, value, url, title, firefox_major_version, searchable_version, searchable_text)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, ${searchable.query})`,
+          [this.id, this.ownerId, JSON.stringify(json), url, title, this.firefoxMajorVersion || null, searchable.version].concat(searchable.args)
         ).then((result) => {
           return clipRewrites.commit(client);
         }).then(() => {
