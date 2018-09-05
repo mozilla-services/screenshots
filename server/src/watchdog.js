@@ -13,6 +13,18 @@ const genUuid = require("nodify-uuid");
 const isEnabled = config.watchdog.enable;
 validateConfiguration();
 
+// The following is based on
+// https://product-details.mozilla.org/1.0/firefox_history_major_releases.json
+// and the release calendar. We will temporarily use it to determine if the shot
+// is from a browser that's in the release or esr channel, i.e. a major version
+// that is older than or equal to the current release version.
+const currentMajorVersion = 62;
+const firefoxMajorReleases = {
+  63: new Date("2018-10-23"),
+  64: new Date("2018-12-11"),
+  65: new Date("2019-01-29"),
+};
+
 function validateConfiguration() {
   if (!isEnabled) {
     return;
@@ -64,8 +76,37 @@ function isAtInterval() {
   return atInterval;
 }
 
-function shouldSubmitShot() {
-  return isEnabled && isAtInterval();
+/**
+ * This should be temporary! Here we check if we should submit the shot based
+ * on the update channel of the browser in which the shot was taken.
+ */
+function shouldExcludeShot(shot) {
+  if (!config.watchdog.excludeReleaseChannel) {
+    return false;
+  }
+
+  // At the time of writing `firefoxChannel` is not avaialbe.
+  if (shot.firefoxChannel) {
+    return shot.firefoxChannel === "release" || shot.firefoxChannel === "esr";
+  }
+
+  if (shot.firefoxMajorVersion) {
+    if (shot.firefoxMajorVersion <= currentMajorVersion) {
+      return true;
+    }
+
+    if (firefoxMajorReleases[shot.firefoxMajorVersion]
+        && new Date() >= firefoxMajorReleases[shot.firefoxMajorVersion]) {
+      return true;
+    }
+  }
+
+  // Do not submit shots by default.  Per clouserw.
+  return true;
+}
+
+function shouldSubmitShot(shot) {
+  return isEnabled && isAtInterval() && !shouldExcludeShot(shot);
 }
 
 function getSubmissionId() {
@@ -99,7 +140,7 @@ const credentials = {
 };
 
 exports.submit = function(shot) {
-  if (!shouldSubmitShot()) {
+  if (!shouldSubmitShot(shot)) {
     return;
   }
 
