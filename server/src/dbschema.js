@@ -7,7 +7,7 @@ const mozlog = require("./logging").mozlog("dbschema");
 
 // When updating the database, please also run ./bin/dumpschema --record
 // This updates schema.sql with the latest full database schema
-const MAX_DB_LEVEL = exports.MAX_DB_LEVEL = 24;
+const MAX_DB_LEVEL = exports.MAX_DB_LEVEL = 25;
 
 exports.forceDbVersion = function(version) {
   mozlog.info("forcing-db-version", {db: db.constr, version});

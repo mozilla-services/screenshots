@@ -703,6 +703,10 @@ app.put("/data/:id/:domain",
       return;
     }
     const shot = new Shot(req.deviceId, req.backend, shotId, bodyObj);
+    const match = /Firefox\/(\d+)\./.exec(req.headers["user-agent"] || "");
+    if (match) {
+      shot.firefoxMajorVersion = parseInt(match[1], 10);
+    }
     let responseDelay = Promise.resolve();
     if (slowResponse) {
       responseDelay = new Promise((resolve) => {
