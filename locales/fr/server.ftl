@@ -10,6 +10,7 @@ gNoShots =
     .alt = Aucune capture trouvée
 gScreenshotsDescription = Des captures en un clin d’œil. Capturez l’écran, enregistrez et partagez sans quitter Firefox.
 gSettings = Paramètres
+gSignIn = Se connecter
 
 ## Header
 
