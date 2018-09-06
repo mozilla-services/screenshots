@@ -9,6 +9,15 @@ gHomeLink = Trang chủ
 gNoShots =
     .alt = Không có ảnh chụp nào
 gScreenshotsDescription = Ảnh chụp màn hình được thực hiện đơn giản. Thực hiện, lưu và chia sẻ ảnh chụp màn hình mà không rời khỏi Firefox.
+gSettings = Cài đặt
+gSignIn = Đăng nhập
+
+## Header
+
+signInButton =
+    .aria-label = Đăng nhập
+settingsButton =
+    .aria-label = Cài đặt
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Đi đến ảnh chụp của tôi
 homePageTeaser = Sắp ra mắt ...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Tải về miễn phí
-homePageGetStarted = Bắt đầu
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Cách để Trình chụp ảnh Firefox làm việc
 homePageGetStartedTitle = Bắt đầu
