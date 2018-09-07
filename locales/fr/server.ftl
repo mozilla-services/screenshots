@@ -14,6 +14,8 @@ gSignIn = Se connecter
 
 ## Header
 
+signInButton =
+    .aria-label = Connexion
 settingsButton =
     .aria-label = Paramètres
 
@@ -124,6 +126,8 @@ shotPageDownloadShot =
     .title = Télécharger
 shotPageEditButton =
     .title = Modifier cette image
+shotPagefavoriteButton =
+    .title = Ajouter à vos captures favorites
 shotPageDownload = Télécharger
 shotPageScreenshotsDescription = Des captures en un clin d’œil. Capturez l’écran, enregistrez et partagez sans quitter Firefox.
 shotPageUpsellFirefox = Installez Firefox
