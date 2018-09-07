@@ -6,6 +6,17 @@
 
 gMyShots = ನನ್ನ ತೆರೆಚಿತ್ರಗಳು
 gHomeLink = ನೆಲೆ
+gNoShots =
+    .alt = ಯಾವುದೇ ತೆರೆಗಳು ಕಂಡುಬಂದಿಲ್ಲ
+gSettings = ಸಿದ್ಧತೆಗಳು
+gSignIn = ಪ್ರವೇಶಿಸು
+
+## Header
+
+signInButton =
+    .aria-label = ಪ್ರವೇಶಿಸು
+settingsButton =
+    .aria-label = ಸಿದ್ಧತೆಗಳು
 
 ## Footer
 
@@ -32,7 +43,6 @@ homePageButtonMyShots = ನನ್ನ ತೆರೆಚಿತ್ರಗಳಿಗೆ 
 homePageTeaser = ಸದ್ಯದಲ್ಲೇ ಬರುತ್ತಿದೆ...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ಉಚಿತ ಡೌನ್‌ಲೋಡು
-homePageGetStarted = ಪ್ರಾರಂಭಿಸಿರಿ
 homePageGetStartedTitle = ಪ್ರಾರಂಭಿಸಿರಿ
 homePageLegalLink = ಕಾನೂನು
 homePagePrivacyLink = ಗೌಪ್ಯತೆ
@@ -56,8 +66,14 @@ notFoundPageDescription = ಪುಟವು ಕಂಡುಬಂದಿಲ್ಲ.
 
 shotPageAlertErrorUpdatingTitle = ಶೀರ್ಷಿಕೆ ಉಳಿಸುವಲ್ಲಿ ದೋಷ
 shotPageConfirmDelete = ಈ ತೆರೆಚಿತ್ರವನ್ನು ನೀವು ಖಚಿತವಾಗಿಯೂ ಅಳಿಸಲು ಬಯಸುತ್ತೀರ?
+shotPageShareButton =
+    .title = ಹಂಚು
 shotPageCopy = ನಕಲಿಸು
 shotPageCopied = ನಕಲಿಸಲಾಗಿದೆ
+shotPageDownloadShot =
+    .title = ಡೌನ್‌ಲೋಡ್
+shotPageEditButton =
+    .title = ಈ ಚಿತ್ರ ಸಂಪಾದಿಸಿ
 shotPageDownload = ಡೌನ್‌ಲೋಡ್
 shotPageUpsellFirefox = ಈಗ ಫೈರ್ಫಾಕ್ಸ್ ಪಡೆದುಕೊಳ್ಳಿ
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
@@ -72,17 +88,84 @@ shotPageSaveExpiration = ಉಳಿಸು
 shotPageCancelExpiration = ರದ್ದುಮಾಡಿ
 timeDiffJustNow = ಈಗಷ್ಟೆ
 
+## Shot Page New Feature Promotion Dialog.
+
+
 ## Annotations
 
+annotationPenButton =
+    .title = ಪೆನ್
+annotationHighlighterButton =
+    .title = ಹೈಲೈಟರ್
+annotationUndoButton =
+    .title = ರದ್ದುಗೊಳಿಸು
+annotationRedoButton =
+    .title = ಮರುಕಳಿಸು
+annotationTextButton =
+    .title = ಪಠ್ಯ ಸೇರಿಸು
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
+    .title = ಅಳಿಸು
+annotationCropButton =
+    .title = ಕತ್ತರಿಸು
+annotationSaveEditButton = ಉಳಿಸು
+    .title = ಸಂಪಾದನೆ ಉಳಿಸು
+annotationCancelEditButton = ರದ್ದುಗೊಳಿಸು
+    .title = ಸಂಪಾದನೆ ರದ್ದುಗೊಳಿಸು
+annotationCropConfirmButton = ದೃಢಪಡಿಸು
+    .title = ಆಯ್ಕೆ ದೃಢಪಡಿಸು
+annotationCropCancelButton = ರದ್ದುಗೊಳಿಸು
+    .title = ಆಯ್ಕೆ ರದ್ದುಗೊಳಿಸು
+annotationColorWhite =
+    .title = ಬಿಳಿ
+annotationColorBlack =
+    .title = ಹಿಂದೆ
+annotationColorRed =
+    .title = ಕೆಂಪು
+annotationColorGreen =
+    .title = ಹಸಿರು
+annotationColorBlue =
+    .title = ನೀಲಿ
+annotationColorYellow =
+    .title = ಹಳದಿ
+annotationColorPurple =
+    .title = ನೇರಳೆ
+annotationColorGrey =
+    .title = ಬೂದು
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = ಪಠ್ಯದ ಗಾತ್ರ
+# Values shown in text size selection dropdown
+textSizeSmall = ಚಿಕ್ಕ
+textSizeMedium = ಮಾಧ್ಯಮ
+textSizeLarge = ದೊಡ್ಡದು
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = ಖಚಿತಪಡಿಸು
+    .title = ಖಚಿತಪಡಿಸು
+textToolCancelButton = ರದ್ದುಗೊಳಿಸು
+    .title = ರದ್ದುಗೊಳಿಸು
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = ಹಲೋ
 
 ## Settings Page
 
+settingsDisconnectButton = ಸಂಪರ್ಕ ತೆಗೆ
+    .title = ಸಂಪರ್ಕ ತೆಗೆ
 
 ## Shotindex page
 
+shotIndexPagePreviousPage =
+    .title = ಹಿಂದಿನ ಪುಟ
+shotIndexPageNextPage =
+    .title = ಮುಂದಿನ ಪುಟ
 
 ## Delete Confirmation Dialog
 
+shotDeleteCancel = ರದ್ದುಗೊಳಿಸು
+    .title = ರದ್ದುಗೊಳಿಸು
+shotDeleteConfirm = ಅಳಿಸು
+    .title = ಅಳಿಸು
 
 ## Metrics page
 ## All metrics strings are optional for translation
