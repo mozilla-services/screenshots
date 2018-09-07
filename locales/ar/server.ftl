@@ -126,6 +126,8 @@ shotPageDownloadShot =
     .title = نزّل
 shotPageEditButton =
     .title = حرّر هذه الصورة
+shotPagefavoriteButton =
+    .title = أضِف اللقطة إلى المفضلة
 shotPageDownload = نزّل
 shotPageScreenshotsDescription = لقطات الشاشة صارت أسهل. خذ لقطات الشاشة و احفظها و شاركها دون مغادرة فَيرفُكس.
 shotPageUpsellFirefox = نزّل فَيَرفُكس الآن
@@ -326,6 +328,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = لا تنتهي صلاحية اللقطة
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = هذه لقطة في قائمة المفضلة، صلاحيتها لا تنقضي
 
 ## Delete Confirmation Dialog
 
