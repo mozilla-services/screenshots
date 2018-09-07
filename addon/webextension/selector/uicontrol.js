@@ -673,6 +673,9 @@ this.uicontrol = (function() {
 
     mousemove(event) {
       this._resize(event);
+      if (resizeDirection !== "move") {
+        ui.PixelDimensions.display(event.pageX, event.pageY, event.pageX, event.pageY);
+      }
       return false;
     },
 
@@ -728,6 +731,7 @@ this.uicontrol = (function() {
     end() {
       resizeDirection = resizeStartPos = resizeStartSelected = null;
       selectedPos.sortCoords();
+      ui.PixelDimensions.remove();
     }
   };
 
