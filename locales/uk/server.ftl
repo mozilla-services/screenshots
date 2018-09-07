@@ -9,6 +9,15 @@ gHomeLink = Домівка
 gNoShots =
     .alt = Знімків не знайдено
 gScreenshotsDescription = Знімки стали простішими. Робіть, зберігайте й діліться знімками екрану, не покидаючи Firefox.
+gSettings = Налаштування
+gSignIn = Вхід
+
+## Header
+
+signInButton =
+    .aria-label = Вхід
+settingsButton =
+    .aria-label = Налаштування
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Перейти до моїх знімків
 homePageTeaser = Скоро...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Безплатне завантаження
-homePageGetStarted = Початок роботи
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Як працює Firefox Screenshots
 homePageGetStartedTitle = Початок роботи
