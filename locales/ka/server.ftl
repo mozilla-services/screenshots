@@ -9,6 +9,15 @@ gHomeLink = მთავარი
 gNoShots =
     .alt = ვერ მოიძებნა
 gScreenshotsDescription = ეკრანისთვის სურათის გადაღება უმარტივესია. გადაუღეთ, შეინახეთ და გააზიარეთ სურათები Firefox-ის დატოვების გარეშე.
+gSettings = პარამეტრები
+gSignIn = შესვლა
+
+## Header
+
+signInButton =
+    .aria-label = შესვლა
+settingsButton =
+    .aria-label = პარამეტრები
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = გადაღებულ სურათებზე 
 homePageTeaser = მალე იქნება...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = უფასო ჩამოტვირთვა
-homePageGetStarted = დაწყება
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = როგორ მუშაობს Firefox Screenshots
 homePageGetStartedTitle = დაიწყეთ
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = ჩამოტვირთვა
 shotPageEditButton =
     .title = სურათის ჩასწორება
+shotPagefavoriteButton =
+    .title = სურათის რჩეულად მონიშვნა
 shotPageDownload = ჩამოტვირთვა
 shotPageScreenshotsDescription = ეკრანისთვის სურათის გადაღება უმარტივესია. გადაუღეთ, შეინახეთ და გააზიარეთ სურათები Firefox-ის დატოვების გარეშე.
 shotPageUpsellFirefox = გადმოწერეთ Firefox ახლავე
@@ -292,6 +302,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = ეს სურათი უვადოა
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = ეს სურათი რჩეულია და არასდროს გაუვა ვადა
 
 ## Delete Confirmation Dialog
 
