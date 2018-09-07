@@ -9,6 +9,15 @@ gHomeLink = Pagina da partenza
 gNoShots =
     .alt = Chattà nagins maletgs dal visur
 gScreenshotsDescription = La via simpla per far maletgs dal visur: Far, memorisar e cundivider ils maletgs dal visur senza bandunar Firefox.
+gSettings = Parameters
+gSignIn = S'annunziar
+
+## Header
+
+signInButton =
+    .aria-label = S'annunziar
+settingsButton =
+    .aria-label = Parameters
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Mussar mes maletgs dal visur
 homePageTeaser = Bainprest disponibel…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Telechargia gratuita
-homePageGetStarted = Cumenzar
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Co Firefox Screenshots funcziuna
 homePageGetStartedTitle = Cumenzar
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Telechargiar
 shotPageEditButton =
     .title = Modifitgar quest maletg
+shotPagefavoriteButton =
+    .title = Marcar quest maletg sco favurit
 shotPageDownload = Telechargiar
 shotPageScreenshotsDescription = Maletgs dal visur en in batterdegl. Prender, memorisar e cundivider maletgs dal visur senza bandunar Firefox.
 shotPageUpsellFirefox = Ussa ir per Firefox
