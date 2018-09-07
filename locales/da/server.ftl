@@ -9,6 +9,15 @@ gHomeLink = Start
 gNoShots =
     .alt = Ingen skærmbilleder fundet
 gScreenshotsDescription = Skærmbilleder helt enkelt. Tag, gem og del skærmbilleder uden at forlade Firefox.
+gSettings = Indstillinger
+gSignIn = Log ind
+
+## Header
+
+signInButton =
+    .aria-label = Log ind
+settingsButton =
+    .aria-label = Indstillinger
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Gå til Mine skærmbilleder
 homePageTeaser = Kommer snart…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Gratis download
-homePageGetStarted = Kom i gang
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Sådan virker Firefox Screenshots
 homePageGetStartedTitle = Kom i gang
@@ -181,6 +189,9 @@ timeDiffFutureDays =
        *[other] om { $number } dage
     }
 errorThirdPartyCookiesEnabled = Hvis du tog dette skærmbillede og ikke kan slette det, kan det være nødvendigt at acceptere tredjeparts cookies midlertidigt i din browsers indstillinger.
+
+## Shot Page New Feature Promotion Dialog.
+
 
 ## Annotations
 
