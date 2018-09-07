@@ -9,6 +9,15 @@ gHomeLink = Ñepyrũ
 gNoShots =
     .alt = Ndojejuhúi japyhypy
 gScreenshotsDescription = Mba’erechaha japyhypy pererĩva. Japyhy, ñongatu ha moherakuã mba’erechaha japyhypy eheja’ỹre Firefox.
+gSettings = Tekopyahu
+gSignIn = Jeike
+
+## Header
+
+signInButton =
+    .aria-label = Jeike
+settingsButton =
+    .aria-label = Tekopyahu
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Eho che japyhypýpe
 homePageTeaser = Namombyryvéima…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Emboguejy reiete
-homePageGetStarted = Jeguata ñepyrũ
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Mba’éicha omba’apo Firefox Screenshots
 homePageGetStartedTitle = Jeguata ñepyrũ
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Mboguejy
 shotPageEditButton =
     .title = Embosako’i ko ta’anga
+shotPagefavoriteButton =
+    .title = Emongurusu ko japyhypyre techaramovévarõ
 shotPageDownload = Mboguejy
 shotPageScreenshotsDescription = Japyhypy mba'erechaha jejapónteva. Eñohẽ, eñongatu ha emoherakuã mba'erechaha japyhypy eheja'ỹre Firefox.
 shotPageUpsellFirefox = Eguereko Firefox ko'ág̃a
@@ -296,6 +306,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = ∞
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Kóva japyhypyre techaramovéva ha oñembyai'ỹva
 
 ## Delete Confirmation Dialog
 
