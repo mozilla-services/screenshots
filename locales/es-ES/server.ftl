@@ -9,6 +9,15 @@ gHomeLink = Inicio
 gNoShots =
     .alt = No se han encontrado capturas
 gScreenshotsDescription = Hemos simplificado las capturas de pantalla. Haz, guarda y comparte capturas de pantalla sin salir de Firefox.
+gSettings = Ajustes
+gSignIn = Iniciar sesión
+
+## Header
+
+signInButton =
+    .aria-label = Iniciar sesión
+settingsButton =
+    .aria-label = Ajustes
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Ir a mis capturas
 homePageTeaser = Próximamente...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Descarga gratuita
-homePageGetStarted = Comenzar
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Cómo funciona Firefox Screenshots
 homePageGetStartedTitle = Comenzar
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Descargar
 shotPageEditButton =
     .title = Editar esta imagen
+shotPagefavoriteButton =
+    .title = Elegir como favorita esta foto
 shotPageDownload = Descargar
 shotPageScreenshotsDescription = Hemos simplificado las capturas de pantalla. Haz, guarda y comparte capturas de pantalla sin salir de Firefox.
 shotPageUpsellFirefox = Obtén Firefox ahora
@@ -156,7 +166,7 @@ timeDiffMinutesAgo =
     }
 timeDiffHoursAgo =
     { $number ->
-        [one] hace una hora 
+        [one] hace una hora
        *[other] hace { $number } horas
     }
 timeDiffDaysAgo =
@@ -181,6 +191,15 @@ timeDiffFutureDays =
        *[other] en { $number } días
     }
 errorThirdPartyCookiesEnabled = Si hiciste una captura y no puedes borrarla, puede que tengas que desactivar temporalmente las cookies de terceros en las preferencias del navegador.
+
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = ¡Toma nota!
+promoMessage = Las herramientas de edición actualizadas te permiten cortar, resaltar e incluso añadir texto a tu captura.
+promoLink = Pruébalas
+promoCloseButton =
+    .title = Cerrar notificación
 
 ## Annotations
 
@@ -233,9 +252,9 @@ textSizeSmall = Pequeño
 textSizeMedium = Mediano
 textSizeLarge = Grande
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Confirmar
     .title = Confirmar
-annotationTextCancelButton =
+textToolCancelButton = Cancelar
     .title = Cancelar
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
@@ -287,6 +306,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Esta captura no caduca
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Esta es una captura favorita y no caduca
 
 ## Delete Confirmation Dialog
 
