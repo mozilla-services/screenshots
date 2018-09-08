@@ -9,6 +9,15 @@ gHomeLink = ホーム
 gNoShots =
     .alt = ショットが見つかりませんでした
 gScreenshotsDescription = スクリーンショットをもっと手軽に。Firefox を離れることなくスクリーンショットを撮影、保存、共有。
+gSettings = 設定
+gSignIn = ログイン
+
+## Header
+
+signInButton =
+    .aria-label = ログイン
+settingsButton =
+    .aria-label = 設定
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = 自分のショットへ
 homePageTeaser = 近日公開...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = 無料ダウンロード
-homePageGetStarted = はじめよう
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots の仕組み
 homePageGetStartedTitle = はじめよう
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = ダウンロード
 shotPageEditButton =
     .title = この画像を編集
+shotPagefavoriteButton =
+    .title = お気に入りのショット
 shotPageDownload = ダウンロード
 shotPageScreenshotsDescription = スクリーンショットをもっと手軽に。Firefox を離れることなくスクリーンショットを撮影、保存、共有。
 shotPageUpsellFirefox = 今すぐ Firefox をダウンロード
