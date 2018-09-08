@@ -9,6 +9,15 @@ gHomeLink = Kreu
 gNoShots =
     .alt = S’u gjetën shkrepje
 gScreenshotsDescription = Screenshots-i i thjeshtuar. Bëni, ruani dhe ndani foto ekrani pa dalë nga Firefox-i.
+gSettings = Rregullime
+gSignIn = Hyni
+
+## Header
+
+signInButton =
+    .aria-label = Hyni
+settingsButton =
+    .aria-label = Rregullime
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Shko te Shkrepjet e Mia
 homePageTeaser = Së Afërmi…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Shkarkim Falas
-homePageGetStarted = Fillojani
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Si Funksionon Firefox Screenshots
 homePageGetStartedTitle = Fillojani
@@ -181,12 +189,24 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Nëse bëtë këtë foto dhe s’e fshini dot, mund t’ju duhet të aktivizoni përkohësisht cookie prej palësh të treta, që nga parapëlqimet tuaja për shfletuesin.
 
+## Shot Page New Feature Promotion Dialog.
+
+promoLink = Provojini
+promoCloseButton =
+    .title = Mbylle njoftimin
+
 ## Annotations
 
 annotationPenButton =
     .title = Penë
 annotationHighlighterButton =
     .title = Theksues
+annotationUndoButton =
+    .title = Zhbëje
+annotationRedoButton =
+    .title = Ribëje
+annotationTextButton =
+    .title = Shtoni tekst
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Pastroje
@@ -218,6 +238,21 @@ annotationColorSeaGreen =
     .title = Blu e gjelbër
 annotationColorGrey =
     .title = Gri
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Madhësi teksti
+# Values shown in text size selection dropdown
+textSizeSmall = Të vogla
+textSizeMedium = Mesatare
+textSizeLarge = Të mëdha
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = Ripohojeni
+    .title = Ripohojeni
+textToolCancelButton = Anuloje
+    .title = Anuloje
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Tungjatjeta
 
 ## Settings Page
 
