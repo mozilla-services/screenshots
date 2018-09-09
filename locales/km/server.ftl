@@ -4,15 +4,29 @@
 
 ## Global phrases shared across pages, prefixed with 'g'
 
+gSettings = ការ​កំណត់
+gSignIn = ចូល
+
+## Header
+
+signInButton =
+    .aria-label = ចូល
+settingsButton =
+    .aria-label = ការកំណត់
 
 ## Footer
 
+# Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
 
 ## Creating page
 
 
 ## Home page
 
+homePageDownloadFirefoxTitle = Firefox
+homePageDownloadFirefoxSubTitle = ទាញ​យក​ដោយ​ឥត​គិត​ថ្លៃ
+homePageGetStartedTitle = បាន​ចាប់ផ្ដើម
 homePagePrivacyLink = ភាពឯកជន
 
 ## Leave Screenshots page
@@ -21,6 +35,8 @@ leavePageButtonCancel = បោះបង់
 
 ## Not Found page
 
+notFoundPageTitle = រក​មិន​ឃើញ​ទំព័រ
+notFoundPageDescription = រក​មិន​ឃើញ​ទំព័រ។
 
 ## Shot page
 
@@ -41,6 +57,9 @@ shotPageDownloadShot =
 shotPageDownload = ទាញយក
 shotPageSaveExpiration = រក្សាទុក
 shotPageCancelExpiration = បោះបង់
+
+## Shot Page New Feature Promotion Dialog.
+
 
 ## Annotations
 
