@@ -40,6 +40,7 @@ notFoundPageDescription = រក​មិន​ឃើញ​ទំព័រ។
 
 ## Shot page
 
+shotPageAlertErrorUpdatingTitle = កំហុសក្នុងការរក្សាទុកចំណងជើង
 shotPageShareButton =
     .title = ចែករំលែក
 shotPageCopy = ចម្លង
@@ -52,6 +53,8 @@ shotPageSharePinterest =
     .title = ចែករំលែកលើ Pinterest
 shotPageShareEmail =
     .title = ចែករំលែក​តំណ​តាមអ៊ីមែល
+# Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = នេះជាទំព័រដែលវាត្រូវបានបង្កើតដំបូងពី៖
 shotPageDownloadShot =
     .title = ទាញយក
 shotPageDownload = ទាញយក
@@ -60,9 +63,14 @@ shotPageCancelExpiration = បោះបង់
 
 ## Shot Page New Feature Promotion Dialog.
 
+promoCloseButton =
+    .title = បិទ​ការ​ជូនដំណឹង​
 
 ## Annotations
 
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
+    .title = សម្អាត
 annotationSaveEditButton = រក្សាទុក
     .title = រក្សាទុកការកែសម្រួល
 annotationCancelEditButton = បោះបង់
@@ -77,6 +85,8 @@ annotationColorWhite =
 
 shotIndexPageSearchButton =
     .title = ស្វែងយក
+shotIndexPageClearSearchButton =
+    .title = ជម្រះ​ការ​ស្វែងរក
 shotIndexPagePreviousPage =
     .title = ទំព័រ​មុន
 shotIndexPageNextPage =
@@ -84,6 +94,7 @@ shotIndexPageNextPage =
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = តើអ្នកប្រាកដជាចង់លុបរូបថតនេះមែនទេ?
 shotDeleteCancel = បោះបង់
     .title = បោះបង់
 shotDeleteConfirm = លុប
@@ -92,3 +103,5 @@ shotDeleteConfirm = លុប
 ## Metrics page
 ## All metrics strings are optional for translation
 
+metricsPageTotalsQueryDevices = ឧបករណ៍សរុបបានចុះឈ្មោះ
+metricsPageUsersQueryCount = ចំនួនអ្នកប្រើ
