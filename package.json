@@ -40,7 +40,7 @@
     "pg": "6.2.5",
     "pg-patcher": "0.4.0",
     "query-string": "6.1.0",
-    "raven": "2.6.3",
+    "raven": "2.6.4",
     "raven-js": "3.26.4",
     "react": "16.4.2",
     "react-dom": "16.4.2",
