@@ -9,6 +9,15 @@ gHomeLink = Начална страница
 gNoShots =
     .alt = Няма снимки на екрана
 gScreenshotsDescription = Лесни снимки на екрана. Създавате, запазвате и споделяте снимки на екрана без да напускате Firefox.
+gSettings = Настройки
+gSignIn = Вписване
+
+## Header
+
+signInButton =
+    .aria-label = Вписване
+settingsButton =
+    .aria-label = Настройки
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Моите снимки
 homePageTeaser = Очаквайте скоро…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Свободно изтегляне
-homePageGetStarted = Първи стъпки
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Как работи Firefox Screenshots
 homePageGetStartedTitle = Първи стъпки
@@ -118,6 +126,8 @@ shotPageDownloadShot =
     .title = Изтегляне
 shotPageEditButton =
     .title = Промяна на изображението
+shotPagefavoriteButton =
+    .title = Отбележи тази снимка
 shotPageDownload = Изтегляне
 shotPageScreenshotsDescription = Лесни снимки на екрана. Създавате, запазвате и споделяте снимки на екрана без да напускате Firefox.
 shotPageUpsellFirefox = Вземете Firefox сега
