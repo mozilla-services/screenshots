@@ -783,54 +783,39 @@ $bg-white: rgba(255, 255, 255, 0.7);
 
 
 .textTool {
+
   .black {
     @include type-color($bg-white, black);
   }
-}
 
-.textTool {
   .white {
     @include type-color($bg-black, white);
   }
-}
 
-.textTool {
   .red {
     @include type-color($bg-black, $red);
   }
-}
 
-.textTool {
   .green {
     @include type-color($bg-black, $green);
   }
-}
 
-.textTool {
   .blue {
     @include type-color($bg-white, $blue);
   }
-}
 
-.textTool {
   .yellow {
     @include type-color($bg-black, $yellow);
   }
-}
 
-.textTool {
   .purple {
     @include type-color($bg-white, $purple);
   }
-}
 
-.textTool {
   .sea-green {
     @include type-color($bg-black, $sea-green);
   }
-}
 
-.textTool {
   .grey {
     @include type-color($bg-white, $grey);
   }
