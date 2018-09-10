@@ -9,6 +9,13 @@ gHomeLink = Initio
 gNoShots =
     .alt = Nulle instantaneos trovate
 gScreenshotsDescription = Le instantaneos a un maniera simple. Captura, salva e comparti le instantaneos de tu schermo sin exir de Firefox.
+gSettings = Parametros
+gSignIn = Apertura de session
+
+## Header
+
+settingsButton =
+    .aria-label = Parametros
 
 ## Footer
 
@@ -38,7 +45,6 @@ homePageButtonMyShots = Ir a mi instantaneos
 homePageTeaser = Veniente tosto…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Discargamento gratuito
-homePageGetStarted = Comenciar
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Como Firefox Screenshots functiona
 homePageGetStartedTitle = Comenciar
