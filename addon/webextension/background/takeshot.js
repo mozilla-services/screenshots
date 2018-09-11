@@ -10,7 +10,6 @@ this.takeshot = (function() {
   communication.register("takeShot", catcher.watchFunction((sender, options) => {
     const { captureType, captureText, scroll, selectedPos, shotId } = options;
     const shot = new Shot(main.getBackend(), shotId, options.shot);
-    shot.favicon = sender.tab.favIconUrl;
     let imageBlob = options.imageBlob;
     let capturePromise = Promise.resolve();
     let openedTab;
