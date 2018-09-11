@@ -126,6 +126,8 @@ shotPageDownloadShot =
     .title = Hent
 shotPageEditButton =
     .title = Rediger dette billede
+shotPagefavoriteButton =
+    .title = Marker dette skærmbillede som favorit
 shotPageDownload = Hent
 shotPageScreenshotsDescription = Skærmbilleder helt enkelt. Tag, gem og del skærmbilleder uden af forlade Firefox.
 shotPageUpsellFirefox = Hent Firefox nu
@@ -192,6 +194,12 @@ errorThirdPartyCookiesEnabled = Hvis du tog dette skærmbillede og ikke kan slet
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Bemærk!
+promoMessage = Nu kan du beskære, markere og tilføje tekst til dine skærmbilleder.
+promoLink = Prøv selv
+promoCloseButton =
+    .title = Luk denne besked
 
 ## Annotations
 
@@ -298,6 +306,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Dette skærmbillede udløber ikke
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Dette skærmbillede er markeret som favorit og udløber ikke
 
 ## Delete Confirmation Dialog
 
