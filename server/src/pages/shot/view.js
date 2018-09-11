@@ -119,7 +119,7 @@ class Head extends React.Component {
       return null;
     }
     const og = [
-      <meta property="og:type" content="website" key="ogtype" />,
+      <meta property="og:type" content="image" key="ogtype" />,
       <meta property="og:title" content={this.props.shot.title} key="ogtitle" />
     ];
     const twitter = [
