@@ -488,7 +488,8 @@ body {
     background-color: $light-default;
     border: 1px solid #9b9b9b;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $light-hover;
     }
 
@@ -603,7 +604,8 @@ body {
   }
 }
 
-#color-picker:hover + #color-button-highlight {
+#color-picker:hover + #color-button-highlight,
+#color-picker:focus + #color-button-highlight {
   display: block;
   z-index: 1;
 }
