@@ -10,37 +10,37 @@ exports.Footer = class Footer extends React.Component {
 
   render() {
     return (
-      <div className="footer">
+      <footer className="footer">
         <a href="https://www.mozilla.org" target="_blank" rel="noopener noreferrer" className="mozilla-logo" title="Mozilla"/>
-        <div className="legal-links">
-          <Localized id="footerLinkTerms">
+        <ul className="footer-links">
+          <li><Localized id="footerLinkTerms">
             <a href="https://www.mozilla.org/about/legal/terms/services/" target="_blank" rel="noopener noreferrer">Terms</a>
-          </Localized>
-          <Localized id="footerLinkPrivacy">
+          </Localized></li>
+          <li><Localized id="footerLinkPrivacy">
             <a href="https://www.mozilla.org/privacy/firefox/" target="_blank" rel="noopener noreferrer">Privacy Notice</a>
-          </Localized>
-          <Localized id="footerLinkFaqs">
+          </Localized></li>
+          <li><Localized id="footerLinkFaqs">
             <a href="https://support.mozilla.org/kb/firefox-screenshots" target="_blank" rel="noopener noreferrer">FAQs</a>
-          </Localized>
+          </Localized></li>
           {
             this.props.isOwner ? null
-            : <Localized id="footerReportShot">
+            : <li><Localized id="footerReportShot">
                 <a href={`https://qsurvey.mozilla.com/s3/screenshots-flagged-shots?ref=${this.props.id}`}
                   title="Report this shot for abuse, spam, or other problems"
                   target="_blank" rel="noopener noreferrer"
                   onClick={this.onReportShot.bind(this)}>Report Shot</a>
-              </Localized>
+              </Localized></li>
           }
-          <Localized id="footerLinkDMCA">
+          <li><Localized id="footerLinkDMCA">
             <a href="https://www.mozilla.org/about/legal/report-infringement/" target="_blank" rel="noopener noreferrer">Report IP Infringement</a>
-          </Localized>
-          <Localized id="footerLinkDiscourse">
+          </Localized></li>
+          <li><Localized id="footerLinkDiscourse">
             <a href="https://discourse.mozilla-community.org/c/test-pilot/page-shot" target="_blank" rel="noopener noreferrer">Give Feedback</a>
-          </Localized>
-          <a href="https://github.com/mozilla-services/screenshots" target="_blank" rel="noopener noreferrer">GitHub</a>
-          {this.props.authenticated ? <Localized id="footerLinkRemoveAllData"><a href="/leave-screenshots">Remove All Data</a></Localized> : null}
-        </div>
-      </div>
+          </Localized></li>
+          <li><a href="https://github.com/mozilla-services/screenshots" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          {this.props.isOwner ? <li><Localized id="footerLinkRemoveAllData"><a href="/leave-screenshots">Remove All Data</a></Localized></li> : null}
+        </ul>
+      </footer>
     );
   }
 };
@@ -48,5 +48,4 @@ exports.Footer = class Footer extends React.Component {
 exports.Footer.propTypes = {
   id: PropTypes.string,
   isOwner: PropTypes.bool,
-  authenticated: PropTypes.bool,
 };

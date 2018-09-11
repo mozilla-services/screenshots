@@ -203,7 +203,7 @@ $very-light-grey: #ededed;
 
   .notice-wrapper {
     align-items: center;
-    background: #737373;
+    background: $gray;
     border-radius: 100px;
     display: flex;
     flex-wrap: nowrap;
