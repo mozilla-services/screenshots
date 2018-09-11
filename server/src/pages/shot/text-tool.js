@@ -152,10 +152,10 @@ exports.TextTool = class TextTool extends React.Component {
     this.setState({color, colorName});
 
     const txtInput = this.textInput.current;
-    txtInput.focus();
     if (!this.isElementInViewPort(txtInput)) {
        txtInput.scrollIntoView({block: "center"});
     }
+    txtInput.focus();
   }
 
   onDragMouseDown(e) {
@@ -260,15 +260,20 @@ exports.TextTool = class TextTool extends React.Component {
     const txtInput = this.textInput.current;
 
     this.setState({textSize: size});
-    txtInput.focus();
     if (!this.isElementInViewPort(txtInput)) {
        txtInput.scrollIntoView({block: "center"});
     }
+    txtInput.focus();
   }
 
   onInput() {
+    const txtInput = this.textInput.current;
+
     hasFirstInput = true;
     this.adjustX();
+    if (!this.isElementInViewPort(txtInput)) {
+       txtInput.scrollIntoView({block: "center"});
+    }
   }
 
   adjustWidth() {
