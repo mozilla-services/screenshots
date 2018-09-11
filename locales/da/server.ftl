@@ -35,7 +35,7 @@ footerLinkRemoveAllData = Fjern alle data
 # Note: { $title } is a placeholder for the title of the web page
 # captured in the screenshot. The default, for pages without titles, is
 # creatingPageTitleDefault.
-creatingPageTitle = Laver { $title }
+creatingPageTitle = Opretter { $title }
 creatingPageTitleDefault = side
 creatingPageWaitMessage = Gemmer dit skærmbillede...
 
