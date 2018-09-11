@@ -141,6 +141,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element.style.display = "none";
           this.element.style.setProperty("position", "absolute", "important");
           this.element.style.setProperty("background-color", "transparent");
+          this.element.setAttribute("role", "dialog");
           this.updateElementSize();
           this.element.addEventListener("load", watchFunction(() => {
             this.document = this.element.contentDocument;
@@ -278,6 +279,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element.style.setProperty("background-color", "transparent");
           this.element.style.width = "100%";
           this.element.style.height = "100%";
+          this.element.setAttribute("role", "dialog");
           this.element.addEventListener("load", watchFunction(() => {
             this.document = this.element.contentDocument;
             assertIsBlankDocument(this.document);
@@ -390,6 +392,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element.style.setProperty("background-color", "transparent");
           this.element.style.height = "100%";
           this.element.style.width = "100%";
+          this.element.setAttribute("role", "dialog");
           this.element.onload = watchFunction(() => {
             this.document = this.element.contentDocument;
             // eslint-disable-next-line no-unsanitized/property
