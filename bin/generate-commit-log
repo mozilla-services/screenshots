@@ -52,6 +52,8 @@ for line in log.splitlines():
 parts = []
 
 for message in messages:
+    if message.get("from") == "Renovate Bot <bot@renovateapp.com>":
+        continue
     sub = message.get("subject", "")
     if sub.startswith("[PATCH] "):
         sub = sub[len("[PATCH] "):]
