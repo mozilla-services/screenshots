@@ -11,7 +11,7 @@ This document tracks requirements the implementation of new UX flows associated 
 #### All Views
 
 - [ ] It should match the linked spec [#4686](https://github.com/mozilla-services/screenshots/issues/4686)
-- [ ] It should remove the ability to change the expiration date of shots [#4688](https://github.com/mozilla-services/screenshots/issues/4688)
+- [x] It should remove the ability to change the expiration date of shots [#4688](https://github.com/mozilla-services/screenshots/issues/4688)
 - [ ] It should add a copy to clipboard button [#4776](https://github.com/mozilla-services/screenshots/issues/4776)
 - [ ] It should use a common header component that displays various items depending on user type/state[#4685](https://github.com/mozilla-services/screenshots/issues/4685)
 - [ ] It should use a common CTA with different strings depending on user type/state [#4684](https://github.com/mozilla-services/screenshots/issues/4684)
@@ -55,7 +55,7 @@ This document tracks requirements the implementation of new UX flows associated 
 #### Owner/Non-Authenticated
 
 - [ ] It should display a marketing CTA sign in with FxA
-- [ ] It should display a button that directs user to sign in
+- [x] It should display a button that directs user to sign in
 
 #### Owner/Authenticated
 
