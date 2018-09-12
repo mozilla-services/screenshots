@@ -34,7 +34,7 @@ imgs_server_dest := $(imgs_source:%=build/server/%)
 raven_source := $(shell node -e 'console.log(require.resolve("raven-js/dist/raven.js"))')
 
 l10n_source := $(wildcard locales/*)
-l10n_dest := $(l10n_source:%/webextension.properties=addon/webextension/_locales/%/messages.json)
+l10n_dest := $(l10n_source:%/webextension.properties=webextension/_locales/%/messages.json)
 
 ## General transforms:
 # These cover standard ways of building files given a source
@@ -88,7 +88,7 @@ build/%.html: %.html
 	cp $< $@
 
 .PHONY: addon
-addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/selection.js addon/webextension/build/shot.js addon/webextension/build/thumbnailGenerator.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/onboardingCss.js addon/webextension/build/onboardingHtml.js addon/webextension/build/buildSettings.js
+addon: npm set_backend set_sentry webextension/manifest.json addon_locales webextension/build/selection.js webextension/build/shot.js webextension/build/thumbnailGenerator.js webextension/build/inlineSelectionCss.js webextension/build/raven.js webextension/build/onboardingCss.js webextension/build/onboardingHtml.js webextension/build/buildSettings.js
 
 $(VENV): bin/require.pip
 	virtualenv -p python2.7 $(VENV)
@@ -101,69 +101,57 @@ flake8: $(VENV)
 .PHONY: zip
 zip: addon
 	# FIXME: should remove web-ext-artifacts/*.zip first
-	./node_modules/.bin/web-ext build --source-dir addon/webextension/ --ignore-files "**/README.md" --ignore-files "**/*.template"
+	./node_modules/.bin/web-ext build --source-dir webextension/ --ignore-files "**/README.md" --ignore-files "**/*.template"
 	mv web-ext-artifacts/firefox_screenshots*.zip build/screenshots.zip
 	# We'll try to remove this directory, but it's no big deal if we can't:
 	rmdir web-ext-artifacts || true
 
-.PHONY: bootstrap_zip
-bootstrap_zip: addon
-	@rm -f build/screenshots-bootstrap.zip
-	cd addon && zip -rq ../build/screenshots-bootstrap.zip .
-	# build/screenshots-bootstrap.zip created
+unsigned_xpi: zip
+	cp build/screenshots.zip build/screenshots.xpi
 
-unsigned_bootstrap_xpi: bootstrap_zip
-	cp build/screenshots-bootstrap.zip build/screenshots.xpi
-
-dev_signed_bootstrap_xpi: bootstrap_zip
+dev_signed_xpi: zip
 	echo "signing the addon via the autograph edge server..."
-	@curl -F "input=@build/screenshots-bootstrap.zip" -o build/screenshots.xpi -H "Authorization: ${AUTOGRAPH_EDGE_TOKEN}" https://autograph-edge.stage.mozaws.net/sign
+	@curl -F "input=@build/screenshots.zip" -o build/screenshots.xpi -H "Authorization: ${AUTOGRAPH_EDGE_TOKEN}" https://autograph-edge.stage.mozaws.net/sign
 	echo "done."
 
 .PHONY: signed_xpi
 signed_xpi: addon
 	rm -f web-ext-artifacts/*.xpi
-	./node_modules/.bin/web-ext sign --api-key=${AMO_USER} --api-secret=${AMO_SECRET} --source-dir addon/webextension/
+	./node_modules/.bin/web-ext sign --api-key=${AMO_USER} --api-secret=${AMO_SECRET} --source-dir webextension/
 	mv web-ext-artifacts/*.xpi build/screenshots.xpi
 
 .PHONY: addon_locales
 addon_locales:
-	./node_modules/.bin/pontoon-to-webext --dest addon/webextension/_locales > /dev/null
-	# Firefox doesn't want us to include duplicate files, and some locales don't have any
-	# unique strings compared to en_US:
-	./bin/build-scripts/delete-us-dup-locales.sh
+	./node_modules/.bin/pontoon-to-webext --dest webextension/_locales > /dev/null
 
-addon/install.rdf: addon/install.rdf.template package.json
+webextension/manifest.json: webextension/manifest.json.template build/.backend.txt package.json
 	./bin/build-scripts/update_manifest.py $< $@
 
-addon/webextension/manifest.json: addon/webextension/manifest.json.template build/.backend.txt package.json
-	./bin/build-scripts/update_manifest.py $< $@
-
-addon/webextension/build/selection.js: shared/selection.js
+webextension/build/selection.js: shared/selection.js
 	@mkdir -p $(@D)
 	./bin/build-scripts/modularize selection $< > $@
 
-addon/webextension/build/shot.js: shared/shot.js
+webextension/build/shot.js: shared/shot.js
 	@mkdir -p $(@D)
 	./bin/build-scripts/modularize shot $< > $@
 
-addon/webextension/build/thumbnailGenerator.js: shared/thumbnailGenerator.js
+webextension/build/thumbnailGenerator.js: shared/thumbnailGenerator.js
 	@mkdir -p $(@D)
 	./bin/build-scripts/modularize thumbnailGenerator $< > $@
 
-addon/webextension/build/inlineSelectionCss.js: build/server/static/css/inline-selection.css
+webextension/build/inlineSelectionCss.js: build/server/static/css/inline-selection.css
 	@mkdir -p $(@D)
 	./bin/build-scripts/css_to_js.py inlineSelectionCss $< > $@
 
-addon/webextension/build/onboardingCss.js: build/server/static/css/onboarding.css
+webextension/build/onboardingCss.js: build/server/static/css/onboarding.css
 	@mkdir -p $(@D)
 	./bin/build-scripts/css_to_js.py onboardingCss $< > $@
 
-addon/webextension/build/onboardingHtml.js: addon/webextension/onboarding/slides.html
+webextension/build/onboardingHtml.js: webextension/onboarding/slides.html
 	@mkdir -p $(@D)
 	./bin/build-scripts/css_to_js.py onboardingHtml $< > $@
 
-addon/webextension/build/raven.js: $(raven_source)
+webextension/build/raven.js: $(raven_source)
 	@mkdir -p $(@D)
 	cp $< $@
 
@@ -243,13 +231,13 @@ set_backend:
 	@echo "Setting backend to ${SCREENSHOTS_BACKEND}"
 	./bin/build-scripts/set_file build/.backend.txt $(SCREENSHOTS_BACKEND)
 
-addon/webextension/build/buildSettings.js: set_build_settings
+webextension/build/buildSettings.js: set_build_settings
 
 .PHONY: set_build_settings
 set_sentry:
 	@if [[ -z "$(SCREENSHOTS_SENTRY)" ]] ; then echo "No default Sentry" ; fi
 	@if [[ -n "$(SCREENSHOTS_SENTRY)" ]] ; then echo "Setting default Sentry ${SCREENSHOTS_SENTRY}" ; fi
-	./bin/build-scripts/substitute-env.js addon/webextension/buildSettings.js.template | ./bin/build-scripts/set_file addon/webextension/build/buildSettings.js -
+	./bin/build-scripts/substitute-env.js webextension/buildSettings.js.template | ./bin/build-scripts/set_file webextension/build/buildSettings.js -
 
 build/.npm-install.log: package.json
 	# Essentially .npm-install.log is just a timestamp showing the last time we ran
@@ -266,7 +254,7 @@ all: addon server
 
 .PHONY: clean
 clean:
-	rm -rf build/ addon/webextension/build/ addon/webextension/manifest.json addon/install.rdf addon/webextension/_locales/
+	rm -rf build/ webextension/build/ webextension/manifest.json webextension/_locales/
 
 .PHONY: distclean
 distclean: clean
@@ -278,21 +266,19 @@ help:
 	@echo "Makes the addon and server"
 	@echo "Commands:"
 	@echo "  make addon"
-	@echo "    make/update the addon directly in addon/webextension/ (built files in addon/webextension/build/)"
+	@echo "    make/update the addon directly in webextension/ (built files in webextension/build/)"
 	@echo "  make server"
 	@echo "    make the server in build/server/"
 	@echo "  make all"
 	@echo "    equivalent to make server addon"
 	@echo "  make clean"
-	@echo "    rm -rf build/ addon/webextension/build"
+	@echo "    rm -rf build/ webextension/build"
 	@echo "  make zip"
 	@echo "    make an unsigned zip of the webextension in build/screenshots.zip"
-	@echo "  make bootstrap_zip"
-	@echo "    make an unsigned zip of addon/ in build/screenshots.zip"
-	@echo "  make unsigned_bootstrap_xpi"
-	@echo "    make an unsigned xpi of addon/ in build/screenshots.xpi"
-	@echo "  make dev_signed_bootstrap_xpi"
-	@echo "    make a dev-root signed xpi of addon/ in build/screenshots.xpi"
+	@echo "  make unsigned_xpi"
+	@echo "    make an unsigned xpi of the webextension in build/screenshots.xpi"
+	@echo "  make dev_signed_xpi"
+	@echo "    make a dev-root signed xpi of the webextension in build/screenshots.xpi"
 	@echo "  make signed_xpi"
 	@echo "    make a signed xpi in build/screenshots.xpi"
 	@echo "See also:"

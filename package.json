@@ -102,6 +102,6 @@
     "make_versions_exact": "node bin/build-scripts/make_versions_exact.js",
     "update_outdated": "david update && npm run make_versions_exact && npm update && npm outdated",
     "fill_database": "make .venv && ./.venv/bin/python  ./bin/load_test_exercise.py -q --little-image --create=50 --read-shot=0 --read-my-shots=0 --search=0 --new-account http://localhost:10080",
-    "svgo": "find addon/webextension/icons/*.svg | grep -v icon-v2.svg | xargs svgo && svgo --folder=static/img"
+    "svgo": "find webextension/icons/*.svg | grep -v icon-v2.svg | xargs svgo && svgo --folder=static/img"
   }
 }
