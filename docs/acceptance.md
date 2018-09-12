@@ -20,15 +20,15 @@ This document tracks requirements the implementation of new UX flows associated 
 
 - [ ] It should onboard users to the new UI [#4790](https://github.com/mozilla-services/screenshots/issues/4790)
 - [ ] It should display a marketing CTA sign in with FxA [#4789](https://github.com/mozilla-services/screenshots/issues/4789)
-- [ ] It should display a button that directs user to sign in
-- [ ] It should display the ability to *Favorite* Shots, but this functionality should be disabled
-- [ ] It should indicate that favoriting shots requires sign in [note: this is currently demonstrated in the the spec by wiggling the sign-in button if the disabled favorite button is clicked]
+- [x] It should display a button that directs user to sign in
+- [x] It should display the ability to *Favorite* Shots, but this functionality should be disabled
+- [ ] It should indicate that favoriting shots requires sign in [note: this is currently demonstrated in the the spec by wiggling the sign-in button if the disabled favorite button is clicked] [#4878](https://github.com/mozilla-services/screenshots/issues/4878)
 
 #### Owner/Authenticated
 
-- [ ] It should allow users to favorite shots
+- [x] It should allow users to favorite shots
 - [ ] It should indicate visually if a shot is favorited [#4781](https://github.com/mozilla-services/screenshots/issues/4791)
-- [ ] It should provide a link to get to Settings
+- [x] It should provide a link to get to Settings
 
 ### Non-Owner
 
@@ -40,13 +40,13 @@ This document tracks requirements the implementation of new UX flows associated 
 #### Owner/Non-Authenticated
 
 - [ ] It should display a marketing CTA sign in with FxA
-- [ ] It should display a button that directs user to sign in
+- [x] It should display a button that directs user to sign in
 
 #### Owner/Authenticated
 
-- [ ] It should allow users to favorite shots
+- [ ] It should allow users to favorite shots [#4879](https://github.com/mozilla-services/screenshots/issues/4879)
 - [ ] It should visually indicate which shots have been favorited [#4781](https://github.com/mozilla-services/screenshots/issues/4791)
-- [ ] It should provide a link to get to Settings
+- [x] It should provide a link to get to Settings
 
 ### Home Page
 
@@ -59,7 +59,7 @@ This document tracks requirements the implementation of new UX flows associated 
 
 #### Owner/Authenticated
 
-- [ ] It should provide a link to get to Settings [#4683](https://github.com/mozilla-services/screenshots/issues/4683)
+- [x] It should provide a link to get to Settings [#4683](https://github.com/mozilla-services/screenshots/issues/4683)
 
 ### Add-on
 
