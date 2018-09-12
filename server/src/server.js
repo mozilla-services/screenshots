@@ -189,7 +189,7 @@ app.use(morgan("combined"));
 app.use(function(req, res, next) {
   const authHeader = req.headers["x-screenshots-auth"];
   let authInfo = {};
-  const cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
+  const cookies = new Cookies(req, res, {keys: dbschema.getKeygrip("auth")});
   if (authHeader) {
     authInfo = decodeAuthHeader(authHeader);
   } else {
@@ -245,7 +245,7 @@ app.use(csrfProtection);
 function decodeAuthHeader(header) {
   /** Decode a string header in the format {deviceId}:{deviceIdSig};abtests={b64thing}:{sig} */
   // Since it's treated as opaque, we'll use a fragile regex
-  const keygrip = dbschema.getKeygrip();
+  const keygrip = dbschema.getKeygrip("auth");
   const match = /^([^:]{1,255}):([^;]{1,255});abTests=([^:]{1,1500}):(.{0,255})$/.exec(header);
   if (!match) {
     const exc = new Error("Invalid auth header");
@@ -406,10 +406,10 @@ app.post("/error", function(req, res) {
 
 function hashUserId(deviceId) {
   return new Promise((resolve, reject) => {
-    if (!dbschema.getTextKeys()) {
+    if (!dbschema.getTextKeys("ga-user-nonce")) {
       throw new Error("Server keys not initialized");
     }
-    const userKey = dbschema.getTextKeys()[0] + deviceId;
+    const userKey = dbschema.getTextKeys("ga-user-nonce")[0] + deviceId;
     genUuid.generate(genUuid.V_SHA1, genUuid.nil, userKey, function(err, userUuid) {
       if (err) {
         reject(err);
@@ -554,7 +554,7 @@ function sendAuthInfo(req, res, params) {
     throw new Error("Bad deviceId");
   }
   const encodedAbTests = b64EncodeJson(userAbTests);
-  const keygrip = dbschema.getKeygrip();
+  const keygrip = dbschema.getKeygrip("auth");
   const cookies = new Cookies(req, res, {keys: keygrip});
   cookies.set("user", deviceId, {signed: true, sameSite: "lax", maxAge: COOKIE_EXPIRE_TIME});
   if (accountId) {
@@ -784,7 +784,7 @@ app.post("/api/disconnect-device", function(req, res) {
     return;
   }
   disconnectDevice(req.deviceId).then((result) => {
-    const keygrip = dbschema.getKeygrip();
+    const keygrip = dbschema.getKeygrip("auth");
     const cookies = new Cookies(req, res, {keys: keygrip});
     if (result) {
       cookies.set("accountid");
@@ -949,7 +949,7 @@ app.get("/images/:imageid", function(req, res) {
       }
       res.header("Content-Type", contentType);
       if (download) {
-        if (dbschema.getKeygrip().verify(new Buffer(download, "utf8"), sig)) {
+        if (dbschema.getKeygrip("download-url").verify(new Buffer(download, "utf8"), sig)) {
           res.header("Content-Disposition", contentDisposition(download));
         }
       }
