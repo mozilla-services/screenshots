@@ -321,12 +321,6 @@ class Card extends React.Component {
       imageUrl = this.props.staticLink("img/question-mark.svg");
     }
 
-    let favicon = null;
-    if (shot.favicon) {
-      // We use background-image so if the image is broken it just doesn't show:
-      favicon = <div style={{backgroundImage: `url("${shot.favicon}")`}} className="favicon" />;
-    }
-
     let neverExpireIndicator = null;
     if (!shot.expireTime) {
       if (this.props.hasFxa) {
@@ -356,7 +350,6 @@ class Card extends React.Component {
             <h4>{this.displayTitle(shot.title)}</h4>
           </div>
           <div className="link-container">
-            {favicon}
             <div className="shot-url">
               {shot.urlDisplay}
             </div>

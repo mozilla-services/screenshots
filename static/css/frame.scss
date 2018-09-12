@@ -288,15 +288,6 @@
   }
 }
 
-// TODO: investigate favicons not appearing on dev, stage and prod
-.favicon {
-  background-size: 16px 16px;
-  display: none;
-  height: 16px;
-  margin-right: 6px;
-  width: 16px;
-}
-
 .shot-title-input {
   border-radius: $border-radius;
   border: 1px solid $active-blue;

@@ -191,7 +191,6 @@ class AbstractShot {
     this.docTitle = attrs.docTitle || null;
     this.userTitle = attrs.userTitle || null;
     this.createdDate = attrs.createdDate || Date.now();
-    this.favicon = attrs.favicon || null;
     this.siteName = attrs.siteName || null;
     this.images = [];
     if (attrs.images) {
@@ -458,15 +457,6 @@ class AbstractShot {
     this._createdDate = val;
   }
 
-  get favicon() {
-    return this._favicon;
-  }
-  set favicon(val) {
-    // We set the favicon with tabs.Tab.faviConUrl, which is a full URL.
-    val = val || null;
-    this._favicon = val;
-  }
-
   clipNames() {
     const names = Object.getOwnPropertyNames(this._clips);
     names.sort(function(a, b) {
@@ -566,7 +556,7 @@ class AbstractShot {
 }
 
 AbstractShot.prototype.REGULAR_ATTRS = (`
-origin fullUrl docTitle userTitle createdDate favicon images
+origin fullUrl docTitle userTitle createdDate images
 siteName openGraph twitterCard documentSize
 thumbnail abTests
 `).split(/\s+/g);
@@ -575,12 +565,11 @@ thumbnail abTests
 AbstractShot.prototype.DEPRECATED_ATTRS = (`
 microdata history ogTitle createdDevice head body htmlAttrs bodyAttrs headAttrs
 readable hashtags comments showPage isPublic resources deviceId url
-fullScreenThumbnail
+fullScreenThumbnail favicon
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`
-url docTitle userTitle createdDate favicon
-openGraph twitterCard images thumbnail
+url docTitle userTitle createdDate openGraph twitterCard images thumbnail
 `).split(/\s+/g);
 
 AbstractShot.prototype._OPENGRAPH_PROPERTIES = (`

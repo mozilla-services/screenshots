@@ -221,15 +221,6 @@ h1 {
   .link-container {
     @include flex-container(row, flex-start, center);
 
-    // TODO: investigate favicons not appearing on dev, stage and prod
-    .favicon {
-      background-size: 16px 16px;
-      display: none;
-      flex: 0 0 16px;
-      height: 16px;
-      margin-right: 6px;
-    }
-
     .shot-url {
       color: $link-medium;
       font-size: 12px;
