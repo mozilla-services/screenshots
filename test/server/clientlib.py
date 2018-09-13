@@ -7,6 +7,7 @@ import json
 import uuid
 import random
 import time
+import cgi
 from pglib import attach_device
 
 example_images = {}
@@ -81,6 +82,10 @@ class ScreenshotsClient(object):
         title = None
         if title_match:
             title = title_match.group(1)
+        download_match = re.search(r'"([^"]+?download=[^"]+)"', page)
+        download_url = None
+        if download_match:
+            download_url = download_match.group(1).replace("&amp;", "&")
         return {
             "page": page,
             "clip_url": clip_url,
@@ -88,6 +93,7 @@ class ScreenshotsClient(object):
             "clip_content_type": clip_content_type,
             "csrf": csrf,
             "title": title,
+            "download_url": download_url,
         }
 
     def set_expiration(self, url, seconds):

@@ -949,7 +949,7 @@ app.get("/images/:imageid", function(req, res) {
       }
       res.header("Content-Type", contentType);
       if (download) {
-        if (dbschema.getKeygrip("download-url").verify(new Buffer(download, "utf8"), sig)) {
+        if (dbschema.getKeygrip("download-url").verify(new Buffer(`${req.path} ${download}`, "utf8"), sig)) {
           res.header("Content-Disposition", contentDisposition(download));
         }
       }

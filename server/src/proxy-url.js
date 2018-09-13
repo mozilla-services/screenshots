@@ -13,7 +13,8 @@ exports.createProxyUrl = function(req, url, hash) {
 };
 
 exports.createDownloadUrl = function(url, filename) {
-  const sig = dbschema.getKeygrip("download-url").sign(new Buffer(filename, "utf8"));
+  const path = (new URL(url)).pathname;
+  const sig = dbschema.getKeygrip("download-url").sign(new Buffer(`${path} ${filename}`, "utf8"));
   if (!isValidClipImageUrl(url)) {
       return "";
   }
