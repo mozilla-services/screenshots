@@ -134,8 +134,9 @@ shotPageAllShotsButton =
     .title = All Shots
 shotPageAllShots = All Shots
 shotPageDownload = Download
-# Note: Draw, Favorite and Delete text below is used on shot page header buttons as a verb (action)
+# Note: Draw text is used on shot page as a verb (action)
 shotPageDraw = Draw
+# Note: Favorite text is used on shot page as a verb (action)
 shotPageFavorite = Favorite
 shotPageDelete = Delete
 shotPageScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
