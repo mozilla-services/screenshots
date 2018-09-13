@@ -404,6 +404,13 @@ const conf = convict({
       env: "WATCHDOG_SUBMISSION_INTERVAL",
       arg: "watchdog-submission-interval",
     },
+    excludeReleaseChannel: {
+      doc: "If true, shots from Firefox versions <= the current major version in the release channel will not be submitted to Watchdog.",
+      format: Boolean,
+      default: true,
+      env: "WATCHDOG_EXCLUDE_RELEASE_CHANNEL",
+      arg: "watchdog-exclude-release-channel",
+    },
     devOnlyMatchHostname: {
       doc: "DO NOT SET THIS IN PROD.  When set, this is the _only_ hostname for which shots are submitted to Watchdog.",
       format: String,
