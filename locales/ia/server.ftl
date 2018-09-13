@@ -14,6 +14,8 @@ gSignIn = Apertura de session
 
 ## Header
 
+signInButton =
+    .aria-label = Apertura de session
 settingsButton =
     .aria-label = Parametros
 
@@ -118,8 +120,6 @@ shotPageExpiredMessage = Iste instantaneo expirava
 shotPageExpiredMessageDetails = Ecce le pagina ex le qual illo esseva originalmente create:
 shotPageDeleteButton =
     .title = Dele iste instantaneo
-shotPageAbuseButton =
-    .title = Reporta iste instantaneo pro abuso, spam, o altere problemas
 shotPageDownloadShot =
     .title = Discargar
 shotPageEditButton =
