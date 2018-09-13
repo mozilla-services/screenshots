@@ -65,7 +65,7 @@ homePageCapturePage = Cattura una pagina
 homePageCapturePageDescription = Utilizza i pulsanti in alto a destra per catturare la pagina. Il pulsante “Salva l’area visibile” cattura l’area visualizzata sullo schermo senza scorrere la pagina, mentre “Salva l’intera schermata” ne cattura il contenuto completo.
 homePageSaveShare = Salva e condividi
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Quando salvi uno screenshot in Firefox, la tua immagine viene aggiunta alla libreria online e il link viene copiato negli appunti. L’immagine viene conservata automaticamente per due settimane, ma puoi eliminarla in qualunque momento, o modificarne la data di scadenza per mantenerla più a lungo nella libreria.
+homePageSaveShareDescription = Quando catturi una schermata in Firefox, la tua immagine viene aggiunta alla libreria online e il link viene copiato negli appunti. L’immagine viene conservata automaticamente per due settimane, ma puoi eliminarla in qualunque momento, o modificarne la data di scadenza per mantenerla più a lungo nella libreria.
 homePageLegalLink = Note legali
 homePagePrivacyLink = Privacy
 homePageTermsLink = Condizioni di utilizzo
@@ -141,7 +141,7 @@ shotPageDraw = Disegna
 # Note: Favorite text is used on shot page as a verb (action)
 shotPageFavorite = Aggiungi ai preferiti
 shotPageDelete = Elimina
-shotPageScreenshotsDescription = Realizzare screenshot non è mai stato così facile. Cattura, salva e condividi le tue immagini senza uscire da Firefox.
+shotPageScreenshotsDescription = Catturare schermate non è mai stato così facile. Cattura, salva e condividi le tue immagini senza uscire da Firefox.
 shotPageUpsellFirefox = Installa Firefox adesso
 shotPageDMCAMessage = Questa immagine non è più disponibile a causa di una segnalazione di violazione della proprietà intellettuale da parte di soggetti terzi.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -281,7 +281,7 @@ settingsSignInInvite = Accedi per sincronizzare attraverso più dispositivi
 settingsSignInButton = Accedi
     .title = Accedi
 SettingsPageHeader = Impostazioni di Firefox Screenshots
-settingsDescription = Puoi accedere con il tuo account Firefox per sincronizzare gli screenshot attraverso più dispositivi, e accedervi in piena riservatezza.
+settingsDescription = Puoi accedere con il tuo account Firefox per sincronizzare le immagini attraverso più dispositivi, e accedervi in piena riservatezza.
 settingsPageSubHeader = Sync e account Firefox
 settingsClosePreferences =
     .title = Chiudi impostazioni
