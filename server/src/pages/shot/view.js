@@ -354,8 +354,8 @@ class Body extends React.Component {
     }
 
     let favoriteShotButton = null;
-    let trashOrFlagButton;
-    let editButton;
+    let trashOrFlagButton = null;
+    let editButton = null;
     const highlight = this.state.highlightEditButton ? <div className="edit-highlight" onClick={ this.onClickEdit.bind(this) } onMouseOver={ this.onMouseOverHighlight.bind(this) } onMouseOut={ this.onMouseOutHighlight.bind(this) }></div> : null;
 
     const activeFavClass = this.props.expireTime ? "" : "is-fav";
@@ -378,11 +378,6 @@ class Body extends React.Component {
         </Localized>
         <PromoDialog promoClose={this.promoClose.bind(this)} display={this.state.promoDialog} />
         </div>;
-    } else {
-      trashOrFlagButton = <Localized id="shotPageAbuseButton">
-        <button className="button transparent flag" title="Report this shot for abuse, spam, or other problems" onClick={ this.onClickFlag.bind(this) }></button>
-      </Localized>;
-      editButton = null;
     }
 
     let myShotsHref = "/shots";
@@ -463,7 +458,7 @@ class Body extends React.Component {
           { errorMessages }
           { clips }
         </section>
-        <Footer forUrl={ shot.viewUrl } {...this.props} />
+        <Footer {...this.props} />
       </div>
     </reactruntime.BodyTemplate>);
   }
