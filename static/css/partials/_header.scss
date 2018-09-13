@@ -1,0 +1,148 @@
+.header-panel {
+  @include respond-to("medium") {
+    @include flex-container(row, space-between, center);
+    height: $grid-unit * 5;
+  }
+
+  @include respond-to("small") {
+    @include flex-container(row, space-between, center, wrap);
+    height: 100%;
+  }
+
+  @include respond-to("large") {
+    @include flex-container(row, center, center);
+  }
+
+  display: flex;
+  height: 96px;
+  background-color: $light-default;
+  width: 100%;
+
+  .logo {
+    display: flex;
+    padding: 0 16px;
+    flex: 1;
+    .screenshots-logo {
+      background-image: url("../img/landing-Screenshot-logo.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: $grid-unit * 1.5;
+      position: relative;
+      width: 318px;
+    }
+
+    @include respond-to("small") {
+      margin: $grid-unit auto;
+    }
+  }
+
+  .alt-actions {
+    display: flex;
+    align-items: center;
+    margin-right: $grid-unit * 1.5;
+  }
+
+  a.nav-button {
+    &:focus {
+      outline: 1px dotted $black;
+    }
+  }
+
+  .nav-button {
+    @include flex-container(column, center, center);
+    color: #4a4a4a;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: transparent;
+    border: 0;
+    outline: none;
+    display: flex;
+    flex-basis: 96px;
+    font-size: 14px;
+    color: #2a2a2e;
+    font-weight: bold;
+    height: 96px;
+    width: 96px;
+    text-align: center;
+    background-size: 24px 24px;
+    background-position: center 24px;
+    background-repeat: no-repeat;
+
+    &:active,
+    &:hover {
+      background-color: $light-hover;
+    }
+
+    &.hidden {
+      display: none;
+    }
+
+    &.icon-shots {
+      background-image: url("../img/icon-shots.svg"); 
+    }
+
+    &.icon-settings {
+      background-image: url("../img/icon-settings.svg");
+    }
+
+    .icon-favorite {
+      background-image: url("../img/icon-heart.svg");
+    }
+
+    &.icon-trash {
+      background-image: url("../img/icon-trash.svg");
+    }
+
+    &.icon-edit {
+      background-image: url("../img/icon-pen.svg");
+    }
+
+    &.icon-download {
+      background-image: url("../img/icon-download.svg");
+    }
+
+    .icon-favorite {
+      &.favorite {
+        width: 24px;
+        height: 24px;
+        margin: 0 0 8px;
+        background-size: 24px 24px;
+        filter: brightness(2.4);
+
+        &.is-fav {
+          filter: brightness(1);
+        }
+      }
+    }
+
+    span {
+      margin-top: 30px;
+      color: #2a2a2e;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 96px;
+    }
+
+    .favorite-text {
+      &.favorite {
+        margin-top: 0;
+        color: #95929a;
+
+        &.is-fav {
+          color: #4a4a4a;
+        }
+      }
+    }
+  }
+
+  .nav-link {
+    @include flex-container(column, center, center);
+    color: $black;
+    border-right: 1px solid $light-border;
+    height: 96px;
+    &:active,
+    &:hover {
+      background-color: $light-hover;
+    }
+  }
+}

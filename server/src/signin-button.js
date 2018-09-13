@@ -17,8 +17,8 @@ exports.SignInButton = class SignInButton extends React.Component {
 
   render() {
     if (this.state.displaySettings) {
-      return <Localized id="settingsButton">
-        <a className="settings-button" href="/settings" aria-label="Settings">
+      return <Localized id="buttonSettings">
+        <a className="nav-button icon-settings" tabIndex="0" href="/settings" title="Settings">
           <Localized id="gSettings">
             <span>Settings</span>
           </Localized>
@@ -26,22 +26,22 @@ exports.SignInButton = class SignInButton extends React.Component {
       </Localized>;
     }
 
-    const logInURI = "/api/fxa-oauth/login/" + this.props.initiatePage;
-    return <Localized id="signInButton">
-      <a className="signin-button" href={logInURI} onClick={ this.clickHandler.bind(this) } aria-label="Sign In">
-        <Localized id="gSignIn">
-          <span>Sign In</span>
-        </Localized>
-      </a>
-    </Localized>;
+    const logInURI = "/api/fxa-oauth/login/" + this.props.initialPage;
+    return <Localized id="buttonSignIn">
+        <a className="nav-button icon-settings" tabIndex="0" href={logInURI} title="SignIn" onClick={this.clickHandler.bind(this)}>
+          <Localized id="gSignIn">
+            <span>Sign In</span>
+          </Localized>
+        </a>
+      </Localized>;
   }
 
   clickHandler(event) {
-    sendEvent("fxa-signin", this.props.initiatePage, {useBeacon: true});
+    sendEvent("fxa-signin", this.props.initialPage, {useBeacon: true});
   }
 };
 
 exports.SignInButton.propTypes = {
-  initiatePage: PropTypes.string,
+  initialPage: PropTypes.string,
   isAuthenticated: PropTypes.bool,
 };

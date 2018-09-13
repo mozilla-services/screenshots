@@ -1,21 +1,41 @@
 @import "partials/partials";
 @import "partials/delete-confirmation";
 
-.frame-header {
-  @include respond-to("medium") {
-    @include flex-container(row, space-between, stretch);
-    height: $grid-unit * 5;
-  }
-
-  @include respond-to("small") {
-    @include flex-container(row, space-between, stretch, wrap);
-  }
-}
-
 .alt-notification {
   @include flex-container(row, flex-start, center);
   min-height: 55px;
   padding: 5px 20px;
+}
+
+.back-to-home {
+  @include respond-to("small") {
+    background-size: 24px auto;
+    padding-left: 40px;
+    border: 0;
+  }
+
+  background-position: left center;
+  background-image: url("../img/icon-screenshot.svg");
+  background-repeat: no-repeat;
+  background-size: 36px auto;
+  padding-left: 52px;
+  margin: 0 16px;
+
+  span {
+    display: block;
+    text-align: left;
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    &.small-text {
+      font-size: 17px;
+      padding-left: 0;
+    }
+  }
+
+  .sub {
+    font-size: 12px;
+  }
 }
 
 .shot-main-actions {
@@ -47,10 +67,91 @@
   }
 }
 
+.shot-alt-actions {
+  .edit-shot-button {
+    position: relative;
+  }
+
+  @include flex-container(row, flex-end, center);
+  @include respond-to("small") {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+}
+
+.shot-info {
+  @include flex-container(column, center, flex-start);
+  color: $black;
+  padding: 0 0 0 $grid-unit;
+
+  > div {
+    white-space: nowrap;
+  }
+}
+
+.shot-title,
+.shot-subtitle {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+  max-width: 600px;
+}
+
+.shot-title {
+  @include respond-to("small") {
+    font-size: 20px;
+    line-height: 20px;
+    padding-bottom: 4px;
+  }
+
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 28px;
+  padding-bottom: 8px;
+
+  &.saving {
+    opacity: 0.7;
+  }
+
+  &.editable {
+    cursor: default;
+    padding-right: 28px;
+
+    &:hover {
+      background-image: url("/static/img/pencil.svg");
+      background-position: right 5px;
+      background-repeat: no-repeat;
+      background-size: 20px 20px;
+    }
+  }
+}
+
+.shot-subtitle {
+  @include flex-container(row, flex-start, center);
+  font-size: 15px;
+}
+
+.shot-title-input {
+  border-radius: $border-radius;
+  border: 1px solid $active-blue;
+  font-size: 24px;
+  font-weight: 300;
+  height: 32px;
+  margin: 0 0 4px -6px;
+  padding: 0 5px;
+  overflow: auto;
+}
+
+.subtitle-link,
+.time-diff {
+  margin-right: 8px;
+}
+
 .promo-panel {
   position: absolute;
-  top: 45px;
-  right: -45px;
+  top: 90px;
+  right: -30px;
   border-radius: 3px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2);
   width: 150px;
@@ -93,153 +194,10 @@
   }
 }
 
-.shot-alt-actions {
-  #downloadIcon {
-    margin-right: 4px;
-  }
-
-  .edit-shot-button {
-    position: relative;
-  }
-
-  @include respond-to("small") {
-    padding-right: $grid-unit * 0.5;
-
-    .download-text {
-      display: none;
-    }
-
-    #downloadIcon {
-      margin-right: 0;
-    }
-  }
-
-  @include flex-container(row, flex-end, center);
-  padding-right: $grid-unit * 1.5;
-}
-
-.shot-info {
-  @include flex-container(column, center, flex-start);
-  color: $black;
-  padding: 0 0 0 $grid-unit;
-
-  > div {
-    white-space: nowrap;
-  }
-}
-
-.fav-wrapper {
-  &:active,
-  &:hover {
-    background-color: $light-hover;
-  }
-  border-radius: $border-radius;
-  margin-right: $grid-unit * 0.5;
-}
-.favorite {
-  background: url("../img/icon-heart.svg");
-  background-size: 20px 20px;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: brightness(2.4);
-
-  &.is-fav {
-    filter: brightness(1);
-  }
-}
-
 .delete-confirmation-dialog {
   &.right-align {
-    top: 48px;
+    top: 88px;
   }
-}
-
-
-.back-to-index {
-  @include respond-to("small") {
-    background-position: left -5px center;
-    background-repeat: no-repeat;
-    background-size: 36px auto;
-    height: 32px;
-    padding-left: 28px;
-  }
-
-  @include flex-container(row, flex-start, center);
-  background-image: url("../img/shots.svg");
-  background-position: left center;
-  background-repeat: no-repeat;
-  background-size: 46px 46px;
-  height: 46px;
-  line-height: 46px;
-  padding: 0 0 0 46px;
-}
-
-.back-to-home {
-  @include respond-to("small") {
-    background-position: left center;
-    background-repeat: no-repeat;
-    background-size: 24px auto;
-    height: 32px;
-    padding-left: 30px;
-  }
-
-  background-image: url("../img/new-scissors-icon.svg");
-  background-position: left bottom;
-  background-repeat: no-repeat;
-  background-size: 30px auto;
-  height: 34px;
-  padding-left: 42px;
-
-  > span {
-    display: block;
-    text-align: left;
-  }
-
-  .sub {
-    font-size: 12px;
-  }
-}
-
-.shot-title,
-.shot-subtitle {
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.shot-title {
-
-  @include respond-to("small") {
-    font-size: 20px;
-    line-height: 20px;
-    padding-bottom: 4px;
-  }
-
-  font-size: 28px;
-  font-weight: 300;
-  line-height: 28px;
-  padding-bottom: 8px;
-
-  &.saving {
-    opacity: 0.7;
-  }
-
-  &.editable {
-    cursor: default;
-    padding-right: 28px;
-
-    &:hover {
-      background-image: url("/static/img/pencil.svg");
-      background-position: right 5px;
-      background-repeat: no-repeat;
-      background-size: 20px 20px;
-    }
-  }
-}
-
-.subtitle-link,
-.time-diff {
-  margin-right: 8px;
 }
 
 .keep-for-form {
@@ -344,7 +302,6 @@
   display: none;
 }
 
-.edit,
 .pen-button,
 .text-button,
 .highlight-button {
@@ -359,10 +316,9 @@
   background-image: url("../img/edit-highlight.svg");
   height: 17px;
   width: 17px;
-  position: relative;
-  left: -31px;
-  top: -5px;
-  margin-right: -17px;
+  position: absolute;
+  left: 50px;
+  top: 20px;
   cursor: pointer;
 }
 

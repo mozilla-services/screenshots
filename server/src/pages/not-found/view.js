@@ -3,6 +3,7 @@ const { Footer } = require("../../footer-view.js");
 const { Localized } = require("fluent-react/compat");
 const React = require("react");
 const PropTypes = require("prop-types");
+const { Header } = require("../../header.js");
 
 class Head extends React.Component {
   render() {
@@ -28,9 +29,7 @@ class Body extends React.Component {
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <div className="column-space full-height default-color-scheme">
-          <div id="shot-index-header" className="header">
-            <h1><a href="/shots">Firefox <strong>Screenshots</strong> <sup>Beta</sup></a></h1>
-          </div>
+          <Header hasLogo={true} />
           <div id="shot-index" className="flex-1">
             <div className="no-shots" key="no-shots-found">
               <Localized id="gNoShots">
