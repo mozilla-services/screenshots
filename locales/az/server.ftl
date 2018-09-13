@@ -14,10 +14,12 @@ gSignIn = Daxil ol
 
 ## Header
 
-signInButton =
-    .aria-label = Daxil ol
-settingsButton =
-    .aria-label = Tənzimləmələr
+buttonSettings =
+    .title = Tənzimləmələr
+buttonSignIn =
+    .title = Daxil ol
+screenshotsLogo =
+    .title = Screenshots Ana Səhifəsi
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Şərtlər
 footerLinkPrivacy = Məxfilik Bildirişi
+footerReportShot = Görüntünü şikayət et
+    .title = Bu görüntünü təhqir, spam və ya digər problemlər üçün şikayət et
 footerLinkFaqs = ÇSS
 footerLinkDMCA = Müəllif hüquqlarının pozuntusu haqqında xəbər ver
 footerLinkDiscourse = Əks-əlaqə ver
@@ -120,15 +124,23 @@ shotPageExpiredMessage = Bu görüntünün vaxtı keçib.
 shotPageExpiredMessageDetails = Görüntünün çəkildiyi səhifənin ünvanı:
 shotPageDeleteButton =
     .title = Bu görüntünü sil
-shotPageAbuseButton =
-    .title = Bu görüntünü təhqiredici məzmun, spam və ya digər problemlərə görə şikayət et
 shotPageDownloadShot =
     .title = Endir
 shotPageEditButton =
     .title = Bu şəkli redaktə et
 shotPagefavoriteButton =
     .title = Bu görüntünü seçilmiş et
+shotPageBackToHomeButton =
+    .title = Ana Səhifə
+shotPageAllShotsButton =
+    .title = Bütün Görüntülər
+shotPageAllShots = Bütün Görüntülər
 shotPageDownload = Endir
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Çək-Qarala
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Seçilmiş et
+shotPageDelete = Sil
 shotPageScreenshotsDescription = Ekran görüntülərini almağı asanlaşdırdıq. Firefox-u tərk etmədən ekran görüntülərini alın, saxlayın və paylaşın.
 shotPageUpsellFirefox = Firefox-u indi əldə et
 shotPageDMCAMessage = Bu görüntü üçüncü tərəfin müəllif hüquqlarının pozuntusu tələbinə görə artıq əlçatan deyil.
@@ -293,6 +305,8 @@ shotIndexPageNoShotsInvitation = İrəli, bir neçəsini yaradın.
 shotIndexPageLookingForShots = Görüntülərinizi axtarırıq…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Axtarışınıza uyğun görüntü tapa bilmədik.
+shotIndexPageMyShotsButton =
+    .title = Ekran Görüntülərim
 shotIndexPageClearSearchButton =
     .title = Axtarışı təmizlə
 shotIndexPageConfirmShotDelete = Bu görüntü silinsin?
