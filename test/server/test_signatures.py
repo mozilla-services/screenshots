@@ -1,5 +1,6 @@
 from __future__ import print_function
 from clientlib import ScreenshotsClient
+import urllib
 
 
 def test_download_key():
@@ -25,5 +26,25 @@ def test_download_key():
     assert not resp.headers.get("Content-Disposition"), "The signature shouldn't work"
 
 
+def test_scopes():
+    user = ScreenshotsClient()
+    user.login()
+    abtests = user.session.cookies["abtests"]
+    abtests_sig = user.session.cookies["abtests.sig"]
+    print(abtests, abtests_sig)
+    shot = user.create_shot(docTitle="A_TEST_SITE")
+    page = user.read_shot(shot)
+    download_url = page["download_url"]
+    resp = user.session.get(download_url)
+    assert resp.headers.get("Content-Disposition")
+    mixed_up = "%s?download=%s&sig=%s" % (
+        download_url.split("?")[0],
+        urllib.quote(abtests),
+        urllib.quote(abtests_sig),
+    )
+    resp = user.session.get(mixed_up)
+    assert not resp.headers.get("Content-Disposition")
+
 if __name__ == "__main__":
     test_download_key()
+    test_scopes()
