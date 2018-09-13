@@ -6,27 +6,20 @@
   @include flex-container(row, space-between, center);
   padding: $grid-unit * 1.5;
 
-
-
-  a {
-    font-size: $grid-unit * 0.75;
-  }
-
-  .legal-links {
+  .footer-links {
+    display: flex;
+    list-style: none;
+    margin: 0 0;
+    padding: 0 0;
 
     @include respond-to("small") {
       @include flex-container(column, space-between, stretch);
     }
-  }
 
-  .legal-links a {
-
-    @include respond-to("small") {
-      margin-top: $grid-unit * 0.25;
+    li {
+      font-size: 14px;
+      margin-right: 16px;
     }
-
-    font-size: 12px;
-    margin-right: $grid-unit * 0.75;
   }
 
   .mozilla-logo {
