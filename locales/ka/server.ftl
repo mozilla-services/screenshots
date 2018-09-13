@@ -14,10 +14,12 @@ gSignIn = შესვლა
 
 ## Header
 
-signInButton =
-    .aria-label = შესვლა
-settingsButton =
-    .aria-label = პარამეტრები
+buttonSettings =
+    .title = პარამეტრები
+buttonSignIn =
+    .title = შესვლა
+screenshotsLogo =
+    .title = Screenshots მთავარი
 
 ## Footer
 
@@ -128,7 +130,17 @@ shotPageEditButton =
     .title = სურათის ჩასწორება
 shotPagefavoriteButton =
     .title = სურათის რჩეულად მონიშვნა
+shotPageBackToHomeButton =
+    .title = მთავარი გვერდი
+shotPageAllShotsButton =
+    .title = ყველა გადაღებული
+shotPageAllShots = ყველა გადაღებული
 shotPageDownload = ჩამოტვირთვა
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = დახატვა
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = რჩეული
+shotPageDelete = წაშლა
 shotPageScreenshotsDescription = ეკრანისთვის სურათის გადაღება უმარტივესია. გადაუღეთ, შეინახეთ და გააზიარეთ სურათები Firefox-ის დატოვების გარეშე.
 shotPageUpsellFirefox = გადმოწერეთ Firefox ახლავე
 shotPageDMCAMessage = სურათი წაიშალა მესამე მხარის მოთხოვნით, საავტორო უფლების დარღვევის საფუძველზე.
@@ -289,6 +301,8 @@ shotIndexPageNoShotsInvitation = მიდით, შექმენით რ�
 shotIndexPageLookingForShots = სურათების მოძიება...
 shotIndexPageNoSearchResultsIntro = ჰმ
 shotIndexPageNoSearchResults = მითითებული ფრაზით, სურათები ვერ მოიძებნა.
+shotIndexPageMyShotsButton =
+    .title = ჩემი გადაღებულები
 shotIndexPageClearSearchButton =
     .title = ძიების გასუფთავება
 shotIndexPageConfirmShotDelete = წაიშალოს ეს სურათი?
