@@ -4,14 +4,13 @@ const PropTypes = require("prop-types");
 const { Localized } = require("fluent-react/compat");
 const { Footer } = require("../../footer-view");
 const sendEvent = require("../../browser-send-event.js");
-const { ShareButton } = require("../../share-buttons");
-const { SignInButton } = require("../../signin-button.js");
 const { PromoDialog } = require("./promo-dialog");
 const { DeleteShotButton } = require("../../delete-shot-button");
 const { TimeDiff } = require("./time-diff");
 const reactruntime = require("../../reactruntime");
 const { Editor } = require("./editor");
 const { isValidClipImageUrl } = require("../../../shared/shot");
+const { ShotPageHeader } = require("./shotpage-header");
 
 class Clip extends React.Component {
   constructor(props) {
@@ -337,34 +336,29 @@ class Body extends React.Component {
       <Localized id="shotPageConfirmDelete" key="error-4"><div id="shotPageConfirmDelete" hidden></div></Localized>,
     ];
 
-    const linkTextShort = shot.urlDisplay;
-
-    const timeDiff = <TimeDiff date={shot.createdDate} />;
-    let expirationSubtitle;
-    if (this.props.expireTime === null) {
-      expirationSubtitle = <Localized id="shotPageDoesNotExpire"><span>does not expire</span></Localized>;
-    } else {
-      const expired = this.props.expireTime < Date.now();
-      const expireTimeDiff = <TimeDiff date={this.props.expireTime}/>;
-      if (expired) {
-        expirationSubtitle = <Localized id="shotPageExpired" $timediff={expireTimeDiff}><span>expired {expireTimeDiff}</span></Localized>;
-      } else {
-        expirationSubtitle = <Localized id="shotPageExpiresIn" $timediff={expireTimeDiff}><span>expires {expireTimeDiff}</span></Localized>;
-      }
-    }
-
     let favoriteShotButton = null;
     let trashOrFlagButton = null;
     let editButton = null;
     const highlight = this.state.highlightEditButton ? <div className="edit-highlight" onClick={ this.onClickEdit.bind(this) } onMouseOver={ this.onMouseOverHighlight.bind(this) } onMouseOut={ this.onMouseOutHighlight.bind(this) }></div> : null;
-
     const activeFavClass = this.props.expireTime ? "" : "is-fav";
     const shouldShow = this.props.isFxaAuthenticated ? "" : "hidden";
-    favoriteShotButton = <div className="fav-wrapper"><Localized id="shotPagefavoriteButton"><button
-      className={`button favorite ${shouldShow} ${activeFavClass}`}
-      title="Favorite this shot"
-      onClick={ this.onClickFavorite.bind(this) }
-    /></Localized></div>;
+
+    favoriteShotButton = <div className="favorite-shot-button"><Localized id="shotPagefavoriteButton">
+      <button className={`nav-button ${shouldShow} `} onClick={this.onClickFavorite.bind(this)}>
+        <span className={`icon-favorite favorite ${activeFavClass}`} ></span>
+        <Localized id="shotPageFavorite">
+          <span className={`favorite-text favorite ${activeFavClass} `}>Favorite</span>
+        </Localized>
+      </button></Localized></div>;
+
+    const downloadButton = <div className="download-shot-button"><Localized id="shotPageDownloadShot">
+      <button className={`nav-button icon-download`} onClick={this.onClickDownload.bind(this)}
+        title="Download the shot image">
+        <Localized id="shotPageDownload">
+          <span>Download</span>
+        </Localized>
+      </button>
+    </Localized></div>;
 
     if (this.props.isOwner) {
       trashOrFlagButton = <DeleteShotButton
@@ -372,27 +366,20 @@ class Body extends React.Component {
         confirmDeleteHandler={ this.confirmDeleteHandler.bind(this) }
         cancelDeleteHandler={ this.cancelDeleteHandler.bind(this) } />;
 
-      editButton = <div className="edit-shot-button">
+      editButton = this.props.enableAnnotations ? <div className="edit-shot-button">
         <Localized id="shotPageEditButton">
-          <button className="button transparent edit" title="Edit this image" onClick={ this.onClickEdit.bind(this) } ref={(edit) => { this.editButton = edit; }}></button>
+          <button className="nav-button icon-edit transparent edit"
+            title="Edit this image"
+            onClick={this.onClickEdit.bind(this)}
+            ref={(edit) => { this.editButton = edit; }}>
+            <Localized id="shotPageDraw">
+              <span>Draw</span>
+            </Localized>
+          </button>
         </Localized>
         <PromoDialog promoClose={this.promoClose.bind(this)} display={this.state.promoDialog} />
-        </div>;
-    }
-
-    let myShotsHref = "/shots";
-    let myShotsText = <Localized id="gMyShots"><span className="back-to-index">My Shots</span></Localized>;
-    // FIXME: this means that on someone else's shot they won't see a My Shots link:
-    if (!this.props.isOwner) {
-      myShotsText = <span className="back-to-home">
-        <span>
-          Firefox
-        </span>
-        <span style={{fontWeight: "bold"}}>
-          Screenshots
-        </span>
-      </span>;
-      myShotsHref = "/";
+        { highlight }
+        </div> : null;
     }
 
     let clip;
@@ -407,52 +394,21 @@ class Body extends React.Component {
     }
 
     let renderGetFirefox = this.props.userAgent && (this.props.userAgent + "").search(/firefox\/\d{1,255}/i) === -1;
-    let renderExtensionNotification = !(this.props.isExtInstalled || renderGetFirefox);
     if (this.props.isMobile || this.state.closeBanner) {
-      renderGetFirefox = renderExtensionNotification = false;
+      renderGetFirefox = false;
     }
 
-    const noText = this.props.abTests && this.props.abTests.downloadText
-                   && this.props.abTests.downloadText.value === "no-download-text";
-    const signIn = this.props.isOwner ?
-                    <div className="shot-fxa-signin">
-                      <SignInButton isAuthenticated={this.props.isFxaAuthenticated} initiatePage={this.props.shot.id} />
-                    </div> : null;
     return (
       <reactruntime.BodyTemplate {...this.props}>
         { renderGetFirefox ? this.renderFirefoxRequired() : null }
         <div id="frame" className="inverse-color-scheme full-height column-space">
-        <div className="frame-header default-color-scheme">
-        <a className="block-button button secondary" href={ myShotsHref } onClick={this.onClickMyShots.bind(this)}>{ myShotsText }</a>
-          <div className="shot-main-actions">
-            <div className="shot-info">
-              <EditableTitle title={shot.title} isOwner={this.props.isOwner} />
-              <div className="shot-subtitle">
-                { linkTextShort ? <a className="subtitle-link" rel="noopener noreferrer" href={ shot.url } target="_blank" onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> : null }
-                <span className="time-diff">{ timeDiff }</span>
-                { expirationSubtitle }
-              </div>
-            </div>
-          </div>
-          <div className="shot-alt-actions">
-            { favoriteShotButton }
-            { trashOrFlagButton }
-            { this.props.enableAnnotations ? editButton : null }
-            { highlight }
-            <ShareButton abTests={this.props.abTests} clipUrl={clipUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} renderExtensionNotification={renderExtensionNotification} isExtInstalled={this.props.isExtInstalled} />
-            <Localized id="shotPageDownloadShot">
-              <a className="button primary" href={ this.props.downloadUrl } onClick={ this.onClickDownload.bind(this) }
-                title="Download the shot image">
-                <img id="downloadIcon" style={noText ? {marginRight: "0"} : {}}
-                    src={this.props.staticLink("/static/img/download-white.svg")}
-                    width="20" height="20" />
-                { !noText &&
-                    <Localized id="shotPageDownload"><span className="download-text">Download</span></Localized> }
-              </a>
-            </Localized>
-            { signIn }
-          </div>
-        </div>
+        <ShotPageHeader isOwner={this.props.isOwner} isFxaAuthenticated={this.props.isFxaAuthenticated}
+          shot={this.props.shot} expireTime={this.props.expireTime}>
+          { favoriteShotButton }
+          { editButton }
+          { downloadButton }
+          { trashOrFlagButton }
+        </ShotPageHeader>
         <section className="clips">
           { this.props.isOwner && this.props.loginFailed ? <LoginFailedWarning /> : null }
           { errorMessages }
@@ -524,15 +480,6 @@ class Body extends React.Component {
     this.props.controller.changeShotExpiration(this.props.shot, this.props.defaultExpiration);
   }
 
-  onClickMyShots() {
-    if (this.props.isOwner) {
-      sendEvent("goto-myshots", "navbar", {useBeacon: true});
-    } else {
-      sendEvent("goto-homepage", "navbar", {useBeacon: true});
-    }
-    // Note: we allow the default action to continue
-  }
-
   onClickOrigUrl(label) {
     if (this.props.isOwner) {
       sendEvent("view-original", `${label}-owner`, {useBeacon: true});
@@ -555,6 +502,7 @@ class Body extends React.Component {
 
   onClickDownload() {
     sendEvent("download", "navbar");
+    location.href = this.props.downloadUrl;
   }
 
   onClickFeedback() {
@@ -587,82 +535,6 @@ Body.propTypes = {
   staticLink: PropTypes.func,
   userAgent: PropTypes.string,
   userLocales: PropTypes.array,
-};
-
-
-class EditableTitle extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {isEditing: false, isSaving: false, minWidth: 200};
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    // When the save completes, this component just gets updated with the new title
-    if (this.state.isSaving && this.state.isSaving === nextProps.title) {
-      this.setState({isSaving: false});
-    }
-  }
-
-  render() {
-    if (this.state.isEditing) {
-      return this.renderEditing();
-    }
-    let className = "shot-title";
-    const handlers = {};
-    if (this.props.isOwner) {
-      className += " editable";
-      handlers.onClick = this.onClick.bind(this);
-    }
-    if (this.state.isSaving) {
-      className += " saving";
-    }
-    return <span ref={titleElement => this.titleElement = titleElement} className={className} {...handlers}>{this.state.isSaving || this.props.title}</span>;
-  }
-
-  renderEditing() {
-    return <form onSubmit={this.onExit.bind(this)}>
-      <input ref={(input) => this.textInput = input}
-        className="shot-title-input"
-        style={{minWidth: this.state.minWidth}}
-        type="text" defaultValue={this.props.title} autoFocus="true"
-        onBlur={this.onExit.bind(this)} onKeyUp={this.onKeyUp.bind(this)} onFocus={this.onFocus} />
-    </form>;
-  }
-
-  onClick() {
-    if (!this.state.isEditing) {
-      this.setState({minWidth: this.titleElement.offsetWidth });
-    }
-    this.setState({isEditing: true});
-  }
-
-  onExit() {
-    const val = this.textInput.value;
-
-    if (val.trim() === "") {
-      this.setState({isEditing: false, isSaving: false});
-    } else {
-      controller.setTitle(val);
-      this.setState({isEditing: false, isSaving: val});
-    }
-  }
-
-  onFocus(event) {
-    event.target.select();
-  }
-
-  onKeyUp(event) {
-    if ((event.key || event.code) === "Escape") {
-      this.setState({isEditing: false});
-    }
-  }
-
-}
-
-EditableTitle.propTypes = {
-  isOwner: PropTypes.bool,
-  title: PropTypes.string,
 };
 
 class LoginFailedWarning extends React.Component {

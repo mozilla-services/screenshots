@@ -11,10 +11,13 @@ gSettings = Settings
 gSignIn = Sign In
 
 ## Header
-signInButton =
-    .aria-label = Sign In
-settingsButton =
-    .aria-label = Settings
+buttonSettings =
+    .title = Settings
+buttonSignIn =
+    .title = Sign In
+screenshotsLogo =
+    .title = Screenshots Home
+
 
 ## Footer
 
@@ -125,7 +128,17 @@ shotPageEditButton =
     .title = Edit this image
 shotPagefavoriteButton =
     .title = Favorite this shot
+shotPageBackToHomeButton =
+    .title = Homepage
+shotPageAllShotsButton =
+    .title = All Shots
+shotPageAllShots = All Shots
 shotPageDownload = Download
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Draw
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Favorite
+shotPageDelete = Delete
 shotPageScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
 shotPageUpsellFirefox = Get Firefox now
 shotPageDMCAMessage = This shot is no longer available due to a third party intellectual property claim.
@@ -285,6 +298,8 @@ shotIndexPageNoShotsInvitation = Go on, create some.
 shotIndexPageLookingForShots = Looking for your shots…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = We canʼt find any shots that match your search.
+shotIndexPageMyShotsButton =
+    .title = My Shots
 shotIndexPageClearSearchButton =
     .title = Clear search
 shotIndexPageConfirmShotDelete = Delete this shot?

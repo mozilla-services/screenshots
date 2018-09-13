@@ -78,10 +78,14 @@ exports.DeleteShotButton = class DeleteShotButton extends React.Component {
     return (
       <div className="delete-shot-button">
         <Localized id="shotPageDeleteButton">
-          <button className={`button transparent trash ${deletePanelOpenClass}`}
+          <button className={`nav-button transparent icon-trash trash ${deletePanelOpenClass} `}
             title="Delete this shot permanently"
             onClick={this.onClickDelete.bind(this)}
-            ref={this.trashButtonRef}></button>
+            ref={this.trashButtonRef}>
+            <Localized id="shotPageDelete">
+              <span>Delete</span>
+            </Localized>
+          </button>
         </Localized>
         { confirmationPanel }
       </div>

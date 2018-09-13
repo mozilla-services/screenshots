@@ -7,9 +7,7 @@
   background: $light-default;
 }
 
-#shot-index-header,
 #shot-index {
-
   @include respond-to("small") {
     width: 480px;
   }
@@ -23,50 +21,31 @@
   }
 }
 
-#shot-index-header {
+
+#search-form {
+  @include flex-container(row, flex-start, stretch);
+  position: absolute;
+  right: 150px;
+  top: 40px;
+
   @include respond-to("small") {
-    @include flex-container(column, flex-start, center);
+    right: 100px;
+    top: 60px;
   }
 
-  @include respond-to("medium") {
-    @include flex-container(row, center, center);
-  }
-
-  @include respond-to("large") {
-    @include flex-container(row, center, center);
-  }
-
-  margin: 40px auto 15px;
-  position: relative;
-
-  form {
-    @include respond-to("small") {
-      position: relative;
-
-      input[type="search"] {
-        margin: 20px 0 10px;
-        width: 320px;
-      }
-    }
-
-    @include flex-container(row, flex-start, stretch);
+  .clear-search {
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border: 0;
+    background-image: url("../img/icon-clear.svg");
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: center top 5px;
     position: absolute;
     right: 0;
-
-    .clear-search {
-      width: 28px;
-      height: 28px;
-      background: transparent;
-      border: 0;
-      background-image: url("../img/icon-clear.svg");
-      background-size: 12px 12px;
-      background-repeat: no-repeat;
-      background-position: center top 5px;
-      position: absolute;
-      right: 0;
-      opacity: 0;
-      transition: opacity $bezier 150ms;
-    }
+    opacity: 0;
+    transition: opacity $bezier 150ms;
   }
 
   input[type="search"] {
@@ -95,34 +74,9 @@
   }
 }
 
-h1 {
-  background-image: url("../img/new-scissors-icon.svg");
-  background-position: left center;
-  background-repeat: no-repeat;
-  background-size: 25px auto;
-  font-size: 30px;
-  font-weight: 400;
-  margin: 0;
-  padding: 0 0 0 32px;
-  text-align: center;
-
-  .default-color-scheme & a {
-    color: $dark-default;
-  }
-
-  sup {
-    background: $active-blue;
-    border-radius: 2px;
-    color: #fff;
-    font-size: 14px;
-    padding: 2px 4px;
-    text-transform: uppercase;
-  }
-}
-
 #shot-index {
   @include flex-container(column, flex-start, stretch);
-  margin: 0 auto;
+  margin: 10px auto;
 }
 
 .shot {

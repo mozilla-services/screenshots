@@ -3,9 +3,9 @@ const PropTypes = require("prop-types");
 const reactruntime = require("../../reactruntime");
 const classnames = require("classnames");
 const sendEvent = require("../../browser-send-event.js");
-const { SignInButton } = require("../../signin-button.js");
 const { Footer } = require("../../footer-view.js");
 const { Localized } = require("fluent-react/compat");
+const { HomePageHeader } = require("./homepage-header");
 
 class Head extends React.Component {
   generateFullLink(link) {
@@ -48,11 +48,6 @@ Head.propTypes = {
 };
 
 class Body extends React.Component {
-  onClickMyShots() {
-    sendEvent("goto-myshots", "homepage", {useBeacon: true});
-    window.location = "/shots";
-  }
-
   onClickInstallFirefox() {
     sendEvent("click-install-firefox-home", {useBeacon: true});
   }
@@ -79,46 +74,25 @@ class Body extends React.Component {
   }
 
   render() {
-    let myShots;
-    if (this.props.showMyShots) {
-      myShots = <a className="myshots-button" onClick={ this.onClickMyShots.bind(this) }>
-        <Localized id="gMyShots">
-          <span className="myshots-text">My Shots</span>
-        </Localized>
-      </a>;
-    }
-    const signin = (this.props.isFirefox && this.props.showMyShots) ? <SignInButton isAuthenticated={this.props.hasFxa} initiatePage="" /> : null;
     const is57 = this.props.isFirefox && this.props.firefoxVersion >= 57;
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <div className="default-color-scheme">
-          <header>
-            <nav>
-              <div className="container">
-                <div className="header-logo">
-                  <a href="#" className="screenshots-logo"></a>
-                </div>
-                <div className="nav-links">
-                  { myShots }
-                  { signin }
-                </div>
+          <HomePageHeader isOwner={this.props.showMyShots} isFirefox={this.props.isFirefox}
+            hasFxa={this.props.hasFxa} />
+          <div className="banner">
+            <div className="banner-image-back" />
+            <div className="banner-container">
+              <div className="banner-content">
+                <h1>Firefox Screenshots</h1>
+                <Localized id="gScreenshotsDescription">
+                  <p>Screenshots made simple. Take, save, and share screenshots without leaving Firefox.</p>
+                </Localized>
+                { this.renderGetFirefox() }
               </div>
-            </nav>
-            <div className="banner-spacer" />
-            <div className="banner">
-              <div className="banner-image-back" />
-              <div className="banner-container">
-                <div className="banner-content">
-                  <h1>Firefox Screenshots</h1>
-                  <Localized id="gScreenshotsDescription">
-                    <p>Screenshots made simple. Take, save, and share screenshots without leaving Firefox.</p>
-                  </Localized>
-                  { this.renderGetFirefox() }
-                </div>
-                <div className="banner-image-front" />
-              </div>
+              <div className="banner-image-front" />
             </div>
-          </header>
+          </div>
           <Localized id="homePageHowScreenshotsWorks">
             <h2 id="how-screenshots-works">How Screenshots Works</h2>
           </Localized>

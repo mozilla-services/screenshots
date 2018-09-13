@@ -5,12 +5,12 @@ const { Footer } = require("../../footer-view.js");
 const React = require("react");
 const PropTypes = require("prop-types");
 const { ShareButton } = require("../../share-buttons");
-const { SignInButton } = require("../../signin-button.js");
 const Masonry = require("react-masonry-component");
 const { Localized } = require("fluent-react/compat");
 const { isValidClipImageUrl } = require("../../../shared/shot");
 const { getThumbnailDimensions } = require("../../../shared/thumbnailGenerator");
 const { DeleteShotButton } = require("../../delete-shot-button");
+const { MyShotsHeader } = require("./myshots-header");
 
 class Head extends React.Component {
 
@@ -39,11 +39,9 @@ class Body extends React.Component {
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <div className="column-space full-height default-color-scheme" id="shot-index-page">
-          <div id="shot-index-header" className="header">
-            <h1><a href="/shots">Firefox <strong>Screenshots</strong> <sup>Beta</sup></a></h1>
-            {this.props.enableUserSettings && this.props.hasDeviceId ? this.renderFxASignIn() : null}
-            {this.props.disableSearch ? null : this.renderSearchForm()}
-          </div>
+          <MyShotsHeader hasDeviceId={this.props.hasDeviceId} hasFxa={this.props.hasFxa}
+            enableUserSettings={this.props.enableUserSettings} />
+          { this.props.disableSearch ? null : this.renderSearchForm() }
           <div id="shot-index" className="flex-1">
             { this.renderShots() }
           </div>
@@ -203,15 +201,9 @@ class Body extends React.Component {
     );
   }
 
-  renderFxASignIn() {
-    return (
-      <SignInButton isAuthenticated={this.props.hasFxa} initiatePage="shots" />
-    );
-  }
-
   renderSearchForm() {
     return (
-      <form onSubmit={ this.onSubmitForm.bind(this) }>
+      <form id="search-form" className="default-color-scheme" onSubmit={ this.onSubmitForm.bind(this) }>
         <span className="search-label" />
         <Localized id="shotIndexPageSearchPlaceholder">
           <input type="search" id="search" ref={searchInput => this.searchInput = searchInput} maxLength="100" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />
