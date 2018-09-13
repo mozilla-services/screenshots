@@ -8,16 +8,18 @@ gMyShots = Le mie immagini
 gHomeLink = Pagina iniziale
 gNoShots =
     .alt = Nessuna immagine trovata
-gScreenshotsDescription = Realizzare screenshot non è mai stato così facile. Cattura, salva e condividi le tue immagini senza uscire da Firefox.
+gScreenshotsDescription = Catturare schermate non è mai stato così facile. Cattura, salva e condividi le tue immagini senza uscire da Firefox.
 gSettings = Impostazioni
 gSignIn = Accedi
 
 ## Header
 
-signInButton =
-    .aria-label = Accedi
-settingsButton =
-    .aria-label = Impostazioni
+buttonSettings =
+    .title = Impostazioni
+buttonSignIn =
+    .title = Accedi
+screenshotsLogo =
+    .title = Pagina iniziale Screenshots
 
 ## Footer
 
@@ -44,7 +46,7 @@ creatingPageWaitMessage = Salvataggio dell’immagine…
 ## Home page
 
 homePageDescription =
-    .content = Un modo intuitivo di realizzare screenshot direttamente nel browser. Cattura, salva e condividi immagini durante la navigazione con Firefox.
+    .content = Un modo intuitivo di catturare schermate direttamente nel browser. Cattura, salva e condividi immagini durante la navigazione con Firefox.
 homePageButtonMyShots = Vai alle mie immagini
 homePageTeaser = Prossimamente…
 homePageDownloadFirefoxTitle = Firefox
@@ -128,7 +130,17 @@ shotPageEditButton =
     .title = Modifica immagine
 shotPagefavoriteButton =
     .title = Aggiungi immagine ai preferiti
+shotPageBackToHomeButton =
+    .title = Pagina iniziale
+shotPageAllShotsButton =
+    .title = Tutte le immagini
+shotPageAllShots = Tutte le immagini
 shotPageDownload = Scarica
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Disegna
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Aggiungi ai preferiti
+shotPageDelete = Elimina
 shotPageScreenshotsDescription = Realizzare screenshot non è mai stato così facile. Cattura, salva e condividi le tue immagini senza uscire da Firefox.
 shotPageUpsellFirefox = Installa Firefox adesso
 shotPageDMCAMessage = Questa immagine non è più disponibile a causa di una segnalazione di violazione della proprietà intellettuale da parte di soggetti terzi.
@@ -293,6 +305,8 @@ shotIndexPageNoShotsInvitation = Cosa aspetti? Creane qualcuna.
 shotIndexPageLookingForShots = Ricerca immagini…
 shotIndexPageNoSearchResultsIntro = Uhm
 shotIndexPageNoSearchResults = Non abbiamo trovato alcuna immagine che corrisponda al testo inserito.
+shotIndexPageMyShotsButton =
+    .title = Le mie immagini
 shotIndexPageClearSearchButton =
     .title = Pulisci ricerca
 shotIndexPageConfirmShotDelete = Eliminare questa immagine?
