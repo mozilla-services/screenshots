@@ -9,6 +9,15 @@ gHomeLink = Heim
 gNoShots =
     .alt = Fann ingen skjermbilde
 gScreenshotsDescription = Skjermbilete gjort enkelt. Ta, lagre og del skjermbilde utan å forlate Firefox.
+gSettings = Innstillingar
+gSignIn = Logg inn
+
+## Header
+
+buttonSettings =
+    .title = Innstillingar
+buttonSignIn =
+    .title = Logg inn
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = Gå til skjermbilda mine
 homePageTeaser = Kjem snart…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Gratis nedlasting
-homePageGetStarted = Kom i gang
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Slik fungerer Firefox Screenshots
 homePageGetStartedTitle = Kom i gang
@@ -112,13 +120,12 @@ shotPageExpiredMessage = Dette bildet har gått ut.
 shotPageExpiredMessageDetails = Her er sida det vart generert frå:
 shotPageDeleteButton =
     .title = Slett dette skjermbildet
-shotPageAbuseButton =
-    .title = Rapporter dette bildet for brot, spam (søppel) eller andre problem
 shotPageDownloadShot =
     .title = Last ned
 shotPageEditButton =
     .title = Rediger dette bildet
 shotPageDownload = Last ned
+shotPageDelete = Slett
 shotPageScreenshotsDescription = Skjermbilde gjort enkelt. Ta, lagre og del skjermbilde utan å forlate Firefox.
 shotPageUpsellFirefox = Last ned Firefox no
 shotPageDMCAMessage = Dette bildet er ikkje lenger tilgjengeleg på grunn av ein tredjepart sitt immaterielle krav.
@@ -181,6 +188,9 @@ timeDiffFutureDays =
        *[other] om { $number } dagar
     }
 errorThirdPartyCookiesEnabled = Viss du tok dette skjermbildet og ikkje kan slette det, må du kanskje kortvarig aktivere tredjeparts infokapslar frå innstillingane i nettlesaren.
+
+## Shot Page New Feature Promotion Dialog.
+
 
 ## Annotations
 
