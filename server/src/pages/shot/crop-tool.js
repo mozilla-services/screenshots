@@ -22,7 +22,7 @@ exports.CropTool = class CropTool extends React.Component {
     this.el = React.createRef();
     this.state = {
       selectionState: SelectionState.NONE,
-      cropSelection: null
+      cropSelection: null,
     };
     this.canvasCssWidth = props.canvasCssWidth;
     this.canvasCssHeight = props.canvasCssHeight;
@@ -71,32 +71,32 @@ exports.CropTool = class CropTool extends React.Component {
       top: zeroPx,
       height: selectionTopPx,
       left: zeroPx,
-      width: oneHundredPercent
+      width: oneHundredPercent,
     };
     const bgLeftStyles = {
       top: selectionTopPx,
       height: selectionHeightPx,
       left: zeroPx,
-      width: selectionLeftPx
+      width: selectionLeftPx,
     };
     const bgRightStyles = {
       top: selectionTopPx,
       height: selectionHeightPx,
       left: selectionRightPx,
-      width: remainingRightSideWidthPx
+      width: remainingRightSideWidthPx,
     };
     const bgBottomStyles = {
       top: selectionBottomPx,
       height: oneHundredPercent,
       left: zeroPx,
-      width: oneHundredPercent
+      width: oneHundredPercent,
     };
     const selectedStyles = {
       position: "absolute",
       top: selectionTopPx,
       left: selectionLeftPx,
       height: selectionHeightPx,
-      width: selectionWidthPx
+      width: selectionWidthPx,
     };
 
     let smallSelection = null;
@@ -118,7 +118,7 @@ exports.CropTool = class CropTool extends React.Component {
         <div className="mover-target direction-bottomLeft"><div className="mover"></div></div>
         <div className="mover-target direction-bottom"><div className="mover"></div></div>
         <div className="mover-target direction-bottomRight"><div className="mover"></div></div>
-      </div>
+      </div>,
     ];
   }
 
@@ -136,7 +136,7 @@ exports.CropTool = class CropTool extends React.Component {
   reset() {
     this.setState({
       selectionState: SelectionState.NONE,
-      cropSelection: null
+      cropSelection: null,
     });
   }
 
@@ -223,7 +223,7 @@ exports.CropTool = class CropTool extends React.Component {
     const boundingRect = this.el.current.getBoundingClientRect();
     return {
       x: e.clientX - boundingRect.left,
-      y: e.clientY - boundingRect.top
+      y: e.clientY - boundingRect.top,
     };
   }
 
@@ -342,7 +342,7 @@ exports.CropTool.propTypes = {
   baseCanvas: PropTypes.object,
   canvasPixelRatio: PropTypes.number,
   canvasCssWidth: PropTypes.number,
-  canvasCssHeight: PropTypes.number
+  canvasCssHeight: PropTypes.number,
 };
 
 // TODO This also exist in text-tool.js.  Move it to a shared space.

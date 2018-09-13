@@ -10,7 +10,7 @@ exports.HighlighterTool = class HighlighterTool extends DrawingTool {
     this.state = {
       strokeStyle: props.color || "#000",
       lineWidth: props.lineWidth || 20,
-      classNames: "highlighter"
+      classNames: "highlighter",
     };
   }
 

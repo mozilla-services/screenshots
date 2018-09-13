@@ -12,63 +12,63 @@ const conf = convict({
     format: "port",
     default: 10080,
     env: "PORT",
-    arg: "port"
+    arg: "port",
   },
   siteOrigin: {
     doc: "The server public origin (except protocol)",
     format: String,
     default: "localhost:10080",
     env: "SITE_ORIGIN",
-    arg: "siteOrigin"
+    arg: "siteOrigin",
   },
   contentOrigin: {
     doc: "The content server public origin (except protocol)",
     format: String,
     default: "localhost:10080",
     env: "CONTENT_ORIGIN",
-    arg: "contentOrigin"
+    arg: "contentOrigin",
   },
   expectProtocol: {
     doc: "Treat all incoming requests as using this protocol, instead of defaulting to http: or detecting from X-Forwarded-Proto",
     format: String,
     default: "",
     env: "EXPECT_PROTOCOL",
-    arg: "expectProtocol"
+    arg: "expectProtocol",
   },
   localhostSsl: {
     doc: "Turn on SSL on localhost, using ~/.localhost-ssl/*",
     format: Boolean,
     default: false,
     env: "LOCALHOST_SSL",
-    arg: "localhost-ssl"
+    arg: "localhost-ssl",
   },
   pngToJpegCutoff: {
     doc: "The limit at which a PNG is converted to a JPEG during an edit save, in bytes.  It should match the setting in the addon",
     format: "int",
     default: 2500000,
     env: "PNG_TO_JPEG_CUTOFF",
-    arg: "pngToJpegCutoff"
+    arg: "pngToJpegCutoff",
   },
   requestBodySizeLimit: {
     doc: "The maximum allowed body size of a request.  It needs to be a format that the 'bytes' node module accepts",
     format: String,
     default: "25mb",
     env: "REQUEST_BODY_SIZE_LIMIT",
-    arg: "requestBodySizeLimit"
+    arg: "requestBodySizeLimit",
   },
   useS3: {
     doc: "If true, store files in s3. If false, store them locally",
     format: Boolean,
     default: false,
     env: "USE_S3",
-    arg: "useS3"
+    arg: "useS3",
   },
   s3BucketName: {
     doc: "The name of the bucket to use on s3, if useS3 is true",
     format: String,
     default: "pageshot-images-bucket",
     env: "S3_BUCKET_NAME",
-    arg: "s3BucketName"
+    arg: "s3BucketName",
   },
   fxa: {
     oAuthServer: {
@@ -90,15 +90,15 @@ const conf = convict({
       format: String,
       default: "",
       env: "FXA_CLIENT_ID",
-      arg: "fxa-client-id"
+      arg: "fxa-client-id",
     },
     clientSecret: {
       doc: "The OAuth client secret",
       format: String,
       default: "",
       env: "FXA_CLIENT_SECRET",
-      arg: "fxa-client-secret"
-    }
+      arg: "fxa-client-secret",
+    },
   },
   db: {
     user: {
@@ -106,49 +106,49 @@ const conf = convict({
       format: String,
       default: process.env.USER,
       env: "RDS_USERNAME",
-      arg: "db-user"
+      arg: "db-user",
     },
     password: {
       doc: "The Postgres password",
       format: String,
       default: "",
       env: "RDS_PASSWORD",
-      arg: "db-pass"
+      arg: "db-pass",
     },
     host: {
       doc: "The Postgres server host and port",
       format: String,
       default: "localhost:5432",
       env: "RDS_HOSTNAME",
-      arg: "db-host"
+      arg: "db-host",
     },
     dbname: {
       doc: "The Postgres database",
       format: String,
       default: "",
       env: "RDS_NAME",
-      arg: "db-name"
+      arg: "db-name",
     },
     disableDownPatches: {
       doc: "Skip database downgrade patches",
       format: Boolean,
       default: false,
       env: "NO_PG_DOWNGRADES",
-      arg: "no-pg-downgrades"
+      arg: "no-pg-downgrades",
     },
     forceDbVersion: {
       doc: "Force database version (for use in downgrades)",
       format: "int",
       default: 0,
       env: "FORCE_DB_VERSION",
-      arg: "force-db-version"
+      arg: "force-db-version",
     },
     logQueryLimit: {
       doc: "Log queries that take more than time amount of time (in milliseconds)",
       format: "int",
       default: 50,
       env: "LOG_QUERY_LIMIT",
-      arg: "log-query-limit"
+      arg: "log-query-limit",
     },
     pool: {
       connectionTimeoutMillis: {
@@ -156,30 +156,30 @@ const conf = convict({
         format: "int",
         default: 5000,
         env: "PG_POOL_CLIENT_TIMEOUT",
-        arg: "pg-pool-client-timeout"
+        arg: "pg-pool-client-timeout",
       },
       idleTimeoutMillis: {
         doc: "Number of milliseconds of idle before a db client is disconnected",
         format: "int",
         default: 10000,
         env: "PG_POOL_CLIENT_IDLE",
-        arg: "pg-pool-client-idle"
+        arg: "pg-pool-client-idle",
       },
       max: {
         doc: "Maximum number of clients in the connection pool",
         format: "int",
         default: 10,
         env: "PG_POOL_CLIENT_LIMTI",
-        arg: "pg-pool-client-limit"
-      }
-    }
+        arg: "pg-pool-client-limit",
+      },
+    },
   },
   gaId: {
     doc: "Give the Google Analytics code",
     format: String,
     default: "",
     env: "GA_ID",
-    arg: "ga-id"
+    arg: "ga-id",
   },
   // This is mostly configurable for debugging purposes:
   checkDeletedInterval: {
@@ -187,56 +187,56 @@ const conf = convict({
     format: Number,
     default: 60 * 60, // 1 hour
     env: "CHECK_DELETED_INTERVAL",
-    arg: "check-deleted-interval"
+    arg: "check-deleted-interval",
   },
   expiredRetentionTime: {
     doc: "Amount of time to keep an expired shot, in seconds",
     format: "int",
     default: 60 * 60 * 24 * 14, // 14 days
     env: "EXPIRED_RETENTION_TIME",
-    arg: "expired-retention-time"
+    arg: "expired-retention-time",
   },
   defaultExpiration: {
     doc: "Default expiration time, in seconds",
     format: "int",
     default: 60 * 60 * 24 * 14, // 14 days
     env: "DEFAULT_EXPIRATION",
-    arg: "default-expiration"
+    arg: "default-expiration",
   },
   refreshMetricsTime: {
     doc: "Interval when the stats in /metrics are recalculated, in seconds (0 to disable)",
     format: "int",
     default: 60 * 60, // 1 hour
     env: "REFRESH_METRICS_TIME",
-    arg: "refresh-metrics-time"
+    arg: "refresh-metrics-time",
   },
   disableMetrics: {
     doc: "If true, do not mount /metrics or start jobs",
     format: Boolean,
     default: false,
     env: "DISABLE_METRICS",
-    arg: "disable-metrics"
+    arg: "disable-metrics",
   },
   sentryDSN: {
     doc: "The sentry DSN URL to use for recording errors, if any. Sentry is not used on the server unless this parameter is provided.",
     format: String,
     default: "",
     env: "SENTRY_DSN",
-    arg: "sentry-dsn"
+    arg: "sentry-dsn",
   },
   sentryPublicDSN: {
     doc: "The public sentry DSN URL to use for recording errors from the site and from the addon. Sentry is not used on the client if this parameter is not provided.",
     format: String,
     default: "",
     env: "SENTRY_PUBLIC_DSN",
-    arg: "sentry-public-dsn"
+    arg: "sentry-public-dsn",
   },
   upgradeSearchBatchSize: {
     doc: "Number of search records to try to upgrade at one time (in minutes)",
     format: "int",
     default: 100,
     env: "UPGRADE_SEARCH_BATCH_SIZE",
-    arg: "upgrade-search-batch-size"
+    arg: "upgrade-search-batch-size",
   },
   log: {
     lint: {
@@ -244,29 +244,29 @@ const conf = convict({
       format: Boolean,
       default: false,
       env: "LOG_LINT",
-      arg: "log-lint"
+      arg: "log-lint",
     },
     level: {
       doc: "Log level to emit",
       format: String,
       default: "info",
       env: "LOG_LEVEL",
-      arg: "log-level"
-    }
+      arg: "log-level",
+    },
   },
   showStackTraces: {
     doc: "Whether to show stack traces in 500 HTTP responses",
     format: Boolean,
     default: false,
     env: "SHOW_STACK_TRACES",
-    arg: "show-stack-traces"
+    arg: "show-stack-traces",
   },
   debugGoogleAnalytics: {
     doc: "Include debug information about events send to Google Analytics",
     format: Boolean,
     default: false,
     env: "DEBUG_GOOGLE_ANALYTICS",
-    arg: "debug-google-analytics"
+    arg: "debug-google-analytics",
   },
   testing: {
     failSometimes: {
@@ -274,85 +274,85 @@ const conf = convict({
       format: "int",
       default: 0,
       env: "TEST_FAIL_SOMETIMES",
-      arg: "test-fail-sometimes"
+      arg: "test-fail-sometimes",
     },
     slowResponse: {
       doc: "Add N milliseconds to the response time for PUT /data/...",
       format: "int",
       default: 0,
       env: "TEST_SLOW_RESPONSE",
-      arg: "test-slow-response"
-    }
+      arg: "test-slow-response",
+    },
   },
   statsdPrefix: {
     doc: "Prefix for statsd messages, also indicates we should use statsd",
     format: String,
     default: "",
     env: "STATSD_PREFIX",
-    arg: "statsd-prefix"
+    arg: "statsd-prefix",
   },
   setCache: {
     doc: "Set Cache-Control headers",
     format: Boolean,
     default: true,
     env: "SET_CACHE",
-    arg: "set-cache"
+    arg: "set-cache",
   },
   disableControllerTasks: {
     doc: "If true, then do not run migrations and periodic tasks on this server instance",
     format: Boolean,
     default: false,
     env: "DISABLE_CONTROLLER_TASKS",
-    arg: "disable-controller-tasks"
+    arg: "disable-controller-tasks",
   },
   forceAbTests: {
     doc: "Force AB tests, looks like 'testName=value testName2=value'",
     format: String,
     default: "",
     env: "FORCE_AB_TESTS",
-    arg: "force-ab-tests"
+    arg: "force-ab-tests",
   },
   disableSearch: {
     doc: "If true, then hide the search bar",
     format: Boolean,
     default: true,
     env: "DISABLE_SEARCH",
-    arg: "disable-search"
+    arg: "disable-search",
   },
   siteCdn: {
     doc: "CDN URL prefix for site assets, e.g. 'https://somecdn.com/mysite'; links will be rewritten as 'https://somecdn.com/mysite/static/style.css'",
     format: String,
     default: "",
     env: "SITE_CDN",
-    arg: "siteCdn"
+    arg: "siteCdn",
   },
   contentCdn: {
     doc: "CDN URL prefix for content, e.g. 'https://contentz.fast.io'; links will be rewritten as 'https://contentz.fast.io/allthebytes.png",
     format: String,
     default: "",
     env: "CONTENT_CDN",
-    arg: "contentCdn"
+    arg: "contentCdn",
   },
   enableUserSettings: {
     doc: "If true, the user can see the settings page and connect their device to their firefox account",
     format: Boolean,
     default: true,
     env: "USER_SETTINGS",
-    arg: "user-settings"
+    arg: "user-settings",
   },
   enableAnnotations: {
     doc: "If true, then disable shot annotations",
     format: Boolean,
     default: false,
     env: "ENABLE_ANNOTATIONS",
-    arg: "enable-annotations"
+    arg: "enable-annotations",
   },
   enableCoverage: {
     doc: "If true, then enable istanbul coverage middleware.",
     format: Boolean,
     default: false,
     env: "ENABLE_COVERAGE",
-    arg: "enable-coverage"
+    arg: "enable-coverage",
   },
   watchdog: {
     enable: {
@@ -360,58 +360,58 @@ const conf = convict({
       format: Boolean,
       default: true,
       env: "ENABLE_WATCHDOG",
-      arg: "enable-watchdog"
+      arg: "enable-watchdog",
     },
     id: {
       doc: "Screenshots' user id at Watchdog",
       format: String,
       default: "",
       env: "WATCHDOG_ID",
-      arg: "watchdog-id"
+      arg: "watchdog-id",
     },
     key: {
       doc: "Screenshots' key from Watchdog.",
       format: String,
       default: "",
       env: "WATCHDOG_KEY",
-      arg: "watchdog-key"
+      arg: "watchdog-key",
     },
     algorithm: {
       doc: "The hash algorithm used in authenticating requests.",
       format: String,
       default: "sha256",
       env: "WATCHDOG_AUTH_HASH_ALGORITHM",
-      arg: "watchdog-auth-hash-algorithm"
+      arg: "watchdog-auth-hash-algorithm",
     },
     submissionUrl: {
       doc: "The URL where Watchdog is accepting submissions.",
       format: String,
       default: "",
       env: "WATCHDOG_SUBMISSION_URL",
-      arg: "watchdog-submission-url"
+      arg: "watchdog-submission-url",
     },
     positiveEmail: {
       doc: "An optional, semicolon delimited, list of email addresses to receive notifications on positive matches.",
       format: String,
       default: "",
       env: "WATCHDOG_POSITIVE_EMAIL",
-      arg: "watchdog-positive-email"
+      arg: "watchdog-positive-email",
     },
     submissionInterval: {
       doc: "Temporary(?) config to throttle the rate of submission to Watchdog. A positive integer. One out of this many shots will be submitted to Watchdog.  One or less will result in all shots being submitted.",
       format: "int",
       default: 1,
       env: "WATCHDOG_SUBMISSION_INTERVAL",
-      arg: "watchdog-submission-interval"
+      arg: "watchdog-submission-interval",
     },
     devOnlyMatchHostname: {
       doc: "DO NOT SET THIS IN PROD.  When set, this is the _only_ hostname for which shots are submitted to Watchdog.",
       format: String,
       default: "",
       env: "WATCHDOG_DEV_MATCH_HOSTNAME",
-      arg: "watchdog-dev-match-hostname"
-    }
-  }
+      arg: "watchdog-dev-match-hostname",
+    },
+  },
 });
 
 conf.validate({ allowed: "strict" });

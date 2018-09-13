@@ -38,7 +38,7 @@ window.wantsauth = (function() {
       deviceId,
       isOwner,
       loginFailed: false,
-      accountId
+      accountId,
     };
 
     let promise = Promise.resolve(true);

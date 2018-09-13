@@ -72,5 +72,5 @@ exports.TimeDiff = class TimeDiff extends React.Component {
 };
 
 exports.TimeDiff.propTypes = {
-  date: PropTypes.number
+  date: PropTypes.number,
 };

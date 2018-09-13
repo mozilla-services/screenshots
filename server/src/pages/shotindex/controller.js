@@ -11,7 +11,7 @@ let firstRun = true;
 
 const queryParamModelPropertyMap = {
   q: "defaultSearch",
-  p: "pageNumber"
+  p: "pageNumber",
 };
 
 exports.launch = function(m) {
