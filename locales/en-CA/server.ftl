@@ -187,6 +187,16 @@ timeDiffDaysAgo =
        *[other] { $number } days ago
     }
 timeDiffFutureSeconds = in a few seconds
+timeDiffFutureMinutes =
+    { $number ->
+        [one] in 1 minute
+       *[other] in { $number } minutes
+    }
+timeDiffFutureHours =
+    { $number ->
+        [one] in 1 hour
+       *[other] in { $number } hours
+    }
 timeDiffFutureDays =
     { $number ->
         [one] tomorrow
