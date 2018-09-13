@@ -12,20 +12,20 @@ let allTests = {
     gaField: "cd7",
     version: 1,
     options: [
-      {name: "newicon", probability: 0.1}
+      {name: "newicon", probability: 0.1},
     ],
-    exclude: ["*"]
+    exclude: ["*"],
   },
   downloadText: {
     description: "Test the effect of removing the word 'Download' from the download button on the shot page",
     gaField: "cd9",
     version: 1,
     options: [
-      {name: "no-download-text", probability: 0.1}
+      {name: "no-download-text", probability: 0.1},
     ],
     exclude: ["*"],
-    appliesToPublic: true
-  }
+    appliesToPublic: true,
+  },
 };
 
 /* Example of how this could be set: */

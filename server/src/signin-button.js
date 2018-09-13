@@ -7,7 +7,7 @@ exports.SignInButton = class SignInButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displaySettings: props.isAuthenticated
+      displaySettings: props.isAuthenticated,
     };
   }
 
@@ -43,5 +43,5 @@ exports.SignInButton = class SignInButton extends React.Component {
 
 exports.SignInButton.propTypes = {
   initiatePage: PropTypes.string,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
 };

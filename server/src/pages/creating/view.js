@@ -17,7 +17,7 @@ class Head extends React.Component {
 }
 
 Head.propTypes = {
-  staticLink: PropTypes.func
+  staticLink: PropTypes.func,
 };
 
 class Body extends React.Component {

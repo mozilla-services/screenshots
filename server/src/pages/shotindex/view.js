@@ -26,7 +26,7 @@ class Head extends React.Component {
 }
 
 Head.propTypes = {
-  staticLink: PropTypes.func
+  staticLink: PropTypes.func,
 };
 
 class Body extends React.Component {
@@ -287,7 +287,7 @@ Body.propTypes = {
   shots: PropTypes.array,
   shotsPerPage: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   staticLink: PropTypes.func,
-  totalShots: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  totalShots: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 class Card extends React.Component {
@@ -463,7 +463,7 @@ Card.propTypes = {
   isExtInstalled: PropTypes.bool,
   isOwner: PropTypes.bool,
   shot: PropTypes.object,
-  staticLink: PropTypes.func
+  staticLink: PropTypes.func,
 };
 
 exports.HeadFactory = React.createFactory(Head);

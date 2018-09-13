@@ -9,12 +9,12 @@ const config = require("../config").getProperties();
 const useSecureCsrfCookie = (config.expectProtocol && /^https$/.test(config.expectProtocol));
 
 const csrfMiddleware = csrf({
-  cookie: {httpOnly: true, secure: useSecureCsrfCookie}
+  cookie: {httpOnly: true, secure: useSecureCsrfCookie},
 });
 
 const csrfExemptMiddleware = csrf({
   ignoreMethods: ["PATCH", "POST", "PUT"],
-  cookie: {httpOnly: true, secure: useSecureCsrfCookie}
+  cookie: {httpOnly: true, secure: useSecureCsrfCookie},
 });
 
 
@@ -54,7 +54,7 @@ function csrfInvalidHeaderResponse(req, res) {
 const ignoreMethods = {
   "GET": true,
   "HEAD": true,
-  "OPTIONS": true
+  "OPTIONS": true,
 };
 
 exports.csrfProtection = function(req, res, next) {

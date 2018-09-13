@@ -70,7 +70,7 @@ exports.HeadTemplate.propTypes = {
   userLocales: PropTypes.array,
   authenticated: PropTypes.bool,
   hasFxa: PropTypes.bool,
-  authFxa: PropTypes.bool
+  authFxa: PropTypes.bool,
 };
 
 exports.BodyTemplate = class Body extends React.Component {
@@ -90,7 +90,7 @@ exports.BodyTemplate = class Body extends React.Component {
 exports.BodyTemplate.propTypes = {
   children: PropTypes.node,
   messages: PropTypes.object,
-  userLocales: PropTypes.array
+  userLocales: PropTypes.array,
 };
 
 exports.Page = class Page {
@@ -151,7 +151,7 @@ exports.Page = class Page {
     if (!model.staticLink) {
       linker.setGitRevision(model.gitRevision);
       model.staticLink = linker.staticLink.bind(null, {
-        cdn: model.cdn
+        cdn: model.cdn,
       });
     }
 

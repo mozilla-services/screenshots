@@ -119,7 +119,7 @@ function startScreenshots(driver) {
     return driver.wait(() => {
       return Promise.all([
         driver.findElements(By.id(SLIDE_IFRAME_ID)),
-        driver.findElements(By.id(PRESELECTION_IFRAME_ID))
+        driver.findElements(By.id(PRESELECTION_IFRAME_ID)),
       ]).then((results) => {
         return results[0].length || results[1].length;
       });

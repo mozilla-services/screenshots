@@ -95,7 +95,7 @@ function getSubmission(id) {
 const credentials = {
   id: config.watchdog.id,
   key: config.watchdog.key,
-  algorithm: config.watchdog.algorithm
+  algorithm: config.watchdog.algorithm,
 };
 
 exports.submit = function(shot) {
@@ -163,7 +163,7 @@ exports.submit = function(shot) {
   .then((obj) => {
     form.append("image", obj.data, {
       filename: imageId,
-      contentType: obj.contentType
+      contentType: obj.contentType,
     });
 
     return getSubmissionId();

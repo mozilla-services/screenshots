@@ -44,7 +44,7 @@ class Head extends React.Component {
 Head.propTypes = {
   backend: PropTypes.string,
   staticLink: PropTypes.func,
-  title: PropTypes.string
+  title: PropTypes.string,
 };
 
 class Body extends React.Component {
@@ -195,7 +195,7 @@ Body.propTypes = {
   hasFxa: PropTypes.bool,
   firefoxVersion: PropTypes.string,
   isFirefox: PropTypes.bool,
-  showMyShots: PropTypes.bool
+  showMyShots: PropTypes.bool,
 };
 
 exports.HeadFactory = React.createFactory(Head);

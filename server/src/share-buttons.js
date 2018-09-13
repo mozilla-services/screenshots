@@ -27,7 +27,7 @@ exports.ShareButton = class ShareButton extends React.Component {
     const shareClasses = classnames("button", "transparent", "share", {
       "active": this.state.display,
       "inactive": !this.state.display,
-      "newicon": useNewIcon
+      "newicon": useNewIcon,
     });
     return <div>
       <Localized id="shotPageShareButton">
@@ -74,7 +74,7 @@ exports.ShareButton.propTypes = {
   renderExtensionNotification: PropTypes.bool,
   setPanelState: PropTypes.func,
   shot: PropTypes.object,
-  staticLink: PropTypes.func
+  staticLink: PropTypes.func,
 };
 
 class ShareButtonPanel extends React.Component {
@@ -223,5 +223,5 @@ ShareButtonPanel.propTypes = {
   isOwner: PropTypes.bool,
   renderExtensionNotification: PropTypes.bool,
   shot: PropTypes.object,
-  staticLink: PropTypes.func
+  staticLink: PropTypes.func,
 };
