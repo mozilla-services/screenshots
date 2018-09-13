@@ -190,6 +190,9 @@ errorThirdPartyCookiesEnabled = Si tu ha prendite iste instantaneo e non pote lo
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Prende nota!
+promoLink = Prova los
 promoCloseButton =
     .title = Clauder notification
 
