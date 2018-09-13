@@ -48,7 +48,7 @@ jobs:
           command: |
             . "$NVM_DIR/nvm.sh"
             nvm install 8.10.0
-            node -e 'require("babel-polyfill"); require("./build/server/server");'
+            node -e 'require("babel-polyfill"); require("./build/server/server");' >> server.log
           background: true
       - run:
           name: Wait for Server
