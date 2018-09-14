@@ -1,7 +1,7 @@
 /* globals controller */
 const sendEvent = require("../../browser-send-event.js");
 const reactruntime = require("../../reactruntime");
-const { Footer } = require("../../footer-view.js");
+const { MyShotsFooter } = require("./footer");
 const React = require("react");
 const PropTypes = require("prop-types");
 const { ShareButton } = require("../../share-buttons");
@@ -47,7 +47,7 @@ class Body extends React.Component {
           </div>
           { this.renderPageNavigation() }
           { this.renderErrorMessages() }
-          <Footer forUrl="shots" {...this.props} />
+          <MyShotsFooter {...this.props} />
         </div>
       </reactruntime.BodyTemplate>
     );
