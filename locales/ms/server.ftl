@@ -14,10 +14,10 @@ gSignIn = Daftar masuk
 
 ## Header
 
-signInButton =
-    .aria-label = Daftar masuk
-settingsButton =
-    .aria-label = Tetapan
+buttonSettings =
+    .title = Tetapan
+buttonSignIn =
+    .title = Daftar Masuk
 
 ## Footer
 
@@ -120,8 +120,6 @@ shotPageExpiredMessage = Syot ini sudah tamat tempoh.
 shotPageExpiredMessageDetails = Ini halaman asal yang diambil:
 shotPageDeleteButton =
     .title = Buang syot ini
-shotPageAbuseButton =
-    .title = Laporkan syot ini kerana penyalahgunaan, spam atau masalah lain
 shotPageDownloadShot =
     .title = Muat turun
 shotPageEditButton =
