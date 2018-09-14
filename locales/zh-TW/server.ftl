@@ -14,10 +14,12 @@ gSignIn = 登入
 
 ## Header
 
-signInButton =
-    .aria-label = 登入
-settingsButton =
-    .aria-label = 設定
+buttonSettings =
+    .title = 設定
+buttonSignIn =
+    .title = 登入
+screenshotsLogo =
+    .title = Screenshots 首頁
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = 使用條款
 footerLinkPrivacy = 隱私權公告
+footerReportShot = 回報擷圖
+    .title = 回報這張擷圖有濫用、廣告或其他問題
 footerLinkFaqs = 常見問題
 footerLinkDMCA = 回報智財權侵害案件
 footerLinkDiscourse = 提供意見回饋
@@ -120,15 +124,23 @@ shotPageExpiredMessage = 此擷圖已過期。
 shotPageExpiredMessageDetails = 以下是該擷圖的原始產生頁面:
 shotPageDeleteButton =
     .title = 刪除此擷圖
-shotPageAbuseButton =
-    .title = 回報這張圖片是濫用、垃圾信，或有其他問題
 shotPageDownloadShot =
     .title = 下載
 shotPageEditButton =
     .title = 編輯此圖片
 shotPagefavoriteButton =
     .title = 將這張擷圖設為最愛
+shotPageBackToHomeButton =
+    .title = 首頁
+shotPageAllShotsButton =
+    .title = 所有擷圖
+shotPageAllShots = 所有擷圖
 shotPageDownload = 下載
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = 繪圖
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = 設為最愛
+shotPageDelete = 刪除
 shotPageScreenshotsDescription = 拍攝擷圖變得簡單。不必離開 Firefox 就能拍攝、儲存、分享畫面擷圖。
 shotPageUpsellFirefox = 立即下載 Firefox
 shotPageDMCAMessage = 因為第三方提出智慧財產權通知，此擷圖已被下架。
@@ -269,6 +281,8 @@ shotIndexPageNoShotsInvitation = 去吧！拍幾張照。
 shotIndexPageLookingForShots = 正在尋找您的擷圖…
 shotIndexPageNoSearchResultsIntro = 呃…
 shotIndexPageNoSearchResults = 我們找不到符合您的搜尋條件的擷圖。
+shotIndexPageMyShotsButton =
+    .title = 我的擷圖
 shotIndexPageClearSearchButton =
     .title = 清除搜尋
 shotIndexPageConfirmShotDelete = 要刪除這張擷圖嗎？
