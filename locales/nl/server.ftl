@@ -14,10 +14,12 @@ gSignIn = Aanmelden
 
 ## Header
 
-signInButton =
-    .aria-label = Aanmelden
-settingsButton =
-    .aria-label = Instellingen
+buttonSettings =
+    .title = Instellingen
+buttonSignIn =
+    .title = Aanmelden
+screenshotsLogo =
+    .title = Startpagina van Screenshots
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Voorwaarden
 footerLinkPrivacy = Privacyverklaring
+footerReportShot = Afbeelding rapporteren
+    .title = Deze afbeelding rapporteren wegens misbruik, spam of andere problemen
 footerLinkFaqs = FAQ’s
 footerLinkDMCA = IE-inbreuk melden
 footerLinkDiscourse = Feedback geven
@@ -120,15 +124,23 @@ shotPageExpiredMessage = Deze afbeelding is verlopen.
 shotPageExpiredMessageDetails = Dit is de pagina van waaraf deze oorspronkelijk is gemaakt:
 shotPageDeleteButton =
     .title = Deze afbeelding verwijderen
-shotPageAbuseButton =
-    .title = Deze afbeelding rapporteren vanwege misbruik, spam of andere problemen
 shotPageDownloadShot =
     .title = Downloaden
 shotPageEditButton =
     .title = Deze afbeelding bewerken
 shotPagefavoriteButton =
     .title = Deze afbeelding favoriet maken
+shotPageBackToHomeButton =
+    .title = Startpagina
+shotPageAllShotsButton =
+    .title = Alle afbeeldingen
+shotPageAllShots = Alle afbeeldingen
 shotPageDownload = Downloaden
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Tekenen
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Favoriet maken
+shotPageDelete = Verwijderen
 shotPageScreenshotsDescription = Schermafbeeldingen worden makkelijk. Maak, bewaar en deel schermafbeeldingen zonder Firefox te verlaten.
 shotPageUpsellFirefox = Download Firefox nu
 shotPageDMCAMessage = Deze afbeelding is vanwege een claim op intellectueel eigendom door een externe partij niet meer beschikbaar.
@@ -293,6 +305,8 @@ shotIndexPageNoShotsInvitation = Toe maar, maak er een paar.
 shotIndexPageLookingForShots = Zoeken naar uw afbeeldingen…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = We kunnen geen afbeeldingen vinden die aan uw zoekopdracht voldoen.
+shotIndexPageMyShotsButton =
+    .title = Mijn afbeeldingen
 shotIndexPageClearSearchButton =
     .title = Zoekopdracht wissen
 shotIndexPageConfirmShotDelete = Deze afbeelding verwijderen?
