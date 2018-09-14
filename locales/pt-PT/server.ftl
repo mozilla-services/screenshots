@@ -14,10 +14,12 @@ gSignIn = Iniciar sessão
 
 ## Header
 
-signInButton =
-    .aria-label = Iniciar sessão
-settingsButton =
-    .aria-label = Definições
+buttonSettings =
+    .title = Definições
+buttonSignIn =
+    .title = Iniciar sessão
+screenshotsLogo =
+    .title = Início do Screenshots
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Termos
 footerLinkPrivacy = Aviso de privacidade
+footerReportShot = Reportar captura
+    .title = Reportar esta captura por abuso, spam, ou outros problemas
 footerLinkFaqs = Perguntas frequentes
 footerLinkDMCA = Reportar violação de PI
 footerLinkDiscourse = Dar feedback
@@ -120,15 +124,23 @@ shotPageExpiredMessage = Esta captura expirou.
 shotPageExpiredMessageDetails = Aqui está a página de onde foi criada originalmente:
 shotPageDeleteButton =
     .title = Apagar esta captura
-shotPageAbuseButton =
-    .title = Reportar esta captura por abuso, spam, ou outros problemas
 shotPageDownloadShot =
     .title = Transferir
 shotPageEditButton =
     .title = Editar esta imagem
 shotPagefavoriteButton =
     .title = Adicionar esta captura aos favoritos
+shotPageBackToHomeButton =
+    .title = Página inicial
+shotPageAllShotsButton =
+    .title = Todas as capturas
+shotPageAllShots = Todas as capturas
 shotPageDownload = Transferir
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Desenhar
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Favorito
+shotPageDelete = Apagar
 shotPageScreenshotsDescription = As capturas de ecrã tornadas simples. Tire, guarde e partilhe capturas de ecrã sem sair do Firefox.
 shotPageUpsellFirefox = Obter o Firefox agora
 shotPageDMCAMessage = Esta captura já não está disponível devido a uma reivindicação de propriedade intelectual de terceiros.
@@ -293,6 +305,8 @@ shotIndexPageNoShotsInvitation = Vá, crie algumas.
 shotIndexPageLookingForShots = À procura das suas capturas...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Não conseguimos encontrar quaisquer capturas que correspondam à sua pesquisa.
+shotIndexPageMyShotsButton =
+    .title = Minhas capturas
 shotIndexPageClearSearchButton =
     .title = Limpar pesquisa
 shotIndexPageConfirmShotDelete = Apagar esta captura?
