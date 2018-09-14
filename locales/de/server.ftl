@@ -14,10 +14,12 @@ gSignIn = Anmelden
 
 ## Header
 
-signInButton =
-    .aria-label = Anmelden
-settingsButton =
-    .aria-label = Einstellungen
+buttonSettings =
+    .title = Einstellungen
+buttonSignIn =
+    .title = Anmelden
+screenshotsLogo =
+    .title = Startseite von Screenshots
 
 ## Footer
 
@@ -128,7 +130,17 @@ shotPageEditButton =
     .title = Diese Grafik bearbeiten
 shotPagefavoriteButton =
     .title = Dieses Bildschirmfoto als Favorit markieren
+shotPageBackToHomeButton =
+    .title = Startseite
+shotPageAllShotsButton =
+    .title = Alle Bildschirmfotos
+shotPageAllShots = Alle Bildschirmfotos
 shotPageDownload = Herunterladen
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Zeichnen
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Als Favorit speichern
+shotPageDelete = Löschen
 shotPageScreenshotsDescription = Bildschirmfotos einfach machen, speichern und teilen – ohne Firefox zu verlassen.
 shotPageUpsellFirefox = Hole Dir jetzt Firefox
 shotPageDMCAMessage = Dieses Bildschirmfoto ist aufgrund von Urheberrechtsansprüchen von Dritten nicht mehr verfügbar.
@@ -293,6 +305,8 @@ shotIndexPageNoShotsInvitation = Los, erstellen Sie welche.
 shotIndexPageLookingForShots = Suchen nach Ihren Bildschirmfotos…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Wir finden keine zu Deiner Suche passenden Bildschirmfotos.
+shotIndexPageMyShotsButton =
+    .title = Meine Bildschirmfotos
 shotIndexPageClearSearchButton =
     .title = Suche löschen
 shotIndexPageConfirmShotDelete = Dieses Bildschirmfoto löschen?
