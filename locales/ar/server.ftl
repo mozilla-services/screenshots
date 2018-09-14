@@ -14,10 +14,10 @@ gSignIn = لِج
 
 ## Header
 
-signInButton =
-    .aria-label = لِج
-settingsButton =
-    .aria-label = الإعدادات
+buttonSettings =
+    .title = الإعدادات
+buttonSignIn =
+    .title = لِج
 
 ## Footer
 
@@ -120,14 +120,14 @@ shotPageExpiredMessage = انتهت صلاحية هذه اللقطة.
 shotPageExpiredMessageDetails = ها هي الصفحة التي أخذت اللقطة منها:
 shotPageDeleteButton =
     .title = احذف هذه اللقطة
-shotPageAbuseButton =
-    .title = أبلغ عن هذه اللقطة لإسائة الاستخدام أو السخام أو أي مشاكل أخرى
 shotPageDownloadShot =
     .title = نزّل
 shotPageEditButton =
     .title = حرّر هذه الصورة
 shotPagefavoriteButton =
     .title = أضِف اللقطة إلى المفضلة
+shotPageBackToHomeButton =
+    .title = صفحة البداية
 shotPageDownload = نزّل
 shotPageScreenshotsDescription = لقطات الشاشة صارت أسهل. خذ لقطات الشاشة و احفظها و شاركها دون مغادرة فَيرفُكس.
 shotPageUpsellFirefox = نزّل فَيَرفُكس الآن
