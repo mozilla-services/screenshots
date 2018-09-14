@@ -14,10 +14,12 @@ gSignIn = Pśizjawiś
 
 ## Header
 
-signInButton =
-    .aria-label = Pśizjawiś
-settingsButton =
-    .aria-label = Nastajenja
+buttonSettings =
+    .title = Nastajenja
+buttonSignIn =
+    .title = Pśizjawiś
+screenshotsLogo =
+    .title = Startowy bok Screenshots
 
 ## Footer
 
@@ -128,6 +130,10 @@ shotPageEditButton =
     .title = Toś ten wobraz wobźěłaś
 shotPagefavoriteButton =
     .title = Toś to foto wobrazowki ako faworit wóznamjeniś
+shotPageBackToHomeButton =
+    .title = Startowy bok
+shotPageAllShotsButton =
+    .title = Wšykne fota wobrazowki
 shotPageDownload = Ześěgnuś
 shotPageScreenshotsDescription = Fota wobrazowki lažko nagótowane. Gótujśo, składujśo a źělśo fota wobrazowki, mimo až Firefox spušćaśo.
 shotPageUpsellFirefox = Wobstarajśo se Firefox něnto
