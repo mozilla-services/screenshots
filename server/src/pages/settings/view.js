@@ -69,7 +69,7 @@ class Body extends React.Component {
               <p className="info">Sign in to sync across devices</p>
             </Localized>
             <Localized id="settingsSignInButton">
-              <a className="account-buttons" href="/api/fxa-oauth/login" onClick={ this.onClickConnect.bind(this)} title="Sign in">Sign In</a>
+              <a className="account-buttons" href="/api/fxa-oauth/login/" onClick={ this.onClickConnect.bind(this)} title="Sign in">Sign In</a>
             </Localized>
           </div>
         </div>
