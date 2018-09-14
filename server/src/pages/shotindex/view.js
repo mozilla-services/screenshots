@@ -355,6 +355,7 @@ class Card extends React.Component {
           </Localized>
           <ShareButton setPanelState={this.setPanelState.bind(this)} abTests={this.props.abTests} clipUrl={imageUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} />
           <DeleteShotButton
+            isIcon = {true}
             clickDeleteHandler={this.clickDeleteHandler.bind(this)}
             confirmDeleteHandler={this.confirmDeleteHandler.bind(this, shot)}
             cancelDeleteHandler={this.cancelDeleteHandler.bind(this)} />
