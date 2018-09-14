@@ -83,7 +83,7 @@
     }
 
     &.icon-shots {
-      background-image: url("../img/icon-shots.svg"); 
+      background-image: url("../img/icon-shots.svg");
     }
 
     &.icon-settings {
@@ -149,5 +149,45 @@
     &:hover {
       background-color: $light-hover;
     }
+  }
+}
+
+.ad-banner {
+  @include flex-container(row, center, center);
+  @include respond-to("medium") {
+    height: 58px;
+  }
+
+  @include respond-to("small") {
+    height: 68px;
+    font-size: 13px;
+  }
+
+  display: flex;
+  font-size: 14px;
+  height: 48px;
+  color: $black;
+  background: #efeff1;
+  width: 100%;
+
+  .message {
+    padding: 16px 5px 16px 32px;
+  }
+
+  .logo {
+    background-position: left center;
+    background-image: url("../img/firefox-logo.svg");
+    background-repeat: no-repeat;
+    background-size: 24px auto;
+    margin-left: 16px;
+  }
+
+  p {
+    display: inline;
+  }
+
+  .upsellLink {
+    padding-left: 10px;
+    color: #009ec0;
   }
 }

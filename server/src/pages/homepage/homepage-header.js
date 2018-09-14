@@ -35,7 +35,7 @@ exports.HomePageHeader = class HomePageHeader extends React.Component {
 
     const signin = this.renderFxASignIn();
     return (
-      <Header hasLogo={true}>
+      <Header hasLogo={true} isOwner={this.props.isOwner} hasFxa={this.props.hasFxa}>
         <div className="alt-actions">
           { myShots }
           { signin }

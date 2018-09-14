@@ -8,7 +8,7 @@ exports.MyShotsHeader = function MyShotsHeader(props) {
     <SignInButton isAuthenticated={props.hasFxa} initialPage="shots" /> : null;
 
   return (
-    <Header hasLogo={true}>
+    <Header hasLogo={true} isOwner={props.hasDeviceId} hasFxa={props.hasFxa}>
       <div className="alt-actions">
         { signin }
       </div>

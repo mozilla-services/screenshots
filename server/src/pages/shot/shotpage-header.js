@@ -102,8 +102,10 @@ exports.ShotPageHeader = class ShotPageHeader extends React.Component {
     const myShotsText = this.renderMyShotsText();
     const signin = this.renderFxASignIn();
     const shotInfo = this.renderShotInfo();
+
     return (
-      <Header>
+      <Header shouldGetFirefox={this.props.shouldGetFirefox} isOwner={this.props.isOwner}
+        hasFxa={this.props.isFxaAuthenticated}>
         { myShotsText }
         { shotInfo }
         <div className="shot-alt-actions">
@@ -121,6 +123,7 @@ exports.ShotPageHeader.propTypes = {
   shot: PropTypes.object,
   isFxaAuthenticated: PropTypes.bool,
   expireTime: PropTypes.number,
+  shouldGetFirefox: PropTypes.bool,
 };
 
 class EditableTitle extends React.Component {
