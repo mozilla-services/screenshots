@@ -14,10 +14,12 @@ gSignIn = Přihlásit se
 
 ## Header
 
-signInButton =
-    .aria-label = Přihlásit se
-settingsButton =
-    .aria-label = Nastavení
+buttonSettings =
+    .title = Nastavení
+buttonSignIn =
+    .title = Přihlásit se
+screenshotsLogo =
+    .title = Domovská stránka
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Podmínky
 footerLinkPrivacy = Zásady ochrany osobních údajů
+footerReportShot = Nahlásit snímek
+    .title = Nahlásit tento snímek jako spam, nebo jiný problém
 footerLinkFaqs = Časté dotazy
 footerLinkDMCA = Nahlásit zneužití IP adresy
 footerLinkDiscourse = Váš názor
@@ -120,15 +124,23 @@ shotPageExpiredMessage = Platnost tohoto snímku vypršela.
 shotPageExpiredMessageDetails = Zde je stránka, kde byl snímek pořízen:
 shotPageDeleteButton =
     .title = Smazat tento snímek
-shotPageAbuseButton =
-    .title = Nahlásit tento snímek jeko porušení práv, spam nebo pro jiný problém
 shotPageDownloadShot =
     .title = Stáhnout
 shotPageEditButton =
     .title = Upravit tento obrázek
 shotPagefavoriteButton =
     .title = Označit snímek jako oblíbený
+shotPageBackToHomeButton =
+    .title = Domovská stránka
+shotPageAllShotsButton =
+    .title = Všechny snímky
+shotPageAllShots = Všechny snímky
 shotPageDownload = Stáhnout
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Kreslení
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Oblíbené
+shotPageDelete = Smazat
 shotPageScreenshotsDescription = Jednoduchá tvorba snímků webových stránek. Vytvářejte, ukládejte i sdílejte přímo z Firefoxu.
 shotPageUpsellFirefox = Získejte Firefox
 shotPageDMCAMessage = Tento snímek již není dostupný z důvodu uplatnění nároku na duševní vlastnictví třetí strany.
@@ -299,6 +311,8 @@ shotIndexPageNoShotsInvitation = Pojďme nějaké vytvořit.
 shotIndexPageLookingForShots = Hledáme vaše snímky…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Nemůžeme najít žádné snímky, které by odpovídaly vašemu hledání.
+shotIndexPageMyShotsButton =
+    .title = Mé snímky
 shotIndexPageClearSearchButton =
     .title = Zrušit hledání
 shotIndexPageConfirmShotDelete = Smazat tento snímek?
