@@ -14,10 +14,10 @@ gSignIn = Prijava
 
 ## Header
 
-signInButton =
-    .aria-label = Prijava
-settingsButton =
-    .aria-label = Nastavitve
+buttonSettings =
+    .title = Nastavitve
+buttonSignIn =
+    .title = Prijava
 
 ## Footer
 
@@ -128,6 +128,11 @@ shotPageEditButton =
     .title = Uredi to sliko
 shotPagefavoriteButton =
     .title = Dodaj posnetek med priljubljene
+shotPageBackToHomeButton =
+    .title = Domača stran
+shotPageAllShotsButton =
+    .title = Vsi posnetki
+shotPageAllShots = Vsi posnetki
 shotPageDownload = Prenesi
 shotPageScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in delite zaslonske posnetke, ne da bi zapustili Firefox.
 shotPageUpsellFirefox = Prenesite Firefox zdaj
