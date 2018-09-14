@@ -674,7 +674,7 @@ this.uicontrol = (function() {
     mousemove(event) {
       this._resize(event);
       if (resizeDirection !== "move") {
-        ui.PixelDimensions.display(event.pageX, event.pageY, event.pageX, event.pageY);
+        ui.PixelDimensions.display(event.pageX, event.pageY, selectedPos.width, selectedPos.height);
       }
       return false;
     },
