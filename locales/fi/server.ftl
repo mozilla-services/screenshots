@@ -14,10 +14,12 @@ gSignIn = Kirjaudu
 
 ## Header
 
-signInButton =
-    .aria-label = Kirjaudu sisään
-settingsButton =
-    .aria-label = Asetukset
+buttonSettings =
+    .title = Asetukset
+buttonSignIn =
+    .title = Kirjaudu sisään
+screenshotsLogo =
+    .title = Screenshots-etusivu
 
 ## Footer
 
@@ -120,15 +122,23 @@ shotPageExpiredMessage = Tämä kaappaus on vanhentunut.
 shotPageExpiredMessageDetails = Tässä on sivu, josta kaappaus alun perin luotiin:
 shotPageDeleteButton =
     .title = Poista tämä kaappaus
-shotPageAbuseButton =
-    .title = Ilmoita tästä kaappauksesta väärinkäytön, roskapostin tai muun ongelman vuoksi
 shotPageDownloadShot =
     .title = Lataa
 shotPageEditButton =
     .title = Muokkaa tätä kuvaa
 shotPagefavoriteButton =
     .title = Merkitse tämä kaappaus suosikiksi
+shotPageBackToHomeButton =
+    .title = Etusivu
+shotPageAllShotsButton =
+    .title = Kaikki kaappaukset
+shotPageAllShots = Kaikki kaappaukset
 shotPageDownload = Lataa
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Piirrä
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Merkitse suosikiksi
+shotPageDelete = Poista
 shotPageScreenshotsDescription = Kuvakaappaukset helposti. Ota, tallenna ja jaa kuvakaappauksia poistumatta Firefoxista.
 shotPageUpsellFirefox = Lataa Firefox nyt
 shotPageDMCAMessage = Tämä kaappaus ei ole enää saatavissa, koska kolmas osapuoli teki immateriaalioikeusvaatimuksen.
@@ -293,6 +303,8 @@ shotIndexPageNoShotsInvitation = Ryhdytäänpä luomaan sellaisia.
 shotIndexPageLookingForShots = Etsitään kaappauksia…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Haulla ei löytynyt yhtään kaappausta.
+shotIndexPageMyShotsButton =
+    .title = Omat kaappaukset
 shotIndexPageClearSearchButton =
     .title = Tyhjennä haku
 shotIndexPageConfirmShotDelete = Poistetaanko tämä kaappaus?
