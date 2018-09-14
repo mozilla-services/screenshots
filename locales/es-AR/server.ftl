@@ -14,10 +14,12 @@ gSignIn = Conectarse
 
 ## Header
 
-signInButton =
-    .aria-label = Conectarse
-settingsButton =
-    .aria-label = Ajustes
+buttonSettings =
+    .title = Ajustes
+buttonSignIn =
+    .title = Ingresar
+screenshotsLogo =
+    .title = Página de inicio de Screenshots
 
 ## Footer
 
@@ -128,7 +130,17 @@ shotPageEditButton =
     .title = Editar esta imagen
 shotPagefavoriteButton =
     .title = Marcar esta captura como favorita
+shotPageBackToHomeButton =
+    .title = Página de inicio
+shotPageAllShotsButton =
+    .title = Todas las capturas
+shotPageAllShots = Todas las capturas
 shotPageDownload = Descargar
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Dibujar
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Favorito
+shotPageDelete = Eliminar
 shotPageScreenshotsDescription = Capturas de pantalla simples. Tomar, guardar y compartir capturas de pantalla sin dejar Firefox.
 shotPageUpsellFirefox = Obtener Firefox ahora
 shotPageDMCAMessage = La captura no está más disponible por una queja de terceros por propiedad intelectual.
@@ -293,6 +305,8 @@ shotIndexPageNoShotsInvitation = Vamos, create alguna.
 shotIndexPageLookingForShots = Buscando tus capturas…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = No podemos encontrar capturas que coincidan con la búsqueda.
+shotIndexPageMyShotsButton =
+    .title = Mis capturas
 shotIndexPageClearSearchButton =
     .title = Borrar búsqueda
 shotIndexPageConfirmShotDelete = ¿Borrar esta captura?
