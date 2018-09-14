@@ -14,10 +14,12 @@ gSignIn = Zaloguj się
 
 ## Header
 
-signInButton =
-    .aria-label = Zaloguj się
-settingsButton =
-    .aria-label = Ustawienia
+buttonSettings =
+    .title = Ustawienia
+buttonSignIn =
+    .title = Zaloguj się
+screenshotsLogo =
+    .title = Strona główna Screenshots
 
 ## Footer
 
@@ -128,7 +130,17 @@ shotPageEditButton =
     .title = Edytuj ten obraz
 shotPagefavoriteButton =
     .title = Dodaj ten zrzut do ulubionych
+shotPageBackToHomeButton =
+    .title = Strona główna
+shotPageAllShotsButton =
+    .title = Wszystkie zrzuty
+shotPageAllShots = Wszystkie zrzuty
 shotPageDownload = Pobierz
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Rysuj
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Dodaj do ulubionych
+shotPageDelete = Usuń
 shotPageScreenshotsDescription = Zrzuty ekranu dla każdego. Twórz, zapisuj i udostępniaj zrzuty ekranu bez opuszczania Firefoksa.
 shotPageUpsellFirefox = Pobierz Firefoksa
 shotPageDMCAMessage = Ten zrzut został usunięty z powodu roszczeń prawnych strony trzeciej.
@@ -299,6 +311,8 @@ shotIndexPageNoShotsInvitation = Może jakiś utworzymy?
 shotIndexPageLookingForShots = Wyszukiwanie zrzutów…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Nie możemy znaleźć zrzutów pasujących do wyszukiwania.
+shotIndexPageMyShotsButton =
+    .title = Moje zrzuty
 shotIndexPageClearSearchButton =
     .title = Wyczyść wyszukiwanie
 shotIndexPageConfirmShotDelete = Usunąć ten zrzut?
