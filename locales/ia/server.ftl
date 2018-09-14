@@ -14,10 +14,10 @@ gSignIn = Apertura de session
 
 ## Header
 
-signInButton =
-    .aria-label = Apertura de session
-settingsButton =
-    .aria-label = Parametros
+buttonSettings =
+    .title = Parametros
+buttonSignIn =
+    .title = Apertura de session
 
 ## Footer
 
