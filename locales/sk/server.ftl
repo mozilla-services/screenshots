@@ -14,10 +14,12 @@ gSignIn = Prihlásiť sa
 
 ## Header
 
-signInButton =
-    .aria-label = Prihlásiť sa
-settingsButton =
-    .aria-label = Nastavenia
+buttonSettings =
+    .title = Nastavenia
+buttonSignIn =
+    .title = Prihlásiť sa
+screenshotsLogo =
+    .title = Domovská stránka
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Podmienky
 footerLinkPrivacy = Zásady ochrany súkromia
+footerReportShot = Nahlásiť snímku
+    .title = Nahláste obťažovanie, spam alebo iný problém
 footerLinkFaqs = Často kladené otázky
 footerLinkDMCA = Nahlásiť zneužitie IP adresy
 footerLinkDiscourse = Poskytnúť spätnú väzbu
@@ -120,15 +124,23 @@ shotPageExpiredMessage = Platnosť tejto snímky vypršala.
 shotPageExpiredMessageDetails = Stránka, z ktorej bola snímka vytvorená:
 shotPageDeleteButton =
     .title = Odstrániť túto snímku
-shotPageAbuseButton =
-    .title = Nahlásiť túto snímku z dôvodu porušenia práv, spamu alebo pre iný problém
 shotPageDownloadShot =
     .title = Prevziať
 shotPageEditButton =
     .title = Upraviť tento obrázok
 shotPagefavoriteButton =
     .title = Označiť snímku ako obľúbenú
+shotPageBackToHomeButton =
+    .title = Domovská stránka
+shotPageAllShotsButton =
+    .title = Všetky snímky
+shotPageAllShots = Všetky snímky
 shotPageDownload = Prevziať
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Kresliť
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Pridať medzi obľúbené
+shotPageDelete = Odstrániť
 shotPageScreenshotsDescription = Jednoduchá tvorba snímok obrazovky. Vytvorte, uložte a zdieľajte snímky obrazovky bez toho, aby ste museli opustiť Firefox.
 shotPageUpsellFirefox = Získajte Firefox teraz
 shotPageDMCAMessage = Táto snímka naďalej nie je dostupná z dôvodu uplatnenia si nároku na duševné vlastníctvo treťou stranou.
@@ -177,24 +189,24 @@ timeDiffDaysAgo =
         [few] pred { $number } dňami
        *[other] pred { $number } dňami
     }
-timeDiffFutureSeconds = za pár sekúnd
+timeDiffFutureSeconds = o pár sekúnd
 timeDiffFutureMinutes =
     { $number ->
-        [one] za minútu
-        [few] za { $number } minúty
-       *[other] za { $number } minút
+        [one] o minútu
+        [few] o { $number } minúty
+       *[other] o { $number } minút
     }
 timeDiffFutureHours =
     { $number ->
-        [one] za hodinu
-        [few] za { $number } hodiny
-       *[other] za { $number } hodín
+        [one] o hodinu
+        [few] o { $number } hodiny
+       *[other] o { $number } hodín
     }
 timeDiffFutureDays =
     { $number ->
         [one] zajtra
-        [few] za { $number } dni
-       *[other] za { $number } dní
+        [few] o { $number } dni
+       *[other] o { $number } dní
     }
 errorThirdPartyCookiesEnabled = Ak ste túto snímku vytvorili, no nemôžete ju odstrániť, dočasne povoľte v možnostiach svojho prehliadača používanie cookies tretích strán.
 
@@ -294,11 +306,13 @@ shotIndexPageSearchPlaceholder =
     .placeholder = Hľadať medzi snímkami
 shotIndexPageSearchButton =
     .title = Hľadať
-shotIndexPageNoShotsMessage = Žiadne uložené snímky
+shotIndexPageNoShotsMessage = Žiadne uložené snímky.
 shotIndexPageNoShotsInvitation = Nebojte sa ich pár vytvoriť.
 shotIndexPageLookingForShots = Vyhľadávanie vašich snímkov...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Nenašli sme žiadnu snímku, ktorá by bola zhodná s vaším výrazom vyhľadávania.
+shotIndexPageMyShotsButton =
+    .title = Moje snímky
 shotIndexPageClearSearchButton =
     .title = Vyčistiť vyhľadávacie pole
 shotIndexPageConfirmShotDelete = Odstrániť túto snímku?
