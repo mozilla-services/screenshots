@@ -134,7 +134,13 @@ shotPageBackToHomeButton =
     .title = Startowy bok
 shotPageAllShotsButton =
     .title = Wšykne fota wobrazowki
+shotPageAllShots = Wšykne fota wobrazowki
 shotPageDownload = Ześěgnuś
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Kresliś
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Ako faworit składowaś
+shotPageDelete = Lašowaś
 shotPageScreenshotsDescription = Fota wobrazowki lažko nagótowane. Gótujśo, składujśo a źělśo fota wobrazowki, mimo až Firefox spušćaśo.
 shotPageUpsellFirefox = Wobstarajśo se Firefox něnto
 shotPageDMCAMessage = Toś to foto wobrazowki wěcej njejo k dispoziciji dla pšawow awtorstwa tśeśich.
@@ -311,6 +317,8 @@ shotIndexPageNoShotsInvitation = Pójśo, napórajśo někake.
 shotIndexPageLookingForShots = Pyta se za wašymi fotami wobrazowki...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Njamóžomy fota wobrazowki namakaś, kótarež wašomu pytanjeju wótpowěduju.
+shotIndexPageMyShotsButton =
+    .title = Móje fota wobrazowki
 shotIndexPageClearSearchButton =
     .title = Pytanje lašowaś
 shotIndexPageConfirmShotDelete = Toś to foto wobrazowki lašowaś?
