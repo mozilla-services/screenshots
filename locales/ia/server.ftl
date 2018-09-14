@@ -18,6 +18,8 @@ buttonSettings =
     .title = Parametros
 buttonSignIn =
     .title = Apertura de session
+screenshotsLogo =
+    .title = Pagina initial de Screenshots
 
 ## Footer
 
@@ -25,6 +27,8 @@ buttonSignIn =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Terminos
 footerLinkPrivacy = Notification de confidentialitate
+footerReportShot = Reporto de instantaneo
+    .title = Reportar iste instantaneo pro abuso, spam o altere problemas
 footerLinkFaqs = Questiones frequente
 footerLinkDMCA = Denunciar un violation de proprietate intellectual
 footerLinkDiscourse = Da tu opinion
@@ -124,12 +128,16 @@ shotPageDownloadShot =
     .title = Discargar
 shotPageEditButton =
     .title = Rediger iste imagine
+shotPagefavoriteButton =
+    .title = Adder iste instantaneo al favoritos
 shotPageBackToHomeButton =
     .title = Pagina initial
 shotPageAllShotsButton =
     .title = Tote le instantaneos
 shotPageAllShots = Tote le instantaneos
 shotPageDownload = Discargar
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Designar
 # Note: Favorite text is used on shot page as a verb (action)
 shotPageFavorite = Favorite
 shotPageDelete = Deler
@@ -200,6 +208,7 @@ errorThirdPartyCookiesEnabled = Si tu ha prendite iste instantaneo e non pote lo
 
 # Note: If possible, choose a short translation to better fit into the card.
 promoTitle = Prende nota!
+promoMessage = Le utensiles de edition actual te consenti de retaliar, evidentiar e mesmo adder texto a tu instantaneos
 promoLink = Prova los
 promoCloseButton =
     .title = Clauder notification
