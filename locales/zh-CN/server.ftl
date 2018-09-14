@@ -14,10 +14,12 @@ gSignIn = 登录
 
 ## Header
 
-signInButton =
-    .aria-label = 登录
-settingsButton =
-    .aria-label = 设置
+buttonSettings =
+    .title = 设置
+buttonSignIn =
+    .title = 登录
+screenshotsLogo =
+    .title = Screenshots 主页
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = 条款
 footerLinkPrivacy = 隐私声明
+footerReportShot = 举报截图
+    .title = 举报这张截图有滥用、垃圾信息或其他问题
 footerLinkFaqs = 常见问题
 footerLinkDMCA = 举报侵犯知识产权
 footerLinkDiscourse = 提供反馈
@@ -120,15 +124,23 @@ shotPageExpiredMessage = 此截图已过期。
 shotPageExpiredMessageDetails = 这是最初创建的页面：
 shotPageDeleteButton =
     .title = 删除此截图
-shotPageAbuseButton =
-    .title = 举报此截图为滥用、垃圾信息或有其他问题
 shotPageDownloadShot =
     .title = 下载
 shotPageEditButton =
     .title = 编辑此图像
 shotPagefavoriteButton =
     .title = 收藏此截图
+shotPageBackToHomeButton =
+    .title = 主页
+shotPageAllShotsButton =
+    .title = 所有截图
+shotPageAllShots = 所有截图
 shotPageDownload = 下载
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = 绘制
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = 收藏
+shotPageDelete = 删除
 shotPageScreenshotsDescription = 使截图更简单。截取、保存以及分享截图，一切都在 Firefox。
 shotPageUpsellFirefox = 立即获取 Firefox
 shotPageDMCAMessage = 由于第三方宣告知识产权，此截图不再可用。
@@ -275,6 +287,8 @@ shotIndexPageNoShotsInvitation = 快来创建一些吧。
 shotIndexPageLookingForShots = 正在查找您的截图…
 shotIndexPageNoSearchResultsIntro = 呃
 shotIndexPageNoSearchResults = 我们没找到匹配您的搜索条件的截图。
+shotIndexPageMyShotsButton =
+    .title = 我的截图
 shotIndexPageClearSearchButton =
     .title = 清空搜索
 shotIndexPageConfirmShotDelete = 删除此截图？
