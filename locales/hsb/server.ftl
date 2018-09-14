@@ -14,10 +14,12 @@ gSignIn = Přizjewić
 
 ## Header
 
-signInButton =
-    .aria-label = Přizjewić
-settingsButton =
-    .aria-label = Nastajenja
+buttonSettings =
+    .title = Nastajenja
+buttonSignIn =
+    .title = Přizjewić
+screenshotsLogo =
+    .title = Startowa strona Screenshots
 
 ## Footer
 
@@ -128,7 +130,17 @@ shotPageEditButton =
     .title = Tutón wobraz wobdźěłać
 shotPagefavoriteButton =
     .title = Tute foto wobrazowki jako faworit woznamjenić
+shotPageBackToHomeButton =
+    .title = Startowa strona
+shotPageAllShotsButton =
+    .title = Wšě fota wobrazowki
+shotPageAllShots = Wšě fota wobrazowki
 shotPageDownload = Sćahnyć
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Rysować
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Jako faworit składować
+shotPageDelete = Zhašeć
 shotPageScreenshotsDescription = Fota wobrazowki lochko činjene. Čińće, składujće a dźělće fota wobrazowki bjez toho, zo byšće Firefox wopušćił.
 shotPageUpsellFirefox = Wobstarajće sej nětko Firefox
 shotPageDMCAMessage = Tute foto wobrazowki dla prawow awtorstwa třećich hižo k dispoziciji njeje.
@@ -305,6 +317,8 @@ shotIndexPageNoShotsInvitation = Pójće, wutworće někajke.
 shotIndexPageLookingForShots = Pyta so za wašimi fotami wobrazowki...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Njemóžemy fota wobrazowki namakać, kotrež wašemu pytanju wotpowěduja.
+shotIndexPageMyShotsButton =
+    .title = Moje fota wobrazowki
 shotIndexPageClearSearchButton =
     .title = Pytanje zhašeć
 shotIndexPageConfirmShotDelete = Tute foto wobrazowki zhašeć?
