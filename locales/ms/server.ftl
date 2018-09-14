@@ -18,6 +18,8 @@ buttonSettings =
     .title = Tetapan
 buttonSignIn =
     .title = Daftar Masuk
+screenshotsLogo =
+    .title = Laman Screenshots
 
 ## Footer
 
@@ -25,6 +27,8 @@ buttonSignIn =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Terma
 footerLinkPrivacy = Notis Privasi
+footerReportShot = Laporkan Syot
+    .title = Laporkan syot ini kerana salah guna, spam atau masalah lain
 footerLinkFaqs = Soalan Lazim
 footerLinkDMCA = Lapor Pencerobohan IP
 footerLinkDiscourse = Beri maklum balas
@@ -126,7 +130,17 @@ shotPageEditButton =
     .title = Edit imej ini
 shotPagefavoriteButton =
     .title = Syot ini kegemaran
+shotPageBackToHomeButton =
+    .title = Laman
+shotPageAllShotsButton =
+    .title = Semua Syot
+shotPageAllShots = Semua Syot
 shotPageDownload = Muat turun
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Lukis
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Kegemaran
+shotPageDelete = Buang
 shotPageScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skrinsyot tanpa keluar daripada Firefox.
 shotPageUpsellFirefox = Dapatkan Firefox sekarang
 shotPageDMCAMessage = Syot ini tidak lagi tersedia kerana tuntutan harta intelek pihak ketiga.
@@ -285,6 +299,8 @@ shotIndexPageNoShotsInvitation = Ayuh, ambil gambar.
 shotIndexPageLookingForShots = Mencari syot anda...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Kami tidak menemui syot yang sepadan dengan carian anda.
+shotIndexPageMyShotsButton =
+    .title = Syot Saya
 shotIndexPageClearSearchButton =
     .title = Padam carian
 shotIndexPageConfirmShotDelete = Buang syot ini?
