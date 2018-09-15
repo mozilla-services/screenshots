@@ -27,6 +27,8 @@ screenshotsLogo =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Conditions
 footerLinkPrivacy = Politique de confidentialité
+footerReportShot = Signaler cette capture
+    .title = Signaler cette capture comme abusive, du spam ou autre
 footerLinkFaqs = Questions fréquentes
 footerLinkDMCA = Signaler une violation de la p.i.
 footerLinkDiscourse = Donner son avis
@@ -136,6 +138,8 @@ shotPageAllShots = Toutes les captures
 shotPageDownload = Télécharger
 # Note: Draw text is used on shot page as a verb (action)
 shotPageDraw = Dessiner
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Ajouter aux favoris
 shotPageDelete = Supprimer
 shotPageScreenshotsDescription = Des captures en un clin d’œil. Capturez l’écran, enregistrez et partagez sans quitter Firefox.
 shotPageUpsellFirefox = Installez Firefox
