@@ -14,10 +14,12 @@ gSignIn = Se connecter
 
 ## Header
 
-signInButton =
-    .aria-label = Connexion
-settingsButton =
-    .aria-label = Paramètres
+buttonSettings =
+    .title = Paramètres
+buttonSignIn =
+    .title = Connexion
+screenshotsLogo =
+    .title = Accueil de Screenshots
 
 ## Footer
 
@@ -120,15 +122,21 @@ shotPageExpiredMessage = Cette capture a expiré.
 shotPageExpiredMessageDetails = Voici la page depuis laquelle elle a été créée :
 shotPageDeleteButton =
     .title = Supprimer cette capture
-shotPageAbuseButton =
-    .title = Signaler cette capture pour cause d’abus, de spam ou d’autres problèmes
 shotPageDownloadShot =
     .title = Télécharger
 shotPageEditButton =
     .title = Modifier cette image
 shotPagefavoriteButton =
     .title = Ajouter à vos captures favorites
+shotPageBackToHomeButton =
+    .title = Page d’accueil
+shotPageAllShotsButton =
+    .title = Toutes les captures
+shotPageAllShots = Toutes les captures
 shotPageDownload = Télécharger
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Dessiner
+shotPageDelete = Supprimer
 shotPageScreenshotsDescription = Des captures en un clin d’œil. Capturez l’écran, enregistrez et partagez sans quitter Firefox.
 shotPageUpsellFirefox = Installez Firefox
 shotPageDMCAMessage = Cette capture n’est plus disponible, car un tiers a signalé une atteinte aux droits de la propriété intellectuelle.
@@ -293,6 +301,8 @@ shotIndexPageNoShotsInvitation = Comment ça fonctionne ? Allez-y, faites une c
 shotIndexPageLookingForShots = Nous recherchons vos captures…
 shotIndexPageNoSearchResultsIntro = Hum…
 shotIndexPageNoSearchResults = Nous n’avons trouvé aucune capture correspondant à votre recherche.
+shotIndexPageMyShotsButton =
+    .title = Mes captures d’écran
 shotIndexPageClearSearchButton =
     .title = Effacer la recherche
 shotIndexPageConfirmShotDelete = Supprimer cette capture ?
