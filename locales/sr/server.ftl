@@ -14,10 +14,12 @@ gSignIn = Пријавите се
 
 ## Header
 
-signInButton =
-    .aria-label = Пријави се
-settingsButton =
-    .aria-label = Поставке
+buttonSettings =
+    .title = Поставке
+buttonSignIn =
+    .title = Пријави се
+screenshotsLogo =
+    .title = Почетна снимака екрана
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Услови
 footerLinkPrivacy = Обавештење о приватности
+footerReportShot = Пријави снимак
+    .title = Пријави овај снимак због насиља, непожељног садржаја или других проблема.
 footerLinkFaqs = ЧПП
 footerLinkDMCA = Пријави кршење интелектуалне својине
 footerLinkDiscourse = Пошаљите повратне податке
@@ -120,15 +124,23 @@ shotPageExpiredMessage = Овај снимак је истекао.
 shotPageExpiredMessageDetails = Ово је страница из које је изворно настао:
 shotPageDeleteButton =
     .title = Обриши овај снимак
-shotPageAbuseButton =
-    .title = Пријави злоупотребу, непожељно или друге проблеме на овом снимку
 shotPageDownloadShot =
     .title = Преузми
 shotPageEditButton =
     .title = Уреди ову слику
 shotPagefavoriteButton =
     .title = Фаворизуј овај снимак
+shotPageBackToHomeButton =
+    .title = Почетна страница
+shotPageAllShotsButton =
+    .title = Сви снимци
+shotPageAllShots = Сви снимци
 shotPageDownload = Преузми
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Фиока
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Омиљени
+shotPageDelete = Обриши
 shotPageScreenshotsDescription = Снимци екрана, поједностављени. Ухватите, сачувајте и делите снимке екрана без напуштања Firefox-а.
 shotPageUpsellFirefox = Преузмите Firefox сада
 shotPageDMCAMessage = Овај снимак није више доступан зато што је примљен извештај о повреди ауторских права.
@@ -299,6 +311,8 @@ shotIndexPageNoShotsInvitation = Слободно, направите неки.
 shotIndexPageLookingForShots = Тражим ваше снимке…
 shotIndexPageNoSearchResultsIntro = Хм
 shotIndexPageNoSearchResults = Не можемо наћи ниједан снимак који се подудара са вашом претрагом.
+shotIndexPageMyShotsButton =
+    .title = Моји снимци
 shotIndexPageClearSearchButton =
     .title = Очисти претрагу
 shotIndexPageConfirmShotDelete = Обрисати овај снимак?
