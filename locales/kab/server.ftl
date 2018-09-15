@@ -14,10 +14,12 @@ gSignIn = Kcem
 
 ## Header
 
-signInButton =
-    .aria-label = Kcem
-settingsButton =
-    .aria-label = Iɣewwaṛen
+buttonSettings =
+    .title = Iɣewwaṛen
+buttonSignIn =
+    .title = Kcem
+screenshotsLogo =
+    .title = Tuṭṭfa n wegdil agejdan
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Tiwtilin
 footerLinkPrivacy = Tasertit n tbaḍnit
+footerReportShot = Aneqqis n tuṭṭfa
+    .title = Azen aneqqis n tuṭṭfa-a, ma yella d aspamneɣ uguuren-nniḍen
 footerLinkFaqs = Isteqsiyen FAQ
 footerLinkDMCA = Mmel-d ataɛdi ɣef ayla agzayan IP
 footerLinkDiscourse = Mudd-d tikti-ik
@@ -120,15 +124,23 @@ shotPageExpiredMessage = Tuṭṭfa-agi tfat.
 shotPageExpiredMessageDetails = Hatan usebter ansa i d-tettwarna:
 shotPageDeleteButton =
     .title = Kkes tuṭfa-agi
-shotPageAbuseButton =
-    .title = Azen tuṭṭfa-agi d asexseṛ, d aspam, neɣ uguren-nniḍen
 shotPageDownloadShot =
     .title = Sider
 shotPageEditButton =
     .title = Ẓreg tugna-agi
 shotPagefavoriteButton =
     .title = Smenyif tuṭṭfa-agi
+shotPageBackToHomeButton =
+    .title = Asebter agejdan
+shotPageAllShotsButton =
+    .title = Tuṭṭfiwin meṛṛa
+shotPageAllShots = Tuṭṭfiwin meṛṛa
 shotPageDownload = Sider
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Suneɣ
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Anurif
+shotPageDelete = Kkes
 shotPageScreenshotsDescription = Tuṭṭfa fessusen. Ṭṭef, sekles, sakin bḍu tuṭṭfa war ma tefγeḍ seg Firefox.
 shotPageUpsellFirefox = Awi-d Firefox tura
 shotPageDMCAMessage = Tuṭṭfa-agi ur tezgi tella imi yella ucetki ɣef wayla agzayan i d-yekkan seg wis kraḍ.
@@ -289,6 +301,8 @@ shotIndexPageNoShotsInvitation = Bdu, Rnu kra.
 shotIndexPageLookingForShots = Anadi n tuṭfiwin inek…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Ulac tuṭfiwin i γef tettnadiḍ.
+shotIndexPageMyShotsButton =
+    .title = Tuṭṭfiwin-iw
 shotIndexPageClearSearchButton =
     .title = Sfeḍ anadi
 shotIndexPageConfirmShotDelete = Kkes tuṭfa-agi?
