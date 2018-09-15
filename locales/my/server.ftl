@@ -10,6 +10,9 @@ gNoShots =
     .alt = ရိုက်ကူးထားခြင်း မရှိပါ
 gScreenshotsDescription = မျက်နှာပြင်ဖမ်းယူခြင်းကို လွယ်ကူစေရန် ပြုလုပ်ထားသည်။ Firefox ကနေ ထွက်ခွာစရာမလိုပဲ မျက်နှာပြင်ဖမ်းယူထားခြင်းများကို ရိုက်ကူး၊ သိမ်းဆည်းပြီး မျှဝေပါ။
 
+## Header
+
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
@@ -32,11 +35,12 @@ creatingPageWaitMessage = ရိုက်ကူးချက်ကို သိ�
 
 ## Home page
 
+homePageDescription =
+    .content = FireFox အသုံးပြုခြင်းဖြင့် ဝက်ပေါ်တွင် သင့်ရိုက်ချက်များကို ဖမ်းထားပြီးသိမ်းဆဲ မှျဝေပါ
 homePageButtonMyShots = မိမိရိုက်ထားသော ပုံများဆီ ပို့ပေးပါ
 homePageTeaser = မကြာမီ လာမည်...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = အခမဲ့ ဆွဲယူပါ
-homePageGetStarted = စတင်ပါ
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots အလုပ်လုပ်ပုံ
 homePageGetStartedTitle = စတင်ပါ
@@ -54,6 +58,8 @@ leavePageRemoveAllData = ဒေတာအားလုံးကို ဖျက်
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = သင့်အကောင့်ကို ဖျက်ရန် Firefox Screenshots ကို တပ်ဆင်ပြီးသား ဖြစ်ရမည်။
 leavePageErrorGeneric = အမှားတစ်ခု ဖြစ်ခဲ့သည်
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = ဒီဟာက firefox မှ သင့်ရိုက်ချက်များကို အရှင်းဖျက်ပစ်လိမ့်မည်
 leavePageButtonProceed = ဆောင်ရွက်ရန်
 leavePageButtonCancel = မလုပ်တော့ပါ
 leavePageDeleted = မျက်နှာပြင်ဖမ်းယူချက်များ အားလုံးကို ရှင်းလင်းပြီးပြီ။
@@ -68,6 +74,7 @@ notFoundPageDescription = စာမျက်နှာကို မတွေ့�
 
 # This is the HTML title tag of the page
 shotPageTitle = စာမျက်နှာ ရိုက်ချက်၊ { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = သိမ်းဆဲကာလလွန် မှားယွင်းမှု
 shotPageAlertErrorDeletingShot = ရိုက်ကူးချက် ဖျက်နေစဉ် အမှားဖြစ်ပေါ်ခဲ့သည်
 shotPageAlertErrorUpdatingTitle = ခေါင်းစဉ်ကို သိမ်းနေစဉ် အမှားဖြစ်ပေါ်ခဲ့သည်
 shotPageConfirmDelete = ယခုရိုက်ကူးချက်ကို အပြီးတိုင် ဖျက်မည်မှာ သေချာပါသလား။
@@ -83,34 +90,212 @@ shotPageSharePinterest =
     .title = Pinterest ပေါ်သို့ မျှဝေပါ
 shotPageShareEmail =
     .title = အီးမေးလ်ဖြင့် ဒီလင့်ခ်ကို မျှဝေပါ
+shotPageShareLink = ဒီရိုက်ချက်ကို မှျဝေနိုင်သောလင့်ခ် ရယူပါ
+shotPagePrivacyMessage = ဒီရိုက်ချက် လင့်ခ်ဖြင့် မည်သူမဆိုကြည့်နိုင်သည်
 shotPageCopyImageText =
     .label = ပုံစာသားကို ကူးယူပါ
+shotPageConfirmDeletion = သင် ဒီရိုက်ချက်ကို အရှင်းဖျက်သိမ်းချင်တာ သေချာလား
+# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = သင်ဘာမှမလုပ်လှျင် ဒီရိုက်ချက်ကို{ $timediff } အတွင်း အရှင်းဖျက်ပစ်လိမ့်မည်
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = { $date } မတိုင်ခင် ပြန်လည်သိမ်းဆဲပါ
+shotPageExpiredMessage = ဒီရိုက်ချက် သက်တမ်းကုန်ပြီ
+# Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = ဒီနေရာက ဒီဟာ စတင်ဖန်တီးခဲ့တဲ့ စာမျက်နှာပါ
 shotPageDeleteButton =
     .title = ဒီရိုက်ကူးချက်ကို ဖျက်ပါ
-shotPageAbuseButton =
-    .title = စော်ကားတိုက်ခိုက်မှုများ ပါရှိသော ယခုရိုက်ကူးချက်ကို တိုင်ကြားရန်
 shotPageDownloadShot =
     .title = ဆွဲယူပါ
 shotPageEditButton =
     .title = ဒီပုံကို ပြုပြင်ပါ
 shotPageDownload = ဆွဲယူပါ
 shotPageUpsellFirefox = ယခုပင် Firefox ကို ရယူပါ
+shotPageDMCAMessage = ဖောက်ဖျက်မှုတစ်ခုခုဖြင့် အဆိုတင်သွင်းမှုကြောင့် ဒီရိုက်ချက်အား မရရှိနိုင်တော့ပါ
+# Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = ကျေးဇူးပြုပြီး သင့်အီးမေးလ်ထဲတွင် ဒီရိုက်ချက် လိပ်စာလင့် ကို ထည့်ပါ: { $url }
+shotPageKeepFor = ဒီရိုက်ချက်ကို ဘယ်လောက်ထိန်းသိမ်းထားသင့်လဲ
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = အချိန်ရွေးချယ်ခြင်း
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = သက်တမ်းကုန်ဆုံးခြင်းမရှိ
+shotPageKeepTenMinutes = ဆယ်မိနစ်
+shotPageKeepOneHour = တစ်နာရီ
+shotPageKeepOneDay = တစ်ရက်
+shotPageKeepOneWeek = တစ်ပတ်
+shotPageKeepTwoWeeks = နှစ်ပတ်
+shotPageKeepOneMonth = တစ်လ
+shotPageSaveExpiration = သိမ်းဆဲပါ
+shotPageCancelExpiration = မလုပ်ဆောင်ပါ
+shotPageDoesNotExpire = သက်တမ်းမကုန်ဆုံးပါ
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = သက်တမ်းကုန်ဆုံးခြင်း { $timediff }
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = သက်တမ်းကုန်ဆုံးခြင်း { $timediff }
+timeDiffJustNow = ယခုလေးတင်
+timeDiffMinutesAgo =
+    { $number ->
+       *[other] ပြီးခဲ့သော { $number } မိနစ်
+    }
+timeDiffHoursAgo =
+    { $number ->
+       *[other] ပြီးခဲ့သော { $number } နာရီ
+    }
+timeDiffDaysAgo =
+    { $number ->
+       *[other] ပြီးခဲ့သော { $number } နေ့
+    }
+timeDiffFutureSeconds = စက္ကန့်အနည်းငယ်အတွင်း
+timeDiffFutureMinutes =
+    { $number ->
+       *[other] { $number } မိနစ်ပိုင်းအတွင်း
+    }
+timeDiffFutureHours =
+    { $number ->
+       *[other] { $number } နာရီပိုင်းအတွင်း
+    }
+timeDiffFutureDays =
+    { $number ->
+       *[other] { $number } နေ့အတွင်း
+    }
 
 ## Shot Page New Feature Promotion Dialog.
 
 
 ## Annotations
 
+annotationPenButton =
+    .title = ဘောပင်
+annotationHighlighterButton =
+    .title = အရေးကြီးသုံးသပ်ချက်
+annotationUndoButton =
+    .title = မလုပ်တော့ပါ
+annotationRedoButton =
+    .title = ပြန်လည်လုပ်ပါ
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
+    .title = ဖယ်ရှားပါ
+annotationCropButton =
+    .title = ဖြတ်တောက်
+annotationSaveEditButton = သိမ်းဆဲ
+    .title = သိမ်းဆဲ
+annotationCancelEditButton = မလုပ်တော့ပါ
+    .title = မလုပ်တော့ပါ
+annotationCropConfirmButton = သေချာပါသည်
+    .title = သေချာပါသည်
+annotationCropCancelButton = ဖယ်ရှားပါ
+    .title = ဖယ်ရှားပါ
+annotationColorWhite =
+    .title = အဖြူရောင်
+annotationColorBlack =
+    .title = အမည်းရောင်
+annotationColorRed =
+    .title = အနီရောင်
+annotationColorGreen =
+    .title = အစိမ်းရောင်
+annotationColorBlue =
+    .title = အပြာရောင်
+annotationColorYellow =
+    .title = အဝါရောင်
+annotationColorPurple =
+    .title = ခရမ်းရောင်
+annotationColorSeaGreen =
+    .title = စိမ်းပြာ
+annotationColorGrey =
+    .title = မီးခိုးရောင်
 
 ## Settings Page
 
+settingsDisconnectButton = မချိတ်ဆက်ပါ
+    .title = မချိတ်ဆက်ပါ
+settingsGuestAccountMessage = ဧည့်သည် အကောင့်
+settingsSignInButton = ဝင်ပါ
+    .title = ဝင်ပါ
+SettingsPageHeader = Firefox မှ ပုံဖမ်းရိုက်ချက် အပြင်အဆင်များ
+settingsPageSubHeader = ချိတ်ဆက်ခြင်း နှင့်အကောင့်များ
+settingsClosePreferences =
+    .title = စိတ်ကြိုက်ပြင်ဆင်မှုများ ပိတ်ပါ
 
 ## Shotindex page
 
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = ရိုက်ချက်ဖျက်ခြင်း အမှားများ :{ $status }{ $statusText }
+# { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = ကိုယ်ပိုင်ရိုက်ချက်: { $searchTerm } ရှာဖွေခြင်း
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
+shotIndexPageErrorRendering = စာမျက်နှာ မှားယွင်းမှု: { $error }
+shotIndexPageSearchPlaceholder =
+    .placeholder = ကိုယ်ပိုင်ရိုက်ချက်များ ရှာဖွေပါ
+shotIndexPageSearchButton =
+    .title = ရှာဖွေပါ
+shotIndexPageNoShotsMessage = သိမ်းဆဲထားသောရိုက်ချက်များမရှိပါ
+shotIndexPageNoShotsInvitation = ဆက်လက်သွားပြီး ဖန်တီးပါ
+shotIndexPageLookingForShots = သင့်ရိုက်ချက်များ ကြည့်ရှုခြင်း
+shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = သင့်ရှာဖွေမှုနှင့်ကိုက်ညီသော ရိုက်ချက်များ မတွေ့ပါ
+shotIndexPageClearSearchButton =
+    .title = ရှာဖွေ ဖယ်ရှားပါ
+shotIndexPageConfirmShotDelete = ဒီရိုက်ချက် ဖျက်မလား
+shotIndexPagePreviousPage =
+    .title = ပြီးခဲ့သောစာမျက်နှာ
+shotIndexPageNextPage =
+    .title = ရှေ့လာမည့်စာမျက်နှာ
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = ဒီရိုက်ချက်သက်တမ်းကုန်ဆုံးရက်မရှိပါ
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = ဒီရိုက်ချက် ဖျက်မလား
+shotDeleteCancel = မလုပ်ဆောင်ပါ
+    .title = မလုပ်ဆောင်ပါ
+shotDeleteConfirm = ဖျက်သိမ်းပါ
+    .title = ဖျက်သိမ်းပါ
 
 ## Metrics page
 ## All metrics strings are optional for translation
 
+# Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Firefoxမှ ပုံဖမ်းရိုက်ခြင်းတိုင်းတာချက်
+metricsPageTotalsQueryTitle = စုစုပေါင်း
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = ရိုက်ချက်များ ခြုံငုံကြည့်ခြင်း
+metricsPageTotalsQueryDevices = စက်ကိရိယာအားလုံးကို စာရင်းမှတ်ခဲ့သည်
+metricsPageTotalsQueryActiveShots = လုပ်ဆောင်နေသော ရိုက်ချက်များ
+metricsPageTotalsQueryExpiredShots = သက်တမ်းကုန်ဆုံးခြင်း(ပြန်လည်ရယူခြင်း)
+metricsPageTotalsQueryExpiredDeletedShots = သက်တမ်းကုန်ဆုံးခြင်း(ဖျက်ခြင်း)
+metricsPageShotsQueryTitle = နေ့အလိုက် ရိုက်ချက်များ
+metricsPageShotsQueryDescription = တစ်နေ့ချင်းစီအလိုက် ဖန်တီးထားသောရိုက်ချက်များ(ရက်၃၀ အတွက်သာ)
+metricsPageShotsQueryCount = ရိုက်ချက်များအရေအတွက်
+metricsPageShotsQueryDay = နေ့
+metricsPageUsersQueryTitle = နေ့အလိုက် အသုံးပြုသူများ
+metricsPageUsersQueryCount = သုံးစွဲသူအရေအတွက်
+metricsPageUsersQueryDay = နေ့
+metricsPageUserShotsQueryTitle = သုံးစွဲသူတစ်ဦးတွင် ရိုက်ချက်အရေအတွက်
+metricsPageUserShotsQueryDescription = အားလုံးပေါင်းရိုက်ချက်များတွင်ရှိသော သုံးစွဲသူအရေအတွက်
+metricsPageUserShotsQueryCount = သုံးစွဲသူအရေအတွက်
+metricsPageUserShotsQueryShots = သက်တမ်းမကုန်ဆုံးသေးသော ရိုက်ချက်များ အနီးစပ်ဆုံးအရေအတွက်
+metricsPageRetentionQueryUsers = သုံးစွဲသူအရေအတွက်
+metricsPageRetentionQueryDays = သုံးစွဲသူ စတင်ရိုက်သော နေ့မှ နောက်ဆုံးရိုက်ခဲ့သောနေ့
+metricsPageRetentionQueryFirstWeek = သုံးစွဲသူစတင်ရိုက်ချက်ဖန်တီးခဲ့သည့် ရက်သတ္တပတ်
+metricsPageTotalRetentionQueryTitle = စုစုပေါင်း ရယူမှုများ
+metricsPageTotalRetentionQueryDescription = သုံးစွဲသူများ စတင်ရိုက်ချက်ဖန်တီးမှု ပြုလုပ်သည့်အချိန် (ရက်သတ္တပတ်ဖြင့်)
+metricsPageTotalRetentionQueryUsers = အသုံးပြုသူများ အရေအတွက်
+metricsPageTotalRetentionQueryDays = သုံးစွဲသူ ပုံဖမ်းရိုက်ချက်များ ပြုလုပ်သည့်နေ့များ
+metricsPageVersionQueryTitle = အက်ပ်အွန် ပုံစံ
+metricsPageVersionQueryDescription = နောက်ဆုံး ၁၄ ရက် ဝင်ရောက်မှုကာလအတွင်း အက်ပ်အွန်ပုံစံ သုံးခဲ့သည်
+metricsPageVersionQueryUsers = ဝင်ရောက်သုံးစွဲသူ အရေအတွက်
+metricsPageVersionQueryVersion = အက်ပ်အွန် ပုံစံ
+metricsPageVersionQueryLastSeen = နေ့
+metricsPageHeader = အတိုင်းအတာ
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = စီမံချက်အတိအကျ: { $created }
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = ဒေတာသိမ်းဆဲချိန် { $time } မီလီစက္ကန့်
