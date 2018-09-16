@@ -9,9 +9,17 @@ gHomeLink = မူလ
 gNoShots =
     .alt = ရိုက်ကူးထားခြင်း မရှိပါ
 gScreenshotsDescription = မျက်နှာပြင်ဖမ်းယူခြင်းကို လွယ်ကူစေရန် ပြုလုပ်ထားသည်။ Firefox ကနေ ထွက်ခွာစရာမလိုပဲ မျက်နှာပြင်ဖမ်းယူထားခြင်းများကို ရိုက်ကူး၊ သိမ်းဆည်းပြီး မျှဝေပါ။
+gSettings = အပြင်အဆင်များ
+gSignIn = ဝင်ရန်
 
 ## Header
 
+buttonSettings =
+    .title = အပြင်အဆင်များ
+buttonSignIn =
+    .title = ဝင်ရန်
+screenshotsLogo =
+    .title = Screenshots မူလစာမျက်နှာ
 
 ## Footer
 
@@ -19,6 +27,8 @@ gScreenshotsDescription = မျက်နှာပြင်ဖမ်းယူခ
 footerLinkMozilla = Mozilla
 footerLinkTerms = စည်းမျဉ်းများ
 footerLinkPrivacy = ကိုယ်ရေးကာကွယ်မှု သတိပေးချက်
+footerReportShot = ယခုဖမ်းယူချက်ကို သတင်းပို့ရန်
+    .title = လိမ်လည်၊ နှောင့်ယှက် သို့မဟုတ် အခြားပြဿနာအတွက် ယခုဖမ်းယူချက်ကို သတင်းပို့ရန်
 footerLinkFaqs = မေးလေ့ရှိသော မေးခွန်းများ
 footerLinkDMCA = ဉာဏမူပိုင်ခွင့် ဥပဒေချိုးဖောက်မှုကို တိုင်ကြားရန်
 footerLinkDiscourse = တုံ့ပြန်ချက်ပေးရန်
@@ -109,7 +119,19 @@ shotPageDownloadShot =
     .title = ဆွဲယူပါ
 shotPageEditButton =
     .title = ဒီပုံကို ပြုပြင်ပါ
+shotPagefavoriteButton =
+    .title = ယခုဖမ်းယူချက်ကို နှစ်သက်ရာစာရင်းသို့ ထည့်ရန်
+shotPageBackToHomeButton =
+    .title = အဖွင့်စာမျက်နှာ
+shotPageAllShotsButton =
+    .title = ရိုက်ကူးထားသော ပုံများ
+shotPageAllShots = ရိုက်ကူးထားသော ပုံများ
 shotPageDownload = ဆွဲယူပါ
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = ပုံဆွဲရန်
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = စိတ်ကြိုက်
+shotPageDelete = ဖျက်ရန်
 shotPageUpsellFirefox = ယခုပင် Firefox ကို ရယူပါ
 shotPageDMCAMessage = ဖောက်ဖျက်မှုတစ်ခုခုဖြင့် အဆိုတင်သွင်းမှုကြောင့် ဒီရိုက်ချက်အား မရရှိနိုင်တော့ပါ
 # Note: { $url } is a placeholder for a shot page URL
@@ -163,6 +185,11 @@ timeDiffFutureDays =
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = မှတ်စုယူရန်
+promoLink = စမ်းကြည့်ရန်
+promoCloseButton =
+    .title = အသိပေးချက်ကို ပိတ်ရန်
 
 ## Annotations
 
@@ -174,6 +201,8 @@ annotationUndoButton =
     .title = မလုပ်တော့ပါ
 annotationRedoButton =
     .title = ပြန်လည်လုပ်ပါ
+annotationTextButton =
+    .title = စာထည့်ရန်
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = ဖယ်ရှားပါ
@@ -205,6 +234,21 @@ annotationColorSeaGreen =
     .title = စိမ်းပြာ
 annotationColorGrey =
     .title = မီးခိုးရောင်
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = စာလုံးအရွယ်အစား
+# Values shown in text size selection dropdown
+textSizeSmall = အသေး
+textSizeMedium = အလတ်
+textSizeLarge = အကြီး
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = အတည်ပြုရန်
+    .title = အတည်ပြုရန်
+textToolCancelButton = မလုပ်ဆောင်တော့ပါ
+    .title = မလုပ်ဆောင်တော့ပါ
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = မင်္ဂလာပါ
 
 ## Settings Page
 
@@ -237,6 +281,8 @@ shotIndexPageNoShotsInvitation = ဆက်လက်သွားပြီး ဖ�
 shotIndexPageLookingForShots = သင့်ရိုက်ချက်များ ကြည့်ရှုခြင်း
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = သင့်ရှာဖွေမှုနှင့်ကိုက်ညီသော ရိုက်ချက်များ မတွေ့ပါ
+shotIndexPageMyShotsButton =
+    .title = ရိုက်ကူးထားသော ပုံများ
 shotIndexPageClearSearchButton =
     .title = ရှာဖွေ ဖယ်ရှားပါ
 shotIndexPageConfirmShotDelete = ဒီရိုက်ချက် ဖျက်မလား
