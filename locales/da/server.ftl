@@ -18,6 +18,8 @@ buttonSettings =
     .title = Indstillinger
 buttonSignIn =
     .title = Log ind
+screenshotsLogo =
+    .title = Startside for Screenshots
 
 ## Footer
 
