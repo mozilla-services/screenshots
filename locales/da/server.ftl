@@ -14,10 +14,10 @@ gSignIn = Log ind
 
 ## Header
 
-signInButton =
-    .aria-label = Log ind
-settingsButton =
-    .aria-label = Indstillinger
+buttonSettings =
+    .title = Indstillinger
+buttonSignIn =
+    .title = Log ind
 
 ## Footer
 
@@ -25,6 +25,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Betingelser
 footerLinkPrivacy = Privatlivspolitik
+footerReportShot = Indberet skærmbillede
+    .title = Indberet dette skærmbillede for misbrug, spam eller andre problemer
 footerLinkFaqs = Ofte stillede spørgsmål
 footerLinkDMCA = Indberet overtrædelse af ophavsrettigheder
 footerLinkDiscourse = Giv feedback
@@ -120,15 +122,23 @@ shotPageExpiredMessage = Dette skærmbillede er udløbet.
 shotPageExpiredMessageDetails = Her er siden, det oprindeligt blev oprettet fra:
 shotPageDeleteButton =
     .title = Slet dette skærmbillede
-shotPageAbuseButton =
-    .title = Indberet dette skærmbillede for misbrug, spam eller andre problemer
 shotPageDownloadShot =
     .title = Hent
 shotPageEditButton =
     .title = Rediger dette billede
 shotPagefavoriteButton =
     .title = Marker dette skærmbillede som favorit
+shotPageBackToHomeButton =
+    .title = Startside
+shotPageAllShotsButton =
+    .title = Alle skærmbilleder
+shotPageAllShots = Alle skærmbilleder
 shotPageDownload = Hent
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Tegn
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Favorit
+shotPageDelete = Slet
 shotPageScreenshotsDescription = Skærmbilleder helt enkelt. Tag, gem og del skærmbilleder uden af forlade Firefox.
 shotPageUpsellFirefox = Hent Firefox nu
 shotPageDMCAMessage = Dette skærmbillede er ikke længere tilgængeligt, fordi tredjepart har gjort krav på den intellektuelle ejendomsret.
@@ -293,6 +303,8 @@ shotIndexPageNoShotsInvitation = Fortsæt, tag nogle.
 shotIndexPageLookingForShots = Leder efter dine skærmbilleder...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Vi kan ikke finde nogle skærmbilleder, der matcher din søgning.
+shotIndexPageMyShotsButton =
+    .title = Mine skærmbilleder
 shotIndexPageClearSearchButton =
     .title = Ryd søgning
 shotIndexPageConfirmShotDelete = Slet dette skærmbillede?
