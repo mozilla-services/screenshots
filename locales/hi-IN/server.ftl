@@ -14,10 +14,12 @@ gSignIn = साइन इन
 
 ## Header
 
-signInButton =
-    .aria-label = साइन इन
-settingsButton =
-    .aria-label = सेटिंग
+buttonSettings =
+    .title = सेटिंग्स
+buttonSignIn =
+    .title = साइन इन करें
+screenshotsLogo =
+    .title = स्क्रीनशॉट होम
 
 ## Footer
 
@@ -120,8 +122,6 @@ shotPageExpiredMessage = इस शॉट की समय सीमा सम�
 shotPageExpiredMessageDetails = यहां यह मूल रूप से बनाया गया था पृष्ठ है:
 shotPageDeleteButton =
     .title = यह शॉट हटाएँ
-shotPageAbuseButton =
-    .title = यह शॉट दुरुपयोग, स्पैम, या अन्य समस्याओं के लिए रिपोर्ट
 shotPageDownloadShot =
     .title = डाउनलोड करें
 shotPageEditButton =
