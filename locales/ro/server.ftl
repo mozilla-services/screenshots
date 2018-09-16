@@ -14,10 +14,12 @@ gSignIn = Autentificare
 
 ## Header
 
-signInButton =
-    .aria-label = Autentificare
-settingsButton =
-    .aria-label = Setări
+buttonSettings =
+    .title = Setări
+buttonSignIn =
+    .title = Autentificare
+screenshotsLogo =
+    .title = Pagina de start Screenshots
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Termeni
 footerLinkPrivacy = Politica de confidențialitate
+footerReportShot = Raportează captura
+    .title = Raportează această captură pentru abuz, spam sau alte probleme
 footerLinkFaqs = Întrebări frecvente
 footerLinkDMCA = Raportează o încălcare a PI
 footerLinkDiscourse = Oferă feedback
@@ -120,15 +124,23 @@ shotPageExpiredMessage = Această captură a expirat.
 shotPageExpiredMessageDetails = Iată pagina de pe care a fost creată inițial:
 shotPageDeleteButton =
     .title = Șterge această captură
-shotPageAbuseButton =
-    .title = Raportează această captură pentru abuz, spam sau alte probleme
 shotPageDownloadShot =
     .title = Descarcă
 shotPageEditButton =
     .title = Editează această imagine
 shotPagefavoriteButton =
     .title = Adaugă la favorite
+shotPageBackToHomeButton =
+    .title = Pagina de start
+shotPageAllShotsButton =
+    .title = Toate capturile
+shotPageAllShots = Toate capturile
 shotPageDownload = Descarcă
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Desenează
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Favorite
+shotPageDelete = Șterge
 shotPageScreenshotsDescription = Capturile de ecran simplificate. Realizează, salvează și partajează capturile de ecran fără să părăsești Firefox.
 shotPageUpsellFirefox = Obține Firefox acum
 shotPageDMCAMessage = Această captură nu mai este disponibilă din cauza unei reclamații de proprietate intelectuală.
@@ -299,6 +311,8 @@ shotIndexPageNoShotsInvitation = Haide, realizează câteva.
 shotIndexPageLookingForShots = Se caută capturile tale...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Nu am găsit capturi după căutarea specificată.
+shotIndexPageMyShotsButton =
+    .title = Capturile mele
 shotIndexPageClearSearchButton =
     .title = Curăță căutarea
 shotIndexPageConfirmShotDelete = Ștergi această captură?
