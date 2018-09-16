@@ -14,10 +14,12 @@ gSignIn = Είσοδος
 
 ## Header
 
-signInButton =
-    .aria-label = Είσοδος
-settingsButton =
-    .aria-label = Ρυθμίσεις
+buttonSettings =
+    .title = Ρυθμίσεις
+buttonSignIn =
+    .title = Σύνδεση
+screenshotsLogo =
+    .title = Αρχική σελίδα Screenshots
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Όροι χρήσης
 footerLinkPrivacy = Πολιτική Απορρήτου
+footerReportShot = Αναφορά στιγμιότυπου
+    .title = Αναφέρετε αυτό το στιγμιότυπο ως ακατάλληλο, ανεπιθύμητο ή για άλλα προβλήματα
 footerLinkFaqs = Συχνές ερωτήσεις
 footerLinkDMCA = Αναφορά IP παραβίασης πνευματικής ιδιοκτησίας
 footerLinkDiscourse = Γράψτε το σχόλιο σας
@@ -120,15 +124,23 @@ shotPageExpiredMessage = Αυτό το στιγμιότυπο έχει λήξε�
 shotPageExpiredMessageDetails = Ορίστε η σελίδα, από την οποία δημιουργήθηκε αρχικά:
 shotPageDeleteButton =
     .title = Διαγραφή στιγμιότυπου
-shotPageAbuseButton =
-    .title = Αναφορά στιγμιότυπου για κατάχρηση, spam ή άλλα προβλήματα
 shotPageDownloadShot =
     .title = Λήψη
 shotPageEditButton =
     .title = Επεξεργασία εικόνας
 shotPagefavoriteButton =
     .title = Προσθήκη στιγμιότυπου στα αγαπημένα
+shotPageBackToHomeButton =
+    .title = Αρχική σελίδα
+shotPageAllShotsButton =
+    .title = Όλα τα στιγμιότυπα
+shotPageAllShots = Όλα τα στιγμιότυπα
 shotPageDownload = Λήψη
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Σχέδιο
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Αγαπημένο
+shotPageDelete = Διαγραφή
 shotPageScreenshotsDescription = Η λήψη στιγμιοτύπων έγινε εύκολη. Λήψη, αποθήκευση και κοινή χρήση στιγμιοτύπων χωρίς να φύγετε από το Firefox.
 shotPageUpsellFirefox = Λήψη του Firefox τώρα
 shotPageDMCAMessage = Αυτό το στιγμιότυπο δεν είναι πλέον διαθέσιμο λόγω ισχυρισμού πνευματικής ιδιοκτησίας ενός τρίτου.
@@ -293,6 +305,8 @@ shotIndexPageNoShotsInvitation = Εμπρός, δημιουργήστε μερι
 shotIndexPageLookingForShots = Αναζήτηση των στιγμιοτύπων σας…
 shotIndexPageNoSearchResultsIntro = Χμμ
 shotIndexPageNoSearchResults = Δεν μπορούμε να βρούμε κανένα στιγμιότυπο που να αντιστοιχεί στην αναζήτησή σας.
+shotIndexPageMyShotsButton =
+    .title = Τα στιγμιότυπά μου
 shotIndexPageClearSearchButton =
     .title = Εκκαθάριση αναζήτησης
 shotIndexPageConfirmShotDelete = Διαγραφή στιγμιότυπου;
