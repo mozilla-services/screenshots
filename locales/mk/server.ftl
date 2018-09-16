@@ -10,6 +10,9 @@ gNoShots =
     .alt = Нема слики од екран
 gScreenshotsDescription = Слики од екран поедноставени. Фаќајте, снимајте и споделувајте слики од екран без да го напуштите Firefox.
 
+## Header
+
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
@@ -38,7 +41,6 @@ homePageButtonMyShots = Појди до Мои слики
 homePageTeaser = Наскоро...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Слободно преземање
-homePageGetStarted = Вовед
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Како работи Firefox Screenshots
 homePageGetStartedTitle = Вовед
@@ -112,8 +114,6 @@ shotPageExpiredMessage = Рокот на траење на оваа слика �
 shotPageExpiredMessageDetails = Еве ја страницата од којашто е оригинално избработена:
 shotPageDeleteButton =
     .title = Избриши ја оваа слика
-shotPageAbuseButton =
-    .title = Пријави ја оваа слика како злоупотреба, спам или нешто друго
 shotPageDownloadShot =
     .title = Преземи
 shotPageEditButton =
@@ -181,6 +181,10 @@ timeDiffFutureDays =
        *[other] за { $number } дена
     }
 errorThirdPartyCookiesEnabled = Ако вие ја фативте оваа слика и не можете да ја избришете, можеби треба привремено да овозможите користење на колачиња од трети страни во Опциите на прелистувачот.
+
+## Shot Page New Feature Promotion Dialog.
+
+promoLink = Пробајте ги
 
 ## Annotations
 
