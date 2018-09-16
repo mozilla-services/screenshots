@@ -14,10 +14,12 @@ gSignIn = S'annunziar
 
 ## Header
 
-signInButton =
-    .aria-label = S'annunziar
-settingsButton =
-    .aria-label = Parameters
+buttonSettings =
+    .title = Parameters
+buttonSignIn =
+    .title = S'annunziar
+screenshotsLogo =
+    .title = Pagina da partenza da Screenshots
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Cundiziuns d'utilisaziun
 footerLinkPrivacy = Infurmaziuns davart la protecziun da datas
+footerReportShot = Annunziar quest maletg
+    .title = Annunziar quest maletg per motivs dad abus, spam u auters problems
 footerLinkFaqs = Dumondas frequentas
 footerLinkDMCA = Rapportar ina violaziun da proprietad intellectuala
 footerLinkDiscourse = Dar in resun
@@ -120,15 +124,23 @@ shotPageExpiredMessage = Quest maletg è scrudà.
 shotPageExpiredMessageDetails = Quai è la pagina da la quala il maletg deriva oriundamain:
 shotPageDeleteButton =
     .title = Stizzar quest maletg
-shotPageAbuseButton =
-    .title = Annunziar quest maletg pervia dad abus, spam u auters problems
 shotPageDownloadShot =
     .title = Telechargiar
 shotPageEditButton =
     .title = Modifitgar quest maletg
 shotPagefavoriteButton =
     .title = Marcar quest maletg sco favurit
+shotPageBackToHomeButton =
+    .title = Pagina da partenza
+shotPageAllShotsButton =
+    .title = Tut ils maletgs
+shotPageAllShots = Tut ils maletgs
 shotPageDownload = Telechargiar
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Dissegnar
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Favurit
+shotPageDelete = Stizzar
 shotPageScreenshotsDescription = Maletgs dal visur en in batterdegl. Prender, memorisar e cundivider maletgs dal visur senza bandunar Firefox.
 shotPageUpsellFirefox = Ussa ir per Firefox
 shotPageDMCAMessage = Quest maletg n'è betg pli disponibel perquai che terzas persunas ha fatg valair ina violaziun dals dretgs d'autur.
@@ -293,6 +305,8 @@ shotIndexPageNoShotsInvitation = Dai! Creescha insaquants.
 shotIndexPageLookingForShots = Nus tschertgain tes maletgs…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Nus n'avain chattà nagin maletg che correspunda a tia tschertga.
+shotIndexPageMyShotsButton =
+    .title = Mes maletgs dal visur
 shotIndexPageClearSearchButton =
     .title = Stizzar la tschertga
 shotIndexPageConfirmShotDelete = Stizzar quest maletg?
