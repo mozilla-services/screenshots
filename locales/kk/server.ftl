@@ -14,10 +14,12 @@ gSignIn = Кіру
 
 ## Header
 
-signInButton =
-    .aria-label = Кіру
-settingsButton =
-    .aria-label = Баптаулар
+buttonSettings =
+    .title = Баптаулар
+buttonSignIn =
+    .title = Кіру
+screenshotsLogo =
+    .title = Скриншоттар үй парағы
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Қолдану шарттары
 footerLinkPrivacy = Жекелік ескертуі
+footerReportShot = Скриншотты хабарлау
+    .title = Бұл скриншотты ереже бұзу, спам, немесе басқа мәселелері салдарынан хабарлау
 footerLinkFaqs = ЖҚС-тер
 footerLinkDMCA = Авторлық құқықтардың бұзылуы жөнінде хабарлау
 footerLinkDiscourse = Кері байланыс
@@ -120,15 +124,23 @@ shotPageExpiredMessage = Бұл скриншоттың мерзімі аяқта
 shotPageExpiredMessageDetails = Бұл скриншот жасалған парақ:
 shotPageDeleteButton =
     .title = Бұл скриншотты өшіру
-shotPageAbuseButton =
-    .title = Бұл скриншот туралы бұзу, спам немесе басқа да мәселелер жөнінде хабарлау
 shotPageDownloadShot =
     .title = Жүктеп алу
 shotPageEditButton =
     .title = Бұл суретті түзету
 shotPagefavoriteButton =
     .title = Бұл скриншотты таңдамалы қылу
+shotPageBackToHomeButton =
+    .title = Үй парағы
+shotPageAllShotsButton =
+    .title = Барлық скриншоттар
+shotPageAllShots = Барлық скриншоттар
 shotPageDownload = Жүктеп алу
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Сурет салу
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Таңдамалы
+shotPageDelete = Өшіру
 shotPageScreenshotsDescription = Скриншоттар қарапайым түрде. Тура Firefox ішінен скриншоттарды түсіру, сақтау және олармен бөлісу.
 shotPageUpsellFirefox = Firefox-ты қазір алу
 shotPageDMCAMessage = Бұл скриншот үшінші жақтың зияткерлік меншігі арызы салдарынан енді қолжетерсіз.
@@ -287,6 +299,8 @@ shotIndexPageNoShotsInvitation = Бірнешеуін сақтаңыз.
 shotIndexPageLookingForShots = Скриншоттарыңызды іздеу…
 shotIndexPageNoSearchResultsIntro = Хмм
 shotIndexPageNoSearchResults = Іздеуіңізге сай скриншоттар табылмады.
+shotIndexPageMyShotsButton =
+    .title = Менің скриншоттарым
 shotIndexPageClearSearchButton =
     .title = Іздеуді тазарту
 shotIndexPageConfirmShotDelete = Бұл скриншотты өшіру керек пе?
