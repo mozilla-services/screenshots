@@ -14,10 +14,10 @@ gSignIn = Masuk
 
 ## Header
 
-signInButton =
-    .aria-label = Masuk
-settingsButton =
-    .aria-label = Setelan
+buttonSettings =
+    .title = Setelan
+buttonSignIn =
+    .title = Masuk
 
 ## Footer
 
@@ -120,8 +120,6 @@ shotPageExpiredMessage = Tangkapan ini telah kedaluwarsa.
 shotPageExpiredMessageDetails = Berikut adalah laman sumbernya:
 shotPageDeleteButton =
     .title = Hapus tangkapan ini
-shotPageAbuseButton =
-    .title = Laporkan tangkapan sebagai penyalahgunaan, spam, atau masalah lainnya
 shotPageDownloadShot =
     .title = Unduh
 shotPageEditButton =
@@ -129,6 +127,9 @@ shotPageEditButton =
 shotPagefavoriteButton =
     .title = Favoritkan tangkapan ini
 shotPageDownload = Unduh
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Favorit
+shotPageDelete = Hapus
 shotPageScreenshotsDescription = Screenshots sangat mudah. Tangkap, simpan, dan bagikan tangkapan layar tanpa meninggalkan Firefox.
 shotPageUpsellFirefox = Dapatkan Firefox sekarang
 shotPageDMCAMessage = Tangkapan ini tidak lagi tersedia karena klaim hak kekayaan intelektual pihak ketiga.
