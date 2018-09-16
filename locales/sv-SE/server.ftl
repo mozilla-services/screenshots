@@ -14,10 +14,12 @@ gSignIn = Logga in
 
 ## Header
 
-signInButton =
-    .aria-label = Logga in
-settingsButton =
-    .aria-label = Inställningar
+buttonSettings =
+    .title = Inställningar
+buttonSignIn =
+    .title = Logga in
+screenshotsLogo =
+    .title = Startsida för Screenshots
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Villkor
 footerLinkPrivacy = Sekretesspolicy
+footerReportShot = Rapportera skärmbild
+    .title = Rapportera denna skärmbild för missbruk, spam eller andra problem
 footerLinkFaqs = Vanliga frågor
 footerLinkDMCA = Rapportera IP-överträdelse
 footerLinkDiscourse = Ge återkoppling
@@ -120,15 +124,23 @@ shotPageExpiredMessage = Denna bild har upphört.
 shotPageExpiredMessageDetails = Här är sidan som den ursprungligen skapades från:
 shotPageDeleteButton =
     .title = Ta bort denna bild
-shotPageAbuseButton =
-    .title = Rapportera denna bild för missbruk, spam eller andra problem
 shotPageDownloadShot =
     .title = Hämta
 shotPageEditButton =
     .title = Redigera bilden
 shotPagefavoriteButton =
     .title = Markera bilden som favorit
+shotPageBackToHomeButton =
+    .title = Startsida
+shotPageAllShotsButton =
+    .title = Alla skärmbilder
+shotPageAllShots = Alla skärmbilder
 shotPageDownload = Hämta
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Rita
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Favorit
+shotPageDelete = Ta bort
 shotPageScreenshotsDescription = Ta enkelt skärmbilder. Fånga, spara och dela skärmbilder utan att lämna Firefox.
 shotPageUpsellFirefox = Hämta Firefox nu
 shotPageDMCAMessage = Denna skärmbild är inte längre tillgänglig på grund av upphovsrättsanspråk från tredje part.
@@ -293,6 +305,8 @@ shotIndexPageNoShotsInvitation = Kom igen, skapa några.
 shotIndexPageLookingForShots = Letar efter dina bilder…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Vi kan inte hitta några bilder som matchar din sökning.
+shotIndexPageMyShotsButton =
+    .title = Mina skärmbilder
 shotIndexPageClearSearchButton =
     .title = Rensa sökning
 shotIndexPageConfirmShotDelete = Ta bort denna bild?
