@@ -14,10 +14,12 @@ gSignIn = Увайсці
 
 ## Header
 
-signInButton =
-    .aria-label = Увайсці
-settingsButton =
-    .aria-label = Параметры
+buttonSettings =
+    .title = Налады
+buttonSignIn =
+    .title = Увайсці
+screenshotsLogo =
+    .title = Хатняя старонка Screenshots
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Умовы выкарыстання
 footerLinkPrivacy = Паведамленне аб прыватнасці
+footerReportShot = Паведаміць пра здымак
+    .title = Паведаміць, што гэтым здымкам злоўжываюць, спамяць, ці яшчэ што
 footerLinkFaqs = Пытанні і адказы
 footerLinkDMCA = Паведаміць аб парушэнні аўтарскіх правоў
 footerLinkDiscourse = Даць водгук
@@ -120,15 +124,23 @@ shotPageExpiredMessage = Гэты здымак пратэрмінаваны.
 shotPageExpiredMessageDetails = Старонка, з якой створаны гэты здымак:
 shotPageDeleteButton =
     .title = Выдаліць гэты здымак
-shotPageAbuseButton =
-    .title = Гэты здымак з'яўляецца абразлівым, спамам або мае іншыя праблемы
 shotPageDownloadShot =
     .title = Сцягнуць
 shotPageEditButton =
     .title = Рэдагаваць гэту выяву
 shotPagefavoriteButton =
     .title = Дадаць гэты здымак у абраныя
+shotPageBackToHomeButton =
+    .title = Хатняя старонка
+shotPageAllShotsButton =
+    .title = Усе здымкі
+shotPageAllShots = Усе здымкі
 shotPageDownload = Сцягнуць
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Рысаваць
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Упадабаць
+shotPageDelete = Выдаліць
 shotPageScreenshotsDescription = Рабіць скрыншоты стала прасцей. Рабіце, захоўвайце і дзяліцеся скрыншотамі, не пакідаючы Firefox.
 shotPageUpsellFirefox = Атрымаць Firefox зараз
 shotPageDMCAMessage = Гэты здымак больш недаступны з-за парушэння аўтарскіх правоў трэцяга боку.
@@ -299,6 +311,8 @@ shotIndexPageNoShotsInvitation = Давайце, стварыце некальк
 shotIndexPageLookingForShots = Пошук вашых здымкаў…
 shotIndexPageNoSearchResultsIntro = Хмм
 shotIndexPageNoSearchResults = Мы не можам знайсці здымкі па вашаму запыту.
+shotIndexPageMyShotsButton =
+    .title = Мае здымкі
 shotIndexPageClearSearchButton =
     .title = Ачысціць пошук
 shotIndexPageConfirmShotDelete = Выдаліць гэты здымак?
