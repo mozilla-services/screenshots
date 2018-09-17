@@ -59,7 +59,10 @@ homePageGetStartedDescription = Screenshots ပုံငယ်အသစ်ကိ
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = လိပ်စာဘားတန်းရှိ စာမျက်နှာဆိုင်ရာ လုပ်ဆောင်ချက်များ မီနူးထဲမှ Screenshots ပုံငယ်ကို ရွေးပါ။ ထိုအခါ Screenshots မီနူး သင့်ဘရောင်ဇာ၏ အပေါ်ဘက်နားတွင် ပေါ်လာပါမည်။
 homePageCaptureRegion = နယ်ပယ် တစ်ခုကို ပုံဖမ်းရန်
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = မိမိပုံဖမ်းလိုသော အကျယ်အဝန်းကို တိုင်းတာရွေးရန် ကလစ်နှိပ်ပြီး ဖိဆွဲပါ။ သို့မဟုတ် ပွိုင်တာမြားကို နှစ်သက်ရာပေါ်သို့ ရွှေ့တင်ပြီး ကလစ်နှိပ်ပါ — Screenshots က သင့်အတွက် အကျယ်အဝန်းကို တိုင်းတာရွေးချယ်ပေးပါမည်။ ၎င်းလုပ်ဆောင်ချက်ကို နှစ်သက်ပါသလား။ မျက်နှာပြင်ပုံဖမ်းချက်ကို အွန်လိုင်းပေါ်တွင် အသုံးပြုရန် သိမ်းပါ ကို ရွေးပါ သို့မဟုတ် ကွန်ပျူတာထဲသို့ ဆွဲယူသိမ်းရန် အောက်ညွှန်ပြမြားကို ရွေးပါ။
 homePageCapturePage = စာမျက်နှာကို ပုံဖမ်းရန်
+homePageCapturePageDescription = စာမျက်နှာများကို အပြည့်ဖမ်းယူရန် ညာဘက်အပေါ်ဘက်ရှိ ခလုတ်များကို အသုံးပြုပါ။ မြင်ရသည်ကို သိမ်းပါ သည် အပေါ်အောက်ရွှေ့စရာမလိုပဲ မြင်ရသော အကျယ်အဝန်းကို ဖမ်းယူပါမည်။ ထို့ပြင် စာမျက်နှာအပြည့်သိမ်းပါ သည် လက်ရှိစာမျက်နှာတွင် မြင်ရသည်အကုန်လုံးကို ဖမ်းယူပါမည်။
 homePageSaveShare = သိမ်းပြီးမျှဝေရန်
 homePageLegalLink = ဥပဒေရေးရာ
 homePagePrivacyLink = ကိုယ်ရေးလုံခြုံမှု
@@ -342,6 +345,7 @@ metricsPageUserShotsQueryTitle = သုံးစွဲသူတစ်ဦးတ�
 metricsPageUserShotsQueryDescription = အားလုံးပေါင်းရိုက်ချက်များတွင်ရှိသော သုံးစွဲသူအရေအတွက်
 metricsPageUserShotsQueryCount = သုံးစွဲသူအရေအတွက်
 metricsPageUserShotsQueryShots = သက်တမ်းမကုန်ဆုံးသေးသော ရိုက်ချက်များ အနီးစပ်ဆုံးအရေအတွက်
+metricsPageRetentionQueryTitle = Retention by Week
 metricsPageRetentionQueryUsers = သုံးစွဲသူအရေအတွက်
 metricsPageRetentionQueryDays = သုံးစွဲသူ စတင်ရိုက်သော နေ့မှ နောက်ဆုံးရိုက်ခဲ့သောနေ့
 metricsPageRetentionQueryFirstWeek = သုံးစွဲသူစတင်ရိုက်ချက်ဖန်တီးခဲ့သည့် ရက်သတ္တပတ်
