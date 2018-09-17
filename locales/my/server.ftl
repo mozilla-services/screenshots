@@ -54,6 +54,10 @@ homePageDownloadFirefoxSubTitle = အခမဲ့ ဆွဲယူပါ
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots အလုပ်လုပ်ပုံ
 homePageGetStartedTitle = စတင်ပါ
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Screenshots ပုံငယ်အသစ်ကို ကိရိယာဘားတန်းတွင် ရှာပါ။ ၎င်းကို ရွေးပါ၊ ထိုအခါ Screenshots မီနူး ဘရောင်ဇာဝင်းဒိုး၏ အပေါ်ဘက်တွင် ပေါ်လာပါမည်။
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = လိပ်စာဘားတန်းရှိ စာမျက်နှာဆိုင်ရာ လုပ်ဆောင်ချက်များ မီနူးထဲမှ Screenshots ပုံငယ်ကို ရွေးပါ။ ထိုအခါ Screenshots မီနူး သင့်ဘရောင်ဇာ၏ အပေါ်ဘက်နားတွင် ပေါ်လာပါမည်။
 homePageCaptureRegion = နယ်ပယ် တစ်ခုကို ပုံဖမ်းရန်
 homePageCapturePage = စာမျက်နှာကို ပုံဖမ်းရန်
 homePageSaveShare = သိမ်းပြီးမျှဝေရန်
@@ -331,6 +335,7 @@ metricsPageShotsQueryDescription = တစ်နေ့ချင်းစီအလ
 metricsPageShotsQueryCount = ရိုက်ချက်များအရေအတွက်
 metricsPageShotsQueryDay = နေ့
 metricsPageUsersQueryTitle = နေ့အလိုက် အသုံးပြုသူများ
+metricsPageUsersQueryDescription = အနည်းဆုံးပုံတစ်ပုံ ရိုက်ခဲ့သူ အသုံးပြုသူ အရေအတွက်၊ ရက်အားဖြင့် (ရက် ၃၀ အတွင်း)
 metricsPageUsersQueryCount = သုံးစွဲသူအရေအတွက်
 metricsPageUsersQueryDay = နေ့
 metricsPageUserShotsQueryTitle = သုံးစွဲသူတစ်ဦးတွင် ရိုက်ချက်အရေအတွက်
