@@ -146,6 +146,8 @@ shotPageUpsellFirefox = ယခုပင် Firefox ကို ရယူပါ
 shotPageDMCAMessage = ဖောက်ဖျက်မှုတစ်ခုခုဖြင့် အဆိုတင်သွင်းမှုကြောင့် ဒီရိုက်ချက်အား မရရှိနိုင်တော့ပါ
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = နောက်ထပ်အချက်အလက်များ တောင်းဆိုလိုပါက { $dmca } သို့ ကျေးဇူးပြု၍ အီးမေးလ်ပို့ပါ။
+# Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = သင့်ပုံဖမ်းချက်များသည် အခြားသူများပိုင်ဖြစ်ကြောင်း တောင်းဆိုမှုများ ရှိပါက Firefox Screenshots အသုံးပြုခြင်းကို ရုတ်သိမ်းနိုင်သည်။
 # Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = ကျေးဇူးပြုပြီး သင့်အီးမေးလ်ထဲတွင် ဒီရိုက်ချက် လိပ်စာလင့် ကို ထည့်ပါ: { $url }
 shotPageKeepFor = ဒီရိုက်ချက်ကို ဘယ်လောက်ထိန်းသိမ်းထားသင့်လဲ
@@ -200,6 +202,7 @@ errorThirdPartyCookiesEnabled = ယခုပုံကို သင်ဖမ်�
 
 # Note: If possible, choose a short translation to better fit into the card.
 promoTitle = မှတ်စုယူရန်
+promoMessage = မွမ်းမံထားသော တည်းဖြတ်ကိရိယာများသည် ဖမ်းယူထားသည့်ပုံများကို ဖြတ်ညှပ်၊ အရောင်တင်၊ စာထည့် စသည်တို့ကို ဆောင်ရွက်နိုင်စေသည်။
 promoLink = စမ်းကြည့်ရန်
 promoCloseButton =
     .title = အသိပေးချက်ကို ပိတ်ရန်
@@ -349,7 +352,7 @@ metricsPageUserShotsQueryTitle = သုံးစွဲသူတစ်ဦးတ�
 metricsPageUserShotsQueryDescription = အားလုံးပေါင်းရိုက်ချက်များတွင်ရှိသော သုံးစွဲသူအရေအတွက်
 metricsPageUserShotsQueryCount = သုံးစွဲသူအရေအတွက်
 metricsPageUserShotsQueryShots = သက်တမ်းမကုန်ဆုံးသေးသော ရိုက်ချက်များ အနီးစပ်ဆုံးအရေအတွက်
-metricsPageRetentionQueryTitle = Retention by Week
+metricsPageRetentionQueryTitle = သိုလှောင်မှုမူဝါဒ (ရက်သတ္တပတ်အားဖြင့်)
 metricsPageRetentionQueryDescription = အသုံးပြုသူ၏ ပထမဆုံးဖမ်းယူသောပုံမှ နောက်ဆုံးဖမ်းယူသောပုံအထိ ရက်အရေအတွက်၊ ရက်သတ္တပတ်အစနှင့် အစုဖွဲ့ထားသည်
 metricsPageRetentionQueryUsers = သုံးစွဲသူအရေအတွက်
 metricsPageRetentionQueryDays = သုံးစွဲသူ စတင်ရိုက်သော နေ့မှ နောက်ဆုံးရိုက်ခဲ့သောနေ့
