@@ -1,4 +1,4 @@
-FROM node:8.11.4@sha256:3422df4f7532b26b55275ad7b6dc17ec35f77192b04ce22e62e43541f3d28eb3
+FROM node:8.12.0@sha256:d97f5bf54e016ad55dd0475f8710b99be14884ab1afcae8875f8092341264b0c
 
 COPY package.json /app/
 COPY build/server /app/build/server
