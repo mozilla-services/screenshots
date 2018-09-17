@@ -74,7 +74,7 @@
     "pontoon-to-webext": "1.0.2",
     "sass-lint": "1.12.1",
     "selenium-webdriver": "4.0.0-alpha.1",
-    "svgo": "1.0.5",
+    "svgo": "1.1.1",
     "uglify-es": "3.3.9",
     "uglifyify": "5.0.1",
     "web-ext": "2.9.1"
