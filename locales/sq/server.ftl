@@ -14,10 +14,10 @@ gSignIn = Hyni
 
 ## Header
 
-signInButton =
-    .aria-label = Hyni
-settingsButton =
-    .aria-label = Rregullime
+buttonSettings =
+    .title = Rregullime
+buttonSignIn =
+    .title = Hyni
 
 ## Footer
 
@@ -25,6 +25,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Kushte
 footerLinkPrivacy = Shënim Mbi Privatësinë
+footerReportShot = Njoftoni për Shkrepjen
+    .title = Njoftoni për këtë shkrepje për abuzim, mesazh të padëshiruar, ose për probleme të tjera
 footerLinkFaqs = FAQ
 footerLinkDMCA = Njoftoni Cenim IP-je
 footerLinkDiscourse = Jepni Përshtypjet
@@ -120,13 +122,17 @@ shotPageExpiredMessage = Kjo foto ka skaduar.
 shotPageExpiredMessageDetails = Ja faqja prej të cilës qe krijuar fillimisht:
 shotPageDeleteButton =
     .title = Fshije këtë foto
-shotPageAbuseButton =
-    .title = Raportojeni këtë foto për abuzim, spam apo probleme të tjera
 shotPageDownloadShot =
     .title = Shkarkoje
 shotPageEditButton =
     .title = Përpunoni këtë figurë
+shotPageBackToHomeButton =
+    .title = Kreu
+shotPageAllShotsButton =
+    .title = Krejt Shkrepjet
+shotPageAllShots = Krejt Shkrepjet
 shotPageDownload = Shkarkoje
+shotPageDelete = Fshije
 shotPageScreenshotsDescription = Screenshots-i i thjeshtuar. Bëni, ruani dhe ndani foto ekrani pa dalë nga Firefox-i.
 shotPageUpsellFirefox = Merreni Firefox-in që tani
 shotPageDMCAMessage = Kjo foto s’mund të kihet më, për shkak pretendimesh pronësie intelektuale nga palë e tretë.
@@ -300,6 +306,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Kjo foto nuk skadon kurrë
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Kjo është një foto e parapëlqyer dhe nuk skadon
 
 ## Delete Confirmation Dialog
 
