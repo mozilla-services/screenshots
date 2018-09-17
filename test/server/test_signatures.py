@@ -45,6 +45,7 @@ def test_scopes():
     resp = user.session.get(mixed_up)
     assert not resp.headers.get("Content-Disposition")
 
+
 if __name__ == "__main__":
     test_download_key()
     test_scopes()

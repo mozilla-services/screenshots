@@ -7,7 +7,6 @@ import json
 import uuid
 import random
 import time
-import cgi
 from pglib import attach_device
 
 example_images = {}
