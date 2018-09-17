@@ -13,6 +13,10 @@ exports.createModel = function(req) {
   const title = req.getText("shotPageTitle", {originalTitle: req.shot.title});
   const enableAnnotations = req.config.enableAnnotations;
   const isFxaAuthenticated = req.accountId && req.accountId === req.shot.accountId;
+  const copyImageErrorMessage = {
+    title: req.getText("copyImageErrorTitle"),
+    message: req.getText("copyImageErrorMessage"),
+  };
   const serverPayload = {
     title,
     staticLink: req.staticLink,
@@ -74,6 +78,7 @@ exports.createModel = function(req) {
     downloadUrl,
     isMobile,
     enableAnnotations,
+    copyImageErrorMessage,
   };
   if (serverPayload.expireTime !== null && Date.now() > serverPayload.expireTime) {
     clientPayload.shot = {

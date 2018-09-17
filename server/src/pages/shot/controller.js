@@ -78,6 +78,8 @@ exports.launch = function(data) {
   }
   model.highlightEditButton = shouldHighlightEditIcon(model);
   model.promoDialog = shouldShowPromo(model);
+  document.dispatchEvent(new CustomEvent("request-addon-present"));
+
   if (firstSet) {
     refreshHash();
   }
@@ -280,5 +282,15 @@ exports.setTitle = function(title) {
 function render() {
   page.render(model);
 }
+
+document.addEventListener("addon-present", (e) => {
+  if (e.detail) {
+    const capabilities = JSON.parse(e.detail);
+    if (capabilities["copy-to-clipboard"]) {
+      model.canCopy = true;
+      render();
+    }
+  }
+});
 
 window.controller = exports;
