@@ -68,6 +68,11 @@
     background-position: center 24px;
     background-repeat: no-repeat;
 
+    &:active {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
     &:active,
     &:hover {
       background-color: $light-hover;
