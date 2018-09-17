@@ -14,10 +14,12 @@ gSignIn = Bejelentkezés
 
 ## Header
 
-signInButton =
-    .aria-label = Bejelentkezés
-settingsButton =
-    .aria-label = Beállítások
+buttonSettings =
+    .title = Beállítások
+buttonSignIn =
+    .title = Bejelentkezés
+screenshotsLogo =
+    .title = Screenshots kezdőlap
 
 ## Footer
 
@@ -120,15 +122,22 @@ shotPageExpiredMessage = Ez a képernyőkép lejárt.
 shotPageExpiredMessageDetails = Itt van az oldal, amelyről eredetileg készült:
 shotPageDeleteButton =
     .title = A képernyőkép törlése
-shotPageAbuseButton =
-    .title = Kép jelentése visszaélés, spam vagy más problémák miatt
 shotPageDownloadShot =
     .title = Letöltés
 shotPageEditButton =
     .title = Kép szerkesztése
 shotPagefavoriteButton =
     .title = A kép beállítása kedvencként
+shotPageBackToHomeButton =
+    .title = Kezdőlap
+shotPageAllShotsButton =
+    .title = Összes képernyőkép
+shotPageAllShots = Összes képernyőkép
 shotPageDownload = Letöltés
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Rajzolás
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Kedvencek
 shotPageScreenshotsDescription = Képernyőképek egyszerűen. Készítsen, mentsen és ossza meg a képernyőképeit a Firefox elhagyása nélkül.
 shotPageUpsellFirefox = Szerezze be most a Firefoxot
 shotPageDMCAMessage = A kép egy harmadik fél szerzői jogi követelése miatt már nem érhető el.
