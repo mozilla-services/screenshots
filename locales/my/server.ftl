@@ -134,6 +134,8 @@ shotPageFavorite = စိတ်ကြိုက်
 shotPageDelete = ဖျက်ရန်
 shotPageUpsellFirefox = ယခုပင် Firefox ကို ရယူပါ
 shotPageDMCAMessage = ဖောက်ဖျက်မှုတစ်ခုခုဖြင့် အဆိုတင်သွင်းမှုကြောင့် ဒီရိုက်ချက်အား မရရှိနိုင်တော့ပါ
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = နောက်ထပ်အချက်အလက်များ တောင်းဆိုလိုပါက { $dmca } သို့ ကျေးဇူးပြု၍ အီးမေးလ်ပို့ပါ။
 # Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = ကျေးဇူးပြုပြီး သင့်အီးမေးလ်ထဲတွင် ဒီရိုက်ချက် လိပ်စာလင့် ကို ထည့်ပါ: { $url }
 shotPageKeepFor = ဒီရိုက်ချက်ကို ဘယ်လောက်ထိန်းသိမ်းထားသင့်လဲ
@@ -255,9 +257,11 @@ textToolInputPlaceholder =
 settingsDisconnectButton = မချိတ်ဆက်ပါ
     .title = မချိတ်ဆက်ပါ
 settingsGuestAccountMessage = ဧည့်သည် အကောင့်
+settingsSignInInvite = ကိရိယာများအားလုံးကို တစ်ပြေးညီဖြစ်စေရန် ဝင်ပါ။
 settingsSignInButton = ဝင်ပါ
     .title = ဝင်ပါ
 SettingsPageHeader = Firefox မှ ပုံဖမ်းရိုက်ချက် အပြင်အဆင်များ
+settingsDescription = သင့်မျက်နှာပြင်ပုံဖမ်းချက်များကို ကိရိယာအားလုံးတွင် တစ်ပြေးညီဖြစ်စေရန်နှင့် ကိုယ်တိုင် အသုံးပြုနိုင်ရန် Firefox Accounts နှင့် ဝင်နိုင်ပါသည်။
 settingsPageSubHeader = ချိတ်ဆက်ခြင်း နှင့်အကောင့်များ
 settingsClosePreferences =
     .title = စိတ်ကြိုက်ပြင်ဆင်မှုများ ပိတ်ပါ
@@ -296,6 +300,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = ဒီရိုက်ချက်သက်တမ်းကုန်ဆုံးရက်မရှိပါ
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = ယခုပုံသည် ရိုက်ကူးသူအကြိုက် ပုံဖြစ်ပြီး သက်တမ်း မကုန်ဆုံးပါ။
 
 ## Delete Confirmation Dialog
 
