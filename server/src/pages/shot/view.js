@@ -2,7 +2,7 @@
 const React = require("react");
 const PropTypes = require("prop-types");
 const { Localized } = require("fluent-react/compat");
-const { Footer } = require("../../footer-view");
+const { ShotFooter } = require("./footer");
 const sendEvent = require("../../browser-send-event.js");
 const { PromoDialog } = require("./promo-dialog");
 const { DeleteShotButton } = require("../../delete-shot-button");
@@ -414,7 +414,7 @@ class Body extends React.Component {
           { errorMessages }
           { clips }
         </section>
-        <Footer {...this.props} />
+        <ShotFooter {...this.props} />
       </div>
     </reactruntime.BodyTemplate>);
   }
