@@ -64,6 +64,8 @@ homePageCaptureRegionDescription = မိမိပုံဖမ်းလိုသ
 homePageCapturePage = စာမျက်နှာကို ပုံဖမ်းရန်
 homePageCapturePageDescription = စာမျက်နှာများကို အပြည့်ဖမ်းယူရန် ညာဘက်အပေါ်ဘက်ရှိ ခလုတ်များကို အသုံးပြုပါ။ မြင်ရသည်ကို သိမ်းပါ သည် အပေါ်အောက်ရွှေ့စရာမလိုပဲ မြင်ရသော အကျယ်အဝန်းကို ဖမ်းယူပါမည်။ ထို့ပြင် စာမျက်နှာအပြည့်သိမ်းပါ သည် လက်ရှိစာမျက်နှာတွင် မြင်ရသည်အကုန်လုံးကို ဖမ်းယူပါမည်။
 homePageSaveShare = သိမ်းပြီးမျှဝေရန်
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = မျက်နှာပြင်ပုံရိပ် ဖမ်းယူသောအခါ Firefox သည် ဖမ်းယူထားသော ပုံများကို သင့်အွန်လိုင်း Screenshots စာကြည့်ခန်းသို့ တင်ပို့ပေးသည့်အပြင် လင့်ခ်ကိုလည်း ကလစ်ဘုတ်သို့ ကူးယူးထားပေးသည်။ သင်ဖမ်းယူထားသော ပုံများကို ၂ပတ်စာ အလိုအလျောက် သိမ်းထားပေးသည်။ ထို့ပြင် မည်သည့်အချိန်မဆို ဖျက်နိုင်သည် သို့မဟုတ် ၎င်းတို့ကို စာကြည့်ခန်းတွင် ကြာကြာသိမ်းထားရန် သက်တမ်းကုန်ရက်ကိုလည်း ပြင်ဆင်နိုင်သည်။
 homePageLegalLink = ဥပဒေရေးရာ
 homePagePrivacyLink = ကိုယ်ရေးလုံခြုံမှု
 homePageTermsLink = စည်းမျဉ်းများ
@@ -139,6 +141,7 @@ shotPageDraw = ပုံဆွဲရန်
 # Note: Favorite text is used on shot page as a verb (action)
 shotPageFavorite = စိတ်ကြိုက်
 shotPageDelete = ဖျက်ရန်
+shotPageScreenshotsDescription = Screenshots ကို ရိုးရှင်းစေရန် ပြုလုပ်ထားသည်။ Firefox ကနေ ထွက်ခွာစရာ မလိုပဲ မျက်နှာပြင်ပုံဖမ်းချက်များကို ဖမ်းယူ၊ သိမ်းဆည်း၊ မျှဝေပါ။
 shotPageUpsellFirefox = ယခုပင် Firefox ကို ရယူပါ
 shotPageDMCAMessage = ဖောက်ဖျက်မှုတစ်ခုခုဖြင့် အဆိုတင်သွင်းမှုကြောင့် ဒီရိုက်ချက်အား မရရှိနိုင်တော့ပါ
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -191,6 +194,7 @@ timeDiffFutureDays =
     { $number ->
        *[other] { $number } နေ့အတွင်း
     }
+errorThirdPartyCookiesEnabled = ယခုပုံကို သင်ဖမ်းယူထားပြီး ဖျက်၍မရနိုင်ပါက အခြားကွတ်ကီးအသုံးပြုမှုကို သင့်ဘရောက်ဇာ အပြင်အဆင်ထံမှ ယာယီဖွင့်ပေးရန် လိုအပ်သည်။
 
 ## Shot Page New Feature Promotion Dialog.
 
@@ -346,6 +350,7 @@ metricsPageUserShotsQueryDescription = အားလုံးပေါင်း�
 metricsPageUserShotsQueryCount = သုံးစွဲသူအရေအတွက်
 metricsPageUserShotsQueryShots = သက်တမ်းမကုန်ဆုံးသေးသော ရိုက်ချက်များ အနီးစပ်ဆုံးအရေအတွက်
 metricsPageRetentionQueryTitle = Retention by Week
+metricsPageRetentionQueryDescription = အသုံးပြုသူ၏ ပထမဆုံးဖမ်းယူသောပုံမှ နောက်ဆုံးဖမ်းယူသောပုံအထိ ရက်အရေအတွက်၊ ရက်သတ္တပတ်အစနှင့် အစုဖွဲ့ထားသည်
 metricsPageRetentionQueryUsers = သုံးစွဲသူအရေအတွက်
 metricsPageRetentionQueryDays = သုံးစွဲသူ စတင်ရိုက်သော နေ့မှ နောက်ဆုံးရိုက်ခဲ့သောနေ့
 metricsPageRetentionQueryFirstWeek = သုံးစွဲသူစတင်ရိုက်ချက်ဖန်တီးခဲ့သည့် ရက်သတ္တပတ်
