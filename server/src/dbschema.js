@@ -7,7 +7,9 @@ const mozlog = require("./logging").mozlog("dbschema");
 
 // When updating the database, please also run ./bin/dumpschema --record
 // This updates schema.sql with the latest full database schema
-const MAX_DB_LEVEL = exports.MAX_DB_LEVEL = 25;
+const MAX_DB_LEVEL = exports.MAX_DB_LEVEL = 26;
+// This is a list of all the Keygrip scopes we allow (and we make sure these exist):
+const KEYGRIP_SCOPES = ["auth", "proxy-url", "download-url", "ga-user-nonce"];
 
 exports.forceDbVersion = function(version) {
   mozlog.info("forcing-db-version", {db: db.constr, version});
@@ -93,57 +95,82 @@ exports.createTables = function() {
   });
 };
 
-let keys;
-let textKeys;
+let keysByScope;
+let textKeysByScope;
 
-exports.getKeygrip = function() {
-  return keys;
+exports.getKeygrip = function(scope) {
+  if (!scope || !KEYGRIP_SCOPES.includes(scope)) {
+    throw new Error("You must give a valid scope");
+  }
+  return keysByScope[scope];
 };
 
-exports.getTextKeys = function() {
-  return textKeys;
+exports.getTextKeys = function(scope) {
+  if (!scope || !KEYGRIP_SCOPES.includes(scope)) {
+    throw new Error("You must give a valid scope");
+  }
+  return textKeysByScope[scope];
 };
 
 /** Loads the random signing key from the database, or generates a new key
     if none are found */
-function loadKeys() {
-  return db.select(
-    `SELECT key FROM signing_keys ORDER BY CREATED`,
+async function loadKeys() {
+  const rows = await db.select(
+    `SELECT key, scope FROM signing_keys ORDER BY CREATED`,
     []
-  ).then((rows) => {
-    if (rows.length) {
-      const textKeys = [];
-      for (let i = 0; i < rows.length; i++) {
-        textKeys.push(rows[i].key);
-      }
-      return textKeys;
+  );
+  const textKeysByScope = {};
+  for (let i = 0; i < rows.length; i++) {
+    const scope = rows[i].scope;
+    if (scope === "legacy") {
+      continue;
     }
-    return makeKey().then((key) => {
-      return db.insert(
-        `INSERT INTO signing_keys (created, key)
-         VALUES (NOW(), $1)`,
-        [key]
-      ).then((ok) => {
-        if (!ok) {
-          throw new Error("Could not insert key");
-        }
-        return [key];
-      });
-    });
-  });
+    let textKeys = textKeysByScope[scope];
+    if (!textKeys) {
+      textKeys = textKeysByScope[scope] = [];
+    }
+    textKeys.push(rows[i].key);
+  }
+  for (const scope of KEYGRIP_SCOPES) {
+    if (!textKeysByScope[scope]) {
+      const key = await makeKey();
+      const ok = await db.insert(
+        `INSERT INTO signing_keys (created, key, scope)
+         VALUES (NOW(), $1, $2)`,
+        [key, scope]
+      );
+      if (!ok) {
+        throw new Error("Could not insert key");
+      }
+      textKeysByScope[scope] = [key];
+    }
+  }
+  for (let i = 0; i < rows.length; i++) {
+    const scope = rows[i].scope;
+    if (scope === "legacy") {
+      for (const otherScope in textKeysByScope) {
+        textKeysByScope[otherScope].push(rows[i].key);
+      }
+    }
+  }
+  return textKeysByScope;
 }
 
-exports.createKeygrip = function() {
-  return loadKeys().then((fetchedTextKeys) => {
-    textKeys = fetchedTextKeys;
-    keys = new Keygrip(textKeys);
-  }).catch((err) => {
+exports.createKeygrip = async function() {
+  try {
+    const fetchedTextKeysByScope = await loadKeys();
+    textKeysByScope = fetchedTextKeysByScope;
+    keysByScope = {};
+    for (const scope in textKeysByScope) {
+      keysByScope[scope] = new Keygrip(textKeysByScope[scope]);
+    }
+  } catch (err) {
     mozlog.warn("error-creating-signing-keys", {
       msg: "Could not create signing keys:",
       err,
     });
     throw err;
-  });
+  }
 };
 
 /** Returns a promise that generates a new largish ASCII random key */
@@ -169,7 +196,7 @@ function getCurrentDbPatchLevel() {
 exports.getCurrentDbPatchLevel = getCurrentDbPatchLevel;
 
 exports.connectionOK = function() {
-  if (!keys) {
+  if (!keysByScope) {
     return Promise.resolve(false);
   }
   return getCurrentDbPatchLevel().then(currentLevel => {

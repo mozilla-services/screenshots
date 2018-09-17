@@ -1,10 +1,11 @@
 const dbschema = require("./dbschema");
 const config = require("./config").getProperties();
 const { isValidClipImageUrl } = require("../shared/shot");
+const { URL } = require("url");
 
 exports.createProxyUrl = function(req, url, hash) {
   const base = `${req.protocol}://${config.contentOrigin}`;
-  const sig = dbschema.getKeygrip().sign(new Buffer(url, "utf8"));
+  const sig = dbschema.getKeygrip("proxy-url").sign(new Buffer(url, "utf8"));
   let proxy = `${base}/proxy?url=${encodeURIComponent(url)}&sig=${encodeURIComponent(sig)}`;
   if (hash) {
     proxy += "#" + hash;
@@ -13,7 +14,8 @@ exports.createProxyUrl = function(req, url, hash) {
 };
 
 exports.createDownloadUrl = function(url, filename) {
-  const sig = dbschema.getKeygrip().sign(new Buffer(filename, "utf8"));
+  const path = (new URL(url)).pathname;
+  const sig = dbschema.getKeygrip("download-url").sign(new Buffer(`${path} ${filename}`, "utf8"));
   if (!isValidClipImageUrl(url)) {
       return "";
   }

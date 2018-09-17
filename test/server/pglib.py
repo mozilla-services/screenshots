@@ -27,7 +27,7 @@ def attach_device(device_id, account_id):
     token = str(uuid.uuid1())
     cur.execute("INSERT INTO accounts (id, token) VALUES (%s, %s)", (account_id, token))
     cur.execute("UPDATE devices SET accountid = %s WHERE id = %s", (account_id, device_id))
-    cur.execute("SELECT key FROM signing_keys ORDER BY created DESC LIMIT 1")
+    cur.execute("SELECT key FROM signing_keys WHERE scope = 'auth' ORDER BY created DESC LIMIT 1")
     key_row = cur.fetchone()
     account_id_hmac = __get_hmac("accountid=%s" % account_id, key_row[0])
     cur.close()
