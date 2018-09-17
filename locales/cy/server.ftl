@@ -14,10 +14,12 @@ gSignIn = Mewngofnodi
 
 ## Header
 
-signInButton =
-    .aria-label = Mewngofnodi
-settingsButton =
-    .aria-label = Gosodiadau
+buttonSettings =
+    .title = Gosodiadau
+buttonSignIn =
+    .title = Mewngofnodi
+screenshotsLogo =
+    .title = Cartref Screenshots
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Amodau
 footerLinkPrivacy = Hysbysiad Preifatrwydd
+footerReportShot = Adrodd am Lun
+    .title = Adrodd y llun oherwydd camdriniaeth, sbam neu broblem arall
 footerLinkFaqs = Cwestiynau Cyffredin
 footerLinkDMCA = Adrodd ar Torri'r IP
 footerLinkDiscourse = Rhoi Adborth
@@ -119,15 +123,23 @@ shotPageExpiredMessage = Mae'r llun wedi dod i ben.
 shotPageExpiredMessageDetails = Dyma'r dudalen lle gafodd ei greu'n wreiddiol:
 shotPageDeleteButton =
     .title = Dileu'r llun
-shotPageAbuseButton =
-    .title = Adrodd ar y llun am gamddefnydd, sbam neu broblem arall
 shotPageDownloadShot =
     .title = Llwytho i Lawr
 shotPageEditButton =
     .title = Golygu'r ddelwedd hon
 shotPagefavoriteButton =
     .title = Ffefrynnu'r llun yma
+shotPageBackToHomeButton =
+    .title = Tudalen Cartref
+shotPageAllShotsButton =
+    .title = Pob Llun
+shotPageAllShots = Pob Llun
 shotPageDownload = Llwytho i Lawr
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Lluniadu
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Ffefryn
+shotPageDelete = Dileu
 shotPageScreenshotsDescription = Lluniau sgrin hawdd. Cipio, cadw a rhannu lluniau sgrin heb adael Firefox.
 shotPageUpsellFirefox = Estyn Firefox nawr
 shotPageDMCAMessage = Nid yw'r llun ar gael bellach oherwydd cais eiddo deallusol trydydd parti.
@@ -316,6 +328,8 @@ shotIndexPageNoShotsInvitation = Croeso i chi greu lluniau.
 shotIndexPageLookingForShots = Chwilio am eich lluniau...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Methu canfod lluniau sy'n cyd-fynd â'ch chwilio.
+shotIndexPageMyShotsButton =
+    .title = Fy Lluniau
 shotIndexPageClearSearchButton =
     .title = Clirio'r chwilio
 shotIndexPageConfirmShotDelete = Dileu'r llun?
