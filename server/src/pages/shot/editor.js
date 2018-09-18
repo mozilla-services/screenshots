@@ -86,7 +86,7 @@ exports.Editor = class Editor extends React.Component {
     const toolContent = this.state.isCanvasRendered ? this.renderSelectedTool() : null;
     const toolBar = this.state.isCanvasRendered ? this.renderToolBar() : null;
     const display = this.loader || this.renderCanvas(toolContent);
-    return <div className="inverse-color-scheme full-height column-space"
+    return <div className="full-height column-space"
       onMouseMove={this.onMouseMove.bind(this)}>
       { toolBar }
       { display }
@@ -96,7 +96,7 @@ exports.Editor = class Editor extends React.Component {
   renderCanvas(toolContent) {
     return <div className="main-container">
       <div
-        className={`inverse-color-scheme canvas-container ${this.state.tool}`}
+        className={`canvas-container ${this.state.tool}`}
         id="canvas-container"
         style={{ height: this.state.canvasCssHeight, width: this.state.canvasCssWidth }}>
         <canvas
@@ -183,7 +183,7 @@ exports.Editor = class Editor extends React.Component {
     const undoButtonState = this.state.canUndo ? "active" : "inactive";
     const redoButtonState = this.state.canRedo ? "active" : "inactive";
 
-    return <div className="editor-header default-color-scheme">
+    return <div className="editor-header">
       <div className="shot-main-actions annotation-main-actions">
         <div className="annotation-tools">
           <Localized id="annotationCropButton">

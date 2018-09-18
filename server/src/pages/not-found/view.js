@@ -28,7 +28,7 @@ class Body extends React.Component {
   render() {
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <div className="column-space full-height default-color-scheme">
+        <div className="column-space full-height">
           <Header hasLogo={true} />
           <div id="shot-index" className="flex-1">
             <div className="no-shots" key="no-shots-found">

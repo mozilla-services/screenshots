@@ -23,5 +23,6 @@ cookie-jar.txt
 /webextension/manifest.json
 /webextension/_locales
 /*.xpi
+.vscode
 # Created by py.test:
 /test/server/.cache

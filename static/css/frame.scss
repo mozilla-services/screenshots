@@ -150,15 +150,16 @@
 }
 
 .promo-panel {
-  position: absolute;
-  top: 90px;
-  right: -30px;
+  background: $white;
   border-radius: 3px;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2);
+  box-shadow: $stroke-box-shadow, $medium-box-shadow;
+  padding: 5px;
+  position: absolute;
+  right: -30px;
+  text-align: center;
+  top: 90px;
   width: 150px;
   z-index: 999;
-  padding: 5px;
-  text-align: center;
 
   .title {
     font-size: 14px;
@@ -269,6 +270,7 @@
   flex: 1;
 }
 
+// TODO: fix color literals in #3864
 .clips-warning {
   background: #ffe900;
   padding: 5px;
@@ -287,14 +289,17 @@
   flex: 0 auto;
   margin: 20px auto;
   max-width: 90%;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
+
+  img {
+    box-shadow: $large-box-shadow;
+  }
 }
 
 .link-button {
   cursor: pointer;
   color: $black;
   background: transparent;
-  border: 1px solid #d4d4d4;
+  border: 1px solid $light-active;
   padding: 4px;
   border-radius: 4px;
 }
@@ -384,7 +389,7 @@
 }
 
 .annotation-divider {
-  border-right: 1px solid #989a9c;
+  border-right: 1px solid $light-border-active;
   margin: auto auto;
   width: 1px;
   height: 28px;
@@ -393,14 +398,12 @@
 html {
   min-height: 100%;
   position: relative;
-  background-color: #38383d;
 }
 
 body {
   width: 100%;
   margin: 0;
   height: 100%;
-  background-color: #38383d;
 }
 
 .editor-header {
@@ -434,7 +437,7 @@ body {
 
   .cancel {
     background-color: $light-default;
-    border: 1px solid #9b9b9b;
+    border: 1px solid $light-border-active;
 
     &:hover,
     &:focus {
@@ -451,8 +454,8 @@ body {
   margin: $grid-unit;
   display: flex;
   flex-direction: row;
-  background: #fff;
-  box-shadow: rgba(0, 0, 0, 0.15) 0 2px 4px;
+  background: $white;
+  box-shadow: $medium-box-shadow;
   border-radius: $border-radius;
   height: 50px;
 }
@@ -484,7 +487,7 @@ body {
 }
 
 .canvas-container {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  box-shadow: $large-box-shadow;
   display: flex;
   justify-content: center;
   margin: 20px auto;
@@ -565,9 +568,8 @@ body {
   height: 160px;
   position: absolute;
   background: $light-default;
-  border: 1px solid $light-border;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  border-radius: $border-radius;
+  box-shadow: $stroke-box-shadow, $medium-box-shadow;
   padding: 20px;
 
   .triangle {
@@ -576,7 +578,7 @@ body {
     height: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-bottom: 15px solid $light-border;
+    border-bottom: 15px solid $light-active;
     top: -15px;
     left: 9.5px;
 
@@ -607,7 +609,7 @@ body {
 
   &:hover
     {
-      border: 3px solid #d4d4d4 !important;
+      border: 3px solid $light-active !important;
     }
 }
 
@@ -735,11 +737,11 @@ $bg-white: rgba(255, 255, 255, 0.7);
 .textTool {
 
   .black {
-    @include type-color($bg-white, black);
+    @include type-color($bg-white, $black);
   }
 
   .white {
-    @include type-color($bg-black, white);
+    @include type-color($bg-black, $white);
   }
 
   .red {

@@ -10,8 +10,9 @@
     width: 100%;
   }
 
+  background: $white;
   border-radius: $border-radius;
-  box-shadow: 0 0 0 1px rgba(#000, 0.3), 0 0 20px rgba(#000, 0.2);
+  box-shadow: $stroke-box-shadow, $medium-box-shadow;
   position: absolute;
   right: 10px;
   top: 90px;

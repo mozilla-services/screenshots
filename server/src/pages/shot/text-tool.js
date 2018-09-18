@@ -127,7 +127,7 @@ exports.TextTool = class TextTool extends React.Component {
   }
 
   renderToolbar() {
-    return <div className="editor-header default-color-scheme"><div className="annotation-tools">
+    return <div className="editor-header"><div className="annotation-tools">
       <Localized id="annotationTextSize">
         <select className={`text-select`} title="Text Size" onChange={this.onChangeTextSize.bind(this)} value={this.state.textSize}>
           <Localized id="textSizeSmall"><option value="small-text">Small</option></Localized>

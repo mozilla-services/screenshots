@@ -13,8 +13,8 @@ $light-border-active: #989898;
 $light-hover: #ededf0;
 $light-active: #dedede;
 $light-default: #f9f9fa;
-$link-blue: #009ec0;
-$active-blue: #00d1e6;
+$link-blue: #0a84ff;
+$active-blue: #45a1ff;
 $link-light: #e1e1e6;
 $link-medium: #858585;
 $warning: #d92215;
@@ -29,3 +29,8 @@ $border-radius: 3px;
 
 // ANIMATION CURVE
 $bezier: cubic-bezier(0.07, 0.95, 0, 1);
+
+$stroke-box-shadow: 0 0 0 1px rgba(12, 12, 13, 0.1);
+$small-box-shadow: 0 1px 4px rgba(12, 12, 13, 0.1);
+$medium-box-shadow: 0 2px 8px	rgba(12, 12, 13, 0.1);
+$large-box-shadow: 0 4px 16px rgba(12, 12, 13, 0.1);

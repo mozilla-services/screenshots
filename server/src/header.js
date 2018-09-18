@@ -12,7 +12,7 @@ exports.Header = function Header(props) {
 
   return [
     <AdBanner key="banner" isOwner={props.isOwner} hasFxa={props.hasFxa} shouldGetFirefox={props.shouldGetFirefox} />,
-    <header key="header" className="header-panel default-color-scheme">
+    <header key="header" className="header-panel">
       {logo}
       {props.children}
     </header>,

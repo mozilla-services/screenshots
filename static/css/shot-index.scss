@@ -1,26 +1,9 @@
 @import "partials/partials";
 @import "partials/delete-confirmation";
 
+$shot-width: 210px;
+
 //Shot index page styles
-
-#shot-index-page {
-  background: $light-default;
-}
-
-#shot-index {
-  @include respond-to("small") {
-    width: 480px;
-  }
-
-  @include respond-to("medium") {
-    width: 720px;
-  }
-
-  @include respond-to("large") {
-    width: 960px;
-  }
-}
-
 
 #search-form {
   @include flex-container(row, flex-start, stretch);
@@ -58,7 +41,7 @@
     font-size: 16px;
     padding: 0 28px 8px 24px;
     transition: border-color $bezier 150ms;
-    width: 210px;
+    width: $shot-width;
 
     &:focus {
       border-bottom-color: $link-blue;
@@ -76,15 +59,28 @@
 
 #shot-index {
   @include flex-container(column, flex-start, stretch);
-  margin: 10px auto;
+
+  @include respond-to("small") {
+    width: 480px;
+  }
+
+  @include respond-to("medium") {
+    width: 720px;
+  }
+
+  @include respond-to("large") {
+    width: 960px;
+  }
+
+  margin: 24px auto;
 }
 
 .shot {
   background: $white;
-  box-shadow: 0 0  0 1px rgba(0, 0, 0, 0.05);
+  box-shadow: $medium-box-shadow;
   margin: 15px;
   transition: box-shadow 250ms $bezier;
-  width: 210px;
+  width: $shot-width;
 
   .share-panel {
     left: 0;
@@ -105,7 +101,7 @@
 
   &:hover,
   &.panel-open {
-    box-shadow: 0 0 0 5px $light-border;
+    box-shadow: 0 0 0 5px $light-active;
 
     .alt-actions-container {
       opacity: 1;
@@ -119,7 +115,7 @@
   .shot-image-container {
     background-size: cover;
     box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05) inset;
-    width: 210px;
+    width: $shot-width;
     overflow: hidden;
   }
 
@@ -133,20 +129,20 @@
   &.portrait .shot-image-container {
     height: 280px;
     img {
-      width: 210px;
+      width: $shot-width;
     }
   }
 
   &.square-x .shot-image-container {
-    height: 210px;
+    height: $shot-width;
     img {
-      width: 210px;
+      width: $shot-width;
     }
   }
   &.square-y .shot-image-container {
-    height: 210px;
+    height: $shot-width;
     img {
-      height: 210px;
+      height: $shot-width;
     }
   }
 

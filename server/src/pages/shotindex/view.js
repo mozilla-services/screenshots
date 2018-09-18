@@ -39,7 +39,7 @@ class Body extends React.Component {
   render() {
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <div className="column-space full-height default-color-scheme" id="shot-index-page">
+        <div className="column-space full-height" id="shot-index-page">
           <MyShotsHeader hasDeviceId={this.props.hasDeviceId} hasFxa={this.props.hasFxa}
             enableUserSettings={this.props.enableUserSettings} />
           { this.props.disableSearch ? null : this.renderSearchForm() }
@@ -204,7 +204,7 @@ class Body extends React.Component {
 
   renderSearchForm() {
     return (
-      <form id="search-form" className="default-color-scheme" onSubmit={ this.onSubmitForm.bind(this) }>
+      <form id="search-form" onSubmit={ this.onSubmitForm.bind(this) }>
         <span className="search-label" />
         <Localized id="shotIndexPageSearchPlaceholder">
           <input type="search" id="search" ref={searchInput => this.searchInput = searchInput} maxLength="100" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />

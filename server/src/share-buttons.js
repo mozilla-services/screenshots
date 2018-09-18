@@ -119,7 +119,7 @@ class ShareButtonPanel extends React.Component {
   }
 
   render() {
-    let className = "share-panel default-color-scheme";
+    let className = "share-panel";
     if (this.props.renderExtensionNotification) {
       className += " share-panel-with-notification";
     }
