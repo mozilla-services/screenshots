@@ -18,6 +18,8 @@ buttonSettings =
     .title = Rregullime
 buttonSignIn =
     .title = Hyni
+screenshotsLogo =
+    .title = Kreu i Screenshots
 
 ## Footer
 
@@ -197,6 +199,7 @@ errorThirdPartyCookiesEnabled = Nëse bëtë këtë foto dhe s’e fshini dot, m
 
 ## Shot Page New Feature Promotion Dialog.
 
+promoMessage = Mjetet e përditësuara të përpunimit ju lejojnë të qethni, theksoni, dhe madje të shtoni tekst te shkrepjet tuaja.
 promoLink = Provojini
 promoCloseButton =
     .title = Mbylle njoftimin
@@ -293,6 +296,8 @@ shotIndexPageNoShotsInvitation = Jepini, krijoni ndonjë.
 shotIndexPageLookingForShots = Po shihet për foto tuajat…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = S’gjejmë dot ndonjë foto që përputhet me kërkimet tuaja.
+shotIndexPageMyShotsButton =
+    .title = Shkrepjet e Mia
 shotIndexPageClearSearchButton =
     .title = Pastroje kërkimin
 shotIndexPageConfirmShotDelete = Të fshihet kjo foto?
