@@ -862,8 +862,8 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
         this.el.appendChild(this.yEl);
         iframe.document().body.appendChild(this.el);
       }
-      this.xEl.textContent = x;
-      this.yEl.textContent = y;
+      this.xEl.textContent = Math.round(x);
+      this.yEl.textContent = Math.round(y);
       this.el.style.top = (yPos + 12) + "px";
       this.el.style.left = (xPos + 12) + "px";
     },
