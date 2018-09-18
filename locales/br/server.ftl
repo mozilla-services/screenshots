@@ -9,6 +9,17 @@ gHomeLink = Degemer
 gNoShots =
     .alt = Tapadenn ebet kavet
 gScreenshotsDescription = Tapadennoù-skramm en un doare aes. Skeudennit, enrollit ha rannit an tapadennoù-skramm hep kuitaat Firefox.
+gSettings = Arventennoù
+gSignIn = Kennaskañ
+
+## Header
+
+buttonSettings =
+    .title = Arventennoù
+buttonSignIn =
+    .title = Kennaskañ
+screenshotsLogo =
+    .title = Degemer Screenshots
 
 ## Footer
 
@@ -16,6 +27,8 @@ gScreenshotsDescription = Tapadennoù-skramm en un doare aes. Skeudennit, enroll
 footerLinkMozilla = Mozilla
 footerLinkTerms = Divizoù
 footerLinkPrivacy = Evezhiadennoù a-fet buhez prevez
+footerReportShot = Danevelliñ an dapadenn
+    .title = Danevelliñ an dapadenn-mañ evit un drougimplij, spam, pe kudennoù all
 footerLinkFaqs = FAG
 footerLinkDMCA = Danevellañ un torradur IP
 footerLinkDiscourse = Reiñ evezhiadennoù
@@ -38,7 +51,6 @@ homePageButtonMyShots = Mont d'am zapadennoù
 homePageTeaser = Da zont a-benn nebeut...
 homePageDownloadFirefoxTitle = FIrefox
 homePageDownloadFirefoxSubTitle = Pellgargadur digoust
-homePageGetStarted = Deraouiñ
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Penaos ez a en-dro Firefox Screenshots
 homePageGetStartedTitle = Kregiñ ganti
@@ -112,13 +124,23 @@ shotPageExpiredMessage = Diamzeret eo an dapadenn.
 shotPageExpiredMessageDetails = Sed amañ ar bajenn orin:
 shotPageDeleteButton =
     .title = Dilemel an dapadenn-mañ
-shotPageAbuseButton =
-    .title = Danevelliñ an dapadenn-mañ evit ur gammarver, lastez pe kudennoù all
 shotPageDownloadShot =
     .title = Pellgargañ
 shotPageEditButton =
     .title = Embann ar skeudenn-mañ
+shotPagefavoriteButton =
+    .title = Pennrollañ an dapadenn-mañ
+shotPageBackToHomeButton =
+    .title = Degemer
+shotPageAllShotsButton =
+    .title = An holl dapadennoù
+shotPageAllShots = An holl dapadennoù
 shotPageDownload = Pellgargañ
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Tresañ
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Pennroll
+shotPageDelete = Dilemel
 shotPageScreenshotsDescription = Tapadennoù-skramm en un doare aes. Skeudennit, enrollit ha rannit tapadennoù-skramm hep kuitaat Firefox.
 shotPageUpsellFirefox = Kaout Firefox bremañ
 shotPageDMCAMessage = An dapadenn-mañ n'eo ket hegerz ket abalamour m'eo bet danevellet gant un trede evit abegoù perc'henniezh kefredel.
@@ -194,7 +216,16 @@ timeDiffFutureDays =
         [many] a-benn { $number } a zevezhioù
        *[other] a-benn { $number } devezh
     }
-errorThirdPartyCookiesEnabled = M'ho peus kemeret an dapadenn-mañ ha n'hallit ket he dilemel ho peus ezhomm da weredekaat toupinoù an tredeoù e gwellvezioù ho merdeer. 
+errorThirdPartyCookiesEnabled = M'ho peus kemeret an dapadenn-mañ ha n'hallit ket he dilemel ho peus ezhomm da weredekaat toupinoù an tredeoù e gwellvezioù ho merdeer.
+
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Kemerit notennoù!
+promoMessage = Gant an ostilhoù embann nevez e c'hallit didroc'hañ, usskediñ hag ouzhpennañ testennoù d'ho tapadennoù.
+promoLink = Klaskit ober ganto
+promoCloseButton =
+    .title = Serriñ ar rebuzadur
 
 ## Annotations
 
@@ -247,9 +278,9 @@ textSizeSmall = Bihan
 textSizeMedium = Etre
 textSizeLarge = Ledan
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Kadarnaat
     .title = Kadarnaat
-annotationTextCancelButton =
+textToolCancelButton = Nullañ
     .title = Nullañ
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
@@ -288,6 +319,8 @@ shotIndexPageNoShotsInvitation = Kit 'ta da skeudenniñ un dra bennak
 shotIndexPageLookingForShots = O klask ho tapadennoù...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = N'haller ket kavout tapadennoù a glot gant hoc'h enklask.
+shotIndexPageMyShotsButton =
+    .title = Ma zapadennoù
 shotIndexPageClearSearchButton =
     .title = Skarzhañ ar c'hlask
 shotIndexPageConfirmShotDelete = Dilemel an dapadenn-mañ?
@@ -301,6 +334,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = An dapadenn n'hall ket diamzeriñ
+# This is the tooltip for a "heart" symbol in the lower right corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Er pennrolloù emañ an dapadenn-mañ ha ne ziamzero ket
 
 ## Delete Confirmation Dialog
 
