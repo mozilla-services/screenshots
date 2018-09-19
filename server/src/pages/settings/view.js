@@ -28,7 +28,7 @@ class Body extends React.Component {
       <reactruntime.BodyTemplate {...this.props}>
         <div className="full-height">
           <div id="settings-header">
-            <Localized id="settingsClosePreferences">
+            <Localized id="settingsClosePreferences" attrs={{title: true}}>
               <a className="button close-preferences" href="/shots" title="Close preferences"></a>
             </Localized>
           </div>
@@ -51,7 +51,7 @@ class Body extends React.Component {
           <div className="info-container">
             <p className="username title">{this.props.accountInfo.nickname || this.props.accountInfo.email}</p>
             { this.props.accountInfo.nickname ? <p className="email info">{this.props.accountInfo.email}</p> : null }
-            <Localized id="settingsDisconnectButton">
+            <Localized id="settingsDisconnectButton" attrs={{title: true}}>
               <button className="account-buttons disconnect" onClick={ this.onClickDisconnect.bind(this) } title="Disconnect">Disconnect</button>
             </Localized>
           </div>
@@ -68,7 +68,7 @@ class Body extends React.Component {
             <Localized id="settingsSignInInvite">
               <p className="info">Sign in to sync across devices</p>
             </Localized>
-            <Localized id="settingsSignInButton">
+            <Localized id="settingsSignInButton" attrs={{title: true}}>
               <a className="account-buttons" href="/api/fxa-oauth/login/" onClick={ this.onClickConnect.bind(this)} title="Sign in">Sign In</a>
             </Localized>
           </div>

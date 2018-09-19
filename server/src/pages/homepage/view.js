@@ -19,16 +19,16 @@ class Head extends React.Component {
         <script src={this.props.staticLink("/static/js/UITour-lib.js")} async></script>
         <script src={this.props.staticLink("/static/js/homepage-bundle.js")} async></script>
         <meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-        <Localized id="homePageDescription">
+        <Localized id="homePageDescription" attrs={{content: true}}>
           <meta name="description" content="Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox." />
         </Localized>
         <meta property="og:title" content={this.props.title} />
         <meta property="og:url" content={this.props.backend} />
-        <Localized id="homePageDescription">
+        <Localized id="homePageDescription" attrs={{content: true}}>
           <meta property="og:description" content="Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox." />
         </Localized>
         <meta name="twitter:title" content={this.props.title} />
-        <Localized id="homePageDescription">
+        <Localized id="homePageDescription" attrs={{content: true}}>
           <meta name="twitter:description" content="Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox." />
         </Localized>
         <meta name="twitter:card" content="summary" />

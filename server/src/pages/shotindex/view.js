@@ -110,7 +110,7 @@ class Body extends React.Component {
     return (
       <div id="shot-index-page-navigation" hidden={hidden} >
         <span className={prevClasses}>
-          <Localized id="shotIndexPagePreviousPage">
+          <Localized id="shotIndexPagePreviousPage" attrs={{title: true}}>
             {
               hasPrev
               ? <a href={ controller.getNewUrl({p: prevPageNumber})}
@@ -123,7 +123,7 @@ class Body extends React.Component {
         </span>
         <span id="shots-page-number">{this.props.pageNumber} / {totalPages}</span>
         <span className={nextClasses}>
-          <Localized id="shotIndexPageNextPage">
+          <Localized id="shotIndexPageNextPage" attrs={{title: true}}>
             {
               hasNext
               ? <a href={ controller.getNewUrl({p: nextPageNumber}) }
@@ -160,7 +160,7 @@ class Body extends React.Component {
   renderNoShots() {
     return (
       <div className="no-shots" key="no-shots-found">
-        <Localized id="gNoShots">
+        <Localized id="gNoShots" attrs={{alt: true}}>
           <img src={ this.props.staticLink("/static/img/image-noshots_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
         </Localized>
         <Localized id="shotIndexPageNoShotsMessage">
@@ -176,7 +176,7 @@ class Body extends React.Component {
   renderNoDeviceId() {
     return (
       <div className="no-shots" key="no-shots-found">
-        <Localized id="gNoShots">
+        <Localized id="gNoShots" attrs={{alt: true}}>
           <img src={ this.props.staticLink("/static/img/image-search_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
         </Localized>
         <Localized id="shotIndexPageLookingForShots">
@@ -189,7 +189,7 @@ class Body extends React.Component {
   renderNoSearchResults() {
     return (
       <div className="no-shots" key="no-shots-found">
-        <Localized id="gNoShots">
+        <Localized id="gNoShots" attrs={{alt: true}}>
           <img src={ this.props.staticLink("/static/img/image-search_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
         </Localized>
         <Localized id="shotIndexPageNoSearchResultsIntro">
@@ -206,10 +206,10 @@ class Body extends React.Component {
     return (
       <form id="search-form" onSubmit={ this.onSubmitForm.bind(this) }>
         <span className="search-label" />
-        <Localized id="shotIndexPageSearchPlaceholder">
+        <Localized id="shotIndexPageSearchPlaceholder" attrs={{title: true}}>
           <input type="search" id="search" ref={searchInput => this.searchInput = searchInput} maxLength="100" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />
         </Localized>
-        <Localized id="shotIndexPageClearSearchButton">
+        <Localized id="shotIndexPageClearSearchButton" attrs={{title: true}}>
           <div className="clear-search" title="clear search" onClick={this.onClearSearch.bind(this)}></div>
         </Localized>
       </form>
@@ -316,19 +316,19 @@ class Card extends React.Component {
 
     let favoriteIndicator = null;
     if (!shot.expireTime) {
-      favoriteIndicator = <Localized id="shotIndexFavoriteIcon">
+      favoriteIndicator = <Localized id="shotIndexFavoriteIcon" attrs={{title: true}}>
           <div className={classnames("indicator fav-shot", {"inactive": !this.props.hasFxa})}
             title=""></div>
         </Localized>;
     } else if (this.props.hasFxa) {
-      favoriteIndicator = <Localized id="shotIndexNonFavoriteIcon">
+      favoriteIndicator = <Localized id="shotIndexNonFavoriteIcon" attrs={{title: true}}>
           <div className="non-fav-shot" title=""></div>
         </Localized>;
     }
 
     let syncedShotIndicator = null;
     if (shot.isSynced) {
-      syncedShotIndicator = <Localized id="shotIndexSyncedShot">
+      syncedShotIndicator = <Localized id="shotIndexSyncedShot" attrs={{title: true}}>
         <div className="indicator synced-shot" title=""></div>
       </Localized>;
     }
@@ -360,7 +360,7 @@ class Card extends React.Component {
           </div>
         </a>
         <div className="alt-actions-container">
-          <Localized id="shotPageDownloadShot">
+          <Localized id="shotPageDownloadShot" attrs={{title: true}}>
             <a className="button transparent download" href={ downloadUrl } onClick={ this.onClickDownload.bind(this) }
               title="Download the shot image" ref={downloadButton => this.downloadButton = downloadButton} />
           </Localized>

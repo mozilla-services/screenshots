@@ -13,7 +13,7 @@ exports.ShotFooter = class ShotFooter extends Footer {
       const dmcaIdx = this.links.findIndex(link => link.key === "dmca");
       if (dmcaIdx !== -1) {
         this.links.splice(dmcaIdx, 0,
-          <li key="reportshot"><Localized id="footerReportShot">
+          <li key="reportshot"><Localized id="footerReportShot" attrs={{title: true}}>
             <a href={`https://qsurvey.mozilla.com/s3/screenshots-flagged-shots?ref=${this.props.id}`}
               title="Report this shot for abuse, spam, or other problems"
               target="_blank" rel="noopener noreferrer"
