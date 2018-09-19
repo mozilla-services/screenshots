@@ -14,10 +14,12 @@ gSignIn = Oanmelde
 
 ## Header
 
-signInButton =
-    .aria-label = Oanmelde
-settingsButton =
-    .aria-label = Ynstellingen
+buttonSettings =
+    .title = Ynstellingen
+buttonSignIn =
+    .title = Oanmelde
+screenshotsLogo =
+    .title = Startside fan Screenshots
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Betingsten
 footerLinkPrivacy = Privacyferklearring
+footerReportShot = Ofbylding rapportearje
+    .title = Dizze ôfbylding rapportearje fanwegen misbrûk, spam of oare problemen
 footerLinkFaqs = FAQ's
 footerLinkDMCA = IP-misbrûk rapportearje
 footerLinkDiscourse = Kommentaar jaan
@@ -120,15 +124,23 @@ shotPageExpiredMessage = Dizze ôfbylding is ferfallen.
 shotPageExpiredMessageDetails = Dit is de side fan wêrôf dizze oarspronklik makke is:
 shotPageDeleteButton =
     .title = Dizze ôfbylding fuortsmite
-shotPageAbuseButton =
-    .title = Dizze ôfbylding rapportearje fanwege misbrûk, spam of oare problemen
 shotPageDownloadShot =
     .title = Downloade
 shotPageEditButton =
     .title = Dizze ôfbylding bewurkje
 shotPagefavoriteButton =
     .title = Dizze ôfbylding favoryt meitsje
+shotPageBackToHomeButton =
+    .title = Startside
+shotPageAllShotsButton =
+    .title = Alle ôfbyldingen
+shotPageAllShots = Alle ôfbyldingen
 shotPageDownload = Downloade
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Tekenje
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Favoryt meitsje
+shotPageDelete = Fuortsmite
 shotPageScreenshotsDescription = Skermôfbyldingen wurde maklik. Meitsje, bewarje en diel skermôfbyldingen sûnder Firefox te ferlitten.
 shotPageUpsellFirefox = Download Firefox no
 shotPageDMCAMessage = Dizze ôfbylding is fanwegen in claim op yntellektueel eigendom troch in eksterne partij net mear beskikber.
@@ -293,6 +305,8 @@ shotIndexPageNoShotsInvitation = Toe mar, meitsje der in pear.
 shotIndexPageLookingForShots = Sykje nei jo ôfbyldingen…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Wy kinne gjin ôfbyldingen finen dy't oan jo sykopdracht foldocht.
+shotIndexPageMyShotsButton =
+    .title = Myn ôfbyldingen
 shotIndexPageClearSearchButton =
     .title = Sykopdracht wiskje
 shotIndexPageConfirmShotDelete = Dizze ôfbylding fuortsmite?
