@@ -274,6 +274,15 @@ exports.handleResult = function(req) {
       throw err;
     }
 
+    // Check if there was an upstream error at PhotoDNA.
+    // We leave the result as null.
+    if (req.body.error) {
+      const err = new Error(`Watchdog submission encountered an error at PhotoDNA.`);
+      err.watchdogSubmissionId = String(record.id);
+      err.photodnaResponseStatus = req.body.response.Status;
+      throw err;
+    }
+
     if (req.body.positive) {
       handlePositive(record);
     } else {
