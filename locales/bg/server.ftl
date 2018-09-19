@@ -14,10 +14,12 @@ gSignIn = Вписване
 
 ## Header
 
-signInButton =
-    .aria-label = Вписване
-settingsButton =
-    .aria-label = Настройки
+buttonSettings =
+    .title = Настройки
+buttonSignIn =
+    .title = Вписване
+screenshotsLogo =
+    .title = Страница на Screenshots
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Условия
 footerLinkPrivacy = Политика на поверителност
+footerReportShot = Докладване на снимка
+    .title = Докладвайте снимката за злоупотреба, спам или друг проблем
 footerLinkFaqs = Въпроси и отговори
 footerLinkDMCA = Доклад за нарушение на авторско право
 footerLinkDiscourse = Обратна връзка
@@ -120,15 +124,23 @@ shotPageExpiredMessage = Тази снимка е с изтекла давнос
 shotPageExpiredMessageDetails = Това е страницата, от която е направена:
 shotPageDeleteButton =
     .title = Премахване на снимката
-shotPageAbuseButton =
-    .title = Докладвайте снимката за злоупотреба или други проблеми
 shotPageDownloadShot =
     .title = Изтегляне
 shotPageEditButton =
     .title = Промяна на изображението
 shotPagefavoriteButton =
     .title = Отбележи тази снимка
+shotPageBackToHomeButton =
+    .title = Страница
+shotPageAllShotsButton =
+    .title = Всички снимки
+shotPageAllShots = Всички снимки
 shotPageDownload = Изтегляне
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Рисуване
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Любими
+shotPageDelete = Изтриване
 shotPageScreenshotsDescription = Лесни снимки на екрана. Създавате, запазвате и споделяте снимки на екрана без да напускате Firefox.
 shotPageUpsellFirefox = Вземете Firefox сега
 shotPageDMCAMessage = Това изображение вече не е налично, защото е докладвано като обект на авторско право.
@@ -293,6 +305,8 @@ shotIndexPageNoShotsInvitation = Хайде, направете няколко.
 shotIndexPageLookingForShots = Търсене на вашите снимки…
 shotIndexPageNoSearchResultsIntro = Хмм
 shotIndexPageNoSearchResults = Не намираме снимки, които отговарят на търсенето ви.
+shotIndexPageMyShotsButton =
+    .title = Моите снимки
 shotIndexPageClearSearchButton =
     .title = Изчистване на търсенето
 shotIndexPageConfirmShotDelete = Сигурни ли сте, че желаете снимката да бъде премахната?
