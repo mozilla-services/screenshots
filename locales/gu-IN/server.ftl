@@ -14,10 +14,12 @@ gSignIn = સાઇન ઇન
 
 ## Header
 
-signInButton =
-    .aria-label = સાઇન ઇન
-settingsButton =
-    .aria-label = સેટિંગ્સ
+buttonSettings =
+    .title = સેટિંગ્સ
+buttonSignIn =
+    .title = સાઇન ઇન કરો
+screenshotsLogo =
+    .title = સ્ક્રીનશૉટ્સ હોમ
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = શરતો
 footerLinkPrivacy = ગોપનીયતા સૂચના
+footerReportShot = સ્ક્રીનશૉટ્ અહેવાલ
+    .title = દુરુપયોગ, સ્પામ અથવા અન્ય સમસ્યાઓ માટે આ સ્ક્રીનશૉટ્ની જાણ કરો
 footerLinkFaqs = વારંવાર પૂછવામાં આવતા પ્રશ્ન
 footerLinkDMCA = IP ઉલ્લંઘનની જાણ કરો
 footerLinkDiscourse = અભીપ્રાય આપો
@@ -120,15 +124,23 @@ shotPageExpiredMessage = આ શોટની સમયસીમા સમાપ�
 shotPageExpiredMessageDetails = અહીં તે પૃષ્ઠ છે જે મૂળથી બનાવવામાં આવ્યું હતું:
 shotPageDeleteButton =
     .title = આ શોટ કાઢી નાખો
-shotPageAbuseButton =
-    .title = દુરુપયોગ, સ્પામ અથવા અન્ય સમસ્યાઓ માટે આ શોટની જાણ કરો
 shotPageDownloadShot =
     .title = ડાઉનલોડ કરો
 shotPageEditButton =
     .title = આ છબી સંપાદિત કરો
 shotPagefavoriteButton =
     .title = આ શોટ મનપસંદમાં ઉમેરો
+shotPageBackToHomeButton =
+    .title = મુખ્યપૃષ્ઠ
+shotPageAllShotsButton =
+    .title = બધા સ્ક્રીનશૉટ્સ
+shotPageAllShots = બધા સ્ક્રીનશૉટ્સ
 shotPageDownload = ડાઉનલોડ કરો
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = દોરો
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = પ્રિય
+shotPageDelete = કાઢી નાખો
 shotPageScreenshotsDescription = સ્ક્રીનશોટને સરળ બનાવી. Firefox છોડ્યાં વગર સ્ક્રીનશોટ લો, સાચવો અને વહેંચો.
 shotPageUpsellFirefox = હમણાં Firefox મેળવો
 shotPageDMCAMessage = તૃતીય પક્ષ બૌદ્ધિક સંપદા દાવાને કારણે આ શોટ હવે ઉપલબ્ધ નથી.
@@ -293,6 +305,8 @@ shotIndexPageNoShotsInvitation = જાઓ, કેટલાક બનાવો
 shotIndexPageLookingForShots = તમારા શૉટ્સ શોધી રહ્યાં છે…
 shotIndexPageNoSearchResultsIntro = હમમ
 shotIndexPageNoSearchResults = અમે તમારી શોધ સાથે મેળ ખાતા કોઈપણ શોટ શોધી શકતા નથી.
+shotIndexPageMyShotsButton =
+    .title = મારા સ્ક્રીનશૉટ્સ
 shotIndexPageClearSearchButton =
     .title = શોધ સાફ કરો
 shotIndexPageConfirmShotDelete = આ શોટ કાઢી નાખીએ?
