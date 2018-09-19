@@ -14,10 +14,8 @@ gSignIn = Iniciar sesión
 
 ## Header
 
-signInButton =
-    .aria-label = Iniciar sesión
-settingsButton =
-    .aria-label = Configuraciones
+buttonSettings =
+    .title = Preferencias
 
 ## Footer
 
@@ -120,8 +118,6 @@ shotPageExpiredMessage = Esta captura ha expirado.
 shotPageExpiredMessageDetails = Esta es la página dónde fue originalmente creada:
 shotPageDeleteButton =
     .title = Eliminar esta captura
-shotPageAbuseButton =
-    .title = Reportar esta captura por abuso, spam o cualquier otro problema
 shotPageDownloadShot =
     .title = Descargar
 shotPageEditButton =
@@ -129,6 +125,9 @@ shotPageEditButton =
 shotPagefavoriteButton =
     .title = Marcar esta captura como favorita
 shotPageDownload = Descargar
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Favorito
+shotPageDelete = Eliminar
 shotPageScreenshotsDescription = Capturas de pantalla hechas simples. Toma, guarda y comparte capturas de pantalla sin dejar Firefox.
 shotPageUpsellFirefox = Obtener Firefox ahora
 shotPageDMCAMessage = Esta captura ya no está disponible debido a un reclamo de derechos de autor.
