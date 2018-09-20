@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Kcem
 screenshotsLogo =
     .title = Tuṭṭfa n wegdil agejdan
+bannerMessage = Qqen neɣ jerred akken ad tkecmeḍ ar tuṭṭfiwin-ik deg ibenkan daɣen ad teskelseḍ ayen tḥemmleḍ i lebda.
 
 ## Footer
 
@@ -310,13 +311,11 @@ shotIndexPagePreviousPage =
     .title = Asebter iεeddan
 shotIndexPageNextPage =
     .title = Asebter i d-iteddun
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Tuṭṭfa-agi ur tettmettat ara
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Tagi mačči d tuṭṭfa i tḥemmleḍ, ihi ad temmet.
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
