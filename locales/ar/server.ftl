@@ -128,6 +128,9 @@ shotPagefavoriteButton =
     .title = أضِف اللقطة إلى المفضلة
 shotPageBackToHomeButton =
     .title = صفحة البداية
+shotPageAllShotsButton =
+    .title = كل اللقطات
+shotPageAllShots = كل اللقطات
 shotPageDownload = نزّل
 shotPageScreenshotsDescription = لقطات الشاشة صارت أسهل. خذ لقطات الشاشة و احفظها و شاركها دون مغادرة فَيرفُكس.
 shotPageUpsellFirefox = نزّل فَيَرفُكس الآن
@@ -315,6 +318,8 @@ shotIndexPageNoShotsInvitation = حرّك نفسك والتقط شيئا.
 shotIndexPageLookingForShots = يبحث عن لقطاتك…
 shotIndexPageNoSearchResultsIntro = إم
 shotIndexPageNoSearchResults = تعذّر العثور على أي لقطة تطابق معايير البحث.
+shotIndexPageMyShotsButton =
+    .title = لقطاتي
 shotIndexPageClearSearchButton =
     .title = امسح البحث
 shotIndexPageConfirmShotDelete = أنحذف هذه اللقطة؟
@@ -322,13 +327,7 @@ shotIndexPagePreviousPage =
     .title = الصفحة السابقة
 shotIndexPageNextPage =
     .title = الصفحة التالية
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = لا تنتهي صلاحية اللقطة
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
