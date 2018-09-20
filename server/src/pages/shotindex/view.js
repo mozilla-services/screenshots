@@ -1,6 +1,7 @@
 /* globals controller */
 const sendEvent = require("../../browser-send-event.js");
 const reactruntime = require("../../reactruntime");
+const classnames = require("classnames");
 const { MyShotsFooter } = require("./footer");
 const React = require("react");
 const PropTypes = require("prop-types");
@@ -314,12 +315,14 @@ class Card extends React.Component {
     }
 
     let favoriteIndicator = null;
-    if (this.props.hasFxa) {
-      if (!shot.expireTime) {
-        favoriteIndicator = <Localized id="shotIndexFavoriteIcon"><div className="fav-shot" title=""></div></Localized>;
-      } else {
-        favoriteIndicator = <Localized id="shotIndexNonFavoriteIcon"><div className="non-fav-shot" title=""></div></Localized>;
-      }
+    if (!shot.expireTime) {
+      favoriteIndicator = <Localized id="shotIndexFavoriteIcon">
+          <div className={classnames("fav-shot", {"inactive": !this.props.hasFxa})} title=""></div>
+        </Localized>;
+    } else if (this.props.hasFxa) {
+      favoriteIndicator = <Localized id="shotIndexNonFavoriteIcon">
+          <div className="non-fav-shot" title=""></div>
+        </Localized>;
     }
 
     const deleteConfirmationClass = this.state.deletePanelOpen ? "panel-open" : "";

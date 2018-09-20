@@ -206,6 +206,9 @@
 
   .fav-shot {
     background-image: url("../img/icon-heart.svg");
+    &.inactive {
+      opacity: 0.4;
+    }
   }
 
   .non-fav-shot {
