@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Daftar Masuk
 screenshotsLogo =
     .title = Laman Screenshots
+bannerMessage = Daftar masuk atau daftar untuk mengakses syot anda dalam semua peranti dan menyimpan kegemaran anda selamanya.
 
 ## Footer
 
