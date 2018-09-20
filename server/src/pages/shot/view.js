@@ -341,10 +341,10 @@ class Body extends React.Component {
     let editButton = null;
     const highlight = this.state.highlightEditButton ? <div className="edit-highlight" onClick={ this.onClickEdit.bind(this) } onMouseOver={ this.onMouseOverHighlight.bind(this) } onMouseOut={ this.onMouseOutHighlight.bind(this) }></div> : null;
     const activeFavClass = this.props.expireTime ? "" : "is-fav";
-    const shouldShow = this.props.isFxaAuthenticated ? "" : "hidden";
+    const inactive = this.props.isFxaAuthenticated ? "" : "inactive";
 
     favoriteShotButton = <div className="favorite-shot-button"><Localized id="shotPagefavoriteButton">
-      <button className={`nav-button ${shouldShow} `} onClick={this.onClickFavorite.bind(this)}>
+      <button className={`nav-button ${inactive}`} disabled={!this.props.isFxaAuthenticated} onClick={this.onClickFavorite.bind(this)}>
         <span className={`icon-favorite favorite ${activeFavClass}`} ></span>
         <Localized id="shotPageFavorite">
           <span className={`favorite-text favorite ${activeFavClass} `}>Favorite</span>

@@ -91,7 +91,7 @@
     }
 
     .icon-favorite {
-      background-image: url("../img/icon-heart.svg");
+      background-image: url("../img/icon-heart-outline.svg");
     }
 
     &.icon-trash {
@@ -112,12 +112,16 @@
         height: 24px;
         margin: 0 0 8px;
         background-size: 24px 24px;
-        filter: brightness(2.4);
 
         &.is-fav {
-          filter: brightness(1);
+          background-image: url("../img/icon-heart.svg");
         }
       }
+    }
+
+    &.inactive {
+      opacity: 0.4;
+      cursor: default;
     }
 
     span {
@@ -131,10 +135,9 @@
     .favorite-text {
       &.favorite {
         margin-top: 0;
-        color: #95929a;
 
         &.is-fav {
-          color: #4a4a4a;
+          color: #b5007f;
         }
       }
     }

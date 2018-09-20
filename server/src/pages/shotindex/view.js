@@ -313,12 +313,12 @@ class Card extends React.Component {
       imageUrl = this.props.staticLink("img/question-mark.svg");
     }
 
-    let neverExpireIndicator = null;
-    if (!shot.expireTime) {
-      if (this.props.hasFxa) {
-        neverExpireIndicator = <Localized id="shotIndexFavoriteIcon"><div className="favorite-shot" title=""></div></Localized>;
+    let favoriteIndicator = null;
+    if (this.props.hasFxa) {
+      if (!shot.expireTime) {
+        favoriteIndicator = <Localized id="shotIndexFavoriteIcon"><div className="fav-shot" title=""></div></Localized>;
       } else {
-        neverExpireIndicator = <Localized id="shotIndexNoExpirationSymbol"><div className="never-expires" title=""></div></Localized>;
+        favoriteIndicator = <Localized id="shotIndexNonFavoriteIcon"><div className="non-fav-shot" title=""></div></Localized>;
       }
     }
 
@@ -360,7 +360,7 @@ class Card extends React.Component {
             confirmDeleteHandler={this.confirmDeleteHandler.bind(this, shot)}
             cancelDeleteHandler={this.cancelDeleteHandler.bind(this)} />
         </div>
-        {neverExpireIndicator}
+        {favoriteIndicator}
       </div>
     );
   }
