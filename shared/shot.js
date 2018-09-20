@@ -202,6 +202,7 @@ class AbstractShot {
     this.documentSize = attrs.documentSize || null;
     this.thumbnail = attrs.thumbnail || null;
     this.abTests = attrs.abTests || null;
+    this.firefoxChannel = attrs.firefoxChannel || null;
     this._clips = {};
     if (attrs.clips) {
       for (const clipId in attrs.clips) {
@@ -553,12 +554,24 @@ class AbstractShot {
     this._abTests = val;
   }
 
+  get firefoxChannel() {
+    return this._firefoxChannel;
+  }
+  set firefoxChannel(val) {
+    if (val === null || val === undefined) {
+      this._firefoxChannel = null;
+      return;
+    }
+    assert(typeof val === "string", "firefoxChannel should be a string, not:", typeof val);
+    this._firefoxChannel = val;
+  }
+
 }
 
 AbstractShot.prototype.REGULAR_ATTRS = (`
 origin fullUrl docTitle userTitle createdDate images
 siteName openGraph twitterCard documentSize
-thumbnail abTests
+thumbnail abTests firefoxChannel
 `).split(/\s+/g);
 
 // Attributes that will be accepted in the constructor, but ignored/dropped

@@ -7,7 +7,7 @@ const mozlog = require("./logging").mozlog("dbschema");
 
 // When updating the database, please also run ./bin/dumpschema --record
 // This updates schema.sql with the latest full database schema
-const MAX_DB_LEVEL = exports.MAX_DB_LEVEL = 26;
+const MAX_DB_LEVEL = exports.MAX_DB_LEVEL = 27;
 // This is a list of all the Keygrip scopes we allow (and we make sure these exist):
 const KEYGRIP_SCOPES = ["auth", "proxy-url", "download-url", "ga-user-nonce"];
 
