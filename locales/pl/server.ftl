@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Zaloguj się
 screenshotsLogo =
     .title = Strona główna Screenshots
+bannerMessage = Zaloguj się lub zarejestruj, aby mieć dostęp do swoich zrzutów na wszystkich urządzeniach i zachować ulubione na zawsze.
 
 ## Footer
 
