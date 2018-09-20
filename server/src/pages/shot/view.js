@@ -173,7 +173,6 @@ class Body extends React.Component {
     super(props);
     this.state = {
       hidden: false,
-      closeBanner: false,
       imageEditing: false,
     };
   }
@@ -181,10 +180,6 @@ class Body extends React.Component {
   componentDidMount() {
     this.setState({highlightEditButton: this.props.highlightEditButton || this.props.promoDialog});
     this.setState({promoDialog: this.props.promoDialog});
-  }
-
-  doCloseBanner() {
-    this.setState({closeBanner: true});
   }
 
   clickDeleteHandler() {
@@ -394,16 +389,15 @@ class Body extends React.Component {
     }
 
     let renderGetFirefox = this.props.userAgent && (this.props.userAgent + "").search(/firefox\/\d{1,255}/i) === -1;
-    if (this.props.isMobile || this.state.closeBanner) {
+    if (this.props.isMobile) {
       renderGetFirefox = false;
     }
 
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        { renderGetFirefox ? this.renderFirefoxRequired() : null }
         <div id="frame" className="inverse-color-scheme full-height column-space">
         <ShotPageHeader isOwner={this.props.isOwner} isFxaAuthenticated={this.props.isFxaAuthenticated}
-          shot={this.props.shot} expireTime={this.props.expireTime}>
+          shot={this.props.shot} expireTime={this.props.expireTime} shouldGetFirefox={renderGetFirefox}>
           { favoriteShotButton }
           { editButton }
           { downloadButton }
@@ -431,21 +425,6 @@ class Body extends React.Component {
 
   onMouseOutHighlight() {
     this.editButton.style.backgroundColor = "transparent";
-  }
-
-  renderFirefoxRequired() {
-    return <div className="highlight-color-scheme alt-notification">
-      <div>
-        <Localized id="gScreenshotsDescription">
-          <span>Screenshots made simple. Take, save and share screenshots without leaving Firefox.</span>
-        </Localized>
-        &nbsp;
-        <Localized id="shotPageUpsellFirefox">
-          <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition&utm_content=from-shot" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a>
-        </Localized>
-      </div>
-      <a className="close" onClick={ this.doCloseBanner.bind(this) }></a>
-    </div>;
   }
 
   onClickEdit() {
