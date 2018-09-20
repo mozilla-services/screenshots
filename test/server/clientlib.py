@@ -179,6 +179,7 @@ def make_example_shot(deviceId, pad_image_to_length=None, image_index=None, imag
         createdDate=int(time.time() * 1000),
         favicon=None,
         siteName="test site",
+        firefoxChannel="release",
         clips={
             make_uuid(): dict(
                 createdDate=int(time.time() * 1000),
