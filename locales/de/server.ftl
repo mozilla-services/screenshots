@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Anmelden
 screenshotsLogo =
     .title = Startseite von Screenshots
+bannerMessage = Melden Sie sich an oder registrieren Sie sich, um geräteübergreifend Ihre Bildschirmfotos anzusehen und Ihre Favoriten dauerhaft zu speichern.
 
 ## Footer
 
