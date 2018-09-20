@@ -314,6 +314,10 @@ shotIndexPagePreviousPage =
     .title = Kuatiarogue mboyveguáva
 shotIndexPageNextPage =
     .title = Kuatiarogue upeiguáva
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Kóva ndaha'éi japyhypy eguerohoryvéva ha oguerekóta hi'arange paha
 # This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
