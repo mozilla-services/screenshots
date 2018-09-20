@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Iniciar sessão
 screenshotsLogo =
     .title = Início do Screenshots
+bannerMessage = Inicie sessão ou registe-se para aceder às suas capturas entre dispositivos e guardar as suas favoritas para sempre.
 
 ## Footer
 
