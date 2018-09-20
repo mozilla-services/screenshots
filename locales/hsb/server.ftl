@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Přizjewić
 screenshotsLogo =
     .title = Startowa strona Screenshots
+bannerMessage = Přizjewće so abo registrujće so, zo byšće přistup na swoje fota wobrazowki přez graty měł a składujće swoje fawority na přeco.
 
 ## Footer
 
