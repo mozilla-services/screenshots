@@ -44,16 +44,23 @@ class Clip extends React.Component {
       return null;
     }
     const node = <img id="clipImage" style={{height: "auto", width: Math.floor(clip.image.dimensions.x) + "px", maxWidth: "100%" }} ref={clipImage => this.clipImage = clipImage} src={ clip.image.url } alt={ clip.image.text } />;
+    const clipUrl = this.props.isMobile
+                    ? this.props.downloadUrl
+                    : clip.image.url;
     return <div ref={clipContainer => this.clipContainer = clipContainer} className="clip-container">
       { this.copyTextContextMenu() }
-      <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) } contextMenu="clip-image-context">
+      <a href={ clipUrl } onClick={ this.onClickClip.bind(this) } contextMenu="clip-image-context">
         { node }
       </a>
     </div>;
   }
 
   onClickClip() {
-    sendEvent("goto-clip", "content", {useBeacon: true});
+    if (this.props.isMobile) {
+      sendEvent("mobile-download", "content", {useBeacon: true});
+    } else {
+      sendEvent("goto-clip", "content", {useBeacon: true});
+    }
     // Allow default action to continue
   }
 
@@ -84,6 +91,8 @@ class Clip extends React.Component {
 
 Clip.propTypes = {
   clip: PropTypes.object,
+  isMobile: PropTypes.bool,
+  downloadUrl: PropTypes.string,
 };
 
 class Head extends React.Component {

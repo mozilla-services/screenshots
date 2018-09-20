@@ -307,6 +307,7 @@ These are events that an add-on user can encounter on a shot they own
 30. [x] Click "Copy Image Text" on the context menu `web/copy-image-text/context-menu`
 32. [x] Click Feedback/mailto button `start-feedback/footer`
 31. [x] Click on clip `web/goto-clip/content`
+31. [x] Click on clip in a mobile browser `web/mobile-download/content`
 32. [x] Click the download button `web/download/navbar`
 33. [x] Visit an image directly, when the image isn't embedded directly in a Screenshots shot page, `web/visit/direct-view-owner`
 34. [x] View an image directly, when the image is being shown as part of a Facebook/Twitter style preview (the og:image or twitter:image), `web/visit/direct-view-embedded-owner`
