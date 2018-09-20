@@ -55,10 +55,7 @@ this.takeshot = (function() {
       } else {
         shot.thumbnail = thumbnailImage;
       }
-      if (browser.experiments && browser.experiments.screenshots && browser.experiments.screenshots.getUpdateChannel) {
-        return browser.experiments.screenshots.getUpdateChannel();
-      }
-      return Promise.resolve(null);
+      return browser.experiments.screenshots.getUpdateChannel();
     }).then((firefoxChannel) => {
       shot.firefoxChannel = firefoxChannel;
       return browser.tabs.create({url: shot.creatingUrl});
