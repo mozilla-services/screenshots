@@ -14,10 +14,12 @@ gSignIn = Jeike
 
 ## Header
 
-signInButton =
-    .aria-label = Jeike
-settingsButton =
-    .aria-label = Tekopyahu
+buttonSettings =
+    .title = Ñemboheko
+buttonSignIn =
+    .title = Jeike
+screenshotsLogo =
+    .title = Screenshots kuatiarogue ñepyrũ
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Jejapopy
 footerLinkPrivacy = Mombe'u ñeñomipy
+footerReportShot = Emomarandu japyhypy rehegua
+    .title = Emomarandu ko ta'anga imarãha, spam ha ambue apañuãi
 footerLinkFaqs = Porandu py'ỹi
 footerLinkDMCA = Emombe’u IP-pe oĩvaíva
 footerLinkDiscourse = Ñe'ẽte ñemondo
@@ -120,15 +124,20 @@ shotPageExpiredMessage = Ko japyhypy ndoikovéima.
 shotPageExpiredMessageDetails = Kóva ha’e kuatiarogue oñemoheñói hague:
 shotPageDeleteButton =
     .title = Embogue ko japyhypy
-shotPageAbuseButton =
-    .title = Emomarandu ko japyhypy oĩvaiha, spam térã ambue apañuãi.
 shotPageDownloadShot =
     .title = Mboguejy
 shotPageEditButton =
     .title = Embosako’i ko ta’anga
 shotPagefavoriteButton =
     .title = Emongurusu ko japyhypyre techaramovévarõ
+shotPageBackToHomeButton =
+    .title = Kuatiarogue ñepyrũ
+shotPageAllShotsButton =
+    .title = Opaite japyhypy
+shotPageAllShots = Opaite japyhypy
 shotPageDownload = Mboguejy
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Moha'anga
 shotPageScreenshotsDescription = Japyhypy mba'erechaha jejapónteva. Eñohẽ, eñongatu ha emoherakuã mba'erechaha japyhypy eheja'ỹre Firefox.
 shotPageUpsellFirefox = Eguereko Firefox ko'ág̃a
 shotPageDMCAMessage = Ko japyhypy ndojepurukuaái peteĩ tapicha akaguai rupi ha'eha ijára.
@@ -300,13 +309,7 @@ shotIndexPagePreviousPage =
     .title = Kuatiarogue mboyveguáva
 shotIndexPageNextPage =
     .title = Kuatiarogue upeiguáva
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = ∞
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
