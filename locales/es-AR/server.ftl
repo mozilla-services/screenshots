@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Ingresar
 screenshotsLogo =
     .title = Página de inicio de Screenshots
+bannerMessage = Iniciá la sesión o registrate para acceder a tus fotos en todos tus dispositivos y guardar las favoritas para siempre.
 
 ## Footer
 
