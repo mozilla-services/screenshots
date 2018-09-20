@@ -138,6 +138,9 @@ shotPageAllShots = Opaite japyhypy
 shotPageDownload = Mboguejy
 # Note: Draw text is used on shot page as a verb (action)
 shotPageDraw = Moha'anga
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Guerohoryvéva
+shotPageDelete = Mboguete
 shotPageScreenshotsDescription = Japyhypy mba'erechaha jejapónteva. Eñohẽ, eñongatu ha emoherakuã mba'erechaha japyhypy eheja'ỹre Firefox.
 shotPageUpsellFirefox = Eguereko Firefox ko'ág̃a
 shotPageDMCAMessage = Ko japyhypy ndojepurukuaái peteĩ tapicha akaguai rupi ha'eha ijára.
@@ -302,6 +305,8 @@ shotIndexPageNoShotsInvitation = Eku’éna, emoheñóina peteĩ jepe.
 shotIndexPageLookingForShots = Ohekahína nde japyhypy…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Ndaikatúi rojuhu japyhypy ojojoguáva rehekáva ndive.
+shotIndexPageMyShotsButton =
+    .title = Che japyhypy
 shotIndexPageClearSearchButton =
     .title = Embogue jehekakue
 shotIndexPageConfirmShotDelete = Embogue ko japyhypy
