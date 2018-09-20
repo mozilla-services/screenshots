@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Pśizjawiś
 screenshotsLogo =
     .title = Startowy bok Screenshots
+bannerMessage = Pśizjawśo se abo registrěrujśo se, aby pśistup k swójim fotam wobrazowki pśez rědy měł a składujśo swóje fawority na pśecej.
 
 ## Footer
 
