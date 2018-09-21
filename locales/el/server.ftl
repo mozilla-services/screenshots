@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Σύνδεση
 screenshotsLogo =
     .title = Αρχική σελίδα Screenshots
+bannerMessage = Συνδεθείτε ή εγγραφείτε για πρόσβαση στα στιγμιότυπά σας από όλες τις συσκευές και αποθήκευση των αγαπημένων σας για πάντα.
 
 ## Footer
 
