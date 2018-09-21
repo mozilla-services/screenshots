@@ -134,6 +134,8 @@ shotPageAllShotsButton =
     .title = Vsi posnetki
 shotPageAllShots = Vsi posnetki
 shotPageDownload = Prenesi
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Dodaj med priljubljene
 shotPageDelete = Izbriši
 shotPageScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in delite zaslonske posnetke, ne da bi zapustili Firefox.
 shotPageUpsellFirefox = Prenesite Firefox zdaj
@@ -320,13 +322,11 @@ shotIndexPagePreviousPage =
     .title = Prejšnja stran
 shotIndexPageNextPage =
     .title = Naslednja stran
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Ta posnetek ne poteče
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Ta posnetek ni med priljubljenimi in bo pretekel
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
