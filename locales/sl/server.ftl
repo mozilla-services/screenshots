@@ -18,6 +18,7 @@ buttonSettings =
     .title = Nastavitve
 buttonSignIn =
     .title = Prijava
+bannerMessage = Prijavite ali registrirajte se, da boste lahko dostopali do svojih posnetkov z več naprav in priljubljene shranili za vedno.
 
 ## Footer
 
@@ -134,6 +135,8 @@ shotPageAllShotsButton =
     .title = Vsi posnetki
 shotPageAllShots = Vsi posnetki
 shotPageDownload = Prenesi
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Riši
 # Note: Favorite text is used on shot page as a verb (action)
 shotPageFavorite = Dodaj med priljubljene
 shotPageDelete = Izbriši
