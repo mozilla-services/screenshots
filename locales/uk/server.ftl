@@ -14,10 +14,13 @@ gSignIn = Вхід
 
 ## Header
 
-signInButton =
-    .aria-label = Вхід
-settingsButton =
-    .aria-label = Налаштування
+buttonSettings =
+    .title = Налаштування
+buttonSignIn =
+    .title = Увійти
+screenshotsLogo =
+    .title = Домівка Screenshots
+bannerMessage = Зареєструйтеся або увійдіть, щоб мати доступ до знімків на всіх пристроях та зберігати обрані назавжди.
 
 ## Footer
 
@@ -25,6 +28,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Умови
 footerLinkPrivacy = Повідомлення про приватність
+footerReportShot = Повідомити про знімок
+    .title = Повідомити про порушення, спам чи інші проблеми з цим знімком.
 footerLinkFaqs = ЧаП
 footerLinkDMCA = Повідомити про порушення прав
 footerLinkDiscourse = Залишити відгук
@@ -120,15 +125,23 @@ shotPageExpiredMessage = Термін зберігання знімку скін
 shotPageExpiredMessageDetails = Сторінка, з якої створений цей знімок:
 shotPageDeleteButton =
     .title = Видалити цей знімок
-shotPageAbuseButton =
-    .title = Цей знімок образливий, є спамом. чи має інші проблеми
 shotPageDownloadShot =
     .title = Завантажити
 shotPageEditButton =
     .title = Редагувати це зображення
 shotPagefavoriteButton =
     .title = Додати знімок до обраних
+shotPageBackToHomeButton =
+    .title = Домівка
+shotPageAllShotsButton =
+    .title = Всі знімки
+shotPageAllShots = Всі знімки
 shotPageDownload = Завантажити
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Малювати
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Обране
+shotPageDelete = Видалити
 shotPageScreenshotsDescription = Знімки екрану стали простими. Робіть, зберігайте і поширюйте знімки екрану, не залишаючи Firefox.
 shotPageUpsellFirefox = Отримати Firefox
 shotPageDMCAMessage = Цей знімок більше недоступний через порушення авторських прав третьої сторони.
@@ -299,6 +312,8 @@ shotIndexPageNoShotsInvitation = Ну ж бо, створіть кілька.
 shotIndexPageLookingForShots = Шукаємо ваші знімки...
 shotIndexPageNoSearchResultsIntro = Хмм
 shotIndexPageNoSearchResults = Ми не можемо знайти знімки за вашим запитом.
+shotIndexPageMyShotsButton =
+    .title = Мої знімки
 shotIndexPageClearSearchButton =
     .title = Очистити пошук
 shotIndexPageConfirmShotDelete = Видалити цей знімок?
@@ -306,13 +321,11 @@ shotIndexPagePreviousPage =
     .title = Попередня сторінка
 shotIndexPageNextPage =
     .title = Наступна сторінка
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Цей знімок зберігається необмежено
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Це не обраний знімок, тому він має обмежений термін зберігання
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
