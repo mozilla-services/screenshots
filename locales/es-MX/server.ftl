@@ -16,6 +16,11 @@ gSignIn = Iniciar sesión
 
 buttonSettings =
     .title = Preferencias
+buttonSignIn =
+    .title = Iniciar sesión
+screenshotsLogo =
+    .title = Página de inicio de Screenshots
+bannerMessage = Inicia sesión o regístrate para acceder a tus capturas a través de tus dispositivos y guardar tus favoritas para siempre.
 
 ## Footer
 
@@ -23,6 +28,8 @@ buttonSettings =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Términos
 footerLinkPrivacy = Aviso de privacidad
+footerReportShot = Reportar captura
+    .title = Reportar esta captura por abuso, spam u otros problemas
 footerLinkFaqs = Preguntas frecuentes
 footerLinkDMCA = Reportar infracción de IP
 footerLinkDiscourse = Enviar comentario
@@ -124,7 +131,14 @@ shotPageEditButton =
     .title = Editar esta imagen
 shotPagefavoriteButton =
     .title = Marcar esta captura como favorita
+shotPageBackToHomeButton =
+    .title = Página de inicio
+shotPageAllShotsButton =
+    .title = Todas las capturas
+shotPageAllShots = Todas las capturas
 shotPageDownload = Descargar
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Dibujar
 # Note: Favorite text is used on shot page as a verb (action)
 shotPageFavorite = Favorito
 shotPageDelete = Eliminar
@@ -292,6 +306,8 @@ shotIndexPageNoShotsInvitation = Adelante, crea una.
 shotIndexPageLookingForShots = Buscando tus capturas...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = No pudimos encontrar ninguna captura que coincida con tu búsqueda.
+shotIndexPageMyShotsButton =
+    .title = Mis capturas
 shotIndexPageClearSearchButton =
     .title = Limpiar búsqueda
 shotIndexPageConfirmShotDelete = ¿Eliminar esta captura?
@@ -299,13 +315,11 @@ shotIndexPagePreviousPage =
     .title = Página anterior
 shotIndexPageNextPage =
     .title = Página siguiente
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Esta captura no expira
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Esta no es una captura favorita y expirará
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
