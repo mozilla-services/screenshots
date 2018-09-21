@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Daxil ol
 screenshotsLogo =
     .title = Screenshots Ana Səhifəsi
+bannerMessage = Cihazlarınız arasında görüntülərinizi görmək üçün daxil olun və ya qeyd olun və seçilmiş görüntülərinizi daimi olaraq saxlayın.
 
 ## Footer
 
