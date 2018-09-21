@@ -418,6 +418,14 @@ const conf = convict({
       env: "WATCHDOG_DEV_MATCH_HOSTNAME",
       arg: "watchdog-dev-match-hostname",
     },
+    // The logs only mode is to be removed in #4936.
+    logsOnly: {
+      doc: "This should be temporary.  When true, Screenshots will only log Watchdog results.",
+      format: Boolean,
+      default: true,
+      env: "WATCHDOG_LOGS_ONLY",
+      arg: "watchdog-logs-only",
+    },
   },
 });
 
