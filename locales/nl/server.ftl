@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Aanmelden
 screenshotsLogo =
     .title = Startpagina van Screenshots
+bannerMessage = Meld u aan of registreer om uw afbeeldingen op meerdere apparaten te benaderen en uw favorieten voor altijd op te slaan.
 
 ## Footer
 
