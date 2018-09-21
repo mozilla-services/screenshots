@@ -20,6 +20,7 @@ buttonSignIn =
     .title = 登入
 screenshotsLogo =
     .title = Screenshots 首頁
+bannerMessage = 請註冊或登入，即可在不同裝置間存取您的擷圖，並永久保存最愛的圖片。
 
 ## Footer
 
