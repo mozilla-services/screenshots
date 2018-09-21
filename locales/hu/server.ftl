@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Bejelentkezés
 screenshotsLogo =
     .title = Screenshots kezdőlap
+bannerMessage = Jelentkezzen be vagy regisztráljon hogy elérje a képeit az összes eszközén, és végleg elmentse a kedvenceit.
 
 ## Footer
 
