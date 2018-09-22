@@ -170,6 +170,7 @@
     color: $dark-default;
     white-space: nowrap;
     text-overflow: ellipsis;
+    width: 172px;
   }
 
   .link-container {
@@ -190,17 +191,20 @@
     margin: 12px;
   }
 
-  .fav-shot,
-  .non-fav-shot {
+  .indicator {
     position: absolute;
-    right: 12px;
-    top: 8px;
-    background-color: #fff;
-    border-radius: 20px;
     width: 40px;
     height: 40px;
+    border-radius: 20px;
+    background-color: $white;
     background-position: center;
     background-repeat: no-repeat;
+  }
+
+  .fav-shot,
+  .non-fav-shot {
+    right: 12px;
+    top: 8px;
     background-size: 23px 20px;
   }
 
@@ -214,6 +218,13 @@
   .non-fav-shot {
     display: none;
     background-image: url("../img/icon-heart-outline.svg");
+  }
+
+  .synced-shot {
+    background-image: url("../img/icon-sync.svg");
+    right: 12px;
+    top: 260px;
+    opacity: 0.4;
   }
 }
 

@@ -20,6 +20,7 @@ exports.launch = function(m) {
       m.shots = m.shots.map((shot) => {
         const s = new AbstractShot(m.backend, shot.id, shot.json);
         s.expireTime = shot.expireTime;
+        s.isSynced = shot.isSynced;
         return s;
       });
     }
