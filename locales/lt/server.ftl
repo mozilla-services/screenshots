@@ -14,10 +14,13 @@ gSignIn = Prisijungti
 
 ## Header
 
-signInButton =
-    .aria-label = Prisijungti
-settingsButton =
-    .aria-label = Nuostatos
+buttonSettings =
+    .title = Nuostatos
+buttonSignIn =
+    .title = Prisijungti
+screenshotsLogo =
+    .title = Ekranų nuotraukų pradžia
+bannerMessage = Prisijunkite, norėdami matyti savo nuotraukas visuose įrenginiuose ir amžiams išsaugoti mėgstamiausias.
 
 ## Footer
 
@@ -25,6 +28,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Sąlygos
 footerLinkPrivacy = Privatumo nuostatai
+footerReportShot = Pranešti apie nuotrauką
+    .title = Pranešti apie šią nuotrauką dėl išnaudojimo, brukalų, ar kitų problemų
 footerLinkFaqs = Dažni klausimai
 footerLinkDMCA = Pranešti apie intelektinės nuosavybės pažeidimą
 footerLinkDiscourse = Pateikti atsiliepimą
@@ -120,15 +125,23 @@ shotPageExpiredMessage = Ši nuotrauka baigė galioti.
 shotPageExpiredMessageDetails = Štai tinklalapis, iš kurio jis buvo sukurtas:
 shotPageDeleteButton =
     .title = Ištrinti šią nuotrauką
-shotPageAbuseButton =
-    .title = Pranešti apie išnaudojimą, nepageidaujamą informaciją arba kitas šios nuotraukos problemas
 shotPageDownloadShot =
     .title = Atsisiųsti
 shotPageEditButton =
     .title = Redaguoti paveikslą
 shotPagefavoriteButton =
     .title = Pažymėti kaip mėgstamą
+shotPageBackToHomeButton =
+    .title = Pradžios tinklalapis
+shotPageAllShotsButton =
+    .title = Visos nuotraukos
+shotPageAllShots = Visos nuotraukos
 shotPageDownload = Atsisiųsti
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Piešti
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Mėgti
+shotPageDelete = Šalinti
 shotPageScreenshotsDescription = Ekrano nuotraukos paprastai. Darykite, saugokite ir dalinkitės ekrano nuotraukomis nepalikdami „Firefox“.
 shotPageUpsellFirefox = Gauti „Firefox“ dabar
 shotPageDMCAMessage = Ši nuotrauka nepasiekiama dėl trečiųjų šalių intelektinės nuosavybės teisių.
@@ -299,6 +312,8 @@ shotIndexPageNoShotsInvitation = Nagi, sukurkite keletą.
 shotIndexPageLookingForShots = Ieškome jūsų nuotraukų…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Negalime rasti jokių nuotraukų, atitinkančių jūsų paiešką.
+shotIndexPageMyShotsButton =
+    .title = Mano nuotraukos
 shotIndexPageClearSearchButton =
     .title = Išvalyti paiešką
 shotIndexPageConfirmShotDelete = Ištrinti šią nuotrauką?
@@ -306,13 +321,11 @@ shotIndexPagePreviousPage =
     .title = Ankstesnis puslapis
 shotIndexPageNextPage =
     .title = Kitas puslapis
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Ši nuotrauka galioja neribotą laiką
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Tai nėra pamėgta nuotrauka, tad vėliau pradings
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
