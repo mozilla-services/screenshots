@@ -20,6 +20,7 @@ buttonSignIn =
     .title = S'annunziar
 screenshotsLogo =
     .title = Pagina da partenza da Screenshots
+bannerMessage = T'annunzia u ta registrescha per acceder a tes maletgs dal visur cun agid da mintga apparat e memorisar tes favurits per adina.
 
 ## Footer
 
@@ -314,13 +315,11 @@ shotIndexPagePreviousPage =
     .title = Pagina precedenta
 shotIndexPageNextPage =
     .title = Proxima pagina
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Quest maletg dal visur na scroda betg
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Quest maletg n'è nagin favurit e vegn a scrudar
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
