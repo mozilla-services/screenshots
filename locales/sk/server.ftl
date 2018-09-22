@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Prihlásiť sa
 screenshotsLogo =
     .title = Domovská stránka
+bannerMessage = Ak chcete mať svoje snímky neustále so sebou alebo si ich chcete uložiť nastálo, zaregistrujte sa alebo sa prihláste.
 
 ## Footer
 
@@ -320,13 +321,11 @@ shotIndexPagePreviousPage =
     .title = Predchádzajúca stránka
 shotIndexPageNextPage =
     .title = Nasledujúca stránka
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Platnosť tejto snímky nevyprší
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Táto snímka nebola označená ako obľúbená a jej platnosť vyprší
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
