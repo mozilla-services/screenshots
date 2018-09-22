@@ -1,7 +1,7 @@
 .header-panel {
   @include respond-to("medium") {
-    @include flex-container(row, space-between, center);
-    height: $grid-unit * 4.8;
+    @include flex-container(row, center, center, wrap);
+    height: 100%;
   }
 
   @include respond-to("small") {
@@ -13,16 +13,30 @@
     @include flex-container(row, center, center);
   }
 
-  display: flex;
-  height: 96px;
   background-color: $light-default;
+  display: flex;
+  height: 70px;
   width: 100%;
 
   .logo {
+    @include respond-to("small") {
+      max-width: $grid-unit * 10;
+    }
+
+    @include respond-to("large") {
+      height: $grid-unit * 4.8;
+    }
+    align-items: center;
     display: flex;
-    padding: 0 16px;
+    padding: 20px 0;
     flex: 1;
+    height: $grid-unit * 3.5;
+
     .screenshots-logo {
+      @include respond-to("small") {
+        background-position: center 5px;
+        width: $grid-unit * 9;
+      }
       background-image: url("../img/landing-Screenshot-logo.svg");
       background-repeat: no-repeat;
       background-size: contain;
@@ -30,15 +44,14 @@
       position: relative;
       width: 318px;
     }
-
-    @include respond-to("small") {
-      margin: $grid-unit auto;
-    }
   }
 
   .alt-actions {
-    display: flex;
+    @include respond-to("small") {
+    margin-right: 0;
+    }
     align-items: center;
+    display: flex;
     margin-right: $grid-unit * 1.5;
   }
 
@@ -50,75 +63,43 @@
 
   .nav-button {
     @include flex-container(column, center, center);
-    cursor: pointer;
-    text-decoration: none;
-    background-color: transparent;
-    border: 0;
-    outline: none;
-    display: flex;
-    flex-basis: 96px;
-    font-size: 14px;
-    font-weight: bold;
-    height: 96px;
-    width: 96px;
-    text-align: center;
-    background-size: 24px 24px;
-    background-position: center 24px;
-    background-repeat: no-repeat;
 
-    &:active {
-      padding-left: 8px;
-      padding-right: 8px;
+    img {
+      width: 24px;
+      height: 24px;
     }
+
+    @include respond-to("large") {
+      flex-basis: 96px;
+      width: 96px;
+      height: 96px;
+      img {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    display: flex;
+    flex-basis: 60px;
+    height: 60px;
+    width: 60px;
+    border: none;
 
     &:active,
     &:hover {
       background-color: $light-hover;
     }
 
-    &.hidden {
-      display: none;
-    }
-
-    &.icon-shots {
-      background-image: url("../img/icon-shots.svg");
-    }
-
+    &.icon-shots,
     &.icon-settings {
-      background-image: url("../img/icon-settings.svg");
-    }
-
-    .icon-favorite {
-      background-image: url("../img/icon-heart-outline.svg");
-    }
-
-    &.icon-trash {
-      background-image: url("../img/icon-trash.svg");
-    }
-
-    &.icon-edit {
-      background-image: url("../img/icon-pen.svg");
-    }
-
-    &.icon-copy {
-      background-image: url("../img/icon-copy.svg");
-    }
-
-    &.icon-download {
-      background-image: url("../img/icon-download.svg");
-    }
-
-    .icon-favorite {
-      &.favorite {
-        width: 24px;
-        height: 24px;
-        margin: 0 0 8px;
-        background-size: 24px 24px;
-
-        &.is-fav {
-          background-image: url("../img/icon-heart.svg");
-        }
+      @include respond-to("large") {
+        flex-basis: 96px;
+        height: 96px;
+        width: 96px;
       }
+      flex-basis: 70px;
+      height: 70px;
+      width: 70px;
     }
 
     &.inactive {
@@ -133,23 +114,13 @@
       text-overflow: ellipsis;
       width: 96px;
     }
-
-    .favorite-text {
-      &.favorite {
-        margin-top: 0;
-
-        &.is-fav {
-          color: #b5007f;
-        }
-      }
-    }
   }
 
   .nav-link {
     @include flex-container(column, center, center);
     color: $black;
     border-right: 1px solid $light-border;
-    height: 96px;
+    height: 70px;
     &:active,
     &:hover {
       background-color: $light-hover;

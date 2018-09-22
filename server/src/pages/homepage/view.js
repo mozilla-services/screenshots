@@ -78,7 +78,7 @@ class Body extends React.Component {
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <HomePageHeader isOwner={this.props.showMyShots} isFirefox={this.props.isFirefox}
-          hasFxa={this.props.hasFxa} />
+                        hasFxa={this.props.hasFxa} staticLink={this.props.staticLink}/>
         <div className="banner">
           <div className="banner-image-back" />
           <div className="banner-container">
@@ -168,6 +168,7 @@ Body.propTypes = {
   firefoxVersion: PropTypes.string,
   isFirefox: PropTypes.bool,
   showMyShots: PropTypes.bool,
+  staticLink: PropTypes.func,
 };
 
 exports.HeadFactory = React.createFactory(Head);

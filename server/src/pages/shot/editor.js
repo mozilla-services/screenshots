@@ -184,7 +184,7 @@ exports.Editor = class Editor extends React.Component {
     const redoButtonState = this.state.canRedo ? "active" : "inactive";
 
     return <div className="editor-header">
-      <div className="shot-main-actions annotation-main-actions">
+      <div className="shot-edit-main-actions annotation-main-actions">
         <div className="annotation-tools">
           <Localized id="annotationCropButton" attrs={{title: true}}>
             <button className={`button transparent crop-button`} id="crop" onClick={this.onClickCrop.bind(this)} title="Crop"></button>
@@ -217,7 +217,7 @@ exports.Editor = class Editor extends React.Component {
           </Localized>
         </div>
       </div>
-      <div className="shot-alt-actions">
+      <div className="shot-edit-alt-actions">
         <Localized id="annotationSaveEditButton" attrs={{title: true}}>
           <button className="button primary save" id="save" onClick={ this.onClickSave.bind(this) } disabled = { this.state.actionsDisabled } title="Save edit">Save</button>
         </Localized>

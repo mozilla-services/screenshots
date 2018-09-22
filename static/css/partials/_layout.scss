@@ -12,6 +12,10 @@
     width: 960px;
   }
 
+  @include respond-to("extra-large") {
+    width: 1260px;
+  }
+
   margin: 0 auto;
   transform: width 250ms;
 

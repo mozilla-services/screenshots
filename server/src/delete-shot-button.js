@@ -76,14 +76,10 @@ exports.DeleteShotButton = class DeleteShotButton extends React.Component {
     }
 
     let deleteButtonStyle = null;
-    let deleteText = null;
     if (this.props.isIcon) {
       deleteButtonStyle = `button transparent trash ${deletePanelOpenClass}`;
     } else {
-      deleteButtonStyle = `nav-button transparent icon-trash trash ${deletePanelOpenClass}`;
-      deleteText = <Localized id="shotPageDelete">
-          <span>Delete</span>
-        </Localized>;
+      deleteButtonStyle = `button nav-button transparent ${deletePanelOpenClass}`;
     }
 
     return (
@@ -93,7 +89,7 @@ exports.DeleteShotButton = class DeleteShotButton extends React.Component {
             title="Delete this shot permanently"
             onClick={this.onClickDelete.bind(this)}
             ref={this.trashButtonRef}>
-            { deleteText }
+            <img src={this.props.staticLink("/static/img/icon-trash.svg")} />
           </button>
         </Localized>
         { confirmationPanel }
@@ -107,4 +103,5 @@ exports.DeleteShotButton.propTypes = {
   confirmDeleteHandler: PropTypes.func,
   cancelDeleteHandler: PropTypes.func,
   isIcon: PropTypes.bool,
+  staticLink: PropTypes.func,
 };

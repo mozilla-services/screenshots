@@ -374,6 +374,11 @@ section .container {
 }
 
 @media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
   .banner {
     background-image:   url("../img/landing-screenshots_mobile.svg");
     background-repeat: no-repeat;

@@ -61,7 +61,7 @@ $shot-width: 210px;
   @include flex-container(column, flex-start, stretch);
 
   @include respond-to("small") {
-    width: 480px;
+    width: 240px;
   }
 
   @include respond-to("medium") {
