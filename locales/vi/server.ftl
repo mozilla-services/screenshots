@@ -14,10 +14,10 @@ gSignIn = Đăng nhập
 
 ## Header
 
-signInButton =
-    .aria-label = Đăng nhập
-settingsButton =
-    .aria-label = Cài đặt
+buttonSettings =
+    .title = Cài đặt
+buttonSignIn =
+    .title = Đăng nhập
 
 ## Footer
 
@@ -120,8 +120,6 @@ shotPageExpiredMessage = Ảnh này đã quá hạn.
 shotPageExpiredMessageDetails = Đây là trang nó ban đầu được tạo ra từ:
 shotPageDeleteButton =
     .title = Xóa ảnh này
-shotPageAbuseButton =
-    .title = Báo cáo ảnh chụp này vì lạm dụng, spam hoặc các vấn đề khác
 shotPageDownloadShot =
     .title = Tải về
 shotPageEditButton =
@@ -280,13 +278,7 @@ shotIndexPagePreviousPage =
     .title = Trang trước
 shotIndexPageNextPage =
     .title = Trang kế tiếp
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Ảnh chụp này không bao giờ hết hạn
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
