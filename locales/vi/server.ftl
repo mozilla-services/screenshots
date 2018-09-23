@@ -48,7 +48,7 @@ homePageTeaser = Sắp ra mắt ...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Tải về miễn phí
 # Note: do not translate 'Firefox Screenshots' when translating this string
-homePageHowScreenshotsWorks = Cách để Trình chụp ảnh Firefox làm việc
+homePageHowScreenshotsWorks = Cách để Firefox Screenshots làm việc
 homePageGetStartedTitle = Bắt đầu
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Tìm biểu tượng Ảnh chụp màn hình mới trên thanh công cụ của bạn. Chọn nó, và trình đơn Ảnh chụp màn hình sẽ xuất hiện ở đầu cửa sổ trình duyệt của bạn.
@@ -296,7 +296,7 @@ shotDeleteConfirm = Xóa
 ## All metrics strings are optional for translation
 
 # Note: 'Firefox Screenshots' should not be translated
-metricsPageTitle = Số liệu thống kê Ảnh chụp màn hình Firefox
+metricsPageTitle = Số liệu thống kê Firefox Screenshots
 metricsPageTotalsQueryTitle = Tổng cộng
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Tổng quan về Ảnh chụp màn hình
