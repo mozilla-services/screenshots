@@ -18,6 +18,8 @@ buttonSettings =
     .title = Cài đặt
 buttonSignIn =
     .title = Đăng nhập
+screenshotsLogo =
+    .title = Trang chủ Screenshots
 
 ## Footer
 
@@ -25,6 +27,8 @@ buttonSignIn =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Điều khoản
 footerLinkPrivacy = Chính sách Riêng tư
+footerReportShot = Báo cáo ảnh chụp
+    .title = Báo cáo ảnh chụp này vì lạm dụng, spam hay các vấn đề khác
 footerLinkFaqs = Câu hỏi thường gặp
 footerLinkDMCA = Báo cáo IP vi phạm
 footerLinkDiscourse = Gửi phản hồi
@@ -124,7 +128,13 @@ shotPageDownloadShot =
     .title = Tải về
 shotPageEditButton =
     .title = Chỉnh sửa hình ảnh
+shotPageBackToHomeButton =
+    .title = Trang chủ
+shotPageAllShotsButton =
+    .title = Tất cả ảnh chụp
+shotPageAllShots = Tất cả ảnh chụp
 shotPageDownload = Tải xuống
+shotPageDelete = Xóa
 shotPageScreenshotsDescription = Ảnh chụp màn hình được thực hiện đơn giản. Thực hiện, lưu và chia sẻ ảnh chụp màn hình mà không rời khỏi Firefox.
 shotPageUpsellFirefox = Tải ngay Firefox
 shotPageDMCAMessage = Bức ảnh này không còn nữa do yêu cầu sở hữu trí tuệ của bên thứ ba.
@@ -154,7 +164,7 @@ shotPageDoesNotExpire = Không có thời hạn
 shotPageExpiresIn = Hết hạn vào { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = Đã hết hạn vào { $timediff }
-timeDiffJustNow = Mới đây
+timeDiffJustNow = mới đây
 timeDiffMinutesAgo = { $number } phút trước
 timeDiffHoursAgo = { $number } giờ trước
 timeDiffDaysAgo =
@@ -271,6 +281,8 @@ shotIndexPageNoShotsInvitation = Bắt đầu, tạo một vài ảnh.
 shotIndexPageLookingForShots = Tìm kiếm ảnh chụp của bạn...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Chúng tôi không thể tìm thấy ảnh chụp nào trùng khớp với từ khóa của bạn.
+shotIndexPageMyShotsButton =
+    .title = Các ảnh chụp của tôi
 shotIndexPageClearSearchButton =
     .title = Xóa lịch sử tìm kiếm
 shotIndexPageConfirmShotDelete = Xóa ảnh chụp này?
@@ -278,6 +290,10 @@ shotIndexPagePreviousPage =
     .title = Trang trước
 shotIndexPageNextPage =
     .title = Trang kế tiếp
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Đây không phải là ảnh ưa thích và nó sẽ hết hạn
 # This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
