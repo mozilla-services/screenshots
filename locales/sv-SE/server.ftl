@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Logga in
 screenshotsLogo =
     .title = Startsida för Screenshots
+bannerMessage = Logga in eller registrera dig för att få tillgång till dina bilder mellan enheter och spara dina favoriter för alltid.
 
 ## Footer
 
