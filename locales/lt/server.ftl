@@ -27,7 +27,7 @@ bannerMessage = Prisijunkite, norėdami matyti savo nuotraukas visuose įrengini
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Sąlygos
-footerLinkPrivacy = Privatumo nuostatai
+footerLinkPrivacy = Privatumo pranešimas
 footerReportShot = Pranešti apie nuotrauką
     .title = Pranešti apie šią nuotrauką dėl išnaudojimo, brukalų, ar kitų problemų
 footerLinkFaqs = Dažni klausimai
