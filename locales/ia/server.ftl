@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Apertura de session
 screenshotsLogo =
     .title = Pagina initial de Screenshots
+bannerMessage = Authentica te o registra te pro acceder tu instantaneos trans apparatos e salvar sempre tu favoritos.
 
 ## Footer
 
@@ -314,13 +315,11 @@ shotIndexPagePreviousPage =
     .title = Pagina previe
 shotIndexPageNextPage =
     .title = Pagina sequente
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = iste instantaneo non expira
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Isto non es un instantaneo favorite e expirara
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
