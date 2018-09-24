@@ -20,6 +20,7 @@ buttonSignIn =
     .title = સાઇન ઇન કરો
 screenshotsLogo =
     .title = સ્ક્રીનશૉટ્સ હોમ
+bannerMessage = તમારા સમગ્ર ઉપકરણો પર તમારા સ્ક્રીનશૉટ્સને ઍક્સેસ કરવા માટે સાઇન ઇન કરો અથવા સાઇન અપ કરો અને હંમેશાં તમારા મનપસંદોને સાચવો.
 
 ## Footer
 
@@ -314,13 +315,11 @@ shotIndexPagePreviousPage =
     .title = પાછળનું પાનું
 shotIndexPageNextPage =
     .title = પછીનું પાનું
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = આ શોટ સમાપ્ત થતો નથી
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = આ કોઈ મનપસંદ સ્ક્રીનશૉટ્ નથી અને તે સમાપ્ત થશે
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
