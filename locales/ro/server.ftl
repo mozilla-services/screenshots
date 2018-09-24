@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Autentificare
 screenshotsLogo =
     .title = Pagina de start Screenshots
+bannerMessage = Autentifică-te sau înregistrează pentru a accesa capturile de ecran pe toate dispozitivele tale și salvează favoritele pentru totdeauna.
 
 ## Footer
 
