@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Connexion
 screenshotsLogo =
     .title = Accueil de Screenshots
+bannerMessage = Connectez-vous ou inscrivez-vous pour accéder à vos captures depuis tous vos appareils et conserver vos préférées à jamais.
 
 ## Footer
 
