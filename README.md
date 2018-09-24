@@ -50,7 +50,7 @@ We apologize but we have no story for development on Windows (though the add-on 
 
 ### Linting and Testing
 
-`npm run test` will run tests as well as eslint and [nsp](https://www.npmjs.com/package/nsp).  You can control the tests with the following shell/environment variables:
+`npm run test` will run tests as well as eslint.  You can control the tests with the following shell/environment variables:
 - `MOZ_HEADLESS` - when this variable is set, the Selenium tests will run in [headless mode](https://developer.mozilla.org/en-US/Firefox/Headless_mode).
 - `SCREENSHOTS_BACKEND` - the server where the addon will try to save shots if the default http://localhost:10080 is not available or desirable.
 
