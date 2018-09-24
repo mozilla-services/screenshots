@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Пријави се
 screenshotsLogo =
     .title = Почетна снимака екрана
+bannerMessage = Пријавите се или се региструјте да приступите вашим снимцима путем разних уређаја и да сачувате ваше омиљене заувек.
 
 ## Footer
 
@@ -320,13 +321,11 @@ shotIndexPagePreviousPage =
     .title = Претходна страница
 shotIndexPageNextPage =
     .title = Следећа страница
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Овај снимак нема рок трајања
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Ово није омиљени снимак и он ће истећи
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
