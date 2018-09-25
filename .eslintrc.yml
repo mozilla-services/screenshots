@@ -25,6 +25,7 @@ rules:
   no-console: [error, {allow: [debug, error, info, trace, warn]}]
   no-var: error
   prefer-const: error
+  max-len: [warn, {code: 100, ignoreUrls: true, ignoreTrailingComments: true}]
 
   promise/always-return: off
   promise/avoid-new: off
