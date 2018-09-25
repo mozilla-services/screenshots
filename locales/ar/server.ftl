@@ -132,6 +132,9 @@ shotPageAllShotsButton =
     .title = كل اللقطات
 shotPageAllShots = كل اللقطات
 shotPageDownload = نزّل
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = المفضّلة
+shotPageDelete = حذف
 shotPageScreenshotsDescription = لقطات الشاشة صارت أسهل. خذ لقطات الشاشة و احفظها و شاركها دون مغادرة فَيرفُكس.
 shotPageUpsellFirefox = نزّل فَيَرفُكس الآن
 shotPageDMCAMessage = لم تعد هذه اللقطة متاحة نظرًا لادعاء الملكية الفكرية لطرف آخر.
