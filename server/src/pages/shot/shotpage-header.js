@@ -60,9 +60,9 @@ exports.ShotPageHeader = class ShotPageHeader extends React.Component {
       const expired = this.props.expireTime < Date.now();
       const expireTimeDiff = <TimeDiff date={this.props.expireTime}/>;
       if (expired) {
-        expirationSubtitle = <Localized id="shotPageExpired" $timediff={expireTimeDiff}><span>expired {expireTimeDiff}</span></Localized>;
+        expirationSubtitle = <Localized id="shotPageTimeExpired" timediff={expireTimeDiff}><span>expired {expireTimeDiff}</span></Localized>;
       } else {
-        expirationSubtitle = <Localized id="shotPageExpiresIn" $timediff={expireTimeDiff}><span>expires {expireTimeDiff}</span></Localized>;
+        expirationSubtitle = <Localized id="shotPageTimeExpiresIn" timediff={expireTimeDiff}><span>expires {expireTimeDiff}</span></Localized>;
       }
     }
 

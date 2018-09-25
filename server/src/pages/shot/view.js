@@ -298,7 +298,7 @@ class Body extends React.Component {
     if (this.props.isOwner) {
       restoreWidget = (
         <p>
-          <Localized id="shotPageExpirationMessage" $timediff={expirationTimeDiff}>
+          <Localized id="shotPageTimeExpirationMessage" timediff={expirationTimeDiff}>
             <span></span>
           </Localized>
           <Localized id="shotPageRestoreButton" $date={restoreDate}>
