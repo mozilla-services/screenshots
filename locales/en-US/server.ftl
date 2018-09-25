@@ -18,6 +18,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Screenshots Home
 bannerMessage = Sign in or sign up to access your shots across devices and save your favorites forever.
+bannerUpsell = {gScreenshotsDescription} <a>Get Firefox now</a>
 
 ## Footer
 
@@ -142,7 +143,6 @@ shotPageDraw = Draw
 shotPageFavorite = Favorite
 shotPageDelete = Delete
 shotPageScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
-shotPageUpsellFirefox = Get Firefox now
 shotPageDMCAMessage = This shot is no longer available due to a third party intellectual property claim.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Please email { $dmca } to request further information.
