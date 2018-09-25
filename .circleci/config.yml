@@ -63,6 +63,7 @@ jobs:
           command: |
             . "$NVM_DIR/nvm.sh"
             nvm use 8.10.0
+            npm install -g npm@6.4.1
             npm run test:server
             # Disable code coverage (temporarily): https://github.com/mozilla-services/screenshots/issues/4728
             # mkdir -p $CIRCLE_TEST_REPORTS/server-coverage
