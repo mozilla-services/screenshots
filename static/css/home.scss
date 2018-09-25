@@ -74,14 +74,14 @@ body {
 }
 
 .banner-content h1 {
-  color: #fff;
+  color: $white;
   font-size: 3em;
   font-weight: 400;
   margin: 0 0 20px;
 }
 
 .banner-content p {
-  color: #fff;
+  color: $white;
   font-size: 1.3em;
   font-weight: 400;
   line-height: 1.61;
@@ -104,7 +104,7 @@ h2 {
   -webkit-user-select: none;
   border-radius: 3px;
   border: 1px solid transparent;
-  box-shadow: rgba(0, 0, 0, 0.09) 0 6px 9px;
+  box-shadow: $medium-box-shadow;
   cursor: pointer;
   display: inline-block;
   font-weight: 400;
@@ -127,7 +127,7 @@ h2 {
   -ms-user-select: none;
   -webkit-user-select: none;
   align-items: center;
-  color: #fff;
+  color: $white;
   display: -ms-flexbox;
   display: flex;
   flex-direction: row;
@@ -146,13 +146,14 @@ h2 {
   color: #fff;
   text-align: left;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: #20c60b;
   }
 
   &:active {
     background: #10b60b;
-    box-shadow: rgba(0, 0, 0, 0.09) 0 3px 4px;
+    box-shadow: $small-box-shadow;
   }
 
 }
@@ -170,14 +171,14 @@ h2 {
 }
 
 .download-firefox .button-icon-badge {
-  background-color: #fff;
+  background-color: $white;
   background-image:   url("../img/landing-download-icon@2x.png");
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: 14px 14px;
   border-radius: 50%;
   bottom: 4px;
-  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: $small-box-shadow;
   height: 16px;
   padding: 6px;
   position: absolute;

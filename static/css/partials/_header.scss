@@ -1,7 +1,7 @@
 .header-panel {
   @include respond-to("medium") {
     @include flex-container(row, space-between, center);
-    height: $grid-unit * 5;
+    height: $grid-unit * 4.8;
   }
 
   @include respond-to("small") {
@@ -50,7 +50,6 @@
 
   .nav-button {
     @include flex-container(column, center, center);
-    color: #4a4a4a;
     cursor: pointer;
     text-decoration: none;
     background-color: transparent;
@@ -59,7 +58,6 @@
     display: flex;
     flex-basis: 96px;
     font-size: 14px;
-    color: #2a2a2e;
     font-weight: bold;
     height: 96px;
     width: 96px;

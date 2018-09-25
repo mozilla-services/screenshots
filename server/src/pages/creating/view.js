@@ -24,7 +24,7 @@ class Body extends React.Component {
   render() {
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <div className="column-center full-height inverse-color-scheme">
+        <div className="column-center full-height">
           <div className="loader">
             <div className="loader-inner" />
           </div>

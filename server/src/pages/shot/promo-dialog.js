@@ -10,7 +10,7 @@ exports.PromoDialog = class PromoDialog extends React.Component {
 
   render() {
     if (this.props.display) {
-      return <div id="promo-dialog-panel" className="promo-panel default-color-scheme" >
+      return <div id="promo-dialog-panel" className="promo-panel" >
         <Localized id="promoCloseButton">
           <a className="box-close" title="Close notification" onClick={this.closePanel.bind(this)}></a>
         </Localized>

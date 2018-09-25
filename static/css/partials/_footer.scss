@@ -19,6 +19,10 @@
     li {
       font-size: 14px;
       margin-right: 16px;
+
+      a {
+        color: $gray;
+      }
     }
   }
 
@@ -29,17 +33,5 @@
     display: block;
     height: $grid-unit * 1.5;
     width: $grid-unit * 6;
-  }
-
-  .inverse-color-scheme & {
-    .mozilla-logo {
-      background-image: url("../img/mozilla-white.svg");
-    }
-  }
-
-  .default-color-scheme & {
-    .mozilla-logo {
-      background-image: url("../img/mozilla.svg");
-    }
   }
 }

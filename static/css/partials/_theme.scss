@@ -1,14 +1,4 @@
-.inverse-color-scheme {
-  background: $dark-default;
-  color: $light-default;
-
-  a {
-    color: $link-light;
-  }
-}
-
-
-.default-color-scheme {
+.app-body {
   background: $light-default;
   color: $dark-default;
 
@@ -76,7 +66,7 @@
     &:hover {
       background-color: $light-hover;
     }
-    
+
     &:focus,
     &:active {
       background-color: $light-active;

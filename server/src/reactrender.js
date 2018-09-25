@@ -53,7 +53,7 @@ exports.render = function(req, res, page) {
     let doc = `
     <html>
       ${head}
-      <body>
+      <body class="app-body">
         <div id="react-body-container">${body}</div>
         <script id="json-data" type="data">${jsonString}</script>
       </body></html>
