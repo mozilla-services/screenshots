@@ -362,6 +362,13 @@ describe("Test Screenshots", function() {
     }).catch(done);
   });
 
+  it("should show onboarding with #hello", async function() {
+    await driver.get(`${backend}/#hello`);
+    await driver.setContext(firefox.Context.CONTENT);
+    const slideFrame = await driver.wait(until.elementLocated(By.id(SLIDE_IFRAME_ID)));
+    assert(slideFrame, "Navigating to #hello should show onboarding");
+  });
+
   it("should download a shot", function(done) {
     const startingFileCount = fs.readdirSync(downloadDir).length;
     const filenameRegex = /^Screenshot.+ Firefox Screenshots\.png$/;

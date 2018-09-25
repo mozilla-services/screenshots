@@ -71,7 +71,7 @@ this.main = (function() {
       if (!isLoaded) {
         sendEvent("start-shot", "site-request", {incognito: tab.incognito});
         setIconActive(true, tab.id);
-        selectorLoader.toggle(tab.id, false);
+        selectorLoader.toggle(tab.id, Promise.resolve(false));
       }
     });
   }
