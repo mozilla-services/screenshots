@@ -62,7 +62,9 @@ homePageCapturePage = Capture a Page
 homePageCapturePageDescription = Use the buttons in the upper right to capture full pages. The Save Visible button will capture the area you can view without scrolling, and Save Full Page will capture everything on the page.
 homePageSaveShare = Save and Share
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = When you take a shot, Firefox posts your screenshot to your online Screenshots library and copies the link to your clipboard. We automatically store your screenshot for two weeks, but you can delete shots at any time or change the expiration date to keep them in your library for longer.
+homePageShaveShareFavoriteDescription = Take your best shot. Then save it to the online Screenshots library, and Firefox copies the link to your clipboard for easy sharing. Shots in the library automatically expire after two weeks, but you can delete them at any time or choose to keep them longer.
+homePageSignInTitle = Your Shots Everywhere
+homePageSignInDescription = Sign in to Screenshots with your Firefox Account to access your shots everywhere you use Firefox. An added bonus: you can also save your favorite shots forever.
 homePageLegalLink = Legal
 homePagePrivacyLink = Privacy
 homePageTermsLink = Terms
