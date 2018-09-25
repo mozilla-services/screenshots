@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Mewngofnodi
 screenshotsLogo =
     .title = Cartref Screenshots
+bannerMessage = Mewngofnodwch neu gofrestru i gael mynediad i'ch lluniau ar draws dyfeisiau a chadw eich ffefrynnau am byth.
 
 ## Footer
 
