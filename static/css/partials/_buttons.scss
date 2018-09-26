@@ -138,15 +138,4 @@
       background-color: $light-active;
     }
   }
-
-  &.flag {
-    background-image: url("../img/icon-flag.svg");
-    &:hover {
-      background-color: $light-hover;
-    }
-
-    &:active {
-      background-color: $light-active;
-    }
-  }
 }

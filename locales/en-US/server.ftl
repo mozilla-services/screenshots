@@ -265,6 +265,13 @@ textToolCancelButton = Cancel
 textToolInputPlaceholder =
     .placeholder = Hello
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Something went wrong
+copyImageErrorMessage = Unable to copy your shot to the clipboard.
+
 ## Settings Page
 
 settingsDisconnectButton = Disconnect

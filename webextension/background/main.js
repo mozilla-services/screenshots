@@ -301,5 +301,10 @@ this.main = (function() {
     }));
   });
 
+  // This allows the web site show notifications through sitehelper.js
+  communication.register("showNotification", (sender, notification) => {
+    return browser.notifications.create(notification);
+  });
+
   return exports;
 })();
