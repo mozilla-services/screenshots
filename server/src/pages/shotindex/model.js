@@ -34,6 +34,7 @@ exports.createModel = function(req) {
         id: shot.id,
         json: shot.asRecallJson(),
         expireTime: shot.expireTime,
+        isSynced: shot.isSynced,
       }));
   }
   const jsonModel = Object.assign(

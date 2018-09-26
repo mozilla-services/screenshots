@@ -316,7 +316,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = This is a favorite shot and it does not expire
-
+shotIndexSyncedShot =
+    .title = Shot taken on another device
 
 ## Delete Confirmation Dialog
 

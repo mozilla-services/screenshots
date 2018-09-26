@@ -601,6 +601,7 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
         try {
           shot = new Shot(row.deviceid, backend, row.id, json);
           shot.expireTime = row.expire_time;
+          shot.isSynced = row.deviceid !== deviceId;
         } catch (e) {
           mozlog.warn("error-instantiating-shot", {err: e});
           continue;

@@ -317,12 +317,20 @@ class Card extends React.Component {
     let favoriteIndicator = null;
     if (!shot.expireTime) {
       favoriteIndicator = <Localized id="shotIndexFavoriteIcon">
-          <div className={classnames("fav-shot", {"inactive": !this.props.hasFxa})} title=""></div>
+          <div className={classnames("indicator fav-shot", {"inactive": !this.props.hasFxa})}
+            title=""></div>
         </Localized>;
     } else if (this.props.hasFxa) {
       favoriteIndicator = <Localized id="shotIndexNonFavoriteIcon">
           <div className="non-fav-shot" title=""></div>
         </Localized>;
+    }
+
+    let syncedShotIndicator = null;
+    if (shot.isSynced) {
+      syncedShotIndicator = <Localized id="shotIndexSyncedShot">
+        <div className="indicator synced-shot" title=""></div>
+      </Localized>;
     }
 
     const deleteConfirmationClass = this.state.deletePanelOpen ? "panel-open" : "";
@@ -364,6 +372,7 @@ class Card extends React.Component {
             cancelDeleteHandler={this.cancelDeleteHandler.bind(this)} />
         </div>
         {favoriteIndicator}
+        {syncedShotIndicator}
       </div>
     );
   }
