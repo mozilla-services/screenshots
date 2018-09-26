@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Screenshots kezdőlap
 bannerMessage = Jelentkezzen be vagy regisztráljon hogy elérje a képeit az összes eszközén, és végleg elmentse a kedvenceit.
+bannerUpsell = { gScreenshotsDescription } <a>Szerezze be a Firefoxot most</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = Biztos, hogy véglegesen törölni szeretné ezt a képe
 shotPageShareButton =
     .title = Megosztás
 shotPageCopy = Másolás
+shotPageCopyButton =
+    .title = Kép vágólapra másolása
 shotPageCopied = Átmásolva
 shotPageShareFacebook =
     .title = Megosztás Facebookon
@@ -143,7 +146,6 @@ shotPageDraw = Rajzolás
 shotPageFavorite = Kedvencnek jelölés
 shotPageDelete = Törlés
 shotPageScreenshotsDescription = Képernyőképek egyszerűen. Készítsen, mentsen és ossza meg a képernyőképeit a Firefox elhagyása nélkül.
-shotPageUpsellFirefox = Szerezze be most a Firefoxot
 shotPageDMCAMessage = A kép egy harmadik fél szerzői jogi követelése miatt már nem érhető el.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = További információ kéréséhez küldjön egy e-mailt ide: { $dmca }
@@ -273,6 +275,13 @@ textToolCancelButton = Mégse
 textToolInputPlaceholder =
     .placeholder = Helló
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Valami hiba történt
+copyImageErrorMessage = Nem másolható a képernyőkép a vágólapra.
+
 ## Settings Page
 
 settingsDisconnectButton = Kapcsolat bontása
@@ -299,8 +308,6 @@ shotIndexPageSearchResultsTitle = Saját képek: keresés erre: { $searchTerm }
 shotIndexPageErrorRendering = Hiba az oldal renderelésekor: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Saját képek keresése
-shotIndexPageSearchButton =
-    .title = Keresés
 shotIndexPageNoShotsMessage = Nincsenek mentett képek.
 shotIndexPageNoShotsInvitation = Hajrá, készítsen néhányat.
 shotIndexPageLookingForShots = Képek keresése…
@@ -324,6 +331,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Egy egy kedvenc képernyőkép, és nem jár le
+shotIndexSyncedShot =
+    .title = Másik eszközön készült képernyőkép
 
 ## Delete Confirmation Dialog
 
