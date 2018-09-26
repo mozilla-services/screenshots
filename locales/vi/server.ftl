@@ -20,6 +20,7 @@ buttonSignIn =
     .title = Đăng nhập
 screenshotsLogo =
     .title = Trang chủ Screenshots
+bannerMessage = Đăng nhập hoặc đăng ký để truy cập ảnh của bạn trên các thiết bị và lưu các mục yêu thích của bạn mãi mãi.
 
 ## Footer
 
@@ -128,12 +129,16 @@ shotPageDownloadShot =
     .title = Tải về
 shotPageEditButton =
     .title = Chỉnh sửa hình ảnh
+shotPagefavoriteButton =
+    .title = Đánh dấu ảnh này là yêu thích
 shotPageBackToHomeButton =
     .title = Trang chủ
 shotPageAllShotsButton =
     .title = Tất cả ảnh chụp
 shotPageAllShots = Tất cả ảnh chụp
 shotPageDownload = Tải xuống
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Yêu thích
 shotPageDelete = Xóa
 shotPageScreenshotsDescription = Ảnh chụp màn hình được thực hiện đơn giản. Thực hiện, lưu và chia sẻ ảnh chụp màn hình mà không rời khỏi Firefox.
 shotPageUpsellFirefox = Tải ngay Firefox
@@ -248,6 +253,12 @@ textToolCancelButton = Hủy bỏ
 textToolInputPlaceholder =
     .placeholder = Xin chào
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Có thứ gì đó không ổn
+
 ## Settings Page
 
 settingsDisconnectButton = Ngắt kết nối
@@ -299,6 +310,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Đây là ảnh chụp yêu thích và nó không hết hạn
+shotIndexSyncedShot =
+    .title = Ảnh đã được chụp từ thiết bị khác
 
 ## Delete Confirmation Dialog
 
