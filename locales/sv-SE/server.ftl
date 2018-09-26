@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Startsida för Screenshots
 bannerMessage = Logga in eller registrera dig för att få tillgång till dina bilder mellan enheter och spara dina favoriter för alltid.
+bannerUpsell = { gScreenshotsDescription } <a>Hämta Firefox nu</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = Är du säker på att du vill radera denna bild permanen
 shotPageShareButton =
     .title = Dela
 shotPageCopy = Kopiera
+shotPageCopyButton =
+    .title = Kopiera bild till urklipp
 shotPageCopied = Kopierad
 shotPageShareFacebook =
     .title = Dela på Facebook
@@ -143,7 +146,6 @@ shotPageDraw = Rita
 shotPageFavorite = Favorit
 shotPageDelete = Ta bort
 shotPageScreenshotsDescription = Ta enkelt skärmbilder. Fånga, spara och dela skärmbilder utan att lämna Firefox.
-shotPageUpsellFirefox = Hämta Firefox nu
 shotPageDMCAMessage = Denna skärmbild är inte längre tillgänglig på grund av upphovsrättsanspråk från tredje part.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Vänligen mejla { $dmca } för att begära ytterligare information.
@@ -273,6 +275,13 @@ textToolCancelButton = Avbryt
 textToolInputPlaceholder =
     .placeholder = Hallå
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Något gick fel
+copyImageErrorMessage = Det gick inte att kopiera din bild till urklipp.
+
 ## Settings Page
 
 settingsDisconnectButton = Koppla från
@@ -299,8 +308,6 @@ shotIndexPageSearchResultsTitle = Mina skärmbilder: sök efter { $searchTerm }
 shotIndexPageErrorRendering = Fel vid rendering av sida: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Sök bland bilder
-shotIndexPageSearchButton =
-    .title = Sök
 shotIndexPageNoShotsMessage = Inga sparade bilder.
 shotIndexPageNoShotsInvitation = Kom igen, skapa några.
 shotIndexPageLookingForShots = Letar efter dina bilder…
@@ -324,6 +331,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Detta är en favoritbild och den upphör inte
+shotIndexSyncedShot =
+    .title = Bild tagen på en annan enhet
 
 ## Delete Confirmation Dialog
 
