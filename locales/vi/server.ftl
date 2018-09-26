@@ -115,8 +115,8 @@ shotPagePrivacyMessage = Bất kỳ ai có liên kết đều có thể xem ản
 shotPageCopyImageText =
     .label = Sao chép hình ảnh văn bản
 shotPageConfirmDeletion = Bạn có chắc chắn muốn xóa vĩnh viễn ảnh này?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Nếu bạn không làm gì, ảnh này sẽ bị xóa vĩnh viễn { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Nếu bạn không làm gì, ảnh này sẽ bị xóa vĩnh viễn <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = khôi phục đến { $date }
@@ -165,10 +165,10 @@ shotPageKeepOneMonth = 1 tháng
 shotPageSaveExpiration = lưu
 shotPageCancelExpiration = huỷ bỏ
 shotPageDoesNotExpire = Không có thời hạn
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = Hết hạn vào { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = Đã hết hạn vào { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = Hết hạn vào <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = Đã hết hạn vào <timediff></timediff>
 timeDiffJustNow = mới đây
 timeDiffMinutesAgo = { $number } phút trước
 timeDiffHoursAgo = { $number } giờ trước

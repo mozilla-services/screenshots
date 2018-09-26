@@ -114,8 +114,8 @@ shotPagePrivacyMessage = 任何持有此链接的人可以查看此截图。
 shotPageCopyImageText =
     .label = 复制图像文本
 shotPageConfirmDeletion = 您确定要永久删除此截图？
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = 如果您不做操作，此截图将在 { $timediff } 后被永久删除。
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = 如果您不做操作，此截图将在 <timediff></timediff> 后被永久删除。
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = 在 { $date } 前可恢复
@@ -166,10 +166,10 @@ shotPageKeepOneMonth = 1 个月
 shotPageSaveExpiration = 保存
 shotPageCancelExpiration = 取消
 shotPageDoesNotExpire = 不会到期
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = { $timediff } 后过期
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = { $timediff } 前已过期
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = <timediff></timediff> 后过期
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = <timediff></timediff> 前已过期
 timeDiffJustNow = 刚刚
 timeDiffMinutesAgo =
     { $number ->

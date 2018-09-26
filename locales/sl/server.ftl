@@ -113,8 +113,8 @@ shotPagePrivacyMessage = Kdorkoli s povezavo si lahko ogleda ta posnetek.
 shotPageCopyImageText =
     .label = Kopiraj besedilo slike
 shotPageConfirmDeletion = Ali ste prepričani, da želite trajno izbrisati ta posnetek?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Če ne storite ničesar, bo ta posnetek trajno izbrisan { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Če ne storite ničesar, bo ta posnetek trajno izbrisan <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = obnovi do { $date }
@@ -165,10 +165,10 @@ shotPageKeepOneMonth = 1 mesec
 shotPageSaveExpiration = shrani
 shotPageCancelExpiration = prekliči
 shotPageDoesNotExpire = ne poteče
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = poteče { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = poteklo { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = poteče <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = poteklo <timediff></timediff>
 timeDiffJustNow = zdaj
 timeDiffMinutesAgo =
     { $number ->

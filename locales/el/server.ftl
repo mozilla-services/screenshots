@@ -115,8 +115,8 @@ shotPagePrivacyMessage = Οποιοσδήποτε μπορεί να δει αυ�
 shotPageCopyImageText =
     .label = Αντιγραφή κειμένου εικόνας
 shotPageConfirmDeletion = Θέλετε σίγουρα να διαγράψετε οριστικά αυτό το στιγμιότυπο;
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Αν δεν κάνετε τίποτα, αυτό το στιγμιότυπο θα διαγραφεί οριστικά { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Αν δεν κάνετε τίποτα, αυτό το στιγμιότυπο θα διαγραφεί οριστικά <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = ανάκτηση μέχρι { $date }
@@ -167,10 +167,10 @@ shotPageKeepOneMonth = 1 μήνας
 shotPageSaveExpiration = αποθήκευση
 shotPageCancelExpiration = ακύρωση
 shotPageDoesNotExpire = δεν λήγει
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = λήγει { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = έληξε { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = λήγει <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = έληξε <timediff></timediff>
 timeDiffJustNow = μόλις τώρα
 timeDiffMinutesAgo =
     { $number ->

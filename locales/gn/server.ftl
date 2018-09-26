@@ -114,8 +114,8 @@ shotPagePrivacyMessage = Oimeraẽva juajuha ndive ikatukuaa ohecha ko japyhypy.
 shotPageCopyImageText =
     .label = Emonguatia ta’anga moñe’ẽrã
 shotPageConfirmDeletion = ¿Emboguesépa ko japyhypy opa árape g̃uarã?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Nderejapóiramo mba’eve, pe japyhypy oguéta opa árape g̃uarã { $timediff } pe.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Nderejapóiramo mba’eve, pe japyhypy oguéta opa árape g̃uarã <timediff></timediff> pe.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = embojevy { $date } peve
@@ -166,10 +166,10 @@ shotPageKeepOneMonth = 1 jasy
 shotPageSaveExpiration = ñongatu
 shotPageCancelExpiration = heja
 shotPageDoesNotExpire = ndopái gueteri
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = opáma { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = opáma { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = opáma <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = opáma <timediff></timediff>
 timeDiffJustNow = ko'ag̃aite
 timeDiffMinutesAgo =
     { $number ->

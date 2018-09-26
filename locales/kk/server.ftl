@@ -115,8 +115,8 @@ shotPagePrivacyMessage = Сілтемесі бар әр адам бұл скри
 shotPageCopyImageText =
     .label = Сурет мәтінін көшіріп алу
 shotPageConfirmDeletion = Бұл скриншотты толығымен өшіруді шынымен қалайсыз ба?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Ешнәрсе жасамасаңыз, бұл скриншот { $timediff } толығымен өшіріледі.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Ешнәрсе жасамасаңыз, бұл скриншот <timediff></timediff> толығымен өшіріледі.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = ұзартылған { $date } дейін
@@ -167,10 +167,10 @@ shotPageKeepOneMonth = 1 ай
 shotPageSaveExpiration = сақтау
 shotPageCancelExpiration = бас тарту
 shotPageDoesNotExpire = мерзімі аяқталмайды
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = мерзімі { $timediff } аяқталады
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = мерзімі { $timediff } аяқталды
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = мерзімі <timediff></timediff> аяқталады
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = мерзімі <timediff></timediff> аяқталды
 timeDiffJustNow = жаңа ғана
 timeDiffMinutesAgo =
     { $number ->

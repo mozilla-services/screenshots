@@ -102,8 +102,8 @@ shotPagePrivacyMessage = Chì duine sam bith aig a bheil an ceangal an glacadh s
 shotPageCopyImageText =
     .label = Dèan lethbhreac de theacsa an deilbh
 shotPageConfirmDeletion = A bheil thu cinnteach gu bheil thu airson an glacadh seo a sguabadh às gu buan?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Mur an dèan thu dad, thèid an glacadh seo a sguabadh às gu buan { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Mur an dèan thu dad, thèid an glacadh seo a sguabadh às gu buan <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = aisig gu ruige { $date }
@@ -144,10 +144,10 @@ shotPageKeepOneMonth = Mìos
 shotPageSaveExpiration = sàbhail
 shotPageCancelExpiration = sguir dheth
 shotPageDoesNotExpire = chan fhalbh an ùine air
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = falbhaidh an ùine air { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = dh’fhalbh an ùine air { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = falbhaidh an ùine air <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = dh’fhalbh an ùine air <timediff></timediff>
 timeDiffJustNow = an-dràsta fhèin
 timeDiffMinutesAgo =
     { $number ->

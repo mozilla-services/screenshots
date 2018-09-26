@@ -107,10 +107,10 @@ shotPageKeepOneMonth = Dwe 1
 shotPageSaveExpiration = gwoki
 shotPageCancelExpiration = kwer
 shotPageDoesNotExpire = pe bale
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = kare ne okato { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = kare ne okato { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = kare ne okato <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = kare ne okato <timediff></timediff>
 timeDiffJustNow = Pud kombedi
 timeDiffMinutesAgo =
     { $number ->

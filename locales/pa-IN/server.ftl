@@ -118,10 +118,10 @@ shotPageKeepOneMonth = 1 ਮਹੀਨਾ
 shotPageSaveExpiration = ਸੰਭਾਲੋ
 shotPageCancelExpiration = ਰੱਦ ਕਰੋ
 shotPageDoesNotExpire = ਮਿਆਦ ਖਤਮ ਨਹੀਂ ਹੁੰਦੀ
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = ਮਿਆਦ ਖਤਮ { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = ਮਿਆਦ ਖਤਮ ਹੋਈ{ $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = ਮਿਆਦ ਖਤਮ <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = ਮਿਆਦ ਖਤਮ ਹੋਈ<timediff></timediff>
 timeDiffJustNow = ਸਿਰਫ ਹੁਣ
 timeDiffMinutesAgo =
     { $number ->

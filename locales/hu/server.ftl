@@ -115,8 +115,8 @@ shotPagePrivacyMessage = Bárki megnézheti a képet, aki ismeri a hivatkozást.
 shotPageCopyImageText =
     .label = Kép szövegének másolása
 shotPageConfirmDeletion = Biztos, hogy véglegesen törölni szeretné ezt a képet?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Ha nem tesz semmit, a kép törlésre kerül { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Ha nem tesz semmit, a kép törlésre kerül <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = visszaállítás eddig: { $date }
@@ -167,10 +167,10 @@ shotPageKeepOneMonth = 1 hónap
 shotPageSaveExpiration = mentés
 shotPageCancelExpiration = mégse
 shotPageDoesNotExpire = nem jár le
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = { $timediff } jár le
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = { $timediff } lejárt
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = <timediff></timediff> jár le
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = <timediff></timediff> lejárt
 timeDiffJustNow = épp most
 timeDiffMinutesAgo =
     { $number ->

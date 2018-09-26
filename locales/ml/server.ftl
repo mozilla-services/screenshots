@@ -81,8 +81,8 @@ shotPageShareEmail =
 shotPageShareLink = പങ്കുവെക്കാവുന്ന ഒരു കണ്ണി ലഭ്യമാക്കുക:
 shotPagePrivacyMessage = കണ്ണിയുള്ള ആർക്കും ഈ ഷോട്ട് കാണാം.
 shotPageConfirmDeletion = ഈ ഷോട്ട് സ്ഥിരമായി നീക്കം ചെയ്യണം എന്ന് താങ്കൾക്ക് ഉറപ്പാണോ?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = നിങ്ങൾ ഒന്നും ചെയ്തില്ലെങ്കിൽ, ഈ ഷോട്ട് സ്ഥിരമായി നീക്കം ചെയ്യപ്പെടും { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = നിങ്ങൾ ഒന്നും ചെയ്തില്ലെങ്കിൽ, ഈ ഷോട്ട് സ്ഥിരമായി നീക്കം ചെയ്യപ്പെടും <timediff></timediff>.
 shotPageDeleteButton =
     .title = ഈ ഷോട്ട് നീക്കം ചെയ്യുക
 shotPageDownloadShot =

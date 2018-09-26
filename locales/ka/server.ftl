@@ -115,8 +115,8 @@ shotPagePrivacyMessage = ამ ბმულის საშუალები�
 shotPageCopyImageText =
     .label = სურათის ტექსტის დაკოპირება
 shotPageConfirmDeletion = ნამდვილად გსურთ ამ სურათის სამუდამოდ წაშლა?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = თუ არაფერს მოიმოქმედებთ, ეს სურათი სამუდამოდ წაიშლება { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = თუ არაფერს მოიმოქმედებთ, ეს სურათი სამუდამოდ წაიშლება <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = აღდგენა { $date }-მდე
@@ -167,10 +167,10 @@ shotPageKeepOneMonth = 1 თვით
 shotPageSaveExpiration = შენახვა
 shotPageCancelExpiration = გაუქმება
 shotPageDoesNotExpire = უვადოა
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = ვადა გაუვა { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = ვადა გაუვიდა { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = ვადა გაუვა <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = ვადა გაუვიდა <timediff></timediff>
 timeDiffJustNow = ახლახანს
 timeDiffMinutesAgo = 1 წუთის წინ
 timeDiffHoursAgo =

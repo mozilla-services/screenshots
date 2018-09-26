@@ -112,8 +112,8 @@ shotPagePrivacyMessage = Kaikki linkin haltijat voivat katsoa tätä kaappausta.
 shotPageCopyImageText =
     .label = Kopioi kuvateksti
 shotPageConfirmDeletion = Haluatko varmasti poistaa tämän kaappauksen pysyvästi?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Jos et tee mitään, kaappaus poistetaan pysyvästi { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Jos et tee mitään, kaappaus poistetaan pysyvästi <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = palauta { $date } saakka
@@ -164,10 +164,10 @@ shotPageKeepOneMonth = 1 kuukausi
 shotPageSaveExpiration = tallenna
 shotPageCancelExpiration = peruuta
 shotPageDoesNotExpire = ei vanhene
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = vanhenee { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = vanheni { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = vanhenee <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = vanheni <timediff></timediff>
 timeDiffJustNow = juuri nyt
 timeDiffMinutesAgo =
     { $number ->

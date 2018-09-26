@@ -115,8 +115,8 @@ shotPagePrivacyMessage = Keçidi olan hər kəs bu görüntüyə baxa bilər.
 shotPageCopyImageText =
     .label = Şəklin mətnini köçürt
 shotPageConfirmDeletion = Bu görüntünü həmişəlik silmək istədiyinizə əminsiniz?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Əgər heç bir şey etməsəniz, bu şəkil həmişəlik silinəcək { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Əgər heç bir şey etməsəniz, bu şəkil həmişəlik silinəcək <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = { $date } tarixinə qədər bərpa et.
@@ -167,10 +167,10 @@ shotPageKeepOneMonth = 1 ay
 shotPageSaveExpiration = saxla
 shotPageCancelExpiration = ləğv et
 shotPageDoesNotExpire = vaxtı çıxmasın
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = { $timediff } silinəcək
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = { $timediff } silindi
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = <timediff></timediff> silinəcək
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = <timediff></timediff> silindi
 timeDiffJustNow = indicə
 timeDiffMinutesAgo =
     { $number ->

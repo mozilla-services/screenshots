@@ -92,8 +92,8 @@ shotPagePrivacyMessage = లంకె ఉన్న ఎవరైనా ఈ త
 shotPageCopyImageText =
     .label = చిత్రం వచనాన్ని నకలు చేయండి
 shotPageConfirmDeletion = మీరు ఖచ్చితంగా ఈ తెరపట్టును శాశ్వతంగా తొలగించాలనుకుంటున్నారా?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = మీరు ఏమీ చేయకపోతే, ఈ తెరపట్టు శాశ్వతంగా తొలగించబడుతుంది { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = మీరు ఏమీ చేయకపోతే, ఈ తెరపట్టు శాశ్వతంగా తొలగించబడుతుంది <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = { $date } వరకు పునరుద్ధరించండి
@@ -132,10 +132,10 @@ shotPageKeepOneMonth = 1 నెల
 shotPageSaveExpiration = బద్రపరుచు
 shotPageCancelExpiration = రద్దుచేయు
 shotPageDoesNotExpire = గడువు లేదు
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = { $timediff } గడువు ముగుస్తుంది
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = { $timediff } గడువు ముగిసింది
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = <timediff></timediff> గడువు ముగుస్తుంది
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = <timediff></timediff> గడువు ముగిసింది
 timeDiffJustNow = ఇప్పుడే
 timeDiffMinutesAgo =
     { $number ->

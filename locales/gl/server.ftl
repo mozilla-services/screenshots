@@ -115,10 +115,10 @@ shotPageKeepOneMonth = 1 mes
 shotPageSaveExpiration = gardar
 shotPageCancelExpiration = cancelar
 shotPageDoesNotExpire = non caduca
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = caduca en { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = caducou fai { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = caduca en <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = caducou fai <timediff></timediff>
 timeDiffJustNow = agora mesmo
 timeDiffMinutesAgo =
     { $number ->

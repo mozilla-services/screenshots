@@ -115,8 +115,8 @@ shotPagePrivacyMessage = Любы, хто мае гэту спасылку, мо
 shotPageCopyImageText =
     .label = Капіяваць тэкст выявы
 shotPageConfirmDeletion = Вы сапраўды хочаце назаўсёды выдаліць гэты здымак?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Калі вы нічога не будзеце рабіць, здымак будзе выдалены назаўсёды { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Калі вы нічога не будзеце рабіць, здымак будзе выдалены назаўсёды <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = працягнуты да { $date }
@@ -167,10 +167,10 @@ shotPageKeepOneMonth = 1 месяц
 shotPageSaveExpiration = захаваць
 shotPageCancelExpiration = адмяніць
 shotPageDoesNotExpire = неабмежаваны тэрмін
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = тэрмін захоўвання мінае { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = тэрмін захоўвання скончыўся { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = тэрмін захоўвання мінае <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = тэрмін захоўвання скончыўся <timediff></timediff>
 timeDiffJustNow = толькі што
 timeDiffMinutesAgo =
     { $number ->

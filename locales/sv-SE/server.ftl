@@ -115,8 +115,8 @@ shotPagePrivacyMessage = Alla som har länken kan se denna bild.
 shotPageCopyImageText =
     .label = Kopiera bildtext
 shotPageConfirmDeletion = Är du säker på att du vill radera denna bild permanent?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Om du inte gör något kommer denna bild att raderas permanent { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Om du inte gör något kommer denna bild att raderas permanent <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = återställ till och med { $date }
@@ -167,10 +167,10 @@ shotPageKeepOneMonth = 1 månad
 shotPageSaveExpiration = spara
 shotPageCancelExpiration = avbryt
 shotPageDoesNotExpire = upphör inte
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = upphör { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = upphörde { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = upphör <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = upphörde <timediff></timediff>
 timeDiffJustNow = just nu
 timeDiffMinutesAgo =
     { $number ->

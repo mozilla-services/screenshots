@@ -102,8 +102,8 @@ shotPagePrivacyMessage = लिंक द्वारा केओ भी ई �
 shotPageCopyImageText =
     .label = फोटो टेक्स्ट कॉपी करू
 shotPageConfirmDeletion = की अहाँ वाकई ई शॉट केँ हमेशा लेल मेटाबै चाहैत छी?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = जँ अहाँ किछु नए करैत छी, ई शॉट { $timediff } हमेशा कलेल मेटाए देल जाएत.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = जँ अहाँ किछु नए करैत छी, ई शॉट <timediff></timediff> हमेशा कलेल मेटाए देल जाएत.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = { $Date } तक पुनर्स्थापित करू
@@ -144,10 +144,10 @@ shotPageKeepOneMonth = 1 महिना
 shotPageSaveExpiration = सहेजू
 shotPageCancelExpiration = कैंसिल करू
 shotPageDoesNotExpire = समाप्त नहि हए अछि
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = { $timediff } समय सीमा समाप्त
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = { $timediff } समाप्त
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = <timediff></timediff> समय सीमा समाप्त
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = <timediff></timediff> समाप्त
 timeDiffJustNow = एखन एखन
 timeDiffMinutesAgo =
     { $number ->
