@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Domovská stránka
 bannerMessage = Ak chcete mať svoje snímky neustále so sebou alebo si ich chcete uložiť nastálo, zaregistrujte sa alebo sa prihláste.
+bannerUpsell = { gScreenshotsDescription } <a>Prevezmite si Firefox hneď teraz</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = Naozaj chcete natrvalo odstrániť túto snímku?
 shotPageShareButton =
     .title = Zdieľať
 shotPageCopy = Kopírovať
+shotPageCopyButton =
+    .title = Kopírovať obrázok do schránky
 shotPageCopied = Skopírované
 shotPageShareFacebook =
     .title = Zdieľať na Facebooku
@@ -143,7 +146,6 @@ shotPageDraw = Kresliť
 shotPageFavorite = Pridať medzi obľúbené
 shotPageDelete = Odstrániť
 shotPageScreenshotsDescription = Jednoduchá tvorba snímok obrazovky. Vytvorte, uložte a zdieľajte snímky obrazovky bez toho, aby ste museli opustiť Firefox.
-shotPageUpsellFirefox = Získajte Firefox teraz
 shotPageDMCAMessage = Táto snímka naďalej nie je dostupná z dôvodu uplatnenia si nároku na duševné vlastníctvo treťou stranou.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Ďalšie informácie si môžete vyžiadať e-mailom na adrese { $dmca }.
@@ -279,6 +281,13 @@ textToolCancelButton = Zrušiť
 textToolInputPlaceholder =
     .placeholder = Ahoj
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Niečo sa pokazilo
+copyImageErrorMessage = Snímku nebolo možné skopírovať.
+
 ## Settings Page
 
 settingsDisconnectButton = Odpojiť sa
@@ -305,8 +314,6 @@ shotIndexPageSearchResultsTitle = Moje snímky: vyhľadávanie { $searchTerm }
 shotIndexPageErrorRendering = Pri zobrazovaní stránky nastala chyba: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Hľadať medzi snímkami
-shotIndexPageSearchButton =
-    .title = Hľadať
 shotIndexPageNoShotsMessage = Žiadne uložené snímky.
 shotIndexPageNoShotsInvitation = Nebojte sa ich pár vytvoriť.
 shotIndexPageLookingForShots = Vyhľadávanie vašich snímkov...
@@ -330,6 +337,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Táto snímka bola označená ako obľúbená a jej platnosť nevyprší
+shotIndexSyncedShot =
+    .title = Snímka vytvorená na inom zariadení
 
 ## Delete Confirmation Dialog
 
