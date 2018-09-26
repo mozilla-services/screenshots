@@ -269,6 +269,13 @@ textToolCancelButton = გაუქმება
 textToolInputPlaceholder =
     .placeholder = გამარჯობა
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = რაღაც ხარვეზი წარმოიქმნა
+copyImageErrorMessage = სურათის დაკოპირება ვერ მოხერხდა.
+
 ## Settings Page
 
 settingsDisconnectButton = კავშირის შეწყვეტა
@@ -320,6 +327,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = ეს სურათი რჩეულია და არასდროს გაუვა ვადა
+shotIndexSyncedShot =
+    .title = სხვა მოწყობილობაზეა გადაღებული
 
 ## Delete Confirmation Dialog
 
