@@ -9,6 +9,15 @@ gHomeLink = خانه
 gNoShots =
     .alt = هیچ تصویری پیدا نشد
 gScreenshotsDescription = عکس گرفتن از صفحه آسان شده است. بگیرید، ذخیره‌ کنید و عکس گرفته شده از صفحه را بدون ترک فایرفاکس همرسانی کنید.
+gSettings = تنظیمات
+gSignIn = ورود
+
+## Header
+
+buttonSettings =
+    .title = تنظیمات
+buttonSignIn =
+    .title = ورود
 
 ## Footer
 
@@ -38,7 +47,6 @@ homePageButtonMyShots = برو به عکس‌های من
 homePageTeaser = به زودی…
 homePageDownloadFirefoxTitle = فایرفاکس
 homePageDownloadFirefoxSubTitle = دریافت رایگان
-homePageGetStarted = شروع کنید
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots چگونه کار می‌کند
 homePageGetStartedTitle = شروع کنید
@@ -112,13 +120,19 @@ shotPageExpiredMessage = این عکس منقضی شده است.
 shotPageExpiredMessageDetails = این صفحه‌ای است که از روی آن ساخته شده بود:
 shotPageDeleteButton =
     .title = حذف این عکس
-shotPageAbuseButton =
-    .title = این عکس را برای سوء استفاده، هرزه‌نگاری یا مسائل دیگر گزارش کنید
 shotPageDownloadShot =
     .title = دریافت
 shotPageEditButton =
     .title = ویرایش این تصویر
+shotPageBackToHomeButton =
+    .title = صفحه خانگی
+shotPageAllShotsButton =
+    .title = همه عکس‌ها
+shotPageAllShots = همه عکس‌ها
 shotPageDownload = دریافت
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = محبوب
+shotPageDelete = حذف
 shotPageScreenshotsDescription = Screenshots ساده ساخته شده است. بدون خروج از فایرفاکس عکس بگیرید، ذخیره و هم‌رسان کنید.
 shotPageUpsellFirefox = هم اکنون فایرفاکس را دریافت کنید
 shotPageDMCAMessage = این عکس به دلیل درخواست مالکیت معنوی یک شخص ثالث، دیگر در دسترس نیست.
@@ -250,6 +264,12 @@ textToolCancelButton = لغو
 textToolInputPlaceholder =
     .placeholder = سلام
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = خطایی رخ داد
+
 ## Settings Page
 
 settingsDisconnectButton = قطع اتصال
@@ -283,6 +303,8 @@ shotIndexPageNoShotsInvitation = ادامه بده، چندتا بساز.
 shotIndexPageLookingForShots = در حال گشتن برای عکس‌های شما…
 shotIndexPageNoSearchResultsIntro = همم
 shotIndexPageNoSearchResults = نمی‌توانیم هیچ عکسی مطابق با آنچه جستحو کردید بیابیم.
+shotIndexPageMyShotsButton =
+    .title = عکس‌های من
 shotIndexPageClearSearchButton =
     .title = پاک کردن جستجو
 shotIndexPageConfirmShotDelete = حذف این عکس؟
@@ -290,12 +312,6 @@ shotIndexPagePreviousPage =
     .title = صفحه قبل
 shotIndexPageNextPage =
     .title = صفحه بعد
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = این عکس منقضی نخواد شد
 
 ## Delete Confirmation Dialog
 
