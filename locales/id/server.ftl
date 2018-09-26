@@ -18,6 +18,10 @@ buttonSettings =
     .title = Setelan
 buttonSignIn =
     .title = Masuk
+screenshotsLogo =
+    .title = Beranda Screenshots
+bannerMessage = Masuk atau daftar untuk mengakses tangkapan layar Anda di semua perangkat dan simpan favorit Anda selamanya.
+bannerUpsell = { gScreenshotsDescription } <a>Dapatkan Firefox sekarang juga</a>
 
 ## Footer
 
@@ -25,6 +29,8 @@ buttonSignIn =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Ketentuan
 footerLinkPrivacy = Kebijakan Privasi
+footerReportShot = Laporkan Tangkapan Layar
+    .title = Laporkan tangkapan layar ini karena penyalahgunaan, spam, dan masalah-masalah lainnya
 footerLinkFaqs = Pertanyaan Umum
 footerLinkDMCA = Laporkan Pelanggaran Hak Cipta
 footerLinkDiscourse = Kirim Saran
@@ -96,6 +102,8 @@ shotPageConfirmDelete = Yakin ingin menghapus tangkapan ini secara permanen?
 shotPageShareButton =
     .title = Bagikan
 shotPageCopy = Salin
+shotPageCopyButton =
+    .title = Salin gambar ke papan klip
 shotPageCopied = Tersalin
 shotPageShareFacebook =
     .title = Bagikan di Facebook
@@ -126,12 +134,18 @@ shotPageEditButton =
     .title = Edit gambar ini
 shotPagefavoriteButton =
     .title = Favoritkan tangkapan ini
+shotPageBackToHomeButton =
+    .title = Beranda
+shotPageAllShotsButton =
+    .title = Semua Tangkapan Layar
+shotPageAllShots = Semua Tangkapan Layar
 shotPageDownload = Unduh
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Gambar
 # Note: Favorite text is used on shot page as a verb (action)
 shotPageFavorite = Favorit
 shotPageDelete = Hapus
 shotPageScreenshotsDescription = Screenshots sangat mudah. Tangkap, simpan, dan bagikan tangkapan layar tanpa meninggalkan Firefox.
-shotPageUpsellFirefox = Dapatkan Firefox sekarang
 shotPageDMCAMessage = Tangkapan ini tidak lagi tersedia karena klaim hak kekayaan intelektual pihak ketiga.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Kirimkan surel ke { $dmca } untuk meminta informasi lebih lanjut.
@@ -237,6 +251,13 @@ textToolCancelButton = Batal
 textToolInputPlaceholder =
     .placeholder = Halo
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Ada yang salah
+copyImageErrorMessage = Gagal menyalin tangkapan layar Anda ke papan klip
+
 ## Settings Page
 
 settingsDisconnectButton = Putuskan
@@ -263,13 +284,13 @@ shotIndexPageSearchResultsTitle = Tangkapan Saya: cari { $searchTerm }
 shotIndexPageErrorRendering = Kesalahan dalam menampilkan laman: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Cari tangkapan saya
-shotIndexPageSearchButton =
-    .title = Cari
 shotIndexPageNoShotsMessage = Tidak ada tangkapan tersimpan.
 shotIndexPageNoShotsInvitation = Lanjutkan, buat tangkapan.
 shotIndexPageLookingForShots = Memuat tangkapan Anda…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Kami tidak menemukan tangkapan yang cocok dengan pencarian Anda.
+shotIndexPageMyShotsButton =
+    .title = Tangkapan Layar Saya
 shotIndexPageClearSearchButton =
     .title = Bersihkan pencarian
 shotIndexPageConfirmShotDelete = Hapus tangkapan ini?
@@ -277,17 +298,17 @@ shotIndexPagePreviousPage =
     .title = Laman sebelumnya
 shotIndexPageNextPage =
     .title = Laman selanjutnya
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Tangkapan ini tidak kedaluwarsa
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Ini bukan tangkapan layar favorit dan kedaluwarsa
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Ini adalah tangkapan favorit dan tidak kedaluwarsa
+shotIndexSyncedShot =
+    .title = Tangkapan layar yang diambil dari peranti lainnya
 
 ## Delete Confirmation Dialog
 
