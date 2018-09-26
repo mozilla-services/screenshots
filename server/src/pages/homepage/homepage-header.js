@@ -24,7 +24,7 @@ exports.HomePageHeader = class HomePageHeader extends React.Component {
   render() {
     let myShots;
     if (this.props.isOwner) {
-      myShots = <Localized id="shotIndexPageMyShotsButton">
+      myShots = <Localized id="shotIndexPageMyShotsButton" attrs={{title: true}}>
         <a className="nav-button icon-shots" title="My Shots" href="/shots" onClick={ this.onClickMyShots.bind(this) } tabIndex="0">
           <Localized id="gMyShots">
             <span>My Shots</span>

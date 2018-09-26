@@ -5,18 +5,18 @@ const ReactDOM = require("react-dom");
 const PropTypes = require("prop-types");
 const linker = require("./linker");
 require("fluent-intl-polyfill/compat");
-const { MessageContext } = require("fluent/compat");
+const { FluentBundle } = require("fluent/compat");
 const { LocalizationProvider } = require("fluent-react/compat");
 const { getLocaleMessages } = require("./locale-messages");
 
-function generateMessages(messages, locales) {
-  const contexts = [];
+function generateBundles(messages, locales) {
+  const bundles = [];
   for (const locale of locales) {
-    const cx = new MessageContext(locale);
-    cx.addMessages(messages[locale]);
-    contexts.push(cx);
+    const bundle = new FluentBundle(locale);
+    bundle.addMessages(messages[locale]);
+    bundles.push(bundle);
   }
-  return contexts;
+  return bundles;
 }
 
 exports.HeadTemplate = class HeadTemplate extends React.Component {
@@ -40,7 +40,9 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
     const wantsAuth = (!this.props.authenticated) ||
                       (this.props.authenticated && !this.props.hasFxa && this.props.authFxa);
     return (
-    <LocalizationProvider messages={generateMessages(this.props.messages, this.props.userLocales)}>
+    <LocalizationProvider
+      bundles={generateBundles(this.props.messages, this.props.userLocales)}
+      parseMarkup={this.props.parseMarkup}>
       <head>
         <meta charSet="UTF-8" />
         <title>{this.props.title}</title>
@@ -71,13 +73,16 @@ exports.HeadTemplate.propTypes = {
   authenticated: PropTypes.bool,
   hasFxa: PropTypes.bool,
   authFxa: PropTypes.bool,
+  parseMarkup: PropTypes.func,
 };
 
 exports.BodyTemplate = class Body extends React.Component {
 
   render() {
     return (
-    <LocalizationProvider messages={generateMessages(this.props.messages, this.props.userLocales)}>
+    <LocalizationProvider
+      bundles={generateBundles(this.props.messages, this.props.userLocales)}
+      parseMarkup={this.props.parseMarkup}>
       <div>
         {this.props.children}
       </div>
@@ -91,6 +96,7 @@ exports.BodyTemplate.propTypes = {
   children: PropTypes.node,
   messages: PropTypes.object,
   userLocales: PropTypes.array,
+  parseMarkup: PropTypes.func,
 };
 
 exports.Page = class Page {

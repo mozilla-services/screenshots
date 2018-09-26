@@ -18,6 +18,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Screenshots Home
 bannerMessage = Sign in or sign up to access your shots across devices and save your favorites forever.
+bannerUpsell = {gScreenshotsDescription} <a>Get Firefox now</a>
 
 ## Footer
 
@@ -98,6 +99,8 @@ shotPageConfirmDelete = Are you sure you want to delete this shot permanently?
 shotPageShareButton =
     .title = Share
 shotPageCopy = Copy
+shotPageCopyButton =
+    .title = Copy image to clipboard
 shotPageCopied = Copied
 shotPageShareFacebook =
     .title = Share on Facebook
@@ -112,8 +115,8 @@ shotPagePrivacyMessage = Anyone with the link can view this shot.
 shotPageCopyImageText =
     .label = Copy image text
 shotPageConfirmDeletion = Are you sure you want to delete this shot permanently?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = If you do nothing, this shot will be permanently deleted { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = If you do nothing, this shot will be permanently deleted <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = restore until { $date }
@@ -140,7 +143,6 @@ shotPageDraw = Draw
 shotPageFavorite = Favorite
 shotPageDelete = Delete
 shotPageScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
-shotPageUpsellFirefox = Get Firefox now
 shotPageDMCAMessage = This shot is no longer available due to a third party intellectual property claim.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Please email { $dmca } to request further information.
@@ -164,10 +166,10 @@ shotPageKeepOneMonth = 1 Month
 shotPageSaveExpiration = save
 shotPageCancelExpiration = cancel
 shotPageDoesNotExpire = does not expire
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = expires { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = expired { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = expires <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = expired <timediff></timediff>
 timeDiffJustNow = just now
 timeDiffMinutesAgo = { $number ->
         [one] 1 minute ago
@@ -298,8 +300,6 @@ shotIndexPageSearchResultsTitle = My Shots: search for { $searchTerm }
 shotIndexPageErrorRendering = Error rendering page: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Search my shots
-shotIndexPageSearchButton =
-    .title = Search
 shotIndexPageNoShotsMessage = No saved shots.
 shotIndexPageNoShotsInvitation = Go on, create some.
 shotIndexPageLookingForShots = Looking for your shots…

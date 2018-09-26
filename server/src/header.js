@@ -5,7 +5,7 @@ const { AdBanner } = require("./ad-banner");
 
 exports.Header = function Header(props) {
   const logo = props.hasLogo ? <div className="logo">
-      <Localized id="screenshotsLogo">
+      <Localized id="screenshotsLogo" attrs={{title: true}}>
         <a href="/" title="Screenshots home" className="screenshots-logo"></a>
       </Localized>
     </div> : null;

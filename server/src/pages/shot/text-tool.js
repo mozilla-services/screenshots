@@ -116,7 +116,7 @@ exports.TextTool = class TextTool extends React.Component {
 
     return [
       <div key="drag" style={dragDivStyles} onMouseDown={this.onDragMouseDown.bind(this)}>
-        <Localized id="textToolInputPlaceholder">
+        <Localized id="textToolInputPlaceholder" attrs={{placeholder: true}}>
           <input type="text" id="text-input" ref={this.textInput} key="text" maxLength="1000" placeholder="Hello"
              onInput={this.onInput.bind(this)} className={`${this.state.textSize} ${this.state.colorName} text`}>
           </input>
@@ -128,7 +128,7 @@ exports.TextTool = class TextTool extends React.Component {
 
   renderToolbar() {
     return <div className="editor-header"><div className="annotation-tools">
-      <Localized id="annotationTextSize">
+      <Localized id="annotationTextSize" attrs={{title: true}}>
         <select className={`text-select`} title="Text Size" onChange={this.onChangeTextSize.bind(this)} value={this.state.textSize}>
           <Localized id="textSizeSmall"><option value="small-text">Small</option></Localized>
           <Localized id="textSizeMedium"><option value="medium-text">Medium</option></Localized>
@@ -139,10 +139,10 @@ exports.TextTool = class TextTool extends React.Component {
         setColorCallback={this.setColor.bind(this)}
         color={this.state.color} />
       <span className="annotation-divider"></span>
-      <Localized id="textToolConfirmButton">
+      <Localized id="textToolConfirmButton" attrs={{title: true}}>
         <button className={`button transparent confirm-text`} id="confirm-text" onClick={this.onClickConfirm.bind(this)} title="Confirm Text">Confirm</button>
       </Localized>
-      <Localized id="textToolCancelButton">
+      <Localized id="textToolCancelButton" attrs={{title: true}}>
         <button className={`button transparent cancel-text`} id="cancel-text" onClick={this.onClickCancel.bind(this)} title="Cancel Text">Cancel</button>
       </Localized>
     </div></div>;

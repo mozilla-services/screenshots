@@ -75,7 +75,7 @@ class Clip extends React.Component {
     if (this.props.clip.image.text) {
       return (
         <menu type="context" id="clip-image-context">
-          <Localized id="shotPageCopyImageText">
+          <Localized id="shotPageCopyImageText" attrs={{label: true}}>
             <menuitem label="Copy Image Text" onClick={this.copyImageText.bind(this)} ></menuitem>
           </Localized>
         </menu>
@@ -275,7 +275,7 @@ class Body extends React.Component {
 
     return <reactruntime.BodyTemplate {...this.props}>
       <div className="column-center full-height alt-color-scheme">
-        <Localized id="gNoShots">
+        <Localized id="gNoShots" attrs={{alt: true}}>
           <img src={ this.props.staticLink("/static/img/image-nope_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
         </Localized>
         <div className="alt-content">
@@ -298,7 +298,7 @@ class Body extends React.Component {
     if (this.props.isOwner) {
       restoreWidget = (
         <p>
-          <Localized id="shotPageExpirationMessage" $timediff={expirationTimeDiff}>
+          <Localized id="shotPageTimeExpirationMessage" timediff={expirationTimeDiff}>
             <span></span>
           </Localized>
           <Localized id="shotPageRestoreButton" $date={restoreDate}>
@@ -366,7 +366,7 @@ class Body extends React.Component {
     const inactive = this.props.isFxaAuthenticated ? "" : "inactive";
 
     favoriteShotButton = <div className="favorite-shot-button">
-      <Localized id="shotPagefavoriteButton">
+      <Localized id="shotPagefavoriteButton" attrs={{title: true}}>
         <button className={`nav-button ${inactive}`}
           disabled={!this.props.isFxaAuthenticated}
           onClick={this.onClickFavorite.bind(this)}>
@@ -377,7 +377,7 @@ class Body extends React.Component {
         </button></Localized></div>;
 
     const downloadButton = <div className="download-shot-button">
-      <Localized id="shotPageDownloadShot">
+      <Localized id="shotPageDownloadShot" attrs={{title: true}}>
         <button className="nav-button icon-download" onClick={this.onClickDownload.bind(this)}
           title="Download the shot image">
           <Localized id="shotPageDownload">
@@ -387,7 +387,7 @@ class Body extends React.Component {
       </Localized></div>;
 
     const copyButton = <div className="copy-img-button" hidden={!this.state.canCopy}>
-      <Localized id="shotPageCopyButton">
+      <Localized id="shotPageCopyButton" attrs={{title: true}}>
         <button className="nav-button icon-copy transparent copy"
           title="Copy image to clipboard"
           onClick={this.onClickCopy.bind(this)}>
@@ -405,7 +405,7 @@ class Body extends React.Component {
         cancelDeleteHandler={ this.cancelDeleteHandler.bind(this) } />;
 
       editButton = this.props.enableAnnotations ? <div className="edit-shot-button">
-        <Localized id="shotPageEditButton">
+        <Localized id="shotPageEditButton" attrs={{title: true}}>
           <button className="nav-button icon-edit transparent edit"
             title="Edit this image"
             onClick={this.onClickEdit.bind(this)}

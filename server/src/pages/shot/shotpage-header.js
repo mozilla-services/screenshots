@@ -16,7 +16,7 @@ exports.ShotPageHeader = class ShotPageHeader extends React.Component {
     // FIXME: this means that on someone else's shot they won't see a My Shots link:
     if (!this.props.isOwner) {
       return (
-        <Localized id="shotPageBackToHomeButton">
+        <Localized id="shotPageBackToHomeButton" attrs={{title: true}}>
         <a className="nav-link" title="Homepage" href="/" tabIndex="0" onClick={this.onClickMyShots.bind(this)}>
           <span className="back-to-home">
             <span>
@@ -31,7 +31,7 @@ exports.ShotPageHeader = class ShotPageHeader extends React.Component {
       );
     }
     return (
-      <Localized id="shotPageAllShotsButton">
+      <Localized id="shotPageAllShotsButton" attrs={{title: true}}>
         <a className="nav-button icon-shots" href="/shots" tabIndex="0" title="All Shots">
           <Localized id="shotPageAllShots">
             <span>All Shots</span>
@@ -60,9 +60,9 @@ exports.ShotPageHeader = class ShotPageHeader extends React.Component {
       const expired = this.props.expireTime < Date.now();
       const expireTimeDiff = <TimeDiff date={this.props.expireTime}/>;
       if (expired) {
-        expirationSubtitle = <Localized id="shotPageExpired" $timediff={expireTimeDiff}><span>expired {expireTimeDiff}</span></Localized>;
+        expirationSubtitle = <Localized id="shotPageTimeExpired" timediff={expireTimeDiff}><span>expired {expireTimeDiff}</span></Localized>;
       } else {
-        expirationSubtitle = <Localized id="shotPageExpiresIn" $timediff={expireTimeDiff}><span>expires {expireTimeDiff}</span></Localized>;
+        expirationSubtitle = <Localized id="shotPageTimeExpiresIn" timediff={expireTimeDiff}><span>expires {expireTimeDiff}</span></Localized>;
       }
     }
 

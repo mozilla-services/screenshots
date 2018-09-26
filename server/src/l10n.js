@@ -2,11 +2,11 @@ const path = require("path");
 const globby = require("globby");
 require("fluent-intl-polyfill/compat");
 const { negotiateLanguages } = require("fluent-langneg/compat");
-const { MessageContext } = require("fluent/compat");
+const { FluentBundle } = require("fluent/compat");
 const mozlog = require("./logging").mozlog("l10n");
 
 const rawStrings = {};
-const messagesContexts = {};
+const fluentBundles = {};
 
 let initPromise;
 exports.init = function(localeStringMap) {
@@ -47,18 +47,18 @@ exports.init = function(localeStringMap) {
 };
 
 exports.getText = function(locales) {
-  const contexts = {};
+  const bundles = {};
   const availableLocales = exports.getUserLocales(locales);
 
   availableLocales.forEach((locale) => {
-    contexts[locale] = getMessageContext(locale);
+    bundles[locale] = getFluentBundle(locale);
   });
 
   return function(l10nID, args) {
     for (const locale of availableLocales) {
-      if (contexts[locale].hasMessage(l10nID)) {
-        const msg = contexts[locale].getMessage(l10nID);
-        return contexts[locale].format(msg, args);
+      if (bundles[locale].hasMessage(l10nID)) {
+        const msg = bundles[locale].getMessage(l10nID);
+        return bundles[locale].format(msg, args);
       }
     }
     return "";
@@ -92,12 +92,12 @@ function useLocaleData(localeStringMap) {
   return initPromise;
 }
 
-function getMessageContext(locale) {
-  if (!messagesContexts[locale]) {
-    const mc = new MessageContext(locale);
-    mc.addMessages(rawStrings[locale]);
-    messagesContexts[locale] = mc;
+function getFluentBundle(locale) {
+  if (!fluentBundles[locale]) {
+    const bundle = new FluentBundle(locale);
+    bundle.addMessages(rawStrings[locale]);
+    fluentBundles[locale] = bundle;
   }
 
-  return messagesContexts[locale];
+  return fluentBundles[locale];
 }

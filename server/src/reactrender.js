@@ -2,6 +2,18 @@ const { addReactScripts } = require("./reactutils");
 const ReactDOMServer = require("react-dom/server");
 const { getGitRevision } = require("./linker");
 
+const { JSDOM } = require("jsdom");
+const dom = new JSDOM("<!doctype html><template></template>");
+const template = dom.window.document.querySelector("template");
+
+// Used by the LocalizationProvider to sanitize markup in translations on the
+// server side. During runtime it uses document.createElement("template").
+function parseMarkup(textContent) {
+  // eslint-disable-next-line no-unsanitized/property
+  template.innerHTML = textContent;
+  return Array.from(template.content.childNodes);
+}
+
 exports.render = function(req, res, page) {
   const modelModule = require("./" + page.modelModuleName);
   const viewModule = page.viewModule;
@@ -22,6 +34,7 @@ exports.render = function(req, res, page) {
       csrfToken,
       abTests: req.abTests,
       userLocales: req.userLocales,
+      parseMarkup,
     }, jsonModel);
     serverModel = Object.assign({
       authenticated: !!req.deviceId,
@@ -33,6 +46,7 @@ exports.render = function(req, res, page) {
       abTests: req.abTests,
       userLocales: req.userLocales,
       messages: req.messages,
+      parseMarkup,
     }, serverModel);
     if (req.query.data === "json") {
       if (req.query.pretty !== undefined) {
