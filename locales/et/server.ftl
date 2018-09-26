@@ -9,6 +9,18 @@ gHomeLink = Avaleht
 gNoShots =
     .alt = Pilte ei leitud
 gScreenshotsDescription = Ekraanipildid lihtsalt. Tee, salvesta ja jaga ekraanipilte Firefoxist lahkumata.
+gSettings = Sätted
+gSignIn = Logi sisse
+
+## Header
+
+buttonSettings =
+    .title = Sätted
+buttonSignIn =
+    .title = Logi sisse
+screenshotsLogo =
+    .title = Avaleht
+bannerMessage = Logi sisse või registreeru kasutajaks, et pääseda ligi ekraanipiltidele kõigist oma seadmetest ning salvestada lemmikud jäädavalt.
 
 ## Footer
 
@@ -16,6 +28,8 @@ gScreenshotsDescription = Ekraanipildid lihtsalt. Tee, salvesta ja jaga ekraanip
 footerLinkMozilla = Mozilla
 footerLinkTerms = Kasutustingimused
 footerLinkPrivacy = Privaatsuspoliitika
+footerReportShot = Raporteeri ekraanipildist
+    .title = Anna teada väärkasutatud, spämmivast või muid probleeme sisaldavat ekraanipildist
 footerLinkFaqs = KKK
 footerLinkDMCA = Intellektuaalomandi rikkumisest teatamine
 footerLinkDiscourse = Tagasiside andmine
@@ -38,7 +52,6 @@ homePageButtonMyShots = Minu piltide juurde
 homePageTeaser = Varsti tulekul…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Tasuta allalaadimine
-homePageGetStarted = Alustamine
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kuidas Firefox Screenshots töötab
 homePageGetStartedTitle = Alustamine
@@ -112,13 +125,23 @@ shotPageExpiredMessage = See pilt on aegunud.
 shotPageExpiredMessageDetails = Siin on leht, millel see algselt loodi:
 shotPageDeleteButton =
     .title = Kustuta see pilti
-shotPageAbuseButton =
-    .title = Raporteeri see pilt kuritarvituse, rämpspostituse või teiste probleemide tõttu
 shotPageDownloadShot =
     .title = Laadi alla
 shotPageEditButton =
     .title = Muuda seda pilti
+shotPagefavoriteButton =
+    .title = Lisa lemmikutesse
+shotPageBackToHomeButton =
+    .title = Avalehele
+shotPageAllShotsButton =
+    .title = Kõik pildid
+shotPageAllShots = Kõik pildid
 shotPageDownload = Laadi alla
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Muuda pilti
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Lisa lemmikutesse
+shotPageDelete = Kustuta
 shotPageScreenshotsDescription = Ekraanipildid lihtsalt. Tee, salvesta ja jaga ekraanipilte Firefoxist lahkumata.
 shotPageUpsellFirefox = Hangi Firefox
 shotPageDMCAMessage = See pilt pole enam saadaval intellektuaalomandi nõude tõttu kolmandalt osapoolelt.
@@ -182,6 +205,15 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Kui sina tegid selle pildi ja ei saa seda kustutada, siis pead ehk ajutiselt lubama kolmanda osapoole küpsised oma brauseri sätetes.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Teadmiseks!
+promoMessage = Uuendatud muutmise tööriistad võimaldavad kärpida, esile tuua ja isegi pildile teksti lisada.
+promoLink = Tee proovi
+promoCloseButton =
+    .title = Sulge teavitus
+
 ## Annotations
 
 annotationPenButton =
@@ -192,6 +224,8 @@ annotationUndoButton =
     .title = Võta tagasi
 annotationRedoButton =
     .title = Tee uuesti
+annotationTextButton =
+    .title = Lisa tekst
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Puhasta
@@ -223,6 +257,26 @@ annotationColorSeaGreen =
     .title = Mereroheline
 annotationColorGrey =
     .title = Hall
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Teksti suurus
+# Values shown in text size selection dropdown
+textSizeSmall = Väike
+textSizeMedium = Keskmine
+textSizeLarge = Suur
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = Kinnita
+    .title = Kinnita
+textToolCancelButton = Loobu
+    .title = Loobu
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Tere
+
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
 
 ## Settings Page
 
@@ -264,12 +318,6 @@ shotIndexPagePreviousPage =
     .title = Eelmine leht
 shotIndexPageNextPage =
     .title = Järgmine leht
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = See pilt ei aegu
 
 ## Delete Confirmation Dialog
 
