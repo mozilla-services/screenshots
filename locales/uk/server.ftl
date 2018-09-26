@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Домівка Screenshots
 bannerMessage = Зареєструйтеся або увійдіть, щоб мати доступ до знімків на всіх пристроях та зберігати обрані назавжди.
+bannerUpsell = { gScreenshotsDescription } <a>Отримати Firefox</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = Ви впевнені, що хочете назавжд�
 shotPageShareButton =
     .title = Поділитися
 shotPageCopy = Копіювати
+shotPageCopyButton =
+    .title = Копіювати зображення в буфер обміну
 shotPageCopied = Скопійовано
 shotPageShareFacebook =
     .title = Поділитися на Facebook
@@ -143,7 +146,6 @@ shotPageDraw = Малювати
 shotPageFavorite = Обране
 shotPageDelete = Видалити
 shotPageScreenshotsDescription = Знімки екрану стали простими. Робіть, зберігайте і поширюйте знімки екрану, не залишаючи Firefox.
-shotPageUpsellFirefox = Отримати Firefox
 shotPageDMCAMessage = Цей знімок більше недоступний через порушення авторських прав третьої сторони.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Будь ласка, напишіть на { $dmca }, щоб запитати додаткову інформацію.
@@ -279,6 +281,13 @@ textToolCancelButton = Скасувати
 textToolInputPlaceholder =
     .placeholder = Привіт
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Щось пішло не так
+copyImageErrorMessage = Не вдалося скопіювати ваш знімок в буфер обміну.
+
 ## Settings Page
 
 settingsDisconnectButton = Від'єднатися
@@ -305,8 +314,6 @@ shotIndexPageSearchResultsTitle = Мої знімки: пошук { $searchTerm 
 shotIndexPageErrorRendering = Помилка обробки сторінки: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Пошук моїх знімків
-shotIndexPageSearchButton =
-    .title = Пошук
 shotIndexPageNoShotsMessage = Немає збережених знімків.
 shotIndexPageNoShotsInvitation = Ну ж бо, створіть кілька.
 shotIndexPageLookingForShots = Шукаємо ваші знімки...
@@ -330,6 +337,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Це обраний знімок, тому він має необмежений термін дії
+shotIndexSyncedShot =
+    .title = Знімок зроблено на іншому пристрої
 
 ## Delete Confirmation Dialog
 
