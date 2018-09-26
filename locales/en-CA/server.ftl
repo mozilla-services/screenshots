@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Screenshots Home
 bannerMessage = Sign in or sign up to access your shots across devices and save your favourites forever.
+bannerUpsell = { gScreenshotsDescription } <a>Get Firefox now</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = Are you sure you want to delete this shot permanently?
 shotPageShareButton =
     .title = Share
 shotPageCopy = Copy
+shotPageCopyButton =
+    .title = Copy image to clipboard
 shotPageCopied = Copied
 shotPageShareFacebook =
     .title = Share on Facebook
@@ -143,7 +146,6 @@ shotPageDraw = Draw
 shotPageFavorite = Favourite
 shotPageDelete = Delete
 shotPageScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
-shotPageUpsellFirefox = Get Firefox now
 shotPageDMCAMessage = This shot is no longer available due to a third party intellectual property claim.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Please email { $dmca } to request further information.
@@ -273,6 +275,13 @@ textToolCancelButton = Cancel
 textToolInputPlaceholder =
     .placeholder = Hello
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Something went wrong
+copyImageErrorMessage = Unable to copy your shot to the clipboard.
+
 ## Settings Page
 
 settingsDisconnectButton = Disconnect
@@ -299,8 +308,6 @@ shotIndexPageSearchResultsTitle = My Shots: search for { $searchTerm }
 shotIndexPageErrorRendering = Error rendering page: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Search my shots
-shotIndexPageSearchButton =
-    .title = Search
 shotIndexPageNoShotsMessage = No saved shots.
 shotIndexPageNoShotsInvitation = Go on, create some.
 shotIndexPageLookingForShots = Looking for your shots…
@@ -324,6 +331,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = This is a favourite shot and it does not expire
+shotIndexSyncedShot =
+    .title = Shot taken on another device
 
 ## Delete Confirmation Dialog
 
