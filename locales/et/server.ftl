@@ -277,6 +277,8 @@ textToolInputPlaceholder =
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = Midagi läks valesti
+copyImageErrorMessage = Pilti pole võimalik vahemällu kopeerida.
 
 ## Settings Page
 
@@ -311,6 +313,8 @@ shotIndexPageNoShotsInvitation = Ära pelga, tee mõned.
 shotIndexPageLookingForShots = Otsime sinu pilte…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Me ei leidnud su otsingule sobivaid pilte.
+shotIndexPageMyShotsButton =
+    .title = Minu pildid
 shotIndexPageClearSearchButton =
     .title = Tühjenda otsing
 shotIndexPageConfirmShotDelete = Kas tõesti kustutada see pilt?
@@ -318,6 +322,17 @@ shotIndexPagePreviousPage =
     .title = Eelmine leht
 shotIndexPageNextPage =
     .title = Järgmine leht
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = See pilt ei ole lemmikuks märgitud ja see aegub
+# This is the tooltip for a "heart" symbol in the upper top corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = See pilt on märgitud lemmikuks ja see ei aegu
+shotIndexSyncedShot =
+    .title = See pilt tehti teises seadmes
 
 ## Delete Confirmation Dialog
 
