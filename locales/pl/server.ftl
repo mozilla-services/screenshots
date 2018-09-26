@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Strona główna Screenshots
 bannerMessage = Zaloguj się lub zarejestruj, aby mieć dostęp do swoich zrzutów na wszystkich urządzeniach i zachować ulubione na zawsze.
+bannerUpsell = { gScreenshotsDescription } <a>Pobierz Firefoksa</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = Czy na pewno trwale usunąć ten zrzut?
 shotPageShareButton =
     .title = Udostępnij
 shotPageCopy = Kopiuj
+shotPageCopyButton =
+    .title = Kopiuj obraz do schowka
 shotPageCopied = Skopiowano
 shotPageShareFacebook =
     .title = Udostępnij na Facebooku
@@ -143,7 +146,6 @@ shotPageDraw = Rysuj
 shotPageFavorite = Dodaj do ulubionych
 shotPageDelete = Usuń
 shotPageScreenshotsDescription = Zrzuty ekranu dla każdego. Twórz, zapisuj i udostępniaj zrzuty ekranu bez opuszczania Firefoksa.
-shotPageUpsellFirefox = Pobierz Firefoksa
 shotPageDMCAMessage = Ten zrzut został usunięty z powodu roszczeń prawnych strony trzeciej.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Wyślij wiadomość do { $dmca } w celu uzyskania dalszych informacji.
@@ -279,6 +281,13 @@ textToolCancelButton = Anuluj
 textToolInputPlaceholder =
     .placeholder = Cześć
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Coś się nie powiodło
+copyImageErrorMessage = Nie można skopiować zrzutu do schowka.
+
 ## Settings Page
 
 settingsDisconnectButton = Rozłącz
@@ -305,8 +314,6 @@ shotIndexPageSearchResultsTitle = Moje zrzuty: wyszukaj „{ $searchTerm }”
 shotIndexPageErrorRendering = Błąd podczas wyświetlania strony: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Przeszukaj moje zrzuty
-shotIndexPageSearchButton =
-    .title = Szukaj
 shotIndexPageNoShotsMessage = Brak zrzutów.
 shotIndexPageNoShotsInvitation = Może jakiś utworzymy?
 shotIndexPageLookingForShots = Wyszukiwanie zrzutów…
@@ -330,6 +337,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = To ulubiony zrzut, nie ulega on przeterminowaniu
+shotIndexSyncedShot =
+    .title = Zrzut wykonany na innym urządzeniu
 
 ## Delete Confirmation Dialog
 
