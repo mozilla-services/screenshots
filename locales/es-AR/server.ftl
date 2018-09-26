@@ -331,6 +331,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Esta es una captura favorita y no se vence
+shotIndexSyncedShot =
+    .title = Captura tomada en otro dispositivo
 
 ## Delete Confirmation Dialog
 
