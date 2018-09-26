@@ -19,6 +19,7 @@ buttonSettings =
 buttonSignIn =
     .title = Prijava
 bannerMessage = Prijavite ali registrirajte se, da boste lahko dostopali do svojih posnetkov z več naprav in priljubljene shranili za vedno.
+bannerUpsell = { gScreenshotsDescription }<a>Prenesite Firefox zdaj</a>
 
 ## Footer
 
@@ -99,6 +100,8 @@ shotPageConfirmDelete = Ali ste prepričani, da želite trajno izbrisati ta posn
 shotPageShareButton =
     .title = Deli
 shotPageCopy = Kopiraj
+shotPageCopyButton =
+    .title = Kopiraj sliko v odložišče
 shotPageCopied = Kopirano
 shotPageShareFacebook =
     .title = Deli na Facebooku
@@ -141,7 +144,6 @@ shotPageDraw = Riši
 shotPageFavorite = Dodaj med priljubljene
 shotPageDelete = Izbriši
 shotPageScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in delite zaslonske posnetke, ne da bi zapustili Firefox.
-shotPageUpsellFirefox = Prenesite Firefox zdaj
 shotPageDMCAMessage = Ta posnetek ni več na voljo zaradi zahtev intelektualne lastnine tretje osebe.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Za več informacij pošljite e-pošto na { $dmca }
@@ -283,6 +285,13 @@ textToolCancelButton = Prekliči
 textToolInputPlaceholder =
     .placeholder = Zdravo
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Prišlo je do napake
+copyImageErrorMessage = Posnetka ni bilo mogoče kopirati v odložišče.
+
 ## Settings Page
 
 settingsDisconnectButton = Prekini povezavo
@@ -309,8 +318,6 @@ shotIndexPageSearchResultsTitle = Moji posnetki: išči { $searchTerm }
 shotIndexPageErrorRendering = Napaka pri izrisovanju strani: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Iskanje mojih posnetkov
-shotIndexPageSearchButton =
-    .title = Išči
 shotIndexPageNoShotsMessage = Ni shranjenih posnetkov.
 shotIndexPageNoShotsInvitation = Kar pogumno, zajemite jih nekaj.
 shotIndexPageLookingForShots = Iskanje vaših posnetkov …
