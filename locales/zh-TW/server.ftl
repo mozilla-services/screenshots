@@ -249,6 +249,13 @@ textToolCancelButton = 取消
 textToolInputPlaceholder =
     .placeholder = 哈囉
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = 有些東西不對勁
+copyImageErrorMessage = 無法將您的擷圖複製到剪貼簿。
+
 ## Settings Page
 
 settingsDisconnectButton = 取消連線
@@ -300,6 +307,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = 這是最愛的擷圖，不會過期
+shotIndexSyncedShot =
+    .title = 在其他裝置上拍攝的擷圖
 
 ## Delete Confirmation Dialog
 
