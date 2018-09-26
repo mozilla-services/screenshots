@@ -106,7 +106,8 @@ shotPageShareFacebook =
     .title = Rhannu ar Facebook
 shotPageShareTwitter =
     .title = Rhannu ar Twitter
-shotPageSharePinterest = Rhannu ar Pininterest
+shotPageSharePinterest =
+    .title = Rhannu ar Pininterest
 shotPageShareEmail =
     .title = Rhannu dolen drwy e-bost
 shotPageShareLink = Estyn dolen i'w rannu ar gyfer y llun:
@@ -142,7 +143,6 @@ shotPageDraw = Lluniadu
 shotPageFavorite = Ffefryn
 shotPageDelete = Dileu
 shotPageScreenshotsDescription = Lluniau sgrin hawdd. Cipio, cadw a rhannu lluniau sgrin heb adael Firefox.
-shotPageUpsellFirefox = Estyn Firefox nawr
 shotPageDMCAMessage = Nid yw'r llun ar gael bellach oherwydd cais eiddo deallusol trydydd parti.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = E-bostiwch { $dmca } i ofyn am rhagor o wybodaeth.
@@ -296,6 +296,11 @@ textToolCancelButton = Diddymu
 textToolInputPlaceholder =
     .placeholder = Helo
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+
 ## Settings Page
 
 settingsDisconnectButton = Datgysylltu
@@ -322,8 +327,6 @@ shotIndexPageSearchResultsTitle = Fy Lluniau: chwilio am { $searchTerm }
 shotIndexPageErrorRendering = Gwall wrth gyflwyno'r dudalen: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Chwilio fy lluniau
-shotIndexPageSearchButton =
-    .title = Chwilio
 shotIndexPageNoShotsMessage = Dim lluniau wedi eu cadw
 shotIndexPageNoShotsInvitation = Croeso i chi greu lluniau.
 shotIndexPageLookingForShots = Chwilio am eich lluniau...
