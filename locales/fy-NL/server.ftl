@@ -115,8 +115,8 @@ shotPagePrivacyMessage = Elkenien mei de keppeling kin dizze ôfbylding besjen.
 shotPageCopyImageText =
     .label = Ofbyldingstekst kopiearje
 shotPageConfirmDeletion = Binne jo wis dat jo dizze ôfbylding definityf fuortsmite wolle?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = As jo neat dogge, wurdt dizze ôfbylding { $timediff } definityf fuortsmiten.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = As jo neat dogge, wurdt dizze ôfbylding <timediff></timediff> definityf fuortsmiten.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = tebeksette oant { $date }
@@ -167,10 +167,10 @@ shotPageKeepOneMonth = 1 moanne
 shotPageSaveExpiration = bewarje
 shotPageCancelExpiration = annulearje
 shotPageDoesNotExpire = ferrint net
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = ferrint { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = { $timediff } ferrûn
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = ferrint <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = <timediff></timediff> ferrûn
 timeDiffJustNow = sa krekt
 timeDiffMinutesAgo =
     { $number ->

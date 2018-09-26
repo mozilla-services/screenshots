@@ -110,8 +110,8 @@ shotPagePrivacyMessage = Alle som har denne lenka kan sjå dette skjermbildet.
 shotPageCopyImageText =
     .label = Kopier bildetekst
 shotPageConfirmDeletion = Er du sikker på at du vil slette dette skjermbildet permanent?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Viss du ikkje gjer noko, vil dette bildet slettast permanent { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Viss du ikkje gjer noko, vil dette bildet slettast permanent <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = bygg oppatt til og med { $date }
@@ -151,10 +151,10 @@ shotPageKeepOneMonth = 1 månad
 shotPageSaveExpiration = lagre
 shotPageCancelExpiration = avbryt
 shotPageDoesNotExpire = går ikkje ut
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = går ut { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = gått ut { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = går ut <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = gått ut <timediff></timediff>
 timeDiffJustNow = akkurat no
 timeDiffMinutesAgo =
     { $number ->

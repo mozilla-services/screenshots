@@ -102,8 +102,8 @@ shotPagePrivacyMessage = 이 링크가 있는 사람은 이 스크린샷을 볼 
 shotPageCopyImageText =
     .label = 이미지 텍스트 복사
 shotPageConfirmDeletion = 이 스크린샷을 영구적으로 삭제하시겠습니까?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = 아무것도 하지 않으신다면, 이 스크린샷은 { $timediff } 내로 삭제됩니다.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = 아무것도 하지 않으신다면, 이 스크린샷은 <timediff></timediff> 내로 삭제됩니다.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = { $date }까지 복구
@@ -144,10 +144,10 @@ shotPageKeepOneMonth = 1개월
 shotPageSaveExpiration = 저장
 shotPageCancelExpiration = 취소
 shotPageDoesNotExpire = 만료되지 않음
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = { $timediff }에 만료
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = { $timediff }에 만료됨
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = <timediff></timediff>에 만료
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = <timediff></timediff>에 만료됨
 timeDiffJustNow = 방금 전
 timeDiffMinutesAgo = { $number }분 전
 timeDiffHoursAgo = { $number }시간 전

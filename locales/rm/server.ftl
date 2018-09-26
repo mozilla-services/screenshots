@@ -115,8 +115,8 @@ shotPagePrivacyMessage = Mintgin che ha la colliaziun po vesair quest maletg.
 shotPageCopyImageText =
     .label = Copiar il text dal maletg
 shotPageConfirmDeletion = Vuls ti propi stizzar definitivamain quest maletg dal visur?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Sche ti na fas nagut vegn quest maletg stizzà definitivamain { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Sche ti na fas nagut vegn quest maletg stizzà definitivamain <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = restaurar enfin { $date }
@@ -167,10 +167,10 @@ shotPageKeepOneMonth = 1 mais
 shotPageSaveExpiration = memorisar
 shotPageCancelExpiration = interrumper
 shotPageDoesNotExpire = na scroda betg
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = scroda { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = scrudà { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = scroda <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = scrudà <timediff></timediff>
 timeDiffJustNow = gist ussa
 timeDiffMinutesAgo =
     { $number ->

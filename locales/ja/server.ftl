@@ -110,8 +110,8 @@ shotPagePrivacyMessage = リンクを手に入れた人は誰でもこのショ�
 shotPageCopyImageText =
     .label = 画像のテキストをコピー
 shotPageConfirmDeletion = 本当にこのショットを永久に削除しますか？
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = 何もしない場合、このショットは { $timediff } に永久に削除されます。
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = 何もしない場合、このショットは <timediff></timediff> に永久に削除されます。
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = { $date } まで復元
@@ -154,10 +154,10 @@ shotPageKeepOneMonth = 1 か月
 shotPageSaveExpiration = 保存
 shotPageCancelExpiration = キャンセル
 shotPageDoesNotExpire = 無期限
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = { $timediff } に期限切れ
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = { $timediff } に期限切れ
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = <timediff></timediff> に期限切れ
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = <timediff></timediff> に期限切れ
 timeDiffJustNow = たった今
 timeDiffMinutesAgo = { $number } 分前
 timeDiffHoursAgo = { $number } 時間前

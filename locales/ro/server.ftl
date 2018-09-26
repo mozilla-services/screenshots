@@ -115,8 +115,8 @@ shotPagePrivacyMessage = Oricine are linkul poate vedea această captură.
 shotPageCopyImageText =
     .label = Copiază textul imaginii
 shotPageConfirmDeletion = Sigur vrei să ștergi definitiv această captură?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Dacă nu faci nimic, această captură va fi ștersă permanent { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Dacă nu faci nimic, această captură va fi ștersă permanent <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = restaurează până la { $date }
@@ -167,10 +167,10 @@ shotPageKeepOneMonth = 1 lună
 shotPageSaveExpiration = salvează
 shotPageCancelExpiration = renunță
 shotPageDoesNotExpire = nu expiră
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = expiră { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = a expirat { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = expiră <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = a expirat <timediff></timediff>
 timeDiffJustNow = chiar acum
 timeDiffMinutesAgo =
     { $number ->

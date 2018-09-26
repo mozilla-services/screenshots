@@ -114,8 +114,8 @@ shotPagePrivacyMessage = ဒီရိုက်ချက် လင့်ခ်ဖ
 shotPageCopyImageText =
     .label = ပုံစာသားကို ကူးယူပါ
 shotPageConfirmDeletion = သင် ဒီရိုက်ချက်ကို အရှင်းဖျက်သိမ်းချင်တာ သေချာလား
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = သင်ဘာမှမလုပ်လှျင် ဒီရိုက်ချက်ကို{ $timediff } အတွင်း အရှင်းဖျက်ပစ်လိမ့်မည်
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = သင်ဘာမှမလုပ်လှျင် ဒီရိုက်ချက်ကို<timediff></timediff> အတွင်း အရှင်းဖျက်ပစ်လိမ့်မည်
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = { $date } မတိုင်ခင် ပြန်လည်သိမ်းဆဲပါ
@@ -166,10 +166,10 @@ shotPageKeepOneMonth = တစ်လ
 shotPageSaveExpiration = သိမ်းဆဲပါ
 shotPageCancelExpiration = မလုပ်ဆောင်ပါ
 shotPageDoesNotExpire = သက်တမ်းမကုန်ဆုံးပါ
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = သက်တမ်းကုန်ဆုံးခြင်း { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = သက်တမ်းကုန်ဆုံးခြင်း { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = သက်တမ်းကုန်ဆုံးခြင်း <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = သက်တမ်းကုန်ဆုံးခြင်း <timediff></timediff>
 timeDiffJustNow = ယခုလေးတင်
 timeDiffMinutesAgo =
     { $number ->

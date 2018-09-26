@@ -110,8 +110,8 @@ shotPagePrivacyMessage = Siapa pun yang memiliki tautan dapat melihat tangkapan 
 shotPageCopyImageText =
     .label = Salin teks gambar
 shotPageConfirmDeletion = Yakin ingin menghapus tangkapan ini secara permanen?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Jika Anda tidak melakukan apapun, tangkapan akan dihapus secara permanen { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Jika Anda tidak melakukan apapun, tangkapan akan dihapus secara permanen <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = pulihkan sampai { $date }
@@ -155,10 +155,10 @@ shotPageKeepOneMonth = 1 Bulan
 shotPageSaveExpiration = simpan
 shotPageCancelExpiration = batal
 shotPageDoesNotExpire = tidak pernah kedaluwarsa
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = kedaluwarsa { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = kedaluwarsa { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = kedaluwarsa <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = kedaluwarsa <timediff></timediff>
 timeDiffJustNow = baru saja
 timeDiffMinutesAgo = { $number } menit yang lalu
 timeDiffHoursAgo = { $number } jam yang lalu

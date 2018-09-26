@@ -93,10 +93,10 @@ shotPageKeepOneMonth = 1 сар
 shotPageSaveExpiration = хадгалах
 shotPageCancelExpiration = цуцлах
 shotPageDoesNotExpire = хугацаа дуусахгүй
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = { $timediff } хугацаа дуусана
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = { $timediff } хугацаа дууссан
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = <timediff></timediff> хугацаа дуусана
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = <timediff></timediff> хугацаа дууссан
 timeDiffJustNow = мөнөөхөн
 timeDiffMinutesAgo =
     { $number ->

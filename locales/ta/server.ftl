@@ -131,10 +131,10 @@ shotPageKeepOneMonth = 1 மாதம்
 shotPageSaveExpiration = சேமி
 shotPageCancelExpiration = ரத்து
 shotPageDoesNotExpire = காலாவதியாகாது
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = காலாவதியாகிறது { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = காலாவதியானது { $timediff } 
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = காலாவதியாகிறது <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = காலாவதியானது <timediff></timediff> 
 timeDiffJustNow = சற்று முன்
 timeDiffMinutesAgo =
     { $number ->

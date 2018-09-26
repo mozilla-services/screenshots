@@ -102,8 +102,8 @@ shotPagePrivacyMessage = לכל מי שיש את הקישור יש גישה לצ
 shotPageCopyImageText =
     .label = העתקת הטקסט שבתמונה
 shotPageConfirmDeletion = האם ברצונך למחוק צילום מסך זה לצמיתות?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = אם לא ייעשה דבר, צילום מסך זה יימחק לצמיתות { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = אם לא ייעשה דבר, צילום מסך זה יימחק לצמיתות <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = שחזור עד { $date }
@@ -144,10 +144,10 @@ shotPageKeepOneMonth = חודש
 shotPageSaveExpiration = שמירה
 shotPageCancelExpiration = ביטול
 shotPageDoesNotExpire = אין תפוגה
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = תפוגה { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = פג תוקפו { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = תפוגה <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = פג תוקפו <timediff></timediff>
 timeDiffJustNow = ממש עכשיו
 timeDiffMinutesAgo =
     { $number ->

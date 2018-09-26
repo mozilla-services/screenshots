@@ -102,8 +102,8 @@ shotPagePrivacyMessage = Ricevinte tiun ligilon, iu ajn povos vidi tiun ĉi ekra
 shotPageCopyImageText =
     .label = Kopii tekston de bildo
 shotPageConfirmDeletion = Ĉu vi certe volas definitive forigi tiun ĉi ekrankopion?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Se vi faras nenion, tiu ĉi ekrankopio estos definitive forigita { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Se vi faras nenion, tiu ĉi ekrankopio estos definitive forigita <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = restarigi ĝis { $date }
@@ -144,10 +144,10 @@ shotPageKeepOneMonth = monaton
 shotPageSaveExpiration = konservi
 shotPageCancelExpiration = nuligi
 shotPageDoesNotExpire = ĉiam valida
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = senvalidiĝas post { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = senvalidiĝis antaŭ { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = senvalidiĝas post <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = senvalidiĝis antaŭ <timediff></timediff>
 timeDiffJustNow = ĵus
 timeDiffMinutesAgo =
     { $number ->

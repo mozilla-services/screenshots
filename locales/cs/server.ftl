@@ -114,8 +114,8 @@ shotPagePrivacyMessage = Na tento snímek se může podívat každý, kdo bude m
 shotPageCopyImageText =
     .label = Kopírovat text z obrázku
 shotPageConfirmDeletion = Opravdu chcete tento snímek navždy smazat?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Pokud nic neuděláte, tento snímek bude navždy smazán { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Pokud nic neuděláte, tento snímek bude navždy smazán <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = obnovit do { $date }
@@ -166,10 +166,10 @@ shotPageKeepOneMonth = 1 měsíc
 shotPageSaveExpiration = uložit
 shotPageCancelExpiration = zrušit
 shotPageDoesNotExpire = bez omezené platnosti
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = vyprší { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = vypršel { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = vyprší <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = vypršel <timediff></timediff>
 timeDiffJustNow = právě teď
 timeDiffMinutesAgo =
     { $number ->

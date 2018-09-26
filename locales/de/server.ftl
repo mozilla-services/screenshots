@@ -115,8 +115,8 @@ shotPagePrivacyMessage = Jeder mit dem Link kann das Bildschirmfoto ansehen.
 shotPageCopyImageText =
     .label = Grafiktext kopieren
 shotPageConfirmDeletion = Soll dieses Bildschirmfoto wirklich dauerhaft gelöscht werden?
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Wenn Du nichts tust, wird dieses Bildschirmfoto automatisch { $timediff } gelöscht.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Wenn Du nichts tust, wird dieses Bildschirmfoto automatisch <timediff></timediff> gelöscht.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = Wiederherstellen bis { $date }
@@ -167,10 +167,10 @@ shotPageKeepOneMonth = Ein Monat
 shotPageSaveExpiration = speichern
 shotPageCancelExpiration = Abbrechen
 shotPageDoesNotExpire = Läuft nicht ab
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = Läuft ab { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = Lief ab { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = Läuft ab <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = Lief ab <timediff></timediff>
 timeDiffJustNow = gerade eben
 timeDiffMinutesAgo =
     { $number ->

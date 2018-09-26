@@ -110,8 +110,8 @@ shotPagePrivacyMessage = أي شخص لديه الرابط يمكنه رؤية �
 shotPageCopyImageText =
     .label = انسخ نص الصورة
 shotPageConfirmDeletion = أمتأكد أنك تريد حذف هذه اللقطة إلى الأبد؟
-# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = إذا لم تفعل أي شيء، ستُحذف هذه اللقطة دون رجعة { $timediff }.
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = إذا لم تفعل أي شيء، ستُحذف هذه اللقطة دون رجعة <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = استعدها حتى { $date }
@@ -159,10 +159,10 @@ shotPageKeepOneMonth = شهر واحد
 shotPageSaveExpiration = احفظ
 shotPageCancelExpiration = ألغِ
 shotPageDoesNotExpire = لا تنتهي صلاحيتها
-# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = تنتهي { $timediff }
-# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = انتهت { $timediff }
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = تنتهي <timediff></timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = انتهت <timediff></timediff>
 timeDiffJustNow = للتو
 timeDiffMinutesAgo =
     { $number ->
