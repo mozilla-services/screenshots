@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Página de inicio de Screenshots
 bannerMessage = Iniciá la sesión o registrate para acceder a tus fotos en todos tus dispositivos y guardar las favoritas para siempre.
+bannerUpsell = { gScreenshotsDescription } <a>Obtener Firefox ahora</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = ¿Está seguro de querer borrar esta captura permanentem
 shotPageShareButton =
     .title = Compartir
 shotPageCopy = Copiar
+shotPageCopyButton =
+    .title = Copiar la imagen al portapapeles
 shotPageCopied = Copiada
 shotPageShareFacebook =
     .title = Compartir en Facebook
@@ -143,7 +146,6 @@ shotPageDraw = Dibujar
 shotPageFavorite = Favorito
 shotPageDelete = Eliminar
 shotPageScreenshotsDescription = Capturas de pantalla simples. Tomar, guardar y compartir capturas de pantalla sin dejar Firefox.
-shotPageUpsellFirefox = Obtener Firefox ahora
 shotPageDMCAMessage = La captura no está más disponible por una queja de terceros por propiedad intelectual.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Enviá un correo electrónico a { $dmca } para pedir más información.
@@ -273,6 +275,13 @@ textToolCancelButton = Cancelar
 textToolInputPlaceholder =
     .placeholder = Hola
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Algo salió mal
+copyImageErrorMessage = No se puede copiar su captura en el portapapeles.
+
 ## Settings Page
 
 settingsDisconnectButton = Desconectar
@@ -299,8 +308,6 @@ shotIndexPageSearchResultsTitle = Mis capturas: búsqueda de { $searchTerm }
 shotIndexPageErrorRendering = Error dibujando la página: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Buscar mis capturas
-shotIndexPageSearchButton =
-    .title = Buscar
 shotIndexPageNoShotsMessage = No hay capturas guardadas.
 shotIndexPageNoShotsInvitation = Vamos, create alguna.
 shotIndexPageLookingForShots = Buscando tus capturas…
