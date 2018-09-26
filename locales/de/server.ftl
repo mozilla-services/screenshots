@@ -273,6 +273,13 @@ textToolCancelButton = Abbrechen
 textToolInputPlaceholder =
     .placeholder = Hallo
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Irgendetwas ist schiefgegangen
+copyImageErrorMessage = Ihr Bildschirmfoto konnte nicht in die Zwischenablage kopiert werden.
+
 ## Settings Page
 
 settingsDisconnectButton = Verbindung trennen
@@ -324,6 +331,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Dieses Bildschirmfoto ist ein Favorit und läuft nicht ab
+shotIndexSyncedShot =
+    .title = Auf anderem Gerät aufgenommenes Bildschirmfoto
 
 ## Delete Confirmation Dialog
 
