@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Accueil de Screenshots
 bannerMessage = Connectez-vous ou inscrivez-vous pour accéder à vos captures depuis tous vos appareils et conserver vos préférées à jamais.
+bannerUpsell = { gScreenshotsDescription } <a>Télécharger Firefox</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = Voulez-vous vraiment supprimer cette capture de façon d
 shotPageShareButton =
     .title = Partager
 shotPageCopy = Copier
+shotPageCopyButton =
+    .title = Copier l’image dans le presse-papiers
 shotPageCopied = Copié
 shotPageShareFacebook =
     .title = Partager sur Facebook
@@ -143,7 +146,6 @@ shotPageDraw = Dessiner
 shotPageFavorite = Ajouter aux favoris
 shotPageDelete = Supprimer
 shotPageScreenshotsDescription = Des captures en un clin d’œil. Capturez l’écran, enregistrez et partagez sans quitter Firefox.
-shotPageUpsellFirefox = Installez Firefox
 shotPageDMCAMessage = Cette capture n’est plus disponible, car un tiers a signalé une atteinte aux droits de la propriété intellectuelle.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Veuillez contacter { $dmca } pour demander plus d’informations.
@@ -273,6 +275,13 @@ textToolCancelButton = Annuler
 textToolInputPlaceholder =
     .placeholder = Bonjour
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Une erreur s’est produite
+copyImageErrorMessage = Impossible de copier votre capture dans le presse-papiers.
+
 ## Settings Page
 
 settingsDisconnectButton = Se déconnecter
@@ -299,8 +308,6 @@ shotIndexPageSearchResultsTitle = Mes captures : rechercher { $searchTerm }
 shotIndexPageErrorRendering = Erreur lors du rendu de la page : { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Rechercher mes captures
-shotIndexPageSearchButton =
-    .title = Rechercher
 shotIndexPageNoShotsMessage = Aucune capture enregistrée.
 shotIndexPageNoShotsInvitation = Comment ça fonctionne ? Allez-y, faites une capture.
 shotIndexPageLookingForShots = Nous recherchons vos captures…
@@ -324,6 +331,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Cette capture d’écran n’expirera jamais, car elle fait partie de vos captures favorites
+shotIndexSyncedShot =
+    .title = Capture effectuée sur un autre appareil
 
 ## Delete Confirmation Dialog
 
