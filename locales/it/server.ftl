@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Pagina iniziale Screenshots
 bannerMessage = Accedi o registrati per accedere alle tue immagini da qualsiasi dispositivo e conservare per sempre le tue preferite.
+bannerUpsell = { gScreenshotsDescription } <a>Scarica subito Firefox</a>
 
 ## Footer
 
@@ -143,7 +144,6 @@ shotPageDraw = Disegna
 shotPageFavorite = Aggiungi ai preferiti
 shotPageDelete = Elimina
 shotPageScreenshotsDescription = Catturare schermate non è mai stato così facile. Cattura, salva e condividi le tue immagini senza uscire da Firefox.
-shotPageUpsellFirefox = Installa Firefox adesso
 shotPageDMCAMessage = Questa immagine non è più disponibile a causa di una segnalazione di violazione della proprietà intellettuale da parte di soggetti terzi.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Invia un’email a { $dmca } per richiedere ulteriori informazioni.
@@ -306,8 +306,6 @@ shotIndexPageSearchResultsTitle = Le mie immagini: cerca { $searchTerm }
 shotIndexPageErrorRendering = Errore durante la generazione della pagina: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Cerca nelle mie immagini
-shotIndexPageSearchButton =
-    .title = Cerca
 shotIndexPageNoShotsMessage = Nessuna immagine salvata.
 shotIndexPageNoShotsInvitation = Cosa aspetti? Creane qualcuna.
 shotIndexPageLookingForShots = Ricerca immagini…
