@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Laman Screenshots
 bannerMessage = Daftar masuk atau daftar untuk mengakses syot anda dalam semua peranti dan menyimpan kegemaran anda selamanya.
+bannerUpsell = { gScreenshotsDescription } <a>Dapatkan Firefox sekarang</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = Anda pasti mahu menghapuskan syot ini secara kekal?
 shotPageShareButton =
     .title = Kongsi
 shotPageCopy = Salin
+shotPageCopyButton =
+    .title = Salin imej ke klipbod
 shotPageCopied = Disalin
 shotPageShareFacebook =
     .title = Kongsi di Facebook
@@ -143,7 +146,6 @@ shotPageDraw = Lukis
 shotPageFavorite = Kegemaran
 shotPageDelete = Buang
 shotPageScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skrinsyot tanpa keluar daripada Firefox.
-shotPageUpsellFirefox = Dapatkan Firefox sekarang
 shotPageDMCAMessage = Syot ini tidak lagi tersedia kerana tuntutan harta intelek pihak ketiga.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Sila e-mel { $dmca } untuk mendapatkan maklumat lanjut.
@@ -300,8 +302,6 @@ shotIndexPageSearchResultsTitle = Syot Saya: cari { $searchTerm }
 shotIndexPageErrorRendering = Ralat mentafsir halaman: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Carian syot saya
-shotIndexPageSearchButton =
-    .title = Cari
 shotIndexPageNoShotsMessage = Tiada syot disimpan.
 shotIndexPageNoShotsInvitation = Ayuh, ambil gambar.
 shotIndexPageLookingForShots = Mencari syot anda...
