@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Startseite von Screenshots
 bannerMessage = Melden Sie sich an oder registrieren Sie sich, um geräteübergreifend Ihre Bildschirmfotos anzusehen und Ihre Favoriten dauerhaft zu speichern.
+bannerUpsell = { gScreenshotsDescription } <a>Jetzt Firefox herunterladen</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = Soll dieses Bildschirmfoto wirklich dauerhaft gelöscht 
 shotPageShareButton =
     .title = Teilen
 shotPageCopy = Kopieren
+shotPageCopyButton =
+    .title = Bildschirmfoto in Zwischenablage kopieren
 shotPageCopied = Kopiert
 shotPageShareFacebook =
     .title = Auf Facebook teilen
@@ -143,7 +146,6 @@ shotPageDraw = Zeichnen
 shotPageFavorite = Als Favorit speichern
 shotPageDelete = Löschen
 shotPageScreenshotsDescription = Bildschirmfotos einfach machen, speichern und teilen – ohne Firefox zu verlassen.
-shotPageUpsellFirefox = Hole Dir jetzt Firefox
 shotPageDMCAMessage = Dieses Bildschirmfoto ist aufgrund von Urheberrechtsansprüchen von Dritten nicht mehr verfügbar.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Weitere Informationen erhälst Du per E-Mail an { $dmca }.
@@ -306,8 +308,6 @@ shotIndexPageSearchResultsTitle = Meine Bildschirmfotos: Suchen nach { $searchTe
 shotIndexPageErrorRendering = Fehler beim Darstellen der Seite: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Meine Bildschirmfotos durchsuchen
-shotIndexPageSearchButton =
-    .title = Suchen
 shotIndexPageNoShotsMessage = Keine gespeicherten Bildschirmfotos.
 shotIndexPageNoShotsInvitation = Los, erstellen Sie welche.
 shotIndexPageLookingForShots = Suchen nach Ihren Bildschirmfotos…
