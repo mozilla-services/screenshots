@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Screenshots 首頁
 bannerMessage = 請註冊或登入，即可在不同裝置間存取您的擷圖，並永久保存最愛的圖片。
+bannerUpsell = { gScreenshotsDescription } <a>立即下載 Firefox</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = 您確定要刪除這張圖片嗎？
 shotPageShareButton =
     .title = 分享
 shotPageCopy = 複製
+shotPageCopyButton =
+    .title = 複製圖片到剪貼簿
 shotPageCopied = 已複製！
 shotPageShareFacebook =
     .title = 分享到 Facebook
@@ -143,7 +146,6 @@ shotPageDraw = 繪圖
 shotPageFavorite = 設為最愛
 shotPageDelete = 刪除
 shotPageScreenshotsDescription = 拍攝擷圖變得簡單。不必離開 Firefox 就能拍攝、儲存、分享畫面擷圖。
-shotPageUpsellFirefox = 立即下載 Firefox
 shotPageDMCAMessage = 因為第三方提出智慧財產權通知，此擷圖已被下架。
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = 請寄信到 { $dmca } 要求更多資訊。
@@ -282,8 +284,6 @@ shotIndexPageSearchResultsTitle = 我的擷圖: 搜尋 { $searchTerm }
 shotIndexPageErrorRendering = 產生頁面時發生錯誤: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = 搜尋我的擷圖
-shotIndexPageSearchButton =
-    .title = 搜尋
 shotIndexPageNoShotsMessage = 沒有已存的擷圖。
 shotIndexPageNoShotsInvitation = 去吧！拍幾張照。
 shotIndexPageLookingForShots = 正在尋找您的擷圖…
