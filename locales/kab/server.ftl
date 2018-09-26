@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Tuṭṭfa n wegdil agejdan
 bannerMessage = Qqen neɣ jerred akken ad tkecmeḍ ar tuṭṭfiwin-ik deg ibenkan daɣen ad teskelseḍ ayen tḥemmleḍ i lebda.
+bannerUpsell = { gScreenshotsDescription }<a>Awi Firefox tura</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = Tebɣiḍ ad tekseḍ ṭṭufa-agi i lebda?
 shotPageShareButton =
     .title = Bḍu
 shotPageCopy = Nγel
+shotPageCopyButton =
+    .title = Nɣel tugna ɣef affus
 shotPageCopied = Inγel
 shotPageShareFacebook =
     .title = Bḍu di Facebook
@@ -143,7 +146,6 @@ shotPageDraw = Suneɣ
 shotPageFavorite = Anurif
 shotPageDelete = Kkes
 shotPageScreenshotsDescription = Tuṭṭfa fessusen. Ṭṭef, sekles, sakin bḍu tuṭṭfa war ma tefγeḍ seg Firefox.
-shotPageUpsellFirefox = Awi-d Firefox tura
 shotPageDMCAMessage = Tuṭṭfa-agi ur tezgi tella imi yella ucetki ɣef wayla agzayan i d-yekkan seg wis kraḍ.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Azen-d { $dmca } akken ad tsutreḍ ugar n telɣut.
@@ -269,6 +271,13 @@ textToolCancelButton = Sefsex
 textToolInputPlaceholder =
     .placeholder = Azul
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Teḍra-d tuccḍa.
+copyImageErrorMessage = Ur zmir ara ad inɣel tuṭṭfa-inek ɣer "ɣef afus".
+
 ## Settings Page
 
 settingsDisconnectButton = Ffeɣ
@@ -295,8 +304,6 @@ shotIndexPageSearchResultsTitle = Tuṭṭfiwin-iw: anadi n { $searchTerm }
 shotIndexPageErrorRendering = Tuccḍa di tririt n usebter: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Nadi tuṭfiwin inu
-shotIndexPageSearchButton =
-    .title = Nadi
 shotIndexPageNoShotsMessage = Ulac tuṭfiwin ittwaskelsen.
 shotIndexPageNoShotsInvitation = Bdu, Rnu kra.
 shotIndexPageLookingForShots = Anadi n tuṭfiwin inek…
@@ -320,6 +327,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Wagi d anegzum anurif ur yettmettaten ara
+shotIndexSyncedShot =
+    .title = Tuṭṭfa tella-d deg ibenk nniḍen
 
 ## Delete Confirmation Dialog
 
