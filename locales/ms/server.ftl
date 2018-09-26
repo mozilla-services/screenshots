@@ -267,6 +267,13 @@ textToolCancelButton = Batal
 textToolInputPlaceholder =
     .placeholder = Helo
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Ada sesuatu yang silap
+copyImageErrorMessage = Tidak dapat menyalin syot anda ke klipbod.
+
 ## Settings Page
 
 settingsDisconnectButton = Memutuskan
@@ -318,6 +325,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Ini syot kegemaran saya dan tidak akan luput
+shotIndexSyncedShot =
+    .title = Syot diambil pada peranti lain
 
 ## Delete Confirmation Dialog
 
