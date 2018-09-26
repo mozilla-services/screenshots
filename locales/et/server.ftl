@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Avaleht
 bannerMessage = Logi sisse või registreeru kasutajaks, et pääseda ligi ekraanipiltidele kõigist oma seadmetest ning salvestada lemmikud jäädavalt.
+bannerUpsell = { gScreenshotsDescription } <a>Hangi Firefox</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = Kas oled kindel, et soovid pildi jäädavalt kustutada?
 shotPageShareButton =
     .title = Jaga
 shotPageCopy = Kopeeri
+shotPageCopyButton =
+    .title = Kopeeri pilt vahemällu
 shotPageCopied = Kopeeritud
 shotPageShareFacebook =
     .title = Jaga Facebookis
@@ -143,7 +146,6 @@ shotPageDraw = Muuda pilti
 shotPageFavorite = Lisa lemmikutesse
 shotPageDelete = Kustuta
 shotPageScreenshotsDescription = Ekraanipildid lihtsalt. Tee, salvesta ja jaga ekraanipilte Firefoxist lahkumata.
-shotPageUpsellFirefox = Hangi Firefox
 shotPageDMCAMessage = See pilt pole enam saadaval intellektuaalomandi nõude tõttu kolmandalt osapoolelt.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Palun kirjuta { $dmca }, kui soovid rohkem teavet.
@@ -306,8 +308,6 @@ shotIndexPageSearchResultsTitle = Minu pildid: otsi { $searchTerm }
 shotIndexPageErrorRendering = Lehe kuvamisel tekkis viga: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Minu piltidest otsimine
-shotIndexPageSearchButton =
-    .title = Otsi
 shotIndexPageNoShotsMessage = Salvestatud pildid puuduvad.
 shotIndexPageNoShotsInvitation = Ära pelga, tee mõned.
 shotIndexPageLookingForShots = Otsime sinu pilte…
