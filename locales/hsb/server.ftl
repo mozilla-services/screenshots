@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Startowa strona Screenshots
 bannerMessage = Přizjewće so abo registrujće so, zo byšće přistup na swoje fota wobrazowki přez graty měł a składujće swoje fawority na přeco.
+bannerUpsell = { gScreenshotsDescription } <a>Wobstarajće so Firefox nětko</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = Chceće tute foto wobrazowki woprawdźe na přeco zhaše
 shotPageShareButton =
     .title = Dźělić
 shotPageCopy = Kopěrować
+shotPageCopyButton =
+    .title = Wobraz do mjezyskłada kopěrować
 shotPageCopied = Kopěrowany
 shotPageShareFacebook =
     .title = Na Facebooku dźělić
@@ -143,7 +146,6 @@ shotPageDraw = Rysować
 shotPageFavorite = Jako faworit składować
 shotPageDelete = Zhašeć
 shotPageScreenshotsDescription = Fota wobrazowki lochko činjene. Čińće, składujće a dźělće fota wobrazowki bjez toho, zo byšće Firefox wopušćił.
-shotPageUpsellFirefox = Wobstarajće sej nětko Firefox
 shotPageDMCAMessage = Tute foto wobrazowki dla prawow awtorstwa třećich hižo k dispoziciji njeje.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Dalše informacije přez e-mejl na { $dmca } dóstanjeće.
@@ -285,6 +287,13 @@ textToolCancelButton = Přetorhnyć
 textToolInputPlaceholder =
     .placeholder = Witaj
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Něšto je so nimokuliło
+copyImageErrorMessage = Njeje móžno, waše foto wobrazowki do mjezyskłada kopěrować.
+
 ## Settings Page
 
 settingsDisconnectButton = Zwisk dźělić
@@ -311,8 +320,6 @@ shotIndexPageSearchResultsTitle = Moje fota wobrazowki: Za { $searchTerm } pyta�
 shotIndexPageErrorRendering = Zmylk při zwobraznjenju strony: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Moje fota wobrazowki přepytać
-shotIndexPageSearchButton =
-    .title = Pytać
 shotIndexPageNoShotsMessage = Žane składowane fota wobrazowki.
 shotIndexPageNoShotsInvitation = Pójće, wutworće někajke.
 shotIndexPageLookingForShots = Pyta so za wašimi fotami wobrazowki...
@@ -336,6 +343,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = To je woblubowane foto wobrazowki a njespadnje
+shotIndexSyncedShot =
+    .title = Foto wobrazowki z druheho grata
 
 ## Delete Confirmation Dialog
 
