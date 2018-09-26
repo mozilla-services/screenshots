@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Screenshots Ana Səhifəsi
 bannerMessage = Cihazlarınız arasında görüntülərinizi görmək üçün daxil olun və ya qeyd olun və seçilmiş görüntülərinizi daimi olaraq saxlayın.
+bannerUpsell = { gScreenshotsDescription } <a>Firefox Endir</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = Bu görüntünü həmişəlik silmək istədiyinizə əm
 shotPageShareButton =
     .title = Paylaş
 shotPageCopy = Köçür
+shotPageCopyButton =
+    .title = Şəkli mübadilə buferinə köçür
 shotPageCopied = Köçürüldü
 shotPageShareFacebook =
     .title = Facebook-da paylaş
@@ -143,7 +146,6 @@ shotPageDraw = Çək-Qarala
 shotPageFavorite = Seçilmiş et
 shotPageDelete = Sil
 shotPageScreenshotsDescription = Ekran görüntülərini almağı asanlaşdırdıq. Firefox-u tərk etmədən ekran görüntülərini alın, saxlayın və paylaşın.
-shotPageUpsellFirefox = Firefox-u indi əldə et
 shotPageDMCAMessage = Bu görüntü üçüncü tərəfin müəllif hüquqlarının pozuntusu tələbinə görə artıq əlçatan deyil.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Lütfən, əlavə məlumat üçün { $dmca } ilə əlaqə saxlayın.
@@ -273,6 +275,13 @@ textToolCancelButton = Ləğv et
 textToolInputPlaceholder =
     .placeholder = Salam
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Nəsə səhv getdi
+copyImageErrorMessage = Şəkliniz mübadilə buferinə köçürülə bilmir.
+
 ## Settings Page
 
 settingsDisconnectButton = Əlaqəni kəs
@@ -299,8 +308,6 @@ shotIndexPageSearchResultsTitle = Mənim Görüntülərim: { $searchTerm } üç�
 shotIndexPageErrorRendering = Səhifənin renderinqində xəta: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Görüntülərimi axtar
-shotIndexPageSearchButton =
-    .title = Axtar
 shotIndexPageNoShotsMessage = Saxlanılmış görüntü yoxdur.
 shotIndexPageNoShotsInvitation = İrəli, bir neçəsini yaradın.
 shotIndexPageLookingForShots = Görüntülərinizi axtarırıq…
@@ -324,6 +331,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Bu seçilmiş görüntüdür və bunun vaxtı çıxmır
+shotIndexSyncedShot =
+    .title = Görüntü başqa cihazda çəkilib
 
 ## Delete Confirmation Dialog
 
