@@ -273,6 +273,13 @@ textToolCancelButton = Annulla
 textToolInputPlaceholder =
     .placeholder = Ciao
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Si è verificato un errore
+copyImageErrorMessage = Impossibile copiare l’immagine negli appunti.
+
 ## Settings Page
 
 settingsDisconnectButton = Disconnetti
@@ -324,6 +331,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Questa immagine è nei preferiti e non ha scadenza
+shotIndexSyncedShot =
+    .title = Immagine catturata da un altro dispositivo
 
 ## Delete Confirmation Dialog
 
