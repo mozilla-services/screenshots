@@ -329,7 +329,9 @@ class Card extends React.Component {
     let syncedShotIndicator = null;
     if (shot.isSynced) {
       syncedShotIndicator = <Localized id="shotIndexSyncedShot" attrs={{title: true}}>
-        <div className="indicator synced-shot" title=""></div>
+        <div className="indicator synced-shot" title="">
+          <img src={this.props.staticLink("/static/img/icon-sync.svg")} />
+        </div>
       </Localized>;
     }
 
