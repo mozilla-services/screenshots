@@ -326,12 +326,13 @@ class Shot extends AbstractShot {
 
 Shot.getRawBytesForClip = function(uid) {
   return db.select(
-    `SELECT images.url, images.contenttype, data.deviceid
-     FROM images
+    `SELECT images.url, images.contenttype, data.deviceid, devices.accountid
+     FROM devices, images
       JOIN data ON images.shotid = data.id
      WHERE images.id = $1
       AND (data.expire_time IS NULL OR data.expire_time > NOW())
       AND data.block_type = 'none'
+      AND data.deviceid = devices.id
       AND NOT data.deleted`, [uid]
   ).then((rows) => {
     if (!rows.length) {
@@ -340,6 +341,7 @@ Shot.getRawBytesForClip = function(uid) {
     return get(uid, rows[0].contenttype)
       .then(result => {
         result.ownerId = rows[0].deviceid;
+        result.accountId = rows[0].accountid;
         return result;
       });
   });
@@ -387,45 +389,30 @@ class ServerClip extends AbstractShot.prototype.Clip {
 
 Shot.prototype.Clip = ServerClip;
 
-Shot.get = function(backend, id, deviceId, accountId) {
-  return Shot.getRawValue(id, deviceId, accountId).then((rawValue) => {
-    if (!rawValue) {
-      return null;
-    }
-    const json = JSON.parse(rawValue.value);
-    const jsonTitle = json.userTitle || (json.openGraph && json.openGraph.title) || json.docTitle;
-    json.docTitle = jsonTitle || rawValue.title;
-    if (!json.url && rawValue.url) {
-      json.url = rawValue.url;
-    }
-    const shot = new Shot(rawValue.userid, backend, id, json);
-    shot.urlIfDeleted = rawValue.url;
-    shot.accountId = rawValue.accountId;
-    shot.expireTime = rawValue.expireTime;
-    shot.deleted = rawValue.deleted;
-    shot.blockType = rawValue.blockType;
-    return shot;
-  });
-};
-
-// FIXME: What is the difference between Shot.getFullShot and Shot.get?
-Shot.getFullShot = function(backend, id) {
+Shot.get = async function(backend, id, deviceId, accountId) {
   if (!id) {
     throw new Error("Empty id: " + id);
   }
-  return db.select(
-    `SELECT value, deviceid FROM data
-    WHERE data.id = $1`,
-    [id]
-  ).then((rows) => {
-    if (!rows.length) {
-      return null;
-    }
-    const row = rows[0];
-    const json = JSON.parse(row.value);
-    const shot = new Shot(row.userid, backend, id, json);
-    return shot;
-  });
+
+  const rawValue = await Shot.getRawValue(id);
+  if (!rawValue) {
+    return null;
+  }
+  const json = JSON.parse(rawValue.value);
+  const jsonTitle = json.userTitle || (json.openGraph && json.openGraph.title) || json.docTitle;
+  json.docTitle = jsonTitle || rawValue.title;
+  if (!json.url && rawValue.url) {
+    json.url = rawValue.url;
+  }
+
+  const shot = new Shot(rawValue.deviceId, backend, id, json);
+  shot.isOwner = rawValue.deviceId === deviceId || (accountId && rawValue.accountId === accountId);
+  shot.urlIfDeleted = rawValue.url;
+  shot.accountId = rawValue.accountId;
+  shot.expireTime = rawValue.expireTime;
+  shot.deleted = rawValue.deleted;
+  shot.blockType = rawValue.blockType;
+  return shot;
 };
 
 Shot.getRawValue = function(id, deviceId, accountId) {
@@ -451,7 +438,7 @@ Shot.getRawValue = function(id, deviceId, accountId) {
     }
     const row = rows[0];
     return {
-      userid: row.deviceid,
+      deviceId: row.deviceid,
       value: row.value,
       url: row.url,
       title: row.title,
@@ -484,7 +471,7 @@ Shot.emptyShotsPage = {
 };
 
 Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pageNumber) {
-  if (!deviceId) {
+  if (!deviceId && !accountId) {
     throw new Error("Empty deviceId: " + deviceId);
   }
   if (pageNumber < 1) {

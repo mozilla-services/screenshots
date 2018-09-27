@@ -59,6 +59,7 @@ const upload = multer({storage});
 const { isValidClipImageUrl } = require("../shared/shot");
 const urlParse = require("url").parse;
 const { updateAbTests } = require("./ab-tests");
+const util = require("util");
 
 const COOKIE_EXPIRE_TIME = 30 * 24 * 60 * 60 * 1000; // 30 days
 
@@ -220,11 +221,21 @@ app.use(function(req, res, next) {
     }
     authInfo.abTests = abTests;
   }
+
   if (authInfo.deviceId) {
+    if (!isValidDeviceId(authInfo.deviceId)) {
+      next(new Error("Bad deviceId in login"));
+      return;
+    }
     req.deviceId = authInfo.deviceId;
     req.userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
   }
+
   if (authInfo.accountId) {
+    if (authInfo.accountId.search(/^[a-zA-Z0-9]{1,255}$/) === -1) {
+      next(new Error("Bad accountId in login"));
+      return;
+    }
     req.accountId = authInfo.accountId;
   }
   req.cookies = cookies;
@@ -758,7 +769,7 @@ app.get("/data/:id/:domain", function(req, res) {
 });
 
 app.post("/api/delete-shot", function(req, res) {
-  if (!req.deviceId) {
+  if (!(req.deviceId || req.accountId)) {
     sendRavenMessage(req, "Attempt to delete shot without login");
     simpleResponse(res, "Not logged in", 401);
     return;
@@ -776,7 +787,7 @@ app.post("/api/delete-shot", function(req, res) {
 });
 
 app.post("/api/disconnect-device", function(req, res) {
-  if (!req.deviceId) {
+  if (!(req.deviceId || req.accountId)) {
     sendRavenMessage(req, "Attempt to disconnect without login");
     simpleResponse(res, "Not logged in", 401);
     return;
@@ -784,11 +795,9 @@ app.post("/api/disconnect-device", function(req, res) {
   disconnectDevice(req.deviceId).then((result) => {
     const keygrip = dbschema.getKeygrip("auth");
     const cookies = new Cookies(req, res, {keys: keygrip});
-    if (result) {
-      cookies.set("accountid");
-      cookies.set("accountid.sig");
-      simpleResponse(res, "ok", 200);
-    }
+    cookies.set("accountid");
+    cookies.set("accountid.sig");
+    simpleResponse(res, "ok", 200);
   }).catch((err) => {
     errorResponse(res, "Error: could not disconnect", err);
   });
@@ -801,7 +810,7 @@ app.post("/api/set-title/:id/:domain", function(req, res) {
     simpleResponse(res, "No title given", 400);
     return;
   }
-  if (!req.deviceId) {
+  if (!(req.deviceId || req.accountId)) {
     sendRavenMessage(req, "Attempt to set title on shot without login");
     simpleResponse(res, "Not logged in", 401);
     return;
@@ -811,13 +820,21 @@ app.post("/api/set-title/:id/:domain", function(req, res) {
       simpleResponse(res, "No such shot", 404);
       return null;
     }
+
+    if (!shot.isOwner) {
+      simpleResponse(res, "Attempt to set title on shot user doesn't own", 403);
+      return null;
+    }
+
     shot.userTitle = userTitle;
     if (shot.openGraph && shot.openGraph.title) {
         shot.openGraph.title = userTitle;
     }
     return shot.update();
   }).then((updated) => {
-    simpleResponse(res, "Updated", 200);
+    if (updated) {
+      simpleResponse(res, "Updated", 200);
+    }
   }).catch((err) => {
     errorResponse(res, "Error updating title", err);
   });
@@ -825,7 +842,7 @@ app.post("/api/set-title/:id/:domain", function(req, res) {
 
 app.post("/api/save-edit", function(req, res) {
   const vars = req.body;
-  if (!req.deviceId) {
+  if (!(req.deviceId || req.accountId)) {
     sendRavenMessage(req, "Attempt to edit shot without login");
     simpleResponse(res, "Not logged in", 401);
     return;
@@ -849,22 +866,28 @@ app.post("/api/save-edit", function(req, res) {
       simpleResponse(res, "No such shot", 404);
       return null;
     }
+    if (!shot.isOwner) {
+      simpleResponse(res, "Attempt to edit shot user doesn't own", 403);
+      return null;
+    }
     const name = shot.clipNames()[0];
     shot.getClip(name).image.url = url;
     shot.getClip(name).image.dimensions.x = width;
     shot.getClip(name).image.dimensions.y = height;
     shot.thumbnail = thumbnail;
     return shot.update().then(updated => ({updated, shot}));
-  }).then(({updated, shot}) => {
-    Watchdog.submit(shot);
-    simpleResponse(res, "Updated", 200);
+  }).then((result) => {
+    if (result) {
+      Watchdog.submit(result.shot);
+      simpleResponse(res, "Updated", 200);
+    }
   }).catch((err) => {
     errorResponse(res, "Error updating image", err);
   });
 });
 
 app.post("/api/set-expiration", function(req, res) {
-  if (!req.deviceId || !req.accountId) {
+  if (!(req.deviceId || req.accountId)) {
     sendRavenMessage(req, "Attempt to set expiration without login");
     simpleResponse(res, "Not logged in", 401);
     return;
@@ -1065,15 +1088,23 @@ const END_POINT_SEPARATOR = "|";
 
 // Get OAuth client params for the client-side authorization flow.
 app.get("/api/fxa-oauth/login/*", async function(req, res, next) {
-  if (!req.deviceId) {
-    next(errors.missingSession());
-    return;
-  }
-
   try {
     const stateBytes = await randomBytes(32);
     let state = stateBytes.toString("hex");
-    const inserted =  await setState(req.deviceId, state);
+    let stateId = null;
+
+    if (req.deviceId) {
+      stateId = req.deviceId;
+    } else {
+      const uuidPromise = util.promisify(genUuid.generate);
+      const uuid = await uuidPromise(genUuid.V_RANDOM);
+      stateId = uuid.toString();
+
+      const cookies = new Cookies(req, res, {keys: dbschema.getKeygrip("fxa-oauth")});
+      cookies.set("fxaState", stateId, {signed: true});
+    }
+
+    const inserted =  await setState(stateId, state);
     if (!inserted) {
       throw errors.dupeLogin();
     }
@@ -1093,11 +1124,6 @@ app.get("/api/fxa-oauth/login/*", async function(req, res, next) {
 });
 
 app.get("/api/fxa-oauth/confirm-login", async function(req, res, next) {
-  if (!req.deviceId) {
-    next(errors.missingSession());
-    return;
-  }
-
   if (!req.query) {
     next(errors.missingParams());
     return;
@@ -1109,23 +1135,30 @@ app.get("/api/fxa-oauth/confirm-login", async function(req, res, next) {
   const data = state.split(END_POINT_SEPARATOR, 2);
   const endpoint = data[1];
 
-  const isValid = await checkState(req.deviceId, data[0]);
-  if (!isValid) {
-    throw errors.badState();
+  const cookies = new Cookies(req, res, {keys: dbschema.getKeygrip("fxa-oauth")});
+
+  let stateId = cookies.get("fxaState");
+  if (stateId && (stateId.search(/^[a-zA-Z0-9_-]{1,255}$/) === -1)) {
+    const err = new Error("Bad stateId in confirm-login");
+    next(err);
+    return;
   }
+  stateId = stateId || req.deviceId;
+
   try {
+    const isValid = await checkState(stateId, data[0]);
+    if (!isValid) {
+      throw errors.badState();
+    }
     const { access_token: accessToken } = await tradeCode(code);
     const { uid: accountId } = await getAccountId(accessToken);
 
-    if (!req.deviceId) {
-      sendAccountIdCookie(req, res, accountId);
-      const pageUri = endpoint ? "/" + endpoint : "/";
-      res.redirect(pageUri);
+    if (req.deviceId) {
+      await registerAccount(req.deviceId, accountId, accessToken);
+      const { avatar, displayName, email } = await fetchProfileData(accessToken);
+      await saveProfileData(accountId, avatar, displayName, email);
     }
 
-    await registerAccount(req.deviceId, accountId, accessToken);
-    const { avatar, displayName, email } = await fetchProfileData(accessToken);
-    await saveProfileData(accountId, avatar, displayName, email);
     if (config.gaId) {
       const analytics = ua(config.gaId);
       analytics.event({
