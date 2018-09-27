@@ -165,6 +165,10 @@ class Shot extends AbstractShot {
     this.ownerId = ownerId;
   }
 
+  isOwner(deviceId, accountId) {
+    return (this.ownerId && this.ownerId === deviceId) || (this.accountId && this.accountId === accountId);
+  }
+
   oembedJson({maxheight, maxwidth}) {
     const body = renderOembedString({shot: this, maxheight, maxwidth, backend: this.backend});
     return {
@@ -326,12 +330,13 @@ class Shot extends AbstractShot {
 
 Shot.getRawBytesForClip = function(uid) {
   return db.select(
-    `SELECT images.url, images.contenttype, data.deviceid
-     FROM images
+    `SELECT images.url, images.contenttype, data.deviceid, devices.accountid
+     FROM images, devices
       JOIN data ON images.shotid = data.id
      WHERE images.id = $1
       AND (data.expire_time IS NULL OR data.expire_time > NOW())
       AND data.block_type = 'none'
+      AND data.deviceid = devices.id
       AND NOT data.deleted`, [uid]
   ).then((rows) => {
     if (!rows.length) {
@@ -340,6 +345,7 @@ Shot.getRawBytesForClip = function(uid) {
     return get(uid, rows[0].contenttype)
       .then(result => {
         result.ownerId = rows[0].deviceid;
+        result.accountId = rows[0].accountid;
         return result;
       });
   });
@@ -414,8 +420,8 @@ Shot.getFullShot = function(backend, id) {
     throw new Error("Empty id: " + id);
   }
   return db.select(
-    `SELECT value, deviceid FROM data
-    WHERE data.id = $1`,
+    `SELECT value, deviceid, devices.accountid FROM data, devices
+    WHERE data.deviceid = devices.id AND data.id = $1`,
     [id]
   ).then((rows) => {
     if (!rows.length) {
@@ -424,6 +430,7 @@ Shot.getFullShot = function(backend, id) {
     const row = rows[0];
     const json = JSON.parse(row.value);
     const shot = new Shot(row.userid, backend, id, json);
+    shot.accountId = row.accountid;
     return shot;
   });
 };
@@ -484,7 +491,7 @@ Shot.emptyShotsPage = {
 };
 
 Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pageNumber) {
-  if (!deviceId) {
+  if (!deviceId && !accountId) {
     throw new Error("Empty deviceId: " + deviceId);
   }
   if (pageNumber < 1) {

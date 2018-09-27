@@ -15,6 +15,7 @@ const queryParamModelPropertyMap = {
 };
 
 exports.launch = function(m) {
+  console.log("rendering with model hasDeviceId", m.hasDeviceId);
   if (m.hasDeviceId) {
     if (m.shots) {
       m.shots = m.shots.map((shot) => {
@@ -235,6 +236,7 @@ window.addEventListener("popstate", () => {
 });
 
 function refreshModel() {
+  console.log("calling refreshModel");
   const req = new XMLHttpRequest();
   let url = "/shots?withdata=true&data=json";
   const extraQueryParams = buildQueryStringFromModel(queryParamModelPropertyMap, model);
@@ -243,6 +245,7 @@ function refreshModel() {
   }
   req.open("GET", url);
   req.onload = function() {
+    console.log("got request back");
     document.body.classList.remove("search-results-loading");
     if (req.status !== 200) {
       console.warn("Error refreshing:", req.status, req);

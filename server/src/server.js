@@ -758,7 +758,7 @@ app.get("/data/:id/:domain", function(req, res) {
 });
 
 app.post("/api/delete-shot", function(req, res) {
-  if (!req.deviceId) {
+  if (!req.deviceId && !req.accountId) {
     sendRavenMessage(req, "Attempt to delete shot without login");
     simpleResponse(res, "Not logged in", 401);
     return;
@@ -1065,15 +1065,16 @@ const END_POINT_SEPARATOR = "|";
 
 // Get OAuth client params for the client-side authorization flow.
 app.get("/api/fxa-oauth/login/*", async function(req, res, next) {
-  if (!req.deviceId) {
-    next(errors.missingSession());
-    return;
-  }
-
   try {
     const stateBytes = await randomBytes(32);
     let state = stateBytes.toString("hex");
-    const inserted =  await setState(req.deviceId, state);
+    const cookies = new Cookies(req, res, {keys: dbschema.getKeygrip("auth")});
+    const stateId = req.deviceId || String(Math.random());
+    if (!req.deviceId) {
+      cookies.set("fxaState", stateId, {signed: true});
+    }
+
+    const inserted =  await setState(stateId, state);
     if (!inserted) {
       throw errors.dupeLogin();
     }
@@ -1093,11 +1094,6 @@ app.get("/api/fxa-oauth/login/*", async function(req, res, next) {
 });
 
 app.get("/api/fxa-oauth/confirm-login", async function(req, res, next) {
-  if (!req.deviceId) {
-    next(errors.missingSession());
-    return;
-  }
-
   if (!req.query) {
     next(errors.missingParams());
     return;
@@ -1109,7 +1105,9 @@ app.get("/api/fxa-oauth/confirm-login", async function(req, res, next) {
   const data = state.split(END_POINT_SEPARATOR, 2);
   const endpoint = data[1];
 
-  const isValid = await checkState(req.deviceId, data[0]);
+  const cookies = new Cookies(req, res, {keys: dbschema.getKeygrip("auth")});
+  const stateId = cookies.get("fxaState") || req.deviceId;
+  const isValid = await checkState(stateId, data[0]);
   if (!isValid) {
     throw errors.badState();
   }
