@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Pagina da partenza da Screenshots
 bannerMessage = T'annunzia u ta registrescha per acceder a tes maletgs dal visur cun agid da mintga apparat e memorisar tes favurits per adina.
+bannerUpsell = { gScreenshotsDescription } <a>Telechargiar Firefox</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = Vuls ti propi stizzar definitivamain quest maletg dal vi
 shotPageShareButton =
     .title = Cundivider
 shotPageCopy = Copiar
+shotPageCopyButton =
+    .title = Copiar il maletg en l'archiv provisoric
 shotPageCopied = Copià
 shotPageShareFacebook =
     .title = Cundivider sin Facebook
@@ -143,7 +146,6 @@ shotPageDraw = Dissegnar
 shotPageFavorite = Favurit
 shotPageDelete = Stizzar
 shotPageScreenshotsDescription = Maletgs dal visur en in batterdegl. Prender, memorisar e cundivider maletgs dal visur senza bandunar Firefox.
-shotPageUpsellFirefox = Ussa ir per Firefox
 shotPageDMCAMessage = Quest maletg n'è betg pli disponibel perquai che terzas persunas ha fatg valair ina violaziun dals dretgs d'autur.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Scriva p.pl. a { $dmca } per retschaiver ulteriuras infurmaziuns.
@@ -273,6 +275,13 @@ textToolCancelButton = Interrumper
 textToolInputPlaceholder =
     .placeholder = Chau
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Igl ha dà in problem
+copyImageErrorMessage = Impussibel da copiar tes maletg en l'archiv provisoric.
+
 ## Settings Page
 
 settingsDisconnectButton = Deconnectar
@@ -299,8 +308,6 @@ shotIndexPageSearchResultsTitle = Mes maletgs: tschertgar { $searchTerm }
 shotIndexPageErrorRendering = Errur durant generar la pagina: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Tschertgar en mes maletgs
-shotIndexPageSearchButton =
-    .title = Tschertgar
 shotIndexPageNoShotsMessage = Nagins maletgs memorisads.
 shotIndexPageNoShotsInvitation = Dai! Creescha insaquants.
 shotIndexPageLookingForShots = Nus tschertgain tes maletgs…
@@ -324,6 +331,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Quest maletg è in favurit e na scroda betg
+shotIndexSyncedShot =
+    .title = Maletg fatg cun in auter apparat
 
 ## Delete Confirmation Dialog
 
