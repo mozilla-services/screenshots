@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Startpagina van Screenshots
 bannerMessage = Meld u aan of registreer om uw afbeeldingen op meerdere apparaten te benaderen en uw favorieten voor altijd op te slaan.
+bannerUpsell = { gScreenshotsDescription } <a>Firefox nu downloaden</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = Weet u zeker dat u deze afbeelding definitief wilt verwi
 shotPageShareButton =
     .title = Delen
 shotPageCopy = Kopiëren
+shotPageCopyButton =
+    .title = Afbeelding naar klembord kopiëren
 shotPageCopied = Gekopieerd
 shotPageShareFacebook =
     .title = Delen op Facebook
@@ -143,7 +146,6 @@ shotPageDraw = Tekenen
 shotPageFavorite = Favoriet maken
 shotPageDelete = Verwijderen
 shotPageScreenshotsDescription = Schermafbeeldingen worden makkelijk. Maak, bewaar en deel schermafbeeldingen zonder Firefox te verlaten.
-shotPageUpsellFirefox = Download Firefox nu
 shotPageDMCAMessage = Deze afbeelding is vanwege een claim op intellectueel eigendom door een externe partij niet meer beschikbaar.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Stuur een e-mail naar { $dmca } om meer informatie op te vragen.
@@ -273,6 +275,13 @@ textToolCancelButton = Annuleren
 textToolInputPlaceholder =
     .placeholder = Hallo
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Er is iets misgegaan
+copyImageErrorMessage = Kan uw afbeelding niet naar het klembord kopiëren.
+
 ## Settings Page
 
 settingsDisconnectButton = Verbinding verbreken
@@ -299,8 +308,6 @@ shotIndexPageSearchResultsTitle = Mijn afbeeldingen: zoeken naar { $searchTerm }
 shotIndexPageErrorRendering = Fout bij weergeven van pagina: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Mijn afbeeldingen doorzoeken
-shotIndexPageSearchButton =
-    .title = Zoeken
 shotIndexPageNoShotsMessage = Geen opgeslagen afbeeldingen.
 shotIndexPageNoShotsInvitation = Toe maar, maak er een paar.
 shotIndexPageLookingForShots = Zoeken naar uw afbeeldingen…
@@ -324,6 +331,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Deze afbeelding is een favoriet en verloopt niet
+shotIndexSyncedShot =
+    .title = Op ander apparaat gemaakte afbeelding
 
 ## Delete Confirmation Dialog
 
