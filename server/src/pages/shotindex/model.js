@@ -6,9 +6,10 @@ exports.createModel = function(req) {
   if (query) {
     title = req.getText("shotIndexPageSearchResultsTitle", {searchTerm: query});
   }
+  console.log("rendering with req auth", req.deviceId, req.accountId);
   const serverModel = {
     title,
-    hasDeviceId: req.deviceId !== undefined,
+    hasDeviceId: req.deviceId !== undefined || req.accountId !== undefined,
     defaultSearch: query || null,
   };
   serverModel.shotsPerPage = req.shotsPerPage;

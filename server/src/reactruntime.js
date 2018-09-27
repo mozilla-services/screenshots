@@ -37,6 +37,7 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
       localeScripts.push(<script key={`l10n-${locale}`} src={this.props.staticLink(`/static/locales/${locale}.js`)} />);
     }
 
+    console.log("include wantsauth?", {authenticatied: this.props.authenticated, hasFxa: this.props.hasFxa, authFxa: this.props.authFxa});
     const wantsAuth = (!this.props.authenticated) ||
                       (this.props.authenticated && !this.props.hasFxa && this.props.authFxa);
     return (

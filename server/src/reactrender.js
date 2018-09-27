@@ -24,7 +24,7 @@ exports.render = function(req, res, page) {
     let serverModel = model.serverModel || model;
     const csrfToken = req.csrfToken && req.csrfToken();
     jsonModel = Object.assign({
-      authenticated: !!req.deviceId,
+      authenticated: !!(req.deviceId || req.accountId),
       hasFxa: !!req.accountId,
       authFxa: !!req.query.auth,
       sentryPublicDSN: req.config.sentryPublicDSN,
@@ -37,7 +37,7 @@ exports.render = function(req, res, page) {
       parseMarkup,
     }, jsonModel);
     serverModel = Object.assign({
-      authenticated: !!req.deviceId,
+      authenticated: !!(req.deviceId || req.accountId),
       hasFxa: !!req.accountId,
       authFxa: !!req.query.auth,
       sentryPublicDSN: req.config.sentryPublicDSN,

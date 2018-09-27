@@ -79,6 +79,8 @@ class Body extends React.Component {
       <reactruntime.BodyTemplate {...this.props}>
         <HomePageHeader isOwner={this.props.showMyShots} isFirefox={this.props.isFirefox}
           hasFxa={this.props.hasFxa} />
+        {this.props.showMyShots ? null : <a href="/api/fxa-oauth/login/">Login</a>}
+
         <div className="banner">
           <div className="banner-image-back" />
           <div className="banner-container">

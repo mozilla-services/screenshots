@@ -760,7 +760,7 @@ app.get("/data/:id/:domain", function(req, res) {
 });
 
 app.post("/api/delete-shot", function(req, res) {
-  if (!req.deviceId) {
+  if (!req.deviceId && !req.accountId) {
     sendRavenMessage(req, "Attempt to delete shot without login");
     simpleResponse(res, "Not logged in", 401);
     return;
@@ -1070,13 +1070,20 @@ const END_POINT_SEPARATOR = "|";
 
 // Get OAuth client params for the client-side authorization flow.
 app.get("/api/fxa-oauth/login/*", function(req, res, next) {
-  if (!req.deviceId) {
+  /*if (!req.deviceId) {
     next(errors.missingSession());
     return;
-  }
+  }*/
   randomBytes(32).then(stateBytes => {
     const state = stateBytes.toString("hex");
-    return setState(req.deviceId, state).then(inserted => {
+    // FIXME: should be a different name than "auth":
+    const cookies = new Cookies(req, res, {keys: dbschema.getKeygrip("auth")});
+    const stateId = req.deviceId || String(Math.random());
+    if (!req.deviceId) {
+      cookies.set("fxaState", stateId, {signed: true});
+    }
+    console.log("Using oauth state", stateId);
+    return setState(stateId, state).then(inserted => {
       if (!inserted) {
         throw errors.dupeLogin();
       }
@@ -1095,10 +1102,10 @@ app.get("/api/fxa-oauth/login/*", function(req, res, next) {
 });
 
 app.get("/api/fxa-oauth/confirm-login", function(req, res, next) {
-  if (!req.deviceId) {
+  /*if (!req.deviceId) {
     next(errors.missingSession());
     return;
-  }
+  }*/
 
   if (!req.query) {
     next(errors.missingParams());
@@ -1111,33 +1118,52 @@ app.get("/api/fxa-oauth/confirm-login", function(req, res, next) {
   const data = state.split(END_POINT_SEPARATOR, 2);
   const endpoint = data[1];
 
-  checkState(req.deviceId, data[0]).then(isValid => {
+  const cookies = new Cookies(req, res, {keys: dbschema.getKeygrip("auth")});
+  const stateId = cookies.get("fxaState") || req.deviceId;
+  console.log("trying to verify with state", stateId, data[0]);
+  checkState(stateId, data[0]).then(isValid => {
+    console.log("after checkState", isValid);
     if (!isValid) {
       throw errors.badState();
     }
     return tradeCode(code);
   }).then(({ access_token: accessToken }) => {
+    console.log("after tradeCode", accessToken);
     return getAccountId(accessToken).then(({ uid: accountId }) => {
-      return registerAccount(req.deviceId, accountId, accessToken).then(() => {
-        return fetchProfileData(accessToken).then(({ avatar, displayName, email }) => {
-          return saveProfileData(accountId, avatar, displayName, email);
-        }).then(() => {
-          if (config.gaId) {
-            const analytics = ua(config.gaId);
-            analytics.event({
-              ec: "server",
-              ea: "fxa-login",
-              ua: req.headers["user-agent"],
-            }).send();
-          }
-          // Redirect to endpoint with auth param indicating successful Fxa auth flow.
-          // 'auth' param is used in reactrender and reactruntime to load wantsauth.js
-          // and display Fxa SignIn button state when request doesn't have accountId
-          // right after fxa-ouath/confirm-login redirection.
-          const pageUri = endpoint ? "/" + endpoint : "/";
-          res.redirect(pageUri + "?auth=1");
-        });
-      }).catch(next);
+      console.log("after accountId", accountId);
+      let promise = Promise.resolve();
+      if (req.deviceId) {
+        promise = registerAccount(req.deviceId, accountId, accessToken).then(() => {
+          return fetchProfileData(accessToken).then(({ avatar, displayName, email }) => {
+            return saveProfileData(accountId, avatar, displayName, email);
+          }).then(() => {
+            if (config.gaId) {
+              const analytics = ua(config.gaId);
+              analytics.event({
+                ec: "server",
+                ea: "fxa-login",
+                ua: req.headers["user-agent"],
+              }).send();
+            }
+            // Redirect to endpoint with auth param indicating successful Fxa auth flow.
+            // 'auth' param is used in reactrender and reactruntime to load wantsauth.js
+            // and display Fxa SignIn button state when request doesn't have accountId
+            // right after fxa-ouath/confirm-login redirection.
+            const pageUri = endpoint ? "/" + endpoint : "/";
+            // FIXME:
+            // We should be setting the accountid cookie in both paths, like this:
+            const cookies = new Cookies(req, res, {keys: dbschema.getKeygrip("auth")});
+            cookies.set("accountid", accountId, {signed: true});
+            res.redirect(pageUri);
+          });
+        }).catch(next);
+      } else {
+        const cookies = new Cookies(req, res, {keys: dbschema.getKeygrip("auth")});
+        cookies.set("accountid", accountId, {signed: true});
+        const pageUri = endpoint ? "/" + endpoint : "/";
+        res.redirect(pageUri);
+      }
+      return promise;
     }).catch(next);
   }).catch(next);
 });
