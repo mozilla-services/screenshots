@@ -1,10 +1,12 @@
 {
-  // See https://github.com/mozilla-services/screenshots/issues/4397
   "exceptions": [
-    "https://nodesecurity.io/advisories/566",
-    "https://nodesecurity.io/advisories/577",
-    "https://nodesecurity.io/advisories/598",
-    "https://nodesecurity.io/advisories/663",
-    "https://nodesecurity.io/advisories/664"
+    "https://npmjs.com/advisories/118",
+    "https://npmjs.com/advisories/534",
+    "https://npmjs.com/advisories/566",
+    "https://npmjs.com/advisories/577",
+    "https://npmjs.com/advisories/598",
+    "https://npmjs.com/advisories/663",
+    "https://npmjs.com/advisories/664",
+    "https://npmjs.com/advisories/681"
    ]
 }

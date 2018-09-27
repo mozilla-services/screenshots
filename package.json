@@ -95,6 +95,7 @@
     "lint:flake8": "make flake8",
     "lint:js": "eslint .",
     "lint:sass": "sass-lint -v -q",
+    "lint:deps": "./bin/filtered_npm_audit.sh",
     "postlint": "npm audit || true",
     "posttest": "npm run lint",
     "test": "bin/test-helpers/make_addon_with_unavailable_server && mocha test/ test/server/unit/*",
