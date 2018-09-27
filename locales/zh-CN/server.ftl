@@ -100,6 +100,8 @@ shotPageConfirmDelete = 您确定要永久删除此截图？
 shotPageShareButton =
     .title = 分享
 shotPageCopy = 复制
+shotPageCopyButton =
+    .title = 将截图复制到剪贴板
 shotPageCopied = 已复制
 shotPageShareFacebook =
     .title = 分享到 Facebook
@@ -142,7 +144,6 @@ shotPageDraw = 绘制
 shotPageFavorite = 收藏
 shotPageDelete = 删除
 shotPageScreenshotsDescription = 使截图更简单。截取、保存以及分享截图，一切都在 Firefox。
-shotPageUpsellFirefox = 立即获取 Firefox
 shotPageDMCAMessage = 由于第三方宣告知识产权，此截图不再可用。
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = 请发送电子邮件至 { $dmca } 来请求进一步信息。
@@ -254,6 +255,13 @@ textToolCancelButton = 取消
 textToolInputPlaceholder =
     .placeholder = 你好
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = 出了点问题
+copyImageErrorMessage = 无法将截图复制到剪贴板。
+
 ## Settings Page
 
 settingsDisconnectButton = 断开连接
@@ -280,8 +288,6 @@ shotIndexPageSearchResultsTitle = 我的截图：搜索 { $searchTerm }
 shotIndexPageErrorRendering = 呈现页面时出错：{ $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = 搜索我的截图
-shotIndexPageSearchButton =
-    .title = 搜索
 shotIndexPageNoShotsMessage = 没有保存截图。
 shotIndexPageNoShotsInvitation = 快来创建一些吧。
 shotIndexPageLookingForShots = 正在查找您的截图…
@@ -305,6 +311,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = 这是一张收藏的截图，不会过期
+shotIndexSyncedShot =
+    .title = 其他设备上的截图
 
 ## Delete Confirmation Dialog
 
