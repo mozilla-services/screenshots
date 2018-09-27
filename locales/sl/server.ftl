@@ -343,6 +343,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Ta posnetek je med priljubljenimi in ne preteče
+shotIndexSyncedShot =
+    .title = Posnetek zajet na drugi napravi
 
 ## Delete Confirmation Dialog
 
