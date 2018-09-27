@@ -101,6 +101,8 @@ shotPageConfirmDelete = Desira tu vermente deler permanentemente iste instantane
 shotPageShareButton =
     .title = Compartir
 shotPageCopy = Copiar
+shotPageCopyButton =
+    .title = Copiate imagine al area de transferentia!
 shotPageCopied = Copiate
 shotPageShareFacebook =
     .title = Compartir in Facebook
@@ -143,7 +145,6 @@ shotPageDraw = Designar
 shotPageFavorite = Favorite
 shotPageDelete = Deler
 shotPageScreenshotsDescription = Le instantaneos de schermo a un maniera simple. Captura, salva e comparti le instantaneos de tu schermo sin exir de Firefox.
-shotPageUpsellFirefox = Discarga subito Firefox
 shotPageDMCAMessage = Iste instantaneo non es plus disponibile per un reclamation de proprietate intellectual de tertie parte.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Per favor e-posta { $dmca } pro querer altere informationes.
@@ -273,6 +274,13 @@ textToolCancelButton = Cancellar
 textToolInputPlaceholder =
     .placeholder = Holla
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Alco errate eveniva
+copyImageErrorMessage = Impossibile copiar tu instantaneo al tabula de transferentia
+
 ## Settings Page
 
 settingsDisconnectButton = Disconnecter
@@ -299,8 +307,6 @@ shotIndexPageSearchResultsTitle = Mi Instantaneos: recerca { $searchTerm }
 shotIndexPageErrorRendering = Error a generar un pagina: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Recercar mi instantaneos
-shotIndexPageSearchButton =
-    .title = Recercar
 shotIndexPageNoShotsMessage = Instantaneos non salvate
 shotIndexPageNoShotsInvitation = Va, crea los.
 shotIndexPageLookingForShots = Recerca de tu instantaneos...
@@ -324,6 +330,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Isto es un instantaneo favorite e non expira
+shotIndexSyncedShot =
+    .title = Instantaneo capturate sur un altere apparato
 
 ## Delete Confirmation Dialog
 
