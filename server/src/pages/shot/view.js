@@ -198,8 +198,15 @@ class Body extends React.Component {
     this.setState({
       highlightEditButton: this.props.highlightEditButton || this.props.promoDialog,
       promoDialog: this.props.promoDialog,
-      canCopy: !!this.props.canCopy,
+      isClient: true,
     });
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (state.canCopy !== props.canCopy) {
+      return {canCopy: props.canCopy};
+    }
+    return null;
   }
 
   clickDeleteHandler() {
@@ -386,7 +393,7 @@ class Body extends React.Component {
         </button>
       </Localized></div>;
 
-    const copyButton = <div className="copy-img-button" hidden={!this.state.canCopy}>
+    const copyButton = <div className="copy-img-button" hidden={this.state.isClient && !this.state.canCopy}>
       <Localized id="shotPageCopyButton" attrs={{title: true}}>
         <button className="nav-button icon-copy transparent copy"
           title="Copy image to clipboard"

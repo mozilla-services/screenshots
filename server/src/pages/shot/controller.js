@@ -78,7 +78,6 @@ exports.launch = function(data) {
   }
   model.highlightEditButton = shouldHighlightEditIcon(model);
   model.promoDialog = shouldShowPromo(model);
-  document.dispatchEvent(new CustomEvent("request-addon-present"));
 
   if (firstSet) {
     refreshHash();
@@ -106,6 +105,8 @@ exports.launch = function(data) {
     } else {
       sendEvent("visit", "non-owner");
     }
+
+  document.dispatchEvent(new CustomEvent("request-addon-present"));
 };
 
 exports.changeShotExpiration = function(shot, expiration) {
