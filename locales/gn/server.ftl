@@ -279,6 +279,8 @@ textToolInputPlaceholder =
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = Oĩ osẽvaíva
+copyImageErrorMessage = Ndaikatúi embohasa nde japyhykue kuatiajokohápe.
 
 ## Settings Page
 
@@ -329,6 +331,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Kóva japyhypyre techaramovéva ha oñembyai'ỹva
+shotIndexSyncedShot =
+    .title = Jejapyhy ojejapopyre ambue mba’e’okápe
 
 ## Delete Confirmation Dialog
 
