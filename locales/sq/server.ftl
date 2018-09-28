@@ -20,6 +20,8 @@ buttonSignIn =
     .title = Hyni
 screenshotsLogo =
     .title = Kreu i Screenshots
+bannerMessage = Që të përdorni shkrepjet tuaja nga çfarëdo pajisje, dhe që t’i ruani përgjithmonë shkrepjet e parapëlqyera, bëni hyrjen në llogarinë tuaj ose regjistrohuni për një të tillë.
+bannerUpsell = { gScreenshotsDescription } <a>Merreni Firefox-in që tani</a>
 
 ## Footer
 
@@ -100,6 +102,8 @@ shotPageConfirmDelete = Jeni i sigurt se doni të fshihet përgjithnjë kjo foto
 shotPageShareButton =
     .title = Ndajeni me të tjerë
 shotPageCopy = Kopjoje
+shotPageCopyButton =
+    .title = Kopjoje figurën në të papastër
 shotPageCopied = U kopjua
 shotPageShareFacebook =
     .title = Ndajeni në Facebook
@@ -128,15 +132,20 @@ shotPageDownloadShot =
     .title = Shkarkoje
 shotPageEditButton =
     .title = Përpunoni këtë figurë
+shotPagefavoriteButton =
+    .title = Bëje këtë shkrepje të parapëlqyer
 shotPageBackToHomeButton =
     .title = Kreu
 shotPageAllShotsButton =
     .title = Krejt Shkrepjet
 shotPageAllShots = Krejt Shkrepjet
 shotPageDownload = Shkarkoje
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Vizatoni
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Bëje të parapëlqyer
 shotPageDelete = Fshije
 shotPageScreenshotsDescription = Screenshots-i i thjeshtuar. Bëni, ruani dhe ndani foto ekrani pa dalë nga Firefox-i.
-shotPageUpsellFirefox = Merreni Firefox-in që tani
 shotPageDMCAMessage = Kjo foto s’mund të kihet më, për shkak pretendimesh pronësie intelektuale nga palë e tretë.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Që të kërkoni informacione të mëtejshme, ju lutemi, dërgoni një email te { $dmca }.
@@ -199,6 +208,8 @@ errorThirdPartyCookiesEnabled = Nëse bëtë këtë foto dhe s’e fshini dot, m
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Mbani Shënim!
 promoMessage = Mjetet e përditësuara të përpunimit ju lejojnë të qethni, theksoni, dhe madje të shtoni tekst te shkrepjet tuaja.
 promoLink = Provojini
 promoCloseButton =
@@ -263,6 +274,13 @@ textToolCancelButton = Anuloje
 textToolInputPlaceholder =
     .placeholder = Tungjatjeta
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Diç shkoi ters
+copyImageErrorMessage = S’u arrit të kopjohej në të papastër shkrepja juaj.
+
 ## Settings Page
 
 settingsDisconnectButton = Shkëputu
@@ -289,8 +307,6 @@ shotIndexPageSearchResultsTitle = Fotot e Mia: kërkoni për { $searchTerm }
 shotIndexPageErrorRendering = Gabim në vizatimin e faqes: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Kërko te fotot e mia
-shotIndexPageSearchButton =
-    .title = Kërko
 shotIndexPageNoShotsMessage = S’ka foto të ruajtura.
 shotIndexPageNoShotsInvitation = Jepini, krijoni ndonjë.
 shotIndexPageLookingForShots = Po shihet për foto tuajat…
@@ -305,17 +321,17 @@ shotIndexPagePreviousPage =
     .title = Faqja e mëparshme
 shotIndexPageNextPage =
     .title = Faqja pasuese
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Kjo foto nuk skadon kurrë
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Kjo s’është një shkrepje nga të parapëlqyerat dhe do të skadojë
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Kjo është një foto e parapëlqyer dhe nuk skadon
+shotIndexSyncedShot =
+    .title = Shkrepje e bërë në pajisje tjetër
 
 ## Delete Confirmation Dialog
 
