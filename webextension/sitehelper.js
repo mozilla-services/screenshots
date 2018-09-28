@@ -63,8 +63,10 @@ this.sitehelper = (function() {
   registerListener("request-login", catcher.watchFunction((event) => {
     const shotId = event.detail;
     catcher.watchPromise(callBackground("getAuthInfo", shotId || null).then((info) => {
-      sendBackupCookieRequest(info.authHeaders);
-      sendCustomEvent("login-successful", {deviceId: info.deviceId, accountId: info.accountId, isOwner: info.isOwner, backupCookieRequest: true});
+      if (info) {
+        sendBackupCookieRequest(info.authHeaders);
+        sendCustomEvent("login-successful", {deviceId: info.deviceId, accountId: info.accountId, isOwner: info.isOwner, backupCookieRequest: true});
+      }
     }));
   }));
 
