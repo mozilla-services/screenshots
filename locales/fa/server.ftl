@@ -18,6 +18,10 @@ buttonSettings =
     .title = تنظیمات
 buttonSignIn =
     .title = ورود
+screenshotsLogo =
+    .title = صفحه خانگی تصاویر صفحه
+bannerMessage = برای دسترسی به عکس‌ها در تمام دستگاه‌هایتان و ذخیره همیشگی عکس‌های مورد علاقه‌تان، وارد شوید یا ثبت نام کنید.
+bannerUpsell = { gScreenshotsDescription } <a>هم‌اکنون فایرفاکس را دریافت کنید</a>
 
 ## Footer
 
@@ -25,6 +29,8 @@ buttonSignIn =
 footerLinkMozilla = موزیلا
 footerLinkTerms = شرایط استفاده
 footerLinkPrivacy = نکات حفظ حریم‌شخصی
+footerReportShot = گزارش عکس
+    .title = این عکس را به خاطر سواستفاده، هرزنامه یا مشکلات دیگر گزارش کنید
 footerLinkFaqs = سوالات متداول
 footerLinkDMCA = گزارش تخلف IP
 footerLinkDiscourse = ارسال بازخورد
@@ -96,6 +102,8 @@ shotPageConfirmDelete = آیا مطمئن هستید که می‌خواهید ا
 shotPageShareButton =
     .title = هم‌رسانی
 shotPageCopy = رونوشت
+shotPageCopyButton =
+    .title = رونشت عکس به کلیپ‌بورد
 shotPageCopied = رونوشت شد
 shotPageShareFacebook =
     .title = هم‌رسانی در فیسبوک
@@ -124,17 +132,20 @@ shotPageDownloadShot =
     .title = دریافت
 shotPageEditButton =
     .title = ویرایش این تصویر
+shotPagefavoriteButton =
+    .title = این عکس را محبوب کنید
 shotPageBackToHomeButton =
     .title = صفحه خانگی
 shotPageAllShotsButton =
     .title = همه عکس‌ها
 shotPageAllShots = همه عکس‌ها
 shotPageDownload = دریافت
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = کشیدن
 # Note: Favorite text is used on shot page as a verb (action)
 shotPageFavorite = محبوب
 shotPageDelete = حذف
 shotPageScreenshotsDescription = Screenshots ساده ساخته شده است. بدون خروج از فایرفاکس عکس بگیرید، ذخیره و هم‌رسان کنید.
-shotPageUpsellFirefox = هم اکنون فایرفاکس را دریافت کنید
 shotPageDMCAMessage = این عکس به دلیل درخواست مالکیت معنوی یک شخص ثالث، دیگر در دسترس نیست.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = لطفا برای درخواست اطلاعات بیشتر به { $dmca } ایمیل بزنید.
@@ -296,8 +307,6 @@ shotIndexPageSearchResultsTitle = عکس‌های من : جستجو کن برا�
 shotIndexPageErrorRendering = خطا هنگام پردازش کردن صفحه: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = جستجو در عکس‌های من
-shotIndexPageSearchButton =
-    .title = جستجو
 shotIndexPageNoShotsMessage = عکس ذخیره شده‌ای وجود ندارد.
 shotIndexPageNoShotsInvitation = ادامه بده، چندتا بساز.
 shotIndexPageLookingForShots = در حال گشتن برای عکس‌های شما…
@@ -312,6 +321,17 @@ shotIndexPagePreviousPage =
     .title = صفحه قبل
 shotIndexPageNextPage =
     .title = صفحه بعد
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = این عکس در فهرست موردعلاقه‌های شما قرار ندارد و منقضی خواهد شد
+# This is the tooltip for a "heart" symbol in the upper top corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = این عکس در فهرست موردعلاقه‌های شما قرار دارد و منقضی نخواهد شد
+shotIndexSyncedShot =
+    .title = عکس گرفته شده در دستگاه دیگر
 
 ## Delete Confirmation Dialog
 
