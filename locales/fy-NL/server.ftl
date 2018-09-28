@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Startside fan Screenshots
 bannerMessage = Meld jo oan of registrearje om jo ôfbyldingen op mear apparaten te benaderjen en jo favoriten foar altyd te bewarjen.
+bannerUpsell = { gScreenshotsDescription } <a>Firefox no downloade</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = Binne jo wis dat jo dizze ôfbylding definityf fuortsmit
 shotPageShareButton =
     .title = Diele
 shotPageCopy = Kopiearje
+shotPageCopyButton =
+    .title = Ofbylding nei klamboerd kopiearje
 shotPageCopied = Kopiearre
 shotPageShareFacebook =
     .title = Diele op Facebook
@@ -143,7 +146,6 @@ shotPageDraw = Tekenje
 shotPageFavorite = Favoryt meitsje
 shotPageDelete = Fuortsmite
 shotPageScreenshotsDescription = Skermôfbyldingen wurde maklik. Meitsje, bewarje en diel skermôfbyldingen sûnder Firefox te ferlitten.
-shotPageUpsellFirefox = Download Firefox no
 shotPageDMCAMessage = Dizze ôfbylding is fanwegen in claim op yntellektueel eigendom troch in eksterne partij net mear beskikber.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Stjoer in e-mail nei { $dmca } om mear ynformaasje op te freegjen.
@@ -273,6 +275,13 @@ textToolCancelButton = Annulearje
 textToolInputPlaceholder =
     .placeholder = Hallo
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Der is wat misgien
+copyImageErrorMessage = Kin jo ôfbylding net nei it klamboard kopiearje.
+
 ## Settings Page
 
 settingsDisconnectButton = Ferbrekke
@@ -299,8 +308,6 @@ shotIndexPageSearchResultsTitle = Myn ôfbyldingen: sykje nei { $searchTerm }
 shotIndexPageErrorRendering = Flater by werjaan fan side: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Myn ôfbyldingen trochsykje
-shotIndexPageSearchButton =
-    .title = Sykje
 shotIndexPageNoShotsMessage = Gjin bewarre ôfbyldingen.
 shotIndexPageNoShotsInvitation = Toe mar, meitsje der in pear.
 shotIndexPageLookingForShots = Sykje nei jo ôfbyldingen…
@@ -324,6 +331,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Dizze skermôfdruk is in favoryt en ferrint net
+shotIndexSyncedShot =
+    .title = Op oar apparaat makke ôfbylding
 
 ## Delete Confirmation Dialog
 
