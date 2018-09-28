@@ -20,6 +20,8 @@ buttonSignIn =
     .title = Jeike
 screenshotsLogo =
     .title = Screenshots kuatiarogue ñepyrũ
+bannerMessage = Emoñepyrũ tembiapo eike hag̃ua ne ra’angakuérape opaite mba’e’oka guive ha eñongatu umi erohoryvéva opa árape g̃uarãva.
+bannerUpsell = { gScreenshotsDescription } <a>Eguereko Firefox ko'ág̃a</a>
 
 ## Footer
 
@@ -100,6 +102,8 @@ shotPageConfirmDelete = ¿Emboguesetépa ko japyhypy opa árape g̃uarã?
 shotPageShareButton =
     .title = Moherakuã
 shotPageCopy = Monguatia
+shotPageCopyButton =
+    .title = Embohasa ta'anga kuatiajokohápe
 shotPageCopied = Monguatiapyre
 shotPageShareFacebook =
     .title = Emoherakuã Facebook-pe
@@ -142,7 +146,6 @@ shotPageDraw = Moha'anga
 shotPageFavorite = Guerohoryvéva
 shotPageDelete = Mboguete
 shotPageScreenshotsDescription = Japyhypy mba'erechaha jejapónteva. Eñohẽ, eñongatu ha emoherakuã mba'erechaha japyhypy eheja'ỹre Firefox.
-shotPageUpsellFirefox = Eguereko Firefox ko'ág̃a
 shotPageDMCAMessage = Ko japyhypy ndojepurukuaái peteĩ tapicha akaguai rupi ha'eha ijára.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Eguerahauka peteĩ ñanduti veve { $dmca }-pe ejerure hag̃ua maranduve.
@@ -272,6 +275,11 @@ textToolCancelButton = Heja
 textToolInputPlaceholder =
     .placeholder = Mba'éichapa
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+
 ## Settings Page
 
 settingsDisconnectButton = Ñesẽte
@@ -298,8 +306,6 @@ shotIndexPageSearchResultsTitle = Che japyhypy: eheka { $searchTerm }
 shotIndexPageErrorRendering = Jejavy emoha’angávo kuatiarogue: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Ahekáta che japyhypy
-shotIndexPageSearchButton =
-    .title = Heka
 shotIndexPageNoShotsMessage = Ndaipóri japyhypy ñongatupyre.
 shotIndexPageNoShotsInvitation = Eku’éna, emoheñóina peteĩ jepe.
 shotIndexPageLookingForShots = Ohekahína nde japyhypy…
