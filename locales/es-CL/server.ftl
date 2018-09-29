@@ -20,6 +20,8 @@ buttonSignIn =
     .title = Conectarse
 screenshotsLogo =
     .title = Inicio de Screenshots
+bannerMessage = Conéctate o registrate para acceder a tus capturas en todos tus dispositivos y guardar tus favoritas para siempre.
+bannerUpsell = { gScreenshotsDescription } <a>Obtener Firefox ahora</a>
 
 ## Footer
 
@@ -27,6 +29,8 @@ screenshotsLogo =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Términos
 footerLinkPrivacy = Aviso de privacidad
+footerReportShot = Reportar captura
+    .title = Reportar esta captura por abuso, spam u otro problema
 footerLinkFaqs = Preguntas frecuentes
 footerLinkDMCA = Reportar infracción de PI
 footerLinkDiscourse = Enviar comentario
