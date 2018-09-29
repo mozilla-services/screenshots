@@ -9,6 +9,18 @@ gHomeLink = Dhachaigh
 gNoShots =
     .alt = Cha deach glacadh a lorg
 gScreenshotsDescription = Glacaidhean-sgrìn gun duilgheadas sam bith. Tog, sàbhail is co-roinn iad gun Firefox fhàgail idir.
+gSettings = Roghainnean
+gSignIn = Clàraich a-steach
+
+## Header
+
+buttonSettings =
+    .title = Roghainnean
+buttonSignIn =
+    .title = Clàraich a-steach
+screenshotsLogo =
+    .title = Dachaidh nan glacadh-sgrìn
+bannerUpsell = { gScreenshotsDescription } <a>Faigh Firefox an-dràsta</a>
 
 ## Footer
 
@@ -16,6 +28,8 @@ gScreenshotsDescription = Glacaidhean-sgrìn gun duilgheadas sam bith. Tog, sàb
 footerLinkMozilla = Mozilla
 footerLinkTerms = Na teirmichean
 footerLinkPrivacy = Aithris na prìobhaideachd
+footerReportShot = Dèan aithris air a’ ghlacadh
+    .title = Dèan aithris air an’ ghlacadh is e ’na mhì-ghnàthachaidh, spama no air adhbhar eile
 footerLinkFaqs = CÀBHA
 footerLinkDMCA = Dèan aithris air briseadh IP
 footerLinkDiscourse = Dè do bheachd?
@@ -38,7 +52,6 @@ homePageButtonMyShots = Tadhail air na glacaidhean agam
 homePageTeaser = A’ tighinn a dh’aithghearr...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Luchdadh a-nuas an-asgaidh
-homePageGetStarted = Dèan toiseach-tòiseachaidh
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Mar a dh’obraicheas glacaidhean-sgrìn Firefox
 homePageGetStartedTitle = Toiseach tòiseachaidh
@@ -88,6 +101,8 @@ shotPageConfirmDelete = A bheil thu cinnteach gu bheil thu airson an glacadh seo
 shotPageShareButton =
     .title = Co-roinn
 shotPageCopy = Dèan lethbhreac
+shotPageCopyButton =
+    .title = Cuir lethbhreac dhen dealbh air an stòr-bhòrd
 shotPageCopied = Lethbhreac air a dhèanamh
 shotPageShareFacebook =
     .title = Co-roinn air Facebook
@@ -112,15 +127,24 @@ shotPageExpiredMessage = Dh’fhalbh an ùine air a’ ghlacadh seo.
 shotPageExpiredMessageDetails = Seo an duilleag air an deach a thogail ann:
 shotPageDeleteButton =
     .title = Sguab an glacadh seo às
-shotPageAbuseButton =
-    .title = Dèan aithris air a’ ghlacadh seo a thaobh mì-ghnàthachaidh, spama no adhbhair eile
 shotPageDownloadShot =
     .title = Luchdaich a-nuas
 shotPageEditButton =
     .title = Deasaich an dealbh seo
+shotPagefavoriteButton =
+    .title = Dèan annsachd dhen ghlacadh seo
+shotPageBackToHomeButton =
+    .title = Duilleag-dhachaigh
+shotPageAllShotsButton =
+    .title = A h-uile glacadh
+shotPageAllShots = A h-uile glacadh
 shotPageDownload = Luchdaich a-nuas
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Tarraing
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Annsachd
+shotPageDelete = Sguab às
 shotPageScreenshotsDescription = Glacaidhean-sgrìn gun duilgheadas sam bith. Tog, sàbhail is co-roinn iad gun Firefox fhàgail idir.
-shotPageUpsellFirefox = Faigh Firefox an-dràsta
 shotPageDMCAMessage = Chan eil an glacadh seo ri fhaighinn tuilleadh air sgàth tagradh an aghaidh briseadh IP a rinn cuideigin.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Cuir post-d gu { $dmca } airson barrachd fiosrachaidh.
@@ -194,6 +218,11 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Ma thog thusa an glacadh seo ’s mur urrainn dhut a sguabadh às, dh’fhaoidte gum bi agad ri briosgaidean threas-phàrtaidhean a chur an comas gu sealach ann an roghainnean a’ bhrabhsair agad.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = An aire!
+
 ## Annotations
 
 annotationPenButton =
@@ -236,6 +265,11 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Liath
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+
 ## Settings Page
 
 settingsDisconnectButton = Dì-cheangail
@@ -262,8 +296,6 @@ shotIndexPageSearchResultsTitle = Na glacaidhean agam: lorg airson { $searchTerm
 shotIndexPageErrorRendering = Mearachd a’ reandaradh na duilleige: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Lorg sna glacaidhean agam
-shotIndexPageSearchButton =
-    .title = Lorg
 shotIndexPageNoShotsMessage = Cha deach glacadh sam bith a shàbhaladh.
 shotIndexPageNoShotsInvitation = Siuthad, tog feadhainn.
 shotIndexPageLookingForShots = A’ lorg nan glacaidhean agad...
@@ -276,12 +308,6 @@ shotIndexPagePreviousPage =
     .title = An duilleag roimhe
 shotIndexPageNextPage =
     .title = An ath-dhuilleag
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Chan fhalbh an ùine air a’ ghlacadh seo
 
 ## Delete Confirmation Dialog
 
