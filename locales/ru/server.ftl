@@ -14,10 +14,14 @@ gSignIn = Войти
 
 ## Header
 
-signInButton =
-    .aria-label = Войти
-settingsButton =
-    .aria-label = Параметры
+buttonSettings =
+    .title = Параметры
+buttonSignIn =
+    .title = Войти
+screenshotsLogo =
+    .title = Главная страница Screenshots
+bannerMessage = Войдите или зарегистрируйтесь для получения доступа к вашим снимкам с различных устройств и навсегда сохраните необходимые.
+bannerUpsell = { gScreenshotsDescription } <a>Загрузить Firefox</a>
 
 ## Footer
 
@@ -25,6 +29,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Условия использования
 footerLinkPrivacy = Уведомление о конфиденциальности
+footerReportShot = Пожаловаться на снимок
+    .title = Сообщить о спаме, нарушении прав или других проблемах
 footerLinkFaqs = ЧЗВ
 footerLinkDMCA = Сообщить о нарушении авторских прав
 footerLinkDiscourse = Оставить отзыв
@@ -96,6 +102,8 @@ shotPageConfirmDelete = Вы уверены, что хотите навсегд�
 shotPageShareButton =
     .title = Поделиться
 shotPageCopy = Копировать
+shotPageCopyButton =
+    .title = Скопировать изображение в буфер обмена
 shotPageCopied = Скопировано
 shotPageShareFacebook =
     .title = Поделиться на Фейсбуке
@@ -120,17 +128,24 @@ shotPageExpiredMessage = Снимок просрочен.
 shotPageExpiredMessageDetails = Страница, из которой создан этот снимок:
 shotPageDeleteButton =
     .title = Удалить этот снимок
-shotPageAbuseButton =
-    .title = Этот снимок является оскорбительным, спамом или имеет другие проблемы
 shotPageDownloadShot =
     .title = Загрузить
 shotPageEditButton =
     .title = Изменить это изображение
 shotPagefavoriteButton =
     .title = Добавить этот снимок в избранные
+shotPageBackToHomeButton =
+    .title = Домашняя страница
+shotPageAllShotsButton =
+    .title = Все снимки
+shotPageAllShots = Все снимки
 shotPageDownload = Загрузить
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Рисовать
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = В избранное
+shotPageDelete = Удалить
 shotPageScreenshotsDescription = Скриншоты стали простыми. Делайте, сохраняйте и делитесь скриншотами, не покидая Firefox.
-shotPageUpsellFirefox = Загрузить Firefox сейчас
 shotPageDMCAMessage = Этот снимок больше недоступен из-за нарушения авторских прав третьей стороны.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Пожалуйста, напишите на { $dmca }, чтобы запросить дополнительную информацию.
@@ -266,6 +281,13 @@ textToolCancelButton = Отмена
 textToolInputPlaceholder =
     .placeholder = Привет
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Что-то пошло не так
+copyImageErrorMessage = Не удалось скопировать ваш снимок в буфер обмена.
+
 ## Settings Page
 
 settingsDisconnectButton = Отсоединить
@@ -292,13 +314,13 @@ shotIndexPageSearchResultsTitle = Мои снимки: поиск { $searchTerm 
 shotIndexPageErrorRendering = Ошибка рендеринга страницы: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Поиск моих снимков
-shotIndexPageSearchButton =
-    .title = Поиск
 shotIndexPageNoShotsMessage = Нет сохранённых снимков.
 shotIndexPageNoShotsInvitation = Давайте, сделайте несколько штук.
 shotIndexPageLookingForShots = Ищем ваши снимки...
 shotIndexPageNoSearchResultsIntro = Хмм
 shotIndexPageNoSearchResults = Мы не можем найти каких-либо снимков по вашему поисковому запросу.
+shotIndexPageMyShotsButton =
+    .title = Мои снимки
 shotIndexPageClearSearchButton =
     .title = Очистить поиск
 shotIndexPageConfirmShotDelete = Удалить этот снимок?
@@ -306,17 +328,17 @@ shotIndexPagePreviousPage =
     .title = Предыдущая страница
 shotIndexPageNextPage =
     .title = Следующая страница
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Срок хранения этого снимка неограничен
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Этот снимок не в избранном, и он будет удалён через некоторое время
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Это снимок является избранным и будет храниться бессрочно
+shotIndexSyncedShot =
+    .title = Снимок сделан на другом устройстве
 
 ## Delete Confirmation Dialog
 
