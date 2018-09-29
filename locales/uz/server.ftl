@@ -56,6 +56,8 @@ homePageDownloadFirefoxSubTitle = Bepul yuklab olish
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots’dan foydalanish
 homePageGetStartedTitle = Boshlash
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Asboblar panelidan yangi Skrinshotlar rasmchasini toping. Uni tanlang va brauzer oynasining tepasida Skrinshotlar menyusi paydo bo‘ladi.
 homePageCaptureRegion = Hududni rasmga olish
 homePageCapturePage = Sahifani rasmga olish
 homePageSaveShare = Saqlash va bo‘lishish
@@ -98,6 +100,59 @@ shotPageCopy = Nusxa olish
 shotPageCopyButton =
     .title = Rasmga vaqtinchalik xotiraga nusxa olish
 shotPageCopied = Nusxa olindi
+shotPageShareFacebook =
+    .title = Facebookda bo‘lishish
+shotPageShareTwitter =
+    .title = Twitterda bo‘lishish
+shotPageSharePinterest =
+    .title = Pinterestda bo‘lishish
+shotPageShareEmail =
+    .title = Havolani pochta orqali bo‘lishish
+shotPageShareLink = Bu skrinshot uchun bo‘lishiladigan havolani olish:
+shotPagePrivacyMessage = Bu havolani olgan har qanday inson skrinshotni ko‘ra oladi.
+shotPageCopyImageText =
+    .label = Rasm matnidan nusxa olish
+shotPageConfirmDeletion = Bu skrinshotni butunlay o‘chirib tashlamoqchimisiz?
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Hech nima qilmasangiz, bu skrinshot <timediff></timediff> o‘chib ketadi.
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = { $date }gacha tiklash
+shotPageExpiredMessage = Bu skrinshot muddati tugadi.
+# Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Bu sahifa aslida quyidagidan yaratilgan:
+shotPageDeleteButton =
+    .title = Bu skrinshotni o‘chirish
+shotPageDownloadShot =
+    .title = Yuklab olish
+shotPageEditButton =
+    .title = Bu rasmni tahrirlash
+shotPagefavoriteButton =
+    .title = Bu skrinshotni sevimli deb belgilash
+shotPageBackToHomeButton =
+    .title = Bosh sahifa
+shotPageAllShotsButton =
+    .title = Barcha skrinshotlar
+shotPageAllShots = Barcha skrinshotlar
+shotPageDownload = Yuklab olish
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Chizish
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Sevimli
+shotPageDelete = O‘chirish
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Vaqtni tanlang
+shotPageKeepTenMinutes = 10 daqiqa
+shotPageKeepOneHour = 1 soat
+shotPageKeepOneDay = 1 kun
+shotPageKeepOneWeek = 1 hafta
+shotPageKeepTwoWeeks = 2 hafta
+shotPageKeepOneMonth = 1 oy
+shotPageSaveExpiration = saqlash
+shotPageCancelExpiration = bekor qilish
+shotPageDoesNotExpire = muddati tugamaydi
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = <timediff></timediff> muddati tugaydi
 
 ## Shot Page New Feature Promotion Dialog.
 
@@ -118,7 +173,29 @@ shotPageCopied = Nusxa olindi
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = Bu skrinshotni o‘chirmoqchimisiz?
+shotDeleteCancel = Bekor qilish
+    .title = Bekor qilish
+shotDeleteConfirm = O‘chirsh
+    .title = O‘chirsh
 
 ## Metrics page
 ## All metrics strings are optional for translation
 
+# Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Firefrox Screenshots statistikasi
+metricsPageTotalsQueryTitle = Jami
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Skrinshotlar ko‘rinishi
+metricsPageTotalsQueryDevices = Ro‘yxatdan o‘tgan jami qurilmalar
+metricsPageTotalsQueryActiveShots = Faol skrinshotlar
+metricsPageTotalsQueryExpiredShots = Muddat tugadi (lekin tiklasa bo‘ladi)
+metricsPageTotalsQueryExpiredDeletedShots = Muddati tugadi (va o‘chirildi)
+metricsPageShotsQueryTitle = Kunlik skrinshotlar
+metricsPageShotsQueryDescription = Har kuni yaratilgan skrinshotlar soni (30 kun ichida)
+metricsPageShotsQueryCount = Skrinshotlar soni
+metricsPageShotsQueryDay = Kun
+metricsPageUsersQueryTitle = Kunlik foydalanuvchilar
+metricsPageUsersQueryDescription = Kunlik kamida bitta skrinshot yaratgan foydalanuvchilar soni (30 kun ichida)
+metricsPageUsersQueryCount = Foydalanuvchilar soni
+metricsPageUsersQueryDay = Kun
