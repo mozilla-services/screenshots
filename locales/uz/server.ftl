@@ -4,11 +4,22 @@
 
 ## Global phrases shared across pages, prefixed with 'g'
 
-gMyShots = Olingan rasmlar
+gMyShots = Skrinshotlar
 gHomeLink = Uy
 gNoShots =
     .alt = Rasmlar topilmadi
-gScreenshotsDescription = Skrinshotlar oson qilinadi. Firefox brauzeridan chiqmasdan skrinshot olish, saqlash va bo‘lishish mumkin.
+gScreenshotsDescription = Skrinshot olish osonlashdi. Firefox brauzeridan chiqmasdan skrinshot olish, saqlash va bo‘lishish mumkin.
+gSettings = Sozlamalar
+gSignIn = Kirish
+
+## Header
+
+buttonSettings =
+    .title = Sozlamalar
+buttonSignIn =
+    .title = Kirish
+screenshotsLogo =
+    .title = Skrinshot bosh sahifasi
 
 ## Footer
 
@@ -34,7 +45,6 @@ creatingPageWaitMessage = Rasm saqlanmoqda…
 homePageTeaser = Tezda…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Bepul yuklab olish
-homePageGetStarted = Boshlash
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots’dan foydalanish
 homePageGetStartedTitle = Boshlash
@@ -48,7 +58,15 @@ homePageGetStartedTitle = Boshlash
 ## Shot page
 
 
+## Shot Page New Feature Promotion Dialog.
+
+
 ## Annotations
+
+
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
 
 
 ## Settings Page
