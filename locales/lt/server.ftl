@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Ekranų nuotraukų pradžia
 bannerMessage = Prisijunkite, norėdami matyti savo nuotraukas visuose įrenginiuose ir amžiams išsaugoti mėgstamiausias.
+bannerUpsell = { gScreenshotsDescription } <a>Parsisiųskite „Firefox“</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = Ar tikrai norite visam laikui ištrinti šią nuotrauką
 shotPageShareButton =
     .title = Dalintis
 shotPageCopy = Kopijuoti
+shotPageCopyButton =
+    .title = Kopijuoti vaizdą į iškarpinę
 shotPageCopied = Nukopijuota
 shotPageShareFacebook =
     .title = Dalintis per „Facebook“
@@ -143,7 +146,6 @@ shotPageDraw = Piešti
 shotPageFavorite = Mėgti
 shotPageDelete = Šalinti
 shotPageScreenshotsDescription = Ekrano nuotraukos paprastai. Darykite, saugokite ir dalinkitės ekrano nuotraukomis nepalikdami „Firefox“.
-shotPageUpsellFirefox = Gauti „Firefox“ dabar
 shotPageDMCAMessage = Ši nuotrauka nepasiekiama dėl trečiųjų šalių intelektinės nuosavybės teisių.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Prašome susisiekti su { $dmca } dėl daugiau informacijos.
@@ -279,6 +281,13 @@ textToolCancelButton = Atsisakyti
 textToolInputPlaceholder =
     .placeholder = Labas
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Atsitiko kažkas negero
+copyImageErrorMessage = Jūsų nuotraukos nepavyko nukopijuoti į iškarpinę.
+
 ## Settings Page
 
 settingsDisconnectButton = Atsijungti
@@ -305,8 +314,6 @@ shotIndexPageSearchResultsTitle = Mano kardai: ieškoti { $searchTerm }
 shotIndexPageErrorRendering = Klaida atvaizduojant tinklalapį: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Ieškoti mano nuotraukų
-shotIndexPageSearchButton =
-    .title = Ieškoti
 shotIndexPageNoShotsMessage = Nėra įrašytų nuotraukų.
 shotIndexPageNoShotsInvitation = Nagi, sukurkite keletą.
 shotIndexPageLookingForShots = Ieškome jūsų nuotraukų…
@@ -330,6 +337,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Ši nuotrauka mėgstama, ir niekur nedings
+shotIndexSyncedShot =
+    .title = Nuotrauka padaryta kitame įrenginyje
 
 ## Delete Confirmation Dialog
 
