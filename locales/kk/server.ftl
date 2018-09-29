@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Скриншоттар үй парағы
 bannerMessage = Скриншоттарға әр түрлі құрылғылардан қатынау және таңдамалыларды мәңгі сақтау үшін кіріңіз немесе тіркеліңіз.
+bannerUpsell = { gScreenshotsDescription } <a>Firefox-ты қазір алу</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = Бұл скриншотты толығымен өшір�
 shotPageShareButton =
     .title = Бөлісу
 shotPageCopy = Көшіріп алу
+shotPageCopyButton =
+    .title = Суретті алмасу буферіне көшіру
 shotPageCopied = Көшірілген
 shotPageShareFacebook =
     .title = Facebook-те бөлісу
@@ -143,7 +146,6 @@ shotPageDraw = Сурет салу
 shotPageFavorite = Таңдамалы
 shotPageDelete = Өшіру
 shotPageScreenshotsDescription = Скриншоттар қарапайым түрде. Тура Firefox ішінен скриншоттарды түсіру, сақтау және олармен бөлісу.
-shotPageUpsellFirefox = Firefox-ты қазір алу
 shotPageDMCAMessage = Бұл скриншот үшінші жақтың зияткерлік меншігі арызы салдарынан енді қолжетерсіз.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Көбірек білу үшін, { $dmca } адресіне жазыңыз.
@@ -267,6 +269,13 @@ textToolCancelButton = Бас тарту
 textToolInputPlaceholder =
     .placeholder = Сәлеметсіз бе
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Бірнәрсе қате кетті
+copyImageErrorMessage = Скриншотыңызды алмасу буферіне көшіру мүмкін емес.
+
 ## Settings Page
 
 settingsDisconnectButton = Байланысты үзу
@@ -293,8 +302,6 @@ shotIndexPageSearchResultsTitle = Менің скрншоттарым: { $search
 shotIndexPageErrorRendering = Парақты рендерлеу қатесі: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Менің скриншоттарымнан іздеу
-shotIndexPageSearchButton =
-    .title = Іздеу
 shotIndexPageNoShotsMessage = Сақталған скриншоттар жоқ.
 shotIndexPageNoShotsInvitation = Бірнешеуін сақтаңыз.
 shotIndexPageLookingForShots = Скриншоттарыңызды іздеу…
@@ -318,6 +325,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Бұл скриншот таңдамалы, оның мерзімі аяқталмайды
+shotIndexSyncedShot =
+    .title = Басқа құрылғыда алынған скриншот
 
 ## Delete Confirmation Dialog
 
