@@ -289,9 +289,46 @@ settingsSignInInvite = Barcha qurilmalaringizda sinxronlash uchun hisobingizga k
 settingsSignInButton = Kirish
     .title = Kirish
 SettingsPageHeader = Firefox Screenshots sozlamalari
+settingsDescription = Barcha skrinshotlarni turli qurilmalaringizga sinxronlash va ulardan maxfiy foydalanishingiz uchun Firefox hisobi bilan kiring.
+settingsPageSubHeader = Sinxronizatsiya va hisoblar
+settingsClosePreferences =
+    .title = Parametrlarni yopish
 
 ## Shotindex page
 
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Skrinshot o‘chmadi: { $status } { $statusText }
+# { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Skrinsholar: { $searchTerm }ni izlash
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
+shotIndexPageErrorRendering = Sahifa renderlanmadi: { $error }
+shotIndexPageSearchPlaceholder =
+    .placeholder = Skrinshotlarni izlash
+shotIndexPageNoShotsMessage = Hech qanday skrinshot saqlanmagan
+shotIndexPageNoShotsInvitation = Qani, bir nechta skrinshot yaratib ko‘ring
+shotIndexPageLookingForShots = Skrinshotlaringiz qidirilmoqda…
+shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Qidiruvingiz bo‘yicha hech qanday skrinshot topilmadi.
+shotIndexPageMyShotsButton =
+    .title = Skrinshotlar
+shotIndexPageClearSearchButton =
+    .title = Qidiruvni tozalash
+shotIndexPageConfirmShotDelete = Bu skrinshot o‘chirilsinmi?
+shotIndexPagePreviousPage =
+    .title = Oldingi sahifa
+shotIndexPageNextPage =
+    .title = Keyingi sahifa
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Bu sevimli skrinshot emas, shuning uchun saqlanish muddati tugaydi
+# This is the tooltip for a "heart" symbol in the upper top corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Bu sevimli skrinshot, shuning uchun abadiy saqlanadi
 shotIndexSyncedShot =
     .title = Skrinshot boshqa qurilmada olingan
 
@@ -323,3 +360,11 @@ metricsPageUsersQueryTitle = Kunlik foydalanuvchilar
 metricsPageUsersQueryDescription = Kunlik kamida bitta skrinshot yaratgan foydalanuvchilar soni (30 kun ichida)
 metricsPageUsersQueryCount = Foydalanuvchilar soni
 metricsPageUsersQueryDay = Kun
+metricsPageUserShotsQueryTitle = Har bir foydalanuvchi olgan skrinshotlar soni
+metricsPageUserShotsQueryDescription = Jami N ta skrinshot olgan foydalanuvchilar soni
+metricsPageUserShotsQueryCount = Foydalanuvchilar soni
+metricsPageUserShotsQueryShots = Faol (eskirmaydigan) skrinshotlarning taxminiy soni
+metricsPageRetentionQueryTitle = Haftalik saqlash
+metricsPageRetentionQueryDescription = Foydalanuvchining ilk olgan skrinshotidan eng so‘nggisigacha bo‘lgan kunlaar soni, hafta bo‘yicha guruhlangan
+metricsPageRetentionQueryUsers = Foydalanuvchilar soni
+metricsPageRetentionQueryDays = Foydalanuvchining ilk olgan skrinshotidan keyingi kunlar
