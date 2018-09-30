@@ -59,7 +59,10 @@ homePageGetStartedTitle = Boshlash
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Asboblar panelidan yangi Skrinshotlar rasmchasini toping. Uni tanlang va brauzer oynasining tepasida Skrinshotlar menyusi paydo bo‘ladi.
 homePageCaptureRegion = Hududni rasmga olish
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Sichqoncha tugmasini bosing va belgilash uchun kerakli hudud ustida surib tanlang. Yoki shunchaki sinchqonchani kerakli hudud usitga olib keling va bosing – Screenshots siz uchun hududni o‘zi tanlaydi. Sizga yoqdimi? Unda skrinshotlarni onlayn e’lon qilish uchun "Saqlash" tugmasini, kompyuterga yuklab olish uchun esa pastga qaragan ko‘rsatkich tugmasini bosing.
 homePageCapturePage = Sahifani rasmga olish
+homePageCapturePageDescription = Butun sahifani rasmga tushirish uchun tepa o‘ng burchakdagi tugmalardan foydalaning. "Ko‘rinadiganini saqlash" tugmasi bilan sizga ko‘rinib turgan hududni boshqa amal bajarmasdan rasmga olish va "To‘liq sahifani saqlash" bilan esa sahifani to‘liq rasmga olish mumkin.
 homePageSaveShare = Saqlash va bo‘lishish
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Skrinshot olsangiz, Firefox uni onlayn skrinshotlar kutubxonasiga joylaydi va havolasidan vaqtinchalik xotiraga nusxa oladi. Biz skrinshotlarni 2 hafta saqlab turamiz. Bu vaqt ichida xohlagan vaqtingizda ularni o‘chirishingiz yoki saqlanish muddatini uzaytirishingiz mumkin.
@@ -140,8 +143,21 @@ shotPageDraw = Chizish
 # Note: Favorite text is used on shot page as a verb (action)
 shotPageFavorite = Sevimli
 shotPageDelete = O‘chirish
+shotPageScreenshotsDescription = Skrinshot olish juda oson. Skrinshot oling, saqlang va Firefoxdan chiqmasdan skrinshotlarni bo‘lishing.
+shotPageDMCAMessage = Bu skrinshot uchinchi tomonga tegishli intellektual boylik bo‘lganligi uchun endi mavjud emas.
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Batafsil ma’lumot uchun { $dmca } pochtasiga xat yozing.
+# Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Agar sizga tegishli skrinshotlar ustidan bir necha marta shikoyat qilishsa, Firefox Screenshots xizmatini siz uchun bloklab qo‘yamiz.
+# Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Bu skrinshot havolasini xatingizga ilova qiling: { $url }
+shotPageKeepFor = Bu skrinshot qancha vaqt saqlansin?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Vaqtni tanlang
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Abadiy ∞
 shotPageKeepTenMinutes = 10 daqiqa
 shotPageKeepOneHour = 1 soat
 shotPageKeepOneDay = 1 kun
@@ -172,6 +188,21 @@ timeDiffDaysAgo =
        *[other] { $number } kun oldin
     }
 timeDiffFutureSeconds = bir necha soniya oldin
+timeDiffFutureMinutes =
+    { $number ->
+        [one] 1 daqiqa ichida
+       *[other] { $number } daqiqa ichida
+    }
+timeDiffFutureHours =
+    { $number ->
+        [one] 1 soat ichida
+       *[other] { $number } soat ichida
+    }
+timeDiffFutureDays =
+    { $number ->
+        [one] ertaga
+       *[other] { $number } kun ichida
+    }
 
 ## Shot Page New Feature Promotion Dialog.
 
