@@ -175,6 +175,8 @@ timeDiffFutureSeconds = bir necha soniya oldin
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Diqqat!
 
 ## Annotations
 
