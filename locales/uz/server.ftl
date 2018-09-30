@@ -203,22 +203,92 @@ timeDiffFutureDays =
         [one] ertaga
        *[other] { $number } kun ichida
     }
+errorThirdPartyCookiesEnabled = Bu skrinshotni olgan bo‘lsangiz, lekin o‘chira olmasangiz, brauzeringiz parametrlaridan uchinchi tomon kukilarini vaqtincha yoqib qo‘ying.
 
 ## Shot Page New Feature Promotion Dialog.
 
 # Note: If possible, choose a short translation to better fit into the card.
 promoTitle = Diqqat!
+promoMessage = Yangilangan tahrirlash vositalari kesish, ajratish va matn qo‘shish imkonini beradi.
+promoLink = Sinab ko‘ring
+promoCloseButton =
+    .title = Bildirishnomani yopish
 
 ## Annotations
 
+annotationPenButton =
+    .title = Qalam
+annotationHighlighterButton =
+    .title = Marker
+annotationUndoButton =
+    .title = Bekor qilish
+annotationRedoButton =
+    .title = Qaytarish
+annotationTextButton =
+    .title = Matn qo‘shish
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
+    .title = Tozalash
+annotationCropButton =
+    .title = Kesish
+annotationSaveEditButton = Saqlash
+    .title = Tahrirlarni saqlash
+annotationCancelEditButton = Bekor qilish
+    .title = Tahrirlarni bekor qilish
+annotationCropConfirmButton = Tasdiqlash
+    .title = Tanlovni tasdiqlash
+annotationCropCancelButton = Bekor qilish
+    .title = Tanlovni bekor qilish
+annotationColorWhite =
+    .title = Oq
+annotationColorBlack =
+    .title = Qora
+annotationColorRed =
+    .title = Qizil
+annotationColorGreen =
+    .title = Yashil
+annotationColorBlue =
+    .title = Ko‘k
+annotationColorYellow =
+    .title = Sariq
+annotationColorPurple =
+    .title = Binafsharang
+annotationColorSeaGreen =
+    .title = Dengiz yashili
+annotationColorGrey =
+    .title = Kulrang
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Matn hajmi
+# Values shown in text size selection dropdown
+textSizeSmall = Kichik
+textSizeMedium = O‘rta
+textSizeLarge = Katta
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = Tasdiqlash
+    .title = Tasdiqlash
+textToolCancelButton = Bekor qilish
+    .title = Bekor qilish
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Salom
 
 ## The following are the title and message for an error displayed as a Firefox
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = Xatolik yuz berdi
+copyImageErrorMessage = Skrinshotdan vaqtinchalik xotiraga nusxa olinmadi.
 
 ## Settings Page
 
+settingsDisconnectButton = Uzish
+    .title = Uzish
+settingsGuestAccountMessage = Mehmon hisobi
+settingsSignInInvite = Barcha qurilmalaringizda sinxronlash uchun hisobingizga kiring
+settingsSignInButton = Kirish
+    .title = Kirish
+SettingsPageHeader = Firefox Screenshots sozlamalari
 
 ## Shotindex page
 
