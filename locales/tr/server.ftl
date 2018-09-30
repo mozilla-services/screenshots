@@ -20,6 +20,8 @@ buttonSignIn =
     .title = Giriş yap
 screenshotsLogo =
     .title = Screenshots ana sayfası
+bannerMessage = Görüntülerinize tüm cihazlarınızdan ulaşmak ve favorilerinizi kalıcı olarak saklamak için giriş yapın veya kaydolun.
+bannerUpsell = { gScreenshotsDescription } <a>Firefox’u indir</a>
 
 ## Footer
 
@@ -296,11 +298,17 @@ shotIndexPagePreviousPage =
     .title = Önceki sayfa
 shotIndexPageNextPage =
     .title = Sonraki sayfa
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Bu görüntü favorilerinizde olmadığı için silinecektir
 # This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Bu görüntü favorilerinizde olduğu için zaman aşımına uğramayacak
+shotIndexSyncedShot =
+    .title = Görüntü başka bir cihazdan alınmış
 
 ## Delete Confirmation Dialog
 
