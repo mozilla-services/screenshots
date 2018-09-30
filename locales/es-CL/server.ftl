@@ -102,6 +102,8 @@ shotPageConfirmDelete = ¿Estás seguro de que quieres eliminar esta captura per
 shotPageShareButton =
     .title = Compartir
 shotPageCopy = Copiar
+shotPageCopyButton =
+    .title = Copiar imagen al portapapeles
 shotPageCopied = Copiada
 shotPageShareFacebook =
     .title = Compartir en Facebook
@@ -132,7 +134,17 @@ shotPageEditButton =
     .title = Editar esta imagen
 shotPagefavoriteButton =
     .title = Marcar esta captura como favorita
+shotPageBackToHomeButton =
+    .title = Página de inicio
+shotPageAllShotsButton =
+    .title = Todas las capturas
+shotPageAllShots = Todas las capturas
 shotPageDownload = Descargar
+# Note: Draw text is used on shot page as a verb (action)
+shotPageDraw = Dibujar
+# Note: Favorite text is used on shot page as a verb (action)
+shotPageFavorite = Favorito
+shotPageDelete = Eliminar
 shotPageScreenshotsDescription = Capturas de pantallas sin complicaciones. Toma, guarda y comparte capturas sin salir de Firefox.
 shotPageDMCAMessage = Esta captura ya no eá disponible debido a un reclamo de propiedad intelectual de un tercero.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -266,6 +278,8 @@ textToolInputPlaceholder =
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = Algo se fue a las pailas
+copyImageErrorMessage = No se pudo copiar tu captura al portapapeles.
 
 ## Settings Page
 
@@ -298,6 +312,8 @@ shotIndexPageNoShotsInvitation = Vamos, crea alguna.
 shotIndexPageLookingForShots = Buscando por tus capturas...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = No pudimos encontrar capturas que coincidan con tu búsqueda.
+shotIndexPageMyShotsButton =
+    .title = Mis capturas
 shotIndexPageClearSearchButton =
     .title = Limpiar búsqueda
 shotIndexPageConfirmShotDelete = ¿Eliminar esta captura?
@@ -305,11 +321,17 @@ shotIndexPagePreviousPage =
     .title = Página anterior
 shotIndexPageNextPage =
     .title = Página siguiente
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Esta no es una captura favorita y expirará
 # This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Esta es una captura favorita y no expira
+shotIndexSyncedShot =
+    .title = Captura tomada en otro dispositivo
 
 ## Delete Confirmation Dialog
 
