@@ -20,6 +20,8 @@ buttonSignIn =
     .title = Přihlásit se
 screenshotsLogo =
     .title = Domovská stránka
+bannerMessage = Pro přístup ke snímkům z jiných zařízení nebo jejich ukládání se prosím přihlaste nebo zaregistrujte.
+bannerUpsell = { gScreenshotsDescription } <a>Získat Firefox</a>
 
 ## Footer
 
@@ -100,6 +102,8 @@ shotPageConfirmDelete = Opravdu chcete tento snímek navždy smazat?
 shotPageShareButton =
     .title = Sdílet
 shotPageCopy = Kopírovat
+shotPageCopyButton =
+    .title = Zkopírovat do schránky
 shotPageCopied = Zkopírováno
 shotPageShareFacebook =
     .title = Sdílet na Facebooku
@@ -142,7 +146,6 @@ shotPageDraw = Kreslení
 shotPageFavorite = Oblíbené
 shotPageDelete = Smazat
 shotPageScreenshotsDescription = Jednoduchá tvorba snímků webových stránek. Vytvářejte, ukládejte i sdílejte přímo z Firefoxu.
-shotPageUpsellFirefox = Získejte Firefox
 shotPageDMCAMessage = Tento snímek již není dostupný z důvodu uplatnění nároku na duševní vlastnictví třetí strany.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Další informace si můžete vyžádat e-mailem na { $dmca }.
@@ -278,6 +281,13 @@ textToolCancelButton = Zrušit
 textToolInputPlaceholder =
     .placeholder = Ahoj
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Nastala chyba
+copyImageErrorMessage = Snímek se nepodařilo do schránky zkopírovat.
+
 ## Settings Page
 
 settingsDisconnectButton = Odpojit
@@ -304,8 +314,6 @@ shotIndexPageSearchResultsTitle = Mé snímky: hledání { $searchTerm }
 shotIndexPageErrorRendering = Při zobrazování stránky nastala chyba: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Prohledat mé snímky
-shotIndexPageSearchButton =
-    .title = Hledat
 shotIndexPageNoShotsMessage = Žádné uložené snímky.
 shotIndexPageNoShotsInvitation = Pojďme nějaké vytvořit.
 shotIndexPageLookingForShots = Hledáme vaše snímky…
@@ -329,6 +337,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Tento snímek byl označen jako oblíbený a jeho platnost nevyprší
+shotIndexSyncedShot =
+    .title = Snímek pořízený na jiném zařízení
 
 ## Delete Confirmation Dialog
 
