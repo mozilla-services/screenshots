@@ -19,7 +19,7 @@ buttonSettings =
 buttonSignIn =
     .title = Kirish
 screenshotsLogo =
-    .title = Skrinshot bosh sahifasi
+    .title = Screenshots bosh sahifasi
 bannerMessage = Turli qurilmalaringizdan skrinshotlarga kirish va saqlash uchun hisobingizga kiring yoki ro‘yxatdan o‘ting.
 bannerUpsell = { gScreenshotsDescription } <a>Firefoxni yuklab olish</a>
 
@@ -57,7 +57,9 @@ homePageDownloadFirefoxSubTitle = Bepul yuklab olish
 homePageHowScreenshotsWorks = Firefox Screenshots’dan foydalanish
 homePageGetStartedTitle = Boshlash
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Asboblar panelidan yangi Skrinshotlar rasmchasini toping. Uni tanlang va brauzer oynasining tepasida Skrinshotlar menyusi paydo bo‘ladi.
+homePageGetStartedDescription = Asboblar panelidan yangi Screenshots nishonchasini toping. Uni tanlang va brauzer oynasining tepasida Screenshots menyusi paydo bo‘ladi.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Manzillar panelidagi sahifa amallari menyusidan Screenshots nishonchasini tanlang. Shundan keyin Screenshots menyusi brauzer oynasining tepa qismida paydo bo‘ladi.
 homePageCaptureRegion = Hududni rasmga olish
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Sichqoncha tugmasini bosing va belgilash uchun kerakli hudud ustida surib tanlang. Yoki shunchaki sinchqonchani kerakli hudud usitga olib keling va bosing – Screenshots siz uchun hududni o‘zi tanlaydi. Sizga yoqdimi? Unda skrinshotlarni onlayn e’lon qilish uchun "Saqlash" tugmasini, kompyuterga yuklab olish uchun esa pastga qaragan ko‘rsatkich tugmasini bosing.
@@ -75,7 +77,7 @@ homePageCookiesLink = Kukilar
 
 leavePageRemoveAllData = Barcha ma’lumotlarni olib tashlash
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Hisobingizni o‘chirish uchun Firefox Skrinshotlar o‘rnatilgan bo‘lishi lozim
+leavePageErrorAddonRequired = Hisobingizni o‘chirish uchun Firefox Screenshots o‘rnatilgan bo‘lishi lozim
 leavePageErrorGeneric = Xato yuz berdi
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Firefox Skrinshotlar ma’lumotlari tozalab tashlanadi.
@@ -368,3 +370,18 @@ metricsPageRetentionQueryTitle = Haftalik saqlash
 metricsPageRetentionQueryDescription = Foydalanuvchining ilk olgan skrinshotidan eng so‘nggisigacha bo‘lgan kunlaar soni, hafta bo‘yicha guruhlangan
 metricsPageRetentionQueryUsers = Foydalanuvchilar soni
 metricsPageRetentionQueryDays = Foydalanuvchining ilk olgan skrinshotidan keyingi kunlar
+metricsPageRetentionQueryFirstWeek = Foydalanuvchining ilk olgan skrinshoti haftasi
+metricsPageTotalRetentionQueryTitle = Jami soni
+metricsPageTotalRetentionQueryDescription = Skrinshot yaratish uchun foydalanuvchilar sarflagan vaqt, hafta bo‘yicha guruhlangan
+metricsPageTotalRetentionQueryUsers = Foydalanuvchilar soni
+metricsPageTotalRetentionQueryDays = Foydalanuvchi skrinshot yaratgan kunlar
+metricsPageVersionQueryTitle = Qo‘shimcha dastur versiyasi
+metricsPageVersionQueryDescription = Kirish vaqtida foydalanilgan qo‘shimcha dasturning versiyasi, so‘nggi 14 kun ichida
+metricsPageVersionQueryUsers = Kirgan foydalanuvchilar soni
+metricsPageVersionQueryVersion = Qo‘shimcha dastur versiyasi
+metricsPageVersionQueryLastSeen = Kun
+metricsPageHeader = Statistika
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Yaratilgan vaqti: { $created }
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (ma’lumotlar bazasi vaqti: { $time }ms)
