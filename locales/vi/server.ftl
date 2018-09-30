@@ -65,8 +65,6 @@ homePageCaptureRegionDescription = Nhấp và kéo để chọn khu vực bạn 
 homePageCapturePage = Chụp một trang
 homePageCapturePageDescription = Sử dụng các nút ở phía trên bên phải để chụp toàn bộ trang. Nút Lưu Ghi nhớ sẽ chụp khu vực bạn có thể xem mà không cần di chuyển, và Lưu toàn bộ Trang sẽ chụp mọi thứ trên trang.
 homePageSaveShare = Lưu và chia sẻ
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Khi bạn chụp, Firefox đăng ảnh chụp màn hình của bạn lên thư viện Ảnh chụp màn hình trực tuyến của bạn và sao chép liên kết tới khay nhớ tạm của bạn. Chúng tôi tự động lưu ảnh chụp màn hình của bạn trong hai tuần, nhưng bạn có thể xóa ảnh chụp bất kỳ lúc nào hoặc thay đổi ngày hết hạn để giữ chúng trong thư viện của bạn lâu hơn.
 homePageLegalLink = Thông tin pháp lý
 homePagePrivacyLink = Chính sách riêng tư
 homePageTermsLink = Điều khoản
@@ -141,7 +139,6 @@ shotPageDownload = Tải xuống
 shotPageFavorite = Yêu thích
 shotPageDelete = Xóa
 shotPageScreenshotsDescription = Ảnh chụp màn hình được thực hiện đơn giản. Thực hiện, lưu và chia sẻ ảnh chụp màn hình mà không rời khỏi Firefox.
-shotPageUpsellFirefox = Tải ngay Firefox
 shotPageDMCAMessage = Bức ảnh này không còn nữa do yêu cầu sở hữu trí tuệ của bên thứ ba.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Vui lòng gửi email cho { $dmca } để yêu cầu thêm thông tin.
@@ -285,8 +282,6 @@ shotIndexPageSearchResultsTitle = Ảnh chụp của tôi: tìm kiếm { $search
 shotIndexPageErrorRendering = Đã xảy ra lỗi khi tạo trang: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Tìm kiếm ảnh chụp của tôi
-shotIndexPageSearchButton =
-    .title = Tìm kiếm
 shotIndexPageNoShotsMessage = Không có ảnh chụp đã lưu.
 shotIndexPageNoShotsInvitation = Bắt đầu, tạo một vài ảnh.
 shotIndexPageLookingForShots = Tìm kiếm ảnh chụp của bạn...
