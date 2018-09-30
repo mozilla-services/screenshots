@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Página de inicio de Screenshots
 bannerMessage = Inicia sesión o regístrate para acceder a tus capturas a través de tus dispositivos y guardar tus favoritas para siempre.
+bannerUpsell = { gScreenshotsDescription } <a>Obtener Firefox ahora</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = ¿Estás seguro que quieres eliminarla de forma permanen
 shotPageShareButton =
     .title = Compartir
 shotPageCopy = Copiar
+shotPageCopyButton =
+    .title = Copiar la imagen al portapapeles
 shotPageCopied = Copiado
 shotPageShareFacebook =
     .title = Compartir en Facebook
@@ -143,7 +146,6 @@ shotPageDraw = Dibujar
 shotPageFavorite = Favorito
 shotPageDelete = Eliminar
 shotPageScreenshotsDescription = Capturas de pantalla hechas simples. Toma, guarda y comparte capturas de pantalla sin dejar Firefox.
-shotPageUpsellFirefox = Obtener Firefox ahora
 shotPageDMCAMessage = Esta captura ya no está disponible debido a un reclamo de derechos de autor.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Envía un correo a { $dmca } para solicitar más información.
@@ -273,6 +275,11 @@ textToolCancelButton = Cancelar
 textToolInputPlaceholder =
     .placeholder = Hola
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+
 ## Settings Page
 
 settingsDisconnectButton = Desconectar
@@ -299,8 +306,6 @@ shotIndexPageSearchResultsTitle = Mis capturas: buscar por { $searchTerm }
 shotIndexPageErrorRendering = Error al renderizar la página: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Buscar mis capturas
-shotIndexPageSearchButton =
-    .title = Buscar
 shotIndexPageNoShotsMessage = No hay capturas guardadas.
 shotIndexPageNoShotsInvitation = Adelante, crea una.
 shotIndexPageLookingForShots = Buscando tus capturas...
@@ -324,6 +329,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Esta es una captura favorita y no expira
+shotIndexSyncedShot =
+    .title = Captura tomada en otro dispositivo
 
 ## Delete Confirmation Dialog
 
