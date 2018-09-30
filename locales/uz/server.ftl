@@ -153,6 +153,25 @@ shotPageCancelExpiration = bekor qilish
 shotPageDoesNotExpire = muddati tugamaydi
 # Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageTimeExpiresIn = <timediff></timediff> muddati tugaydi
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = <timediff></timediff> muddati tugagan
+timeDiffJustNow = hozir
+timeDiffMinutesAgo =
+    { $number ->
+        [one] 1 daqiqa oldin
+       *[other] { $number } daqiqa oldin
+    }
+timeDiffHoursAgo =
+    { $number ->
+        [one] 1 soat oldin
+       *[other] { $number } soat oldin
+    }
+timeDiffDaysAgo =
+    { $number ->
+        [one] kecha
+       *[other] { $number } kun oldin
+    }
+timeDiffFutureSeconds = bir necha soniya oldin
 
 ## Shot Page New Feature Promotion Dialog.
 
