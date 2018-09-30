@@ -170,6 +170,8 @@ shotPageTimeExpiresIn = <timediff></timediff> muddati tugaydi
 
 ## Shotindex page
 
+shotIndexSyncedShot =
+    .title = Skrinshot boshqa qurilmada olingan
 
 ## Delete Confirmation Dialog
 
