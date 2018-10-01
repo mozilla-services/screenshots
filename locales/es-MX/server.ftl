@@ -279,6 +279,8 @@ textToolInputPlaceholder =
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = Algo salió mal
+copyImageErrorMessage = No se puede copiar su captura al portapapeles.
 
 ## Settings Page
 
