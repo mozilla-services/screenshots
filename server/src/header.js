@@ -21,7 +21,7 @@ exports.Header = function Header(props) {
 
 exports.Header.propTypes = {
   hasLogo: PropTypes.bool,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   isOwner: PropTypes.bool,
   hasFxa: PropTypes.bool,
   shouldGetFirefox: PropTypes.bool,

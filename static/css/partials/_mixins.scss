@@ -15,6 +15,7 @@
 }
 
 $breakpoints: (
+  extra-large: "(min-width: 1260px)",
   large: "(min-width: 960px)",
   medium: "(min-width: 720px)",
   small: "(max-width: 719px)",

@@ -40,8 +40,9 @@ class Body extends React.Component {
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <div className="column-space full-height" id="shot-index-page">
-          <MyShotsHeader hasDeviceId={this.props.hasDeviceId} hasFxa={this.props.hasFxa}
-            enableUserSettings={this.props.enableUserSettings} />
+          <MyShotsHeader
+            hasDeviceId={this.props.hasDeviceId} hasFxa={this.props.hasFxa}
+            enableUserSettings={this.props.enableUserSettings} staticLink={this.props.staticLink} />
           { this.props.disableSearch ? null : this.renderSearchForm() }
           <div id="shot-index" className="flex-1">
             { this.renderShots() }
@@ -322,7 +323,7 @@ class Card extends React.Component {
         </Localized>;
     } else if (this.props.hasFxa) {
       favoriteIndicator = <Localized id="shotIndexNonFavoriteIcon" attrs={{title: true}}>
-          <div className="non-fav-shot" title=""></div>
+          <div className="indicator non-fav-shot" title=""></div>
         </Localized>;
     }
 
@@ -371,7 +372,8 @@ class Card extends React.Component {
             isIcon = {true}
             clickDeleteHandler={this.clickDeleteHandler.bind(this)}
             confirmDeleteHandler={this.confirmDeleteHandler.bind(this, shot)}
-            cancelDeleteHandler={this.cancelDeleteHandler.bind(this)} />
+            cancelDeleteHandler={this.cancelDeleteHandler.bind(this)}
+            staticLink={this.props.staticLink} />
         </div>
         {favoriteIndicator}
         {syncedShotIndicator}

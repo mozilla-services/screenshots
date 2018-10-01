@@ -10,8 +10,15 @@
 .back-to-home {
   @include respond-to("small") {
     background-size: 24px auto;
-    padding-left: 40px;
+    padding-left: 35px;
     border: 0;
+    margin: 0 2px;
+    span {
+      font-size: 20px;
+      &.small-text {
+        font-size: 14px;
+      }
+    }
   }
 
   background-position: left center;
@@ -30,6 +37,7 @@
     &.small-text {
       font-size: 17px;
       padding-left: 0;
+      padding-right: 5px;
     }
   }
 
@@ -40,9 +48,9 @@
 
 .shot-main-actions {
 
-  @include respond-to("medium") {
+  @include respond-to("large") {
     @include flex-container(row, flex-start, center);
-    margin-right: 10px;
+    flex: initial;
     padding-top: 4px;
     overflow: hidden;
   }
@@ -50,20 +58,22 @@
   @include respond-to("small") {
     @include flex-container(row, flex-start, center);
     background: $light-default;
-    border-bottom: 1px solid rgba(#000, 0.1);
-    border-top: 1px solid $light-border;
-    flex: 0 0 100%;
-    height: $grid-unit * 3.6;
-    order: 1;
-    width: 100%;
+    height: $grid-unit * 3.5;
   }
 
   flex: 1;
   position: relative;
 
-  .expire-widget {
+  .expire-info {
+    display: block;
     @include respond-to("small") {
       display: none;
+    }
+    @include respond-to("large") {
+      display: none;
+    }
+    @include respond-to("extra-large") {
+      display: block;
     }
   }
 }
@@ -72,16 +82,29 @@
   .edit-shot-button {
     position: relative;
   }
-
   @include flex-container(row, flex-end, center);
-  @include respond-to("small") {
-    flex-wrap: wrap;
-    justify-content: flex-start;
+  @include respond-to("large") {
+    background-color: $light-default;
+    justify-content: flex-end;
+    border: none;
+    flex: 1;
+    order: 0;
   }
+  background-color: $white;
+  border-bottom: 1px solid rgba($black, 0.1);
+  border-top: 1px solid $light-border;
+  flex: 0 0 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-width: $grid-unit * 15;
+  order: 1;
 }
 
 .shot-info {
   @include flex-container(column, center, flex-start);
+  @include respond-to("small") {
+    padding: 0 0 0 $grid-unit * 0.5;
+  }
   color: $black;
   padding: 0 0 0 $grid-unit;
 
@@ -96,20 +119,26 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   margin: 0;
-  max-width: 600px;
 }
 
 .shot-title {
-  @include respond-to("small") {
-    font-size: 20px;
-    line-height: 20px;
-    padding-bottom: 4px;
+  @include respond-to("medium") {
+    max-width: 500px;
   }
-
-  font-size: 28px;
+  @include respond-to("large") {
+    font-size: 32px;
+    line-height: 39px;
+    max-width: 250px;
+    padding-bottom: 8px;
+  }
+  @include respond-to("extra-large") {
+    max-width: 500px;
+  }
   font-weight: bold;
-  line-height: 28px;
-  padding-bottom: 8px;
+  font-size: 24px;
+  line-height: 29px;
+  max-width: 130px;
+  padding-bottom: 4px;
 
   &.saving {
     opacity: 0.7;
@@ -120,6 +149,9 @@
     padding-right: 28px;
 
     &:hover {
+      @include respond-to("large") {
+        background-size: 24px 24px;
+      }
       background-image: url("/static/img/pencil.svg");
       background-position: right 5px;
       background-repeat: no-repeat;
@@ -130,10 +162,18 @@
 
 .shot-subtitle {
   @include flex-container(row, flex-start, center);
-  font-size: 15px;
+  @include respond-to("large") {
+    font-size: 14px;
+    line-height: 17px;
+  }
+  font-size: 12px;
+  line-height: 15px;
 }
 
 .shot-title-input {
+  @include respond-to("large") {
+    max-width: 200px;
+  }
   border-radius: $border-radius;
   border: 1px solid $active-blue;
   font-size: 24px;
@@ -142,6 +182,7 @@
   margin: 0 0 4px -6px;
   padding: 0 5px;
   overflow: auto;
+  max-width: 100px;
 }
 
 .subtitle-link,
@@ -150,14 +191,17 @@
 }
 
 .promo-panel {
+  @include respond-to("large") {
+    top: 95px;
+  }
   background: $white;
   border-radius: 3px;
   box-shadow: $stroke-box-shadow, $medium-box-shadow;
   padding: 5px;
   position: absolute;
+  top: 60px;
   right: -30px;
   text-align: center;
-  top: 90px;
   width: 150px;
   z-index: 999;
 
@@ -198,70 +242,11 @@
 
 .delete-confirmation-dialog {
   &.right-align {
-    top: 88px;
-  }
-}
-
-.keep-for-form {
-  @include flex-container(row, flex-start, center);
-
-  select {
-    -moz-appearance: none; //sass-lint:disable-line no-vendor-prefixes
-    appearance: none;
-    background-color: $light-default;
-    background-image: url("/static/img/icon-dropdown.svg");
-    background-position: right 8px top 8px;
-    background-repeat: no-repeat;
-    background-size: 10px auto;
-    border-radius: $border-radius;
-    border: 1px solid $light-border;
-    color: $dark-default;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 400;
-    height: 26px;
-    margin-left: 8px;
-    outline: none;
-    padding: 0 24px 0 4px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    transition: background 150ms $bezier, border 150ms $bezier;
-    user-select: none;
-    white-space: nowrap;
-
-    &:hover,
-    &:focus {
-      background-color: $light-hover;
-      border-color: $light-border-active;
+    @include respond-to("large") {
+      top: 78px;
     }
-
-    &:active {
-      background-color: $light-active;
-      border-color: $light-border-active;
-    }
+    top:58px;
   }
-
-  .button,
-  select {
-    margin-right: 8px;
-  }
-}
-
-.shot-title-input {
-  border-radius: $border-radius;
-  border: 1px solid $active-blue;
-  font-size: 28px;
-  font-weight: 300;
-  height: 36px;
-  margin: -4px 0 4px -6px;
-  padding: 0 5px;
-  overflow: auto;
-}
-
-.shot-subtitle {
-  @include flex-container(row, flex-start, center);
-  font-size: 15px;
 }
 
 .clips {
@@ -319,12 +304,16 @@
 }
 
 .edit-highlight {
+  @include respond-to("large") {
+    left: 50px;
+    top: 25px;
+  }
   background-image: url("../img/edit-highlight.svg");
   height: 17px;
   width: 17px;
   position: absolute;
-  left: 50px;
-  top: 20px;
+  left: 30px;
+  top: 15px;
   cursor: pointer;
 }
 
@@ -408,7 +397,7 @@ body {
 
 .editor-header {
   @include respond-to("medium") {
-    @include flex-container(row, space-between, stretch);
+    @include flex-container(row, space-between, stretch, wrap);
     height: $grid-unit * 5;
   }
 
@@ -421,6 +410,33 @@ body {
   z-index: 2;
   position: fixed;
   width: 100%;
+
+  .shot-edit-main-actions {
+    @include respond-to("medium") {
+      @include flex-container(row, flex-start, center);
+      margin-right: 10px;
+      padding-top: 4px;
+      overflow: hidden;
+    }
+
+    @include respond-to("small") {
+      @include flex-container(row, flex-start, center);
+      background: $light-default;
+      border-bottom: 1px solid rgba($black, 0.1);
+      border-top: 1px solid $light-border;
+      flex: 0 0 100%;
+      height: $grid-unit * 3.6;
+      order: 1;
+      width: 100%;
+    }
+
+    flex: 1;
+    position: relative;
+  }
+
+  .shot-edit-alt-actions {
+    @include flex-container(row, flex-end, center);
+  }
 
   .button {
     margin: $grid-unit * 0.25;
@@ -482,7 +498,7 @@ body {
   z-index: 1;
 
   @include respond-to("small") {
-    top: $grid-unit * 4;
+    top: $grid-unit * 2;
   }
 }
 

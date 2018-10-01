@@ -33,9 +33,7 @@ exports.ShotPageHeader = class ShotPageHeader extends React.Component {
     return (
       <Localized id="shotPageAllShotsButton" attrs={{title: true}}>
         <a className="nav-button icon-shots" href="/shots" tabIndex="0" title="All Shots">
-          <Localized id="shotPageAllShots">
-            <span>All Shots</span>
-          </Localized>
+          <img src={this.props.staticLink("/static/img/icon-shots.svg")} />
         </a>
       </Localized>
     );
@@ -55,14 +53,14 @@ exports.ShotPageHeader = class ShotPageHeader extends React.Component {
     const timeDiff = <TimeDiff date={shot.createdDate} />;
     let expirationSubtitle;
     if (this.props.expireTime === null) {
-      expirationSubtitle = <Localized id="shotPageDoesNotExpire"><span>does not expire</span></Localized>;
+      expirationSubtitle = <Localized id="shotPageDoesNotExpire"><span className="expire-info">does not expire</span></Localized>;
     } else {
       const expired = this.props.expireTime < Date.now();
       const expireTimeDiff = <TimeDiff date={this.props.expireTime}/>;
       if (expired) {
-        expirationSubtitle = <Localized id="shotPageTimeExpired" timediff={expireTimeDiff}><span>expired {expireTimeDiff}</span></Localized>;
+        expirationSubtitle = <Localized id="shotPageTimeExpired" timediff={expireTimeDiff}><span className="expire-info">expired {expireTimeDiff}</span></Localized>;
       } else {
-        expirationSubtitle = <Localized id="shotPageTimeExpiresIn" timediff={expireTimeDiff}><span>expires {expireTimeDiff}</span></Localized>;
+        expirationSubtitle = <Localized id="shotPageTimeExpiresIn" timediff={expireTimeDiff}><span className="expire-info">expires {expireTimeDiff}</span></Localized>;
       }
     }
 
@@ -72,7 +70,7 @@ exports.ShotPageHeader = class ShotPageHeader extends React.Component {
           <EditableTitle title={shot.title} isOwner={this.props.isOwner} />
           <div className="shot-subtitle">
             { linkTextShort ? <a className="subtitle-link" rel="noopener noreferrer" href={ shot.url } target="_blank" onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> : null }
-            <span className="time-diff">{ timeDiff }</span>
+            <span className="time-diff expire-info">{ timeDiff }</span>
             { expirationSubtitle }
           </div>
         </div>
@@ -93,7 +91,8 @@ exports.ShotPageHeader = class ShotPageHeader extends React.Component {
     return (
       this.props.isOwner ?
         <div className="shot-fxa-signin">
-          <SignInButton isAuthenticated={this.props.isFxaAuthenticated} initialPage={this.props.shot.id} />
+          <SignInButton isAuthenticated={this.props.isFxaAuthenticated} initialPage={this.props.shot.id}
+                        staticLink={this.props.staticLink} />
         </div> : null
     );
   }
@@ -105,13 +104,13 @@ exports.ShotPageHeader = class ShotPageHeader extends React.Component {
 
     return (
       <Header shouldGetFirefox={this.props.shouldGetFirefox} isOwner={this.props.isOwner}
-        hasFxa={this.props.isFxaAuthenticated}>
+              hasFxa={this.props.isFxaAuthenticated}>
         { myShotsText }
         { shotInfo }
         <div className="shot-alt-actions">
         { this.props.children }
-        { signin }
         </div>
+        { signin }
       </Header>
     );
   }
@@ -124,6 +123,7 @@ exports.ShotPageHeader.propTypes = {
   isFxaAuthenticated: PropTypes.bool,
   expireTime: PropTypes.number,
   shouldGetFirefox: PropTypes.bool,
+  staticLink: PropTypes.func,
 };
 
 class EditableTitle extends React.Component {
@@ -158,12 +158,13 @@ class EditableTitle extends React.Component {
 
   renderEditing() {
     return <form onSubmit={this.onExit.bind(this)}>
-      <input ref={(input) => this.textInput = input}
-        className="shot-title-input"
-        style={{minWidth: this.state.minWidth}}
-        type="text" defaultValue={this.props.title} autoFocus="true"
-        onBlur={this.onExit.bind(this)} onKeyUp={this.onKeyUp.bind(this)} onFocus={this.onFocus} />
-    </form>;
+        <input ref={(input) => this.textInput = input}
+               className="shot-title-input"
+               style={{minWidth: this.state.minWidth}}
+               type="text" defaultValue={this.props.title} autoFocus={true}
+               onBlur={this.onExit.bind(this)} onKeyUp={this.onKeyUp.bind(this)}
+               onFocus={this.onFocus} />
+      </form>;
   }
 
   onClick() {

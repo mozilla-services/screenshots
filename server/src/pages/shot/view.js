@@ -363,68 +363,63 @@ class Body extends React.Component {
     let favoriteShotButton = null;
     let trashOrFlagButton = null;
     let editButton = null;
-    const highlight = this.state.highlightEditButton
-      ? <div className="edit-highlight"
-          onClick={this.onClickEdit.bind(this)}
-          onMouseOver={this.onMouseOverHighlight.bind(this)}
-          onMouseOut={this.onMouseOutHighlight.bind(this)}></div>
-      : null;
-    const activeFavClass = this.props.expireTime ? "" : "is-fav";
-    const inactive = this.props.isFxaAuthenticated ? "" : "inactive";
-
-    favoriteShotButton = <div className="favorite-shot-button">
-      <Localized id="shotPagefavoriteButton" attrs={{title: true}}>
-        <button className={`nav-button ${inactive}`}
-          disabled={!this.props.isFxaAuthenticated}
-          onClick={this.onClickFavorite.bind(this)}>
-          <span className={`icon-favorite favorite ${activeFavClass}`} ></span>
-          <Localized id="shotPageFavorite">
-            <span className={`favorite-text favorite ${activeFavClass} `}>Favorite</span>
-          </Localized>
-        </button></Localized></div>;
-
-    const downloadButton = <div className="download-shot-button">
-      <Localized id="shotPageDownloadShot" attrs={{title: true}}>
-        <button className="nav-button icon-download" onClick={this.onClickDownload.bind(this)}
-          title="Download the shot image">
-          <Localized id="shotPageDownload">
-            <span>Download</span>
-          </Localized>
-        </button>
-      </Localized></div>;
-
-    const copyButton = <div className="copy-img-button" hidden={this.state.isClient && !this.state.canCopy}>
-      <Localized id="shotPageCopyButton" attrs={{title: true}}>
-        <button className="nav-button icon-copy transparent copy"
-          title="Copy image to clipboard"
-          onClick={this.onClickCopy.bind(this)}>
-          <Localized id="shotPageCopy">
-            <span>Copy Image</span>
-          </Localized>
-        </button>
-      </Localized>
-    </div>;
+    let downloadButton = null;
+    let copyButton = null;
 
     if (this.props.isOwner) {
+      const highlight = this.state.highlightEditButton
+        ? <div className="edit-highlight"
+               onClick={this.onClickEdit.bind(this)}
+               onMouseOver={this.onMouseOverHighlight.bind(this)}
+               onMouseOut={this.onMouseOutHighlight.bind(this)}>
+          </div> : null;
+      const favImgSrc = this.props.expireTime ? this.props.staticLink("/static/img/icon-heart-outline.svg") :
+        this.props.staticLink("/static/img/icon-heart.svg");
+      const inactive = this.props.isFxaAuthenticated ? "" : "inactive";
+
+      favoriteShotButton = <div className="favorite-shot-button">
+        <Localized id="shotPagefavoriteButton" attrs={{title: true}}>
+          <button className={`button transparent nav-button ${inactive}`}
+                  disabled={!this.props.isFxaAuthenticated} onClick={this.onClickFavorite.bind(this)}>
+            <img src={favImgSrc} />
+          </button>
+        </Localized></div>;
+
       trashOrFlagButton = <DeleteShotButton
-        clickDeleteHandler={ this.clickDeleteHandler.bind(this) }
-        confirmDeleteHandler={ this.confirmDeleteHandler.bind(this) }
-        cancelDeleteHandler={ this.cancelDeleteHandler.bind(this) } />;
+        clickDeleteHandler={this.clickDeleteHandler.bind(this)}
+        confirmDeleteHandler={this.confirmDeleteHandler.bind(this)}
+        cancelDeleteHandler={this.cancelDeleteHandler.bind(this)}
+        staticLink={this.props.staticLink} />;
 
       editButton = this.props.enableAnnotations ? <div className="edit-shot-button">
         <Localized id="shotPageEditButton" attrs={{title: true}}>
-          <button className="nav-button icon-edit transparent edit"
-            title="Edit this image"
-            onClick={this.onClickEdit.bind(this)}
-            ref={(edit) => { this.editButton = edit; }}>
-            <Localized id="shotPageDraw">
-              <span>Draw</span>
-            </Localized>
+          <button className="button transparent nav-button"
+                  title="Edit this image"
+                  onClick={this.onClickEdit.bind(this)}
+                  ref={(edit) => { this.editButton = edit; }}>
+            <img src={this.props.staticLink("/static/img/icon-pen.svg")} />
           </button>
         </Localized>
         <PromoDialog promoClose={this.promoClose.bind(this)} display={this.state.promoDialog} />
         { highlight }
         </div> : null;
+
+      downloadButton = <div className="download-shot-button">
+        <Localized id="shotPageDownloadShot" attrs={{title: true}}>
+          <button className={`button transparent nav-button`} onClick={this.onClickDownload.bind(this)}
+                  title="Download the shot image">
+            <img src={this.props.staticLink("/static/img/icon-download.svg")} />
+          </button>
+        </Localized></div>;
+
+      copyButton = <div className="copy-img-button" hidden={this.state.isClient && !this.state.canCopy}>
+        <Localized id="shotPageCopyButton" attrs={{title: true}}>
+          <button className="button nav-button transparent copy"
+                  title="Copy image to clipboard"
+                  onClick={this.onClickCopy.bind(this)}>
+            <img src={this.props.staticLink("/static/img/icon-copy.svg")} />
+          </button>
+        </Localized></div>;
     }
 
     let clip;
@@ -447,7 +442,8 @@ class Body extends React.Component {
       <reactruntime.BodyTemplate {...this.props}>
         <div id="frame" className="inverse-color-scheme full-height column-space">
         <ShotPageHeader isOwner={this.props.isOwner} isFxaAuthenticated={this.props.isFxaAuthenticated}
-          shot={this.props.shot} expireTime={this.props.expireTime} shouldGetFirefox={renderGetFirefox}>
+          shot={this.props.shot} expireTime={this.props.expireTime} shouldGetFirefox={renderGetFirefox}
+          staticLink={this.props.staticLink}>
           { favoriteShotButton }
           { editButton }
           { copyButton }
