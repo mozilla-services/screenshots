@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = स्क्रीनशॉट होम
 bannerMessage = अन्य उपकरणों पर अपने स्क्रीनशॉट एक्सेस करने के लिए साइन इन या साइन उप करें एवं अपने पसंदीदाओं को हमेशा के लिए सहेजें।
+bannerUpsell = { gScreenshotsDescription } <a>Firefox अभी पायें</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = क्या आप वाकई इस शॉट को
 shotPageShareButton =
     .title = साझा
 shotPageCopy = नक़ल करें
+shotPageCopyButton =
+    .title = चित्र को क्लिपबोर्ड में कॉपी करें
 shotPageCopied = नक़ल की गयी
 shotPageShareFacebook =
     .title = firefox पर साझा करें
@@ -143,7 +146,6 @@ shotPageDraw = ड्रा करें
 shotPageFavorite = फेवरेट बनायें
 shotPageDelete = मिटायें
 shotPageScreenshotsDescription = स्क्रीनशॉट सरल बनाया गया है । Firefox छोडे बिना स्क्रीनशॉट ले, सहेजें, और साझा करें ।
-shotPageUpsellFirefox = अभी firefox पाएँ
 shotPageDMCAMessage = तीसरे पक्ष के बौद्धिक संपदा दावे के कारण यह शॉट अब उपलब्ध नहीं है।
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = अधिक जानकारी का अनुरोध करने के लिए कृपया { $dmca } ईमेल करें
@@ -273,6 +275,13 @@ textToolCancelButton = रद्द करें
 textToolInputPlaceholder =
     .placeholder = नमस्ते
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = कुछ त्रुटी उत्पन्न हुयी है
+copyImageErrorMessage = आपके स्क्रीनशॉट को क्लिपबोर्ड में कॉपी करने में असफलता हुयी।
+
 ## Settings Page
 
 settingsDisconnectButton = असम्बद्ध करें
@@ -299,8 +308,6 @@ shotIndexPageSearchResultsTitle = मेरे शॉट्स: के लिए
 shotIndexPageErrorRendering = प्रतिपादन पृष्ठ त्रुटि: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = मेरे शॉट्स खोजें
-shotIndexPageSearchButton =
-    .title = खोजे
 shotIndexPageNoShotsMessage = कोई सहेजे गए शॉट नहीं
 shotIndexPageNoShotsInvitation = चलें, कुछ बनाएँ
 shotIndexPageLookingForShots = अपने शॉट्स की खोज...
@@ -324,6 +331,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = यह एक पसंदीदा शॉट है और यह समाप्त नहीं होता है
+shotIndexSyncedShot =
+    .title = अन्य उपकरण पर लिए स्क्रीनशॉट
 
 ## Delete Confirmation Dialog
 
