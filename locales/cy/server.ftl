@@ -21,6 +21,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Cartref Screenshots
 bannerMessage = Mewngofnodwch neu gofrestru i gael mynediad i'ch lluniau ar draws dyfeisiau a chadw eich ffefrynnau am byth.
+bannerUpsell = { gScreenshotsDescription } <a>Defnyddiwch Firefox</a>
 
 ## Footer
 
@@ -101,6 +102,8 @@ shotPageConfirmDelete = Ydych chi'n siŵr eich bod eisiau dileu'r llun yn barhao
 shotPageShareButton =
     .title = Cadw
 shotPageCopy = Copïo
+shotPageCopyButton =
+    .title = Copïo'r ddelwedd i'r clipfwrdd
 shotPageCopied = Copiwyd
 shotPageShareFacebook =
     .title = Rhannu ar Facebook
@@ -300,6 +303,8 @@ textToolInputPlaceholder =
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = Aeth rhywbeth o'i le
+copyImageErrorMessage = Methu copïo eich llun i'r clipfwrdd
 
 ## Settings Page
 
@@ -350,6 +355,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Mae hwn yn llun ffefryn ac nid yw'n dod i ben
+shotIndexSyncedShot =
+    .title = Llun wedi ei dynnu gan ddyfais arall
 
 ## Delete Confirmation Dialog
 
