@@ -6,7 +6,7 @@ const app = express();
 exports.app = app;
 
 app.get("/", function(req, res) {
-  if (!req.deviceId) {
+  if (!req.deviceId && !req.accountId) {
     res.status(403).send("You must have Screenshots installed");
     return;
   }

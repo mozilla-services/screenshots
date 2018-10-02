@@ -16,14 +16,13 @@ exports.HomePageHeader = class HomePageHeader extends React.Component {
 
   renderFxASignIn() {
       return (
-        this.props.isFirefox && this.props.isOwner ?
-          <SignInButton isAuthenticated={this.props.hasFxa} initialPage="" /> : null
+        <SignInButton isAuthenticated={this.props.hasFxa} initialPage="" />
       );
   }
 
   render() {
     let myShots;
-    if (this.props.isOwner) {
+    if (this.props.isOwner || this.props.hasFxa) {
       myShots = <Localized id="shotIndexPageMyShotsButton" attrs={{title: true}}>
         <a className="nav-button icon-shots" title="My Shots" href="/shots" onClick={ this.onClickMyShots.bind(this) } tabIndex="0">
           <Localized id="gMyShots">
@@ -48,5 +47,4 @@ exports.HomePageHeader = class HomePageHeader extends React.Component {
 exports.HomePageHeader.propTypes = {
   hasFxa: PropTypes.bool,
   isOwner: PropTypes.bool,
-  isFirefox: PropTypes.bool,
 };

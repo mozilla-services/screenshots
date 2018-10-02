@@ -778,7 +778,7 @@ app.post("/api/delete-shot", function(req, res) {
 });
 
 app.post("/api/disconnect-device", function(req, res) {
-  if (!req.deviceId) {
+  if (!req.deviceId && !req.accountId) {
     sendRavenMessage(req, "Attempt to disconnect without login");
     simpleResponse(res, "Not logged in", 401);
     return;
@@ -786,11 +786,9 @@ app.post("/api/disconnect-device", function(req, res) {
   disconnectDevice(req.deviceId).then((result) => {
     const keygrip = dbschema.getKeygrip("auth");
     const cookies = new Cookies(req, res, {keys: keygrip});
-    if (result) {
-      cookies.set("accountid");
-      cookies.set("accountid.sig");
-      simpleResponse(res, "ok", 200);
-    }
+    cookies.set("accountid");
+    cookies.set("accountid.sig");
+    simpleResponse(res, "ok", 200);
   }).catch((err) => {
     errorResponse(res, "Error: could not disconnect", err);
   });
@@ -803,7 +801,7 @@ app.post("/api/set-title/:id/:domain", function(req, res) {
     simpleResponse(res, "No title given", 400);
     return;
   }
-  if (!req.deviceId) {
+  if (!req.deviceId && !req.accountId) {
     sendRavenMessage(req, "Attempt to set title on shot without login");
     simpleResponse(res, "Not logged in", 401);
     return;
@@ -827,7 +825,7 @@ app.post("/api/set-title/:id/:domain", function(req, res) {
 
 app.post("/api/save-edit", function(req, res) {
   const vars = req.body;
-  if (!req.deviceId) {
+  if (!req.deviceId && !req.accountId) {
     sendRavenMessage(req, "Attempt to edit shot without login");
     simpleResponse(res, "Not logged in", 401);
     return;
@@ -866,7 +864,7 @@ app.post("/api/save-edit", function(req, res) {
 });
 
 app.post("/api/set-expiration", function(req, res) {
-  if (!req.deviceId || !req.accountId) {
+  if (!req.deviceId && !req.accountId) {
     sendRavenMessage(req, "Attempt to set expiration without login");
     simpleResponse(res, "Not logged in", 401);
     return;
