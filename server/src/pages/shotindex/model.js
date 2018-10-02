@@ -18,6 +18,7 @@ exports.createModel = function(req) {
   serverModel.downloadUrls = {};
   serverModel.disableSearch = req.config.disableSearch;
   serverModel.enableUserSettings = req.config.enableUserSettings;
+  serverModel.defaultExpirationMs = req.config.defaultExpiration * 1000;
   let shots = req.shots;
   for (const shot of shots || []) {
     const clip = shot.getClip(shot.clipNames()[0]);
