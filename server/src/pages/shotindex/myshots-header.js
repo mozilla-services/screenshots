@@ -4,7 +4,7 @@ const { SignInButton } = require("../../signin-button.js");
 const { Header } = require("../../header.js");
 
 exports.MyShotsHeader = function MyShotsHeader(props) {
-  const signin = props.enableUserSettings && props.hasDeviceId ?
+  const signin = props.enableUserSettings ?
     <SignInButton
       isAuthenticated={props.hasFxa} initialPage="shots"
       staticLink={props.staticLink} /> : null;

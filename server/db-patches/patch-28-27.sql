@@ -1,0 +1,2 @@
+ALTER TABLE ONLY states
+ADD CONSTRAINT states_deviceid_fkey FOREIGN KEY (deviceid) REFERENCES devices(id) ON DELETE CASCADE

@@ -89,11 +89,10 @@ exports.ShotPageHeader = class ShotPageHeader extends React.Component {
 
   renderFxASignIn() {
     return (
-      this.props.isOwner ?
-        <div className="shot-fxa-signin">
-          <SignInButton isAuthenticated={this.props.isFxaAuthenticated} initialPage={this.props.shot.id}
-                        staticLink={this.props.staticLink} />
-        </div> : null
+      <div className="shot-fxa-signin">
+        <SignInButton isAuthenticated={this.props.isFxaAuthenticated} initialPage={this.props.shot.id}
+                      staticLink={this.props.staticLink} />
+      </div>
     );
   }
 

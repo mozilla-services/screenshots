@@ -331,7 +331,7 @@ class Shot extends AbstractShot {
 Shot.getRawBytesForClip = function(uid) {
   return db.select(
     `SELECT images.url, images.contenttype, data.deviceid, devices.accountid
-     FROM images, devices
+     FROM devices, images
       JOIN data ON images.shotid = data.id
      WHERE images.id = $1
       AND (data.expire_time IS NULL OR data.expire_time > NOW())
