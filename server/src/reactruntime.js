@@ -8,13 +8,15 @@ require("fluent-intl-polyfill/compat");
 const { FluentBundle } = require("fluent/compat");
 const { LocalizationProvider } = require("fluent-react/compat");
 const { getLocaleMessages } = require("./locale-messages");
+const bundles = [];
 
 function generateBundles(messages, locales) {
-  const bundles = [];
   for (const locale of locales) {
-    const bundle = new FluentBundle(locale);
-    bundle.addMessages(messages[locale]);
-    bundles.push(bundle);
+    if (!messages[locale]) {
+      const bundle = new FluentBundle(locale);
+      bundle.addMessages(messages[locale]);
+      bundles.push(bundle);
+    }
   }
   return bundles;
 }

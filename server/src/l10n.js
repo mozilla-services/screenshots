@@ -46,12 +46,19 @@ exports.init = function(localeStringMap) {
   return initPromise;
 };
 
-exports.getText = function(locales) {
+exports.getText = function(locales, userAgent) {
   const bundles = {};
   const availableLocales = exports.getUserLocales(locales);
 
+  // This is a temporary fix for https://github.com/mozilla-services/screenshots/issues/4863
+  // to be reverted in https://github.com/mozilla-services/screenshots/issues/4993
+  let useIsolating = true;
+  if (userAgent && userAgent.includes("Win")) {
+    useIsolating = false;
+  }
+
   availableLocales.forEach((locale) => {
-    bundles[locale] = getFluentBundle(locale);
+    bundles[locale] = getFluentBundle(locale, useIsolating);
   });
 
   return function(l10nID, args) {
@@ -92,9 +99,9 @@ function useLocaleData(localeStringMap) {
   return initPromise;
 }
 
-function getFluentBundle(locale) {
+function getFluentBundle(locale, useIsolating) {
   if (!fluentBundles[locale]) {
-    const bundle = new FluentBundle(locale);
+    const bundle = new FluentBundle(locale, {useIsolating});
     bundle.addMessages(rawStrings[locale]);
     fluentBundles[locale] = bundle;
   }
