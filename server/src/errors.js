@@ -34,7 +34,7 @@ exports.missingSession = function missingSession() {
 };
 
 exports.badToken = function badToken() {
-  return exports.create(403, 304, "Invalid OAuth access token");
+  return exports.create(403, 304, "Error fetching access token");
 };
 
 exports.badProfile = function badProfile() {

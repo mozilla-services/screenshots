@@ -149,27 +149,31 @@ exports.checkState = function(deviceId, state) {
 };
 
 
-exports.tradeCode = function(code) {
+exports.tradeCode = async function(code) {
   const oAuthURI = `${config.fxa.oAuthServer}/token`;
-  return fetch(oAuthURI, {
-    method: "POST",
-    body: JSON.stringify({
-      code,
-      client_id: config.fxa.clientId,
-      client_secret: config.fxa.clientSecret,
-    }),
-    headers: {
-      "content-type": "application/json",
-    },
-  }).catch(err => {
+  try {
+    const resp = await fetch(oAuthURI, {
+      method: "POST",
+      body: JSON.stringify({
+        code,
+        client_id: config.fxa.clientId,
+        client_secret: config.fxa.clientSecret,
+      }),
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+
+    if (!resp.ok) {
+      throw new Error(`${resp.status}: ${resp.statusText}.`);
+    }
+
+    return await resp.json();
+  } catch (err) {
     // error with the /token endpoint
     mozlog.warn("fxa-tradecode-failed", {err});
     throw errors.badToken();
-  }).then(res => {
-    return res.json();
-  }).then(res => {
-    return res;
-  });
+  }
 };
 
 exports.disconnectDevice = function(deviceId) {
@@ -181,20 +185,26 @@ exports.disconnectDevice = function(deviceId) {
   );
 };
 
-exports.fetchProfileData = function(accessToken) {
+exports.fetchProfileData = async function(accessToken) {
   const userInfoEndpoint = `${config.fxa.profileServer}/profile`;
-  return fetch(userInfoEndpoint, {
-    method: "GET",
-    headers: {
-      authorization: `Bearer ${accessToken}`,
-    },
-  }).then(res => {
-    return res.json();
-  }).then(res => {
-    return res;
-  }).catch(err => {
+
+  try {
+    const resp = await fetch(userInfoEndpoint, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    if (!resp.ok) {
+      throw new Error(`${resp.status}: ${resp.statusText}.`);
+    }
+
+    return await resp.json();
+  } catch (err) {
+    mozlog.warn("fxa-get-profile-failed", {err});
     throw errors.badProfile();
-  });
+  }
 };
 
 exports.saveProfileData = function(accountId, avatarUrl, nickname, email) {
@@ -206,20 +216,25 @@ exports.saveProfileData = function(accountId, avatarUrl, nickname, email) {
   );
 };
 
-exports.getAccountId = function(accessToken) {
+exports.getAccountId = async function(accessToken) {
   const profileURI = `${config.fxa.profileServer}/uid`;
-  return fetch(profileURI, {
-    method: "GET",
-    headers: {
-      authorization: `Bearer ${accessToken}`,
-    },
-  }).then(res => {
-    return res.json();
-  }).then(res => {
-    return res;
-  }).catch(err => {
+  try {
+    const resp = await fetch(profileURI, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    if (!resp.ok) {
+      throw new Error(`${resp.status}: ${resp.statusText}.`);
+    }
+
+    return await resp.json();
+  } catch (err) {
+    mozlog.warn("fxa-get-uid-failed", {err});
     throw errors.badProfile();
-  });
+  }
 };
 
 exports.registerAccount = function(deviceId, accountId, accessToken) {
