@@ -96,7 +96,7 @@ this.main = (function() {
           sendEvent("goto-myshots", "about-newtab", {incognito: tab.incognito});
         }));
         catcher.watchPromise(
-          auth.authHeaders()
+          auth.maybeLogin()
           .then(() => browser.tabs.update({url: backend + "/shots"})));
       } else {
         catcher.watchPromise(
@@ -189,7 +189,7 @@ this.main = (function() {
 
   communication.register("openMyShots", (sender) => {
     return catcher.watchPromise(
-      auth.authHeaders()
+      auth.maybeLogin()
       .then(() => browser.tabs.create({url: backend + "/shots"})));
   });
 
