@@ -9,8 +9,6 @@ gHomeLink = Start
 gNoShots =
     .alt = Nicio captură găsită
 gScreenshotsDescription = Capturile de ecran simplificate. Realizează, salvează și partajează capturile de ecran fără să părăsești Firefox.
-gSettings = Setări
-gSignIn = Autentificare
 
 ## Header
 
@@ -21,6 +19,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Pagina de start Screenshots
 bannerMessage = Autentifică-te sau înregistrează pentru a accesa capturile de ecran pe toate dispozitivele tale și salvează favoritele pentru totdeauna.
+bannerUpsell = { gScreenshotsDescription }<a>Obţine Firefox acum</a>
 
 ## Footer
 
@@ -100,7 +99,8 @@ shotPageAlertErrorUpdatingTitle = Eroare la salvarea titlului
 shotPageConfirmDelete = Sigur vrei să ștergi definitiv această captură?
 shotPageShareButton =
     .title = Partajează
-shotPageCopy = Copiază
+shotPageCopyButton =
+    .title = Copiază imaginea în clipboard
 shotPageCopied = Copiat
 shotPageShareFacebook =
     .title = Partajează pe Facebook
@@ -135,15 +135,7 @@ shotPageBackToHomeButton =
     .title = Pagina de start
 shotPageAllShotsButton =
     .title = Toate capturile
-shotPageAllShots = Toate capturile
-shotPageDownload = Descarcă
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Desenează
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Favorite
-shotPageDelete = Șterge
 shotPageScreenshotsDescription = Capturile de ecran simplificate. Realizează, salvează și partajează capturile de ecran fără să părăsești Firefox.
-shotPageUpsellFirefox = Obține Firefox acum
 shotPageDMCAMessage = Această captură nu mai este disponibilă din cauza unei reclamații de proprietate intelectuală.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Te rugăm să trimiți un e-mail la { $dmca } pentru a solicita informații suplimentare.
@@ -279,6 +271,13 @@ textToolCancelButton = Renunță
 textToolInputPlaceholder =
     .placeholder = Salut
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Ceva nu a funcționat
+copyImageErrorMessage = Nu se poate copia captura pe clipboard.
+
 ## Settings Page
 
 settingsDisconnectButton = Deconectează-te
@@ -305,8 +304,6 @@ shotIndexPageSearchResultsTitle = Capturile mele: caută { $searchTerm }
 shotIndexPageErrorRendering = Eroare la afișarea paginii: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Caută capturile mele
-shotIndexPageSearchButton =
-    .title = Caută
 shotIndexPageNoShotsMessage = Nicio captură salvată.
 shotIndexPageNoShotsInvitation = Haide, realizează câteva.
 shotIndexPageLookingForShots = Se caută capturile tale...
@@ -330,6 +327,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Aceasta este o captură favorită și nu expiră
+shotIndexSyncedShot =
+    .title = Captură realizată pe alt dispozitiv
 
 ## Delete Confirmation Dialog
 
