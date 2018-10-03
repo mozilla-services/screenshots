@@ -27,7 +27,7 @@ exports.createModel = function(req) {
     id: req.shot.id,
     productName: req.config.productName,
     isExtInstalled: !!req.deviceId,
-    isOwner: req.shot.isOwner(req.deviceId, req.accountId),
+    isOwner: req.shot.isOwner,
     isFxaAuthenticated,
     gaId: req.config.gaId,
     deviceId: req.deviceId,

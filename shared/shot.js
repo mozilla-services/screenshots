@@ -203,7 +203,7 @@ class AbstractShot {
     this.thumbnail = attrs.thumbnail || null;
     this.abTests = attrs.abTests || null;
     this.firefoxChannel = attrs.firefoxChannel || null;
-    this._isOwner = attrs.isOwner === undefined ? undefined : !!attrs.isOwner;
+    this.isOwner = attrs.isOwner === undefined ? undefined : !!attrs.isOwner;
     this._clips = {};
     if (attrs.clips) {
       for (const clipId in attrs.clips) {
@@ -338,6 +338,10 @@ class AbstractShot {
       throw new Error("isOwner has not been set");
     }
     return this._isOwner;
+  }
+
+  set isOwner(val) {
+    this._isOwner = val || undefined;
   }
 
   get filename() {
@@ -579,7 +583,7 @@ class AbstractShot {
 AbstractShot.prototype.REGULAR_ATTRS = (`
 origin fullUrl docTitle userTitle createdDate images
 siteName openGraph twitterCard documentSize
-thumbnail abTests firefoxChannel
+thumbnail abTests firefoxChannel isOwner
 `).split(/\s+/g);
 
 // Attributes that will be accepted in the constructor, but ignored/dropped

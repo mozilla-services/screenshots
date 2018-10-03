@@ -165,7 +165,7 @@ class Shot extends AbstractShot {
     this.ownerId = ownerId;
   }
 
-  isOwner(deviceId, accountId) {
+  checkOwner(deviceId, accountId) {
     return (this.ownerId && this.ownerId === deviceId) || (this.accountId && this.accountId === accountId);
   }
 
@@ -405,6 +405,7 @@ Shot.get = function(backend, id, deviceId, accountId) {
       json.url = rawValue.url;
     }
     // FIXME: I am not at all confident about the logic here!
+    console.log("shot isOwner compute values", {userId: rawValue.userid, deviceId: deviceId, rawAccount: rawValue.accountId, accountId: accountId});
     json.isOwner = rawValue.userid === deviceId || (accountId && rawValue.accountId === accountId);
     const shot = new Shot(rawValue.userid, backend, id, json);
     shot.urlIfDeleted = rawValue.url;
