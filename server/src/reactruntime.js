@@ -36,9 +36,8 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
     for (const locale of this.props.userLocales) {
       localeScripts.push(<script key={`l10n-${locale}`} src={this.props.staticLink(`/static/locales/${locale}.js`)} />);
     }
+    const wantsAuth = !this.props.authenticated;
 
-    const wantsAuth = (!this.props.authenticated) ||
-                      (this.props.authenticated && !this.props.hasFxa && this.props.authFxa);
     return (
     <LocalizationProvider
       bundles={generateBundles(this.props.messages, this.props.userLocales)}
@@ -71,8 +70,6 @@ exports.HeadTemplate.propTypes = {
   title: PropTypes.string,
   userLocales: PropTypes.array,
   authenticated: PropTypes.bool,
-  hasFxa: PropTypes.bool,
-  authFxa: PropTypes.bool,
   parseMarkup: PropTypes.func,
 };
 

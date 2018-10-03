@@ -545,6 +545,14 @@ app.post("/api/register", function(req, res) {
   });
 });
 
+function sendAccountIdCookie(req, res, accountId) {
+  if (accountId) {
+    const keygrip = dbschema.getKeygrip("auth");
+    const cookies = new Cookies(req, res, {keys: keygrip});
+    cookies.set("accountid", accountId, {signed: true, sameSite: "lax", maxAge: COOKIE_EXPIRE_TIME});
+  }
+}
+
 function sendAuthInfo(req, res, params) {
   const { deviceId, accountId, userAbTests } = params;
   if (deviceId.search(/^[a-zA-Z0-9_-]{1,255}$/) === -1) {
@@ -557,9 +565,7 @@ function sendAuthInfo(req, res, params) {
   const keygrip = dbschema.getKeygrip("auth");
   const cookies = new Cookies(req, res, {keys: keygrip});
   cookies.set("user", deviceId, {signed: true, sameSite: "lax", maxAge: COOKIE_EXPIRE_TIME});
-  if (accountId) {
-    cookies.set("accountid", accountId, {signed: true, sameSite: "lax", maxAge: COOKIE_EXPIRE_TIME});
-  }
+  sendAccountIdCookie(req, res, accountId);
   cookies.set("abtests", encodedAbTests, {signed: true, sameSite: "lax", maxAge: COOKIE_EXPIRE_TIME});
   const authHeader = `${deviceId}:${keygrip.sign(deviceId)};abTests=${encodedAbTests}:${keygrip.sign(encodedAbTests)}`;
   const responseJson = {
@@ -605,6 +611,7 @@ app.post("/api/login", function(req, res) {
         return sendParams.accountId = accountId;
       }).then((accountId) => {
         if (vars.ownershipCheck) {
+
           sendParamsPromise = Shot.checkOwnership(vars.ownershipCheck, vars.deviceId, accountId).then((isOwner) => {
             sendParams.isOwner = isOwner;
             return sendParams;
@@ -1069,20 +1076,20 @@ app.get("/oembed", function(req, res) {
 const END_POINT_SEPARATOR = "|";
 
 // Get OAuth client params for the client-side authorization flow.
-app.get("/api/fxa-oauth/login/*", function(req, res, next) {
+app.get("/api/fxa-oauth/login/*", async function(req, res, next) {
   if (!req.deviceId) {
     next(errors.missingSession());
     return;
   }
-  randomBytes(32).then(stateBytes => {
-    const state = stateBytes.toString("hex");
-    return setState(req.deviceId, state).then(inserted => {
-      if (!inserted) {
-        throw errors.dupeLogin();
-      }
-      return state;
-    });
-  }).then(state => {
+
+  try {
+    const stateBytes = await randomBytes(32);
+    let state = stateBytes.toString("hex");
+    const inserted =  await setState(req.deviceId, state);
+    if (!inserted) {
+      throw errors.dupeLogin();
+    }
+
     const redirectUri = `${req.backend}/api/fxa-oauth/confirm-login`;
     // Use state to store post-auth redirect page inside the 'state'
     // request parameter sent to FxA authorization API
@@ -1091,10 +1098,13 @@ app.get("/api/fxa-oauth/login/*", function(req, res, next) {
     state = `${state}${END_POINT_SEPARATOR}${req.params[0]}`;
     const profile = "profile";
     res.redirect(`${config.fxa.oAuthServer}/authorization?client_id=${encodeURIComponent(config.fxa.clientId)}&redirect_uri=${encodeURIComponent(redirectUri)}&state=${encodeURIComponent(state)}&scope=${encodeURIComponent(profile)}`);
-  }).catch(next);
+  } catch (err) {
+    mozlog.warn("fxa-oauth-login-failed", {err});
+    next(err);
+  }
 });
 
-app.get("/api/fxa-oauth/confirm-login", function(req, res, next) {
+app.get("/api/fxa-oauth/confirm-login", async function(req, res, next) {
   if (!req.deviceId) {
     next(errors.missingSession());
     return;
@@ -1111,35 +1121,38 @@ app.get("/api/fxa-oauth/confirm-login", function(req, res, next) {
   const data = state.split(END_POINT_SEPARATOR, 2);
   const endpoint = data[1];
 
-  checkState(req.deviceId, data[0]).then(isValid => {
-    if (!isValid) {
-      throw errors.badState();
+  const isValid = await checkState(req.deviceId, data[0]);
+  if (!isValid) {
+    throw errors.badState();
+  }
+  try {
+    const { access_token: accessToken } = await tradeCode(code);
+    const { uid: accountId } = await getAccountId(accessToken);
+
+    if (!req.deviceId) {
+      sendAccountIdCookie(req, res, accountId);
+      const pageUri = endpoint ? "/" + endpoint : "/";
+      res.redirect(pageUri);
     }
-    return tradeCode(code);
-  }).then(({ access_token: accessToken }) => {
-    return getAccountId(accessToken).then(({ uid: accountId }) => {
-      return registerAccount(req.deviceId, accountId, accessToken).then(() => {
-        return fetchProfileData(accessToken).then(({ avatar, displayName, email }) => {
-          return saveProfileData(accountId, avatar, displayName, email);
-        }).then(() => {
-          if (config.gaId) {
-            const analytics = ua(config.gaId);
-            analytics.event({
-              ec: "server",
-              ea: "fxa-login",
-              ua: req.headers["user-agent"],
-            }).send();
-          }
-          // Redirect to endpoint with auth param indicating successful Fxa auth flow.
-          // 'auth' param is used in reactrender and reactruntime to load wantsauth.js
-          // and display Fxa SignIn button state when request doesn't have accountId
-          // right after fxa-ouath/confirm-login redirection.
-          const pageUri = endpoint ? "/" + endpoint : "/";
-          res.redirect(pageUri + "?auth=1");
-        });
-      }).catch(next);
-    }).catch(next);
-  }).catch(next);
+
+    await registerAccount(req.deviceId, accountId, accessToken);
+    const { avatar, displayName, email } = await fetchProfileData(accessToken);
+    await saveProfileData(accountId, avatar, displayName, email);
+    if (config.gaId) {
+      const analytics = ua(config.gaId);
+      analytics.event({
+        ec: "server",
+        ea: "fxa-login",
+        ua: req.headers["user-agent"],
+      }).send();
+    }
+    sendAccountIdCookie(req, res, accountId);
+    const pageUri = endpoint ? "/" + endpoint : "/";
+    res.redirect(pageUri);
+  } catch (err) {
+    mozlog.warn("fxa-oauth-confirm-login-failed", {err});
+    next(err);
+  }
 });
 
 app.post("/watchdog/:submissionId", function(req, res) {
