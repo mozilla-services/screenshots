@@ -261,13 +261,6 @@ const conf = convict({
     env: "SHOW_STACK_TRACES",
     arg: "show-stack-traces",
   },
-  debugGoogleAnalytics: {
-    doc: "Include debug information about events send to Google Analytics",
-    format: Boolean,
-    default: false,
-    env: "DEBUG_GOOGLE_ANALYTICS",
-    arg: "debug-google-analytics",
-  },
   testing: {
     failSometimes: {
       doc: "Fail on PUT /data/... requests sometimes (succeed 1 every N times)",

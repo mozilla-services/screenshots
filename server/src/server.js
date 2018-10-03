@@ -223,9 +223,6 @@ app.use(function(req, res, next) {
   if (authInfo.deviceId) {
     req.deviceId = authInfo.deviceId;
     req.userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
-    if (config.debugGoogleAnalytics) {
-      req.userAnalytics = req.userAnalytics.debug();
-    }
   }
   if (authInfo.accountId) {
     req.accountId = authInfo.accountId;
@@ -437,10 +434,7 @@ app.post("/event", function(req, res) {
   }
 
   hashUserId(deviceId).then((userUuid) => {
-    let userAnalytics = ua(config.gaId, userUuid.toString(), {strictCidFormat: false});
-    if (config.debugGoogleAnalytics) {
-      userAnalytics = userAnalytics.debug();
-    }
+    const userAnalytics = ua(config.gaId, userUuid.toString(), {strictCidFormat: false});
     events.forEach(event => {
       const params = Object.assign(
         {},
@@ -481,10 +475,7 @@ app.post("/timing", function(req, res) {
   }
 
   hashUserId(deviceId).then((userUuid) => {
-    let userAnalytics = ua(config.gaId, userUuid.toString(), {strictCidFormat: false});
-    if (config.debugGoogleAnalytics) {
-      userAnalytics = userAnalytics.debug();
-    }
+    const userAnalytics = ua(config.gaId, userUuid.toString(), {strictCidFormat: false});
     timings.forEach(timing => {
       const params = {
         userTimingCategory: timing.timingCategory,
@@ -917,9 +908,6 @@ app.get("/images/:imageid", function(req, res) {
         let analytics = req.userAnalytics;
         if (!analytics) {
           analytics = ua(config.gaId);
-          if (config.debugGoogleAnalytics) {
-            analytics = analytics.debug();
-          }
         }
         const view = embedded ? "direct-view-embedded" : "direct-view";
         const el = view + (obj.ownerId === req.deviceId ? "-owner" : "-non-owner");
