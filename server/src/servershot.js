@@ -404,6 +404,8 @@ Shot.get = function(backend, id, deviceId, accountId) {
     if (!json.url && rawValue.url) {
       json.url = rawValue.url;
     }
+    // FIXME: I am not at all confident about the logic here!
+    json.isOwner = rawValue.userid === deviceId || (accountId && rawValue.accountId === accountId);
     const shot = new Shot(rawValue.userid, backend, id, json);
     shot.urlIfDeleted = rawValue.url;
     shot.accountId = rawValue.accountId;
@@ -429,6 +431,7 @@ Shot.getFullShot = function(backend, id) {
     }
     const row = rows[0];
     const json = JSON.parse(row.value);
+    // FIXME: needs ownerId set
     const shot = new Shot(row.userid, backend, id, json);
     shot.accountId = row.accountid;
     return shot;
@@ -458,6 +461,7 @@ Shot.getRawValue = function(id, deviceId, accountId) {
     }
     const row = rows[0];
     return {
+      // FIXME: why is this named userid? Shouldn't it be deviceId or ownerId?
       userid: row.deviceid,
       value: row.value,
       url: row.url,
