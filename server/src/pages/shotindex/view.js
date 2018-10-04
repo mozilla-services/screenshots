@@ -148,6 +148,9 @@ class Body extends React.Component {
   renderErrorMessages() {
     return (
       <div>
+        <Localized id="shotIndexAlertErrorFavoriteShot">
+          <div id="shotIndexAlertErrorFavoriteShot" hidden></div>
+        </Localized>,
         <Localized id="shotIndexPageErrorDeletingShot">
           <div id="shotIndexPageErrorDeletingShot" hidden></div>
         </Localized>
@@ -319,11 +322,13 @@ class Card extends React.Component {
     if (!shot.expireTime) {
       favoriteIndicator = <Localized id="shotIndexFavoriteIcon" attrs={{title: true}}>
           <div className={classnames("indicator fav-shot", {"inactive": !this.props.hasFxa})}
+            onClick={this.props.hasFxa ? this.onClickFavorite.bind(this, shot) : null}
             title=""></div>
         </Localized>;
     } else if (this.props.hasFxa) {
       favoriteIndicator = <Localized id="shotIndexNonFavoriteIcon" attrs={{title: true}}>
-          <div className="indicator non-fav-shot" title=""></div>
+          <div className="indicator non-fav-shot"
+            onClick={this.onClickFavorite.bind(this, shot)} title=""></div>
         </Localized>;
     }
 
@@ -462,6 +467,16 @@ class Card extends React.Component {
   onClickDownload() {
     this.downloadButton.blur();
     sendEvent("download", "myshots-tile");
+  }
+
+  onClickFavorite(shot) {
+    if (shot.isFavorite) {
+      sendEvent("unfavorite", "myshots-tile");
+    } else {
+      sendEvent("favorite", "myshots-tile");
+    }
+
+    controller.toggleFavoriteShot(shot);
   }
 }
 

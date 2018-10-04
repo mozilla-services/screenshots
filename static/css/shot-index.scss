@@ -223,6 +223,7 @@ $shot-width: 210px;
 
   .fav-shot,
   .non-fav-shot {
+    cursor: pointer;
     right: 12px;
     top: 8px;
     background-size: 23px 20px;
@@ -231,6 +232,7 @@ $shot-width: 210px;
   .fav-shot {
     background-image: url("../img/icon-heart.svg");
     &.inactive {
+      cursor: default;
       opacity: 0.4;
     }
   }

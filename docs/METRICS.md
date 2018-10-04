@@ -328,6 +328,8 @@ These are events that an add-on user can encounter on a shot they own
 6. [x] Right-click (or get the context menu) anywhere on the page `contextmenu/background`, `contextmenu/shot-tile`, `contextmenu/search`, or `contextmenu/header` depending on where the user clicks.
 7. [x] Click download from tile: `web/download/myshots-tile`
 8. [x] Clear search with button: `web/clear-search/button`
+8. [x] Click to favorite: `web/favorite/myshots-tile`
+8. [x] Click to un-favorite: `web/unfavorite/myshots-tile`
 
 #### Settings (My Shots)
 

@@ -20,6 +20,7 @@ exports.launch = function(m) {
       m.shots = m.shots.map((shot) => {
         const s = new AbstractShot(m.backend, shot.id, shot.json);
         s.expireTime = shot.expireTime;
+        s.isFavorite = !shot.expireTime;
         s.isSynced = shot.isSynced;
         return s;
       });
@@ -171,6 +172,50 @@ exports.deleteShot = function(shot) {
     }
   };
   req.send(`id=${encodeURIComponent(shot.id)}&_csrf=${encodeURIComponent(model.csrfToken)}`);
+};
+
+
+exports.toggleFavoriteShot = async function(shot) {
+  const url = model.backend + "/api/set-expiration";
+  const newExpiration = shot.isFavorite ? model.defaultExpirationMs : 0;
+  const body = new URLSearchParams();
+
+  body.append("id", shot.id);
+  body.append("expiration", newExpiration);
+  body.append("_csrf", model.csrfToken);
+
+  try {
+    const resp = await fetch(url, {
+      method: "POST",
+      body,
+    });
+
+    if (!resp.ok) {
+      const exc = new Error(`Error calling /api/set-expiration: ${resp.status} ${resp.statusText}`);
+      window.Raven.captureException(exc);
+      throw exc;
+    }
+
+    if (newExpiration) {
+      shot.expireTime = Date.now() + newExpiration;
+    } else {
+      shot.expireTime = null;
+    }
+
+    shot.isFavorite = !shot.isFavorite;
+
+    render();
+  } catch (err) {
+    console.warn("Error updating expiration:", err);
+
+    // The error could be one from the server or a network level error from
+    // fetch; we display a generic message either way as it's (probably?)
+    // friendlier than percolating a fetch error message up to the user.
+    const errorMessage = document.getElementById("shotIndexAlertErrorFavoriteShot").textContent;
+    if (errorMessage) {
+      window.alert(errorMessage);
+    }
+  }
 };
 
 window.addEventListener("popstate", () => {
