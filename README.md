@@ -36,7 +36,7 @@ There are two scripts to run the server locally and develop the add-on:
     - If nodemon crashes you can try to start the server with `./bin/run-server --restart`
     - Take a look at and/or source [`.env.dev`](https://github.com/mozilla-services/screenshots/blob/master/.env.dev) for some of the options available through environment variables.
 - `./bin/run-addon` will build a few parts of the addon (into `addon/webextension/build/`) and start Firefox with the add-on installed.  The add-on will be refreshed automatically as you change files.  We recommend you open `about:debugging` to help debug the extension.
-- `./bin/run-addon --setup-profile` will setup a Firefox profile for your development; this way you can make persistent changes to the profile that you will use just for Screenshots development. (note: this will only look for the `firefox` commmand or Nightly, Developer Edition, Aurora editions on OSX)
+- `./bin/run-addon --setup-profile` will setup a Firefox profile for your development; this way you can make persistent changes to the profile that you will use just for Screenshots development. (note: this will only look for the `firefox` command or Nightly, Developer Edition, Aurora editions on OSX)
 
 **If you want to develop the add-on but not the server** you can run `./bin/run-addon -s https://screenshots.dev.mozaws.net`
 
