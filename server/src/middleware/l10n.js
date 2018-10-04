@@ -17,7 +17,7 @@ exports.getLanguages = function(req) {
 exports.l10n = function(req, res, next) {
   l10n.init().then(() => {
     const languages = exports.getLanguages(req);
-    req.getText = l10n.getText(languages);
+    req.getText = l10n.getText(languages, req.headers["user-agent"]);
     req.userLocales = l10n.getUserLocales(languages);
     req.messages = l10n.getStrings(languages);
     next();
