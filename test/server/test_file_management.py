@@ -139,7 +139,6 @@ def restart_server(**extra_env):
     env['SITE_ORIGIN'] = 'localhost:10180'
     env['CONTENT_ORIGIN'] = 'localhost:10180'
     env['GA_ID'] = ''
-    env['DEBUG_GOOGLE_ANALYTICS'] = ''
     env['NODE_ENV'] = 'production'
     env['LOG_QUERY_LIMIT'] = '0'
     env['ENABLE_WATCHDOG'] = 'false'
