@@ -727,7 +727,6 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
         const saveImg = makeEl("img");
         saveImg.src = browser.extension.getURL("icons/cloud.svg");
         save.appendChild(saveImg);
-        save.append(browser.i18n.getMessage("uploadScreenshotSelectedArea"));
         save.title = browser.i18n.getMessage("uploadScreenshotSelectedArea");
       }
       buttons.appendChild(download);

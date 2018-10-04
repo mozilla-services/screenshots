@@ -350,7 +350,7 @@ $very-light-grey: #ededed;
   @extend .button;
   @extend .secondary;
   border: 1px solid $light-active;
-  margin: 5px;
+  margin: 4px;
   width: 40px;
 }
 
@@ -358,17 +358,8 @@ $very-light-grey: #ededed;
   @extend .button;
   @extend .primary;
   font-size: 18px;
-  margin: 5px;
-  min-width: 80px;
-
-  img {
-    html[dir="ltr"] & {
-      padding-right: 8px;
-    }
-    html[dir="rtl"] & {
-      padding-left: 8px;
-    }
-  }
+  margin: 4px;
+  width: 40px;
 }
 
 .highlight-button-download {
@@ -377,7 +368,7 @@ $very-light-grey: #ededed;
   border: 1px solid $light-active;
   // Overrides display: flex from .button, which causes hover problems
   display: block;
-  margin: 5px;
+  margin: 4px;
   width: 40px;
 
   &.download-only-button {
@@ -404,7 +395,7 @@ $very-light-grey: #ededed;
   border: 1px solid $light-active;
   // Overrides display: flex from .button, which causes hover problems
   display: block;
-  margin: 5px;
+  margin: 4px;
   width: 40px;
 }
 
