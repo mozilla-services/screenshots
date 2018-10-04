@@ -3,7 +3,7 @@ exports.createModel = function(req) {
   const firefoxVersion = exports.getFirefoxVersion(req.headers["user-agent"]);
   const model = {
     title: "Firefox Screenshots",
-    showMyShots: !!req.deviceId,
+    showMyShots: !!req.deviceId || !!req.accountId,
     isFirefox: !!firefoxVersion && !isMobile,
     firefoxVersion,
   };

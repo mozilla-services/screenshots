@@ -4,13 +4,13 @@ const { SignInButton } = require("../../signin-button.js");
 const { Header } = require("../../header.js");
 
 exports.MyShotsHeader = function MyShotsHeader(props) {
-  const signin = props.enableUserSettings && props.hasDeviceId ?
+  const signin = props.enableUserSettings ?
     <SignInButton
       isAuthenticated={props.hasFxa} initialPage="shots"
       staticLink={props.staticLink} /> : null;
 
   return (
-    <Header hasLogo={true} isOwner={props.hasDeviceId} hasFxa={props.hasFxa}>
+    <Header hasLogo={true} isOwner={true} hasFxa={props.hasFxa}>
       <div className="alt-actions">
         { signin }
       </div>
@@ -20,7 +20,6 @@ exports.MyShotsHeader = function MyShotsHeader(props) {
 
 exports.MyShotsHeader.propTypes = {
   hasFxa: PropTypes.bool,
-  hasDeviceId: PropTypes.bool,
   enableUserSettings: PropTypes.bool,
   staticLink: PropTypes.func,
 };
