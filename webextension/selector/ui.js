@@ -420,9 +420,9 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
                           data-l10n-title="downloadScreenshot"><img
                           src="${browser.extension.getURL("icons/download.svg")}" /></button>
                          <button class="preview-button-save"
-                          data-l10n-title="saveScreenshotSelectedArea"><img
+                          data-l10n-title="uploadScreenshotSelectedArea"><img
                           src="${browser.extension.getURL("icons/cloud.svg")}"
-                          />${browser.i18n.getMessage("saveScreenshotSelectedArea")}</button>`
+                          />${browser.i18n.getMessage("uploadScreenshotSelectedArea")}</button>`
                       }
                     </div>
                   </div>
@@ -727,8 +727,8 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
         const saveImg = makeEl("img");
         saveImg.src = browser.extension.getURL("icons/cloud.svg");
         save.appendChild(saveImg);
-        save.append(browser.i18n.getMessage("saveScreenshotSelectedArea"));
-        save.title = browser.i18n.getMessage("saveScreenshotSelectedArea");
+        save.append(browser.i18n.getMessage("uploadScreenshotSelectedArea"));
+        save.title = browser.i18n.getMessage("uploadScreenshotSelectedArea");
       }
       buttons.appendChild(download);
       if (save) {
