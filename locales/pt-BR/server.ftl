@@ -10,6 +10,9 @@ gNoShots =
     .alt = Capturas não encontradas
 gScreenshotsDescription = Capturas de tela de forma simples. Capture, salve e compartilhe telas sem sair do Firefox.
 
+## Header
+
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
@@ -38,7 +41,6 @@ homePageButtonMyShots = Ir para minhas capturas
 homePageTeaser = Em breve…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Download grátis
-homePageGetStarted = Iniciar
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Como o Firefox Screenshots funciona
 homePageGetStartedTitle = Iniciar
@@ -87,7 +89,8 @@ shotPageAlertErrorUpdatingTitle = Erro ao salvar título
 shotPageConfirmDelete = Tem certeza que deseja excluir essa captura permanentemente?
 shotPageShareButton =
     .title = Compartilhar
-shotPageCopy = Copiar
+shotPageCopyButton =
+    .title = Copiar a imagem para área de transferência
 shotPageCopied = Copiado
 shotPageShareFacebook =
     .title = Compartilhar no Facebook
@@ -112,15 +115,11 @@ shotPageExpiredMessage = Essa captura expirou.
 shotPageExpiredMessageDetails = Esta é a página onde a captura foi criada originalmente:
 shotPageDeleteButton =
     .title = Excluir esta captura
-shotPageAbuseButton =
-    .title = Reportar essa captura por abuso, spam ou outros problemas
 shotPageDownloadShot =
     .title = Baixar
 shotPageEditButton =
     .title = Editar esta imagem
-shotPageDownload = Baixar
 shotPageScreenshotsDescription = Capturas de tela de forma simples. Capture, salve e compartilhe telas sem sair do Firefox.
-shotPageUpsellFirefox = Baixe o Firefox agora
 shotPageDMCAMessage = Essa captura não está mais disponível devido a reclamação de Direitos Autorais de terceiros.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Envie um e-mail para { $dmca } para pedir mais informações.
@@ -182,6 +181,9 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Se tirou esta captura e não consegue excluí-la, talvez seja necessário habilitar temporariamente os cookies de terceiros nas preferências do seu navegador.
 
+## Shot Page New Feature Promotion Dialog.
+
+
 ## Annotations
 
 annotationPenButton =
@@ -241,6 +243,11 @@ textToolCancelButton = Cancelar
 textToolInputPlaceholder =
     .placeholder = Olá
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+
 ## Settings Page
 
 settingsDisconnectButton = Desconectar
@@ -267,8 +274,6 @@ shotIndexPageSearchResultsTitle = Minhas capturas: procurar por { $searchTerm }
 shotIndexPageErrorRendering = Erro ao renderizar página: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Procurar minhas capturas
-shotIndexPageSearchButton =
-    .title = Pesquisar
 shotIndexPageNoShotsMessage = Não há capturas salvas.
 shotIndexPageNoShotsInvitation = Vamos, crie algumas.
 shotIndexPageLookingForShots = Procurando por suas capturas...
@@ -281,12 +286,6 @@ shotIndexPagePreviousPage =
     .title = Página anterior
 shotIndexPageNextPage =
     .title = Próxima página
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Esta captura não expira
 
 ## Delete Confirmation Dialog
 
