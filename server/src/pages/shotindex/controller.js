@@ -20,7 +20,6 @@ exports.launch = function(m) {
     if (m.shots) {
       m.shots = m.shots.map((shot) => {
         const s = new AbstractShot(m.backend, shot.id, shot.json);
-        s.isOwner = shot.json.isOwner;
         s.expireTime = shot.expireTime;
         s.isFavorite = !shot.expireTime;
         s.isSynced = shot.isSynced;

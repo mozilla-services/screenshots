@@ -393,50 +393,30 @@ class ServerClip extends AbstractShot.prototype.Clip {
 
 Shot.prototype.Clip = ServerClip;
 
-Shot.get = function(backend, id, deviceId, accountId) {
-  return Shot.getRawValue(id, deviceId, accountId).then((rawValue) => {
-    if (!rawValue) {
-      return null;
-    }
-    const json = JSON.parse(rawValue.value);
-    const jsonTitle = json.userTitle || (json.openGraph && json.openGraph.title) || json.docTitle;
-    json.docTitle = jsonTitle || rawValue.title;
-    if (!json.url && rawValue.url) {
-      json.url = rawValue.url;
-    }
-    // FIXME: I am not at all confident about the logic here!
-    console.log("shot isOwner compute values", {userId: rawValue.userid, deviceId: deviceId, rawAccount: rawValue.accountId, accountId: accountId});
-    json.isOwner = rawValue.userid === deviceId || (accountId && rawValue.accountId === accountId);
-    const shot = new Shot(rawValue.userid, backend, id, json);
-    shot.urlIfDeleted = rawValue.url;
-    shot.accountId = rawValue.accountId;
-    shot.expireTime = rawValue.expireTime;
-    shot.deleted = rawValue.deleted;
-    shot.blockType = rawValue.blockType;
-    return shot;
-  });
-};
-
-// FIXME: What is the difference between Shot.getFullShot and Shot.get?
-Shot.getFullShot = function(backend, id) {
+Shot.get = async function(backend, id, deviceId, accountId) {
   if (!id) {
-    throw new Error("Empty id: " + id);
+    return null;
   }
-  return db.select(
-    `SELECT value, deviceid, devices.accountid FROM data, devices
-    WHERE data.deviceid = devices.id AND data.id = $1`,
-    [id]
-  ).then((rows) => {
-    if (!rows.length) {
-      return null;
-    }
-    const row = rows[0];
-    const json = JSON.parse(row.value);
-    // FIXME: needs ownerId set
-    const shot = new Shot(row.userid, backend, id, json);
-    shot.accountId = row.accountid;
-    return shot;
-  });
+
+  const rawValue = await Shot.getRawValue(id);
+  if (!rawValue) {
+    return null;
+  }
+  const json = JSON.parse(rawValue.value);
+  const jsonTitle = json.userTitle || (json.openGraph && json.openGraph.title) || json.docTitle;
+  json.docTitle = jsonTitle || rawValue.title;
+  if (!json.url && rawValue.url) {
+    json.url = rawValue.url;
+  }
+
+  const shot = new Shot(rawValue.userid, backend, id, json);
+  shot.isOwner = rawValue.userid === deviceId || (accountId && rawValue.accountId === accountId);
+  shot.urlIfDeleted = rawValue.url;
+  shot.accountId = rawValue.accountId;
+  shot.expireTime = rawValue.expireTime;
+  shot.deleted = rawValue.deleted;
+  shot.blockType = rawValue.blockType;
+  return shot;
 };
 
 Shot.getRawValue = function(id, deviceId, accountId) {

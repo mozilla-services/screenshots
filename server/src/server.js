@@ -809,6 +809,12 @@ app.post("/api/set-title/:id/:domain", function(req, res) {
       simpleResponse(res, "No such shot", 404);
       return null;
     }
+
+    if (!shot.isOwner) {
+      simpleResponse(res, "Attempt to set title on shot user doesn't own", 403);
+      return null;
+    }
+
     shot.userTitle = userTitle;
     if (shot.openGraph && shot.openGraph.title) {
         shot.openGraph.title = userTitle;
@@ -845,6 +851,10 @@ app.post("/api/save-edit", function(req, res) {
     if (!shot) {
       sendRavenMessage(req, "Attempt to edit shot that does not exist");
       simpleResponse(res, "No such shot", 404);
+      return null;
+    }
+    if (!shot.isOwner) {
+      simpleResponse(res, "Attempt to edit shot user doesn't own", 403);
       return null;
     }
     const name = shot.clipNames()[0];
