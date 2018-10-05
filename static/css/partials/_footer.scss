@@ -1,20 +1,26 @@
 .footer {
-  @include respond-to("small") {
-    @include flex-container(column, space-between, flex-start);
+  
+  @include flex-container(column, space-between, flex-start);
+  padding: $grid-unit;
+  
+  @include respond-to("large") {
+    flex-direction: row;
+    padding: $grid-unit * 1.5;
   }
-
-  @include flex-container(row, space-between, center);
-  padding: $grid-unit * 1.5;
 
   .footer-links {
     display: flex;
     list-style: none;
     margin: 0 0;
-    padding: 0 0;
+    
+    @include flex-container(column, space-between, stretch);
+    padding: 16px 0 0 0;
 
-    @include respond-to("small") {
-      @include flex-container(column, space-between, stretch);
+    @include respond-to("large") {
+      flex-direction: row;
+      padding: 0 0;
     }
+    
 
     li {
       font-size: 14px;
