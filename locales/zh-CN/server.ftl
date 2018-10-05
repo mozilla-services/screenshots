@@ -9,8 +9,6 @@ gHomeLink = 首页
 gNoShots =
     .alt = 没有找到截图
 gScreenshotsDescription = 使截图更简单。截取、保存以及分享截图，一切都在 Firefox。
-gSettings = 设置
-gSignIn = 登录
 
 ## Header
 
@@ -20,6 +18,8 @@ buttonSignIn =
     .title = 登录
 screenshotsLogo =
     .title = Screenshots 主页
+bannerMessage = 请注册或登录，即可跨设备访问您的截图，并永久保存收藏的截图。
+bannerUpsell = { gScreenshotsDescription }<a>立即下载 Firefox</a>
 
 ## Footer
 
@@ -99,9 +99,8 @@ shotPageAlertErrorUpdatingTitle = 保存标题时出错
 shotPageConfirmDelete = 您确定要永久删除此截图？
 shotPageShareButton =
     .title = 分享
-shotPageCopy = 复制
 shotPageCopyButton =
-    .title = 将截图复制到剪贴板
+    .title = 复制截图到剪贴板
 shotPageCopied = 已复制
 shotPageShareFacebook =
     .title = 分享到 Facebook
@@ -136,14 +135,7 @@ shotPageBackToHomeButton =
     .title = 主页
 shotPageAllShotsButton =
     .title = 所有截图
-shotPageAllShots = 所有截图
-shotPageDownload = 下载
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = 绘制
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = 收藏
-shotPageDelete = 删除
-shotPageScreenshotsDescription = 使截图更简单。截取、保存以及分享截图，一切都在 Firefox。
+shotPageScreenshotsDescription = 截图更简单。不必离开 Firefox 就能截取、保存以及分享截图。
 shotPageDMCAMessage = 由于第三方宣告知识产权，此截图不再可用。
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = 请发送电子邮件至 { $dmca } 来请求进一步信息。
@@ -181,10 +173,10 @@ timeDiffHoursAgo =
        *[other] { $number } 小时前
     }
 timeDiffDaysAgo = { $number } 天前
-timeDiffFutureSeconds = 几秒
-timeDiffFutureMinutes = { $number } 分钟
-timeDiffFutureHours = { $number } 小时
-timeDiffFutureDays = { $number } 天
+timeDiffFutureSeconds = 几秒内
+timeDiffFutureMinutes = { $number } 分钟内
+timeDiffFutureHours = { $number } 小时内
+timeDiffFutureDays = { $number } 天内
 errorThirdPartyCookiesEnabled = 如果您无法删除截图，可能需要暂时在浏览器的设置中启用第三方 Cookie。
 
 ## Shot Page New Feature Promotion Dialog.
