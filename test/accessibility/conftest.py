@@ -1,10 +1,8 @@
 import pytest
-
 from pytest_axe.pytest_axe import PytestAxe as Axe
 from selenium import webdriver
 
-base_url = "https://screenshots.firefox.com/"
-my_shots_button_locator = "myshots-button"
+base_url = "https://screenshots.stage.mozaws.net/"
 
 
 @pytest.fixture(scope="session", autouse=True)
