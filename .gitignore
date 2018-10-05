@@ -26,3 +26,6 @@ cookie-jar.txt
 .vscode
 # Created by py.test:
 /test/server/.cache
+.pytest_cache
+__pycache__
+.tox

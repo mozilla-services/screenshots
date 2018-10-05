@@ -1,0 +1,4 @@
+flake8==3.5.0
+pytest==3.8.2
+axe-selenium-python==2.1.1
+pytest-axe==1.1.1

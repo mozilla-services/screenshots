@@ -31,6 +31,7 @@ jobs:
       - ENABLE_COVERAGE: false
       - NODE_ENV: dev
       - CIRCLE_TEST_REPORTS: /home/circleci/test-reports
+      - GECKODRIVER: 0.23.0
     # A machine executor is used here because of the OWASP ZAP step. When using
     # a docker executor, all the run steps are executed in the primary
     # container, so we cannot run zap-baseline.py. A CircleCI employee
@@ -78,6 +79,11 @@ jobs:
             npm i -g get-firefox
             get-firefox --branch nightly --platform linux --extract --target ~/
             ~/firefox/firefox -v
+            wget -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v$GECKODRIVER/geckodriver-v$GECKODRIVER-linux64.tar.gz
+            mkdir $HOME/geckodriver && tar xvf /tmp/geckodriver.tar.gz -C $HOME/geckodriver
+            export PATH=$HOME/geckodriver:$PATH
+            firefox --version
+            geckodriver --version
       - run:
           name: Run npm test
           command: |
@@ -85,6 +91,16 @@ jobs:
             nvm use 8.10.0
             export PATH=~/firefox:$PATH
             FIREFOX_CHANNEL=NIGHTLY MOZ_HEADLESS=1 npm test
+      - run:
+          name: Run Accessibility Tests
+          command: |
+            pip install -U pip
+            pip install tox
+            export PATH=~/firefox:$PATH
+            export PATH=$HOME/geckodriver:$PATH
+            FIREFOX_CHANNEL=NIGHTLY MOZ_HEADLESS=1
+            pyenv global system 3.5.2 2.7.12
+            tox
       - run:
           # run zap baseline against the server
           # Only fail on error code 1, which indicates at least one FAIL was found.
