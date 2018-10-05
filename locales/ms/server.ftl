@@ -9,8 +9,6 @@ gHomeLink = Halaman utama
 gNoShots =
     .alt = Tiada syot ditemukan
 gScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skrinsyot tanpa keluar daripada Firefox.
-gSettings = Tetapan
-gSignIn = Daftar masuk
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Ralat menyimpan tajuk
 shotPageConfirmDelete = Anda pasti mahu menghapuskan syot ini secara kekal?
 shotPageShareButton =
     .title = Kongsi
-shotPageCopy = Salin
 shotPageCopyButton =
     .title = Salin imej ke klipbod
 shotPageCopied = Disalin
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Laman
 shotPageAllShotsButton =
     .title = Semua Syot
-shotPageAllShots = Semua Syot
-shotPageDownload = Muat turun
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Lukis
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Kegemaran
-shotPageDelete = Buang
 shotPageScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skrinsyot tanpa keluar daripada Firefox.
 shotPageDMCAMessage = Syot ini tidak lagi tersedia kerana tuntutan harta intelek pihak ketiga.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -327,6 +317,7 @@ shotIndexFavoriteIcon =
     .title = Ini syot kegemaran saya dan tidak akan luput
 shotIndexSyncedShot =
     .title = Syot diambil pada peranti lain
+shotIndexAlertErrorFavoriteShot = Ralat mengemaskini status syot kegemaran
 
 ## Delete Confirmation Dialog
 
