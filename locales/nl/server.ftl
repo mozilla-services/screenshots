@@ -9,8 +9,6 @@ gHomeLink = Startpagina
 gNoShots =
     .alt = Geen afbeeldingen gevonden
 gScreenshotsDescription = Schermafbeeldingen worden makkelijk. Maak, bewaar en deel schermafbeeldingen zonder Firefox te verlaten.
-gSettings = Instellingen
-gSignIn = Aanmelden
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Fout bij opslaan van titel
 shotPageConfirmDelete = Weet u zeker dat u deze afbeelding definitief wilt verwijderen?
 shotPageShareButton =
     .title = Delen
-shotPageCopy = Kopiëren
 shotPageCopyButton =
     .title = Afbeelding naar klembord kopiëren
 shotPageCopied = Gekopieerd
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Startpagina
 shotPageAllShotsButton =
     .title = Alle afbeeldingen
-shotPageAllShots = Alle afbeeldingen
-shotPageDownload = Downloaden
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Tekenen
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Favoriet maken
-shotPageDelete = Verwijderen
 shotPageScreenshotsDescription = Schermafbeeldingen worden makkelijk. Maak, bewaar en deel schermafbeeldingen zonder Firefox te verlaten.
 shotPageDMCAMessage = Deze afbeelding is vanwege een claim op intellectueel eigendom door een externe partij niet meer beschikbaar.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -333,6 +323,7 @@ shotIndexFavoriteIcon =
     .title = Deze afbeelding is een favoriet en verloopt niet
 shotIndexSyncedShot =
     .title = Op ander apparaat gemaakte afbeelding
+shotIndexAlertErrorFavoriteShot = Fout bij bijwerken van favorietstatus
 
 ## Delete Confirmation Dialog
 
