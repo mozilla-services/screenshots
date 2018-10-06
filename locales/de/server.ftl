@@ -9,8 +9,6 @@ gHomeLink = Startseite
 gNoShots =
     .alt = Keine Bildschirmfotos gefunden
 gScreenshotsDescription = Bildschirmfotos einfach machen, speichern und teilen – ohne Firefox zu verlassen.
-gSettings = Einstellungen
-gSignIn = Anmelden
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Fehler beim Speichern des Titels
 shotPageConfirmDelete = Soll dieses Bildschirmfoto wirklich dauerhaft gelöscht werden?
 shotPageShareButton =
     .title = Teilen
-shotPageCopy = Kopieren
 shotPageCopyButton =
     .title = Bildschirmfoto in Zwischenablage kopieren
 shotPageCopied = Kopiert
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Startseite
 shotPageAllShotsButton =
     .title = Alle Bildschirmfotos
-shotPageAllShots = Alle Bildschirmfotos
-shotPageDownload = Herunterladen
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Zeichnen
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Als Favorit speichern
-shotPageDelete = Löschen
 shotPageScreenshotsDescription = Bildschirmfotos einfach machen, speichern und teilen – ohne Firefox zu verlassen.
 shotPageDMCAMessage = Dieses Bildschirmfoto ist aufgrund von Urheberrechtsansprüchen von Dritten nicht mehr verfügbar.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -333,6 +323,7 @@ shotIndexFavoriteIcon =
     .title = Dieses Bildschirmfoto ist ein Favorit und läuft nicht ab
 shotIndexSyncedShot =
     .title = Auf anderem Gerät aufgenommenes Bildschirmfoto
+shotIndexAlertErrorFavoriteShot = Fehler beim Aktualisieren des Favoriten-Status des Bildschirmfotos
 
 ## Delete Confirmation Dialog
 
