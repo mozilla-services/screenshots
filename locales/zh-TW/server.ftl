@@ -9,8 +9,6 @@ gHomeLink = 首頁
 gNoShots =
     .alt = 沒有找到擷取圖
 gScreenshotsDescription = 拍攝畫面擷圖變得簡單。不必離開 Firefox 就能拍照、存檔、分享擷圖。
-gSettings = 設定
-gSignIn = 登入
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = 儲存標題時發生錯誤
 shotPageConfirmDelete = 您確定要刪除這張圖片嗎？
 shotPageShareButton =
     .title = 分享
-shotPageCopy = 複製
 shotPageCopyButton =
     .title = 複製圖片到剪貼簿
 shotPageCopied = 已複製！
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = 首頁
 shotPageAllShotsButton =
     .title = 所有擷圖
-shotPageAllShots = 所有擷圖
-shotPageDownload = 下載
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = 繪圖
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = 設為最愛
-shotPageDelete = 刪除
 shotPageScreenshotsDescription = 拍攝擷圖變得簡單。不必離開 Firefox 就能拍攝、儲存、分享畫面擷圖。
 shotPageDMCAMessage = 因為第三方提出智慧財產權通知，此擷圖已被下架。
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -309,6 +299,7 @@ shotIndexFavoriteIcon =
     .title = 這是最愛的擷圖，不會過期
 shotIndexSyncedShot =
     .title = 在其他裝置上拍攝的擷圖
+shotIndexAlertErrorFavoriteShot = 更新最愛的擷圖狀態時發生錯誤
 
 ## Delete Confirmation Dialog
 
