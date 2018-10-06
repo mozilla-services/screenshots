@@ -9,8 +9,6 @@ gHomeLink = Главная
 gNoShots =
     .alt = снимков не найдено
 gScreenshotsDescription = Скриншоты стали простыми. Делайте, сохраняйте и делитесь скриншотами, не покидая Firefox.
-gSettings = Параметры
-gSignIn = Войти
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Ошибка при сохранении за�
 shotPageConfirmDelete = Вы уверены, что хотите навсегда удалить этот снимок?
 shotPageShareButton =
     .title = Поделиться
-shotPageCopy = Копировать
 shotPageCopyButton =
     .title = Скопировать изображение в буфер обмена
 shotPageCopied = Скопировано
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Домашняя страница
 shotPageAllShotsButton =
     .title = Все снимки
-shotPageAllShots = Все снимки
-shotPageDownload = Загрузить
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Рисовать
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = В избранное
-shotPageDelete = Удалить
 shotPageScreenshotsDescription = Скриншоты стали простыми. Делайте, сохраняйте и делитесь скриншотами, не покидая Firefox.
 shotPageDMCAMessage = Этот снимок больше недоступен из-за нарушения авторских прав третьей стороны.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -339,6 +329,7 @@ shotIndexFavoriteIcon =
     .title = Это снимок является избранным и будет храниться бессрочно
 shotIndexSyncedShot =
     .title = Снимок сделан на другом устройстве
+shotIndexAlertErrorFavoriteShot = Произошла ошибка при добавлении этого снимка в избранное
 
 ## Delete Confirmation Dialog
 
