@@ -10,12 +10,25 @@ gNoShots =
     .alt = Ingen skjermbilder funnet
 gScreenshotsDescription = Skjermbilder gjort enkelt. Ta, lagre og del skjermbilder uten å forlate Firefox.
 
+## Header
+
+buttonSettings =
+    .title = Innstillinger
+buttonSignIn =
+    .title = Logg inn
+screenshotsLogo =
+    .title = Startside for Screenshots
+bannerMessage = Logg på eller registrer deg for å få tilgang til bildene dine på tvers av enheter og lagre favorittene dine for alltid.
+bannerUpsell = { gScreenshotsDescription } <a>Hent Firefox nå</a>
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Vilkår
 footerLinkPrivacy = Personvernbestemmelser
+footerReportShot = Rapporter skjermbilde
+    .title = Rapporter dette skjermbildet for misbruk, spam eller andre problemer
 footerLinkFaqs = FAQ
 footerLinkDMCA = Rapporter åndsverkovertredelse
 footerLinkDiscourse = Gi tilbakemelding
@@ -38,7 +51,6 @@ homePageButtonMyShots = Gå til mine skjermbilder
 homePageTeaser = Kommer snart…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Gratis nedlasting
-homePageGetStarted = Kom i gang
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Slik fungerer Firefox Screenshots
 homePageGetStartedTitle = Kom i gang
@@ -87,7 +99,8 @@ shotPageAlertErrorUpdatingTitle = Feil ved lagring av tittel
 shotPageConfirmDelete = Er du sikker på at du vil slette dette skjermbildet permanent?
 shotPageShareButton =
     .title = del
-shotPageCopy = Kopier
+shotPageCopyButton =
+    .title = Kopier bilde til utklippstavlen
 shotPageCopied = Kopiert
 shotPageShareFacebook =
     .title = Del på Facebook
@@ -112,15 +125,17 @@ shotPageExpiredMessage = Dette skjermbildet har utløpt.
 shotPageExpiredMessageDetails = Her er siden den ble opprinnelig generert fra:
 shotPageDeleteButton =
     .title = Slett dette skjermbildet
-shotPageAbuseButton =
-    .title = Rapporter dette bildet for brudd, spam eller andre problemer
 shotPageDownloadShot =
     .title = Last ned
 shotPageEditButton =
     .title = Rediger dette bildet
-shotPageDownload = Last ned
+shotPagefavoriteButton =
+    .title = Marker dette skjermbildet som favoritt
+shotPageBackToHomeButton =
+    .title = Startside
+shotPageAllShotsButton =
+    .title = Alle skjermbilder
 shotPageScreenshotsDescription = Skjermbilder gjort enkelt. Ta, lagre og del skjermbilder uten å forlate Firefox.
-shotPageUpsellFirefox = Last ned Firefox nå
 shotPageDMCAMessage = Dette bildet er ikke lenger tilgjengelig på grunn av en tredjeparts immaterielle krav.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Send en e-post til { $dmca } for å be om ytterligere informasjon.
@@ -250,6 +265,13 @@ textToolCancelButton = Avbryt
 textToolInputPlaceholder =
     .placeholder = Hallo
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Noe gikk galt
+copyImageErrorMessage = Kan ikke kopiere skjermbildet ditt til utklippstavlen.
+
 ## Settings Page
 
 settingsDisconnectButton = Koble fra
@@ -276,13 +298,13 @@ shotIndexPageSearchResultsTitle = Mine skjermbilder: søk etter { $searchTerm }
 shotIndexPageErrorRendering = Feil ved opptegning av siden: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Søk mine skjermbilder
-shotIndexPageSearchButton =
-    .title = Søk
 shotIndexPageNoShotsMessage = Ingen lagrede bilder.
 shotIndexPageNoShotsInvitation = Kom igjen, lag noen.
 shotIndexPageLookingForShots = Leter etter bildene dine…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Vi kan ikke finne noen bilder som passer med søket ditt.
+shotIndexPageMyShotsButton =
+    .title = Mine skjermbilder
 shotIndexPageClearSearchButton =
     .title = Tøm søk
 shotIndexPageConfirmShotDelete = Slett dette skjermbildet
@@ -290,12 +312,18 @@ shotIndexPagePreviousPage =
     .title = Forrige side
 shotIndexPageNextPage =
     .title = Neste side
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Dette skjermbildet utløper ikke
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Dette er ikke et favorittskjermbilde, og det vil utløpe
+# This is the tooltip for a "heart" symbol in the upper top corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Dette er et favorittskjermbilde, og det vil ikke utløpe
+shotIndexSyncedShot =
+    .title = Skjermbilde tatt på en annen enhet
+shotIndexAlertErrorFavoriteShot = Feil ved oppdatering av favorittskjermbildestatus
 
 ## Delete Confirmation Dialog
 
