@@ -9,8 +9,6 @@ gHomeLink = Domů
 gNoShots =
     .alt = Žádné snímky nenalezeny
 gScreenshotsDescription = Jednoduchá tvorba snímků webových stránek. Vytvářejte, ukládejte i sdílejte přímo z Firefoxu.
-gSettings = Nastavení
-gSignIn = Přihlásit se
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Při ukládání názvu nastala chyba
 shotPageConfirmDelete = Opravdu chcete tento snímek navždy smazat?
 shotPageShareButton =
     .title = Sdílet
-shotPageCopy = Kopírovat
 shotPageCopyButton =
     .title = Zkopírovat do schránky
 shotPageCopied = Zkopírováno
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Domovská stránka
 shotPageAllShotsButton =
     .title = Všechny snímky
-shotPageAllShots = Všechny snímky
-shotPageDownload = Stáhnout
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Kreslení
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Oblíbené
-shotPageDelete = Smazat
 shotPageScreenshotsDescription = Jednoduchá tvorba snímků webových stránek. Vytvářejte, ukládejte i sdílejte přímo z Firefoxu.
 shotPageDMCAMessage = Tento snímek již není dostupný z důvodu uplatnění nároku na duševní vlastnictví třetí strany.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -339,6 +329,7 @@ shotIndexFavoriteIcon =
     .title = Tento snímek byl označen jako oblíbený a jeho platnost nevyprší
 shotIndexSyncedShot =
     .title = Snímek pořízený na jiném zařízení
+shotIndexAlertErrorFavoriteShot = Při aktualizaci stavu oblíbeného snímku došlo k chybě
 
 ## Delete Confirmation Dialog
 
