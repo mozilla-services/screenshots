@@ -9,8 +9,6 @@ gHomeLink = Avaleht
 gNoShots =
     .alt = Pilte ei leitud
 gScreenshotsDescription = Ekraanipildid lihtsalt. Tee, salvesta ja jaga ekraanipilte Firefoxist lahkumata.
-gSettings = Sätted
-gSignIn = Logi sisse
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Pildi pealkirja salvestamisel tekkis viga
 shotPageConfirmDelete = Kas oled kindel, et soovid pildi jäädavalt kustutada?
 shotPageShareButton =
     .title = Jaga
-shotPageCopy = Kopeeri
 shotPageCopyButton =
     .title = Kopeeri pilt vahemällu
 shotPageCopied = Kopeeritud
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Avalehele
 shotPageAllShotsButton =
     .title = Kõik pildid
-shotPageAllShots = Kõik pildid
-shotPageDownload = Laadi alla
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Muuda pilti
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Lisa lemmikutesse
-shotPageDelete = Kustuta
 shotPageScreenshotsDescription = Ekraanipildid lihtsalt. Tee, salvesta ja jaga ekraanipilte Firefoxist lahkumata.
 shotPageDMCAMessage = See pilt pole enam saadaval intellektuaalomandi nõude tõttu kolmandalt osapoolelt.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -333,6 +323,7 @@ shotIndexFavoriteIcon =
     .title = See pilt on märgitud lemmikuks ja see ei aegu
 shotIndexSyncedShot =
     .title = See pilt tehti teises seadmes
+shotIndexAlertErrorFavoriteShot = Viga pildi lemmikuks olemise oleku muutmisel
 
 ## Delete Confirmation Dialog
 
