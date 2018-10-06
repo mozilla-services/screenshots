@@ -9,8 +9,6 @@ gHomeLink = Home
 gNoShots =
     .alt = No shots found
 gScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
-gSettings = Settings
-gSignIn = Sign In
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Error saving title
 shotPageConfirmDelete = Are you sure you want to delete this shot permanently?
 shotPageShareButton =
     .title = Share
-shotPageCopy = Copy
 shotPageCopyButton =
     .title = Copy image to clipboard
 shotPageCopied = Copied
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Homepage
 shotPageAllShotsButton =
     .title = All Shots
-shotPageAllShots = All Shots
-shotPageDownload = Download
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Draw
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Favourite
-shotPageDelete = Delete
 shotPageScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
 shotPageDMCAMessage = This shot is no longer available due to a third party intellectual property claim.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -333,6 +323,7 @@ shotIndexFavoriteIcon =
     .title = This is a favourite shot and it does not expire
 shotIndexSyncedShot =
     .title = Shot taken on another device
+shotIndexAlertErrorFavoriteShot = Error updating favourite shot status
 
 ## Delete Confirmation Dialog
 
