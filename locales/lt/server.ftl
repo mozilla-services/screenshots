@@ -9,8 +9,6 @@ gHomeLink = Pradžia
 gNoShots =
     .alt = Nuotraukų nerasta
 gScreenshotsDescription = Ekrano nuotraukos paprastai. Darykite, saugokite ir dalinkitės ekrano nuotraukomis nepalikdami „Firefox“.
-gSettings = Nuostatos
-gSignIn = Prisijungti
 
 ## Header
 
@@ -20,7 +18,7 @@ buttonSignIn =
     .title = Prisijungti
 screenshotsLogo =
     .title = Ekranų nuotraukų pradžia
-bannerMessage = Prisijunkite, norėdami matyti savo nuotraukas visuose įrenginiuose ir amžiams išsaugoti mėgstamiausias.
+bannerMessage = Prisijunkite, norėdami pasiekti savo nuotraukas visuose įrenginiuose ir visam laikui įrašyti patinkančias.
 bannerUpsell = { gScreenshotsDescription } <a>Parsisiųskite „Firefox“</a>
 
 ## Footer
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Klaida įrašant pavadinimą
 shotPageConfirmDelete = Ar tikrai norite visam laikui ištrinti šią nuotrauką?
 shotPageShareButton =
     .title = Dalintis
-shotPageCopy = Kopijuoti
 shotPageCopyButton =
     .title = Kopijuoti vaizdą į iškarpinę
 shotPageCopied = Nukopijuota
@@ -133,18 +130,11 @@ shotPageDownloadShot =
 shotPageEditButton =
     .title = Redaguoti paveikslą
 shotPagefavoriteButton =
-    .title = Pažymėti kaip mėgstamą
+    .title = Pažymėti kaip patinkančią
 shotPageBackToHomeButton =
     .title = Pradžios tinklalapis
 shotPageAllShotsButton =
     .title = Visos nuotraukos
-shotPageAllShots = Visos nuotraukos
-shotPageDownload = Atsisiųsti
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Piešti
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Mėgti
-shotPageDelete = Šalinti
 shotPageScreenshotsDescription = Ekrano nuotraukos paprastai. Darykite, saugokite ir dalinkitės ekrano nuotraukomis nepalikdami „Firefox“.
 shotPageDMCAMessage = Ši nuotrauka nepasiekiama dėl trečiųjų šalių intelektinės nuosavybės teisių.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -331,14 +321,15 @@ shotIndexPageNextPage =
 # This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
 # My Shots page to indicate that the shot does expire.
 shotIndexNonFavoriteIcon =
-    .title = Tai nėra pamėgta nuotrauka, tad vėliau pradings
+    .title = Tai nėra patinkanti nuotrauka, tad vėliau pradings
 # This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
-    .title = Ši nuotrauka mėgstama, ir niekur nedings
+    .title = Ši nuotrauka yra patinkanti, ir niekur nedings
 shotIndexSyncedShot =
     .title = Nuotrauka padaryta kitame įrenginyje
+shotIndexAlertErrorFavoriteShot = Nepavyko atnaujinti patinkančios nuotraukos būsenos
 
 ## Delete Confirmation Dialog
 
