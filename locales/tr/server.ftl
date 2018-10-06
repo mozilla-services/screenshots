@@ -9,8 +9,6 @@ gHomeLink = Ana Sayfa
 gNoShots =
     .alt = Görüntü bulunamadı
 gScreenshotsDescription = Ekran görüntüsü almayı basitleştirdik. Firefox’tan çıkmadan ekran görüntüleri alabilir, kaydedebilir ve paylaşabilirsiniz.
-gSettings = Ayarlar
-gSignIn = Giriş yap
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Başlık kaydetme hatası
 shotPageConfirmDelete = Bu görüntüyü kalıcı olarak silmek istediğinizden emin misiniz?
 shotPageShareButton =
     .title = Paylaş
-shotPageCopy = Kopyala
 shotPageCopyButton =
     .title = Resmi panoya kopyala
 shotPageCopied = Kopyalandı
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Ana sayfa
 shotPageAllShotsButton =
     .title = Tüm görüntüler
-shotPageAllShots = Tüm görüntüler
-shotPageDownload = İndir
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Çiz
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Favorilere ekle
-shotPageDelete = Sil
 shotPageScreenshotsDescription = Ekran görüntüsü almayı basitleştirdik. Firefox’tan çıkmadan ekran görüntüleri alabilir, kaydedebilir ve paylaşabilirsiniz.
 shotPageDMCAMessage = Üçüncü bir şahsın telif hakkı iddiası nedeniyle bu görüntü artık kullanılamaz.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -309,6 +299,7 @@ shotIndexFavoriteIcon =
     .title = Bu görüntü favorilerinizde olduğu için zaman aşımına uğramayacak
 shotIndexSyncedShot =
     .title = Görüntü başka bir cihazdan alınmış
+shotIndexAlertErrorFavoriteShot = Favori görüntü durumu güncellenirken hata oluştu
 
 ## Delete Confirmation Dialog
 
