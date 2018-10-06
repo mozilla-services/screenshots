@@ -305,6 +305,7 @@ shotIndexFavoriteIcon =
     .title = 这是一张收藏的截图，不会过期
 shotIndexSyncedShot =
     .title = 其他设备上的截图
+shotIndexAlertErrorFavoriteShot = 更新收藏截图状态时出错
 
 ## Delete Confirmation Dialog
 
