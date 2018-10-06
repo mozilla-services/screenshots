@@ -9,8 +9,6 @@ gHomeLink = Startowy bok
 gNoShots =
     .alt = Žedne fota wobrazowki namakane
 gScreenshotsDescription = Fota wobrazowki lažko nagótowane. Gótujśo, składujśo a źělśo fota wobrazowki, mimo až Firefox spušćaśo.
-gSettings = Nastajenja
-gSignIn = Pśizjawiś
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Zmólka pśi składowanju titela
 shotPageConfirmDelete = Cośo napšawdu toś to foto wobrazowki na pśecej wulašowaś?
 shotPageShareButton =
     .title = Źěliś
-shotPageCopy = Kopěrowaś
 shotPageCopyButton =
     .title = Wobraz do mjazywótkłada kopěrowaś
 shotPageCopied = Kopěrowany
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Startowy bok
 shotPageAllShotsButton =
     .title = Wšykne fota wobrazowki
-shotPageAllShots = Wšykne fota wobrazowki
-shotPageDownload = Ześěgnuś
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Kresliś
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Ako faworit składowaś
-shotPageDelete = Lašowaś
 shotPageScreenshotsDescription = Fota wobrazowki lažko nagótowane. Gótujśo, składujśo a źělśo fota wobrazowki, mimo až Firefox spušćaśo.
 shotPageDMCAMessage = Toś to foto wobrazowki wěcej njejo k dispoziciji dla pšawow awtorstwa tśeśich.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -345,6 +335,7 @@ shotIndexFavoriteIcon =
     .title = To jo woblubowane foto wobrazowki a njespadnjo
 shotIndexSyncedShot =
     .title = Foto wobrazowki z drugego rěda
+shotIndexAlertErrorFavoriteShot = Zmólka pśi aktualizěrowanju statusa nejlubšego fota wobrazowki
 
 ## Delete Confirmation Dialog
 
