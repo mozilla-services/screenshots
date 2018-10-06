@@ -9,8 +9,6 @@ gHomeLink = Kreu
 gNoShots =
     .alt = S’u gjetën shkrepje
 gScreenshotsDescription = Screenshots-i i thjeshtuar. Bëni, ruani dhe ndani foto ekrani pa dalë nga Firefox-i.
-gSettings = Rregullime
-gSignIn = Hyni
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Gabim në ruajtjen e titullit
 shotPageConfirmDelete = Jeni i sigurt se doni të fshihet përgjithnjë kjo foto?
 shotPageShareButton =
     .title = Ndajeni me të tjerë
-shotPageCopy = Kopjoje
 shotPageCopyButton =
     .title = Kopjoje figurën në të papastër
 shotPageCopied = U kopjua
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Kreu
 shotPageAllShotsButton =
     .title = Krejt Shkrepjet
-shotPageAllShots = Krejt Shkrepjet
-shotPageDownload = Shkarkoje
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Vizatoni
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Bëje të parapëlqyer
-shotPageDelete = Fshije
 shotPageScreenshotsDescription = Screenshots-i i thjeshtuar. Bëni, ruani dhe ndani foto ekrani pa dalë nga Firefox-i.
 shotPageDMCAMessage = Kjo foto s’mund të kihet më, për shkak pretendimesh pronësie intelektuale nga palë e tretë.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -332,6 +322,7 @@ shotIndexFavoriteIcon =
     .title = Kjo është një foto e parapëlqyer dhe nuk skadon
 shotIndexSyncedShot =
     .title = Shkrepje e bërë në pajisje tjetër
+shotIndexAlertErrorFavoriteShot = Gabim në përditësimin e gjendje së shkrepjes së parapëlqyer
 
 ## Delete Confirmation Dialog
 
