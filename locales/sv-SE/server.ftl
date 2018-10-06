@@ -9,8 +9,6 @@ gHomeLink = Hem
 gNoShots =
     .alt = Inga skärmbilder hittades
 gScreenshotsDescription = Ta enkelt skärmbilder. Fånga, spara och dela skärmbilder utan att lämna Firefox.
-gSettings = Inställningar
-gSignIn = Logga in
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Fel vid sparande av titel
 shotPageConfirmDelete = Är du säker på att du vill radera denna bild permanent?
 shotPageShareButton =
     .title = Dela
-shotPageCopy = Kopiera
 shotPageCopyButton =
     .title = Kopiera bild till urklipp
 shotPageCopied = Kopierad
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Startsida
 shotPageAllShotsButton =
     .title = Alla skärmbilder
-shotPageAllShots = Alla skärmbilder
-shotPageDownload = Hämta
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Rita
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Favorit
-shotPageDelete = Ta bort
 shotPageScreenshotsDescription = Ta enkelt skärmbilder. Fånga, spara och dela skärmbilder utan att lämna Firefox.
 shotPageDMCAMessage = Denna skärmbild är inte längre tillgänglig på grund av upphovsrättsanspråk från tredje part.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -333,6 +323,7 @@ shotIndexFavoriteIcon =
     .title = Detta är en favoritbild och den upphör inte
 shotIndexSyncedShot =
     .title = Bild tagen på en annan enhet
+shotIndexAlertErrorFavoriteShot = Ett fel uppstod vid uppdatering av favoritbildstatus
 
 ## Delete Confirmation Dialog
 
