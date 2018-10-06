@@ -9,8 +9,6 @@ gHomeLink = Trang chủ
 gNoShots =
     .alt = Không có ảnh chụp nào
 gScreenshotsDescription = Ảnh chụp màn hình được thực hiện đơn giản. Thực hiện, lưu và chia sẻ ảnh chụp màn hình mà không rời khỏi Firefox.
-gSettings = Cài đặt
-gSignIn = Đăng nhập
 
 ## Header
 
@@ -21,6 +19,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Trang chủ Screenshots
 bannerMessage = Đăng nhập hoặc đăng ký để truy cập ảnh của bạn trên các thiết bị và lưu các mục yêu thích của bạn mãi mãi.
+bannerUpsell = { gScreenshotsDescription } <a>Tải Firefox ngay</a>
 
 ## Footer
 
@@ -65,6 +64,8 @@ homePageCaptureRegionDescription = Nhấp và kéo để chọn khu vực bạn 
 homePageCapturePage = Chụp một trang
 homePageCapturePageDescription = Sử dụng các nút ở phía trên bên phải để chụp toàn bộ trang. Nút Lưu Ghi nhớ sẽ chụp khu vực bạn có thể xem mà không cần di chuyển, và Lưu toàn bộ Trang sẽ chụp mọi thứ trên trang.
 homePageSaveShare = Lưu và chia sẻ
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Khi bạn chụp, Firefox đăng ảnh chụp màn hình của bạn lên thư viện Ảnh chụp màn hình trực tuyến của bạn và sao chép liên kết tới clipboard của bạn. Chúng tôi tự động lưu ảnh chụp màn hình của bạn trong hai tuần, nhưng bạn có thể xóa ảnh chụp bất kỳ lúc nào hoặc thay đổi ngày hết hạn để giữ chúng trong thư viện của bạn lâu hơn.
 homePageLegalLink = Thông tin pháp lý
 homePagePrivacyLink = Chính sách riêng tư
 homePageTermsLink = Điều khoản
@@ -98,7 +99,8 @@ shotPageAlertErrorUpdatingTitle = Lỗi khi lưu tiêu đề
 shotPageConfirmDelete = Bạn có chắc chắn muốn xóa vĩnh viễn ảnh này?
 shotPageShareButton =
     .title = Chia sẻ
-shotPageCopy = Sao chép
+shotPageCopyButton =
+    .title = Sao chép hình ảnh vào clipboard
 shotPageCopied = Đã sao chép
 shotPageShareFacebook =
     .title = Chia sẻ trên Facebook
@@ -133,11 +135,6 @@ shotPageBackToHomeButton =
     .title = Trang chủ
 shotPageAllShotsButton =
     .title = Tất cả ảnh chụp
-shotPageAllShots = Tất cả ảnh chụp
-shotPageDownload = Tải xuống
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Yêu thích
-shotPageDelete = Xóa
 shotPageScreenshotsDescription = Ảnh chụp màn hình được thực hiện đơn giản. Thực hiện, lưu và chia sẻ ảnh chụp màn hình mà không rời khỏi Firefox.
 shotPageDMCAMessage = Bức ảnh này không còn nữa do yêu cầu sở hữu trí tuệ của bên thứ ba.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -255,6 +252,7 @@ textToolInputPlaceholder =
 ## are passed from the shot page to the addon.
 
 copyImageErrorTitle = Có thứ gì đó không ổn
+copyImageErrorMessage = Không thể sao chép ảnh chụp của bạn vào clipboard.
 
 ## Settings Page
 
@@ -307,6 +305,7 @@ shotIndexFavoriteIcon =
     .title = Đây là ảnh chụp yêu thích và nó không hết hạn
 shotIndexSyncedShot =
     .title = Ảnh đã được chụp từ thiết bị khác
+shotIndexAlertErrorFavoriteShot = Có lỗi xảy ra khi cập nhật trạng thái ảnh yêu thích
 
 ## Delete Confirmation Dialog
 
