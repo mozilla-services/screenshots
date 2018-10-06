@@ -9,8 +9,6 @@ gHomeLink = Initio
 gNoShots =
     .alt = Nulle instantaneos trovate
 gScreenshotsDescription = Le instantaneos a un maniera simple. Captura, salva e comparti le instantaneos de tu schermo sin exir de Firefox.
-gSettings = Parametros
-gSignIn = Apertura de session
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Error a salvar le titulo
 shotPageConfirmDelete = Desira tu vermente deler permanentemente iste instantaneo?
 shotPageShareButton =
     .title = Compartir
-shotPageCopy = Copiar
 shotPageCopyButton =
     .title = Copiate imagine al area de transferentia!
 shotPageCopied = Copiate
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Pagina initial
 shotPageAllShotsButton =
     .title = Tote le instantaneos
-shotPageAllShots = Tote le instantaneos
-shotPageDownload = Discargar
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Designar
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Favorite
-shotPageDelete = Deler
 shotPageScreenshotsDescription = Le instantaneos de schermo a un maniera simple. Captura, salva e comparti le instantaneos de tu schermo sin exir de Firefox.
 shotPageDMCAMessage = Iste instantaneo non es plus disponibile per un reclamation de proprietate intellectual de tertie parte.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -333,6 +323,7 @@ shotIndexFavoriteIcon =
     .title = Isto es un instantaneo favorite e non expira
 shotIndexSyncedShot =
     .title = Instantaneo capturate sur un altere apparato
+shotIndexAlertErrorFavoriteShot = Error durante le actualisation del statos del instantaneos preferite
 
 ## Delete Confirmation Dialog
 
