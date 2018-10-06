@@ -9,8 +9,6 @@ gHomeLink = Asebter agejdan
 gNoShots =
     .alt = Ulac tuṭṭfiwin
 gScreenshotsDescription = Tuṭṭfiwin γef afus. Ṭṭef agdil, sekles sakin bḍu war ma teffγeḍ si Firefox.
-gSettings = Iɣewwaṛen
-gSignIn = Kcem
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Tuccḍa deg usekles n uzwel
 shotPageConfirmDelete = Tebɣiḍ ad tekseḍ ṭṭufa-agi i lebda?
 shotPageShareButton =
     .title = Bḍu
-shotPageCopy = Nγel
 shotPageCopyButton =
     .title = Nɣel tugna ɣef affus
 shotPageCopied = Inγel
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Asebter agejdan
 shotPageAllShotsButton =
     .title = Tuṭṭfiwin meṛṛa
-shotPageAllShots = Tuṭṭfiwin meṛṛa
-shotPageDownload = Sider
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Suneɣ
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Anurif
-shotPageDelete = Kkes
 shotPageScreenshotsDescription = Tuṭṭfa fessusen. Ṭṭef, sekles, sakin bḍu tuṭṭfa war ma tefγeḍ seg Firefox.
 shotPageDMCAMessage = Tuṭṭfa-agi ur tezgi tella imi yella ucetki ɣef wayla agzayan i d-yekkan seg wis kraḍ.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -329,6 +319,7 @@ shotIndexFavoriteIcon =
     .title = Wagi d anegzum anurif ur yettmettaten ara
 shotIndexSyncedShot =
     .title = Tuṭṭfa tella-d deg ibenk nniḍen
+shotIndexAlertErrorFavoriteShot = Ted^ḍra-d tucḍa deg uleqqem n waddaden n tuṭṭfwin ismenyifen
 
 ## Delete Confirmation Dialog
 
