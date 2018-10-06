@@ -9,8 +9,6 @@ gHomeLink = Strona główna
 gNoShots =
     .alt = Brak zrzutów
 gScreenshotsDescription = Zrzuty ekranów dla wszystkich. Twórz, zapisuj i udostępniaj zrzuty ekranu prosto z Firefoksa.
-gSettings = Ustawienia
-gSignIn = Zaloguj się
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Błąd podczas zapisywania tytułu
 shotPageConfirmDelete = Czy na pewno trwale usunąć ten zrzut?
 shotPageShareButton =
     .title = Udostępnij
-shotPageCopy = Kopiuj
 shotPageCopyButton =
     .title = Kopiuj obraz do schowka
 shotPageCopied = Skopiowano
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Strona główna
 shotPageAllShotsButton =
     .title = Wszystkie zrzuty
-shotPageAllShots = Wszystkie zrzuty
-shotPageDownload = Pobierz
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Rysuj
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Dodaj do ulubionych
-shotPageDelete = Usuń
 shotPageScreenshotsDescription = Zrzuty ekranu dla każdego. Twórz, zapisuj i udostępniaj zrzuty ekranu bez opuszczania Firefoksa.
 shotPageDMCAMessage = Ten zrzut został usunięty z powodu roszczeń prawnych strony trzeciej.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -339,6 +329,7 @@ shotIndexFavoriteIcon =
     .title = To ulubiony zrzut, nie ulega on przeterminowaniu
 shotIndexSyncedShot =
     .title = Zrzut wykonany na innym urządzeniu
+shotIndexAlertErrorFavoriteShot = Błąd podczas aktualizowania stanu „ulubiony” zrzutu
 
 ## Delete Confirmation Dialog
 
