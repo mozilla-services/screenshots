@@ -9,8 +9,6 @@ gHomeLink = Үйге
 gNoShots =
     .alt = Скриншоттар табылмады
 gScreenshotsDescription = Скриншоттар қарапайым түрде. Тура Firefox ішінен скриншоттарды түсіру, сақтау және олармен бөлісу.
-gSettings = Баптаулар
-gSignIn = Кіру
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Атауын сақтау қатесі
 shotPageConfirmDelete = Бұл скриншотты толығымен өшіруді шынымен қалайсыз ба?
 shotPageShareButton =
     .title = Бөлісу
-shotPageCopy = Көшіріп алу
 shotPageCopyButton =
     .title = Суретті алмасу буферіне көшіру
 shotPageCopied = Көшірілген
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Үй парағы
 shotPageAllShotsButton =
     .title = Барлық скриншоттар
-shotPageAllShots = Барлық скриншоттар
-shotPageDownload = Жүктеп алу
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Сурет салу
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Таңдамалы
-shotPageDelete = Өшіру
 shotPageScreenshotsDescription = Скриншоттар қарапайым түрде. Тура Firefox ішінен скриншоттарды түсіру, сақтау және олармен бөлісу.
 shotPageDMCAMessage = Бұл скриншот үшінші жақтың зияткерлік меншігі арызы салдарынан енді қолжетерсіз.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -327,6 +317,7 @@ shotIndexFavoriteIcon =
     .title = Бұл скриншот таңдамалы, оның мерзімі аяқталмайды
 shotIndexSyncedShot =
     .title = Басқа құрылғыда алынған скриншот
+shotIndexAlertErrorFavoriteShot = Таңдамалы скриншот күйін жаңарту қатесі
 
 ## Delete Confirmation Dialog
 
