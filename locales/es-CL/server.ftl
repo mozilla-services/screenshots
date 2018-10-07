@@ -9,8 +9,6 @@ gHomeLink = Inicio
 gNoShots =
     .alt = No se econtraron capturas
 gScreenshotsDescription = Capturas de pantallas sin complicaciones. Toma, guarda y comparte capturas sin salir de Firefox.
-gSettings = Ajustes
-gSignIn = Conectarse
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Error al guardar el título
 shotPageConfirmDelete = ¿Estás seguro de que quieres eliminar esta captura permanentemente?
 shotPageShareButton =
     .title = Compartir
-shotPageCopy = Copiar
 shotPageCopyButton =
     .title = Copiar imagen al portapapeles
 shotPageCopied = Copiada
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Página de inicio
 shotPageAllShotsButton =
     .title = Todas las capturas
-shotPageAllShots = Todas las capturas
-shotPageDownload = Descargar
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Dibujar
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Favorito
-shotPageDelete = Eliminar
 shotPageScreenshotsDescription = Capturas de pantallas sin complicaciones. Toma, guarda y comparte capturas sin salir de Firefox.
 shotPageDMCAMessage = Esta captura ya no eá disponible debido a un reclamo de propiedad intelectual de un tercero.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -332,6 +322,7 @@ shotIndexFavoriteIcon =
     .title = Esta es una captura favorita y no expira
 shotIndexSyncedShot =
     .title = Captura tomada en otro dispositivo
+shotIndexAlertErrorFavoriteShot = Error al actualizar el estado de la captura favorita
 
 ## Delete Confirmation Dialog
 
