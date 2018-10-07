@@ -9,15 +9,17 @@ gHomeLink = Inici
 gNoShots =
     .alt = No s'ha trobat cap captura
 gScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures de pantalla, deseu-les i compartiu-les sense sortir del %S.
-gSettings = Paràmetres
-gSignIn = Inicia la sessió
 
 ## Header
 
-signInButton =
-    .aria-label = Inicia la sessió
-settingsButton =
-    .aria-label = Paràmetres
+buttonSettings =
+    .title = Paràmetres
+buttonSignIn =
+    .title = Inicia la sessió
+screenshotsLogo =
+    .title = Pàgina d'inici del Firefox Screenshots
+bannerMessage = Registreu-vos o inicieu la sessió per accedir a les vostres captures en tots els dispositius i desar-ne les preferides per sempre.
+bannerUpsell = { gScreenshotsDescription } <a>Baixeu el Firefox ara</a>
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Condicions d'ús
 footerLinkPrivacy = Avís de privadesa
+footerReportShot = Denuncia la captura
+    .title = Denuncieu aquesta captura per abús, brossa o altres problemes
 footerLinkFaqs = PMF
 footerLinkDMCA = Denuncieu una infracció de propietat intel·lectual
 footerLinkDiscourse = Doneu la vostra opinió
@@ -95,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = S'ha produït un error en desar el títol
 shotPageConfirmDelete = Segur que voleu suprimir aquesta captura permanentment?
 shotPageShareButton =
     .title = Comparteix
-shotPageCopy = Copia
 shotPageCopied = S'ha copiat
 shotPageShareFacebook =
     .title = Comparteix al Facebook
@@ -120,17 +123,13 @@ shotPageExpiredMessage = Aquesta captura ha caducat.
 shotPageExpiredMessageDetails = Aquesta és la pàgina des d'on es va fer originalment la captura:
 shotPageDeleteButton =
     .title = Suprimeix aquesta captura
-shotPageAbuseButton =
-    .title = Denuncieu aquesta captura per abús, brossa o altres problemes
 shotPageDownloadShot =
     .title = Baixa
 shotPageEditButton =
     .title = Edita aquesta imatge
 shotPagefavoriteButton =
     .title = Marca la captura com a favorita
-shotPageDownload = Baixa
 shotPageScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures de pantalla, deseu-les i compartiu-les sense sortir del %S.
-shotPageUpsellFirefox = Baixeu el Firefox ara
 shotPageDMCAMessage = Aquesta captura ja no està disponible a causa d'una reclamació de propietat intel·lectual d'un tercer.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Envieu un correu electrònic a { $dmca } per sol·licitar més informació.
@@ -260,6 +259,11 @@ textToolCancelButton = Cancel·la
 textToolInputPlaceholder =
     .placeholder = Hola
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+
 ## Settings Page
 
 settingsDisconnectButton = Desconnecta
@@ -286,8 +290,6 @@ shotIndexPageSearchResultsTitle = Les meves captures: s'està cercant { $searchT
 shotIndexPageErrorRendering = S'ha produït un error en generar la pàgina: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Cerca en les meves captures
-shotIndexPageSearchButton =
-    .title = Cerca
 shotIndexPageNoShotsMessage = No hi ha cap captura desada.
 shotIndexPageNoShotsInvitation = Endavant, feu-ne algunes.
 shotIndexPageLookingForShots = S'estan cercant les vostres captures…
@@ -300,13 +302,7 @@ shotIndexPagePreviousPage =
     .title = Pàgina anterior
 shotIndexPageNextPage =
     .title = Pàgina següent
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Aquesta captura no caduca
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
