@@ -9,8 +9,6 @@ gHomeLink = Start
 gNoShots =
     .alt = Ingen skærmbilleder fundet
 gScreenshotsDescription = Skærmbilleder helt enkelt. Tag, gem og del skærmbilleder uden at forlade Firefox.
-gSettings = Indstillinger
-gSignIn = Log ind
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Der opstod en fejl, da titlen skulle gemmes
 shotPageConfirmDelete = Er du sikker på, at du vil slette dette skærmbillede permanent?
 shotPageShareButton =
     .title = Del
-shotPageCopy = Kopier
 shotPageCopyButton =
     .title = Kopier billede til udklipsholderen
 shotPageCopied = Kopieret
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Startside
 shotPageAllShotsButton =
     .title = Alle skærmbilleder
-shotPageAllShots = Alle skærmbilleder
-shotPageDownload = Hent
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Tegn
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Favorit
-shotPageDelete = Slet
 shotPageScreenshotsDescription = Skærmbilleder helt enkelt. Tag, gem og del skærmbilleder uden af forlade Firefox.
 shotPageDMCAMessage = Dette skærmbillede er ikke længere tilgængeligt, fordi tredjepart har gjort krav på den intellektuelle ejendomsret.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -333,6 +323,7 @@ shotIndexFavoriteIcon =
     .title = Dette skærmbillede er markeret som favorit og udløber ikke
 shotIndexSyncedShot =
     .title = Skærmbillede taget på en anden enhed
+shotIndexAlertErrorFavoriteShot = Der opstod en fejl under opdatering af status på dit skærmbillede
 
 ## Delete Confirmation Dialog
 
