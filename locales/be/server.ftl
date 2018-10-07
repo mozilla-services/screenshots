@@ -9,8 +9,6 @@ gHomeLink = Хатняя старонка
 gNoShots =
     .alt = здымкі не знойдзены
 gScreenshotsDescription = Рабіць скрыншоты стала прасцей. Рабіце, захоўвайце і дзяліцеся скрыншотамі, не пакідаючы Firefox.
-gSettings = Параметры
-gSignIn = Увайсці
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Памылка захавання назвы
 shotPageConfirmDelete = Вы сапраўды хочаце назаўсёды выдаліць гэты здымак?
 shotPageShareButton =
     .title = Падзяліцца
-shotPageCopy = Капіяваць
 shotPageCopyButton =
     .title = Капіяваць відарыс у буфер абмену
 shotPageCopied = Скапіявана
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Хатняя старонка
 shotPageAllShotsButton =
     .title = Усе здымкі
-shotPageAllShots = Усе здымкі
-shotPageDownload = Сцягнуць
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Рысаваць
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Упадабаць
-shotPageDelete = Выдаліць
 shotPageScreenshotsDescription = Рабіць скрыншоты стала прасцей. Рабіце, захоўвайце і дзяліцеся скрыншотамі, не пакідаючы Firefox.
 shotPageDMCAMessage = Гэты здымак больш недаступны з-за парушэння аўтарскіх правоў трэцяга боку.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -339,6 +329,7 @@ shotIndexFavoriteIcon =
     .title = Гэта абраны здымак, ён мае неабмежаваны тэрмін
 shotIndexSyncedShot =
     .title = Здымак зроблены на іншай прыладзе
+shotIndexAlertErrorFavoriteShot = Памылка пры абнаўленні статусу здымка «улюбёны»
 
 ## Delete Confirmation Dialog
 
