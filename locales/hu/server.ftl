@@ -9,8 +9,6 @@ gHomeLink = Kezdőlap
 gNoShots =
     .alt = Nem találhatóak képek
 gScreenshotsDescription = Képernyőképek egyszerűen. Készítsen, mentsen és ossza meg a képernyőképeit a Firefox elhagyása nélkül.
-gSettings = Beállítások
-gSignIn = Bejelentkezés
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Hiba a cím mentésekor
 shotPageConfirmDelete = Biztos, hogy véglegesen törölni szeretné ezt a képet?
 shotPageShareButton =
     .title = Megosztás
-shotPageCopy = Másolás
 shotPageCopyButton =
     .title = Kép vágólapra másolása
 shotPageCopied = Átmásolva
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Kezdőlap
 shotPageAllShotsButton =
     .title = Összes kép
-shotPageAllShots = Összes kép
-shotPageDownload = Letöltés
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Rajzolás
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Kedvencnek jelölés
-shotPageDelete = Törlés
 shotPageScreenshotsDescription = Képernyőképek egyszerűen. Készítsen, mentsen és ossza meg a képernyőképeit a Firefox elhagyása nélkül.
 shotPageDMCAMessage = A kép egy harmadik fél szerzői jogi követelése miatt már nem érhető el.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -333,6 +323,7 @@ shotIndexFavoriteIcon =
     .title = Egy egy kedvenc képernyőkép, és nem jár le
 shotIndexSyncedShot =
     .title = Másik eszközön készült képernyőkép
+shotIndexAlertErrorFavoriteShot = Hiba a kedvenc képernyőkép állapotának frissítésekor
 
 ## Delete Confirmation Dialog
 
