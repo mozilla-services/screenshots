@@ -8,7 +8,7 @@ gMyShots = Les meves captures
 gHomeLink = Inici
 gNoShots =
     .alt = No s'ha trobat cap captura
-gScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures de pantalla, deseu-les i compartiu-les sense sortir del %S.
+gScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures de pantalla, deseu-les i compartiu-les sense sortir del Firefox.
 
 ## Header
 
@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Inicia la sessió
 screenshotsLogo =
     .title = Pàgina d'inici del Firefox Screenshots
-bannerMessage = Registreu-vos o inicieu la sessió per accedir a les vostres captures en tots els dispositius i desar-ne les preferides per sempre.
+bannerMessage = Registreu-vos o inicieu la sessió per accedir a les vostres captures en tots els dispositius i conservar les vostres preferides per sempre.
 bannerUpsell = { gScreenshotsDescription } <a>Baixeu el Firefox ara</a>
 
 ## Footer
@@ -99,6 +99,8 @@ shotPageAlertErrorUpdatingTitle = S'ha produït un error en desar el títol
 shotPageConfirmDelete = Segur que voleu suprimir aquesta captura permanentment?
 shotPageShareButton =
     .title = Comparteix
+shotPageCopyButton =
+    .title = Copia la imatge al porta-retalls
 shotPageCopied = S'ha copiat
 shotPageShareFacebook =
     .title = Comparteix al Facebook
@@ -129,7 +131,11 @@ shotPageEditButton =
     .title = Edita aquesta imatge
 shotPagefavoriteButton =
     .title = Marca la captura com a favorita
-shotPageScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures de pantalla, deseu-les i compartiu-les sense sortir del %S.
+shotPageBackToHomeButton =
+    .title = Pàgina d'inici
+shotPageAllShotsButton =
+    .title = Totes les captures
+shotPageScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures de pantalla, deseu-les i compartiu-les sense sortir del Firefox.
 shotPageDMCAMessage = Aquesta captura ja no està disponible a causa d'una reclamació de propietat intel·lectual d'un tercer.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Envieu un correu electrònic a { $dmca } per sol·licitar més informació.
@@ -263,6 +269,8 @@ textToolInputPlaceholder =
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = Hi ha hagut un problema
+copyImageErrorMessage = No s'ha pogut copiar la captura al porta-retalls.
 
 ## Settings Page
 
@@ -295,6 +303,8 @@ shotIndexPageNoShotsInvitation = Endavant, feu-ne algunes.
 shotIndexPageLookingForShots = S'estan cercant les vostres captures…
 shotIndexPageNoSearchResultsIntro = Mmm
 shotIndexPageNoSearchResults = No s'ha trobat cap captura que coincideixi amb la cerca.
+shotIndexPageMyShotsButton =
+    .title = Les meves captures
 shotIndexPageClearSearchButton =
     .title = Esborra la cerca
 shotIndexPageConfirmShotDelete = Voleu suprimir aquesta captura?
@@ -302,11 +312,18 @@ shotIndexPagePreviousPage =
     .title = Pàgina anterior
 shotIndexPageNextPage =
     .title = Pàgina següent
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Aquesta no és una captura preferida i caducarà
 # This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Aquesta és una captura favorita i no caduca
+shotIndexSyncedShot =
+    .title = Captura feta en un altre dispositiu
+shotIndexAlertErrorFavoriteShot = S'ha produït un error en actualitzar l'estat de la captura
 
 ## Delete Confirmation Dialog
 
