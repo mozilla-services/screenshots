@@ -7,6 +7,9 @@
 gMyShots = ພາບຂອງຂ້ອຍ
 gHomeLink = ໜ້າຫຼັກ
 
+## Header
+
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
@@ -31,8 +34,8 @@ creatingPageTitleDefault = ຫນ້າ
 homePageTeaser = ໄວໆນີ້…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ດາວໂຫລດຟຣີ
-homePageGetStarted = ເລີ່ມຕົ້ນໃຊ້ງານ
 homePageGetStartedTitle = ເລີ່ມຕົ້ນໃຊ້ງານ
+homePageSaveShare = ບັນທືກ ແລະ ແບ່ງປັນ
 homePageLegalLink = ຂໍ້ກົດຫມາຍ
 homePagePrivacyLink = ຄວາມເປັນສ່ວນຕົວ
 homePageTermsLink = ຂໍ້ກຳນົດ
@@ -40,6 +43,7 @@ homePageCookiesLink = ຄຸກກີ
 
 ## Leave Screenshots page
 
+leavePageRemoveAllData = ນຳເອົາຂໍ້ມູນທັງຫມົດອອກ
 leavePageErrorGeneric = ເກີດຂໍ້ຜິດພາດ
 leavePageButtonProceed = ດໍາເນີນການຕໍ່
 leavePageButtonCancel = ຍົກເລີກ
@@ -56,21 +60,56 @@ shotPageAlertErrorUpdatingTitle = ເກີດຂໍ້ຜິິດພາດໃ�
 shotPageConfirmDelete = ທ່ານຫມັ້ນໃຈແລ້ວບໍ່ວ່າຕ້ອງການລຶບພາບນີ້ຢ່າງຖາວອນ?
 shotPageShareButton =
     .title = ແບ່ງປັນ
-shotPageCopy = ສຳເນົາ
 shotPageCopied = ສຳເນົາແລ້ວ!
+shotPageShareFacebook =
+    .title = ແບ່ງປັນໃນ Facebook
+shotPageShareTwitter =
+    .title = ແບ່ງປັນໃນ Twitter
+shotPageSharePinterest =
+    .title = ແບ່ງປັນໃນ Pinterest
 shotPageConfirmDeletion = ທ່ານຫມັ້ນໃຈແລ້ວບໍ່ວ່າຕ້ອງການລຶບພາບນີ້ຢ່າງຖາວອນ?
 shotPageDownloadShot =
     .title = ດາວໂຫລດ
 shotPageEditButton =
     .title = ແກ້ໄຂຮູບພາບນີ້
-shotPageDownload = ດາວໂຫລດ
-shotPageUpsellFirefox = ດາວໂຫລດ Firefox ຕອນນີ້
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = ເລືອກເວລາ
+shotPageKeepTenMinutes = 10 ນາທີ
+shotPageKeepOneHour = 1 ຊົ່ວໂມງ
+shotPageKeepOneDay = 1 ມື້
+shotPageKeepOneWeek = 1 ອາທິດ
+shotPageKeepTwoWeeks = 2 ອາທິດ
+shotPageKeepOneMonth = 1 ເດືອນ
 shotPageSaveExpiration = ບັນທຶກ
 shotPageCancelExpiration = ຍົກເລີກ
 shotPageDoesNotExpire = ບໍ່ຫມົດອາຍຸ
 timeDiffJustNow = ມື້ກີ້ນີ້
+timeDiffMinutesAgo =
+    { $number ->
+       *[other] { $number } ນາທີກ່ອນຫນ້ານີ້
+    }
+timeDiffHoursAgo =
+    { $number ->
+       *[other] { $number } ຊົ່ວໂມງກ່ອນຫນ້ານີ້
+    }
+timeDiffDaysAgo =
+    { $number ->
+       *[other] { $number } ມື້ກ່ອນຫນ້ານີ້
+    }
+timeDiffFutureDays =
+    { $number ->
+       *[other] ໃນ { $number } ມື້
+    }
+
+## Shot Page New Feature Promotion Dialog.
+
 
 ## Annotations
+
+
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
 
 
 ## Settings Page
@@ -78,6 +117,8 @@ timeDiffJustNow = ມື້ກີ້ນີ້
 
 ## Shotindex page
 
+shotIndexPageClearSearchButton =
+    .title = ລຶບການຄົ້ນຫາ
 
 ## Delete Confirmation Dialog
 
@@ -85,3 +126,5 @@ timeDiffJustNow = ມື້ກີ້ນີ້
 ## Metrics page
 ## All metrics strings are optional for translation
 
+metricsPageUserShotsQueryCount = ຈຳນວນຜູ້ໃຊ້
+metricsPageRetentionQueryUsers = ຈຳນວນຜູ້ໃຊ້
