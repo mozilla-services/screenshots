@@ -9,8 +9,6 @@ gHomeLink = Startside
 gNoShots =
     .alt = Gjin ôfbyldingen fûn
 gScreenshotsDescription = Skermôfbyldingen wurde maklik. Meitsje, bewarje en diel skermôfbyldingen sûnder Firefox te ferlitten.
-gSettings = Ynstellingen
-gSignIn = Oanmelde
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Flater by bewarjen fan titel
 shotPageConfirmDelete = Binne jo wis dat jo dizze ôfbylding definityf fuortsmite wolle?
 shotPageShareButton =
     .title = Diele
-shotPageCopy = Kopiearje
 shotPageCopyButton =
     .title = Ofbylding nei klamboerd kopiearje
 shotPageCopied = Kopiearre
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Startside
 shotPageAllShotsButton =
     .title = Alle ôfbyldingen
-shotPageAllShots = Alle ôfbyldingen
-shotPageDownload = Downloade
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Tekenje
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Favoryt meitsje
-shotPageDelete = Fuortsmite
 shotPageScreenshotsDescription = Skermôfbyldingen wurde maklik. Meitsje, bewarje en diel skermôfbyldingen sûnder Firefox te ferlitten.
 shotPageDMCAMessage = Dizze ôfbylding is fanwegen in claim op yntellektueel eigendom troch in eksterne partij net mear beskikber.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -333,6 +323,7 @@ shotIndexFavoriteIcon =
     .title = Dizze skermôfdruk is in favoryt en ferrint net
 shotIndexSyncedShot =
     .title = Op oar apparaat makke ôfbylding
+shotIndexAlertErrorFavoriteShot = Flater by bywurkjen fan favorytsteat
 
 ## Delete Confirmation Dialog
 
