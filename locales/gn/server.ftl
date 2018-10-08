@@ -9,8 +9,6 @@ gHomeLink = Ñepyrũ
 gNoShots =
     .alt = Ndojejuhúi japyhypy
 gScreenshotsDescription = Mba’erechaha japyhypy pererĩva. Japyhy, ñongatu ha moherakuã mba’erechaha japyhypy eheja’ỹre Firefox.
-gSettings = Tekopyahu
-gSignIn = Jeike
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Jejavy eñongatukuévo teratee
 shotPageConfirmDelete = ¿Emboguesetépa ko japyhypy opa árape g̃uarã?
 shotPageShareButton =
     .title = Moherakuã
-shotPageCopy = Monguatia
 shotPageCopyButton =
     .title = Embohasa ta'anga kuatiajokohápe
 shotPageCopied = Monguatiapyre
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Kuatiarogue ñepyrũ
 shotPageAllShotsButton =
     .title = Opaite japyhypy
-shotPageAllShots = Opaite japyhypy
-shotPageDownload = Mboguejy
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Moha'anga
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Guerohoryvéva
-shotPageDelete = Mboguete
 shotPageScreenshotsDescription = Japyhypy mba'erechaha jejapónteva. Eñohẽ, eñongatu ha emoherakuã mba'erechaha japyhypy eheja'ỹre Firefox.
 shotPageDMCAMessage = Ko japyhypy ndojepurukuaái peteĩ tapicha akaguai rupi ha'eha ijára.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -333,6 +323,7 @@ shotIndexFavoriteIcon =
     .title = Kóva japyhypyre techaramovéva ha oñembyai'ỹva
 shotIndexSyncedShot =
     .title = Jejapyhy ojejapopyre ambue mba’e’okápe
+shotIndexAlertErrorFavoriteShot = Ojavy embohekopyahúvo jejapyhy erohoryvéva reko
 
 ## Delete Confirmation Dialog
 
