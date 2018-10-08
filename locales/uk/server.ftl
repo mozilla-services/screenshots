@@ -9,8 +9,6 @@ gHomeLink = Домівка
 gNoShots =
     .alt = Знімків не знайдено
 gScreenshotsDescription = Знімки стали простішими. Робіть, зберігайте й діліться знімками екрану, не покидаючи Firefox.
-gSettings = Налаштування
-gSignIn = Вхід
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Помилка при збереженні н�
 shotPageConfirmDelete = Ви впевнені, що хочете назавжди видалити цей знімок?
 shotPageShareButton =
     .title = Поділитися
-shotPageCopy = Копіювати
 shotPageCopyButton =
     .title = Копіювати зображення в буфер обміну
 shotPageCopied = Скопійовано
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Домівка
 shotPageAllShotsButton =
     .title = Всі знімки
-shotPageAllShots = Всі знімки
-shotPageDownload = Завантажити
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Малювати
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Обране
-shotPageDelete = Видалити
 shotPageScreenshotsDescription = Знімки екрану стали простими. Робіть, зберігайте і поширюйте знімки екрану, не залишаючи Firefox.
 shotPageDMCAMessage = Цей знімок більше недоступний через порушення авторських прав третьої сторони.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -339,6 +329,7 @@ shotIndexFavoriteIcon =
     .title = Це обраний знімок, тому він має необмежений термін дії
 shotIndexSyncedShot =
     .title = Знімок зроблено на іншому пристрої
+shotIndexAlertErrorFavoriteShot = Помилка при оновленні стану обраного знімка
 
 ## Delete Confirmation Dialog
 
