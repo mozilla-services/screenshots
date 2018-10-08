@@ -270,6 +270,7 @@ textToolInputPlaceholder =
 ## are passed from the shot page to the addon.
 
 copyImageErrorTitle = Noko gjekk gale
+copyImageErrorMessage = Klarte ikkje å kopiere skjermbildet ditt til utklippstavla.
 
 ## Settings Page
 
@@ -302,6 +303,8 @@ shotIndexPageNoShotsInvitation = Kom igjen, lag nokre.
 shotIndexPageLookingForShots = Leitar etter bilda dine…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Vi kan ikkje finne bilde som passar med søket ditt.
+shotIndexPageMyShotsButton =
+    .title = Mine skjermbilde
 shotIndexPageClearSearchButton =
     .title = Tøm søk
 shotIndexPageConfirmShotDelete = Slette dette bildet?
@@ -309,6 +312,18 @@ shotIndexPagePreviousPage =
     .title = Føregåande side
 shotIndexPageNextPage =
     .title = Neste side
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Dette er ikkje eit favorittskjermbilde, og det vil gå ut
+# This is the tooltip for a "heart" symbol in the upper top corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Dette er eit favorittskjermbilde, og det vil ikkje gå ut
+shotIndexSyncedShot =
+    .title = Skjermbilde tatt på ei anna eining
+shotIndexAlertErrorFavoriteShot = Feil ved oppdatering av favorittskjermbildestatus
 
 ## Delete Confirmation Dialog
 
