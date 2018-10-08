@@ -329,6 +329,7 @@ shotIndexFavoriteIcon =
     .title = Aceasta este o captură favorită și nu expiră
 shotIndexSyncedShot =
     .title = Captură realizată pe alt dispozitiv
+shotIndexAlertErrorFavoriteShot = Eroare în actualizarea stării căpturii favorite
 
 ## Delete Confirmation Dialog
 
