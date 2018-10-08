@@ -9,8 +9,6 @@ gHomeLink = Heim
 gNoShots =
     .alt = Fann ingen skjermbilde
 gScreenshotsDescription = Skjermbilete gjort enkelt. Ta, lagre og del skjermbilde utan å forlate Firefox.
-gSettings = Innstillingar
-gSignIn = Logg inn
 
 ## Header
 
@@ -18,6 +16,10 @@ buttonSettings =
     .title = Innstillingar
 buttonSignIn =
     .title = Logg inn
+screenshotsLogo =
+    .title = Startside for Screenshots
+bannerMessage = Logg på eller registrer deg for å få tilgang til bilda dine på tvers av eininga og lagre favorittane dine for alltid.
+bannerUpsell = { gScreenshotsDescription } <a>Hent Firefox no</a>
 
 ## Footer
 
@@ -25,6 +27,8 @@ buttonSignIn =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Vilkår
 footerLinkPrivacy = Personvernmerknad
+footerReportShot = Rapporter skjermbilde
+    .title = Rapporter dette skjermbildet for misbruk, spam eller andre problem
 footerLinkFaqs = Vanlege spørsmål (FAQ)
 footerLinkDMCA = Rapporter brot på åndsverklova
 footerLinkDiscourse = Gje tilbakemelding
@@ -95,7 +99,8 @@ shotPageAlertErrorUpdatingTitle = Feil ved lagring av tittel
 shotPageConfirmDelete = Er du sikker på at du vil slette dette skjermbildet permanent?
 shotPageShareButton =
     .title = Del
-shotPageCopy = Kopier
+shotPageCopyButton =
+    .title = Kopier bildet til utklippstavla
 shotPageCopied = Kopiert
 shotPageShareFacebook =
     .title = Del på Facebook
@@ -124,10 +129,13 @@ shotPageDownloadShot =
     .title = Last ned
 shotPageEditButton =
     .title = Rediger dette bildet
-shotPageDownload = Last ned
-shotPageDelete = Slett
+shotPagefavoriteButton =
+    .title = Marker dette skjermbildet som favoritt
+shotPageBackToHomeButton =
+    .title = Startside
+shotPageAllShotsButton =
+    .title = Alle skjermbilde
 shotPageScreenshotsDescription = Skjermbilde gjort enkelt. Ta, lagre og del skjermbilde utan å forlate Firefox.
-shotPageUpsellFirefox = Last ned Firefox no
 shotPageDMCAMessage = Dette bildet er ikkje lenger tilgjengeleg på grunn av ein tredjepart sitt immaterielle krav.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Send ein e-post til { $dmca } for å be om ytterlegare informasjon.
@@ -191,6 +199,12 @@ errorThirdPartyCookiesEnabled = Viss du tok dette skjermbildet og ikkje kan slet
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Noter!
+promoMessage = Oppdaterte redigeringsverktøy lèt deg skjere til, markere og til og med leggje til tekst i bildet ditt.
+promoLink = Prøv dei
+promoCloseButton =
+    .title = Lat att varselet
 
 ## Annotations
 
@@ -251,6 +265,12 @@ textToolCancelButton = Avbryt
 textToolInputPlaceholder =
     .placeholder = Hallo
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Noko gjekk gale
+
 ## Settings Page
 
 settingsDisconnectButton = Kople frå
@@ -277,8 +297,6 @@ shotIndexPageSearchResultsTitle = Skjermbilda mine: søk etter { $searchTerm }
 shotIndexPageErrorRendering = Feil med rendering av sida: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Søk i bilde
-shotIndexPageSearchButton =
-    .title = Søk
 shotIndexPageNoShotsMessage = Ingen lagra bilde.
 shotIndexPageNoShotsInvitation = Kom igjen, lag nokre.
 shotIndexPageLookingForShots = Leitar etter bilda dine…
@@ -291,12 +309,6 @@ shotIndexPagePreviousPage =
     .title = Føregåande side
 shotIndexPageNextPage =
     .title = Neste side
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Dette skjermbildet går ikkje ut
 
 ## Delete Confirmation Dialog
 
