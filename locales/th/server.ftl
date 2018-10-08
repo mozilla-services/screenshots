@@ -9,6 +9,10 @@ gHomeLink = หน้าแรก
 gNoShots =
     .alt = ไม่พบภาพหน้าจอ
 
+## Header
+
+bannerUpsell = { gScreenshotsDescription } <a>รับ Firefox ตอนนี้</a>
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
@@ -35,7 +39,6 @@ homePageButtonMyShots = ไปยังภาพหน้าจอของฉ�
 homePageTeaser = เร็ว ๆ นี้...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ดาวน์โหลดฟรี
-homePageGetStarted = เริ่มต้นใช้งาน
 homePageGetStartedTitle = เริ่มต้น
 homePageCaptureRegion = จับภาพเป็นบริเวณ
 homePageCapturePage = จับภาพหน้า
@@ -68,7 +71,6 @@ shotPageAlertErrorDeletingShot = เกิดข้อผิดพลาดใ�
 shotPageAlertErrorUpdatingTitle = เกิดข้อผิดพลาดในการบันทึกชื่อเรื่อง
 shotPageShareButton =
     .title = แบ่งปัน
-shotPageCopy = คัดลอก
 shotPageCopied = คัดลอกแล้ว
 shotPageShareFacebook =
     .title = แบ่งปันบน Facebook
@@ -88,8 +90,6 @@ shotPageDownloadShot =
     .title = ดาวน์โหลด
 shotPageEditButton =
     .title = แก้ไขภาพนี้
-shotPageDownload = ดาวน์โหลด
-shotPageUpsellFirefox = รับ Firefox ตอนนี้
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = โปรดอีเมลมายัง { $dmca } เพื่อขอข้อมูลเพิ่มเติม
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
@@ -134,6 +134,9 @@ timeDiffFutureDays =
        *[other] ใน { $number } วัน
     }
 
+## Shot Page New Feature Promotion Dialog.
+
+
 ## Annotations
 
 annotationPenButton =
@@ -176,12 +179,18 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = เทา
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+
 ## Settings Page
 
 settingsDisconnectButton = ตัดการเชื่อมต่อ
     .title = ตัดการเชื่อมต่อ
 settingsSignInButton = ลงชื่อเข้า
     .title = ลงชื่อเข้า
+SettingsPageHeader = การตั้งค่า Firefox Screenshots
 settingsClosePreferences =
     .title = ปิดค่ากำหนด
 
@@ -194,8 +203,6 @@ shotIndexPageSearchResultsTitle = ภาพหน้าจอของฉัน:
 shotIndexPageErrorRendering = เกิดข้อผิดพลาดในการเรนเดอร์หน้า: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = ค้นหาภาพหน้าจอของฉัน
-shotIndexPageSearchButton =
-    .title = ค้นหา
 shotIndexPageNoShotsMessage = ไม่มีภาพหน้าจอที่บันทึกไว้
 shotIndexPageLookingForShots = กำลังมองหาภาพหน้าจอของคุณ…
 shotIndexPageNoSearchResultsIntro = หืมม
@@ -217,6 +224,8 @@ shotDeleteConfirm = ลบ
 ## Metrics page
 ## All metrics strings are optional for translation
 
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = ภาพรวมของ Screenshots
 metricsPageTotalsQueryDevices = อุปกรณ์ลงทะเบียนทั้งหมด
 metricsPageTotalsQueryExpiredShots = หมดอายุ (แต่สามารถกู้คืนได้)
 metricsPageTotalsQueryExpiredDeletedShots = หมดอายุ (และถูกลบแล้ว)
