@@ -9,8 +9,6 @@ gHomeLink = البداية
 gNoShots =
     .alt = لم يُعثر على لقطات
 gScreenshotsDescription = لقطات الشاشة صارت أسهل. خذ لقطات الشاشة و احفظها و شاركها دون مغادرة فَيرفُكس.
-gSettings = الإعدادات
-gSignIn = لِج
 
 ## Header
 
@@ -95,7 +93,6 @@ shotPageAlertErrorUpdatingTitle = خطأ أثناء حفظ العنوان
 shotPageConfirmDelete = أمتأكد أنك تريد حذف هذه اللقطة إلى الأبد؟
 shotPageShareButton =
     .title = شارِك
-shotPageCopy = انسخ
 shotPageCopied = نُسخت
 shotPageShareFacebook =
     .title = شارِك على فيسبوك
@@ -130,12 +127,7 @@ shotPageBackToHomeButton =
     .title = صفحة البداية
 shotPageAllShotsButton =
     .title = كل اللقطات
-shotPageAllShots = كل اللقطات
-shotPageDownload = نزّل
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = المفضّلة
 shotPageScreenshotsDescription = لقطات الشاشة صارت أسهل. خذ لقطات الشاشة و احفظها و شاركها دون مغادرة فَيرفُكس.
-shotPageUpsellFirefox = نزّل فَيَرفُكس الآن
 shotPageDMCAMessage = لم تعد هذه اللقطة متاحة نظرًا لادعاء الملكية الفكرية لطرف آخر.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = رجاء أرسل بريدا إلكترونيا إلى { $dmca } لطلب المزيد من المعلومات.
@@ -287,6 +279,12 @@ textToolCancelButton = ألغِ
 textToolInputPlaceholder =
     .placeholder = مرحبًا
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = حدث خطأ ما
+
 ## Settings Page
 
 settingsDisconnectButton = اقطع الاتصال
@@ -313,8 +311,6 @@ shotIndexPageSearchResultsTitle = لقطاتي: ابحث عن { $searchTerm }
 shotIndexPageErrorRendering = خطأ أثناء تصيير الصفحة: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = ابحث في لقطاتي
-shotIndexPageSearchButton =
-    .title = ابحث
 shotIndexPageNoShotsMessage = لا لقطات محفوظة.
 shotIndexPageNoShotsInvitation = حرّك نفسك والتقط شيئا.
 shotIndexPageLookingForShots = يبحث عن لقطاتك…
