@@ -9,8 +9,6 @@ gHomeLink = Degemer
 gNoShots =
     .alt = Tapadenn ebet kavet
 gScreenshotsDescription = Tapadennoù-skramm en un doare aes. Skeudennit, enrollit ha rannit an tapadennoù-skramm hep kuitaat Firefox.
-gSettings = Arventennoù
-gSignIn = Kennaskañ
 
 ## Header
 
@@ -20,6 +18,8 @@ buttonSignIn =
     .title = Kennaskañ
 screenshotsLogo =
     .title = Degemer Screenshots
+bannerMessage = Kennaskit pe marilhit evit haeziñ ho tapadennoù war ho trevnadoù hag enrollañ ho pennrolloù da viken.
+bannerUpsell = { gScreenshotsDescription } <a>Kaout Firefox bremañ</a>
 
 ## Footer
 
@@ -99,7 +99,8 @@ shotPageAlertErrorUpdatingTitle = Fazi en ur enrollañ an titl
 shotPageConfirmDelete = Sur oc'h e fell deoc'h dilemel an dapadenn-mañ?
 shotPageShareButton =
     .title = Rannañ
-shotPageCopy = Eilañ
+shotPageCopyButton =
+    .title = Eilañ ar skeudenn er golver
 shotPageCopied = Eilet
 shotPageShareFacebook =
     .title = Rannañ war Facebook
@@ -134,15 +135,7 @@ shotPageBackToHomeButton =
     .title = Degemer
 shotPageAllShotsButton =
     .title = An holl dapadennoù
-shotPageAllShots = An holl dapadennoù
-shotPageDownload = Pellgargañ
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Tresañ
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Pennroll
-shotPageDelete = Dilemel
 shotPageScreenshotsDescription = Tapadennoù-skramm en un doare aes. Skeudennit, enrollit ha rannit tapadennoù-skramm hep kuitaat Firefox.
-shotPageUpsellFirefox = Kaout Firefox bremañ
 shotPageDMCAMessage = An dapadenn-mañ n'eo ket hegerz ket abalamour m'eo bet danevellet gant un trede evit abegoù perc'henniezh kefredel.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Skrivit ur postel da: { $dmca } evit goulenn titouroù ouzhpenn.
@@ -286,6 +279,13 @@ textToolCancelButton = Nullañ
 textToolInputPlaceholder =
     .placeholder = Demat
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Degouezhet ez eus bet ur fazi
+copyImageErrorMessage = N'haller ket eilañ ho tapadenn er golver
+
 ## Settings Page
 
 settingsDisconnectButton = Digennaskañ
@@ -312,8 +312,6 @@ shotIndexPageSearchResultsTitle = Ma zapadennoù: klask war-lec'h { $searchTerm 
 shotIndexPageErrorRendering = Fazi en ur skrammañ ar bajenn: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Klask ma zapadennoù
-shotIndexPageSearchButton =
-    .title = Klask
 shotIndexPageNoShotsMessage = Tapadenn ebet enrollet
 shotIndexPageNoShotsInvitation = Kit 'ta da skeudenniñ un dra bennak
 shotIndexPageLookingForShots = O klask ho tapadennoù...
@@ -328,17 +326,18 @@ shotIndexPagePreviousPage =
     .title = Pajenn gent
 shotIndexPageNextPage =
     .title = Pajenn da-heul
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = An dapadenn n'hall ket diamzeriñ
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = N'emañ ket an dapadenn er pennrolloù ha diamzeriñ a raio
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Er pennrolloù emañ an dapadenn-mañ ha ne ziamzero ket
+shotIndexSyncedShot =
+    .title = Tapet eo bet skeudenn war un trevnad all
+shotIndexAlertErrorFavoriteShot = Fazi en ur hizivaat statud an dapadenn er pennrolloù
 
 ## Delete Confirmation Dialog
 
