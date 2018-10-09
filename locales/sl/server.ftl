@@ -9,8 +9,6 @@ gHomeLink = Domov
 gNoShots =
     .alt = Ni najdenih posnetkov
 gScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in delite zaslonske posnetke, ne da bi zapustili Firefox.
-gSettings = Nastavitve
-gSignIn = Prijava
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Napaka pri shranjevanju naslova
 shotPageConfirmDelete = Ali ste prepričani, da želite trajno izbrisati ta posnetek?
 shotPageShareButton =
     .title = Deli
-shotPageCopy = Kopiraj
 shotPageCopyButton =
     .title = Kopiraj sliko v odložišče
 shotPageCopied = Kopirano
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Domača stran
 shotPageAllShotsButton =
     .title = Vsi posnetki
-shotPageAllShots = Vsi posnetki
-shotPageDownload = Prenesi
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Riši
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Dodaj med priljubljene
-shotPageDelete = Izbriši
 shotPageScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in delite zaslonske posnetke, ne da bi zapustili Firefox.
 shotPageDMCAMessage = Ta posnetek ni več na voljo zaradi zahtev intelektualne lastnine tretje osebe.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -345,6 +335,7 @@ shotIndexFavoriteIcon =
     .title = Ta posnetek je med priljubljenimi in ne preteče
 shotIndexSyncedShot =
     .title = Posnetek zajet na drugi napravi
+shotIndexAlertErrorFavoriteShot = Napaka pri posodabljanju statusa priljubljenega posnetka
 
 ## Delete Confirmation Dialog
 
