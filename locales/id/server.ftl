@@ -9,8 +9,6 @@ gHomeLink = Beranda
 gNoShots =
     .alt = Tidak ada tangkapan ditemukan
 gScreenshotsDescription = Screenshots membuatnya sederhana. Ambil, simpan, dan bagikan tangkapan layar tanpa meninggalkan Firefox.
-gSettings = Setelan
-gSignIn = Masuk
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Galat saat menyimpan judul
 shotPageConfirmDelete = Yakin ingin menghapus tangkapan ini secara permanen?
 shotPageShareButton =
     .title = Bagikan
-shotPageCopy = Salin
 shotPageCopyButton =
     .title = Salin gambar ke papan klip
 shotPageCopied = Tersalin
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Beranda
 shotPageAllShotsButton =
     .title = Semua Tangkapan Layar
-shotPageAllShots = Semua Tangkapan Layar
-shotPageDownload = Unduh
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Gambar
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Favorit
-shotPageDelete = Hapus
 shotPageScreenshotsDescription = Screenshots sangat mudah. Tangkap, simpan, dan bagikan tangkapan layar tanpa meninggalkan Firefox.
 shotPageDMCAMessage = Tangkapan ini tidak lagi tersedia karena klaim hak kekayaan intelektual pihak ketiga.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -309,6 +299,7 @@ shotIndexFavoriteIcon =
     .title = Ini adalah tangkapan favorit dan tidak kedaluwarsa
 shotIndexSyncedShot =
     .title = Tangkapan layar yang diambil dari peranti lainnya
+shotIndexAlertErrorFavoriteShot = Bermasalah saat memutakhirkan status tangkapan favorit
 
 ## Delete Confirmation Dialog
 
