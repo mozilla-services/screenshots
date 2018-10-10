@@ -25,7 +25,7 @@ bannerUpsell = { gScreenshotsDescription }<a>立即下载 Firefox</a>
 
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
-footerLinkTerms = 条款
+footerLinkTerms = 使用条款
 footerLinkPrivacy = 隐私声明
 footerReportShot = 举报截图
     .title = 举报这张截图有滥用、垃圾信息或其他问题
@@ -68,7 +68,7 @@ homePageSaveShare = 保存并分享
 homePageSaveShareDescription = 在您截图时，Firefox 会将截图保存到您的在线截图库，并将链接复制到剪贴板。我们会为您自动存储两周内的截图，您也可以随时删除截图或更改到期时间以长期保留截图。
 homePageLegalLink = 法律
 homePagePrivacyLink = 隐私
-homePageTermsLink = 条款
+homePageTermsLink = 使用条款
 homePageCookiesLink = Cookie
 
 ## Leave Screenshots page
