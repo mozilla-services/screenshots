@@ -9,8 +9,6 @@ gHomeLink = Cartrefi
 gNoShots =
     .alt = Heb ganfod lluniau
 gScreenshotsDescription = Lluniau sgrin wedi ei wneud yn syml. Cipio, cadw a rhannu lluniau sgrin heb adael Firefox.
-gSettings = Gosodiadau
-gSignIn = Mewngofnodi
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Gwall cadw teitl
 shotPageConfirmDelete = Ydych chi'n siŵr eich bod eisiau dileu'r llun yn barhaol?
 shotPageShareButton =
     .title = Cadw
-shotPageCopy = Copïo
 shotPageCopyButton =
     .title = Copïo'r ddelwedd i'r clipfwrdd
 shotPageCopied = Copiwyd
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Tudalen Cartref
 shotPageAllShotsButton =
     .title = Pob Llun
-shotPageAllShots = Pob Llun
-shotPageDownload = Llwytho i Lawr
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Lluniadu
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Ffefryn
-shotPageDelete = Dileu
 shotPageScreenshotsDescription = Lluniau sgrin hawdd. Cipio, cadw a rhannu lluniau sgrin heb adael Firefox.
 shotPageDMCAMessage = Nid yw'r llun ar gael bellach oherwydd cais eiddo deallusol trydydd parti.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -357,6 +347,7 @@ shotIndexFavoriteIcon =
     .title = Mae hwn yn llun ffefryn ac nid yw'n dod i ben
 shotIndexSyncedShot =
     .title = Llun wedi ei dynnu gan ddyfais arall
+shotIndexAlertErrorFavoriteShot = Gwall wrth ddiweddaru statws hoff lun
 
 ## Delete Confirmation Dialog
 
