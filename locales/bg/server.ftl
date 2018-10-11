@@ -9,8 +9,6 @@ gHomeLink = Начална страница
 gNoShots =
     .alt = Няма снимки на екрана
 gScreenshotsDescription = Лесни снимки на екрана. Създавате, запазвате и споделяте снимки на екрана без да напускате Firefox.
-gSettings = Настройки
-gSignIn = Вписване
 
 ## Header
 
@@ -20,6 +18,7 @@ buttonSignIn =
     .title = Вписване
 screenshotsLogo =
     .title = Страница на Screenshots
+bannerUpsell = { gScreenshotsDescription } <a>Вземете Firefox сега</a>
 
 ## Footer
 
@@ -99,7 +98,8 @@ shotPageAlertErrorUpdatingTitle = Грешка при запазване на з
 shotPageConfirmDelete = Сигурни ли сте, че желаете изображението да бъде необратимо премахнато?
 shotPageShareButton =
     .title = Споделяне
-shotPageCopy = Копиране
+shotPageCopyButton =
+    .title = Копиране на снимката в системния буфер
 shotPageCopied = Копирано
 shotPageShareFacebook =
     .title = Споделяне във Facebook
@@ -134,15 +134,7 @@ shotPageBackToHomeButton =
     .title = Страница
 shotPageAllShotsButton =
     .title = Всички снимки
-shotPageAllShots = Всички снимки
-shotPageDownload = Изтегляне
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Рисуване
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Любими
-shotPageDelete = Изтриване
 shotPageScreenshotsDescription = Лесни снимки на екрана. Създавате, запазвате и споделяте снимки на екрана без да напускате Firefox.
-shotPageUpsellFirefox = Вземете Firefox сега
 shotPageDMCAMessage = Това изображение вече не е налично, защото е докладвано като обект на авторско право.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Моля, за повече информация пишете до { $dmca }.
@@ -272,6 +264,13 @@ textToolCancelButton = Отказ
 textToolInputPlaceholder =
     .placeholder = Здравейте
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Нещо се обърка
+copyImageErrorMessage = Снимката не може да бъде копирана в системния буфер.
+
 ## Settings Page
 
 settingsDisconnectButton = Изключване
@@ -298,8 +297,6 @@ shotIndexPageSearchResultsTitle = Моите снимки: търсене на {
 shotIndexPageErrorRendering = Грешка при изчертаване на страницата: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Търсене в моите снимки
-shotIndexPageSearchButton =
-    .title = Търсене
 shotIndexPageNoShotsMessage = Няма запазени снимки.
 shotIndexPageNoShotsInvitation = Хайде, направете няколко.
 shotIndexPageLookingForShots = Търсене на вашите снимки…
@@ -323,6 +320,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Това е отбелязана снимка и тя няма срок на съхранение
+shotIndexSyncedShot =
+    .title = Снимка от друго устройство
 
 ## Delete Confirmation Dialog
 
