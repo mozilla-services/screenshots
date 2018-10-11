@@ -6,6 +6,13 @@
 
 gHomeLink = Gang
 
+## Header
+
+buttonSettings =
+    .title = Ter
+buttonSignIn =
+    .title = Dony iyie
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
@@ -29,7 +36,6 @@ creatingPageTitleDefault = potbuk
 homePageTeaser = Cok Bino
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Gam me nono
-homePageGetStarted = Caki
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kit ma Firefox Screenshots Tiyo Kede
 homePageGetStartedTitle = Caki
@@ -67,7 +73,6 @@ notFoundPageDescription = Potbuk pe ononge.
 shotPageAlertErrorUpdatingTitle = Bal i gwoko wiye
 shotPageShareButton =
     .title = Poki
-shotPageCopy = Loki
 shotPageCopied = Kiloko
 shotPageShareFacebook =
     .title = Poki i Facebook
@@ -88,8 +93,6 @@ shotPageDownloadShot =
     .title = Gam
 shotPageEditButton =
     .title = Yub cal man
-shotPageDownload = Gam
-shotPageUpsellFirefox = Nong Firefox Kombedi
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Tim ber i cwal email bot { $dmca } me penyo pi ngec mapol.
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
@@ -141,8 +144,16 @@ timeDiffFutureHours =
 timeDiffFutureDays =
     { $number ->
         [one] diki
-       *[other] i nino { $number } 
+       *[other] i nino { $number }
     }
+
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Niang maber!
+promoLink = Tem gi
+promoCloseButton =
+    .title = Lor ngec
 
 ## Annotations
 
@@ -170,10 +181,16 @@ textSizeSmall = Matidi
 textSizeMedium = Ladyere
 textSizeLarge = Madit
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Moki
     .title = Moki
-annotationTextCancelButton =
+textToolCancelButton = Juki
     .title = Juki
+
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Gin mo otime marac
 
 ## Settings Page
 
@@ -185,8 +202,6 @@ settingsSignInButton = Dony iyie
 
 ## Shotindex page
 
-shotIndexPageSearchButton =
-    .title = Yeny
 shotIndexPageNoShotsInvitation = Mede, cwe mogo.
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Pe watwero nongo cal ma rwate ki yeny mamegi.
