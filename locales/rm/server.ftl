@@ -9,8 +9,6 @@ gHomeLink = Pagina da partenza
 gNoShots =
     .alt = Chattà nagins maletgs dal visur
 gScreenshotsDescription = La via simpla per far maletgs dal visur: Far, memorisar e cundivider ils maletgs dal visur senza bandunar Firefox.
-gSettings = Parameters
-gSignIn = S'annunziar
 
 ## Header
 
@@ -101,7 +99,6 @@ shotPageAlertErrorUpdatingTitle = Errur durant memorisar il titel
 shotPageConfirmDelete = Vuls ti propi stizzar definitivamain quest maletg dal visur?
 shotPageShareButton =
     .title = Cundivider
-shotPageCopy = Copiar
 shotPageCopyButton =
     .title = Copiar il maletg en l'archiv provisoric
 shotPageCopied = Copià
@@ -138,13 +135,6 @@ shotPageBackToHomeButton =
     .title = Pagina da partenza
 shotPageAllShotsButton =
     .title = Tut ils maletgs
-shotPageAllShots = Tut ils maletgs
-shotPageDownload = Telechargiar
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Dissegnar
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Favurit
-shotPageDelete = Stizzar
 shotPageScreenshotsDescription = Maletgs dal visur en in batterdegl. Prender, memorisar e cundivider maletgs dal visur senza bandunar Firefox.
 shotPageDMCAMessage = Quest maletg n'è betg pli disponibel perquai che terzas persunas ha fatg valair ina violaziun dals dretgs d'autur.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
