@@ -45,14 +45,15 @@
     margin-top: 18px;
 
     button {
-      &.primary {
+      &.warning {
         width: 135px;
         height: 40px;
       }
       &.secondary {
         border: 1px solid #c7c7c7;
-        width: 133px;
-        height: 38px;
+        width: 135px;
+        height: 40px;
+        box-sizing: border-box;
       }
     }
   }
