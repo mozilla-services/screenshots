@@ -49,7 +49,7 @@ def test_invalid_png_data_image_decoded():
     assert resp.status_code == 500
 
 
-def test_invalid_png_data_url():
+def test_invalid_data_url():
     image = example_images[0]['url']
     (shot_data, shot_json, user) = user_setup()
     assert "data:image/png;base64" in image
@@ -92,24 +92,9 @@ def test_invalid_data_jpeg_image_decoded():
     assert resp.status_code == 500
 
 
-def test_invalid_jpeg_data_url():
-    image = example_images[3]['url']
-    (shot_data, shot_json, user) = user_setup()
-    assert "data:image/jpeg;base64" in image
-    invalid_data_url = image.replace('data:image/jpeg', 'data:image/foo')
-
-    clip_id = next(iter(shot_json['clips']))
-    shot_json['clips'][clip_id]['image'] = invalid_data_url
-
-    resp = user.session.put(shot_data, json=shot_json,)
-    print(resp.text)
-    assert resp.status_code == 500
-
-
 if __name__ == "__main__":
     test_invalid_jpeg_data_image()
     test_invalid_png_data_image()
     test_invalid_png_data_image_decoded()
     test_invalid_data_jpeg_image_decoded()
-    test_invalid_png_data_url()
-    test_invalid_jpeg_data_url()
+    test_invalid_data_url()
