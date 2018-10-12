@@ -20,15 +20,14 @@ def user_setup():
 
 
 def test_invalid_png_data_image():
-    image = example_images['example_images'][0]['url']
+    image = example_images[0]['url']
     (shot_data, shot_json, user) = user_setup()
     valid_header = "data:image/png;base64,iVBORw0KGgo"
     invalid_header = 'data:image/png;base64,R0k'
     assert valid_header in image
 
-    for clip_id in shot_json['clips']:
-        shot_json['clips'][clip_id]['image']['url'] = invalid_header
-        break
+    clip_id = next(iter(shot_json['clips']))
+    shot_json['clips'][clip_id]['image'] = invalid_header
 
     resp = user.session.put(shot_data, json=shot_json,)
     print(resp.text)
@@ -36,15 +35,14 @@ def test_invalid_png_data_image():
 
 
 def test_invalid_png_data_image_decoded():
-    image = example_images['example_images'][0]['url']
+    image = example_images[0]['url']
     (shot_data, shot_json, user) = user_setup()
     assert "iVBORw0KGgo" in image
 
     invalid_data_image = image.replace('iVBORw0KGgo', 'someIM4gEgo')
 
-    for clip_id in shot_json['clips']:
-        shot_json['clips'][clip_id]['image']['url'] = invalid_data_image
-        break
+    clip_id = next(iter(shot_json['clips']))
+    shot_json['clips'][clip_id]['image'] = invalid_data_image
 
     resp = user.session.put(shot_data, json=shot_json,)
     print(resp.text)
@@ -52,14 +50,13 @@ def test_invalid_png_data_image_decoded():
 
 
 def test_invalid_png_data_url():
-    image = example_images['example_images'][0]['url']
+    image = example_images[0]['url']
     (shot_data, shot_json, user) = user_setup()
     assert "data:image/png;base64" in image
     invalid_data_url = image.replace('data:image/png', 'data:image/foo')
 
-    for clip_id in shot_json['clips']:
-        shot_json['clips'][clip_id]['image']['url'] = invalid_data_url
-        break
+    clip_id = next(iter(shot_json['clips']))
+    shot_json['clips'][clip_id]['image'] = invalid_data_url
 
     resp = user.session.put(shot_data, json=shot_json,)
     print(resp.text)
@@ -67,15 +64,14 @@ def test_invalid_png_data_url():
 
 
 def test_invalid_jpeg_data_image():
-    image = example_images['example_images'][3]['url']
+    image = example_images[3]['url']
     (shot_data, shot_json, user) = user_setup()
     valid_header = "data:image/jpeg;base64,/9j/2wBDAAQDAwQDAwQEAwQFBAQ"
     invalid_header = "data:image/jpeg;base64,BAAQ"
     assert valid_header in image
 
-    for clip_id in shot_json['clips']:
-        shot_json['clips'][clip_id]['image']['url'] = invalid_header
-        break
+    clip_id = next(iter(shot_json['clips']))
+    shot_json['clips'][clip_id]['image'] = invalid_header
 
     resp = user.session.put(shot_data, json=shot_json,)
     print(resp.text)
@@ -83,14 +79,13 @@ def test_invalid_jpeg_data_image():
 
 
 def test_invalid_data_jpeg_image_decoded():
-    image = example_images['example_images'][3]['url']
+    image = example_images[3]['url']
     (shot_data, shot_json, user) = user_setup()
     assert "2wBDAAQDAwQDAw" in image
     invalid_data_image = image.replace('2wBDAAQDAwQDAw', 'someIM4gEt0Try')
 
-    for clip_id in shot_json['clips']:
-        shot_json['clips'][clip_id]['image']['url'] = invalid_data_image
-        break
+    clip_id = next(iter(shot_json['clips']))
+    shot_json['clips'][clip_id]['image'] = invalid_data_image
 
     resp = user.session.put(shot_data, json=shot_json,)
     print(resp.text)
@@ -98,14 +93,13 @@ def test_invalid_data_jpeg_image_decoded():
 
 
 def test_invalid_jpeg_data_url():
-    image = example_images['example_images'][3]['url']
+    image = example_images[3]['url']
     (shot_data, shot_json, user) = user_setup()
     assert "data:image/jpeg;base64" in image
     invalid_data_url = image.replace('data:image/jpeg', 'data:image/foo')
 
-    for clip_id in shot_json['clips']:
-        shot_json['clips'][clip_id]['image']['url'] = invalid_data_url
-        break
+    clip_id = next(iter(shot_json['clips']))
+    shot_json['clips'][clip_id]['image'] = invalid_data_url
 
     resp = user.session.put(shot_data, json=shot_json,)
     print(resp.text)
