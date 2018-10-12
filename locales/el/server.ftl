@@ -9,8 +9,6 @@ gHomeLink = Αρχική
 gNoShots =
     .alt = Δεν βρέθηκαν στιγμιότυπα
 gScreenshotsDescription = Η λήψη στιγμιοτύπων έγινε εύκολη. Λήψη, αποθήκευση και κοινή χρήση στιγμιοτύπων χωρίς να φύγετε από το Firefox.
-gSettings = Ρυθμίσεις
-gSignIn = Είσοδος
 
 ## Header
 
@@ -21,6 +19,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Αρχική σελίδα Screenshots
 bannerMessage = Συνδεθείτε ή εγγραφείτε για πρόσβαση στα στιγμιότυπά σας από όλες τις συσκευές και αποθήκευση των αγαπημένων σας για πάντα.
+bannerUpsell = { gScreenshotsDescription } <a>Λήψη του Firefox τώρα</a>
 
 ## Footer
 
@@ -100,7 +99,8 @@ shotPageAlertErrorUpdatingTitle = Σφάλμα αποθήκευσης τίτλο
 shotPageConfirmDelete = Θέλετε σίγουρα να διαγράψετε οριστικά το στιγμιότυπο;
 shotPageShareButton =
     .title = Κοινή χρήση
-shotPageCopy = Αντιγραφή
+shotPageCopyButton =
+    .title = Αντιγραφή εικόνας στο πρόχειρο
 shotPageCopied = Αντιγράφηκε
 shotPageShareFacebook =
     .title = Κοινοποίηση στο Facebook
@@ -135,15 +135,7 @@ shotPageBackToHomeButton =
     .title = Αρχική σελίδα
 shotPageAllShotsButton =
     .title = Όλα τα στιγμιότυπα
-shotPageAllShots = Όλα τα στιγμιότυπα
-shotPageDownload = Λήψη
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Σχέδιο
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Αγαπημένο
-shotPageDelete = Διαγραφή
 shotPageScreenshotsDescription = Η λήψη στιγμιοτύπων έγινε εύκολη. Λήψη, αποθήκευση και κοινή χρήση στιγμιοτύπων χωρίς να φύγετε από το Firefox.
-shotPageUpsellFirefox = Λήψη του Firefox τώρα
 shotPageDMCAMessage = Αυτό το στιγμιότυπο δεν είναι πλέον διαθέσιμο λόγω ισχυρισμού πνευματικής ιδιοκτησίας ενός τρίτου.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Παρακαλώ στείλτε email στο { $dmca } για να ζητήσετε περαιτέρω πληροφορίες.
@@ -273,6 +265,12 @@ textToolCancelButton = Ακύρωση
 textToolInputPlaceholder =
     .placeholder = Γεια σας
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Κάτι πήγε στραβά
+
 ## Settings Page
 
 settingsDisconnectButton = Αποσύνδεση
@@ -299,8 +297,6 @@ shotIndexPageSearchResultsTitle = Τα στιγμιότυπά μου: αναζή
 shotIndexPageErrorRendering = Σφάλμα εμφάνισης σελίδας: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Αναζήτηση στα στιγμιότυπά μου
-shotIndexPageSearchButton =
-    .title = Αναζήτηση
 shotIndexPageNoShotsMessage = Κανένα αποθηκευμένο στιγμιότυπο.
 shotIndexPageNoShotsInvitation = Εμπρός, δημιουργήστε μερικά.
 shotIndexPageLookingForShots = Αναζήτηση των στιγμιοτύπων σας…
