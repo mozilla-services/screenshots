@@ -219,14 +219,20 @@ $shot-width: 210px;
     background-color: $white;
     background-position: center;
     background-repeat: no-repeat;
+    &:hover {
+      background-color: $light-hover;
+    }
+    &:active {
+      background-color: $light-active;
+    }
   }
 
   .fav-shot,
   .non-fav-shot {
     cursor: pointer;
     right: 12px;
-    top: 8px;
-    background-size: 23px 20px;
+    top: 12px;
+    background-size: 20px 20px;
   }
 
   .fav-shot {

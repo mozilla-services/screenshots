@@ -65,10 +65,10 @@ exports.DeleteShotButton = class DeleteShotButton extends React.Component {
         </Localized>
         <div className="delete-confirmation-buttons">
           <Localized id="shotDeleteCancel" attrs={{title: true}}>
-          <button className="button primary" title="Cancel" onClick={ this.onCancelDelete.bind(this) }>Cancel</button>
+          <button className="button secondary" title="Cancel" onClick={ this.onCancelDelete.bind(this) }>Cancel</button>
           </Localized>
           <Localized id="shotDeleteConfirm" attrs={{title: true}}>
-          <button className="button secondary" title="Delete" onClick={ this.onConfirmDelete.bind(this) }>Delete</button>
+          <button className="button warning" title="Delete" onClick={ this.onConfirmDelete.bind(this) }>Delete</button>
           </Localized>
         </div>
       </div>;

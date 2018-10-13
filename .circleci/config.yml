@@ -42,7 +42,18 @@ jobs:
           at: .
       - run:
           name: Install Postgres
-          command: sudo circleci-install postgres
+          command: |
+            # sudo -u postgres doesn't like to run from the project directory:
+            cd ~
+            sudo apt-get -q update
+            sudo apt-get install postgresql-9.3 postgresql-client-9.3 # sudo circleci-install postgres
+            # Create the database and user we use from tests:
+            sudo -u postgres createuser --user postgres ubuntu
+            sudo -u postgres createdb --user postgres circle_test
+            # This allows passwordless logins from localhost:
+            sudo sed -ri 's!127.0.0.1/32[ \t]+md5!127.0.0.1/32 trust!g' /etc/postgresql/9.3/main/pg_hba.conf
+            # Restart to see the login config change:
+            sudo /etc/init.d/postgresql restart
       - run:
           name: Start Server
           command: |

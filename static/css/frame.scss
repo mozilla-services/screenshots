@@ -8,19 +8,6 @@
 }
 
 .back-to-home {
-  @include respond-to("small") {
-    background-size: 24px auto;
-    padding-left: 35px;
-    border: 0;
-    margin: 0 2px;
-    span {
-      font-size: 20px;
-      &.small-text {
-        font-size: 14px;
-      }
-    }
-  }
-
   background-position: left center;
   background-image: url("../img/icon-screenshot.svg");
   background-repeat: no-repeat;
@@ -32,12 +19,24 @@
     display: block;
     text-align: left;
     margin: 0;
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 20px;
     &.small-text {
-      font-size: 17px;
-      padding-left: 0;
-      padding-right: 5px;
+      font-size: 18px;
+      padding: 0 5px 0 0;
+      font-weight: bold;
+    }
+  }
+
+  @include respond-to("small") {
+    background-size: 24px auto;
+    padding-left: 35px;
+    border: 0;
+    margin: 0 2px;
+    span {
+      font-size: 18px;
+      &.small-text {
+        font-size: 16px;
+      }
     }
   }
 
@@ -50,9 +49,6 @@
 
   @include respond-to("large") {
     @include flex-container(row, flex-start, center);
-    flex: initial;
-    padding-top: 4px;
-    overflow: hidden;
   }
 
   @include respond-to("small") {
@@ -63,6 +59,7 @@
 
   flex: 1;
   position: relative;
+  min-width: 0;
 
   .expire-info {
     display: block;
@@ -87,7 +84,7 @@
     background-color: $light-default;
     justify-content: flex-end;
     border: none;
-    flex: 1;
+    flex: initial;
     order: 0;
   }
   background-color: $white;
@@ -102,11 +99,14 @@
 
 .shot-info {
   @include flex-container(column, center, flex-start);
-  @include respond-to("small") {
-    padding: 0 0 0 $grid-unit * 0.5;
-  }
   color: $black;
-  padding: 0 0 0 $grid-unit;
+  padding: 0 0 0 $grid-unit * 0.5;
+  width: 100%;
+
+  @include respond-to("large") {
+    max-width: auto;
+    padding: 0 0 0 $grid-unit;
+  }
 
   > div {
     white-space: nowrap;
@@ -119,25 +119,19 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   margin: 0;
+  width: auto;
+  max-width: 100%;
 }
 
 .shot-title {
-  @include respond-to("medium") {
-    max-width: 500px;
-  }
   @include respond-to("large") {
     font-size: 32px;
     line-height: 39px;
-    max-width: 250px;
     padding-bottom: 8px;
-  }
-  @include respond-to("extra-large") {
-    max-width: 500px;
   }
   font-weight: bold;
   font-size: 24px;
   line-height: 29px;
-  max-width: 130px;
   padding-bottom: 4px;
 
   &.saving {
@@ -173,21 +167,36 @@
 .shot-title-input {
   @include respond-to("large") {
     max-width: 200px;
+    font-size: 32px;
+    line-height: 39px;
+    padding-bottom: 1px;
+    margin: 0 0 4px 0;
   }
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  padding-bottom: 1px;
+  padding-left: 2px;
+
   border-radius: $border-radius;
   border: 1px solid $active-blue;
-  font-size: 24px;
-  font-weight: 300;
-  height: 32px;
-  margin: 0 0 4px -6px;
-  padding: 0 5px;
+  
+  margin: 0;
   overflow: auto;
   max-width: 100px;
+  position: relative;
+  top: -2px;
+  left: -3px;
 }
 
 .subtitle-link,
 .time-diff {
   margin-right: 8px;
+}
+
+.subtitle-link {
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .promo-panel {
@@ -416,7 +425,6 @@ body {
       @include flex-container(row, flex-start, center);
       margin-right: 10px;
       padding-top: 4px;
-      overflow: hidden;
     }
 
     @include respond-to("small") {
