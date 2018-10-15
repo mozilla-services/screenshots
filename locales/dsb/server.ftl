@@ -64,6 +64,8 @@ homePageCaptureRegionDescription = Klikniśo a śěgniśo, aby wobcerk wubrał, 
 homePageCapturePage = Bok fotografěrowaś
 homePageCapturePageDescription = Wužywajśo tłocašk górjejce napšawo, aby cełe boki fotografěrował. Tłocašk "Wobcerk fotografěrowaś" ten wobcerk składujo, kótaryž móžośo bźez kulanje boka wiźeś a tłocašk "Bok fotografěrowaś" składujo ceły bok.
 homePageSaveShare = Składowaś a źěliś
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = Gótujśo swójo nejlěpše foto wobrazowki. Składujśo jo pótom w bibliotece fotow wobrazowkow online, a Fiefox kopěrujo wótkaz do swójogo mjazywótkłada za lažke zgromadne wužywanje. Fota wobrazowki w bibliotece pó dwěma tyźenjoma awtomatiski spadnu, ale móžośo je kuždy cas wulašowaś abo rozsuźiś, lěc je dlěj wobchowajośo.
 homePageSignInTitle = Waše fota wobrazowki wšuźi
 homePageSignInDescription = Pśizjawśo se pla Screenshots ze swójim kontom Firefox, aby wšuźi pśistup k swójim fotam wobrazowki měł, źož Firefox wužywaśo. Pśidatny bonus: móžośo teke swóje nejlubše fota wobrazowki na pśecej składowaś.
 homePageLegalLink = Pšawniske
