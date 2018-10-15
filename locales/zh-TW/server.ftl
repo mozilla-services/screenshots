@@ -65,7 +65,9 @@ homePageCapturePage = 拍攝整張網頁
 homePageCapturePageDescription = 可使用右上角的按鈕來拍攝整張網頁。點擊「儲存可見範圍」按鈕即可不必捲動，直接拍攝您當下看到的範圍，或是點擊「儲存完整頁面」拍攝整張網頁。
 homePageSaveShare = 儲存並分享
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = 拍攝完成後，Firefox 會將您的擷圖上傳到 Screenshots 雲端圖庫，並將鏈結複製到您的剪貼簿。我們會自動儲存的拍攝的擷圖兩星期，但您也可以隨時修改到期日，或直接刪除圖片。
+homePageShaveShareFavoriteDescription = 拍一張最棒的擷圖，存到您的 Screenshots 線上圖庫，Firefox 就會將鏈結複製到剪貼簿讓您方便分享。圖庫中的擷圖會在兩週後自動過期，但您也可以隨時刪除它們，或延長保存時間。
+homePageSignInTitle = 您的擷圖，隨身帶著走
+homePageSignInDescription = 使用 Firefox 帳號登入 Screenshots 即可在任何使用 Firefox 的地方開啟擷圖。加分項目: 您也可以永久保存最愛的擷圖。
 homePageLegalLink = 法律資訊
 homePagePrivacyLink = 隱私權
 homePageTermsLink = 使用條款
