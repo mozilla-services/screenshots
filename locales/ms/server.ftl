@@ -65,7 +65,9 @@ homePageCapturePage = Ambil gambar Halaman
 homePageCapturePageDescription = Gunakan butang yang muncul pada bahagian atas kanan untuk mengambil gambar penuh halaman. Butang Simpan Tampak akan mengambil gambar kawasan yang anda nampak tanpa skrol, dan Simpan Halaman Penuh akan mengambil gambar keseluruhan halaman.
 homePageSaveShare = Simpan dan Kongsi
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Apabila anda ambil syot, Firefox menghantar skrinsyot ke pustaka Screenshots dalam talian anda dan menyalin pautan ke klipbod anda. Secara automatik, kami simpan skrinsyot anda selama dua minggu, tetapi anda boleh hapus atau tukar tarikh luputnya untuk terus disimpan lebih lama dalam pustaka anda.
+homePageShaveShareFavoriteDescription = Ambil syot yang terbaik. Kemudian simpan ke pustaka atas talian Screenshots, dan Firefox akan menyalin  pautan ke klip supaya mudah untuk dikongsi. Syot dalam pustaka secara automatik akan luput selepas dua minggu, tetapi anda boleh hapuskannya pada bila-bila masa atau pilih untuk menyimpannya lebih lama.
+homePageSignInTitle = Syot Anda Di Mana Sahaja
+homePageSignInDescription = Daftar masuk ke Screenshots dengan Akaun Firefox untuk mengakses semua syot di mana sahaja anda menggunakan Firefox. Bonus tambahan: anda juga boleh simpan syot selama-lamanya.
 homePageLegalLink = Perundangan
 homePagePrivacyLink = Privasi
 homePageTermsLink = Terma
