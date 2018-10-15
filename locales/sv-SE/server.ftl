@@ -65,7 +65,9 @@ homePageCapturePage = Fånga en sida
 homePageCapturePageDescription = Använd knapparna längst upp till höger för att fånga hela sidor. Knappen "Spara synligt område" kommer att fånga upp det område du kan visa utan att scrolla och "Spara hela sidan" tar upp allt på sidan.
 homePageSaveShare = Spara och dela
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = När du tar en bild skickar Firefox din skärmbild till ditt bibliotek i Screenshots och kopierar länken till ditt urklipp. Vi lagrar automatiskt dina skärmbilder i två veckor, men du kan när som helst radera bilder eller ändra utgångsdatum för att behålla dem längre i ditt bibliotek.
+homePageShaveShareFavoriteDescription = Ta dina bästa bilder. Spara sedan det på nätet i Screenshots-bibliotek och Firefox kopierar länken till ditt urklipp för enkel delning. Bilder i biblioteket upphör automatiskt efter två veckor, men du kan ta bort dem när som helst eller välja att behålla dem längre.
+homePageSignInTitle = Dina bilder överallt
+homePageSignInDescription = Logga in på Screenshots med ditt Firefox-konto för att komma åt dina bilder överallt där du använder Firefox. En extra bonus: du kan också spara dina favoritbilder för alltid.
 homePageLegalLink = Juridisk information
 homePagePrivacyLink = Sekretess
 homePageTermsLink = Villkor
