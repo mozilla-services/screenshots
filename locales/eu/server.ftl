@@ -5,10 +5,15 @@
 ## Global phrases shared across pages, prefixed with 'g'
 
 
+## Header
+
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Baldintzak
+footerLinkPrivacy = Pribatutasun-oharra
 footerLinkFaqs = Ohiko galderak
 
 ## Creating page
@@ -17,6 +22,8 @@ footerLinkFaqs = Ohiko galderak
 ## Home page
 
 homePageDownloadFirefoxTitle = Firefox
+homePageGetStartedTitle = Hasi erabiltzen
+homePageLegalLink = Lege-oharrak
 homePagePrivacyLink = Pribatutasuna
 homePageCookiesLink = Cookieak
 
@@ -30,15 +37,22 @@ notFoundPageIntro = Ene!
 
 ## Shot page
 
-shotPageCopy = Kopiatu
 shotPageCopied = Kopiatuta
-shotPageDownload = Deskargatu
+shotPageDownloadShot =
+    .title = Deskargatu
 shotPageKeepTenMinutes = 10 minutu
+shotPageKeepOneHour = Ordu bat
 shotPageKeepOneDay = Egun bat
+shotPageKeepOneWeek = Aste bat
+shotPageKeepTwoWeeks = 2 aste
+shotPageKeepOneMonth = Hilabete
 shotPageSaveExpiration = gorde
 shotPageCancelExpiration = utzi
 shotPageDoesNotExpire = ez da iraungitzen
 timeDiffJustNow = oraintxe bertan
+
+## Shot Page New Feature Promotion Dialog.
+
 
 ## Annotations
 
@@ -47,13 +61,16 @@ annotationCropConfirmButton = Berretsi
 annotationCropCancelButton = Utzi
     .title = Utzi hautapena
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+
 ## Settings Page
 
 
 ## Shotindex page
 
-shotIndexPageSearchButton =
-    .title = Bilatu
 shotIndexPagePreviousPage =
     .title = Aurreko orria
 shotIndexPageNextPage =
