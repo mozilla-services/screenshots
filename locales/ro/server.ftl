@@ -26,7 +26,7 @@ bannerUpsell = { gScreenshotsDescription }<a>Obţine Firefox acum</a>
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Termeni
-footerLinkPrivacy = Politica de confidențialitate
+footerLinkPrivacy = Notificare privind confidențialitatea
 footerReportShot = Raportează captura
     .title = Raportează această captură pentru abuz, spam sau alte probleme
 footerLinkFaqs = Întrebări frecvente
@@ -346,7 +346,7 @@ shotDeleteConfirm = Șterge
 metricsPageTitle = Metrici Firefox Screenshots
 metricsPageTotalsQueryTitle = Totaluri
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-metricsPageTotalsQueryDescription = Rezumat Screenshots
+metricsPageTotalsQueryDescription = Prezentare generală Screenshots
 metricsPageTotalsQueryDevices = Dispozitive înregistrate
 metricsPageTotalsQueryActiveShots = Capturi active
 metricsPageTotalsQueryExpiredShots = Expirate (dar recuperabile)
