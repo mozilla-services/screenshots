@@ -15,30 +15,53 @@ class Head extends React.Component {
   render() {
     return (
       <reactruntime.HeadTemplate {...this.props}>
-        <link rel="stylesheet" href={this.props.staticLink("/static/css/home.css")} />
-        <script src={this.props.staticLink("/static/js/UITour-lib.js")} async></script>
-        <script src={this.props.staticLink("/static/js/homepage-bundle.js")} async></script>
-        <meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-        <Localized id="homePageDescription" attrs={{content: true}}>
-          <meta name="description" content="Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox." />
+        <link
+          rel="stylesheet"
+          href={this.props.staticLink("/static/css/home.css")}
+        />
+        <script src={this.props.staticLink("/static/js/UITour-lib.js")} async />
+        <script
+          src={this.props.staticLink("/static/js/homepage-bundle.js")}
+          async
+        />
+        <meta
+          name="viewport"
+          content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+        />
+        <Localized id="homePageDescription" attrs={{ content: true }}>
+          <meta
+            name="description"
+            content="Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox."
+          />
         </Localized>
         <meta property="og:title" content={this.props.title} />
         <meta property="og:url" content={this.props.backend} />
-        <Localized id="homePageDescription" attrs={{content: true}}>
-          <meta property="og:description" content="Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox." />
+        <Localized id="homePageDescription" attrs={{ content: true }}>
+          <meta
+            property="og:description"
+            content="Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox."
+          />
         </Localized>
         <meta name="twitter:title" content={this.props.title} />
-        <Localized id="homePageDescription" attrs={{content: true}}>
-          <meta name="twitter:description" content="Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox." />
+        <Localized id="homePageDescription" attrs={{ content: true }}>
+          <meta
+            name="twitter:description"
+            content="Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox."
+          />
         </Localized>
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@firefox" />
-        <meta property="og:image" content={this.props.staticLink("/static/img/og-image.png")} />
-        <meta name="twitter:image" content={this.generateFullLink("/static/img/twitter-image.png")} />
+        <meta
+          property="og:image"
+          content={this.props.staticLink("/static/img/og-image.png")}
+        />
+        <meta
+          name="twitter:image"
+          content={this.generateFullLink("/static/img/twitter-image.png")}
+        />
       </reactruntime.HeadTemplate>
     );
   }
-
 }
 
 Head.propTypes = {
@@ -57,9 +80,13 @@ class Body extends React.Component {
       return null;
     }
     return (
-      <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition&utm_content=from-home" className="button primary download-firefox" onClick={this.onClickInstallFirefox.bind(this)}>
+      <a
+        href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition&utm_content=from-home"
+        className="button primary download-firefox"
+        onClick={this.onClickInstallFirefox.bind(this)}
+      >
         <div className="button-icon">
-          <div className="button-icon-badge"></div>
+          <div className="button-icon-badge" />
         </div>
         <div className="button-copy">
           <Localized id="homePageDownloadFirefoxTitle">
@@ -77,15 +104,22 @@ class Body extends React.Component {
     const is57 = this.props.isFirefox && this.props.firefoxVersion >= 57;
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <HomePageHeader isOwner={this.props.showMyShots} isFirefox={this.props.isFirefox}
-                        hasFxa={this.props.hasFxa} staticLink={this.props.staticLink}/>
+        <HomePageHeader
+          isOwner={this.props.showMyShots}
+          isFirefox={this.props.isFirefox}
+          hasFxa={this.props.hasFxa}
+          staticLink={this.props.staticLink}
+        />
         <div className="banner">
           <div className="banner-image-back" />
           <div className="banner-container">
             <div className="banner-content">
               <h1>Firefox Screenshots</h1>
               <Localized id="gScreenshotsDescription">
-                <p>Screenshots made simple. Take, save, and share screenshots without leaving Firefox.</p>
+                <p>
+                  Screenshots made simple. Take, save, and share screenshots
+                  without leaving Firefox.
+                </p>
               </Localized>
               {this.renderGetFirefox()}
             </div>
@@ -103,16 +137,27 @@ class Body extends React.Component {
               </Localized>
               {is57 ? (
                 <Localized id="homePageGetStartedDescriptionPageAction">
-                  <p>Select the Screenshots icon from the page actions menu in the address bar, and the Screenshots menu will appear on top of your browser window.</p>
+                  <p>
+                    Select the Screenshots icon from the page actions menu in
+                    the address bar, and the Screenshots menu will appear on top
+                    of your browser window.
+                  </p>
                 </Localized>
               ) : (
-                  <Localized id="homePageGetStartedDescription">
-                    <p>Find the new Screenshots icon on your toolbar. Select it, and the Screenshots menu will appear on top of your browser window.</p>
-                  </Localized>
-                )
-              }
+                <Localized id="homePageGetStartedDescription">
+                  <p>
+                    Find the new Screenshots icon on your toolbar. Select it,
+                    and the Screenshots menu will appear on top of your browser
+                    window.
+                  </p>
+                </Localized>
+              )}
             </div>
-            <div className={classnames("section-image", "align-right", { "page-action": is57 })}></div>
+            <div
+              className={classnames("section-image", "align-right", {
+                "page-action": is57,
+              })}
+            />
           </div>
         </section>
         <section id="section-2">
@@ -122,13 +167,19 @@ class Body extends React.Component {
                 <h3>Capture a Region</h3>
               </Localized>
               <Localized id="homePageCaptureRegionDescription">
-                <p>Click and drag to select the area you want to capture. Or just hover and click — Screenshots will select the area for you. Like what you see? Select Save to access your screenshot online or the down arrow button to download it to your computer.</p>
+                <p>
+                  Click and drag to select the area you want to capture. Or just
+                  hover and click — Screenshots will select the area for you.
+                  Like what you see? Select Save to access your screenshot
+                  online or the down arrow button to download it to your
+                  computer.
+                </p>
               </Localized>
             </div>
-            <div className="section-image align-left"></div>
+            <div className="section-image align-left" />
           </div>
         </section>
-        {is57 &&
+        {is57 && (
           <section id="section-3">
             <div className="container">
               <div className="section-content align-left">
@@ -136,31 +187,82 @@ class Body extends React.Component {
                   <h3>Capture a Page</h3>
                 </Localized>
                 <Localized id="homePageCapturePageDescription">
-                  <p>Use the buttons in the upper right to capture full pages. The Save Visible button will capture the area you can view without scrolling, and the Save Full Page will capture everything on the page.</p>
+                  <p>
+                    Use the buttons in the upper right to capture full pages.
+                    The Save Visible button will capture the area you can view
+                    without scrolling, and the Save Full Page will capture
+                    everything on the page.
+                  </p>
                 </Localized>
               </div>
-              <div className="section-image align-right"></div>
+              <div className="section-image align-right" />
             </div>
           </section>
-        }
+        )}
         <section id="section-4">
           <div className="container">
-            <div className={classnames("section-content", { "align-right": is57 }, { "align-left": !is57 })}>
+            <div
+              className={classnames(
+                "section-content",
+                { "align-right": is57 },
+                { "align-left": !is57 }
+              )}
+            >
               <Localized id="homePageSaveShare">
                 <h3>Save and Share</h3>
               </Localized>
-              <Localized id="homePageSaveShareDescription">
-                <p>When you take a shot, Firefox posts your screenshot to your online Screenshots library and copies the link to your clipboard. We automatically store your screenshot for two weeks, but you can delete shots at any time or change the expiration date to keep them in your library for longer. </p>
+              <Localized id="homePageShaveShareFavoriteDescription">
+                <p>
+                  Take your best shot. Then save it to the online Screenshots
+                  library, and Firefox copies the link to your clipboard for
+                  easy sharing. Shots in the library automatically expire after
+                  two weeks, but you can delete them at any time or choose to
+                  keep them longer.
+                </p>
               </Localized>
             </div>
-            <div className={classnames("section-image", { "align-left": is57 }, { "align-right": !is57 })}></div>
+            <div
+              className={classnames(
+                "section-image",
+                { "align-left": is57 },
+                { "align-right": !is57 }
+              )}
+            />
+          </div>
+        </section>
+        <section id="section-5">
+          <div className="container">
+            <div
+              className={classnames(
+                "section-content",
+                { "align-left": is57 },
+                { "align-right": !is57 }
+              )}
+            >
+              <Localized id="homePageSignInTitle">
+                <h3>Your Shots Everywhere</h3>
+              </Localized>
+              <Localized id="homePageSignInDescription">
+                <p>
+                  Sign in to Screenshots with your Firefox Account to access
+                  your shots everywhere you use Firefox. An added bonus: you can
+                  also save your favorite shots forever.
+                </p>
+              </Localized>
+            </div>
+            <div
+              className={classnames(
+                "section-image",
+                { "align-right": is57 },
+                { "align-left": !is57 }
+              )}
+            />
           </div>
         </section>
         <Footer {...this.props} />
       </reactruntime.BodyTemplate>
     );
   }
-
 }
 
 Body.propTypes = {

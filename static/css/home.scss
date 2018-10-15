@@ -218,7 +218,7 @@ section .container {
 }
 
 .section-content h3 {
-  font-size: 2.5em;
+  font-size: 2.2em;
   font-weight: 400;
   margin: 0;
 }
@@ -271,6 +271,13 @@ section .container {
 
 #section-4 .section-image {
   background-image:   url("../img/landing-screenshots_image_04.svg");
+  background-position: 100% center;
+  background-repeat: no-repeat;
+  height: 533px;
+}
+
+#section-5 .section-image {
+  background-image:   url("../img/landing-screenshots_image_05.svg");
   background-position: 100% center;
   background-repeat: no-repeat;
   height: 533px;
