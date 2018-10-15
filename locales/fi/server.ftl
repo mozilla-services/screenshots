@@ -9,8 +9,6 @@ gHomeLink = Etusivu
 gNoShots =
     .alt = Kaappauksia ei löytynyt
 gScreenshotsDescription = Kuvakaappaukset helposti. Ota, tallenna ja jaa kuvakaappauksia poistumatta Firefoxista.
-gSettings = Asetukset
-gSignIn = Kirjaudu
 
 ## Header
 
@@ -20,6 +18,7 @@ buttonSignIn =
     .title = Kirjaudu sisään
 screenshotsLogo =
     .title = Screenshots-etusivu
+bannerMessage = Kirjaudu tai rekisteröidy, niin voit käyttää kaappauksiasi kaikilta laitteiltasi ja tallentaa suosikkisi ikuisesti.
 bannerUpsell = { gScreenshotsDescription } <a>Hanki Firefox nyt</a>
 
 ## Footer
@@ -65,8 +64,6 @@ homePageCaptureRegionDescription = Valitse kaapattava alue napsauttamalla ja vet
 homePageCapturePage = Kaappaa sivu
 homePageCapturePageDescription = Kaappaa kokonaisia sivuja käyttämällä yläoikean kulman painikkeita. Tallenna näkyvä alue -painike kaappaa alueen, jonka voit nähdä vierittämättä sivua, ja Tallenna koko sivu -painike tallentaa kaiken sivulla olevan.
 homePageSaveShare = Tallenna ja jaa
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Kun otat kaappauksen, Firefox lähettää kuvakaappauksen verkkoon Screenshots-kirjastoon ja kopioi linkin leikepöydälle. Säilytämme kuvakaappausta automaattisesti kaksi viikkoa, mutta voit poistaa kaappauksen milloin vain tai muuttaa vanhenemisaikaa säilyttääksesi sen kirjastossa pidempään.
 homePageLegalLink = Lakiteksti
 homePagePrivacyLink = Tietosuoja
 homePageTermsLink = Käyttöehdot
@@ -100,7 +97,6 @@ shotPageAlertErrorUpdatingTitle = Nimen tallennus epäonnistui
 shotPageConfirmDelete = Haluatko varmasti poistaa tämän kaappauksen pysyvästi?
 shotPageShareButton =
     .title = Jaa
-shotPageCopy = Kopioi
 shotPageCopyButton =
     .title = Kopioi kuva leikepöydälle
 shotPageCopied = Kopioitu
@@ -137,13 +133,6 @@ shotPageBackToHomeButton =
     .title = Etusivu
 shotPageAllShotsButton =
     .title = Kaikki kaappaukset
-shotPageAllShots = Kaikki kaappaukset
-shotPageDownload = Lataa
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Piirrä
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Merkitse suosikiksi
-shotPageDelete = Poista
 shotPageScreenshotsDescription = Kuvakaappaukset helposti. Ota, tallenna ja jaa kuvakaappauksia poistumatta Firefoxista.
 shotPageDMCAMessage = Tämä kaappaus ei ole enää saatavissa, koska kolmas osapuoli teki immateriaalioikeusvaatimuksen.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
