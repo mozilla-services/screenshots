@@ -64,8 +64,6 @@ homePageCaptureRegionDescription = Dă clic și trage pentru selectarea zonei de
 homePageCapturePage = Fă o captură de pagină
 homePageCapturePageDescription = Folosește butoanele din dreapta sus pentru a captura pagini întregi. Butonul Salvează porțiunea vizibilă va captura zona pe care o poți vedea fără să derulezi și butonul Salvează pagina completă va captura toată pagina.
 homePageSaveShare = Salvează și partajează
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Când faci capturi de ecran, Firefox le postează în colecția ta online Screenshots și copiază linkul în clipboard. Capturile de ecran sunt stocate automat timp de două săptămâni, însă le poți șterge oricând sau poți modifica data expirării ca să le păstrezi în colecție mai mult timp.
 homePageLegalLink = Mențiuni legale
 homePagePrivacyLink = Confidențialitate
 homePageTermsLink = Termeni
@@ -275,7 +273,7 @@ textToolInputPlaceholder =
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
-copyImageErrorTitle = Ceva nu a funcționat
+copyImageErrorTitle = Ceva a mers prost
 copyImageErrorMessage = Nu se poate copia captura pe clipboard.
 
 ## Settings Page
