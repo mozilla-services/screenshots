@@ -65,7 +65,9 @@ homePageCapturePage = Een pagina vastleggen
 homePageCapturePageDescription = Gebruik de knoppen in de rechterbovenhoek om volledige pagina’s vast te leggen. De knop Zichtbaar gebied opslaan legt het gebied vast dat u zonder scrollen kunt zien, en Volledige pagina opslaan legt alles op de pagina vast.
 homePageSaveShare = Opslaan en delen
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Als u een afbeelding maakt, plaatst Firefox uw schermafbeelding naar uw online Screenshots-bibliotheek en kopieert het de koppeling naar uw klembord. Uw schermafbeelding blijft automatisch twee weken bewaard, maar u kunt afbeeldingen altijd verwijderen of de vervaldatum wijzigen om ze langer in uw bibliotheek te behouden.
+homePageShaveShareFavoriteDescription = Maak uw beste afbeelding. Sla deze daarna op naar de online Screenshots-bibliotheek, en Firefox kopieert de koppeling naar uw klembord om deze eenvoudig te kunnen delen. Afbeeldingen in de bibliotheek verlopen na twee weken automatisch, maar u kunt ze altijd verwijderen of langer behouden.
+homePageSignInTitle = Uw afbeeldingen overal
+homePageSignInDescription = Meld u aan bij Screenshots met uw Firefox-account om uw afbeeldingen overal waar u Firefox gebruikt te bekijken. Extra bonus: u kunt uw favoriete afbeeldingen ook voor altijd bewaren.
 homePageLegalLink = Juridisch
 homePagePrivacyLink = Privacy
 homePageTermsLink = Voorwaarden
