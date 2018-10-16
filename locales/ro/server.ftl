@@ -199,7 +199,7 @@ timeDiffFutureDays =
         [few] în { $number } zile
        *[other] în { $number } de zile
     }
-errorThirdPartyCookiesEnabled = Dacă nu ai făcut această captură și nu o poți șterge, activarea temporară a cookie-urilor terțe (din preferințele browserului) ți-ar putea permite din nou accesul.
+errorThirdPartyCookiesEnabled = Dacă ai realizat această captură și nu o poți șterge, poate fi necesară activarea temporară a cookie-urile de la terți din preferințele browserului.
 
 ## Shot Page New Feature Promotion Dialog.
 
