@@ -62,9 +62,10 @@ exports.render = function(req, res, page) {
       body = ReactDOMServer.renderToString(viewModule.BodyFactory(serverModel));
     }
     const jsonString = JSON.stringify(jsonModel).replace(/\u2028/g, "\\u2028").replace(/\u2029/g, "\\u2029").replace(/<script/ig, "\\x3cscript").replace(/<\/script/ig, "\\x3c/script");
-    const dirRtl = req.isRtl ? "dir=rtl" : "";
+    const pageLocale = req.userLocales && req.userLocales.length > 0 ? req.userLocales[0] : "en-US";
+    const dirRtl = req.isRtl ? "dir=\"rtl\"" : "";
     let doc = `
-    <html ${dirRtl}>
+    <html lang="${pageLocale}" ${dirRtl}>
       ${head}
       <body class="app-body">
         <div id="react-body-container">${body}</div>

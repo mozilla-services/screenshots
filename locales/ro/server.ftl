@@ -26,7 +26,7 @@ bannerUpsell = { gScreenshotsDescription }<a>Obţine Firefox acum</a>
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Termeni
-footerLinkPrivacy = Politica de confidențialitate
+footerLinkPrivacy = Notificare privind confidențialitatea
 footerReportShot = Raportează captura
     .title = Raportează această captură pentru abuz, spam sau alte probleme
 footerLinkFaqs = Întrebări frecvente
@@ -55,17 +55,17 @@ homePageDownloadFirefoxSubTitle = Descărcare gratuită
 homePageHowScreenshotsWorks = Cum funcționează Firefox Screenshots
 homePageGetStartedTitle = Începe
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Găsește noua pictogramă Screenshots de pe bara de unelte. Selecteaz-o și meniul Screenshots va apărea în partea de sus a ferestrei browserului.
+homePageGetStartedDescription = Găsește noua pictogramă Screenshots pe bara de unelte. Selecteaz-o și meniul Screenshots va apărea în partea de sus a ferestrei browserului.
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescriptionPageAction = Selectează pictograma Screenshots din meniul de acțiuni pe pagină din bara de adrese și meniul Screenshots va apărea în partea superioară a ferestrei browserului.
+homePageGetStartedDescriptionPageAction = Selectează pictograma Screenshots din meniul de acțiuni pe pagină în bara de adrese și meniul Screenshots va apărea în partea de sus în fereastra browserului.
 homePageCaptureRegion = Capturează o regiune
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Clic și trage pentru a selecta zona pe care vrei să o capturezi. Sau pur și simplu poziționează cursorul peste zonă și dă clic — Screenshots va selecta zona pentru tine. Îți place ceea ce vezi? Selectează Salvează pentru a-ți accesa online captura de ecran sau butonul săgeată în jos pentru a o descărca pe calculator.
-homePageCapturePage = Capturează o pagină
+homePageCaptureRegionDescription = Dă clic și trage pentru selectarea zonei de capturat sau pur și simplu poziționează cursorul deasupra și dă clic — Screenshots va selecta zona pentru tine. Îți place ce vezi? Selectează Salvează pentru accesarea online a capturii de ecran sau butonul săgeată în jos ca să o descarci pe calculator.
+homePageCapturePage = Fă o captură de pagină
 homePageCapturePageDescription = Folosește butoanele din dreapta sus pentru a captura pagini întregi. Butonul Salvează porțiunea vizibilă va captura zona pe care o poți vedea fără să derulezi și butonul Salvează pagina completă va captura toată pagina.
 homePageSaveShare = Salvează și partajează
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Când realizezi o captură, Firefox postează captura de ecran în colecția ta online Screenshots și copiază linkul în clipboard. Stocăm automat captura de ecran timp de două săptămâni, însă poți să ștergi capturile oricând sau să modifici data expirării ca să le păstrezi în colecție pentru o durată mai lungă.
+homePageSaveShareDescription = Când faci capturi de ecran, Firefox le postează în colecția ta online Screenshots și copiază linkul în clipboard. Capturile de ecran sunt stocate automat timp de două săptămâni, însă le poți șterge oricând sau poți modifica data expirării ca să le păstrezi în colecție mai mult timp.
 homePageLegalLink = Mențiuni legale
 homePagePrivacyLink = Confidențialitate
 homePageTermsLink = Termeni
@@ -346,7 +346,7 @@ shotDeleteConfirm = Șterge
 metricsPageTitle = Metrici Firefox Screenshots
 metricsPageTotalsQueryTitle = Totaluri
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-metricsPageTotalsQueryDescription = Rezumat Screenshots
+metricsPageTotalsQueryDescription = Prezentare generală Screenshots
 metricsPageTotalsQueryDevices = Dispozitive înregistrate
 metricsPageTotalsQueryActiveShots = Capturi active
 metricsPageTotalsQueryExpiredShots = Expirate (dar recuperabile)

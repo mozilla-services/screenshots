@@ -64,8 +64,8 @@ homePageCaptureRegionDescription = Sélectionnez une zone de la page par cliquer
 homePageCapturePage = Capturez une page
 homePageCapturePageDescription = Utilisez les boutons en haut à droite pour capturer des pages complètes. Le bouton « Capturer la zone visible » permet de capturer la zone que vous pouvez afficher sans faire défiler la page, et le bouton « Capturer la page complète » capturera l’ensemble de la page.
 homePageSaveShare = Enregistrez et partagez
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Lorsque vous effectuez une capture, Firefox la poste sur notre bibliothèque en ligne Screenshots et copie le lien dans le presse-papiers. Nous conservons automatiquement la capture pendant deux semaines, mais vous pouvez supprimer des captures à tout moment ou modifier leur date d’expiration pour les conserver plus longtemps dans la bibliothèque.
+homePageSignInTitle = Vos captures d’écran disponibles partout
+homePageSignInDescription = Si vous associez Screenshots à votre compte Firefox, vous accéderez à vos captures d’écran partout où vous utilisez Firefox. Et en prime : vous pourrez sauvegarder vos captures préférées indéfiniment.
 homePageLegalLink = Mentions légales
 homePagePrivacyLink = Confidentialité
 homePageTermsLink = Conditions d’utilisation

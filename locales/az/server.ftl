@@ -65,7 +65,9 @@ homePageCapturePage = Səhifəni çək
 homePageCapturePageDescription = Bütün səhifəni çəkmək üçün sağ yuxarı küncdəki düymələrdən istifadə edin. Görünəni Saxla düyməsi səhifənin sürüşdürmədən gördüyünüz hissəsini, Bütün Səhifəni Saxla düyməsi isə səhifədə olan hər şeyi çəkəcək.
 homePageSaveShare = Saxla və Paylaş
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Ekran görüntüsü çəkdiyinizdə Firefox görüntünüzü onlayn Screenshots kitabxananıza yerləşdirir və keçidini sizin mübadilə buferinizə köçürür. Biz avtomatik olaraq görüntünüzü iki həftə ərzində saxlayırıq, lakin ekran görüntülərinizi istədiyiniz vaxt silə və ya onları kitabxananızda daha çox saxlamaq üçün vaxtı çıxma tarixini dəyişdirə bilərsiniz.
+homePageShaveShareFavoriteDescription = Görüntünüzü alın. Sonra onu onlayn Screenshots kitabxanasına saxlayın, Firefox asanlıqla paylaşmağınız üçün keçidi köçürəcək. Kitabxanadakı görüntülər avtomatik olaraq iki həftə sonra silinirlər, amma siz istədiyiniz vaxt silə və ya vaxtını istədiyiniz qədər uzada bilərsiz.
+homePageSignInTitle = Görüntüləriniz Hər Yerdə
+homePageSignInDescription = Screenshots xidmətinə Firefox Hesabınız ilə daxil olun və Firefox işlətdiyiniz hər yerdə ekran görüntülərinizi asanlıqla görün. Əlavə bonus: seçilmiş görüntülərinizi həmişəlik saxlaya bilərsiz.
 homePageLegalLink = Hüquqi
 homePagePrivacyLink = Məxfilik
 homePageTermsLink = Şərtlər

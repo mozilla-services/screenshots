@@ -65,7 +65,9 @@ homePageCapturePage = Stronu fotografować
 homePageCapturePageDescription = Wužiwajće tłóčatka horjeka naprawo, zo byšće cyłe strony fotografował. Tłóčatko "Wobłuk fotografować" tón wobłuk zapřijima, kotryž móžeće bjez kulenje strony widźeć a tłóčatko "Stronu fotografować" składuje cyłu stronu.
 homePageSaveShare = Składować a dźělić
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Hdyž foto wobrazowki wutworjeće, budźe Firefox waše foto wobrazowki na wašu biblioteku fotow wobrazowki online słać a kopěruje wotkaz na waš mjezyskład. Waše foto wobrazowki za dwě njedźeli składujemy, ale móžeće fota wobrazowki kóždy čas zhašeć abo datum spadnjenja změnić, zo byšće je dlěje w swojej bibliotece chował.
+homePageShaveShareFavoriteDescription = Čińće swoje najlěpše foto wobrazowki. Składujće jo potom w bibliotece fotow wobrazowkow online, a Fiefox kopěruje wotkaz do swojeho mjezyskłada za lochke zhromadne wužiwanje. Fota wobrazowki w bibliotece po dwěmaj tydźenjomaj awtomatisce spadnu, ale móžeće je kóždy čas zhašeć abo rozsudźić, hač je dlej wobchowaće.
+homePageSignInTitle = Waše fota wobrazowki wšudźe
+homePageSignInDescription = Přizjewće so pola Screenshots ze swojim kontom Firefox, zo byšće wšudźe přistup k swojim fotam wobrazowki měł, hdźež Firefox wužiwaće. Přidatny bonus: móžeće tež swoje najlubše fota wobrazowki na přeco składować.
 homePageLegalLink = Prawniske
 homePagePrivacyLink = Priwatnosć
 homePageTermsLink = Wuměnjenja

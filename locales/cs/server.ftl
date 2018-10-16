@@ -65,7 +65,9 @@ homePageCapturePage = Vytvořte snímek celé stránky
 homePageCapturePageDescription = Použijte tlačítka v pravém horním rohu pro zachycení celé stránky. Tlačítko Uložit viditelnou oblast vybere část stránky, která se vejde na obrazovku a právě ji vidíte, kdežto Uložit celou stránku zachytí i to, co se na obrazovku nevešlo.
 homePageSaveShare = Uložte a sdílejte
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Po vytvoření snímku jej Firefox nahraje do naší online služby Screenshots a zkopíruje odkaz do vaší schránky. Vaše snímky automaticky ukládáme na dobu dvou týdnů, ale můžete je kdykoliv smazat nebo změnit jejich platnost pro dřívější nebo naopak pozdější smazání.
+homePageShaveShareFavoriteDescription = Pořiďte snímek a uložte si jej do své online knihovny. Firefox hned zkopíruje do vaší schránky odkaz pro snadné sdílení. Snímky v knihovně jsou automaticky mazány po dvou týdnech, ale můžete je smazat dříve nebo jejich platnost naopak prodloužit.
+homePageSignInTitle = Vaše snímky všude s vámi
+homePageSignInDescription = Pro přístup ke snímkům z jiných zařízení nebo jejich trvalé ukládání se prosím přihlaste ke službě Screenshots svým účtem Firefoxu.
 homePageLegalLink = Právní informace
 homePagePrivacyLink = Soukromí
 homePageTermsLink = Podmínky

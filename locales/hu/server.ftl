@@ -65,7 +65,9 @@ homePageCapturePage = Lap befogása
 homePageCapturePageDescription = Használja a jobb felső sarokban lévő gombokat a teljes lapok befogásához. A Láthatóak mentése gomb a görgetés nélkül látható területet fogja be, a Teljes lap mentése pedig mindent, ami a lapon található.
 homePageSaveShare = Mentés és megosztás
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Ha készít egy képet, akkor a Firefox az online Screenshots könyvtárába küldi, a hivatkozást pedig a vágólapra másolja. Automatikusan két hétig tároljuk a képernyőképeket, de bármikor törölheti a képeket, vagy megváltoztathatja a lejárati időt, hogy tovább tartsa meg őket a könyvtárában.
+homePageShaveShareFavoriteDescription = Fogja a kedvenc képét. Aztán mentse az online Screenshots könyvtárba, és a Firefox a vágólapra másolja a hivatkozást az egyszerű megosztás érdekében. A könyvtárban található képernyőképek két hét után automatikusan törlődnek, de bármikor törölheti, vagy tovább is megtarthatja őket.
+homePageSignInTitle = Az Ön képei mindenhol
+homePageSignInDescription = Jelentkezzen be a Screenshotsba a Firefox fiókjával, hogy elérje az összes képernyőképét az összes eszközén, ahol használ Firefoxot. Egy további bónusz: örökre el is mentheti a kedvenc képeit.
 homePageLegalLink = Jogi információk
 homePagePrivacyLink = Adatvédelem
 homePageTermsLink = Feltételek
