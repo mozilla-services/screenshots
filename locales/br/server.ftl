@@ -65,7 +65,9 @@ homePageCapturePage = Skeudenniñ ur bajenn
 homePageCapturePageDescription = Arverit an afelloù e krec'h a-zehou evit skeudenniñ pajennoù a-bezh. An afell "Enrollañ ar pezh vez gwelet" a skeudenno ar vaezienn a c'haller gwelet hep dibunañ, ha "Enrollañ ar bajenn a-bezh" a skeudenno pep tra er bajenn.
 homePageSaveShare = Enrollañ ha rannañ
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Pa kemerit ur skeudenn, Firefox a gaso an dapadenn-skramm d'hor skeudennaoueg tapadennoù-skramm enlinenn hag a eilo an ere d'ho kolver. Kadaviñ a reomp ho tapadenn-skramm e-pad div sizhun, met gallout a rit dilemel tapadennoù pa fell deoc'h pe kemmañ an deiziad diamzeriñ evit mirout anezho er skeudennaoueg e-pad pelloc'h.
+homePageShaveShareFavoriteDescription = Tapit ho skeudennoù gwellañ. Enrollit anezho er skeudennaoueg enlinenn hag e vo eilet an ere er golver gant Firefox evit gallout rannañ anezho en un doare aes. An tapadennoù er skeudennaoueg a zo diamzeret goude div sizhun, met gallout a rit dilemel anezho forzh pegoulz me divizout mirout anezho pelloc'h.
+homePageSignInTitle = Ho tapadennoù e pep lec'h
+homePageSignInDescription = Kennaskit d'an tapadennoù gant ho kont Firefox evit o haeziñ pep lec'h e arverit Firefox. Un draig ouzhpenn: gallout a rit ivez enrollañ ho tapadennoù gwellañ da viken.
 homePageLegalLink = Lezennel
 homePagePrivacyLink = Buhez prevez
 homePageTermsLink = Termenoù
