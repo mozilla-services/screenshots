@@ -65,7 +65,9 @@ homePageCapturePage = Zrzut strony
 homePageCapturePageDescription = Użyj przycisków u góry po prawej, aby tworzyć zrzuty całych stron. Przycisk „Zapisz widoczne” umożliwia tworzenie jedynie wyświetlanego obszaru, a „Zapisz całą stronę” utworzy zrzut całej zawartości strony.
 homePageSaveShare = Zapisz i udostępnij
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Kiedy utworzysz zrzut, Firefox zapisze go w Twojej internetowej kolekcji Screenshots i skopiuje odnośnik do schowka. Automatycznie przechowujemy zrzuty przez dwa tygodnie, ale możesz je usunąć w dowolnej chwili lub zmienić ich datę przeterminowania, aby zachować je na dłużej.
+homePageShaveShareFavoriteDescription = Wykonaj zrzut i zachowaj go w internetowej kolekcji serwisu Screenshots, a Firefox skopiuje odnośnik do schowka, który możesz łatwo udostępnić. Zrzuty w kolekcji są automatycznie usuwane po dwóch tygodniach, ale w każdej chwili możesz je usunąć lub zachować na dłużej.
+homePageSignInTitle = Twoje zrzuty na każdym urządzeniu
+homePageSignInDescription = Zaloguj się w serwisie Screenshots za pomocą konta Firefoksa, aby mieć dostęp do swoich zrzutów wszędzie tam, gdzie używasz Firefoksa. Dodatkowy bonus: możesz też zachować ulubione zrzuty na zawsze.
 homePageLegalLink = Podstawa prawna
 homePagePrivacyLink = Prywatność
 homePageTermsLink = Warunki korzystania z usługi
