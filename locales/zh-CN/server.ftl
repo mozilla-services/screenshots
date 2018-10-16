@@ -64,6 +64,10 @@ homePageCaptureRegionDescription = 单击并拖动以选择要截图的区域。
 homePageCapturePage = 截取整个网页
 homePageCapturePageDescription = 使用右上角的按钮来截图整个页面。保存可视区域将截取当前可见区域的内容，保存完整页面将截取整个网页的内容。
 homePageSaveShare = 保存并分享
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = 截取最棒的截图，保存到您的 Screenshots 在线图库，Firefox 就会将链接复制到剪切板以方便您分享。图库中的截图会在两周后自动过期，但您也可以随时删除它们，或延长保存时间。
+homePageSignInTitle = 您的截图，随身带着走
+homePageSignInDescription = 使用 Firefox 账号登录 Screenshots，在任何使用 Firefox 的地方访问您的截图。锦上添花：您收藏的截图可以永久保存。
 homePageLegalLink = 法律
 homePagePrivacyLink = 隐私
 homePageTermsLink = 使用条款
