@@ -65,7 +65,9 @@ homePageCapturePage = Eine ganze Seite aufnehmen
 homePageCapturePageDescription = Für die Aufnahme ganzer Seiten bitte oben auf die Schaltfläche “Gesamte Seite speichern” klicken. Während die Schaltfläche „Sichtbaren Bereich speichern“ den Bereich erfasst, der ohne Scrollen sichtbar ist, fertigt die Schaltfläche “Ganze Seite speichern” einen Screenshot an, der auch den Bereich erfasst, der erst durch Scrollen sichtbar wird.
 homePageSaveShare = Speichern und Weitergeben
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Wenn Du ein Bildschirmfoto machst, speichert Firefox den Screenshot in Deiner Online-Bibliothek für Bildschirmfotos und kopiert Dir den Link in die Zwischenablage. Deine Bildschirmfotos werden automatisch zwei Wochen in der Bibliothek gespeichert.  Dort kannst Du sie jederzeit löschen oder das Ablaufdatum ändern, um sie länger in der Bibliothek zu behalten.
+homePageShaveShareFavoriteDescription = Machen Sie ein schönes Bildschirmfoto. Dann speichern Sie es in der Online-Bibliothek von Screeenshots und Firefox kopiert den Link in Ihre Zwischenablage, damit Sie es einfach teilen können. Bildschirmfotos in der Bibliothek werden nach zwei Wochen automatisch gelöscht, aber Sie können Sie auch vorher löschen oder länger speichern.
+homePageSignInTitle = Ihre Bildschirmfotos für unterwegs
+homePageSignInDescription = Melden Sie sich bei Screenshots mit Ihrem Firefox-Konto an, um auf überall mit Firefox auf Ihre Bildschirmfotos zuzugreifen. Bonus: Sie können Ihre Lieblingsbildschirmfotos dauerhaft speichern.
 homePageLegalLink = Rechtliches
 homePagePrivacyLink = Datenschutz
 homePageTermsLink = Nutzungsbedingungen
