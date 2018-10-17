@@ -366,6 +366,14 @@ class Body extends React.Component {
     let downloadButton = null;
     let copyButton = null;
 
+    downloadButton = <div className="download-shot-button" key="download-shot-button">
+      <Localized id="shotPageDownloadShot" attrs={{title: true}}>
+        <button className={`button transparent nav-button`} onClick={this.onClickDownload.bind(this)}
+                title="Download the shot image">
+          <img src={this.props.staticLink("/static/img/icon-download.svg")} />
+        </button>
+      </Localized></div>;
+
     if (this.props.isOwner) {
       const highlight = this.state.highlightEditButton
         ? <div className="edit-highlight"
@@ -377,7 +385,7 @@ class Body extends React.Component {
         this.props.staticLink("/static/img/icon-heart.svg");
       const inactive = this.props.isFxaAuthenticated ? "" : "inactive";
 
-      favoriteShotButton = <div className="favorite-shot-button">
+      favoriteShotButton = <div className="favorite-shot-button" key="favorite-shot-button">
         <Localized id="shotPagefavoriteButton" attrs={{title: true}}>
           <button className={`button transparent nav-button ${inactive}`}
                   disabled={!this.props.isFxaAuthenticated} onClick={this.onClickFavorite.bind(this)}>
@@ -389,9 +397,9 @@ class Body extends React.Component {
         clickDeleteHandler={this.clickDeleteHandler.bind(this)}
         confirmDeleteHandler={this.confirmDeleteHandler.bind(this)}
         cancelDeleteHandler={this.cancelDeleteHandler.bind(this)}
-        staticLink={this.props.staticLink} />;
+        staticLink={this.props.staticLink} key="delete-shot-button" />;
 
-      editButton = this.props.enableAnnotations ? <div className="edit-shot-button">
+      editButton = this.props.enableAnnotations ? <div className="edit-shot-button" key="edit-shot-button">
         <Localized id="shotPageEditButton" attrs={{title: true}}>
           <button className="button transparent nav-button"
                   title="Edit this image"
@@ -404,15 +412,8 @@ class Body extends React.Component {
         { highlight }
         </div> : null;
 
-      downloadButton = <div className="download-shot-button">
-        <Localized id="shotPageDownloadShot" attrs={{title: true}}>
-          <button className={`button transparent nav-button`} onClick={this.onClickDownload.bind(this)}
-                  title="Download the shot image">
-            <img src={this.props.staticLink("/static/img/icon-download.svg")} />
-          </button>
-        </Localized></div>;
-
-      copyButton = <div className="copy-img-button" hidden={this.state.isClient && !this.state.canCopy}>
+      copyButton = <div className="copy-img-button" key="copy-img-button"
+                        hidden={this.state.isClient && !this.state.canCopy}>
         <Localized id="shotPageCopyButton" attrs={{title: true}}>
           <button className="button nav-button transparent copy"
                   title="Copy image to clipboard"
@@ -421,6 +422,9 @@ class Body extends React.Component {
           </button>
         </Localized></div>;
     }
+
+    const shotActions = this.props.isOwner ?
+      [favoriteShotButton, editButton, copyButton, downloadButton, trashOrFlagButton] : null;
 
     let clip;
     let clipUrl = null;
@@ -443,12 +447,8 @@ class Body extends React.Component {
         <div id="frame" className="inverse-color-scheme full-height column-space">
         <ShotPageHeader isOwner={this.props.isOwner} isFxaAuthenticated={this.props.isFxaAuthenticated}
           shot={this.props.shot} expireTime={this.props.expireTime} shouldGetFirefox={renderGetFirefox}
-          staticLink={this.props.staticLink}>
-          { favoriteShotButton }
-          { editButton }
-          { copyButton }
-          { downloadButton }
-          { trashOrFlagButton }
+          staticLink={this.props.staticLink} shotActions={shotActions}>
+            { !this.props.isOwner ? downloadButton : null }
         </ShotPageHeader>
         <section className="clips">
           { this.props.isOwner && this.props.loginFailed ? <LoginFailedWarning /> : null }
