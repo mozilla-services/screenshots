@@ -65,7 +65,9 @@ homePageCapturePage = Cattura una pagina
 homePageCapturePageDescription = Utilizza i pulsanti in alto a destra per catturare la pagina. Il pulsante “Salva l’area visibile” cattura l’area visualizzata sullo schermo senza scorrere la pagina, mentre “Salva l’intera schermata” ne cattura il contenuto completo.
 homePageSaveShare = Salva e condividi
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Quando catturi una schermata in Firefox, la tua immagine viene aggiunta alla libreria online e il link viene copiato negli appunti. L’immagine viene conservata automaticamente per due settimane, ma puoi eliminarla in qualunque momento, o modificarne la data di scadenza per mantenerla più a lungo nella libreria.
+homePageShaveShareFavoriteDescription = Cattura uno screenshot, poi salvalo online nella libreria di Screenshot dedicata e Firefox copierà il link negli appunti per una condivisione più facile. Gli screenshot presenti nella libreria vengono automaticamente eliminati dopo due settimane, ma è sempre possibile cancellarli in qualsiasi momento o conservarli per più tempo.
+homePageSignInTitle = I tuoi screenshot sempre con te
+homePageSignInDescription = Accedi a Screenshot con il tuo account Firefox per avere a disposizione i tuoi screenshot su tutti i dispositivi in cui utilizzi Firefox. Una chicca in più: puoi salvare i tuoi screenshot preferiti per sempre.
 homePageLegalLink = Note legali
 homePagePrivacyLink = Privacy
 homePageTermsLink = Condizioni di utilizzo

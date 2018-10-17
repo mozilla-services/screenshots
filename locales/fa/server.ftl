@@ -9,8 +9,6 @@ gHomeLink = خانه
 gNoShots =
     .alt = هیچ تصویری پیدا نشد
 gScreenshotsDescription = عکس گرفتن از صفحه آسان شده است. بگیرید، ذخیره‌ کنید و عکس گرفته شده از صفحه را بدون ترک فایرفاکس همرسانی کنید.
-gSettings = تنظیمات
-gSignIn = ورود
 
 ## Header
 
@@ -67,7 +65,9 @@ homePageCapturePage = گرفتن عکس از صفحه
 homePageCapturePageDescription = از دکمه ظاهر شده در راست برای گرفتن تمام صفحه تصویر استفاده کنید. دکمه ذخیره آشکار این امکان را به شما می‌دهد بدون اسکرول کردن به پایین، قسمت های پایین را ثبت کنید و ذخیره به صورت تمام صفحه هر‌آنچه در صفحه دارید را ذخیره می‌کند.
 homePageSaveShare = ذخیره و اشتراک‌گذاری
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = وقتی یک عکس می‌گیرید،‌ فایرفاکس آن را به کتابخانه آنلاین Screenshots های شما ارسال می‌کند و پیوند آن را در کلیپ بورد شما کپی می‌کند. ما به صورت خودکار تصاویر گرفته شده از صفحه شما را برای دو هفته نگه‌داری می‌کنیم،‌ اما شما می‌توانید عکس‌ها را در هر لحظه که بخواهید حذف کنید یا تاریخ انقضای آن را برای ماندن بیشتر در کتابخانه خود تغییر دهید.
+homePageShaveShareFavoriteDescription = بهترین تصویر خودتون رو بگیرید. بعد در کتابخوانه آنلاین ذخیره سازی کنید و فایرفاکس یک برداشت از آدرس به این تصویر رو در داخل کلیپ بورد شما برای همرسانی راحت تر قرار می‌دهد. تصاویر داخل کتابخوانه به صورت خودکار بعد از دو هفته منقضی می‌شود اما شما می‌توانید تصاویر پاک کنید یا برای هر زمانی بیشتری که بخواید نگه دارید.
+homePageSignInTitle = تصاویر شما همه‌ جا
+homePageSignInDescription = وارد حساب فایرفاکس خود شوید تا به تصاویر خود در همه جا که از فایرفاکس استفاده می‌کنید دسترسی داشته باشید. به عنوان جایزتون هم می‌توانید تصاویر مورد علاقه خود برای همیشه ذخیره کنید.
 homePageLegalLink = حقوقی
 homePagePrivacyLink = حریم‌خصوصی
 homePageTermsLink = شرایط
@@ -101,7 +101,6 @@ shotPageAlertErrorUpdatingTitle = خطا در ذخیره عنوان
 shotPageConfirmDelete = آیا مطمئن هستید که می‌خواهید این عکس را به صورت دائمی حذف کنید؟
 shotPageShareButton =
     .title = هم‌رسانی
-shotPageCopy = رونوشت
 shotPageCopyButton =
     .title = رونشت عکس به کلیپ‌بورد
 shotPageCopied = رونوشت شد
@@ -138,13 +137,6 @@ shotPageBackToHomeButton =
     .title = صفحه خانگی
 shotPageAllShotsButton =
     .title = همه عکس‌ها
-shotPageAllShots = همه عکس‌ها
-shotPageDownload = دریافت
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = کشیدن
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = محبوب
-shotPageDelete = حذف
 shotPageScreenshotsDescription = Screenshots ساده ساخته شده است. بدون خروج از فایرفاکس عکس بگیرید، ذخیره و هم‌رسان کنید.
 shotPageDMCAMessage = این عکس به دلیل درخواست مالکیت معنوی یک شخص ثالث، دیگر در دسترس نیست.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -280,6 +272,7 @@ textToolInputPlaceholder =
 ## are passed from the shot page to the addon.
 
 copyImageErrorTitle = خطایی رخ داد
+copyImageErrorMessage = امکان برداشت یک نسخه از تصویر شما در داخل کلیپ بورد وجود ندارد.
 
 ## Settings Page
 
@@ -332,6 +325,7 @@ shotIndexFavoriteIcon =
     .title = این عکس در فهرست موردعلاقه‌های شما قرار دارد و منقضی نخواهد شد
 shotIndexSyncedShot =
     .title = عکس گرفته شده در دستگاه دیگر
+shotIndexAlertErrorFavoriteShot = خطا در هنگام بروزرسانی وضعیت تصویر مورد علاقتون
 
 ## Delete Confirmation Dialog
 
