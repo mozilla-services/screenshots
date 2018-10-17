@@ -65,7 +65,9 @@ homePageCapturePage = In side fêstlizze
 homePageCapturePageDescription = Brûk de knoppen yn de rjochter boppehoek om folsleine siden fêst te lizzen. De knop Sichtber gebiet bewarje leit it gebied fêst dat jo sûnder skowen sjen kinne, en Folsleine side bewarje leit alles op de side fêst.
 homePageSaveShare = Bewarje en diele
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = As jo in ôfbylding meitsje, pleatst Firefox jo skermôfbylding nei jo online Screenshots-biblioteek en kopiearret it de keppeling nei jo klamboerd. Jo skermôfbylding bliuwt automatysk twa wiken bewarre, mar jo kinne ôfbyldingen altyd fuortsmite of de ferrindatum wizigje om se langer yn jo biblioteek te behâlden.
+homePageShaveShareFavoriteDescription = Meitsje jo bêste ôfbylding. Bewarje dizze dêrnei nei de online Screenshots-biblioteek, en Firefox kopiearret de keppeling nei jo klamboerd om dizze ienfâldich diel te kinnen. Ofbyldingen yn de biblioteek ferrinne nei twa wiken automatysk, mar jo kinne se altyd fuortsmite of langer behâlde.
+homePageSignInTitle = Jo ôfbyldingen oeral
+homePageSignInDescription = Meld jo oan by Screenshots mei jo Firefox-account om jo ôfbyldingen oeral wêr't jo Firefox brûke te besjen. Ekstra boanus: jo kinne jo favorite ôfbyldingen ek foar altyd bewarje.
 homePageLegalLink = Juridysk
 homePagePrivacyLink = Privacy
 homePageTermsLink = Betingsten
