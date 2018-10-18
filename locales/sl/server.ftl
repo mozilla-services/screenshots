@@ -64,6 +64,8 @@ homePageCaptureRegionDescription = Kliknite in povlecite, da izberete območje, 
 homePageCapturePage = Zajemite stran
 homePageCapturePageDescription = Za zajem celotnih strani uporabite gumbe zgoraj desno. Gumb Shrani vidno bo zajel območje, ki je vidno brez drsenja, gumb Shrani celotno stran pa celotno vsebino strani.
 homePageSaveShare = Shranite in delite
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = Zajemite najboljše posnetke. Nato jih shranite v spletno knjižnico Screenshots in Firefox bo povezavo do posnetka nemudoma kopiral v odložišče. Posnetki v knjižnici samodejno potečejo po dveh tednih, lahko pa jih kadarkoli izbrišete ali obdržite dlje.
 homePageSignInTitle = Vaši posnetki vsepovsod
 homePageSignInDescription = Prijavite se v Screenshots s Firefox Računom za dostop do posnetkov, kjerkoli uporabljate Firefox. Dodatna ugodnost: svoje priljubljene posnetke lahko shranite trajno.
 homePageLegalLink = Pravno obvestilo
