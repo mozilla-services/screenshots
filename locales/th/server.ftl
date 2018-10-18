@@ -8,6 +8,7 @@ gMyShots = ภาพหน้าจอของฉัน
 gHomeLink = หน้าแรก
 gNoShots =
     .alt = ไม่พบภาพหน้าจอ
+gScreenshotsDescription = ทำให้การจับภาพหน้าจอเป็นไปอย่างง่ายดาย จับภาพ บันทึก และแบ่งปันภาพหน้าจอโดยไม่ต้องออกจาก Firefox
 
 ## Header
 
@@ -35,10 +36,14 @@ creatingPageWaitMessage = กำลังบันทึกภาพหน้า
 
 ## Home page
 
+homePageDescription =
+    .content = จับภาพหน้าจออย่างง่ายจากในเบราว์เซอร์ จับภาพ บันทึก และแบ่งปันภาพหน้าจอขณะที่คุณท่องเว็บโดยใช้ Firefox
 homePageButtonMyShots = ไปยังภาพหน้าจอของฉัน
 homePageTeaser = เร็ว ๆ นี้...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ดาวน์โหลดฟรี
+# Note: do not translate 'Firefox Screenshots' when translating this string
+homePageHowScreenshotsWorks = Firefox Screenshots ทำงานอย่างไร
 homePageGetStartedTitle = เริ่มต้น
 homePageCaptureRegion = จับภาพเป็นบริเวณ
 homePageCapturePage = จับภาพหน้า
