@@ -27,7 +27,7 @@ def test_invalid_png_data_image():
     assert valid_header in image
 
     clip_id = next(iter(shot_json['clips']))
-    shot_json['clips'][clip_id]['image'] = invalid_header
+    shot_json['clips'][clip_id]['image']['url'] = invalid_header
 
     resp = user.session.put(shot_data, json=shot_json,)
     print(resp.text)
@@ -42,7 +42,7 @@ def test_invalid_png_data_image_decoded():
     invalid_data_image = image.replace('iVBORw0KGgo', 'someIM4gEgo')
 
     clip_id = next(iter(shot_json['clips']))
-    shot_json['clips'][clip_id]['image'] = invalid_data_image
+    shot_json['clips'][clip_id]['image']['url'] = invalid_data_image
 
     resp = user.session.put(shot_data, json=shot_json,)
     print(resp.text)
@@ -56,7 +56,7 @@ def test_invalid_data_url():
     invalid_data_url = image.replace('data:image/png', 'data:image/foo')
 
     clip_id = next(iter(shot_json['clips']))
-    shot_json['clips'][clip_id]['image'] = invalid_data_url
+    shot_json['clips'][clip_id]['image']['url'] = invalid_data_url
 
     resp = user.session.put(shot_data, json=shot_json,)
     print(resp.text)
@@ -71,7 +71,7 @@ def test_invalid_jpeg_data_image():
     assert valid_header in image
 
     clip_id = next(iter(shot_json['clips']))
-    shot_json['clips'][clip_id]['image'] = invalid_header
+    shot_json['clips'][clip_id]['image']['url'] = invalid_header
 
     resp = user.session.put(shot_data, json=shot_json,)
     print(resp.text)
@@ -81,11 +81,11 @@ def test_invalid_jpeg_data_image():
 def test_invalid_data_jpeg_image_decoded():
     image = example_images[3]['url']
     (shot_data, shot_json, user) = user_setup()
-    assert "2wBDAAQDAwQDAw" in image
-    invalid_data_image = image.replace('2wBDAAQDAwQDAw', 'someIM4gEt0Try')
+    assert '/9j/2wBDAAQDAwQDAw' in image
+    invalid_data_image = image.replace('/9j/2wBDAAQDAwQDAw', 'someIM4gEt0Try')
 
     clip_id = next(iter(shot_json['clips']))
-    shot_json['clips'][clip_id]['image'] = invalid_data_image
+    shot_json['clips'][clip_id]['image']['url'] = invalid_data_image
 
     resp = user.session.put(shot_data, json=shot_json,)
     print(resp.text)
