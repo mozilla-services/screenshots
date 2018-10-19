@@ -7,7 +7,7 @@
   background-repeat: no-repeat;
   background-position: center center;
   position: absolute;
-  right: 0;
+  inset-inline-end: 0;
   top: 0;
 
   &:hover {
@@ -67,7 +67,7 @@
   padding: 40px 20px 0 20px;
 
   .info-container {
-    margin-left: 30px;
+    margin-inline-start: 30px;
     height: 100px;
     display: flex;
     flex-direction: column;
@@ -84,7 +84,7 @@
   }
 
   .account-info {
-    @include flex-container(row, left, center);
+    @include flex-container(row, start, center);
   }
 
   .title {

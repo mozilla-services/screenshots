@@ -8,28 +8,34 @@
 }
 
 .back-to-home {
-  background-position: left center;
+  background-position: left center; 
+  [dir=rtl] & {
+    background-position: right center;
+  }
   background-image: url("../img/icon-screenshot.svg");
   background-repeat: no-repeat;
   background-size: 36px auto;
-  padding-left: 52px;
+  padding-inline-start: 52px;
   margin: 0 16px;
 
   span {
     display: block;
-    text-align: left;
+    text-align: start;
     margin: 0;
     font-size: 20px;
     &.small-text {
       font-size: 18px;
-      padding: 0 5px 0 0;
+      padding-top: 0;
+      padding-inline-end: 5px;
+      padding-bottom: 0;
+      padding-inline-start: 0;
       font-weight: bold;
     }
   }
 
   @include respond-to("small") {
     background-size: 24px auto;
-    padding-left: 35px;
+    padding-inline-start: 35px;
     border: 0;
     margin: 0 2px;
     span {
@@ -100,12 +106,18 @@
 .shot-info {
   @include flex-container(column, center, flex-start);
   color: $black;
-  padding: 0 0 0 $grid-unit * 0.5;
+  padding-top: 0;
+  padding-inline-end: 0;
+  padding-bottom: 0;
+  padding-inline-start: $grid-unit * 0.5;
   width: 100%;
 
   @include respond-to("large") {
     max-width: auto;
-    padding: 0 0 0 $grid-unit;
+    padding-top: 0;
+    padding-inline-end: 0;
+    padding-bottom: 0;
+    padding-inline-start: $grid-unit;
   }
 
   > div {
@@ -140,7 +152,7 @@
 
   &.editable {
     cursor: default;
-    padding-right: 28px;
+    padding-inline-end: 28px;
 
     &:hover {
       @include respond-to("large") {
@@ -148,6 +160,9 @@
       }
       background-image: url("/static/img/pencil.svg");
       background-position: right 5px;
+      [dir=rtl] & {
+        background-position: left 5px;
+      }
       background-repeat: no-repeat;
       background-size: 20px 20px;
     }
@@ -176,7 +191,7 @@
   font-size: 24px;
   line-height: 29px;
   padding-bottom: 1px;
-  padding-left: 2px;
+  padding-inline-start: 2px;
 
   border-radius: $border-radius;
   border: 1px solid $active-blue;
@@ -186,12 +201,12 @@
   max-width: 100px;
   position: relative;
   top: -2px;
-  left: -3px;
+  inset-inline-start: -3px;
 }
 
 .subtitle-link,
 .time-diff {
-  margin-right: 8px;
+  margin-inline-end: 8px;
 }
 
 .subtitle-link {
@@ -209,7 +224,7 @@
   padding: 5px;
   position: absolute;
   top: 60px;
-  right: -30px;
+  inset-inline-end: -30px;
   text-align: center;
   width: 150px;
   z-index: 999;
@@ -232,7 +247,7 @@
   a.box-close {
     position: absolute;
     top: 2px;
-    right: 2px;
+    inset-inline-end: 2px;
     cursor: pointer;
     color: $black;
     width: 15px;
@@ -308,20 +323,20 @@
   background-size: $grid-unit $grid-unit;
   background-repeat: no-repeat;
   background-position: center center;
-  margin-right: $grid-unit * 0.5;
+  margin-inline-end: $grid-unit * 0.5;
   transition: background-image 150ms $bezier;
 }
 
 .edit-highlight {
   @include respond-to("large") {
-    left: 50px;
+    inset-inline-start: 50px;
     top: 25px;
   }
   background-image: url("../img/edit-highlight.svg");
   height: 17px;
   width: 17px;
   position: absolute;
-  left: 30px;
+  inset-inline-start: 30px;
   top: 15px;
   cursor: pointer;
 }
@@ -387,7 +402,7 @@
 }
 
 .annotation-divider {
-  border-right: 1px solid $light-border-active;
+  border-inline-end: 1px solid $light-border-active;
   margin: auto auto;
   width: 1px;
   height: 28px;
@@ -423,7 +438,7 @@ body {
   .shot-edit-main-actions {
     @include respond-to("medium") {
       @include flex-container(row, flex-start, center);
-      margin-right: 10px;
+      margin-inline-end: 10px;
       padding-top: 4px;
     }
 
@@ -571,7 +586,10 @@ body {
   position: absolute;
   height: 22px;
   width: 22px;
-  margin: 13.5px 10px 0 9px;
+  margin-top: 13.5;
+  margin-inline-end: 10px;
+  margin-bottom: 0;
+  margin-inline-start: 9px;
   z-index: 2;
 
   &:hover {
@@ -600,20 +618,20 @@ body {
     position: absolute;
     width: 0;
     height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
+    border-inline-start: 10px solid transparent;
+    border-inline-end: 10px solid transparent;
     border-bottom: 15px solid $light-active;
     top: -15px;
-    left: 9.5px;
+    inset-inline-start: 9.5px;
 
     .triangle-inner {
       position: absolute;
       width: 0;
       height: 0;
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
+      border-inline-start: 8px solid transparent;
+      border-inline-end: 8px solid transparent;
       border-bottom: 13px solid $light-default;
-      left: -8px;
+      inset-inline-start: -8px;
       top: 2px;
     }
   }
@@ -658,6 +676,9 @@ body {
   background-color: $light-default;
   background-image: url("../img/icon-dropdown.svg");
   background-position: right 8px top 8px;
+  [dir=rtl] & {
+    background-position: left 8px top 8px;
+  }
   background-repeat: no-repeat;
   background-size: 10px auto;
   border-radius: $border-radius;
@@ -667,9 +688,15 @@ body {
   font-size: 14px;
   font-weight: 400;
   height: 26px;
-  margin: 12px 5px 12px 15px;
+  margin-top: 12px;
+  margin-inline-end: 5px;
+  margin-bottom: 12px;
+  margin-inline-start: 15px;
   outline: none;
-  padding: 0 24px 0 4px;
+  padding-top: 0;
+  padding-inline-end: 24px;
+  padding-bottom: 0;
+  padding-inline-start: 4px;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -690,7 +717,10 @@ body {
   }
 
   option {
-    padding: 0 40px 0 4px;
+    padding-top: 0;
+    padding-inline-end: 40px;
+    padding-bottom: 0;
+    padding-inline-start: 4px;
   }
 }
 

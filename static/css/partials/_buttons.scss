@@ -53,14 +53,14 @@
       justify-content: flex-start;
       font-size: 16px;
       height: 72px;
-      margin-right: 10px;
+      margin-inline-end: 10px;
       padding: 0 5px;
     }
 
     @include flex-container(row, center, center);
     box-sizing: border-box;
     border: 0;
-    border-right: 1px solid $light-border;
+    border-inline-end: 1px solid $light-border;
     box-shadow: 0;
     border-radius: 0;
     flex-shrink: 0;
@@ -86,7 +86,7 @@
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: center;
-    margin-right: $grid-unit * 0.5;
+    margin-inline-end: $grid-unit * 0.5;
     transition: background-color 150ms $bezier;
   }
 

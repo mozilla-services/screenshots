@@ -11,7 +11,7 @@
   min-width: 320px;
   padding: 18px;
   position: absolute;
-  left: 3px;
+  inset-inline-start: 3px;
   top: 47px;
   z-index: 3;
 
@@ -19,20 +19,20 @@
     position: absolute;
     width: 0;
     height: 0;
-    border-left: 9px solid transparent;
-    border-right: 9px solid transparent;
+    border-inline-start: 9px solid transparent;
+    border-inline-end: 9px solid transparent;
     border-bottom: 15px solid $light-border;
     top: -15px;
-    left: 8px;
+    inset-inline-start: 8px;
 
     .triangle-inner {
       position: absolute;
       width: 0;
       height: 0;
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
+      border-inline-start: 8px solid transparent;
+      border-inline-end: 8px solid transparent;
       border-bottom: 13px solid $white;
-      left: -8px;
+      inset-inline-start: -8px;
       top: 2px;
     }
   }
@@ -59,9 +59,9 @@
   }
 
   &.right-align {
-    left: -255px;
+    inset-inline-start: -255px;
     .triangle {
-      left: 292px;
+      inset-inline-start: 292px;
     }
   }
 }

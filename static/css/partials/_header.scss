@@ -53,7 +53,7 @@
   .alt-actions {
     align-items: center;
     display: flex;
-    margin-right: 0;
+    margin-inline-end: 0;
   }
 
   a.nav-button {
@@ -127,7 +127,7 @@
     }
     @include flex-container(column, center, center);
     color: $black;
-    border-right: 1px solid $light-border;
+    border-inline-end: 1px solid $light-border;
     height: 70px;
     
     &:hover {
@@ -153,15 +153,21 @@
   width: 100%;
 
   .message {
-    padding: 16px 5px 16px 32px;
+    padding-top: 16px;
+    padding-inline-end: 5px;
+    padding-bottom: 16px;
+    padding-inline-start: 32px;
   }
 
   .logo {
-    background-position: left center;
+    background-position: left center; 
     background-image: url("../img/firefox-logo.svg");
     background-repeat: no-repeat;
     background-size: 24px auto;
-    margin-left: 16px;
+    margin-inline-start: 16px;
+    [dir=rtl] & {
+      background-position: right center;
+    }
   }
 
   p {
@@ -169,7 +175,7 @@
   }
 
   .upsellLink {
-    padding-left: 10px;
+    padding-inline-start: 10px;
     color: #009ec0;
   }
 }

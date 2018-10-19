@@ -8,11 +8,11 @@ $shot-width: 210px;
 #search-form {
   @include flex-container(row, flex-start, stretch);
   position: absolute;
-  right: 150px;
+  inset-inline-end: 150px;
   top: 40px;
 
   @include respond-to("small") {
-    right: 100px;
+    inset-inline-end: 100px;
     top: 60px;
   }
 
@@ -26,7 +26,7 @@ $shot-width: 210px;
     background-repeat: no-repeat;
     background-position: center top 5px;
     position: absolute;
-    right: 0;
+    inset-inline-end: 0;
     opacity: 0;
     transition: opacity $bezier 150ms;
   }
@@ -39,7 +39,10 @@ $shot-width: 210px;
     border: 0;
     border-bottom: 1px solid $link-medium;
     font-size: 16px;
-    padding: 0 28px 8px 24px;
+    padding-top: 0;
+    padding-inline-end: 28px;
+    padding-bottom: 8px;
+    padding-inline-start: 24px;
     transition: border-color $bezier 150ms;
     width: $shot-width;
 
@@ -83,7 +86,7 @@ $shot-width: 210px;
   width: $shot-width;
 
   .share-panel {
-    left: 0;
+    inset-inline-start: 0;
     top: 72px;
   }
 
@@ -93,8 +96,8 @@ $shot-width: 210px;
     position: absolute;
     bottom: 0;
     height: 69px;
-    left: 0;
-    right: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
     background: $white;
     opacity: 0;
   }
@@ -230,7 +233,7 @@ $shot-width: 210px;
   .fav-shot,
   .non-fav-shot {
     cursor: pointer;
-    right: 12px;
+    inset-inline-end: 12px;
     top: 12px;
     background-size: 20px 20px;
   }
@@ -249,7 +252,7 @@ $shot-width: 210px;
   }
 
   .synced-shot {
-    right: 12px;
+    inset-inline-end: 12px;
 
     img {
       padding: 8px;
@@ -265,7 +268,7 @@ $shot-width: 210px;
   background-position: center center;
   background-image: url("../img/preferences-16.svg");
   position: absolute;
-  right: 0;
+  inset-inline-end: 0;
   top: 0;
 
   &:hover {
@@ -291,8 +294,8 @@ $shot-width: 210px;
   text-align: center;
 
   #shots-page-number {
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
     padding: 0;
   }
 
