@@ -24,10 +24,6 @@ class Head extends React.Component {
           src={this.props.staticLink("/static/js/homepage-bundle.js")}
           async
         />
-        <meta
-          name="viewport"
-          content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
-        />
         <Localized id="homePageDescription" attrs={{ content: true }}>
           <meta
             name="description"
