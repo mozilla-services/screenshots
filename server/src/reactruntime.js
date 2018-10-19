@@ -45,6 +45,7 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
       <head>
         <meta charSet="UTF-8" />
         <title>{this.props.title}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="shortcut icon" href={this.props.staticLink("/static/img/favicon-32.png")} />
         <link rel="icon" type="image/png" href={this.props.staticLink("/static/img/favicon-16.png")} sizes="16x16"/>
         <link rel="icon" type="image/png" href={this.props.staticLink("/static/img/favicon-32.png")} sizes="32x32"/>

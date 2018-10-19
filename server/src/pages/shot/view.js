@@ -111,7 +111,6 @@ class Head extends React.Component {
           <meta name="robots" content="noindex, nofollow, noimageindex" />
           <script src={ this.props.staticLink("/static/js/shot-bundle.js") } async />
           <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
         </reactruntime.HeadTemplate>
       );
     }
@@ -122,7 +121,6 @@ class Head extends React.Component {
         <script src={ this.props.staticLink("/static/js/shot-bundle.js") } async />
         <link rel="stylesheet" href={ this.props.staticLink("/static/css/inline-selection.css") } />
         <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />
         {this.socialMetadata()}
       </reactruntime.HeadTemplate>
