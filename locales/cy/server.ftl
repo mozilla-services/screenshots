@@ -65,7 +65,9 @@ homePageCapturePage = Cipio Tudalen
 homePageCapturePageDescription = Defnyddiwch y botymau ar y brig de i gipio tudalennau cyfan. Bydd y botwm Cadw'r Gweledol y cipio'r ardal rydych y gallu ei weld heb sgrolio ac mae Cadw'r Dudalen Gyfan yn cipio popeth sydd ar y dudalen.
 homePageSaveShare = Cadw a Rhannu
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Pan fyddwch y tynnu llun, bydd Firefox yn gadw'r lluniau i'ch llyfrgell Screenshots ac yn copio'r ddolen i'ch clipfwrdd. Rydym yn cadw eich lluniau'n awtomatig am bythefnos, ond gallwch ddileu  lluniau ar unrhyw bryd newid y dyddiad dod i ben i'w cadw yn eich llyfrgell am fwy o amser.
+homePageShaveShareFavoriteDescription = Cymrwch eich llun gorau. Yna cadw'r llun ar-lein yn  lyfrgell Screenshot ac mae Firefox yn copïo'r ddolen i'ch clipfwrdd ar gyfer rhannu hawdd. Mae lluniau yn y llyfrgell yn dod i ben yn awtomatig ymhen pythefnos, ond gallwch chi eu dileu pryd bynnag yr hoffech chi neu eu cadw am yn hirach.
+homePageSignInTitle = Eich Lluniau ym Mhob Man
+homePageSignInDescription = Mewngofnodwch i Screenshots gyda'ch cyfrif Firefox i gael mynediad i'ch lluniau ym mhob man lle rydych yn defnyddio Firefox. Yn ychwanegol: gallwch gadw eich hoff luniau am byth.
 homePageLegalLink = Cyfreithiol
 homePagePrivacyLink = Preifatrwydd
 homePageTermsLink = Amodau

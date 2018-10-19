@@ -139,7 +139,7 @@
   }
 }
 
-.ad-banner {
+.upsell {
   @include flex-container(row, center, center);
   
   @include respond-to("small") {
