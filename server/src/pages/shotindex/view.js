@@ -107,6 +107,13 @@ class Body extends React.Component {
     const nextPageNumber = this.props.pageNumber - 0 + 1;
     const nextClasses = ["shots-page-nav"].concat(!hasNext && "disabled").join(" ");
     const hidden = totalPages < 2;
+    let arrowheadPrev = this.props.staticLink("/static/img/arrowhead-left-16.svg");
+    let arrowheadNext = this.props.staticLink("/static/img/arrowhead-right-16.svg");
+    if (document.dir == "rtl") {
+      const save = arrowheadNext;
+      arrowheadNext = arrowheadPrev;
+      arrowheadPrev = save;
+    }
 
     return (
       <div id="shot-index-page-navigation" hidden={hidden} >
@@ -117,12 +124,12 @@ class Body extends React.Component {
               ? <a href={ controller.getNewUrl({p: prevPageNumber})}
                 onClick={ this.onChangePage.bind(this, prevPageNumber) }
                 title="previous page"
-                ><img src={ this.props.staticLink("/static/img/arrowhead-left-16.svg") } /></a>
-              : <img src={ this.props.staticLink("/static/img/arrowhead-left-16.svg") } />
+                ><img src={ arrowheadPrev } /></a>
+              : <img src={ arrowheadPrev } />
             }
           </Localized>
         </span>
-        <span id="shots-page-number">{this.props.pageNumber} / {totalPages}</span>
+        <bdo id="shots-page-number" dir="ltr">{this.props.pageNumber} / {totalPages}</bdo>
         <span className={nextClasses}>
           <Localized id="shotIndexPageNextPage" attrs={{title: true}}>
             {
@@ -130,8 +137,8 @@ class Body extends React.Component {
               ? <a href={ controller.getNewUrl({p: nextPageNumber}) }
                 onClick={ this.onChangePage.bind(this, nextPageNumber) }
                 title="next page"
-                ><img src={ this.props.staticLink("/static/img/arrowhead-right-16.svg") } /></a>
-              : <img src={ this.props.staticLink("/static/img/arrowhead-right-16.svg") } />
+                ><img src={ arrowheadNext } /></a>
+              : <img src={ arrowheadNext } />
             }
           </Localized>
         </span>
