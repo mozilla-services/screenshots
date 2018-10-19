@@ -12,6 +12,10 @@ gScreenshotsDescription = ทำให้การจับภาพหน้า
 
 ## Header
 
+buttonSettings =
+    .title = การตั้งค่า
+buttonSignIn =
+    .title = ลงชื่อเข้า
 bannerUpsell = { gScreenshotsDescription } <a>รับ Firefox ตอนนี้</a>
 
 ## Footer
@@ -48,6 +52,7 @@ homePageGetStartedTitle = เริ่มต้น
 homePageCaptureRegion = จับภาพเป็นบริเวณ
 homePageCapturePage = จับภาพหน้า
 homePageSaveShare = บันทึกและแบ่งปัน
+homePageSignInTitle = ภาพหน้าจอของคุณในทุกที่
 homePageLegalLink = ข้อกฎหมาย
 homePagePrivacyLink = ความเป็นส่วนตัว
 homePageTermsLink = ข้อกำหนด
@@ -141,6 +146,8 @@ timeDiffFutureDays =
 
 ## Shot Page New Feature Promotion Dialog.
 
+promoCloseButton =
+    .title = ปิดการแจ้งเตือน
 
 ## Annotations
 
@@ -152,6 +159,8 @@ annotationUndoButton =
     .title = เลิกทำ
 annotationRedoButton =
     .title = ทําซ้ำ
+annotationTextButton =
+    .title = เพิ่มข้อความ
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = ล้าง
