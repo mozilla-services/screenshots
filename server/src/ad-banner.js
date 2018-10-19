@@ -33,7 +33,7 @@ exports.AdBanner = class AdBanner extends React.Component {
     }
 
     if (bannerContent) {
-      return <aside className="ad-banner">
+      return <aside className="upsell">
         <div className="logo message">
           {bannerContent}
         </div>
