@@ -109,7 +109,7 @@ class Body extends React.Component {
     const hidden = totalPages < 2;
     let arrowheadPrev = this.props.staticLink("/static/img/arrowhead-left-16.svg");
     let arrowheadNext = this.props.staticLink("/static/img/arrowhead-right-16.svg");
-    if (document.dir == "rtl") {
+    if (document.dir === "rtl") {
       const save = arrowheadNext;
       arrowheadNext = arrowheadPrev;
       arrowheadPrev = save;

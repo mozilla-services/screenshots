@@ -54,8 +54,8 @@ exports.DeleteShotButton = class DeleteShotButton extends React.Component {
     let rightAlign = "";
     if (this.trashButtonRef.current) {
       const boundingRect = this.trashButtonRef.current.getBoundingClientRect();
-      if (document.dir == "rtl" && boundingRect.right < 320 ||
-          document.dir == "ltr" && boundingRect.left + 320 > document.body.scrollWidth) {
+      if (document.dir === "rtl" && boundingRect.right < 320 ||
+          document.dir === "ltr" && boundingRect.left + 320 > document.body.scrollWidth) {
         rightAlign = "right-align";
       }
     }
