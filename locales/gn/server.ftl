@@ -64,7 +64,10 @@ homePageCaptureRegionDescription = Ehesakutu ha embosyryry eiporavo hag̃ua umi 
 homePageCapturePage = Peteĩ kuatiarogue jejapyhy
 homePageCapturePageDescription = Eipuru umi votõ yvategua akatúvape oĩva ejapyhy hag̃ua kuatiarogue tuichaháicha. Pe votõ Ñongatu Jehecháva ojapyhýta pe kora ikatúva rehecha eku’e’ỹre ha Kuatiarogue Tuichaháicha Ñongatu ojapyhypáta kuatiaroguépe.
 homePageSaveShare = Eñongatu ha emoherakuã
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = Ejapietékevoi. Upéi eñongatu mba’erechaha japyhypy arandukarenda jeikehápe, ha Firefox omomguatiáta nde kuatiajokohápe emoherakuãkuaa hag̃ua. Umi ta’ãnga arandukarenda pegua ndoikovéima ohasávo mokõi arapokõindy, hákatu ikatu avei emboguete ejapose vove térã eheja hetave ára.
 homePageSignInTitle = Eha'ã oparupirei
+homePageSignInDescription = Emoñepyrũ tembiapo mba’erechaha japyhypýpe ne mba’ete Firefox pegua ndive ehecha hag̃ua ne ra’ãnga Firefox reipuruhápe opa henda rupi. Avei eguerekove: eñongatukuaa avei ne ra’ãnga eguerohoryvéva opa árape g̃uarã.
 homePageLegalLink = Añetegua
 homePagePrivacyLink = Ñemigua
 homePageTermsLink = Jejapopy
