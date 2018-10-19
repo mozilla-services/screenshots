@@ -165,7 +165,8 @@
     background-repeat: no-repeat;
     background-size: 24px auto;
     margin-inline-start: 16px;
-    [dir=rtl] & {
+
+    [dir="rtl"] & {
       background-position: right center;
     }
   }

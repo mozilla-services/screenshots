@@ -198,6 +198,10 @@ body {
   background-image: url("MOZ_EXTENSION/icons/back.svg");
   inset-inline-start: 50%;
   margin-inline-start: - ($slide-width / 2) - ($next-prev-size / 2);
+
+  [dir="rtl"] & {
+    transform: rotate(180deg);
+  }
 }
 
 #next,
@@ -229,17 +233,13 @@ body {
   background-image: url("MOZ_EXTENSION/icons/back.svg");
   transform: rotate(180deg);
 
+  [dir="rtl"] & {
+    transform: rotate(0deg);
+  }
+
   .active-slide-1 & {
     background-image: url("MOZ_EXTENSION/icons/back-highlight.svg");
   }
-}
-
-[dir='rtl'] #next {
-  transform: rotate(0deg);
-}
-
-[dir='rtl'] #prev {
-  transform: rotate(180deg);
 }
 
 #skip {
@@ -247,7 +247,7 @@ body {
   border: 0;
   color: #fff;
   font-size: 16px;
-  inset-inline-start:: 50%;
+  inset-inline-start: 50%;
   margin-inline-start: - ($slide-width / 2) + 20;
   margin-top: ($slide-height / 2) - 3;
   opacity: 0.7;

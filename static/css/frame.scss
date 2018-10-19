@@ -8,15 +8,16 @@
 }
 
 .back-to-home {
-  background-position: left center; 
-  [dir=rtl] & {
-    background-position: right center;
-  }
+  background-position: left center;
   background-image: url("../img/icon-screenshot.svg");
   background-repeat: no-repeat;
   background-size: 36px auto;
   padding-inline-start: 52px;
   margin: 0 16px;
+
+  [dir="rtl"] & {
+    background-position: right center;
+  }
 
   span {
     display: block;
@@ -160,11 +161,12 @@
       }
       background-image: url("/static/img/pencil.svg");
       background-position: right 5px;
-      [dir=rtl] & {
-        background-position: left 5px;
-      }
       background-repeat: no-repeat;
       background-size: 20px 20px;
+
+      [dir="rtl"] & {
+        background-position: left 5px;
+      }
     }
   }
 }
@@ -586,7 +588,7 @@ body {
   position: absolute;
   height: 22px;
   width: 22px;
-  margin-top: 13.5;
+  margin-top: 13.5px;
   margin-inline-end: 10px;
   margin-bottom: 0;
   margin-inline-start: 9px;
@@ -676,9 +678,6 @@ body {
   background-color: $light-default;
   background-image: url("../img/icon-dropdown.svg");
   background-position: right 8px top 8px;
-  [dir=rtl] & {
-    background-position: left 8px top 8px;
-  }
   background-repeat: no-repeat;
   background-size: 10px auto;
   border-radius: $border-radius;
@@ -704,6 +703,10 @@ body {
   user-select: none;
   white-space: nowrap;
   vertical-align: middle;
+
+  [dir="rtl"] & {
+    background-position: left 8px top 8px;
+  }
 
   &:hover,
   &:focus {
