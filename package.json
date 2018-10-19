@@ -40,7 +40,7 @@
     "nodify-uuid": "0.0.1",
     "pg": "6.2.5",
     "pg-patcher": "0.4.0",
-    "query-string": "6.1.0",
+    "query-string": "6.2.0",
     "raven": "2.6.4",
     "raven-js": "3.27.0",
     "react": "16.5.2",
