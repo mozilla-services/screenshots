@@ -12,6 +12,10 @@ exports.AdBanner = class AdBanner extends React.Component {
     sendEvent("click-install-firefox-shot", {useBeacon: true});
   }
 
+  clickedSignIn() {
+    sendEvent("fxa-signin-ad-banner", {useBeacon: true});
+  }
+
   render() {
     let bannerContent = null;
 
@@ -25,9 +29,12 @@ exports.AdBanner = class AdBanner extends React.Component {
           </p>
         </Localized>;
     } else if (!this.props.hasFxa) {
-      bannerContent = <Localized id="bannerMessage">
+      const signInLink = <a className="signInLink"
+        href="/api/fxa-oauth/login/shots"
+        onClick={ this.clickedSignIn.bind(this) }></a>;
+      bannerContent = <Localized id="bannerSignIn" a={signInLink}>
           <p>
-            Sign in or sign up to sync shots across devices, save your favorite shots forever.
+            <a>Sign in or sign up</a> to sync shots across devices, save your favorite shots forever.
           </p>
         </Localized>;
     }
