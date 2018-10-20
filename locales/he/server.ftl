@@ -198,6 +198,10 @@ errorThirdPartyCookiesEnabled = אם צילמת את התמונה הזאת ול�
 
 ## Shot Page New Feature Promotion Dialog.
 
+promoMessage = כלי העריכה המעודכנים מאפשרים לך לחתוך, להדגיש ואפילו להוסיף טקסט לצילום המסך שלך.
+promoLink = כדאי להתנסות
+promoCloseButton =
+    .title = סגירת התרעה
 
 ## Annotations
 
@@ -205,6 +209,12 @@ annotationPenButton =
     .title = עט
 annotationHighlighterButton =
     .title = מדגיש
+annotationUndoButton =
+    .title = ביטול
+annotationRedoButton =
+    .title = ביצוע חוזר
+annotationTextButton =
+    .title = הוספת טקסט
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = ניקוי
@@ -217,7 +227,7 @@ annotationCancelEditButton = ביטול
 annotationCropConfirmButton = אישור
     .title = אישור הבחירה
 annotationCropCancelButton = ביטול
-    .title = ביטול הבחירה
+    .title = ביטול בחירה
 annotationColorWhite =
     .title = לבן
 annotationColorBlack =
@@ -236,11 +246,28 @@ annotationColorSeaGreen =
     .title = ירוק־ים
 annotationColorGrey =
     .title = אפור
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = גודל טקסט
+# Values shown in text size selection dropdown
+textSizeSmall = קטן
+textSizeMedium = בינוני
+textSizeLarge = גדול
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = אישור
+    .title = אישור
+textToolCancelButton = ביטול
+    .title = ביטול
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = שלום
 
 ## The following are the title and message for an error displayed as a Firefox
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = משהו השתבש
+copyImageErrorMessage = לא ניתן להעתיק את צילום המסך שלך ללוח העריכה.
 
 ## Settings Page
 
@@ -273,6 +300,8 @@ shotIndexPageNoShotsInvitation = קדימה, הבה ניצור כמה.
 shotIndexPageLookingForShots = מתבצע חיפוש אחר הצילומים שלך…
 shotIndexPageNoSearchResultsIntro = הממ
 shotIndexPageNoSearchResults = לא מצאנו שום צילומי מסך התואמים לחיפוש שלך.
+shotIndexPageMyShotsButton =
+    .title = צילומי המסך שלי
 shotIndexPageClearSearchButton =
     .title = ניקוי חיפוש
 shotIndexPageConfirmShotDelete = האם למחוק צילום מסך זה?
@@ -280,6 +309,18 @@ shotIndexPagePreviousPage =
     .title = העמוד הקודם
 shotIndexPageNextPage =
     .title = העמוד הבא
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = זה אינו צילום מועדף והוא יפוג
+# This is the tooltip for a "heart" symbol in the upper top corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = זהו צילום מסך מועדף ואין לו מועד תפוגה
+shotIndexSyncedShot =
+    .title = צולם בהתקן אחר
+shotIndexAlertErrorFavoriteShot = שגיאה בעדכון מצב צילום מועדף
 
 ## Delete Confirmation Dialog
 
