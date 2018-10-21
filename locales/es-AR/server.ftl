@@ -65,7 +65,9 @@ homePageCapturePage = Capturar una página
 homePageCapturePageDescription = Usá los botones en la parte superior derecha para capturar la página completa. El botón Guardar Visibe capturará el área que se puede ver sin desplazarse y Guardar Página Completa capturará todo en la página.
 homePageSaveShare = Guardar y compartir
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Al hacer una captura, Firefox la publica en tu biblioteca en línea de Screenshots y copia el enlace en tu portapapeles. Guardamos automáticamente tus capturas por dos semanas, pero las podés borrar en cualquier momento o cambiar la fecha de expiración para mantenerles en la biblioteca por más tiempo.
+homePageShaveShareFavoriteDescription = Tomá tu mejor captura. Guardala en la biblioteca en línea de Screenshots y Firefox copiará el enlace al portapapeles para compartir fácilmente. Las capturas en la biblioteca expiran después de dos semanas, pero se pueden borrar en cualquier momento o decidir mantenerlas un tiempo más.
+homePageSignInTitle = Tus capturas en todos lados.
+homePageSignInDescription = Ingesá a Screenshots con tu cuenta de Firefox y accedé a tus capturas en todos lados donde usés Firefox. Como bonus podés guardar tus capturas favoritas para siempre.
 homePageLegalLink = Legales
 homePagePrivacyLink = Privacidad
 homePageTermsLink = Términos
