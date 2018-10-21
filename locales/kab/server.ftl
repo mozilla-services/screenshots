@@ -65,7 +65,9 @@ homePageCapturePage = Ṭṭef asebter
 homePageCapturePageDescription = Seqdec taqefalt d afella $yef uyfus akken ad teṭfeḍ akk asebter.Taqefal " sekles tamnaḍt" ad k-teǧǧ ad teṭfeḍ i tzemrepd ad skeneḍ war adrurem, sakin sekles akk asebter.
 homePageSaveShare = Sekles u bḍu
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Ticki teggiḍ tuṭṭfa, Firefox ad tt-yazen ɣer temkarḍit-nneɣ srid sakin ad yenɣel aseɣwen ɣef afus. Ad neḥrez s wudem awurmantuṭṭfa di sin n imalasen, acukan tzemreḍ ad tekkseḍ akk tuṭṭfiwin melmi tebɣiḍ neɣ ad tbeddleḍ azemz n tagara akken ad tt-ḥerzeḍ ugar n wakud di temkarḍit.
+homePageShaveShareFavoriteDescription = Awi tuṭṭfa_inek ifazen. sakin sekles-itt ɣer temkarḍit n tuṭṭfiwin, Firefox ad inɣel aseɣwen ɣer "ΓEf ufus" akken ad tt-tebḍuḍ s wudem fesussen. ttṭṭfiwin n tmekarḍit ad mtent s wudem awurman seld snat n dwaṛ, maca tzemreḍ ad tent-kkseḍ melmi tebɣiḍ neɣ ad tent-ḥarzeḍ ugar n wakud.
+homePageSignInTitle = Tuṭṭfiwin-inek anda tebɣuḍ tiliḍ.
+homePageSignInDescription = Jerred ɣer Screenshotss umiḍan-ik n Firefox akken ad tkecmeḍ ɣer tuṭṭfiwin-inek anda tebɣuḍ tilliḍ s Firefox. ad tili daɣen tarzebt, temreḍ daɣ ad teskelseḍ  tuṭṭfiwin-inek i tḥemleḍ i lebda.
 homePageLegalLink = Usḍif
 homePagePrivacyLink = Tabaḍnit
 homePageTermsLink = Tiwtilin

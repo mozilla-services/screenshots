@@ -10,12 +10,25 @@ gNoShots =
     .alt = לא נמצאו צילומי מסך
 gScreenshotsDescription = כעת קל יותר ללכוד צילומי מסך. ניתן לצלם, לשמור ולשתף צילומי מסך מבלי לעזוב את Firefox.
 
+## Header
+
+buttonSettings =
+    .title = הגדרות
+buttonSignIn =
+    .title = כניסה
+screenshotsLogo =
+    .title = דף הבית של Screenshots
+bannerMessage = עליך להיכנס או להירשם כדי לגשת לצילומים שלך בכל המכשירים ולשמור את המועדפים שלך לעד.
+bannerUpsell = { gScreenshotsDescription } <a>קבלת Firefox כעת</a>
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = תנאים
 footerLinkPrivacy = הצהרת פרטיות
+footerReportShot = דיווח על צילום
+    .title = דיווח על הצילום הזה בכך שהוא פוגעני, ספאם או כל בעיה אחרת
 footerLinkFaqs = שאלות נפוצות
 footerLinkDMCA = דיווח על הפרת קניית רוחני
 footerLinkDiscourse = מתן משוב
@@ -38,7 +51,6 @@ homePageButtonMyShots = מעבר לצילומי המסך שלי
 homePageTeaser = בקרוב...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = הורדה חינמית
-homePageGetStarted = תחילת עבודה
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = איך Firefox Screenshots עובד
 homePageGetStartedTitle = תחילת עבודה
@@ -52,8 +64,7 @@ homePageCaptureRegionDescription = יש ללחוץ ולגרור כדי לבחו�
 homePageCapturePage = לכידת דף
 homePageCapturePageDescription = ניתן להשתמש בכפתורים שבפינה השמאלית העליונה כדי לצלם עמודים שלמים. הכפתור לשמירת הגלוי יצלם את האיזור הגלוי מבלי לגלול לעומת שמירת העמוד במלואו שיצלם את כל העמוד.
 homePageSaveShare = שמירה ושיתוף
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = בעת צילום, Firefox מפרסם את הצילומים שלך לספרייה המקוונת שלך ב־Screenshots ומעתיקה את הקישור ללוח הגזירים שלך. אנו מאחסנים את הצילומים שלך אוטומטית למשך שבועיים, אך ניתן למחוק אותם בכל עת או לשנות את מועד התפוגה כדי להשאיר אותם בספרייה שלך למשך זמן ארוך יותר.
+homePageSignInTitle = הצילומים שלך בכל מקום
 homePageLegalLink = מידע משפטי
 homePagePrivacyLink = פרטיות
 homePageTermsLink = תנאים
@@ -87,7 +98,8 @@ shotPageAlertErrorUpdatingTitle = שגיאה בשמירת הכותרת
 shotPageConfirmDelete = האם ברצונך למחוק צילום מסך זה לצמיתות?
 shotPageShareButton =
     .title = שיתוף
-shotPageCopy = העתקה
+shotPageCopyButton =
+    .title = העתקת תמונה ללוח העריכה
 shotPageCopied = הועתק
 shotPageShareFacebook =
     .title = שיתוף ב־Facebook
@@ -98,7 +110,7 @@ shotPageSharePinterest =
 shotPageShareEmail =
     .title = שיתוף קישור באמצעות דוא״ל
 shotPageShareLink = קבלת קישור לצילום מסך זה הניתן לשיתוף:
-shotPagePrivacyMessage = לכל מי שיש את הקישור יש גישה לצילום הזה.
+shotPagePrivacyMessage = לכל מי שיש את הקישור יש גישה לצילום מסך זה.
 shotPageCopyImageText =
     .label = העתקת הטקסט שבתמונה
 shotPageConfirmDeletion = האם ברצונך למחוק צילום מסך זה לצמיתות?
@@ -112,22 +124,24 @@ shotPageExpiredMessage = פג תוקפו של צילום מסך זה.
 shotPageExpiredMessageDetails = כאן העמוד ממנו זה נוצר במקור:
 shotPageDeleteButton =
     .title = מחיקת צילום מסך זה
-shotPageAbuseButton =
-    .title = דיווח על צילום זה כפוגעני, מטריד או כל בעיה אחרת
 shotPageDownloadShot =
     .title = הורדה
 shotPageEditButton =
     .title = עריכת תמונה זו
-shotPageDownload = הורדה
+shotPagefavoriteButton =
+    .title = סימון צילום המסך הזה כמועדף
+shotPageBackToHomeButton =
+    .title = דף הבית
+shotPageAllShotsButton =
+    .title = כל צילומי המסך
 shotPageScreenshotsDescription = כעת קל יותר ללכוד צילומי מסך. ניתן לצלם, לשמור ולשתף צילומי מסך מבלי לעזוב את Firefox.
-shotPageUpsellFirefox = קבלת Firefox כעת
-shotPageDMCAMessage = צילום זה אינו זמין עוד עקב דרישת קניין רוחני על ידי גורם צד שלישי.
+shotPageDMCAMessage = צילום מסך זה אינו זמין עוד עקב דרישת קניין רוחני על ידי גורם צד שלישי.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = נא לשלוח דוא״ל אל { $dmca } על מנת לבקש מידע נוסף.
 # Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = אם ה־Shots שלך כפופים למגוון דרישות אנו עשויים לשלול ממך את הגישה ל־Firefox Screenshots.
 # Note: { $url } is a placeholder for a shot page URL
-shotPageDMCAIncludeLink = נא לכלול את הכתובת של הצילום הזה בהודעת הדוא״ל שלך: { $url }
+shotPageDMCAIncludeLink = נא לכלול את הכתובת של צילום המסך הזה בהודעת הדוא״ל שלך: { $url }
 shotPageKeepFor = לכמה זמן יש לשמור צילום מסך זה?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = בחירת זמן
@@ -182,12 +196,25 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = אם צילמת את התמונה הזאת ולא הצלחת למחוק אותה, כנראה שעליך להפעיל באופן זמני עוגיות צד־שלישי בהעדפות הדפדפן שלך.
 
+## Shot Page New Feature Promotion Dialog.
+
+promoMessage = כלי העריכה המעודכנים מאפשרים לך לחתוך, להדגיש ואפילו להוסיף טקסט לצילום המסך שלך.
+promoLink = כדאי להתנסות
+promoCloseButton =
+    .title = סגירת התרעה
+
 ## Annotations
 
 annotationPenButton =
     .title = עט
 annotationHighlighterButton =
     .title = מדגיש
+annotationUndoButton =
+    .title = ביטול
+annotationRedoButton =
+    .title = ביצוע חוזר
+annotationTextButton =
+    .title = הוספת טקסט
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = ניקוי
@@ -200,7 +227,7 @@ annotationCancelEditButton = ביטול
 annotationCropConfirmButton = אישור
     .title = אישור הבחירה
 annotationCropCancelButton = ביטול
-    .title = ביטול הבחירה
+    .title = ביטול בחירה
 annotationColorWhite =
     .title = לבן
 annotationColorBlack =
@@ -219,6 +246,28 @@ annotationColorSeaGreen =
     .title = ירוק־ים
 annotationColorGrey =
     .title = אפור
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = גודל טקסט
+# Values shown in text size selection dropdown
+textSizeSmall = קטן
+textSizeMedium = בינוני
+textSizeLarge = גדול
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = אישור
+    .title = אישור
+textToolCancelButton = ביטול
+    .title = ביטול
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = שלום
+
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = משהו השתבש
+copyImageErrorMessage = לא ניתן להעתיק את צילום המסך שלך ללוח העריכה.
 
 ## Settings Page
 
@@ -246,13 +295,13 @@ shotIndexPageSearchResultsTitle = צילומי המסך שלי: חיפוש עב�
 shotIndexPageErrorRendering = שגיאה בעת עיבוד העמוד להצגה: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = חיפוש בצילומי המסך שלי
-shotIndexPageSearchButton =
-    .title = חיפוש
 shotIndexPageNoShotsMessage = אין צילומי מסך שמורים.
 shotIndexPageNoShotsInvitation = קדימה, הבה ניצור כמה.
 shotIndexPageLookingForShots = מתבצע חיפוש אחר הצילומים שלך…
 shotIndexPageNoSearchResultsIntro = הממ
 shotIndexPageNoSearchResults = לא מצאנו שום צילומי מסך התואמים לחיפוש שלך.
+shotIndexPageMyShotsButton =
+    .title = צילומי המסך שלי
 shotIndexPageClearSearchButton =
     .title = ניקוי חיפוש
 shotIndexPageConfirmShotDelete = האם למחוק צילום מסך זה?
@@ -260,12 +309,18 @@ shotIndexPagePreviousPage =
     .title = העמוד הקודם
 shotIndexPageNextPage =
     .title = העמוד הבא
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = צילום זה אינו פג
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = זה אינו צילום מועדף והוא יפוג
+# This is the tooltip for a "heart" symbol in the upper top corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = זהו צילום מסך מועדף ואין לו מועד תפוגה
+shotIndexSyncedShot =
+    .title = צולם בהתקן אחר
+shotIndexAlertErrorFavoriteShot = שגיאה בעדכון מצב צילום מועדף
 
 ## Delete Confirmation Dialog
 

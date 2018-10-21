@@ -65,7 +65,9 @@ homePageCapturePage = Fotografuokite tinklalapį
 homePageCapturePageDescription = Naudokitės mygtukais viršuje dešinėje, norėdami nufotografuoti visą tinklalapį. Mygtukas „Įrašyti matomą“ nufotografuos sritį, kurią matote neslinkdami pelės, o „Įrašyti visą tinklalapį“ nufotografuos viską, kas jame yra.
 homePageSaveShare = Įrašykite ir dalinkitės
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Kai padarote nuotrauką, „Firefox“ patalpina ją jūsų internetinėje nuotraukų bibliotekoje ir nukopijuoja saitą į jūsų iškarpinę. Mes automatiškai saugome jūsų nuotraukas dvi savaites, tačiau galite jas ištrinti bet kada, arba pakeisti galiojimo laiką, kad jos liktų ilgiau.
+homePageShaveShareFavoriteDescription = Padarykite geriausią nuotrauką, Įrašykite ją į „Screenshots“ archyvą internete, o „Firefox“ į jūsų iškarpinę nukopijuos saitą dalinimuisi. Nuotraukos iš archyvo išnyksta po dviejų savaičių, tačiau jūs galite ištrinti jas anksčiau, arba pasirinkti saugoti ilgesniam laikui.
+homePageSignInTitle = Jūsų nuotraukos visur
+homePageSignInDescription = Prisijungę prie „Screenshots“ su savo „Firefox“ paskyra, nuotraukas galėsite pasiekti visur, kur naudojate „Firefox“. O papildomai: patinkančias nuotraukas galėsite įrašyti visam laikui.
 homePageLegalLink = Teisinė informacija
 homePagePrivacyLink = Privatumas
 homePageTermsLink = Nuostatai
