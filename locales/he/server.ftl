@@ -64,7 +64,10 @@ homePageCaptureRegionDescription = יש ללחוץ ולגרור כדי לבחו�
 homePageCapturePage = לכידת דף
 homePageCapturePageDescription = ניתן להשתמש בכפתורים שבפינה השמאלית העליונה כדי לצלם עמודים שלמים. הכפתור לשמירת הגלוי יצלם את האיזור הגלוי מבלי לגלול לעומת שמירת העמוד במלואו שיצלם את כל העמוד.
 homePageSaveShare = שמירה ושיתוף
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = אפשר לשמור את צילום המסך בספריה המקוונת. לאחר השמירה Firefox יעתיק קישור לתמונה, וכך ניתן לשתף את הצילום בקלות. הצילומים בספריה נשמרים אוטומטית למשך שבועיים, אבל ניתן למחוק אותם בכל עת, או לשמור לזמן ארוך יותר.
 homePageSignInTitle = הצילומים שלך בכל מקום
+homePageSignInDescription = אפשר להירשם ל-Screenshots עם חשבון Firefox, וכך לגשת לתמונות שלך מכל התקנה של Firefox. בונוס נוסף: משתמשים רשומים יכולים לשמור את התמונות המועדפות שלהם לנצח.
 homePageLegalLink = מידע משפטי
 homePagePrivacyLink = פרטיות
 homePageTermsLink = תנאים
