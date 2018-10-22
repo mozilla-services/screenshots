@@ -75,7 +75,7 @@ homePageCookiesLink = עוגיות
 
 ## Leave Screenshots page
 
-leavePageRemoveAllData = הסרת כל הנתונים שלך
+leavePageRemoveAllData = הסרת כל הנתונים
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = על Firefox Screenshots להיות מותקן כדי למחוק את החשבון שלך
 leavePageErrorGeneric = אירעה שגיאה
@@ -174,6 +174,7 @@ timeDiffMinutesAgo =
 timeDiffHoursAgo =
     { $number ->
         [one] לפני שעה
+        [two] לפני שעתיים
        *[other] לפני { $number } שעות
     }
 timeDiffDaysAgo =
