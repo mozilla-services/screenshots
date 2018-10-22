@@ -180,6 +180,7 @@ timeDiffHoursAgo =
 timeDiffDaysAgo =
     { $number ->
         [one] אתמול
+        [two] לפני יומיים
        *[other] לפני { $number } ימים
     }
 timeDiffFutureSeconds = תוך מספר שניות
