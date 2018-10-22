@@ -65,7 +65,7 @@ homePageCapturePage = Fotografar ina pagina
 homePageCapturePageDescription = Utilisescha ils buttuns sisum a dretga per fotografar paginas entiras. Il buttun «Memorisar la regiun visibla» fotografescha la zona che ti vesas senza defilar e «Memorisar la pagina cumpletta» fotografescha l'entira pagina.
 homePageSaveShare = Memorisar e cundivider
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Sche ti fas in maletg dal visur, memorisescha Firefox tes maletg en tia biblioteca online da Screenshots e copiescha la colliaziun en l'archiv provisoric. Nus memorisain automaticamain tes maletg dal visur durant duas emnas, ma ti pos stizzar ils maletgs da tut temp u midar il temp da scadenza per als preservar pli ditg.
+homePageShaveShareFavoriteDescription = Piglia tes meglier maletg. Al memorisescha lura en la biblioteca online da Screenshots e Firefox copiescha la colliaziun en tes archiv provisoric per che ti al possias cundivider a moda simpla. Maletgs en la biblioteca scrodan automaticamain suenter duas emnas, ma ti als pos stizzar da tut temp u decider d'als preservar pli ditg.
 homePageLegalLink = Infurmaziuns giuridicas
 homePagePrivacyLink = Protecziun da datas
 homePageTermsLink = Cundiziuns d'utilisaziun

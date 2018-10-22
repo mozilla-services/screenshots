@@ -19,14 +19,14 @@ buttonSignIn =
 screenshotsLogo =
     .title = Pagina de start Screenshots
 bannerMessage = Autentifică-te sau înregistrează pentru a accesa capturile de ecran pe toate dispozitivele tale și salvează favoritele pentru totdeauna.
-bannerUpsell = { gScreenshotsDescription }<a>Obţine Firefox acum</a>
+bannerUpsell = { gScreenshotsDescription }<a>Obține Firefox acum</a>
 
 ## Footer
 
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Termeni
-footerLinkPrivacy = Notificare privind confidențialitatea
+footerLinkPrivacy = Politica de confidențialitate
 footerReportShot = Raportează captura
     .title = Raportează această captură pentru abuz, spam sau alte probleme
 footerLinkFaqs = Întrebări frecvente
