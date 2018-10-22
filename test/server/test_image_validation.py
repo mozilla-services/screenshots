@@ -39,7 +39,7 @@ def test_invalid_png_data_image_decoded():
     (shot_data, shot_json, user) = user_setup()
     assert "iVBORw0KGgo" in image
 
-    invalid_data_image = image.replace('iVBORw0KGgo', 'someIM4gEgo')
+    invalid_data_image = 'data:image/png;base64,someIM4gEgo'
 
     clip_id = next(iter(shot_json['clips']))
     shot_json['clips'][clip_id]['image']['url'] = invalid_data_image
@@ -82,7 +82,7 @@ def test_invalid_data_jpeg_image_decoded():
     image = example_images[3]['url']
     (shot_data, shot_json, user) = user_setup()
     assert '/9j/2wBDAAQDAwQDAw' in image
-    invalid_data_image = image.replace('/9j/2wBDAAQDAwQDAw', 'someIM4gEt0Try')
+    invalid_data_image = 'data:image/jpeg;base64,someIM4gEt0Try'
 
     clip_id = next(iter(shot_json['clips']))
     shot_json['clips'][clip_id]['image']['url'] = invalid_data_image
