@@ -1,5 +1,8 @@
 "use strict";
 
+ChromeUtils.defineModuleGetter(this, "AddonManager",
+                               "resource://gre/modules/AddonManager.jsm");
+
 const BUTTON_ID = "pageAction-panel-screenshots_mozilla_org";
 
 function checkElements(expectPresent, l) {
@@ -68,11 +71,15 @@ function promisePageActionViewChildrenVisible(panelViewNode) {
 }
 
 add_task(async function() {
-  await promiseScreenshotsEnabled();
-
-  registerCleanupFunction(async function() {
-    await promiseScreenshotsReset();
-  });
+  // If Screenshots was disabled, enable it just for this test.
+  const addon = await AddonManager.getAddonByID("screenshots@mozilla.org");
+  const isEnabled = addon.enabled;
+  if (!isEnabled) {
+    await addon.enable({allowSystemAddons: true});
+    registerCleanupFunction(async () => {
+      await addon.disable({allowSystemAddons: true});
+    });
+  }
 
   // Toggle the page action panel to get it to rebuild itself.  An actionable
   // page must be opened first.
