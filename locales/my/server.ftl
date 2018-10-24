@@ -9,8 +9,6 @@ gHomeLink = မူလ
 gNoShots =
     .alt = ရိုက်ကူးထားခြင်း မရှိပါ
 gScreenshotsDescription = မျက်နှာပြင်ဖမ်းယူခြင်းကို လွယ်ကူစေရန် ပြုလုပ်ထားသည်။ Firefox ကနေ ထွက်ခွာစရာမလိုပဲ မျက်နှာပြင်ဖမ်းယူထားခြင်းများကို ရိုက်ကူး၊ သိမ်းဆည်းပြီး မျှဝေပါ။
-gSettings = အပြင်အဆင်များ
-gSignIn = ဝင်ရန်
 
 ## Header
 
@@ -20,6 +18,8 @@ buttonSignIn =
     .title = ဝင်ရန်
 screenshotsLogo =
     .title = Screenshots မူလစာမျက်နှာ
+bannerMessage = ဖမ်းယူချက်များကို ကိရိယာများတွင် အသုံးပြုရန် နှင့် သိမ်းထားရန် ဝင်ရောက်ပါ သို့မဟုတ် မှတ်ပုံတင်ပါ။
+bannerUpsell = { gScreenshotsDescription } <a>Firefox ကို ယခုပင် ရယူပါ</a>
 
 ## Footer
 
@@ -65,7 +65,8 @@ homePageCapturePage = စာမျက်နှာကို ပုံဖမ်း
 homePageCapturePageDescription = စာမျက်နှာများကို အပြည့်ဖမ်းယူရန် ညာဘက်အပေါ်ဘက်ရှိ ခလုတ်များကို အသုံးပြုပါ။ မြင်ရသည်ကို သိမ်းပါ သည် အပေါ်အောက်ရွှေ့စရာမလိုပဲ မြင်ရသော အကျယ်အဝန်းကို ဖမ်းယူပါမည်။ ထို့ပြင် စာမျက်နှာအပြည့်သိမ်းပါ သည် လက်ရှိစာမျက်နှာတွင် မြင်ရသည်အကုန်လုံးကို ဖမ်းယူပါမည်။
 homePageSaveShare = သိမ်းပြီးမျှဝေရန်
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = မျက်နှာပြင်ပုံရိပ် ဖမ်းယူသောအခါ Firefox သည် ဖမ်းယူထားသော ပုံများကို သင့်အွန်လိုင်း Screenshots စာကြည့်ခန်းသို့ တင်ပို့ပေးသည့်အပြင် လင့်ခ်ကိုလည်း ကလစ်ဘုတ်သို့ ကူးယူးထားပေးသည်။ သင်ဖမ်းယူထားသော ပုံများကို ၂ပတ်စာ အလိုအလျောက် သိမ်းထားပေးသည်။ ထို့ပြင် မည်သည့်အချိန်မဆို ဖျက်နိုင်သည် သို့မဟုတ် ၎င်းတို့ကို စာကြည့်ခန်းတွင် ကြာကြာသိမ်းထားရန် သက်တမ်းကုန်ရက်ကိုလည်း ပြင်ဆင်နိုင်သည်။
+homePageShaveShareFavoriteDescription = အကောင်းဆုံးရိုက်ကူးချက်ကို မှတ်သားပါ။ ထို့နောက် အွန်လိုင်း Screenshots မှတ်တမ်းတွင် သိမ်းဆည်းပါ။ အလွယ်တကူ မျှဝေနိုင်ရန်အတွက် Firefox သည် ရိုက်ကူးချက်၏ လင့်ခ်ကို ကလစ်ဘုတ်ပေါ်သို့ ကူးယူပေးပါမည်။ မှတ်တမ်းရှိ ရိုက်ကူးချက်များသည် နှစ်ပတ်ပြည့်လျှင် အလိုအလျောက် သက်တမ်းကုန်ပါမည်။ သို့သော်လည်း သင် အလိုမရှိပါက ဖျက်နိုင်သည် သို့မဟုတ် နှစ်သက်ရာများကို ကြာရှည်စွာ သိမ်းထားရန် ရွေးချယ်နိုင်သည်။
+homePageSignInTitle = နေရာတိုင်းမှာ ရှိနေမည့် သင့်ဖမ်းယူချက်များ
 homePageLegalLink = ဥပဒေရေးရာ
 homePagePrivacyLink = ကိုယ်ရေးလုံခြုံမှု
 homePageTermsLink = စည်းမျဉ်းများ
@@ -99,7 +100,8 @@ shotPageAlertErrorUpdatingTitle = ခေါင်းစဉ်ကို သိမ
 shotPageConfirmDelete = ယခုရိုက်ကူးချက်ကို အပြီးတိုင် ဖျက်မည်မှာ သေချာပါသလား။
 shotPageShareButton =
     .title = မျှဝေရန်
-shotPageCopy = ကူးပါ
+shotPageCopyButton =
+    .title = ရုပ်ပုံကို ကလစ်ဘုတ်သို့ ကူးယူရန်
 shotPageCopied = ကူးထားသည်
 shotPageShareFacebook =
     .title = Facebook ပေါ်သို့ မျှဝေပါ
@@ -134,15 +136,7 @@ shotPageBackToHomeButton =
     .title = အဖွင့်စာမျက်နှာ
 shotPageAllShotsButton =
     .title = ရိုက်ကူးထားသော ပုံများ
-shotPageAllShots = ရိုက်ကူးထားသော ပုံများ
-shotPageDownload = ဆွဲယူပါ
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = ပုံဆွဲရန်
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = စိတ်ကြိုက်
-shotPageDelete = ဖျက်ရန်
 shotPageScreenshotsDescription = Screenshots ကို ရိုးရှင်းစေရန် ပြုလုပ်ထားသည်။ Firefox ကနေ ထွက်ခွာစရာ မလိုပဲ မျက်နှာပြင်ပုံဖမ်းချက်များကို ဖမ်းယူ၊ သိမ်းဆည်း၊ မျှဝေပါ။
-shotPageUpsellFirefox = ယခုပင် Firefox ကို ရယူပါ
 shotPageDMCAMessage = ဖောက်ဖျက်မှုတစ်ခုခုဖြင့် အဆိုတင်သွင်းမှုကြောင့် ဒီရိုက်ချက်အား မရရှိနိုင်တော့ပါ
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = နောက်ထပ်အချက်အလက်များ တောင်းဆိုလိုပါက { $dmca } သို့ ကျေးဇူးပြု၍ အီးမေးလ်ပို့ပါ။
@@ -266,6 +260,13 @@ textToolCancelButton = မလုပ်ဆောင်တော့ပါ
 textToolInputPlaceholder =
     .placeholder = မင်္ဂလာပါ
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = တစ်ခုခု မှားသွားသည်
+copyImageErrorMessage = သင့်ဖမ်းယူချက်ကို ကလစ်ဘုတ်ပေါ်သို့ မကူးယူနိုင်ပါ။
+
 ## Settings Page
 
 settingsDisconnectButton = မချိတ်ဆက်ပါ
@@ -292,8 +293,6 @@ shotIndexPageSearchResultsTitle = ကိုယ်ပိုင်ရိုက်�
 shotIndexPageErrorRendering = စာမျက်နှာ မှားယွင်းမှု: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = ကိုယ်ပိုင်ရိုက်ချက်များ ရှာဖွေပါ
-shotIndexPageSearchButton =
-    .title = ရှာဖွေပါ
 shotIndexPageNoShotsMessage = သိမ်းဆဲထားသောရိုက်ချက်များမရှိပါ
 shotIndexPageNoShotsInvitation = ဆက်လက်သွားပြီး ဖန်တီးပါ
 shotIndexPageLookingForShots = သင့်ရိုက်ချက်များ ကြည့်ရှုခြင်း
@@ -308,17 +307,18 @@ shotIndexPagePreviousPage =
     .title = ပြီးခဲ့သောစာမျက်နှာ
 shotIndexPageNextPage =
     .title = ရှေ့လာမည့်စာမျက်နှာ
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = ဒီရိုက်ချက်သက်တမ်းကုန်ဆုံးရက်မရှိပါ
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = ယခုဖမ်းယူချက်သည် အကြိုက်ဆုံးရိုက်ကူးချက် မဟုတ်ပါ။ ထို့ပြင် ၎င်းပုံ၏ သိမ်းဆည်းမှုသက်တမ်း ကုန်ဆုံးပါမည်။
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = ယခုပုံသည် ရိုက်ကူးသူအကြိုက် ပုံဖြစ်ပြီး သက်တမ်း မကုန်ဆုံးပါ။
+shotIndexSyncedShot =
+    .title = ဖမ်းယူချက်ကို အခြားကိရိယာတွင် ရိုက်ကူးထားသည်။
+shotIndexAlertErrorFavoriteShot = အကြိုက်ဆုံးရိုက်ကူးချက်များ၏ အခြေအနေကို မှတ်တမ်းတင်ရာတွင် အမှား ဖြစ်ပေါ်ခဲ့သည်
 
 ## Delete Confirmation Dialog
 
