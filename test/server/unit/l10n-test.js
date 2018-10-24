@@ -51,7 +51,7 @@ describe("l10n", () => {
     });
   });
   describe("getIsRtl", () => {
-    it("should be truthy for he, ar, fa", () => {
+    it("should be truthy for he, ar, fa, ur", () => {
       assert(l10n.getIsRtl(["he-IL", "en-US"]));
     });
     it("should be falsy for other locales", () => {

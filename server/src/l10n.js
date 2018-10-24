@@ -87,7 +87,7 @@ exports.getStrings = function(locales) {
 exports.getIsRtl = function(locales) {
   const availableLocales = exports.getUserLocales(locales);
   if (availableLocales && availableLocales.length > 0) {
-    return /^(he|ar|fa)$/.test(availableLocales[0]);
+    return /^(he|ar|fa|ur)$/.test(availableLocales[0]);
   }
   return false;
 };
