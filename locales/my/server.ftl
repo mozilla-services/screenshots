@@ -67,6 +67,7 @@ homePageSaveShare = သိမ်းပြီးမျှဝေရန်
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageShaveShareFavoriteDescription = အကောင်းဆုံးရိုက်ကူးချက်ကို မှတ်သားပါ။ ထို့နောက် အွန်လိုင်း Screenshots မှတ်တမ်းတွင် သိမ်းဆည်းပါ။ အလွယ်တကူ မျှဝေနိုင်ရန်အတွက် Firefox သည် ရိုက်ကူးချက်၏ လင့်ခ်ကို ကလစ်ဘုတ်ပေါ်သို့ ကူးယူပေးပါမည်။ မှတ်တမ်းရှိ ရိုက်ကူးချက်များသည် နှစ်ပတ်ပြည့်လျှင် အလိုအလျောက် သက်တမ်းကုန်ပါမည်။ သို့သော်လည်း သင် အလိုမရှိပါက ဖျက်နိုင်သည် သို့မဟုတ် နှစ်သက်ရာများကို ကြာရှည်စွာ သိမ်းထားရန် ရွေးချယ်နိုင်သည်။
 homePageSignInTitle = နေရာတိုင်းမှာ ရှိနေမည့် သင့်ဖမ်းယူချက်များ
+homePageSignInDescription = Firefox ကို အသုံးပြုသည့် နေတိုင်းမှာ သင့် ရိုက်ကူးချက်များကို အသုံးပြုရန် Firefox Account နှင့် Screenshots သို့ ဝင်ရောက်ပါ။ အပိုဆုအနေနှင့် အကြိုက်ဆုံးရိုက်ကူးချက်များကို အမြဲ သိမ်းထားနိုင်သည်။
 homePageLegalLink = ဥပဒေရေးရာ
 homePagePrivacyLink = ကိုယ်ရေးလုံခြုံမှု
 homePageTermsLink = စည်းမျဉ်းများ
