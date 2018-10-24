@@ -97,19 +97,26 @@ exports.ShotPageHeader = class ShotPageHeader extends React.Component {
     );
   }
 
+  renderShotActions() {
+    return (
+      this.props.shotActions ?
+        <div className="shot-alt-actions">{this.props.shotActions}</div> : null
+    );
+  }
+
   render() {
     const myShotsText = this.renderMyShotsText();
     const signin = this.renderFxASignIn();
     const shotInfo = this.renderShotInfo();
+    const shotActions = this.renderShotActions();
 
     return (
       <Header shouldGetFirefox={this.props.shouldGetFirefox} isOwner={this.props.isOwner}
               hasFxa={this.props.isFxaAuthenticated}>
         { myShotsText }
         { shotInfo }
-        <div className="shot-alt-actions">
+        { shotActions }
         { this.props.children }
-        </div>
         { signin }
       </Header>
     );
@@ -117,12 +124,13 @@ exports.ShotPageHeader = class ShotPageHeader extends React.Component {
 };
 
 exports.ShotPageHeader.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   isOwner: PropTypes.bool,
   shot: PropTypes.object,
   isFxaAuthenticated: PropTypes.bool,
   expireTime: PropTypes.number,
   shouldGetFirefox: PropTypes.bool,
+  shotActions: PropTypes.array,
   staticLink: PropTypes.func,
 };
 
