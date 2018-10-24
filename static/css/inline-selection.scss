@@ -586,6 +586,7 @@ $very-light-grey: #ededed;
 
   button {
     @include flex-container(column, flex-end, center);
+    color: #3e3d40;
     background-color: #f5f5f5;
     background-position: center top;
     background-repeat: no-repeat;
