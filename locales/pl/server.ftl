@@ -77,7 +77,7 @@ homePageCookiesLink = Ciasteczka
 
 leavePageRemoveAllData = Usuń wszystkie dane
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Aby usunąć konto, Firefox Screenshots musi być zainstalowane
+leavePageErrorAuthRequired = Usunięcie konta wymaga zainstalowania Firefox Screenshots lub zalogowania na koncie Firefoksa
 leavePageErrorGeneric = Wystąpił błąd
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Twoje dane w Firefox Screenshots zostaną trwale usunięte.
