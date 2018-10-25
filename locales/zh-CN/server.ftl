@@ -77,7 +77,7 @@ homePageCookiesLink = Cookie
 
 leavePageRemoveAllData = 移除全部数据
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = 您必须已安装 Firefox Screenshots 才能删除账户
+leavePageErrorAuthRequired = 您必须已安装 Firefox Screenshots 或者已登录 Firefox 账号才能删除您的账号
 leavePageErrorGeneric = 发生错误
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = 这将永久删除您的 Firefox Screenshots 数据。
