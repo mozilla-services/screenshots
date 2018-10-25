@@ -159,7 +159,7 @@ class Body extends React.Component {
       <div>
         <Localized id="shotIndexAlertErrorFavoriteShot">
           <div id="shotIndexAlertErrorFavoriteShot" hidden></div>
-        </Localized>,
+        </Localized>
         <Localized id="shotIndexPageErrorDeletingShot">
           <div id="shotIndexPageErrorDeletingShot" hidden></div>
         </Localized>

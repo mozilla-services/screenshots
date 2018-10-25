@@ -214,12 +214,19 @@ exports.TextTool = class TextTool extends React.Component {
     }
     const styles = window.getComputedStyle(this.textInput.current);
     const FONT_SIZE = parseInt(styles["font-size"], 10);
+    let line_height = styles["line-height"];
+
+    // Depending on the user agent computed styles
+    // line-height can have value as normal
+    if (line_height.toLowerCase() === "normal") {
+      line_height = 1.1 * FONT_SIZE;
+    }
 
     // Due to line-height differences of how fonts are rendered across platforms
     // adjust text y position to one-third of difference of line-height and font-size
-    const ADJUST_VERTICAL_SHIFT = (parseFloat(styles["line-height"]) - FONT_SIZE) / 3;
+    const ADJUST_VERTICAL_SHIFT = (parseFloat(line_height) - FONT_SIZE) / 3;
     const x = this.state.left + parseFloat(styles["padding-left"]);
-    const y = this.state.top + TEXT_INPUT_PADDING + parseFloat(styles["line-height"]) / 2 + ADJUST_VERTICAL_SHIFT;
+    const y = this.state.top + TEXT_INPUT_PADDING + parseFloat(line_height) / 2 + ADJUST_VERTICAL_SHIFT;
 
     const textCanvas = document.createElement("canvas");
     textCanvas.width = this.props.baseCanvas.width;

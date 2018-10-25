@@ -81,7 +81,7 @@ exports.DeleteShotButton = class DeleteShotButton extends React.Component {
 
     let deleteButtonStyle = null;
     if (this.props.isIcon) {
-      deleteButtonStyle = `button transparent trash ${deletePanelOpenClass}`;
+      deleteButtonStyle = `button transparent icon-trash ${deletePanelOpenClass}`;
     } else {
       deleteButtonStyle = `button nav-button transparent ${deletePanelOpenClass}`;
     }

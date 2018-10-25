@@ -1,5 +1,12 @@
 .delete-shot-button {
   position: relative;
+  .icon-trash {
+    z-index: 1;
+     img {
+       width: 20px;
+       height: 20px;
+     }
+  }
 }
 
 .delete-confirmation-dialog {
