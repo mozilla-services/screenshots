@@ -101,6 +101,7 @@
     "test": "bin/test-helpers/make_addon_with_unavailable_server && mocha test/ test/server/unit/*",
     "test:selenium": "bin/test-helpers/make_addon_with_unavailable_server && mocha test/test.js",
     "test:server": "make .venv && make server && cd test/server && ../../.venv/bin/pytest",
+    "test:accessibility": "pytest test/accessibility --driver Firefox -srx --axe --verbose",
     "make_versions_exact": "node bin/build-scripts/make_versions_exact.js",
     "update_outdated": "david update && npm run make_versions_exact && npm update && npm outdated",
     "fill_database": "make .venv && ./.venv/bin/python  ./bin/load_test_exercise.py -q --little-image --create=50 --read-shot=0 --read-my-shots=0 --search=0 --new-account http://localhost:10080",
