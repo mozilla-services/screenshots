@@ -15,7 +15,7 @@ exports.AdBanner = class AdBanner extends React.Component {
   render() {
     let bannerContent = null;
 
-    if (this.props.shouldGetFirefox) {
+    if (this.props.shouldGetFirefox && !this.props.isOwner) {
       const upsellLink = <a className="upsellLink"
         href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition&utm_content=from-shot"
         onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a>;
@@ -24,7 +24,7 @@ exports.AdBanner = class AdBanner extends React.Component {
             Screenshots made simple. Take, save and share screenshots without leaving Firefox. {upsellLink}
           </p>
         </Localized>;
-    } else if (this.props.isOwner && !this.props.hasFxa) {
+    } else if (!this.props.hasFxa) {
       bannerContent = <Localized id="bannerMessage">
           <p>
             Sign in or sign up to sync shots across devices, save your favorite shots forever.

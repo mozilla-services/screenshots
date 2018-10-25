@@ -15,7 +15,7 @@ const queryParamModelPropertyMap = {
 };
 
 exports.launch = function(m) {
-  if (m.hasDeviceId) {
+  if (m.authenticated) {
     if (m.shots) {
       m.shots = m.shots.map((shot) => {
         const s = new AbstractShot(m.backend, shot.id, shot.json);
@@ -31,7 +31,7 @@ exports.launch = function(m) {
 
   if (window.wantsauth) {
     // Handle non-owner my shots page redirection
-    if (!m.hasDeviceId) {
+    if (!m.authenticated) {
       if (window.wantsauth.getAuthData() && !location.search.includes("reloaded")) {
         location.search = "reloaded";
         return;

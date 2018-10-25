@@ -6,12 +6,12 @@ exports.createModel = function(req) {
     title,
     docTitle: title,
   };
+
   return db.select(`
     SELECT accounts.avatarurl, accounts.nickname, accounts.email FROM accounts, devices
-    WHERE accounts.id = devices.accountid
-          AND devices.id = $1
+    WHERE accounts.id = $1
     `,
-    [req.deviceId]
+    [req.accountId]
   ).then((rows) => {
     if (rows.length) {
       model.accountInfo = {
