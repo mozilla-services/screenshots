@@ -77,7 +77,7 @@ homePageCookiesLink = Cookies
 
 leavePageRemoveAllData = Remover todos os dados
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Precisa de ter o Firefox Screenshots instalado para apagar a sua conta
+leavePageErrorAuthRequired = Precisa de ter o Firefox Screenshots instalado ou sessão iniciada no Contas Firefox para apagar a sua conta
 leavePageErrorGeneric = Ocorreu um erro
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Isto irá apagar permanentemente todos os seus dados do Firefox Screenshots.
