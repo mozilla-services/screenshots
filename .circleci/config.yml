@@ -90,8 +90,6 @@ jobs:
       - run:
           name: Run Accessibility Tests
           command: |
-            pip install -U pip
-            pip install -r ./bin/require.pip
             export PATH=~/firefox:$PATH
             FIREFOX_CHANNEL=NIGHTLY MOZ_HEADLESS=1
             npm run test:accessibility
