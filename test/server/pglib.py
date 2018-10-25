@@ -12,7 +12,8 @@ from base64 import urlsafe_b64encode
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 pg_vars_path = os.path.join(dir_path, "..", "..", "bin", "pg_vars")
-pg_vars_out = subprocess.check_output(pg_vars_path)
+pg_vars_out = subprocess.check_output(pg_vars_path).decode("ascii")
+print(("result: %r" % pg_vars_out))
 parts = [line.partition('=') for line in shlex.split(pg_vars_out)]
 pg_vars = {name: val for name, _, val in parts}
 

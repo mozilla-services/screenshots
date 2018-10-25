@@ -1,4 +1,4 @@
-import urlparse
+import urllib.parse
 from clientlib import ScreenshotsClient
 import random
 import requests
@@ -13,9 +13,9 @@ def test_put_auth():
     first_user.login()
     second_user.login()
     shot_url = first_user.create_shot(docTitle="A_TEST_SITE_1")
-    shot_id = urlparse.urlsplit(shot_url).path.strip("/")
+    shot_id = urllib.parse.urlsplit(shot_url).path.strip("/")
     shot_page = first_user.read_shot(shot_url)
-    print(first_user.read_shot(shot_url)["clip_url"], shot_page["clip_url"])
+    print((first_user.read_shot(shot_url)["clip_url"], shot_page["clip_url"]))
     assert first_user.read_shot(shot_url)["clip_content"] == shot_page["clip_content"]
     assert "A_TEST_SITE_1" in shot_page["page"]
     try:
@@ -38,7 +38,7 @@ def test_update():
     shot_url = user.create_shot(docTitle="A_TEST_SITE_1", image_index=0)
     shot_page = user.read_shot(shot_url)
     assert "A_TEST_SITE_1" in shot_page["page"]
-    shot_id = urlparse.urlsplit(shot_url).path.strip("/")
+    shot_id = urllib.parse.urlsplit(shot_url).path.strip("/")
     user.create_shot(shot_id=shot_id, docTitle="A_TEST_SITE_2", image_index=1)
     later_shot_page = user.read_shot(shot_url)
     assert "A_TEST_SITE_2" in later_shot_page["page"]

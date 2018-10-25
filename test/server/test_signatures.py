@@ -1,6 +1,6 @@
-from __future__ import print_function
+
 from clientlib import ScreenshotsClient
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 
 def test_download_key():
@@ -39,8 +39,8 @@ def test_scopes():
     assert resp.headers.get("Content-Disposition")
     mixed_up = "%s?download=%s&sig=%s" % (
         download_url.split("?")[0],
-        urllib.quote(abtests),
-        urllib.quote(abtests_sig),
+        urllib.parse.quote(abtests),
+        urllib.parse.quote(abtests_sig),
     )
     resp = user.session.get(mixed_up)
     assert not resp.headers.get("Content-Disposition")

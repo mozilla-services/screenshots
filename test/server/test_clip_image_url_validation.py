@@ -1,4 +1,4 @@
-from urlparse import urljoin
+from urllib.parse import urljoin
 from clientlib import (
     make_example_shot,
     make_random_id,
@@ -26,7 +26,7 @@ def test_invalid_clip_image_url_not_saved():
             shot_data,
             json=shot_json,
         )
-        print(resp.text)
+        print((resp.text))
         assert resp.status_code == 500  # assertion failure on clip image url
 
 
@@ -53,7 +53,7 @@ def test_edit_to_set_invalid_clip_image_url_fails():
             urljoin(user.backend, "/api/save-edit"),
             {"shotId": shot_id, "url": invalid_url, "_csrf": csrf},
         )
-        print(resp.text)
+        print((resp.text))
         assert resp.status_code == 400
 
         user.delete_shot(shot_url)

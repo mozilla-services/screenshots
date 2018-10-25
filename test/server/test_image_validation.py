@@ -1,4 +1,4 @@
-from urlparse import urljoin
+from urllib.parse import urljoin
 from clientlib import (
     make_example_shot,
     make_random_id,
@@ -39,7 +39,7 @@ def test_invalid_data_image():
             shot_data,
             json=shot_json,
         )
-        print(resp.text)
+        print((resp.text))
         assert resp.status_code == 500
 
 
@@ -56,7 +56,7 @@ def test_invalid_data_image_decoded():
             shot_data,
             json=shot_json,
         )
-        print(resp.text)
+        print((resp.text))
         assert resp.status_code == 500
 
 
@@ -73,7 +73,7 @@ def test_invalid_data_url():
             shot_data,
             json=shot_json,
         )
-        print(resp.text)
+        print((resp.text))
         assert resp.status_code == 500
 
 

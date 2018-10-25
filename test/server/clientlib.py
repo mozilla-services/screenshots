@@ -2,7 +2,7 @@ import os
 import re
 import contextlib
 import requests
-from urlparse import urljoin
+from urllib.parse import urljoin
 import json
 import uuid
 import random
@@ -10,7 +10,7 @@ import time
 from pglib import attach_device
 
 example_images = {}
-execfile(os.path.normpath(os.path.join(__file__, "../../../bin/load_test_exercise_images.py")), example_images)
+exec(compile(open(os.path.normpath(os.path.join(__file__, "../../../bin/load_test_exercise_images.py"))).read(), os.path.normpath(os.path.join(__file__, "../../../bin/load_test_exercise_images.py")), 'exec'), example_images)
 example_images = example_images["example_images"]
 
 

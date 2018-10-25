@@ -1,5 +1,5 @@
 import os
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import clientlib
 import time
 import atexit
@@ -148,18 +148,18 @@ def restart_server(**extra_env):
         env_print = ' (%s)' % ' '.join(env_print)
     else:
         env_print = ''
-    print('  Starting server%s' % env_print)
-    server = run('./bin/run-server --no-auto', cwd=project_base, env=env, stdout=server_out, async=True)
+    print(('  Starting server%s' % env_print))
+    server = run('./bin/run-server --no-auto', cwd=project_base, env=env, stdout=server_out, async_=True)
     server_options = extra_env
     time.sleep(3)
     text = []
     while True:
         if server.commands[0].process and server.commands[0].poll():
-            print('    Server exited with code %s' % server.commands[0].poll())
+            print(('    Server exited with code %s' % server.commands[0].poll()))
             text.extend(server_out.readlines())
             for line in text:
-                print('      %s' % line.rstrip())
-            print("    %s" % ("-" * 60))
+                print(('      %s' % line.rstrip()))
+            print(("    %s" % ("-" * 60)))
             raise Exception("Server didn't start")
         line = server_out.readline()
         if line:
@@ -173,10 +173,10 @@ def restart_server(**extra_env):
 
 
 def show_server_output():
-    print("  Server output: %s" % ("-" * 35))
+    print(("  Server output: %s" % ("-" * 35)))
     for line in server_out.readlines():
-        print("    {}".format(line.rstrip()))
-    print("  %s" % ("-" * 50))
+        print(("    {}".format(line.rstrip())))
+    print(("  %s" % ("-" * 50)))
 
 
 def stop_server():
@@ -202,7 +202,7 @@ atexit.register(stop_server)
 
 
 def get_url(url, expect=None):
-    result = urllib.urlopen(url)
+    result = urllib.request.urlopen(url)
     if expect and result.getcode() != expect:
         raise Exception("GET {} returned status {}".format(url, result.getcode()))
     return result.read()

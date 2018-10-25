@@ -1,5 +1,5 @@
 from clientlib import ScreenshotsClient, screenshots_session
-from urlparse import urljoin, urlsplit
+from urllib.parse import urljoin, urlsplit
 import json
 import random
 import re
@@ -41,7 +41,7 @@ def test_leave_screenshots_with_invalid_csrftoken_fails():
             urljoin(user.backend, "/leave-screenshots/leave"),
             json={"_csrf": "bad-csrf-token"})
 
-        print(resp.text)
+        print((resp.text))
         assert resp.status_code == 403
 
 
@@ -54,7 +54,7 @@ def test_leave_screenshots_without_csrftoken_fails():
         resp = user.session.post(
             urljoin(user.backend, "/leave-screenshots/leave"))
 
-        print(resp.text)
+        print((resp.text))
         assert resp.status_code == 403
 
 
@@ -156,7 +156,7 @@ def test_delete_shot_with_invalid_csrftoken_fails():
         resp = user.session.post(
             urljoin(user.backend, "/api/delete-shot"),
             {"id": shot_id, "_csrf": "bad-csrf-token"})
-        print(resp.text)
+        print((resp.text))
         assert resp.status_code == 403  # Bad CSRF Token
 
         user.delete_shot(shot_url)  # cleanup
@@ -169,7 +169,7 @@ def test_delete_shot_without_csrftoken_fails():
         resp = user.session.post(
             urljoin(user.backend, "/api/delete-shot"),
             {"id": shot_id})
-        print(resp.text)
+        print((resp.text))
         assert resp.status_code == 403  # Bad CSRF Token
 
         user.delete_shot(shot_url)  # cleanup
@@ -190,7 +190,7 @@ def test_shot_set_expiration_with_invalid_csrftoken_fails():
         resp = user.session.post(
             urljoin(user.backend, "/api/set-expiration"),
             {"id": shot_id, "expiration": "60", "_csrf": "bad-csrf-token"})
-        print(resp.text)
+        print((resp.text))
         assert resp.status_code == 403  # Bad CSRF Token
 
         user.delete_shot(shot_url)  # cleanup
@@ -203,7 +203,7 @@ def test_shot_set_expiration_without_csrftoken_fails():
         resp = user.session.post(
             urljoin(user.backend, "/api/set-expiration"),
             {"id": shot_id, "expiration": "60"})
-        print(resp.text)
+        print((resp.text))
         assert resp.status_code == 403  # Bad CSRF Token
 
         user.delete_shot(shot_url)  # cleanup
@@ -224,7 +224,7 @@ def test_shot_set_title_with_invalid_csrftoken_fails():
         resp = user.session.post(
             urljoin(urljoin(user.backend, "/api/set-title/"), shot_id),
             {"id": shot_id, "title": "new title", "_csrf": "bad-csrf-token"})
-        print(resp.text)
+        print((resp.text))
         assert resp.status_code == 403  # Bad CSRF Token
 
         user.delete_shot(shot_url)  # cleanup
@@ -237,7 +237,7 @@ def test_shot_set_title_without_csrftoken_fails():
         resp = user.session.post(
             urljoin(urljoin(user.backend, "/api/set-title/"), shot_id),
             {"id": shot_id, "title": "new title"})
-        print(resp.text)
+        print((resp.text))
         assert resp.status_code == 403  # Bad CSRF Token
 
         user.delete_shot(shot_url)  # cleanup
@@ -261,7 +261,7 @@ def test_shot_edit_with_invalid_csrftoken_fails():
         resp = user.session.post(
             urljoin(user.backend, '/api/save-edit'),
             body)
-        print(resp.text)
+        print((resp.text))
         assert resp.status_code == 403  # Bad CSRF Token
 
         user.delete_shot(shot_url)  # cleanup
@@ -277,7 +277,7 @@ def test_shot_edit_without_csrftoken_fails():
         resp = user.session.post(
             urljoin(user.backend, '/api/save-edit'),
             body)
-        print(resp.text)
+        print((resp.text))
         assert resp.status_code == 403  # Bad CSRF Token
 
         user.delete_shot(shot_url)  # cleanup
@@ -291,7 +291,7 @@ def test_disconnect_device_with_valid_csrftoken_ok():
         resp = user.session.post(
             urljoin(user.backend, '/api/disconnect-device/'),
             {"_csrf": csrf})
-        print(resp.text)
+        print((resp.text))
         assert resp.status_code == 200  # ok?
 
         user.delete_shot(shot_url)  # cleanup
@@ -302,7 +302,7 @@ def test_disconnect_device_with_invalid_csrftoken_fails():
         resp = user.session.post(
             urljoin(user.backend, '/api/disconnect-device/'),
             {"_csrf": "bad-token"})
-        print(resp.text)
+        print((resp.text))
         assert resp.status_code == 403  # Bad CSRF Token
 
 
@@ -310,7 +310,7 @@ def test_disconnect_device_without_csrftoken_fails():
     with screenshots_session() as user:
         resp = user.session.post(
             urljoin(user.backend, '/api/disconnect-device/'))
-        print(resp.text)
+        print((resp.text))
         assert resp.status_code == 403  # Bad CSRF Token
 
 
@@ -323,7 +323,7 @@ def test_login_with_invalid_headers():
         data=dict(secret=unauthed_user.secret,
                   deviceInfo=json.dumps(unauthed_user.deviceInfo)))
 
-    print resp.text
+    print(resp.text)
     assert resp.status_code == 403  # Invalid CSRF Headers
 
 
@@ -337,7 +337,7 @@ def test_register_with_invalid_headers():
                   secret=unauthed_user.secret,
                   deviceInfo=json.dumps(unauthed_user.deviceInfo)))
 
-    print resp.text
+    print(resp.text)
     assert resp.status_code == 403  # Invalid CSRF Headers
 
 

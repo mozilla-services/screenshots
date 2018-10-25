@@ -1,6 +1,6 @@
 from clientlib import ScreenshotsClient, screenshots_session
-import urlparse
-from urlparse import urljoin
+import urllib.parse
+from urllib.parse import urljoin
 import random
 import requests
 from requests import HTTPError
@@ -16,7 +16,7 @@ def test_put_large_image():
     try:
         try:
             user.create_shot(pad_image_to_length=100 * 1000 * 1000)
-        except HTTPError, e:
+        except HTTPError as e:
             if e.response.status_code != 413:
                 raise
     finally:
@@ -29,7 +29,7 @@ def test_bad_id():
     try:
         try:
             user.create_shot(shot_id="!!!/test.com")
-        except HTTPError, e:
+        except HTTPError as e:
             if e.response.status_code != 400:
                 raise
     finally:
@@ -65,7 +65,7 @@ def test_landing_page():
 def test_creating_page():
     with screenshots_session() as user:
         shot_url = user.create_shot(docTitle="A_TEST_SITE_1", image_index=0)
-        shot_id = urlparse.urlsplit(shot_url).path.strip("/")
+        shot_id = urllib.parse.urlsplit(shot_url).path.strip("/")
 
         resp = user.get_uri("/creating/" + shot_id)
         assert resp.status_code == 200
