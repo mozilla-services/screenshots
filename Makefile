@@ -90,9 +90,9 @@ build/%.html: %.html
 .PHONY: addon
 addon: npm set_backend set_sentry webextension/manifest.json addon_locales webextension/build/selection.js webextension/build/shot.js webextension/build/thumbnailGenerator.js webextension/build/inlineSelectionCss.js webextension/build/raven.js webextension/build/onboardingCss.js webextension/build/onboardingHtml.js webextension/build/buildSettings.js
 
-$(VENV): bin/require.pip
+$(VENV): requirements.txt
 	virtualenv -p python2.7 $(VENV)
-	. $(VENV)/bin/activate && pip install -r bin/require.pip
+	. $(VENV)/bin/activate && pip install -r requirements.txt
 
 .PHONY: flake8
 flake8: $(VENV)
