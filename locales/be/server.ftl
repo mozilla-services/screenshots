@@ -77,7 +77,7 @@ homePageCookiesLink = Кукі
 
 leavePageRemoveAllData = Выдаліць усе дадзеныя
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Каб выдаліць уліковы запіс, у вас павінен быць усталяваны Firefox Screenshots
+leavePageErrorAuthRequired = Для выдалення вашага ўліковага запісу трэба каб у вас быў усталяваны Firefox Screenshots, або каб вы ўвайшлі ў уліковы запіс Firefox
 leavePageErrorGeneric = Здарылася памылка
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Гэта дзеянне назаўжды выдаліць усе вашы дадзеныя Firefox Screenshots.
