@@ -65,7 +65,9 @@ homePageCapturePage = Vytvorte snímku celej stránky
 homePageCapturePageDescription = Pre zachytenie celej stránky použite tlačidlo v pravom hornom rohu. Tlačidlom Uložiť viditeľnú časť vyberiete a uložíte časť stránky, ktorú práve vidíte a tlačidlom Uložiť celú stránku zachytíte všetko, čo na stránke je.
 homePageSaveShare = Uložte a zdieľajte
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Po vytvorení snímky ju Firefox nahrá do vašej knižnice snímok v službe Screenshots a odkaz na ňu vám skopíruje do vašej schránky. Snímky automaticky ukladáme na dva týždne, vy ich však môžete kedykoľvek odstrániť či upraviť ich dobu platnosti.
+homePageShaveShareFavoriteDescription = Urobte snímku u uložte si ju do svojej online knižnice. Firefox skopíruje do vašej schránky odkaz, aby vám ešte uľahčil zdieľanie. Snímky v knižnici sú automaticky mazané po dvoch týždňoch, ale vy ich môžete kedykoľvek odstrániť skôr alebo naopak ich platnosť predĺžiť.
+homePageSignInTitle = Vaše snímky všade s vami
+homePageSignInDescription = Ak chcete mať prístup ku svojim snímkom z iných zariadení alebo ich ukladať natrvalo, prihláste sa do služby Screenshots so svojim účtom Firefox.
 homePageLegalLink = Právne informácie
 homePagePrivacyLink = Súkromie
 homePageTermsLink = Podmienky používania
@@ -75,7 +77,7 @@ homePageCookiesLink = Cookies
 
 leavePageRemoveAllData = Odstrániť všetky údaje
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Na vymazanie svojho účtu musíte mať nainštalovanú službu Firefox Screenshots
+leavePageErrorAuthRequired = Ak chcete odstrániť svoj účet, musíte mať nainštalovaný Firefox Screenshots alebo sa musíte prihlásiť k účtu Firefox.
 leavePageErrorGeneric = Vyskytla sa chyba
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Toto natrvalo vymaže zo služby Firefox Screenshots všetky vaše údaje.
