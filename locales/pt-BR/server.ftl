@@ -12,6 +12,14 @@ gScreenshotsDescription = Capturas de tela de forma simples. Capture, salve e co
 
 ## Header
 
+buttonSettings =
+    .title = Configurações
+buttonSignIn =
+    .title = Entrar
+screenshotsLogo =
+    .title = Página inicial do Screenshots
+bannerMessage = Entre ou cadastre-se para acessar suas capturas de tela entre dispositivos e salvar seus favoritos para sempre.
+bannerUpsell = { gScreenshotsDescription } <a>Baixe o Firefox agora mesmo</a>
 
 ## Footer
 
@@ -19,6 +27,8 @@ gScreenshotsDescription = Capturas de tela de forma simples. Capture, salve e co
 footerLinkMozilla = Mozilla
 footerLinkTerms = Termos
 footerLinkPrivacy = Política de Privacidade
+footerReportShot = Reportar captura
+    .title = Reportar esta captura por abuso, spam ou outros problemas
 footerLinkFaqs = Perguntas frequentes
 footerLinkDMCA = Reportar infrações de IP
 footerLinkDiscourse = Enviar opinião
@@ -55,7 +65,9 @@ homePageCapturePage = Capturar uma página
 homePageCapturePageDescription = Utilize os botões no canto superior direito para capturar telas inteiras. O botão Salvar Área Visível irá capturar a área que você vê sem rolar a página, e Salvar Página Inteira irá capturar toda a página.
 homePageSaveShare = Salvar e compartilhar
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Quando você captura uma tela, o Firefox envia a captura para a sua biblioteca on-line no Screenshots e copia o link para sua área de transferência. Armazenamos automaticamente suas capturas por duas semanas, mas você pode excluir capturas a qualquer momento ou mudar a data de validade para mantê-las em sua biblioteca por mais tempo.
+homePageShaveShareFavoriteDescription = Tire sua melhor captura de tela e salve na biblioteca on-line do Screenshots, então, o Firefox copiará o link para a sua área de transferência para fácil compartilhamento. As capturas de tela na biblioteca expiram automaticamente após duas semanas, mas você pode apagá-las a qualquer momento ou escolher mantê-las por mais tempo.
+homePageSignInTitle = Suas capturas de tela em qualquer lugar
+homePageSignInDescription = Entre no Screenshots com a sua Conta Firefox para acessar suas capturas de tela em qualquer lugar que utilize o Firefox. Bônus adicional: você também pode salvar suas capturas de tela favoritas para sempre.
 homePageLegalLink = Jurídico
 homePagePrivacyLink = Privacidade
 homePageTermsLink = Termos
@@ -65,7 +77,7 @@ homePageCookiesLink = Cookies
 
 leavePageRemoveAllData = Remover todos os dados
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Você deve ter o Firefox Screenshots instalado para remover sua conta
+leavePageErrorAuthRequired = Você deve ter o Firefox Screenshots instalado ou conectado à conta do Firefox para excluir sua conta
 leavePageErrorGeneric = Ocorreu um erro
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Isso irá apagar permanentemente todos os seus dados do Firefox Screenshots.
@@ -119,6 +131,12 @@ shotPageDownloadShot =
     .title = Baixar
 shotPageEditButton =
     .title = Editar esta imagem
+shotPagefavoriteButton =
+    .title = Adicionar esta captura de tela aos favoritos
+shotPageBackToHomeButton =
+    .title = Página inicial
+shotPageAllShotsButton =
+    .title = Todas capturas de tela
 shotPageScreenshotsDescription = Capturas de tela de forma simples. Capture, salve e compartilhe telas sem sair do Firefox.
 shotPageDMCAMessage = Essa captura não está mais disponível devido a reclamação de Direitos Autorais de terceiros.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -183,6 +201,12 @@ errorThirdPartyCookiesEnabled = Se tirou esta captura e não consegue excluí-la
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Anote!
+promoMessage = As ferramentas de edição atualizadas permitem que você recorte, destaque e até adicione texto à sua captura de tela.
+promoLink = Faça um teste
+promoCloseButton =
+    .title = Fechar notificação
 
 ## Annotations
 
@@ -247,6 +271,8 @@ textToolInputPlaceholder =
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = Algo deu errado
+copyImageErrorMessage = Não foi possível copiar a captura para a área de transferência
 
 ## Settings Page
 
@@ -279,6 +305,8 @@ shotIndexPageNoShotsInvitation = Vamos, crie algumas.
 shotIndexPageLookingForShots = Procurando por suas capturas...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Não encontramos capturas que correspondam com sua busca.
+shotIndexPageMyShotsButton =
+    .title = Minhas capturas de tela
 shotIndexPageClearSearchButton =
     .title = Limpar pesquisa
 shotIndexPageConfirmShotDelete = Excluir esta captura?
@@ -286,6 +314,18 @@ shotIndexPagePreviousPage =
     .title = Página anterior
 shotIndexPageNextPage =
     .title = Próxima página
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Esta captura de tela expirará pois não foi marcada como favorita
+# This is the tooltip for a "heart" symbol in the upper top corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Esta captura de tela não expira pois foi marcada como favorita
+shotIndexSyncedShot =
+    .title = Captura obtida em outro dispositivo
+shotIndexAlertErrorFavoriteShot = Erro ao atualizar o status da captura de tela favorita
 
 ## Delete Confirmation Dialog
 
