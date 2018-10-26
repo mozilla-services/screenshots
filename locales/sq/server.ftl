@@ -64,8 +64,6 @@ homePageCaptureRegionDescription = Klikoni dhe tërhiqeni që të përzgjidhni f
 homePageCapturePage = Fotografoni një Faqe
 homePageCapturePageDescription = Përdorni butonat në cepin e sipërm djathtas që të fotografoni faqe të plota. Përmes butonit Ruaj Sa Duket do të fotografohet fusha që mund të shihni pa bërë rrëshqitje në faqe, dhe Ruaj Faqen e Plotë do të fotografojë gjithçka në faqe.
 homePageSaveShare = Ruajeni dhe Ndajeni me të Tjerët
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Kur bëni një shkrepje, Firefox-i e poston foton tuaj te fototeka juaj <em>online</em> Screenshots dhe e kopjon lidhjen te e papastra juaj. E depozitojmë vetvetiu foton e ekrani për dy javë, por mund t’i fshini kurdo apo të ndryshoni kohën e skadimit  për t’i mbajtur më gjatë në fototekën tuaj.
 homePageLegalLink = Ligjore
 homePagePrivacyLink = Privatësi
 homePageTermsLink = Kushte
@@ -74,8 +72,6 @@ homePageCookiesLink = Cookies
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Hiqni Krejt të Dhënat
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Që të mund të fshini llogarinë tuaj, duhet të keni Firefox Screenshots të instaluar
 leavePageErrorGeneric = Ndodhi një gabim
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Kështu do të fshihen përgjithmonë krejt të dhënat tuaja për Firefox Screenshots.
@@ -92,7 +88,7 @@ notFoundPageDescription = S’u gjet faqe.
 ## Shot page
 
 # This is the HTML title tag of the page
-shotPageTitle = Fot ekrani: { $originalTitle }
+shotPageTitle = Foto ekrani: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Gabim në ruajtjen e skadimit
 shotPageAlertErrorDeletingShot = Gabim në fshirjen e fotos
 shotPageAlertErrorUpdatingTitle = Gabim në ruajtjen e titullit
