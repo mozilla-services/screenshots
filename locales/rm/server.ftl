@@ -66,6 +66,8 @@ homePageCapturePageDescription = Utilisescha ils buttuns sisum a dretga per foto
 homePageSaveShare = Memorisar e cundivider
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageShaveShareFavoriteDescription = Piglia tes meglier maletg. Al memorisescha lura en la biblioteca online da Screenshots e Firefox copiescha la colliaziun en tes archiv provisoric per che ti al possias cundivider a moda simpla. Maletgs en la biblioteca scrodan automaticamain suenter duas emnas, ma ti als pos stizzar da tut temp u decider d'als preservar pli ditg.
+homePageSignInTitle = Tes maletgs dal visur adina tar tai
+homePageSignInDescription = T'annunzia cun tes conto da Firefox tar Screenshots per acceder a tes maletgs dal visur, dapertut nua che ti utiliseschas Firefox. E sco bonus: ti pos era memorisar tes maletgs preferids per adina.
 homePageLegalLink = Infurmaziuns giuridicas
 homePagePrivacyLink = Protecziun da datas
 homePageTermsLink = Cundiziuns d'utilisaziun
@@ -75,7 +77,7 @@ homePageCookiesLink = Cookies
 
 leavePageRemoveAllData = Stizzar tut las datas
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Firefox Screenshots sto esser installà per pudair stizzar il conto
+leavePageErrorAuthRequired = Ti stos avair installà Firefox Screenshots u esser annunzià cun il conto da Firefox per pudair stizzar tes conto
 leavePageErrorGeneric = Ina errur è succedida
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Questa operaziun stizza definitivamain tut tias datas da Firefox Screenshots.
@@ -323,6 +325,7 @@ shotIndexFavoriteIcon =
     .title = Quest maletg è in favurit e na scroda betg
 shotIndexSyncedShot =
     .title = Maletg fatg cun in auter apparat
+shotIndexAlertErrorFavoriteShot = Errur cun actualisar il status dal maletg favurit
 
 ## Delete Confirmation Dialog
 
