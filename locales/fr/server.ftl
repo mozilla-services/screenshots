@@ -77,7 +77,7 @@ homePageCookiesLink = Cookies
 
 leavePageRemoveAllData = Supprimer toutes les données
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Firefox Screenshots doit être installé pour pouvoir procéder à la suppression du compte.
+leavePageErrorAuthRequired = Firefox Screenshots doit être installé ou connecté à un compte Firefox pour supprimer votre compte
 leavePageErrorGeneric = Une erreur s’est produite
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Cette action supprimera définitivement l’ensemble de vos données Firefox Screenshots.
