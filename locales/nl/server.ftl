@@ -77,7 +77,7 @@ homePageCookiesLink = Cookies
 
 leavePageRemoveAllData = Alle gegevens verwijderen
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = U moet Firefox Screenshots hebben geïnstalleerd om uw account te verwijderen
+leavePageErrorAuthRequired = U moet Firefox Screenshots hebben geïnstalleerd of bij uw Firefox-account zijn aangemeld om uw account te verwijderen
 leavePageErrorGeneric = Er is een fout opgetreden
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Hierdoor worden al uw Firefox Screenshots-gegevens definitief verwijderd.
