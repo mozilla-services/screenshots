@@ -77,7 +77,7 @@ homePageCookiesLink = Cookies
 
 leavePageRemoveAllData = Барлық деректерді өшіру
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Тіркелгіңізді өшіру үшін, сізде Firefox скриншоттары орнатылған болуы тиіс
+leavePageErrorAuthRequired = Тіркелгіңізді өшіру үшін Firefox скриншоттары орнатылған болуы немесе Firefox тіркелгісіне кіруіңіз керек
 leavePageErrorGeneric = Қате орын алды
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Бұл әрекет сіздің Firefox скриншоттары деректердің барлығын толығымен өшіреді.
