@@ -126,17 +126,17 @@ class ShareButtonPanel extends React.Component {
     return <div id="share-buttons-panel" className={className} ref={shareDiv => this.shareDiv = shareDiv} style={{top: this.state.top, left: this.state.left}}>
       <div className="wrapper row-wrap share-buttons">
         <Localized id="shotPageShareFacebook" attrs={{title: true}}>
-          <a title="Share to Facebook wall or message" onClick={ this.onClickShareButton.bind(this, "facebook", "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl)) }>
+          <a title="Share to Facebook wall or message" href="#" onClick={ this.onClickShareButton.bind(this, "facebook", "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl)) }>
             <img src={ this.props.staticLink("/static/img/btn-fb.svg") } />
           </a>
         </Localized>
         <Localized id="shotPageShareTwitter" attrs={{title: true}}>
-          <a title="Share to a tweet" onClick={ this.onClickShareButton.bind(this, "twitter", "https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl)) }>
+          <a title="Share to a tweet" href="#" onClick={ this.onClickShareButton.bind(this, "twitter", "https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl)) }>
             <img src={ this.props.staticLink("/static/img/btn-twitter.svg") } />
           </a>
         </Localized>
         <Localized id="shotPageSharePinterest" attrs={{title: true}}>
-          <a title="Share to Pinterest" onClick={ this.onClickShareButton.bind(this, "pinterest", "https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" + encodeURIComponent(this.props.shot.title)) }>
+          <a title="Share to Pinterest" href="#" onClick={ this.onClickShareButton.bind(this, "pinterest", "https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" + encodeURIComponent(this.props.shot.title)) }>
             <img src={ this.props.staticLink("/static/img/btn-pinterest.svg") } />
           </a>
         </Localized>
