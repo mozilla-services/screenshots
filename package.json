@@ -47,7 +47,7 @@
     "react-dom": "16.5.2",
     "react-masonry-component": "6.2.1",
     "rimraf": "2.6.2",
-    "universal-analytics": "0.4.17",
+    "universal-analytics": "0.4.20",
     "uuid": "3.3.2",
     "valid-url": "1.0.9"
   },
