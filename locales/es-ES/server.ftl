@@ -9,15 +9,15 @@ gHomeLink = Inicio
 gNoShots =
     .alt = No se han encontrado capturas
 gScreenshotsDescription = Hemos simplificado las capturas de pantalla. Haz, guarda y comparte capturas de pantalla sin salir de Firefox.
-gSettings = Ajustes
-gSignIn = Iniciar sesión
 
 ## Header
 
-signInButton =
-    .aria-label = Iniciar sesión
-settingsButton =
-    .aria-label = Ajustes
+buttonSettings =
+    .title = Ajustes
+buttonSignIn =
+    .title = Iniciar sesión
+screenshotsLogo =
+    .title = Página de inicio de Screenshots
 
 ## Footer
 
@@ -60,8 +60,6 @@ homePageCaptureRegionDescription = Haz clic y arrastra para seleccionar el área
 homePageCapturePage = Captura una página
 homePageCapturePageDescription = Utiliza los botones de la parte superior derecha para capturar páginas completas. El botón Guardar área visible capturará lo que puedes ver sin deslizarte; Guardar página completa guardará todo lo que aparece en la página.
 homePageSaveShare = Guardar y compartir
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Cuando hagas una captura, Firefox la publica en tu historial en línea y copia el enlace en el portapapeles. Se guardarán automáticamente durante dos semanas, pero puedes eliminarlas cuando quieras o cambiar la fecha de expiración para guardarlas durante más tiempo.
 homePageLegalLink = Legal
 homePagePrivacyLink = Privacidad
 homePageTermsLink = Términos
@@ -70,8 +68,6 @@ homePageCookiesLink = Cookies
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Eliminar todos los datos
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Tienes que tener instalado Firefox Screenshots para eliminar la cuenta
 leavePageErrorGeneric = Se produjo un error
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Esta acción eliminará de forma permanente todos tus datos de Firefox Screenshots.
@@ -95,7 +91,6 @@ shotPageAlertErrorUpdatingTitle = Error al guardar el título
 shotPageConfirmDelete = ¿Estás seguro de que quieres eliminarla de forma permanente?
 shotPageShareButton =
     .title = Compartir
-shotPageCopy = Copiar
 shotPageCopied = Copiada
 shotPageShareFacebook =
     .title = Compartir en Facebook
@@ -120,17 +115,13 @@ shotPageExpiredMessage = Esta captura ha expirado.
 shotPageExpiredMessageDetails = Esta es la página de la que se originó en un principio:
 shotPageDeleteButton =
     .title = Eliminar esta captura
-shotPageAbuseButton =
-    .title = Denunciar esta captura por abuso, spam u otro problema
 shotPageDownloadShot =
     .title = Descargar
 shotPageEditButton =
     .title = Editar esta imagen
 shotPagefavoriteButton =
     .title = Elegir como favorita esta foto
-shotPageDownload = Descargar
 shotPageScreenshotsDescription = Hemos simplificado las capturas de pantalla. Haz, guarda y comparte capturas de pantalla sin salir de Firefox.
-shotPageUpsellFirefox = Obtén Firefox ahora
 shotPageDMCAMessage = Esta captura ya no está disponible por una reclamación de propiedad intelectual de terceros.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Envía un correo a { $dmca } para solicitar más información.
@@ -260,6 +251,11 @@ textToolCancelButton = Cancelar
 textToolInputPlaceholder =
     .placeholder = Hola
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+
 ## Settings Page
 
 settingsDisconnectButton = Desconectar
@@ -286,8 +282,6 @@ shotIndexPageSearchResultsTitle = Mis capturas: buscar { $searchTerm }
 shotIndexPageErrorRendering = Error al renderizar la página: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Buscar en mis capturas
-shotIndexPageSearchButton =
-    .title = Buscar
 shotIndexPageNoShotsMessage = No hay capturas guardadas.
 shotIndexPageNoShotsInvitation = Vamos, haz algunas.
 shotIndexPageLookingForShots = Buscando en tus capturas...
@@ -300,13 +294,7 @@ shotIndexPagePreviousPage =
     .title = Página anterior
 shotIndexPageNextPage =
     .title = Página siguiente
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Esta captura no caduca
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
