@@ -65,7 +65,9 @@ homePageCapturePage = Chụp một trang
 homePageCapturePageDescription = Sử dụng các nút ở phía trên bên phải để chụp toàn bộ trang. Nút Lưu Ghi nhớ sẽ chụp khu vực bạn có thể xem mà không cần di chuyển, và Lưu toàn bộ Trang sẽ chụp mọi thứ trên trang.
 homePageSaveShare = Lưu và chia sẻ
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Khi bạn chụp, Firefox đăng ảnh chụp màn hình của bạn lên thư viện Ảnh chụp màn hình trực tuyến của bạn và sao chép liên kết tới clipboard của bạn. Chúng tôi tự động lưu ảnh chụp màn hình của bạn trong hai tuần, nhưng bạn có thể xóa ảnh chụp bất kỳ lúc nào hoặc thay đổi ngày hết hạn để giữ chúng trong thư viện của bạn lâu hơn.
+homePageShaveShareFavoriteDescription = Chụp ảnh tốt nhất của bạn. Sau đó lưu nó vào thư viện Ảnh chụp màn hình trực tuyến và Firefox sao chép liên kết vào clipboard của bạn để dễ dàng chia sẻ. Các bức ảnh trong thư viện sẽ tự động hết hạn sau hai tuần, nhưng bạn có thể xóa chúng bất cứ lúc nào hoặc chọn giữ chúng lâu hơn.
+homePageSignInTitle = Ảnh chụp của bạn ở mọi nơi
+homePageSignInDescription = Đăng nhập vào Screenshots bằng Tài khoản Firefox của bạn để truy cập các ảnh của bạn khi sử dụng Firefox. Một phần thưởng thêm: bạn cũng có thể lưu các ảnh yêu thích của bạn mãi mãi.
 homePageLegalLink = Thông tin pháp lý
 homePagePrivacyLink = Chính sách riêng tư
 homePageTermsLink = Điều khoản
@@ -75,7 +77,7 @@ homePageCookiesLink = Cookie
 
 leavePageRemoveAllData = Xóa toàn bộ dữ liệu
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Bạn phải cài đặt Firefox Screenshots để xóa tài khoản của bạn
+leavePageErrorAuthRequired = Bạn phải cài đặt Firefox Screenshots hoặc đăng nhập vào Tài khoản Firefox để xóa tài khoản của bạn
 leavePageErrorGeneric = Đã xảy ra lỗi
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Thao tác này sẽ xóa vĩnh viễn tất cả dữ liệu Ảnh chụp màn hình Firefox của bạn.
