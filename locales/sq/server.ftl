@@ -64,6 +64,10 @@ homePageCaptureRegionDescription = Klikoni dhe tërhiqeni që të përzgjidhni f
 homePageCapturePage = Fotografoni një Faqe
 homePageCapturePageDescription = Përdorni butonat në cepin e sipërm djathtas që të fotografoni faqe të plota. Përmes butonit Ruaj Sa Duket do të fotografohet fusha që mund të shihni pa bërë rrëshqitje në faqe, dhe Ruaj Faqen e Plotë do të fotografojë gjithçka në faqe.
 homePageSaveShare = Ruajeni dhe Ndajeni me të Tjerët
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = Merrni qëllimin tuaj më të mirë. Pastaj ruajeni në bibliotekën e ekraneve në internet, dhe Firefox kopjon lidhjen në clipboard tuaj për ndarjen e lehtë. Shot në bibliotekë skadon automatikisht pas dy javësh, por ju mund t'i fshini ato në çdo kohë ose zgjidhni të mbani ato më gjatë.
+homePageSignInTitle = Fotot Tuaja të Ekranit, Kudo
+homePageSignInDescription = Hyni në Screebshots përmes Llogarisë tuaj Firefox, që të përdorni shkrepjet tuaja kudo që përdorni Firefox-in. Një e mirë shtesë: mund t’i ruani shkrepjet e parapëlqyera përgjithmonë.
 homePageLegalLink = Ligjore
 homePagePrivacyLink = Privatësi
 homePageTermsLink = Kushte
@@ -72,6 +76,8 @@ homePageCookiesLink = Cookies
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Hiqni Krejt të Dhënat
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = Që të fshini llogarinë tuaj, duhet të keni Firefox Screenshots të instaluar ose të keni bërë hyrjen në Llogarinë Firefox
 leavePageErrorGeneric = Ndodhi një gabim
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Kështu do të fshihen përgjithmonë krejt të dhënat tuaja për Firefox Screenshots.
