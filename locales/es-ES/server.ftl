@@ -18,6 +18,7 @@ buttonSignIn =
     .title = Iniciar sesión
 screenshotsLogo =
     .title = Página de inicio de Screenshots
+bannerUpsell = { gScreenshotsDescription } <a>Obtener Firefox ahora</a>
 
 ## Footer
 
@@ -25,6 +26,8 @@ screenshotsLogo =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Términos
 footerLinkPrivacy = Aviso de privacidad
+footerReportShot = Informar de la captura
+    .title = Informar de esta captura por abuso, spam u otros problemas
 footerLinkFaqs = FAQ
 footerLinkDMCA = Denunciar violación de IP
 footerLinkDiscourse = Enviar comentario
@@ -91,6 +94,8 @@ shotPageAlertErrorUpdatingTitle = Error al guardar el título
 shotPageConfirmDelete = ¿Estás seguro de que quieres eliminarla de forma permanente?
 shotPageShareButton =
     .title = Compartir
+shotPageCopyButton =
+    .title = Copiar la imagen al portapapeles
 shotPageCopied = Copiada
 shotPageShareFacebook =
     .title = Compartir en Facebook
@@ -121,6 +126,10 @@ shotPageEditButton =
     .title = Editar esta imagen
 shotPagefavoriteButton =
     .title = Elegir como favorita esta foto
+shotPageBackToHomeButton =
+    .title = Página de inicio
+shotPageAllShotsButton =
+    .title = Todas las capturas
 shotPageScreenshotsDescription = Hemos simplificado las capturas de pantalla. Haz, guarda y comparte capturas de pantalla sin salir de Firefox.
 shotPageDMCAMessage = Esta captura ya no está disponible por una reclamación de propiedad intelectual de terceros.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -255,6 +264,7 @@ textToolInputPlaceholder =
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = Algo no ha ido bien
 
 ## Settings Page
 
@@ -287,6 +297,8 @@ shotIndexPageNoShotsInvitation = Vamos, haz algunas.
 shotIndexPageLookingForShots = Buscando en tus capturas...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = No encontramos ninguna captura que coincida con tu búsqueda.
+shotIndexPageMyShotsButton =
+    .title = Mis capturas
 shotIndexPageClearSearchButton =
     .title = Limpiar búsqueda
 shotIndexPageConfirmShotDelete = ¿Eliminar esta captura?
@@ -294,6 +306,10 @@ shotIndexPagePreviousPage =
     .title = Página anterior
 shotIndexPageNextPage =
     .title = Página siguiente
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Esta captura no está marcada como favorita y caducará
 # This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
