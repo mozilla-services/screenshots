@@ -11,12 +11,6 @@ import random
 random.seed(0)
 
 
-def image_setup():
-    for image in example_images:
-        valid_data_image = image['url']
-        return valid_data_image
-
-
 def user_setup():
     with screenshots_session() as user:
         shot_id = make_random_id() + "/test.com"
@@ -25,59 +19,82 @@ def user_setup():
         return (shot_data, shot_json, user)
 
 
-def test_invalid_data_image():
-    image = image_setup()
+def test_invalid_png_data_image():
+    image = example_images[0]['url']
     (shot_data, shot_json, user) = user_setup()
     valid_header = "data:image/png;base64,iVBORw0KGgo"
-    invalid_header = "data:image/png;base64,R0k"
-    if valid_header in image:
-        for clip_id in shot_json['clips']:
-            shot_json['clips'][clip_id]['image']['url'] = invalid_header
-            break
+    invalid_header = 'data:image/png;base64,R0k'
+    assert valid_header in image
 
-        resp = user.session.put(
-            shot_data,
-            json=shot_json,
-        )
-        print(resp.text)
-        assert resp.status_code == 500
+    clip_id = next(iter(shot_json['clips']))
+    shot_json['clips'][clip_id]['image']['url'] = invalid_header
+
+    resp = user.session.put(shot_data, json=shot_json,)
+    print(resp.text)
+    assert resp.status_code == 500
 
 
-def test_invalid_data_image_decoded():
-    image = image_setup()
+def test_invalid_png_data_image_decoded():
+    image = example_images[0]['url']
     (shot_data, shot_json, user) = user_setup()
-    if "iVBORw0KGgo" in image:
-        invalid_data_image = image.replace('iVBORw0KGgo', 'someIM4gEgo')
-        for clip_id in shot_json['clips']:
-            shot_json['clips'][clip_id]['image']['url'] = invalid_data_image
-            break
+    assert "iVBORw0KGgo" in image
 
-        resp = user.session.put(
-            shot_data,
-            json=shot_json,
-        )
-        print(resp.text)
-        assert resp.status_code == 500
+    invalid_data_image = 'data:image/png;base64,someIM4gEgo'
+
+    clip_id = next(iter(shot_json['clips']))
+    shot_json['clips'][clip_id]['image']['url'] = invalid_data_image
+
+    resp = user.session.put(shot_data, json=shot_json,)
+    print(resp.text)
+    assert resp.status_code == 500
 
 
 def test_invalid_data_url():
-    image = image_setup()
+    image = example_images[0]['url']
     (shot_data, shot_json, user) = user_setup()
-    if "data:image/png;base64" in image:
-        invalid_data_url = image.replace('data:image/png', 'data:image/foo')
-        for clip_id in shot_json['clips']:
-            shot_json['clips'][clip_id]['image']['url'] = invalid_data_url
-            break
+    assert "data:image/png;base64" in image
+    invalid_data_url = image.replace('data:image/png', 'data:image/foo')
 
-        resp = user.session.put(
-            shot_data,
-            json=shot_json,
-        )
-        print(resp.text)
-        assert resp.status_code == 500
+    clip_id = next(iter(shot_json['clips']))
+    shot_json['clips'][clip_id]['image']['url'] = invalid_data_url
+
+    resp = user.session.put(shot_data, json=shot_json,)
+    print(resp.text)
+    assert resp.status_code == 500
+
+
+def test_invalid_jpeg_data_image():
+    image = example_images[3]['url']
+    (shot_data, shot_json, user) = user_setup()
+    valid_header = "data:image/jpeg;base64,/9j/2wBDAAQDAwQDAwQEAwQFBAQ"
+    invalid_header = "data:image/jpeg;base64,BAAQ"
+    assert valid_header in image
+
+    clip_id = next(iter(shot_json['clips']))
+    shot_json['clips'][clip_id]['image']['url'] = invalid_header
+
+    resp = user.session.put(shot_data, json=shot_json,)
+    print(resp.text)
+    assert resp.status_code == 500
+
+
+def test_invalid_data_jpeg_image_decoded():
+    image = example_images[3]['url']
+    (shot_data, shot_json, user) = user_setup()
+    assert '/9j/2wBDAAQDAwQDAw' in image
+    invalid_data_image = 'data:image/jpeg;base64,someIM4gEt0Try'
+
+    clip_id = next(iter(shot_json['clips']))
+    shot_json['clips'][clip_id]['image']['url'] = invalid_data_image
+
+    resp = user.session.put(shot_data, json=shot_json,)
+    print(resp.text)
+    assert resp.status_code == 500
 
 
 if __name__ == "__main__":
-    test_invalid_data_image()
-    test_invalid_data_image_decoded()
+    test_invalid_jpeg_data_image()
+    test_invalid_png_data_image()
+    test_invalid_png_data_image_decoded()
+    test_invalid_data_jpeg_image_decoded()
     test_invalid_data_url()
