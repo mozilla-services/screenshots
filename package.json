@@ -36,7 +36,7 @@
     "multer": "1.4.1",
     "node-fetch": "2.2.0",
     "node-statsd": "0.1.1",
-    "nodemon": "1.18.4",
+    "nodemon": "1.18.5",
     "nodify-uuid": "0.0.1",
     "pg": "6.2.5",
     "pg-patcher": "0.4.0",
