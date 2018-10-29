@@ -77,7 +77,7 @@ homePageCookiesLink = Piškotki
 
 leavePageRemoveAllData = Odstrani vse podatke
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Za izbris računa morate imeti nameščen Firefox Screenshots
+leavePageErrorAuthRequired = Če želite izbrisati svoj račun, morate imeti nameščen Firefox Screenshots ali biti prijavljeni v Firefox Račun
 leavePageErrorGeneric = Prišlo je do napake
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = To bo trajno izbrisalo vse podatke Firefox Screenshots.
