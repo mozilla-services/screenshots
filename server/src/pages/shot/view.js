@@ -279,7 +279,7 @@ class Body extends React.Component {
     }
 
     return <reactruntime.BodyTemplate {...this.props}>
-      <div className="column-center full-height alt-color-scheme">
+      <div className="column-center full-height">
         <Localized id="gNoShots" attrs={{alt: true}}>
           <img src={ this.props.staticLink("/static/img/image-nope_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
         </Localized>
@@ -315,7 +315,7 @@ class Body extends React.Component {
     // Note: any attributes used here need to be preserved
     // in the render() function
     return <reactruntime.BodyTemplate {...this.props}>
-      <div className="column-center full-height alt-color-scheme">
+      <div className="column-center full-height">
         <img src={ this.props.staticLink("/static/img/image-expired_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
         <div className="alt-content">
           <Localized id="shotPageExpiredMessage">
