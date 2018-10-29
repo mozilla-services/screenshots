@@ -77,7 +77,7 @@ homePageCookiesLink = Cwcis
 
 leavePageRemoveAllData = Tynnu'r Holl Ddata
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Rhaid bod Firefox Screenshots wedi ei osod cyn dileu eich cyfrif
+leavePageErrorAuthRequired = Er mwyn dileu eich cyfrif rhaid eich bod â Firefox Screenshots wedi ei osod neu fod wedi mewngofnodi i'ch Cyfrif Firefox.
 leavePageErrorGeneric = Digwyddodd gwall
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Bydd hyn yn dileu'n barhaol eich holl data Firefox Screenshots.
