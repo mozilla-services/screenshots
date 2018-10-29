@@ -65,7 +65,9 @@ homePageCapturePage = Tangkap Laman
 homePageCapturePageDescription = Gunakan tombol di kanan atas untuk merekam seluruh laman. Tombol Simpan yang Terlihat akan menangkap area yang Anda lihat tanpa menggulir, dan Simpan Laman Sepenuhnya akan menangkap semua yang ada di laman.
 homePageSaveShare = Simpan dan Bagikan
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Ketika Anda menangkap gambar, Firefox mengirim tangkapan layar Anda ke perpustakaan Screenshots daring Anda dan menyalin tautannya ke papan klip. Kami menyimpannya secara otomatis selama dua minggu, tapi Anda dapat menghapus tangkapan kapanpun atau mengganti tanggal kedaluwarsa untuk menyimpannya lebih lama di perpustakaan Anda.
+homePageShaveShareFavoriteDescription = Ambil cuplikan terbaik Anda. Lalu simpan ke pustaka daring Screenshots, dan Firefox menyalin tautan ke papan klip agar mudah dibagikan. Cuplikan di dalam pustaka secara otomatis kadaluarsa setelah dua pekan, tetapi Anda dapat menghapusnya kapanpun atau menyimpannya lebih lama.
+homePageSignInTitle = Cuplikan Anda Di Mana Saja
+homePageSignInDescription = Masuk ke Screenshots menggunakan Firefox Account Anda untuk mengakses cuplikan Anda di mana saja Anda menggunakan Firefox. Bonus tambahan: Anda juga dapat menyimpan cuplikan favorit selamanya.
 homePageLegalLink = Legal
 homePagePrivacyLink = Privasi
 homePageTermsLink = Ketentuan
@@ -75,7 +77,7 @@ homePageCookiesLink = Kuki
 
 leavePageRemoveAllData = Hapus Semua Data
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Firefox Screenshots harus terpasang untuk menghapus akun Anda
+leavePageErrorAuthRequired = Anda harus memasang Firefox Screenshots atau masuk dengan Firefox Account untuk menghapus akun Anda
 leavePageErrorGeneric = Terjadi galat
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ini akan menghapus semua data Firefox Screenshots Anda secara permanen.
