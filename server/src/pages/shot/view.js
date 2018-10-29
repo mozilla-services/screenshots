@@ -397,17 +397,18 @@ class Body extends React.Component {
         cancelDeleteHandler={this.cancelDeleteHandler.bind(this)}
         staticLink={this.props.staticLink} key="delete-shot-button" />;
 
-      editButton = this.props.enableAnnotations ? <div className="edit-shot-button" key="edit-shot-button">
-        <Localized id="shotPageEditButton" attrs={{title: true}}>
-          <button className="button transparent nav-button"
-                  title="Edit this image"
-                  onClick={this.onClickEdit.bind(this)}
-                  ref={(edit) => { this.editButton = edit; }}>
-            <img src={this.props.staticLink("/static/img/icon-pen.svg")} />
-          </button>
-        </Localized>
-        <PromoDialog promoClose={this.promoClose.bind(this)} display={this.state.promoDialog} />
-        { highlight }
+      editButton = this.props.enableAnnotations && !this.props.isMobile ?
+        <div className="edit-shot-button" key="edit-shot-button">
+          <Localized id="shotPageEditButton" attrs={{title: true}}>
+            <button className="button transparent nav-button"
+                    title="Edit this image"
+                    onClick={this.onClickEdit.bind(this)}
+                    ref={(edit) => { this.editButton = edit; }}>
+              <img src={this.props.staticLink("/static/img/icon-pen.svg")} />
+            </button>
+          </Localized>
+          <PromoDialog promoClose={this.promoClose.bind(this)} display={this.state.promoDialog} />
+          { highlight }
         </div> : null;
 
       copyButton = <div className="copy-img-button" key="copy-img-button"
