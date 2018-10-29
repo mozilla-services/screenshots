@@ -90,10 +90,9 @@ exports.ShotPageHeader = class ShotPageHeader extends React.Component {
   renderFxASignIn() {
     if (this.props.isOwner) {
       return (
-        <div className="shot-fxa-signin">
-          <SignInButton isFxaAuthenticated={this.props.hasFxa} initialPage={this.props.shot.id}
-                        staticLink={this.props.staticLink} />
-        </div>
+        <SignInButton isFxaAuthenticated={this.props.hasFxa} initialPage={this.props.shot.id}
+                      staticLink={this.props.staticLink}
+                      hasFxaOnboardingDialog={this.props.hasFxaOnboardingDialog} />
       );
     }
     return null;
@@ -114,7 +113,7 @@ exports.ShotPageHeader = class ShotPageHeader extends React.Component {
 
     return (
       <Header shouldGetFirefox={this.props.shouldGetFirefox} isOwner={this.props.isOwner}
-              hasFxa={this.props.hasFxa}>
+              hasFxa={this.props.hasFxa} hasFxaOnboardingDialog={this.props.hasFxaOnboardingDialog}>
         { myShotsText }
         { shotInfo }
         { shotActions }
@@ -134,6 +133,7 @@ exports.ShotPageHeader.propTypes = {
   shouldGetFirefox: PropTypes.bool,
   shotActions: PropTypes.array,
   staticLink: PropTypes.func,
+  hasFxaOnboardingDialog: PropTypes.bool,
 };
 
 class EditableTitle extends React.Component {

@@ -316,6 +316,8 @@ These are events that an add-on user can encounter on a shot they own
 37. [x] Remove shot from favorites `web-unset-favorite/navbar`
 38. [x] Signin to Firefox Accounts `web/fxa-signin`
 39. [x] Signin to Firefox Accounts from banner `web/fxa-signin-ad-banner`
+40. [x] Signin to Firefox Accounts from onboarding promo `web/fxa-signin-onboarding-promo`
+41. [x] Click on dismiss of Firefox Accounts onboarding promo `web/onboarding-promo-closed`
 
 #### Shot Index (My Shots)
 
