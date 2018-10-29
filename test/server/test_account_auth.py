@@ -17,7 +17,7 @@ def get_url(url, expect=None):
 
 
 def setup_shot_on_device():
-    user = ScreenshotsClient()
+    user = ScreenshotsClient(hasAccount=True)
     user.login()
     shot_url = user.create_shot(docTitle="A_TEST_SITE_1")
     return {'user': user, 'shot_url': shot_url}

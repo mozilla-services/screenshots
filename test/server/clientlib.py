@@ -15,11 +15,15 @@ example_images = example_images["example_images"]
 
 
 class ScreenshotsBase(object):
-    def __init__(self, backend="http://localhost:10080"):
+
+    def __init__(self, backend="http://localhost:10080", hasAccount=None):
         self.backend = backend
         self.secret = make_uuid()
         self.session = requests.Session()
         self.session.headers.update({'Accept-Language': 'en-US'})
+        self.hasAccount = hasAccount
+        if hasAccount:
+            self.accountId = make_random_id()
 
     def login(self, account_id):
         # Logs the session in by first checking if a device is
@@ -96,11 +100,10 @@ class ScreenshotsBase(object):
 
 
 class ScreenshotsClient(ScreenshotsBase):
-    def __init__(self, backend="http://localhost:10080"):
-        ScreenshotsBase.__init__(self, backend="http://localhost:10080")
+    def __init__(self, backend="http://localhost:10080", hasAccount=None):
+        ScreenshotsBase.__init__(self, backend="http://localhost:10080", hasAccount=hasAccount)
         self.deviceInfo = make_device_info()
         self.deviceId = make_uuid()
-        self.accountId = make_random_id()
 
     def login(self):
         resp = self.session.post(
@@ -110,8 +113,10 @@ class ScreenshotsClient(ScreenshotsBase):
             resp = self.session.post(
                 urljoin(self.backend, "/api/register"),
                 data=dict(deviceId=self.deviceId, secret=self.secret, deviceInfo=json.dumps(self.deviceInfo)))
-            account_info = attach_device(self.deviceId, self.accountId)
-            self.session.cookies.update(account_info)
+            if self.hasAccount:
+                account_info = attach_device(self.deviceId, self.accountId)
+                self.session.cookies.update(account_info)
+
         resp.raise_for_status()
         return resp
 
@@ -245,11 +250,9 @@ def make_random_id():
 
 
 @contextlib.contextmanager
-def screenshots_session(backend=None):
-    if backend:
-        user = ScreenshotsClient(backend=backend)
-    else:
-        user = ScreenshotsClient()
+def screenshots_session(**kw):
+    user = ScreenshotsClient(**kw)
     user.login()
+
     yield user
     user.delete_account()
