@@ -91,7 +91,7 @@ exports.ShotPageHeader = class ShotPageHeader extends React.Component {
     if (this.props.isOwner) {
       return (
         <div className="shot-fxa-signin">
-          <SignInButton isFxaAuthenticated={this.props.isFxaAuthenticated} initialPage={this.props.shot.id}
+          <SignInButton isFxaAuthenticated={this.props.hasFxa} initialPage={this.props.shot.id}
                         staticLink={this.props.staticLink} />
         </div>
       );
@@ -114,7 +114,7 @@ exports.ShotPageHeader = class ShotPageHeader extends React.Component {
 
     return (
       <Header shouldGetFirefox={this.props.shouldGetFirefox} isOwner={this.props.isOwner}
-              hasFxa={this.props.isFxaAuthenticated}>
+              hasFxa={this.props.hasFxa}>
         { myShotsText }
         { shotInfo }
         { shotActions }
@@ -129,7 +129,7 @@ exports.ShotPageHeader.propTypes = {
   children: PropTypes.node,
   isOwner: PropTypes.bool,
   shot: PropTypes.object,
-  isFxaAuthenticated: PropTypes.bool,
+  hasFxa: PropTypes.bool,
   expireTime: PropTypes.number,
   shouldGetFirefox: PropTypes.bool,
   shotActions: PropTypes.array,

@@ -12,7 +12,6 @@ exports.createModel = function(req) {
   }
   const title = req.getText("shotPageTitle", {originalTitle: req.shot.title});
   const enableAnnotations = req.config.enableAnnotations;
-  const isFxaAuthenticated = req.accountId && req.accountId === req.shot.accountId;
   const copyImageErrorMessage = {
     title: req.getText("copyImageErrorTitle"),
     message: req.getText("copyImageErrorMessage"),
@@ -28,7 +27,6 @@ exports.createModel = function(req) {
     productName: req.config.productName,
     isExtInstalled: !!req.deviceId,
     isOwner: req.shot.isOwner,
-    isFxaAuthenticated,
     gaId: req.config.gaId,
     deviceId: req.deviceId,
     buildTime,
@@ -57,7 +55,6 @@ exports.createModel = function(req) {
     productName: req.config.productName,
     isExtInstalled: !!req.deviceId,
     isOwner: req.shot.isOwner,
-    isFxaAuthenticated,
     gaId: req.config.gaId,
     deviceId: req.deviceId,
     shotAccountId: req.shot.accountId,
