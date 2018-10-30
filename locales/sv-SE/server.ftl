@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Logga in
 screenshotsLogo =
     .title = Startsida för Screenshots
-bannerMessage = Logga in eller registrera dig för att få tillgång till dina bilder mellan enheter och spara dina favoriter för alltid.
+bannerSignIn = <a>Logga in eller registrera dig</a> för att komma åt dina bilder på enheter och spara dina favoriter för alltid.
 bannerUpsell = { gScreenshotsDescription } <a>Hämta Firefox nu</a>
 
 ## Footer
