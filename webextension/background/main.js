@@ -143,6 +143,32 @@ this.main = (function() {
     }));
   });
 
+  exports.onCommand = catcher.watchFunction((tab) => {
+    // just cribbing from onClickedContextMenu and onClicked. should these be DRY-ed up somehow?
+    catcher.watchPromise(hasSeenOnboarding.then(onboarded => {
+      if (!tab) {
+        // Not in a page/tab context, ignore
+        return;
+      }
+      if (!urlEnabled(tab.url)) {
+        if (!onboarded) {
+          sendEvent("goto-onboarding", "selection-button", {incognito: tab.incognito}); // TODO: shouldn't sendEvent differ for diferent inputs?
+          forceOnboarding();
+          return;
+        }
+        senderror.showError({
+          popupMessage: "UNSHOOTABLE_PAGE",
+        });
+        return;
+      }
+      // No need to catch() here because of watchPromise().
+      // eslint-disable-next-line promise/catch-or-return
+      toggleSelector(tab)
+        .then(() => sendEvent("start-shot", "keyboard-shortcut", {incognito: tab.incognito})); //TODO: this sendEvent is literally the only difference.
+      // ALSO TODO: add this new start-shot option to the metrics doc
+    }));
+  });
+
   function urlEnabled(url) {
     if (shouldOpenMyShots(url)) {
       return true;
