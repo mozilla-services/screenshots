@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Prihlásiť sa
 screenshotsLogo =
     .title = Domovská stránka
-bannerMessage = Ak chcete mať svoje snímky neustále so sebou alebo si ich chcete uložiť nastálo, zaregistrujte sa alebo sa prihláste.
+bannerSignIn = Pre prístup ku snímkam z iných zariadení alebo pre ich ukladanie sa, prosím, <a>prihláste alebo zaregistrujte</a>.
 bannerUpsell = { gScreenshotsDescription } <a>Prevezmite si Firefox hneď teraz</a>
 
 ## Footer
