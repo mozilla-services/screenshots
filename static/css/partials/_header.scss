@@ -9,12 +9,12 @@
 
   @include respond-to("large") {
     @include flex-container(row, center, center);
-    flex-basis: 96px;
+    flex-basis: $grid-unit * 4.8;
   }
 
   background-color: $light-default;
   display: flex;
-  flex-basis: 70px;
+  flex-basis: $grid-unit * 6.5;
   height: 100%;
   width: 100%;
 
