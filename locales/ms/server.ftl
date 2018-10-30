@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Daftar Masuk
 screenshotsLogo =
     .title = Laman Screenshots
-bannerMessage = Daftar masuk atau daftar untuk mengakses syot anda dalam semua peranti dan menyimpan kegemaran anda selamanya.
+bannerSignIn = <a>Daftar masuk atau mendaftar </a> untuk mengakses syot dalam peranti dan simpan syot kegemaran selama-lamanya.
 bannerUpsell = { gScreenshotsDescription } <a>Dapatkan Firefox sekarang</a>
 
 ## Footer
