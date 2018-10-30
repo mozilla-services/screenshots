@@ -22,8 +22,8 @@ def teardown_function(func):
     show_server_output()
 
 
-def make_session():
-    session = clientlib.ScreenshotsClient(SERVER_URL)
+def make_session(hasAccount=None):
+    session = clientlib.ScreenshotsClient(SERVER_URL, hasAccount=hasAccount)
     session.login()
     return session
 
@@ -39,7 +39,7 @@ def test_s3_upload():
 
 def test_s3_expire():
     restart_server()
-    session = make_session()
+    session = make_session(hasAccount=True)
     shot_url = session.create_shot()
     page = session.read_shot(shot_url)
     session.set_expiration(shot_url, 1)
@@ -66,7 +66,7 @@ def test_s3_delete():
 
 def test_s3_delete_after_expire():
     restart_server()
-    session = make_session()
+    session = make_session(hasAccount=True)
     shot_url = session.create_shot()
     page = session.read_shot(shot_url)
     session.set_expiration(shot_url, 1)
@@ -82,7 +82,7 @@ def test_s3_delete_after_expire():
 
 def test_s3_final_expire():
     restart_server(EXPIRED_RETENTION_TIME=1, CHECK_DELETED_INTERVAL="0.1")
-    session = make_session()
+    session = make_session(hasAccount=True)
     shot_url = session.create_shot()
     page = session.read_shot(shot_url)
     assert read_file(page["clip_url"]) is not None
@@ -95,7 +95,7 @@ def test_s3_final_expire():
 
 def test_s3_failed_delete():
     restart_server(EXPIRED_RETENTION_TIME=1, CHECK_DELETED_INTERVAL="0.1")
-    session = make_session()
+    session = make_session(hasAccount=True)
     shot_url = session.create_shot()
     page = session.read_shot(shot_url)
     assert read_file(page["clip_url"]) is not None

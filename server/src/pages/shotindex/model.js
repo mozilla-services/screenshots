@@ -8,7 +8,6 @@ exports.createModel = function(req) {
   }
   const serverModel = {
     title,
-    hasDeviceId: req.deviceId !== undefined,
     defaultSearch: query || null,
   };
   serverModel.shotsPerPage = req.shotsPerPage;

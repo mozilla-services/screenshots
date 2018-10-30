@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Přihlásit se
 screenshotsLogo =
     .title = Domovská stránka
-bannerMessage = Pro přístup ke snímkům z jiných zařízení nebo jejich ukládání se prosím přihlaste nebo zaregistrujte.
+bannerSignIn = Pro přístup ke snímkům z jiných zařízení nebo jejich ukládání se prosím <a>přihlaste nebo zaregistrujte</a>.
 bannerUpsell = { gScreenshotsDescription } <a>Získat Firefox</a>
 
 ## Footer
@@ -77,7 +77,7 @@ homePageCookiesLink = Cookies
 
 leavePageRemoveAllData = Odstranit všechna data
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Pro smazání vašeho účtu musíte mít nainstalován doplněk Firefox Screenshots.
+leavePageErrorAuthRequired = Chcete-li smazat svůj účet, musíte mít nainstalovaný Firefox Screenshots nebo se přihlásit k účtu Firefoxu.
 leavePageErrorGeneric = Nastala chyba
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Toto navždy smaže ze služby Firefox Screenshots všechna vaše data.

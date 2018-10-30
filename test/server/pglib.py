@@ -35,6 +35,31 @@ def attach_device(device_id, account_id):
     return {"accountid": account_id, "accountid.sig": account_id_hmac}
 
 
+def get_device_id(account_id):
+    dbname = pg_vars["PGDATABASE"] or pg_vars["PGUSER"]
+    conn = psycopg2.connect(dbname=dbname, user=pg_vars["PGUSER"], host=pg_vars["PGHOST"], port=pg_vars["PGPORT"])
+    conn.autocommit = True
+    cur = conn.cursor()
+    cur.execute("SELECT id FROM devices WHERE accountid = '" + account_id + "'")
+    data = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"deviceid": row[0] for row in data}
+
+
+def get_account_cookie_detail(account_id):
+    dbname = pg_vars["PGDATABASE"] or pg_vars["PGUSER"]
+    conn = psycopg2.connect(dbname=dbname, user=pg_vars["PGUSER"], host=pg_vars["PGHOST"], port=pg_vars["PGPORT"])
+    conn.autocommit = True
+    cur = conn.cursor()
+    cur.execute("SELECT key FROM signing_keys WHERE scope = 'auth' ORDER BY created DESC LIMIT 1")
+    key_row = cur.fetchone()
+    account_id_hmac = __get_hmac("accountid=%s" % account_id, key_row[0])
+    cur.close()
+    conn.close()
+    return {"accountid": account_id, "accountid.sig": account_id_hmac}
+
+
 def __get_hmac(val, key):
     h = hmac.new(key, None, hashlib.sha1)
     h.update(val)

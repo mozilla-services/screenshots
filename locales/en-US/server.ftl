@@ -15,7 +15,7 @@ buttonSignIn =
     .title = Sign In
 screenshotsLogo =
     .title = Screenshots Home
-bannerMessage = Sign in or sign up to access your shots across devices and save your favorites forever.
+bannerSignIn = <a>Sign in or sign up</a> to access your shots across devices and save your favorites forever.
 bannerUpsell = {gScreenshotsDescription} <a>Get Firefox now</a>
 
 ## Footer
@@ -74,7 +74,7 @@ homePageCookiesLink = Cookies
 
 leavePageRemoveAllData = Remove All Data
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = You must have Firefox Screenshots installed to delete your account
+leavePageErrorAuthRequired = You must have Firefox Screenshots installed or signed in to Firefox Account to delete your account
 leavePageErrorGeneric = An error occurred
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = This will permanently erase all of your Firefox Screenshots data.

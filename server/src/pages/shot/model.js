@@ -12,7 +12,6 @@ exports.createModel = function(req) {
   }
   const title = req.getText("shotPageTitle", {originalTitle: req.shot.title});
   const enableAnnotations = req.config.enableAnnotations;
-  const isFxaAuthenticated = req.accountId && req.accountId === req.shot.accountId;
   const copyImageErrorMessage = {
     title: req.getText("copyImageErrorTitle"),
     message: req.getText("copyImageErrorMessage"),
@@ -27,11 +26,9 @@ exports.createModel = function(req) {
     id: req.shot.id,
     productName: req.config.productName,
     isExtInstalled: !!req.deviceId,
-    isOwner: req.deviceId === req.shot.ownerId || isFxaAuthenticated,
-    isFxaAuthenticated,
+    isOwner: req.shot.isOwner,
     gaId: req.config.gaId,
     deviceId: req.deviceId,
-    authenticated: !!req.deviceId,
     buildTime,
     simple: false,
     shotDomain: req.url, // FIXME: should be a property of the shot
@@ -57,12 +54,10 @@ exports.createModel = function(req) {
     id: req.shot.id,
     productName: req.config.productName,
     isExtInstalled: !!req.deviceId,
-    isOwner: req.deviceId === req.shot.ownerId || isFxaAuthenticated,
-    isFxaAuthenticated,
+    isOwner: req.shot.isOwner,
     gaId: req.config.gaId,
     deviceId: req.deviceId,
     shotAccountId: req.shot.accountId,
-    authenticated: !!req.deviceId,
     shotDomain: req.url,
     urlIfDeleted: req.shot.urlIfDeleted,
     expireTime: req.shot.expireTime === null ? null : req.shot.expireTime.getTime(),

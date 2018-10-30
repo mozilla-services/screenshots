@@ -7,12 +7,12 @@ exports.SignInButton = class SignInButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displaySettings: props.isAuthenticated,
+      displaySettings: props.isFxaAuthenticated,
     };
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    return { displaySettings: nextProps.isAuthenticated };
+    return { displaySettings: nextProps.isFxaAuthenticated };
   }
 
   render() {
@@ -40,6 +40,6 @@ exports.SignInButton = class SignInButton extends React.Component {
 
 exports.SignInButton.propTypes = {
   initialPage: PropTypes.string,
-  isAuthenticated: PropTypes.bool,
+  isFxaAuthenticated: PropTypes.bool,
   staticLink: PropTypes.func,
 };

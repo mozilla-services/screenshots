@@ -77,7 +77,7 @@ homePageCookiesLink = Куки
 
 leavePageRemoveAllData = Удалить все данные
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Чтобы удалить ваш аккаунт, у вас должны быть установлен Firefox Screenshots
+leavePageErrorAuthRequired = Чтобы удалить свой аккаунт, вы должны сначала установить Firefox Screenshots или войти в Аккаунт Firefox.
 leavePageErrorGeneric = Произошла ошибка
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Это действие навсегда удалит все ваши данные Firefox Screenshots.

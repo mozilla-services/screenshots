@@ -10,7 +10,7 @@ This is a screenshot tool for Firefox. It is available in Firefox 56 and later v
 
 The project was initially launched through [Test Pilot](https://testpilot.firefox.com/) as [Page Shot](https://testpilot.firefox.com/experiments/page-shot).
 
-It is made up of both an add-on (using [WebExtensions](https://developer.mozilla.org/Add-ons/WebExtensions)) and a website using Node.js.  The add-on is in `addon/webextension/`, and the website is in `server/`
+It is made up of both an add-on (using [WebExtensions](https://developer.mozilla.org/Add-ons/WebExtensions)) and a website using Node.js.  The add-on is in `webextension/`, and the website is in `server/`
 
 Ian has been blogging about the [design, definition, and development process](http://www.ianbicking.org/tag/product-journal.html).
 
@@ -68,7 +68,9 @@ There is also documentation in [`docs/`](https://github.com/mozilla-services/scr
 
 ### Participation
 
-There is an IRC channel `#screenshots` on irc.mozilla.org (you can use [this link](https://kiwiirc.com/nextclient/irc.mozilla.org/pageshot) for chat access via the web if you do not otherwise use IRC).  There are [IRC logs available](http://logs.glob.uno/?c=pageshot).
+There is an IRC channel `#screenshots` on irc.mozilla.org (you can use [this link](https://kiwiirc.com/nextclient/irc.mozilla.org/screenshots) for chat access via the web if you do not otherwise use IRC).  There are [IRC logs available](https://mozilla.logbot.info/screenshots).
+
+If you'd like to contribute code, start with our [`good-first-issue` bugs](https://github.com/mozilla-services/screenshots/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22). If there aren't many of them, or they don't seem too interesting, the Stretch milestone contains things we'd like to get to, but aren't a high priority. If you're interested in working on an issue, it's a good idea to comment in the issue on github, or say hello on IRC, so that we can double-check that the issue is still good, provide any context you might need, and assign it to you.  
 
 Planning and ideation is happening in the [issue tracker](https://github.com/mozilla-services/screenshots/issues).  We have several [milestones](https://github.com/mozilla-services/screenshots/milestones):
 

@@ -7,58 +7,38 @@ import json
 import uuid
 import random
 import time
-from pglib import attach_device
+from pglib import attach_device, get_device_id, get_account_cookie_detail
 
 example_images = {}
 execfile(os.path.normpath(os.path.join(__file__, "../../../bin/load_test_exercise_images.py")), example_images)
 example_images = example_images["example_images"]
 
 
-class ScreenshotsClient(object):
+class ScreenshotsBase(object):
 
-    def __init__(self, backend="http://localhost:10080"):
+    def __init__(self, backend="http://localhost:10080", hasAccount=None):
         self.backend = backend
-        self.deviceInfo = make_device_info()
-        self.deviceId = make_uuid()
         self.secret = make_uuid()
-        self.accountId = make_random_id()
         self.session = requests.Session()
         self.session.headers.update({'Accept-Language': 'en-US'})
+        self.hasAccount = hasAccount
+        if hasAccount:
+            self.accountId = make_random_id()
 
-    def login(self):
-        resp = self.session.post(
-            urljoin(self.backend, "/api/login"),
-            data=dict(deviceId=self.deviceId, secret=self.secret, deviceInfo=json.dumps(self.deviceInfo)))
-        if resp.status_code == 404:
-            resp = self.session.post(
-                urljoin(self.backend, "/api/register"),
-                data=dict(deviceId=self.deviceId, secret=self.secret, deviceInfo=json.dumps(self.deviceInfo)))
-            account_info = attach_device(self.deviceId, self.accountId)
+    def login(self, account_id):
+        # Logs the session in by first checking if a device is
+        # associated with account_id and updating session with account cookie
+        device_id = get_device_id(account_id)
+        if device_id:
+            account_info = get_account_cookie_detail(account_id)
             self.session.cookies.update(account_info)
-        resp.raise_for_status()
-        return resp
+        return device_id
 
-    def delete_account(self):
-        page = self.session.get(self.backend + "/leave-screenshots/").text
-        csrf_match = re.search(r'<input.*name="_csrf".*value="([^"]*)"', page)
-        csrf = csrf_match.group(1)
-        resp = self.session.post(
-            urljoin(self.backend, "/leave-screenshots/leave"),
-            json={"_csrf": csrf})
-        resp.raise_for_status()
-
-    def create_shot(self, shot_id=None, **example_args):
-        if not shot_id:
-            shot_id = make_random_id() + "/test.com"
-        shot_url = urljoin(self.backend, shot_id)
-        shot_data = urljoin(self.backend, "data/" + shot_id)
-        shot_json = make_example_shot(self.deviceId, **example_args)
-        resp = self.session.put(
-            shot_data,
-            json=shot_json,
-        )
-        resp.raise_for_status()
-        return shot_url
+    def _get_id_from_url(self, url):
+        assert url.startswith(self.backend)
+        id = url[len(self.backend):]
+        id = id.strip('/')
+        return id
 
     def read_shot(self, url):
         # FIXME: should get at least the clip image subresource itself
@@ -95,6 +75,15 @@ class ScreenshotsClient(object):
             "download_url": download_url,
         }
 
+    def delete_shot(self, url):
+        shot_id = self._get_id_from_url(url)
+        csrf = self.read_shot(url)["csrf"]
+        assert csrf, "No CSRF found"
+        resp = self.session.post(
+            self.backend + "/api/delete-shot",
+            {"id": shot_id, "_csrf": csrf})
+        resp.raise_for_status()
+
     def set_expiration(self, url, seconds):
         shot_id = self._get_id_from_url(url)
         csrf = self.read_shot(url)["csrf"]
@@ -103,6 +92,55 @@ class ScreenshotsClient(object):
             self.backend + '/api/set-expiration',
             {"id": shot_id, "expiration": str(seconds), "_csrf": csrf})
         resp.raise_for_status()
+
+    def read_my_shots_json(self):
+        resp = self.session.get(urljoin(self.backend, "/shots?withdata=true&data=json"))
+        resp.raise_for_status()
+        return resp
+
+
+class ScreenshotsClient(ScreenshotsBase):
+    def __init__(self, backend="http://localhost:10080", hasAccount=None):
+        ScreenshotsBase.__init__(self, backend="http://localhost:10080", hasAccount=hasAccount)
+        self.deviceInfo = make_device_info()
+        self.deviceId = make_uuid()
+
+    def login(self):
+        resp = self.session.post(
+            urljoin(self.backend, "/api/login"),
+            data=dict(deviceId=self.deviceId, secret=self.secret, deviceInfo=json.dumps(self.deviceInfo)))
+        if resp.status_code == 404:
+            resp = self.session.post(
+                urljoin(self.backend, "/api/register"),
+                data=dict(deviceId=self.deviceId, secret=self.secret, deviceInfo=json.dumps(self.deviceInfo)))
+            if self.hasAccount:
+                account_info = attach_device(self.deviceId, self.accountId)
+                self.session.cookies.update(account_info)
+
+        resp.raise_for_status()
+        return resp
+
+    def delete_account(self):
+        page = self.session.get(self.backend + "/leave-screenshots/").text
+        csrf_match = re.search(r'<input.*name="_csrf".*value="([^"]*)"', page)
+        csrf = csrf_match.group(1)
+        resp = self.session.post(
+            urljoin(self.backend, "/leave-screenshots/leave"),
+            json={"_csrf": csrf})
+        resp.raise_for_status()
+
+    def create_shot(self, shot_id=None, **example_args):
+        if not shot_id:
+            shot_id = make_random_id() + "/test.com"
+        shot_url = urljoin(self.backend, shot_id)
+        shot_data = urljoin(self.backend, "data/" + shot_id)
+        shot_json = make_example_shot(self.deviceId, **example_args)
+        resp = self.session.put(
+            shot_data,
+            json=shot_json,
+        )
+        resp.raise_for_status()
+        return shot_url
 
     def set_title(self, url, new_title):
         shot_id = self._get_id_from_url(url)
@@ -123,21 +161,6 @@ class ScreenshotsClient(object):
             urljoin(self.backend, '/api/save-edit'),
             body)
         resp.raise_for_status()
-
-    def delete_shot(self, url):
-        shot_id = self._get_id_from_url(url)
-        csrf = self.read_shot(url)["csrf"]
-        assert csrf, "No CSRF found"
-        resp = self.session.post(
-            self.backend + "/api/delete-shot",
-            {"id": shot_id, "_csrf": csrf})
-        resp.raise_for_status()
-
-    def _get_id_from_url(self, url):
-        assert url.startswith(self.backend)
-        id = url[len(self.backend):]
-        id = id.strip('/')
-        return id
 
     def read_my_shots(self):
         resp = self.session.get(urljoin(self.backend, "/shots"))
@@ -227,11 +250,9 @@ def make_random_id():
 
 
 @contextlib.contextmanager
-def screenshots_session(backend=None):
-    if backend:
-        user = ScreenshotsClient(backend=backend)
-    else:
-        user = ScreenshotsClient()
+def screenshots_session(**kw):
+    user = ScreenshotsClient(**kw)
     user.login()
+
     yield user
     user.delete_account()

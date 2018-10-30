@@ -77,7 +77,7 @@ homePageCookiesLink = Çərəzlər
 
 leavePageRemoveAllData = Bütün məlumatlar silindi
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Hesabınızı silmək üçün Firefox Screenshots quraşdırılmış olmalıdır
+leavePageErrorAuthRequired = Hesabınızı silmək üçün Firefox Screenshots qurulu olmalıdır və ya Firefox Hesabınıza giriş etmiş olmalısınız
 leavePageErrorGeneric = Xəta baş verdi
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Bu bütün Firefox Screenshots məlumatlarınızı həmişəlik siləcək.

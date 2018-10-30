@@ -65,7 +65,9 @@ homePageCapturePage = Tüm sayfayı yakalama
 homePageCapturePageDescription = Sayfanın tamamını kaydetmek isterseniz sağ üst köşedeki düğmeleri kullanın. “Görünür alanı kaydet” düğmesi, sayfayı kaydırmadan pencerede gördüğünüz kısmı yakalar. “Tüm sayfayı kaydet” ise sayfadaki her şeyi yakalar.
 homePageSaveShare = Kaydetme ve paylaşma
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Bir ekran görüntüsünü kaydettiğinizde Firefox o görüntüyü internetteki Screenshots arşivinize yükler ve linkini kopyalar. Ekran görüntüleriniz otomatik olarak iki hafta saklanır ama görüntüleri istediğiniz zaman silebilir veya arşivinizde daha uzun süre tutmak isterseniz silinme tarihlerini değiştirebilirsiniz.
+homePageShaveShareFavoriteDescription = Ekran görüntünüzü çekin, sonra da çevrimiçi Screenshots arşinize kaydedin. Firefox, kolayca paylaşmanız için linki kendiliğinden kopyalar. Arşivinizdeki görüntüler iki hafta sonra otomatik olarak silinir ama onları istediğiniz zaman da silebilir veya daha uzun süre tutabilirsiniz.
+homePageSignInTitle = Görüntüleriniz her yerde
+homePageSignInDescription = Ekran görüntülerinize Firefox’u kullandığınız her yerden ulaşmak için Screenshots’a Firefox Hesabınızla giriş yapın. Sevdiğiniz ekran görüntülerini süresiz kaydetme olanağına da kavuşacaksınız.
 homePageLegalLink = Yasal Notlar
 homePagePrivacyLink = Gizlilik
 homePageTermsLink = Koşullar
@@ -75,7 +77,7 @@ homePageCookiesLink = Çerezler
 
 leavePageRemoveAllData = Tüm verileri sil
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Hesabınızı silebilmek için Firefox Screenshots yüklü olmalıdır
+leavePageErrorAuthRequired = Hesabınızı silmek için Firefox Screenshots’ı yüklemiş veya Firefox Hesabınıza giriş yapmış olmalısınız
 leavePageErrorGeneric = Bir hata oluştu
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Bu işlem, tüm Firefox Screenshots verilerinizi kalıcı olarak silecektir.

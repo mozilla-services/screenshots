@@ -77,7 +77,7 @@ homePageCookiesLink = ფუნთუშები
 
 leavePageRemoveAllData = ყველა მონაცემის წაშლა
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = ანგარიშის წასაშლელად აუცილებელია გეყენოთ Firefox Screenshots
+leavePageErrorAuthRequired = ანგარიშის წასაშლელად, აუცილებელია დაყენებული გქონდეთ Firefox Screenshots ან შესული იყოთ Firefox-ანგარიშზე.
 leavePageErrorGeneric = მოხდა შეცდომა
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = შედეგად, Firefox Screenshots-ის მონაცემები სამუდამოდ წაიშლება.

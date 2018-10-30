@@ -4,10 +4,10 @@
 
 ## Global phrases shared across pages, prefixed with 'g'
 
-gMyShots = Tangkapan Saya
+gMyShots = Cuplikan Saya
 gHomeLink = Beranda
 gNoShots =
-    .alt = Tidak ada tangkapan ditemukan
+    .alt = Tidak ada cuplikan ditemukan
 gScreenshotsDescription = Screenshots membuatnya sederhana. Ambil, simpan, dan bagikan tangkapan layar tanpa meninggalkan Firefox.
 
 ## Header
@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Masuk
 screenshotsLogo =
     .title = Beranda Screenshots
-bannerMessage = Masuk atau daftar untuk mengakses tangkapan layar Anda di semua perangkat dan simpan favorit Anda selamanya.
+bannerMessage = Masuk atau daftar untuk mengakses cuplikan layar Anda di semua perangkat dan simpan favorit Anda selamanya.
 bannerUpsell = { gScreenshotsDescription } <a>Dapatkan Firefox sekarang juga</a>
 
 ## Footer
@@ -27,8 +27,8 @@ bannerUpsell = { gScreenshotsDescription } <a>Dapatkan Firefox sekarang juga</a>
 footerLinkMozilla = Mozilla
 footerLinkTerms = Ketentuan
 footerLinkPrivacy = Kebijakan Privasi
-footerReportShot = Laporkan Tangkapan Layar
-    .title = Laporkan tangkapan layar ini karena penyalahgunaan, spam, dan masalah-masalah lainnya
+footerReportShot = Laporkan Cuplikan Layar
+    .title = Laporkan cuplikan layar ini karena penyalahgunaan, spam, dan masalah-masalah lainnya
 footerLinkFaqs = Pertanyaan Umum
 footerLinkDMCA = Laporkan Pelanggaran Hak Cipta
 footerLinkDiscourse = Kirim Saran
@@ -46,7 +46,7 @@ creatingPageWaitMessage = Menyimpan gambar Anda…
 ## Home page
 
 homePageDescription =
-    .content = Tangkapan layar intuitif dirancang langsung ke peramban. Tangkap, simpan, dan bagikan tangkapan layar saat Anda menjelajahi Web menggunakan Firefox.
+    .content = Cuplikan layar intuitif dirancang langsung ke peramban. Tangkap, simpan, dan bagikan cuplikan layar saat Anda menjelajahi Web menggunakan Firefox.
 homePageButtonMyShots = Buka Tangkapan Saya
 homePageTeaser = Segera Hadir…
 homePageDownloadFirefoxTitle = Firefox
@@ -65,7 +65,9 @@ homePageCapturePage = Tangkap Laman
 homePageCapturePageDescription = Gunakan tombol di kanan atas untuk merekam seluruh laman. Tombol Simpan yang Terlihat akan menangkap area yang Anda lihat tanpa menggulir, dan Simpan Laman Sepenuhnya akan menangkap semua yang ada di laman.
 homePageSaveShare = Simpan dan Bagikan
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Ketika Anda menangkap gambar, Firefox mengirim tangkapan layar Anda ke perpustakaan Screenshots daring Anda dan menyalin tautannya ke papan klip. Kami menyimpannya secara otomatis selama dua minggu, tapi Anda dapat menghapus tangkapan kapanpun atau mengganti tanggal kedaluwarsa untuk menyimpannya lebih lama di perpustakaan Anda.
+homePageShaveShareFavoriteDescription = Ambil cuplikan terbaik Anda. Lalu simpan ke pustaka daring Screenshots, dan Firefox menyalin tautan ke papan klip agar mudah dibagikan. Cuplikan di dalam pustaka secara otomatis kadaluarsa setelah dua pekan, tetapi Anda dapat menghapusnya kapanpun atau menyimpannya lebih lama.
+homePageSignInTitle = Cuplikan Anda Di Mana Saja
+homePageSignInDescription = Masuk ke Screenshots menggunakan Firefox Account Anda untuk mengakses cuplikan Anda di mana saja Anda menggunakan Firefox. Bonus tambahan: Anda juga dapat menyimpan cuplikan favorit selamanya.
 homePageLegalLink = Legal
 homePagePrivacyLink = Privasi
 homePageTermsLink = Ketentuan
@@ -75,7 +77,7 @@ homePageCookiesLink = Kuki
 
 leavePageRemoveAllData = Hapus Semua Data
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Firefox Screenshots harus terpasang untuk menghapus akun Anda
+leavePageErrorAuthRequired = Anda harus memasang Firefox Screenshots atau masuk dengan Firefox Account untuk menghapus akun Anda
 leavePageErrorGeneric = Terjadi galat
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ini akan menghapus semua data Firefox Screenshots Anda secara permanen.

@@ -176,7 +176,7 @@ def test_delete_shot_without_csrftoken_fails():
 
 
 def test_shot_set_expiration_with_valid_csrftoken_ok():
-    with screenshots_session() as user:
+    with screenshots_session(hasAccount=True) as user:
         shot_url = user.create_shot(docTitle="A_TEST_SITE_1")
         user.set_expiration(shot_url, 290)  # reads and uses csrf token from shot page
 
@@ -184,7 +184,7 @@ def test_shot_set_expiration_with_valid_csrftoken_ok():
 
 
 def test_shot_set_expiration_with_invalid_csrftoken_fails():
-    with screenshots_session() as user:
+    with screenshots_session(hasAccount=True) as user:
         shot_url = user.create_shot(docTitle="A_TEST_SITE_1")
         shot_id = user._get_id_from_url(shot_url)
         resp = user.session.post(
@@ -197,7 +197,7 @@ def test_shot_set_expiration_with_invalid_csrftoken_fails():
 
 
 def test_shot_set_expiration_without_csrftoken_fails():
-    with screenshots_session() as user:
+    with screenshots_session(hasAccount=True) as user:
         shot_url = user.create_shot(docTitle="A_TEST_SITE_1")
         shot_id = user._get_id_from_url(shot_url)
         resp = user.session.post(

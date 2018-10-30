@@ -39,7 +39,6 @@ function shouldShowPromo(model) {
 function updateModel(authData) {
   Object.assign(model, authData);
   model.isExtInstalled = true;
-  model.isFxaAuthenticated = model.accountId && model.accountId === model.shotAccountId;
 }
 
 exports.launch = function(data) {

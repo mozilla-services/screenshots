@@ -16,9 +16,8 @@ exports.HomePageHeader = class HomePageHeader extends React.Component {
 
   renderFxASignIn() {
       return (
-        this.props.isFirefox && this.props.isOwner ?
-          <SignInButton isAuthenticated={this.props.hasFxa} initialPage=""
-                        staticLink={this.props.staticLink} /> : null
+          <SignInButton isFxaAuthenticated={this.props.hasFxa} initialPage=""
+                        staticLink={this.props.staticLink} />
       );
   }
 
@@ -48,6 +47,5 @@ exports.HomePageHeader = class HomePageHeader extends React.Component {
 exports.HomePageHeader.propTypes = {
   hasFxa: PropTypes.bool,
   isOwner: PropTypes.bool,
-  isFirefox: PropTypes.bool,
   staticLink: PropTypes.func,
 };

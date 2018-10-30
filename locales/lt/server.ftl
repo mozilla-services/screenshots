@@ -77,7 +77,7 @@ homePageCookiesLink = Slapukai
 
 leavePageRemoveAllData = Pašalinti visus duomenis
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Privalote turėti įdiegtas „Firefox“ ekrano nuotraukas norėdami pašalinti savo paskyrą
+leavePageErrorAuthRequired = Turite būti įdiegę „Firefox Screenshots“, arba prisijungę prie „Firefox“ paskyros, norėdami ištrinti savo paskyrą
 leavePageErrorGeneric = Įvyko klaida
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Tai visam laikai ištrins visus jūsų „Firefox“ nuotraukų duomenis.

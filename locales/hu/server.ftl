@@ -77,7 +77,7 @@ homePageCookiesLink = Sütik
 
 leavePageRemoveAllData = Összes adat eltávolítása
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = A fiókja törléséhez telepítve kell lennie a Firefox Screentshotsnak
+leavePageErrorAuthRequired = A fiókja törléséhez telepítve kell legyen a Firefox Screenshots, vagy be kell jelentkeznie a Firefox fiókjába.
 leavePageErrorGeneric = Hiba történt
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ez véglegesen törli a Firefox képernyőképek összes adatát.

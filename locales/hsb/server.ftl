@@ -77,7 +77,7 @@ homePageCookiesLink = Placki
 
 leavePageRemoveAllData = Wšě daty wotstronić
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Firefox Screenshots dyrbi instalowany być, zo by so waše konto zhašało
+leavePageErrorAuthRequired = Dyrbiće Firefox Screenshots instalować abo so pola konta Firefox přizjewić, zo byšće swoje konto zhašał
 leavePageErrorGeneric = Zmylk je wustupił
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = To wšě waše daty Firefox Screenshots na přeco zhaša.

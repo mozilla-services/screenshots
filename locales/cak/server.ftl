@@ -10,6 +10,13 @@ gNoShots =
     .alt = Majun wachib'äl xilitäj
 gScreenshotsDescription = Relik b'anon chi re ri chapoj wachib'äl. Man k'atzinel ta yatel el pa Firefox richin nachap, nayak, chuqa' nakomonij ri chapoj wachib'äl.
 
+## Header
+
+buttonSettings =
+    .title = Taq nuk'ulem
+buttonSignIn =
+    .title = Titikirisäx molojri'ïl
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
@@ -38,7 +45,6 @@ homePageButtonMyShots = Jät pa ri taq nuwachib'al
 homePageTeaser = Ninaqajan yan pe...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Sipan Ruqasaxik
-homePageGetStarted = Titikirisäx
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Achike rub'eyal nisamäj Firefox Chapoj Wachib'äl
 homePageGetStartedTitle = Titikirisäx
@@ -52,8 +58,6 @@ homePageCaptureRegionDescription = Tapitz'a' chuqa' taqirirej richin nacha' ri k
 homePageCapturePage = Tichap ruwachib'al jun Ruxaq
 homePageCapturePageDescription = Ke'okisäx ri ajsik ajkiq'a' taq pitz'b'äl richin ye'achäp chijun ruxaq. Ri Tiyak Wachel pitz'b'äl xtuchäp ri k'ojlem; man k'atzinel ta yatel richin natz'ët, chuqa' ri Tiyak Tz'aqät Ruxaq ronojel xtuchäq pa ri ruxaq.
 homePageSaveShare = Tiyak chuqa' Tikomonïx
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Toq nawelesaj jun wachib'äl, ri Firefox nuya' rutzijol ri chapoj awachib'al pa ruwujib'al Chapoj Awachib'al pa k'amab'ey chuqa' nuyäk ri ximonel pan amolwuj. Ka'i' wuqq'ij qayon yeqayäk ri chapoj taq awachib'al, chuqa' xab'achike ramaj yatikïr nayüj el ri wachib'äl o najäl ruq'ijul richin k'ïy ramaj yek'oje' pan awujib'al.
 homePageLegalLink = Taqanel
 homePagePrivacyLink = Ichinanem
 homePageTermsLink = Taq Ojqanem
@@ -62,8 +66,6 @@ homePageCookiesLink = Taq Kaxlanwey
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Ke'elesäx el Konojel ri Taq Tzij
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = K'o chi e'ayakon ri Chapoj Ruwachib'al Firefox richin nayüj el rub'i' ataqoya'l
 leavePageErrorGeneric = Xk'ulwachitäj jun sachoj
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Re re' xkeruyüj el konojel taq rutzij Firefox Chapoj Awachib'al.
@@ -87,7 +89,8 @@ shotPageAlertErrorUpdatingTitle = Xsach toq nuyäk b'i'aj
 shotPageConfirmDelete = ¿La kan nawajo' nayüj el jumul re chapoj re?
 shotPageShareButton =
     .title = Tikomonïx
-shotPageCopy = Tiwachib'ëx
+shotPageCopyButton =
+    .title = Tiwachib'ëx wachib'äl pa molwuj
 shotPageCopied = Xwachib'ëx
 shotPageShareFacebook =
     .title = Tikomonïx pa Facebook
@@ -112,15 +115,13 @@ shotPageExpiredMessage = Xk'is ruq'ijul re wachib'äl re'.
 shotPageExpiredMessageDetails = Pa re ruxaq re' Xtikirisäx pe runuk'ik:
 shotPageDeleteButton =
     .title = Tiyuj re wachib'äl re'
-shotPageAbuseButton =
-    .title = Tasujuj re wachib'äl re' ruma tz'ilanem, seq'tzijol, o jun chik k'ayewal
 shotPageDownloadShot =
     .title = Tiqasäx
 shotPageEditButton =
     .title = Tinuk' re wachib'äl re'
-shotPageDownload = Tiqasäx
+shotPageBackToHomeButton =
+    .title = Tikirib'äl ruxaq
 shotPageScreenshotsDescription = Relik b'anon chi re ri chapoj wachib'äl. Man k'atzinel ta yatel el pa Firefox richin nachap, nayak, chuqa' nakomonij ri chapoj wachib'äl.
-shotPageUpsellFirefox = Tak'ulu' Firefox wakami
 shotPageDMCAMessage = Man wachel ta chik re wachib'äl re' ruma juley winaqi' nikich'ojij  jun na'owinäq ichinem.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Tataqa' { $dmca } richin nak'utuj juley rutzijol.
@@ -250,6 +251,12 @@ textToolCancelButton = Tiq'at
 textToolInputPlaceholder =
     .placeholder = Achike ab'anon
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = K'o itzel xub'än
+
 ## Settings Page
 
 settingsDisconnectButton = Tichup
@@ -276,8 +283,6 @@ shotIndexPageSearchResultsTitle = Taq nuwachib'al: Tikanöx { $searchTerm }
 shotIndexPageErrorRendering = Ruxaq richin kitz'etik taq sachoj: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Kekanöx taq nuwachib'al
-shotIndexPageSearchButton =
-    .title = Tikanöx
 shotIndexPageNoShotsMessage = Majun wachib'äl eyakon.
 shotIndexPageNoShotsInvitation = Tatz'aqa' chi re, ke'anuk'u' jujun.
 shotIndexPageLookingForShots = Tajin yekanöx ri  taq awachib'al...
@@ -290,12 +295,6 @@ shotIndexPagePreviousPage =
     .title = Chuwäch ruxaq
 shotIndexPageNextPage =
     .title = Jun chik ruxaq
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Ri chapoj re' man nik'o taq ruq'ijul
 
 ## Delete Confirmation Dialog
 

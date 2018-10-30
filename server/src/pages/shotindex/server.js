@@ -8,14 +8,14 @@ const app = express();
 exports.app = app;
 
 app.get("/", function(req, res) {
-  if (!req.deviceId) {
+  if (!(req.deviceId || req.accountId)) {
     _render();
     return;
   }
   const pageNumber = req.query.p || 1;
   const query = req.query.q || null;
   let getShotsPage = Promise.resolve(Shot.emptyShotsPage);
-  if (req.deviceId && req.query.withdata) {
+  if ((req.deviceId || req.accountId) && req.query.withdata) {
     getShotsPage = Shot.getShotsForDevice(req.backend, req.deviceId, req.accountId, query, pageNumber);
   }
   getShotsPage.then(_render)

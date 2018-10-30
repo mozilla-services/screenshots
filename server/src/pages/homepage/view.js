@@ -101,8 +101,7 @@ class Body extends React.Component {
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <HomePageHeader
-          isOwner={this.props.showMyShots}
-          isFirefox={this.props.isFirefox}
+          isOwner={this.props.authenticated}
           hasFxa={this.props.hasFxa}
           staticLink={this.props.staticLink}
         />
@@ -265,7 +264,7 @@ Body.propTypes = {
   hasFxa: PropTypes.bool,
   firefoxVersion: PropTypes.string,
   isFirefox: PropTypes.bool,
-  showMyShots: PropTypes.bool,
+  authenticated: PropTypes.bool,
   staticLink: PropTypes.func,
 };
 

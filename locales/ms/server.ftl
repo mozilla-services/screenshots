@@ -77,7 +77,7 @@ homePageCookiesLink = Kuki
 
 leavePageRemoveAllData = Buang Semua Data
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Anda mesti ada Firefox Screenshots yang dipasang untuk menghapuskan akaun anda
+leavePageErrorAuthRequired = Anda perlu ada Firefox Screenshots yang dipasang atau sudah log masuk ke Akaun Firefox untuk membuang akaun
 leavePageErrorGeneric = Ada ralat
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ini akan menghapuskan semua data Firefox Screenshots anda secara kekal.

@@ -41,7 +41,7 @@ class Body extends React.Component {
       <reactruntime.BodyTemplate {...this.props}>
         <div className="column-space full-height" id="shot-index-page">
           <MyShotsHeader
-            hasDeviceId={this.props.hasDeviceId} hasFxa={this.props.hasFxa}
+            authenticated={this.props.authenticated} hasFxa={this.props.hasFxa}
             enableUserSettings={this.props.enableUserSettings} staticLink={this.props.staticLink} />
           { this.props.disableSearch ? null : this.renderSearchForm() }
           <div id="shot-index" className="flex-1">
@@ -62,12 +62,16 @@ class Body extends React.Component {
     const children = [];
     if (this.props.shots && this.props.shots.length) {
       for (const shot of this.props.shots) {
-        children.push(<Card shot={shot} downloadUrl={this.props.downloadUrls[shot.id]} abTests={this.props.abTests} clipUrl={shot.urlDisplay} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} hasFxa={this.props.hasFxa} key={shot.id} />);
+        children.push(<Card shot={shot} downloadUrl={this.props.downloadUrls[shot.id]}
+                            abTests={this.props.abTests} clipUrl={shot.urlDisplay}
+                            isOwner={this.props.authenticated} staticLink={this.props.staticLink}
+                            isExtInstalled={this.props.isExtInstalled}
+                            hasFxa={this.props.hasFxa} key={shot.id} />);
       }
     }
 
     if (children.length === 0) {
-      if (!this.props.hasDeviceId) {
+      if (!this.props.authenticated) {
         children.push(this.renderNoDeviceId());
       } else if (this.props.defaultSearch) {
         children.push(this.renderNoSearchResults());
@@ -281,10 +285,9 @@ Body.propTypes = {
   disableSearch: PropTypes.bool,
   downloadUrls: PropTypes.object,
   enableUserSettings: PropTypes.bool,
-  hasDeviceId: PropTypes.bool,
+  authenticated: PropTypes.bool,
   hasFxa: PropTypes.bool,
   isExtInstalled: PropTypes.bool,
-  isOwner: PropTypes.bool,
   pageNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   shots: PropTypes.array,
   shotsPerPage: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

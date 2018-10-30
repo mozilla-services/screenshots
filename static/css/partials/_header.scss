@@ -1,21 +1,21 @@
 .header-panel {
   @include respond-to("medium") {
     @include flex-container(row, center, center, wrap);
-    height: 100%;
   }
 
   @include respond-to("small") {
     @include flex-container(row, space-between, center, wrap);
-    height: 100%;
   }
 
   @include respond-to("large") {
     @include flex-container(row, center, center);
+    flex-basis: 96px;
   }
 
   background-color: $light-default;
   display: flex;
-  height: 70px;
+  flex-basis: 70px;
+  height: 100%;
   width: 100%;
 
   .logo {
@@ -177,6 +177,10 @@
 
   .upsellLink {
     padding-inline-start: 10px;
-    color: #009ec0;
+    color: $medium-dark-blue;
+  }
+
+  .signInLink {
+    color: $medium-dark-blue;
   }
 }

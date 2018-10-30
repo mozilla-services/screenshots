@@ -11,8 +11,8 @@ app.get("/", function(req, res) {
   if (req.query && req.query.complete !== undefined) {
     res.clearCookie("_csrf");
   }
-  if (!req.deviceId) {
-    res.status(403).send(req.getText("leavePageErrorAddonRequired"));
+  if (!(req.deviceId || req.accountId)) {
+    res.status(403).send(req.getText("leavePageErrorAuthRequired"));
     return;
   }
   const page = require("./page").page;
@@ -20,8 +20,8 @@ app.get("/", function(req, res) {
 });
 
 app.post("/leave", function(req, res) {
-  if (!req.deviceId) {
-    res.status(403).send(req.getText("leavePageErrorAddonRequired"));
+  if (!(req.deviceId || req.accountId)) {
+    res.status(403).send(req.getText("leavePageErrorAuthRequired"));
   }
   Shot.deleteEverythingForDevice(req.backend, req.deviceId, req.accountId).then(() => {
     res.redirect("/leave-screenshots/?complete");
