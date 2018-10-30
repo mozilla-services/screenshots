@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Pśizjawiś
 screenshotsLogo =
     .title = Startowy bok Screenshots
-bannerMessage = Pśizjawśo se abo registrěrujśo se, aby pśistup k swójim fotam wobrazowki pśez rědy měł a składujśo swóje fawority na pśecej.
+bannerSignIn = <a>Pśizjawśo se abo registrěrujśo se</a>, aby pśez rědy pśistup na waše fota wobrazowki měł a składujśo swóje fawority na pśecej.
 bannerUpsell = { gScreenshotsDescription } <a>Wobstarajśo se Firefox něnto</a>
 
 ## Footer
