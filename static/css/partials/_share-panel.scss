@@ -1,11 +1,11 @@
 .share-panel {
   @include respond-to("small") {
     bottom: 0;
-    left: 0;
+    inset-inline-start: 0;
     margin: 0 auto;
     padding: 10px;
     position: fixed;
-    right: 0;
+    inset-inline-end: 0;
     top: auto;
     width: 100%;
   }
@@ -14,7 +14,7 @@
   border-radius: $border-radius;
   box-shadow: $stroke-box-shadow, $medium-box-shadow;
   position: absolute;
-  right: 10px;
+  inset-inline-end: 10px;
   top: 90px;
   width: 350px;
   z-index: 999;
@@ -30,7 +30,7 @@
     border-bottom: 1px solid $light-border;
 
     > a {
-      padding-right: $grid-unit;
+      padding-inline-end: $grid-unit;
 
       &:hover {
         cursor: pointer;
@@ -59,7 +59,7 @@
 
   .copy-shot-link-input {
     border: 1px solid $light-border;
-    border-right: 0;
+    border-inline-end: 0;
     font-size: 16px;
     height: $grid-unit * 2;
     line-height: 40px;

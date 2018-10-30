@@ -63,8 +63,9 @@ exports.render = function(req, res, page) {
     }
     const jsonString = JSON.stringify(jsonModel).replace(/\u2028/g, "\\u2028").replace(/\u2029/g, "\\u2029").replace(/<script/ig, "\\x3cscript").replace(/<\/script/ig, "\\x3c/script");
     const pageLocale = req.userLocales && req.userLocales.length > 0 ? req.userLocales[0] : "en-US";
+    const pageDirection = req.isRtl ? "rtl" : "ltr";
     let doc = `
-    <html lang="${pageLocale}">
+    <html lang="${pageLocale}" dir="${pageDirection}">
       ${head}
       <body class="app-body">
         <div id="react-body-container">${body}</div>

@@ -283,17 +283,18 @@ function decodeAuthHeader(header) {
   return {deviceId, abTests};
 }
 
+app.use(l10n);
+
 app.use(function(req, res, next) {
   req.staticLink = linker.staticLink.bind(null, {
     cdn: req.config.siteCdn,
+    isRtl: req.isRtl,
   });
   // The contentCdn config does not have a default value but contentOrigin does.
   const base = config.contentCdn || `${req.protocol}://${config.contentOrigin}`;
   linker.imageLinkWithHost = linker.imageLink.bind(null, base);
   next();
 });
-
-app.use(l10n);
 
 app.param("id", function(req, res, next, id) {
   if (/^[a-zA-Z0-9]{16}$/.test(id)) {

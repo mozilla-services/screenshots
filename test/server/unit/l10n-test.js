@@ -6,6 +6,7 @@ const localeData = {
   "bb-MO": "abc = 321\nsoccer = football\n",
   "cb-gb": "abc = ABC\n",
   "en-US": "abc = abc\n",
+  "he": "abc = abc\n",
 };
 
 /* globals describe, it */
@@ -47,6 +48,14 @@ describe("l10n", () => {
     it("should always return the default en-US L10n string", () => {
       const given = l10n.getStrings(["no-PE", "go-TO"]);
       assert.deepEqual(given, {"en-US": localeData["en-US"]});
+    });
+  });
+  describe("getIsRtl", () => {
+    it("should be truthy for he, ar, fa, ur", () => {
+      assert(l10n.getIsRtl(["he-IL", "en-US"]));
+    });
+    it("should be falsy for other locales", () => {
+      assert(!l10n.getIsRtl(["en-US", "he-il"]));
     });
   });
 });

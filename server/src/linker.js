@@ -18,6 +18,9 @@ exports.staticLink = function(req, resource) {
   if (!resource.startsWith("/")) {
     resource = "/" + resource;
   }
+  if (resource.endsWith(".css")) {
+    resource = resource.replace(/\.css$/, `${req.isRtl ? ".rtl" : ".ltr"}.css`);
+  }
   return `${req.cdn}${resource}?rev=${gitRevision}`;
 };
 

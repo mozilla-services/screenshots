@@ -20,6 +20,7 @@ exports.l10n = function(req, res, next) {
     req.getText = l10n.getText(languages);
     req.userLocales = l10n.getUserLocales(languages);
     req.messages = l10n.getStrings(languages);
+    req.isRtl = l10n.getIsRtl(languages);
     next();
   }).catch(err => {
     mozlog.error("l10n-middleware-error", {msg: "Error initializing l10n", description: err});

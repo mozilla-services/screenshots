@@ -55,9 +55,9 @@ $very-light-grey: #ededed;
     border: 2px dashed rgba(255, 255, 255, 0.4);
     bottom: 0;
     content: "";
-    left: 0;
+    inset-inline-start: 0;
     position: absolute;
-    right: 0;
+    inset-inline-end: 0;
     top: 0;
   }
 
@@ -70,7 +70,7 @@ $very-light-grey: #ededed;
 .mover-target.direction-topLeft {
   cursor: nwse-resize;
   height: $mover-size;
-  left: -$mover-outer;
+  inset-inline-start: -$mover-outer;
   top: -$mover-outer;
   width: $mover-size;
 }
@@ -78,7 +78,7 @@ $very-light-grey: #ededed;
 .mover-target.direction-top {
   cursor: ns-resize;
   height: $mover-size;
-  left: 0;
+  inset-inline-start: 0;
   top: -$mover-outer;
   width: 100%;
   // It will be too wide, but this will place it below topLeft/etc:
@@ -88,7 +88,7 @@ $very-light-grey: #ededed;
 .mover-target.direction-topRight {
   cursor: nesw-resize;
   height: $mover-size;
-  right: -$mover-outer;
+  inset-inline-end: -$mover-outer;
   top: -$mover-outer;
   width: $mover-size;
 }
@@ -96,7 +96,7 @@ $very-light-grey: #ededed;
 .mover-target.direction-left {
   cursor: ew-resize;
   height: 100%;
-  left: -$mover-outer;
+  inset-inline-start: -$mover-outer;
   top: 0;
   width: $mover-size;
   z-index: 4;
@@ -105,7 +105,7 @@ $very-light-grey: #ededed;
 .mover-target.direction-right {
   cursor: ew-resize;
   height: 100%;
-  right: -$mover-outer;
+  inset-inline-end: -$mover-outer;
   top: 0;
   width: $mover-size;
   z-index: 4;
@@ -115,7 +115,7 @@ $very-light-grey: #ededed;
   bottom: -$mover-outer;
   cursor: nesw-resize;
   height: $mover-size;
-  left: -$mover-outer;
+  inset-inline-start: -$mover-outer;
   width: $mover-size;
 }
 
@@ -123,7 +123,7 @@ $very-light-grey: #ededed;
   bottom: -$mover-outer;
   cursor: ns-resize;
   height: $mover-size;
-  left: 0;
+  inset-inline-start: 0;
   width: 100%;
   z-index: 4;
 }
@@ -132,7 +132,7 @@ $very-light-grey: #ededed;
   bottom: -$mover-outer;
   cursor: nwse-resize;
   height: $mover-size;
-  right: -$mover-outer;
+  inset-inline-end: -$mover-outer;
   width: $mover-size;
 }
 
@@ -159,7 +159,7 @@ $very-light-grey: #ededed;
 .direction-topLeft .mover,
 .direction-left .mover,
 .direction-bottomLeft .mover {
-  left: $handle-mover-offset;
+  inset-inline-start: $handle-mover-offset;
 }
 
 .direction-topLeft .mover,
@@ -171,7 +171,7 @@ $very-light-grey: #ededed;
 .direction-topRight .mover,
 .direction-right .mover,
 .direction-bottomRight .mover {
-  right: $handle-mover-offset;
+  inset-inline-end: $handle-mover-offset;
 }
 
 .direction-bottomRight .mover,
@@ -193,7 +193,7 @@ $very-light-grey: #ededed;
 .notice {
   display: flex;
   height: 41px;
-  left: 50%;
+  inset-inline-start: 50%;
   position: fixed;
   transform: translate(-50%, 0);
   transition: top 125ms ease-out, translate 125ms ease-out;
@@ -257,7 +257,7 @@ $very-light-grey: #ededed;
   overflow-wrap: break-word;
   padding: 15px;
   position: absolute;
-  right: -14px;
+  inset-inline-end: -14px;
   white-space: normal;
   width: 300px;
   z-index: $overlay-z-index + 1;
@@ -276,12 +276,12 @@ $very-light-grey: #ededed;
 
   /* down-arrow for the tooltip */
   &::after {
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
+    border-inline-start: 10px solid transparent;
+    border-inline-end: 10px solid transparent;
     border-top: 10px solid #f9f9fa;
     content: "";
     height: 0;
-    left: 86%;
+    inset-inline-start: 86%;
     position: absolute;
     top: 100%;
     width: 0;
@@ -294,7 +294,7 @@ $very-light-grey: #ededed;
   display: flex;
   height: 100%;
   justify-content: center;
-  left: 0;
+  inset-inline-start: 0;
   margin: 0;
   padding: 0;
   position: fixed;
@@ -328,12 +328,7 @@ $very-light-grey: #ededed;
   @include flex-container(row, center, center);
   bottom: -55px;
   position: absolute;
-  html[dir="rtl"] & {
-    left: 5px;
-  }
-  html[dir="ltr"] & {
-    right: 5px;
-  }
+  inset-inline-end: 5px;
   z-index: 6;
 
   .bottom-selection & {
@@ -341,8 +336,8 @@ $very-light-grey: #ededed;
   }
 
   .left-selection & {
-    right: auto;
-    left: 5px;
+    inset-inline-end: auto;
+    inset-inline-start: 5px;
   }
 }
 
@@ -362,12 +357,7 @@ $very-light-grey: #ededed;
   min-width: 80px;
 
   img {
-    html[dir="ltr"] & {
-      padding-right: 8px;
-    }
-    html[dir="rtl"] & {
-      padding-left: 8px;
-    }
+    padding-inline-end: 8px;
   }
 }
 
@@ -388,12 +378,7 @@ $very-light-grey: #ededed;
       height: 16px;
       width: 16px;
 
-      html[dir="ltr"] & {
-        padding-right: 8px;
-      }
-      html[dir="rtl"] & {
-        padding-left: 8px;
-      }
+      padding-inline-end: 8px;
     }
   }
 }
@@ -426,12 +411,7 @@ $very-light-grey: #ededed;
   @include flex-container(row, center, center);
   position: absolute;
   top: -2px;
-  html[dir="rtl"] & {
-    left: 0;
-  }
-  html[dir="ltr"] & {
-    right: 0;
-  }
+  inset-inline-end: 0;
 }
 
 .preview-image  {
@@ -462,12 +442,7 @@ $very-light-grey: #ededed;
   min-width: 80px;
 
   img {
-    html[dir="ltr"] & {
-      padding-right: 8px;
-    }
-    html[dir="rtl"] & {
-      padding-left: 8px;
-    }
+    padding-inline-end: 8px;
   }
 }
 
@@ -479,7 +454,7 @@ $very-light-grey: #ededed;
   flex-direction: column;
   height: 100vh;
   justify-content: center;
-  left: 0;
+  inset-inline-start: 0;
   margin: 0;
   padding: 0;
   pointer-events: none;
@@ -508,7 +483,7 @@ $very-light-grey: #ededed;
   position: absolute;
   border-radius: 100%;
   overflow: hidden;
-  left: 16.4px;
+  inset-inline-start: 16.4px;
   top: 19.8px;
 }
 
@@ -518,17 +493,17 @@ $very-light-grey: #ededed;
   height: 6px;
   background-color: #000;
   border-radius: 50%;
-  left: 2.4px;
+  inset-inline-start: 2.4px;
   top: 4.3px;
   z-index: 10;
 }
 
 .left {
-  margin-left: 0;
+  margin-inline-end: 0;
 }
 
 .right {
-  margin-left: 20px;
+  margin-inline-end: 20px;
 }
 
 .preview-instructions {
@@ -567,13 +542,8 @@ $very-light-grey: #ededed;
   height: 80px;
   padding: 8px;
   position: absolute;
-  right: 5px;
+  inset-inline-end: 5px;
   top: 5px;
-
-  html[dir="rtl"] & {
-    left: 5px;
-    right: inherit;
-  }
 
   .spacer {
     background-color: #c9c9c9;

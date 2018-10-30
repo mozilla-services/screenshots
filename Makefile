@@ -24,7 +24,7 @@ server_dest := $(server_source:server/src/%.js=build/server/%.js)
 
 # Also scss gets put into two locations:
 sass_source := $(wildcard static/css/*.scss)
-sass_server_dest := $(sass_source:%.scss=build/server/%.css)
+sass_server_dest := $(sass_source:%.scss=build/server/%.css) $(sass_source:%.scss=build/server/%.ltr.css) $(sass_source:%.scss=build/server/%.rtl.css)
 partials_source := $(wildcard static/css/partials/*.scss)
 
 # And static images get placed somewhat eclectically:
@@ -60,6 +60,12 @@ build/server/%.js: server/src/%.js
 build/%.css: %.scss $(partials_source)
 	@mkdir -p $(@D)
 	node-sass $< $@
+
+%.ltr.css: %.css
+	postcss $< -o $@ --config .postcss/ltr
+
+%.rtl.css: %.css
+	postcss $< -o $@ --config .postcss/rtl
 
 ## Static files to be copied:
 

@@ -70,7 +70,7 @@
 @keyframes slide-left {
   0% {
     opacity: 0;
-    transform: translate3d(160px, 0, 0);
+    transform: translate3d(160px, 0, 0); // FIXME: RTL
   }
 
   100% {

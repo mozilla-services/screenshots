@@ -84,6 +84,14 @@ exports.getStrings = function(locales) {
   return strings;
 };
 
+exports.getIsRtl = function(locales) {
+  const availableLocales = exports.getUserLocales(locales);
+  if (availableLocales && availableLocales.length > 0) {
+    return /^(he|ar|fa|ur)$/.test(availableLocales[0]);
+  }
+  return false;
+};
+
 function useLocaleData(localeStringMap) {
   Object.keys(localeStringMap).forEach(x => {
     rawStrings[x] = localeStringMap[x];
