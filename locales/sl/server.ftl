@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Prijava
 screenshotsLogo =
     .title = Domača stran Screenshots
-bannerMessage = Prijavite ali registrirajte se, da boste lahko dostopali do svojih posnetkov z več naprav in priljubljene shranili za vedno.
+bannerSignIn = <a>Prijavite ali registrirajte se</a>, da boste lahko svoje posnetke uporabljali na več napravah in priljubljene trajno shranili.
 bannerUpsell = { gScreenshotsDescription }<a>Prenesite Firefox zdaj</a>
 
 ## Footer
