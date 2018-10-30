@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Přizjewić
 screenshotsLogo =
     .title = Startowa strona Screenshots
-bannerMessage = Přizjewće so abo registrujće so, zo byšće přistup na swoje fota wobrazowki přez graty měł a składujće swoje fawority na přeco.
+bannerSignIn = <a>Přizjewće so abo registrujće so</a>, zo byšće přez graty přistup na waše fota wobrazowki měł a składujće swoje fawority na přeco.
 bannerUpsell = { gScreenshotsDescription } <a>Wobstarajće so Firefox nětko</a>
 
 ## Footer
