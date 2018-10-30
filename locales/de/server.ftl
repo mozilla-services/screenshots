@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Anmelden
 screenshotsLogo =
     .title = Startseite von Screenshots
-bannerMessage = Melden Sie sich an oder registrieren Sie sich, um geräteübergreifend Ihre Bildschirmfotos anzusehen und Ihre Favoriten dauerhaft zu speichern.
+bannerSignIn = <a>Melden Sie sich an oder registrieren Sie sich</a>, um geräteübergreifend Ihre Bildschirmfotos anzusehen und Ihre Favoriten dauerhaft zu speichern.
 bannerUpsell = { gScreenshotsDescription } <a>Jetzt Firefox herunterladen</a>
 
 ## Footer
