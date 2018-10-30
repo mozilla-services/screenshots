@@ -29,7 +29,7 @@ class Body extends React.Component {
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <div className="column-space full-height">
-          <Header hasLogo={true} />
+          <Header hasLogo={true} hasFxa={this.props.hasFxa} />
           <div id="shot-index" className="flex-1">
             <div className="no-shots" key="no-shots-found">
               <Localized id="gNoShots" attrs={{alt: true}}>
