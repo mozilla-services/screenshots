@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Daxil ol
 screenshotsLogo =
     .title = Screenshots Ana Səhifəsi
-bannerMessage = Cihazlarınız arasında görüntülərinizi görmək üçün daxil olun və ya qeyd olun və seçilmiş görüntülərinizi daimi olaraq saxlayın.
+bannerSignIn = Cihazlarınız arasında görüntülərinizi görmək üçün <a>daxil olun və ya qeyd olun</a> və seçilmiş görüntülərinizi daimi olaraq saxlayın.
 bannerUpsell = { gScreenshotsDescription } <a>Firefox Endir</a>
 
 ## Footer
