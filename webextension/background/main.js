@@ -120,6 +120,15 @@ this.main = (function() {
   }
 
   exports.onClickedContextMenu = catcher.watchFunction((info, tab) => {
+    _startShotFlow(tab, "context-menu");
+  });
+
+  exports.onCommand = catcher.watchFunction((tab) => {
+    _startShotFlow(tab, "keyboard-shortcut");
+  });
+
+  // TODO: refactor onClicked into this function as well
+  const _startShotFlow = (tab, inputType) => {
     catcher.watchPromise(hasSeenOnboarding.then(onboarded => {
       if (!tab) {
         // Not in a page/tab context, ignore
@@ -127,6 +136,7 @@ this.main = (function() {
       }
       if (!urlEnabled(tab.url)) {
         if (!onboarded) {
+          // TODO: should this really be "selection-button" always?
           sendEvent("goto-onboarding", "selection-button", {incognito: tab.incognito});
           forceOnboarding();
           return;
@@ -139,35 +149,9 @@ this.main = (function() {
       // No need to catch() here because of watchPromise().
       // eslint-disable-next-line promise/catch-or-return
       toggleSelector(tab)
-        .then(() => sendEvent("start-shot", "context-menu", {incognito: tab.incognito}));
+        .then(() => sendEvent("start-shot", inputType, {incognito: tab.incognito}));
     }));
-  });
-
-  exports.onCommand = catcher.watchFunction((tab) => {
-    // just cribbing from onClickedContextMenu and onClicked. should these be DRY-ed up somehow?
-    catcher.watchPromise(hasSeenOnboarding.then(onboarded => {
-      if (!tab) {
-        // Not in a page/tab context, ignore
-        return;
-      }
-      if (!urlEnabled(tab.url)) {
-        if (!onboarded) {
-          sendEvent("goto-onboarding", "selection-button", {incognito: tab.incognito}); // TODO: shouldn't sendEvent differ for diferent inputs?
-          forceOnboarding();
-          return;
-        }
-        senderror.showError({
-          popupMessage: "UNSHOOTABLE_PAGE",
-        });
-        return;
-      }
-      // No need to catch() here because of watchPromise().
-      // eslint-disable-next-line promise/catch-or-return
-      toggleSelector(tab)
-        .then(() => sendEvent("start-shot", "keyboard-shortcut", {incognito: tab.incognito})); //TODO: this sendEvent is literally the only difference.
-      // ALSO TODO: add this new start-shot option to the metrics doc
-    }));
-  });
+  };
 
   function urlEnabled(url) {
     if (shouldOpenMyShots(url)) {

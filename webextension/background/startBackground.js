@@ -54,30 +54,17 @@ this.startBackground = (function() {
 
   browser.experiments.screenshots.initLibraryButton();
 
-  let isHandlingCommand = false;
   browser.commands.onCommand.addListener((cmd) => {
     if (cmd !== "take-screenshot") {
       return;
     }
-    // If the key is pressed twice, just toggle this once.
-    // TODO: is this the right way to do this?
-    if (isHandlingCommand) {
-      return;
-    }
-    isHandlingCommand = true;
-    // first, 
-    // load if necessary, then get the current tab, then do the onboarding check, then toggle the overlay
     loadIfNecessary().then(() => {
       browser.tabs.query({currentWindow: true, active: true}).then((tabs) => {
         const activeTab = tabs[0];
-        // TODO: onboarding check and toggle the overlay in the tab
-        // ...but do that inside main, not here.
         main.onCommand(activeTab);
       });
     }).catch((error) => {
       console.error("Error toggling Screenshots via keyboard shortcut: ", error);
-    }).then(() => {
-      isHandlingCommand = false; // just do this once at the end, instead of sprinkled throughout
     });
   });
 
