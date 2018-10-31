@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Giriş yap
 screenshotsLogo =
     .title = Screenshots ana sayfası
-bannerMessage = Görüntülerinize tüm cihazlarınızdan ulaşmak ve favorilerinizi kalıcı olarak saklamak için giriş yapın veya kaydolun.
+bannerSignIn = Görüntülerinize tüm cihazlarınızdan ulaşmak ve favorilerinizi kalıcı olarak saklamak için <a>giriş yapın veya kaydolun</a>.
 bannerUpsell = { gScreenshotsDescription } <a>Firefox’u indir</a>
 
 ## Footer
