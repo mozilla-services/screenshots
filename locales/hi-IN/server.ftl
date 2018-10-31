@@ -18,7 +18,7 @@ buttonSignIn =
     .title = साइन इन करें
 screenshotsLogo =
     .title = स्क्रीनशॉट होम
-bannerMessage = अन्य उपकरणों पर अपने स्क्रीनशॉट एक्सेस करने के लिए साइन इन या साइन उप करें एवं अपने पसंदीदाओं को हमेशा के लिए सहेजें।
+bannerSignIn = अपने पसंदीदा स्क्रीनशॉट को हमेशा के लिए सहेजने और अन्य उपकरणों पर देखने के लिए <a>साइन इन या साइन अप</a> करें।
 bannerUpsell = { gScreenshotsDescription } <a>Firefox अभी पायें</a>
 
 ## Footer
@@ -64,8 +64,6 @@ homePageCaptureRegionDescription = जिस क्षेत्र को आप
 homePageCapturePage = एक पृष्ठ कैप्चर करें
 homePageCapturePageDescription = पूर्ण पृष्ठों को कैप्चर करने के लिए ऊपरी दाईं ओर के बटनों का उपयोग करें. दृश्य सहेजें बटन आप स्क्रॉल के बिना देख सकते हैं क्षेत्र पर कब्जा होगा, और पूरे पृष्ठ को बचाने के पृष्ठ पर सब कुछ कब्जा होगा.
 homePageSaveShare = सहेजें और साझा करें
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = जब आप कोई शॉट लेते हैं, तो फ़ायरफ़ॉक्स आपके स्क्रीनशॉट को आपके ऑनलाइन स्क्रीनशॉट लाइब्रेरी पर पोस्ट करता है और लिंक को आपके क्लिपबोर्ड पर कॉपी करता है। हम स्वचालित रूप से आपके स्क्रीनशॉट को दो सप्ताह तक स्टोर करते हैं, लेकिन आप किसी भी समय शॉट हटा सकते हैं या उन्हें अपनी लाइब्रेरी में लंबे समय तक रखने के लिए समाप्ति तिथि बदल सकते हैं।
 homePageLegalLink = वैध
 homePagePrivacyLink = गोपनीयता
 homePageTermsLink = शर्तें
@@ -74,8 +72,6 @@ homePageCookiesLink = कुकीज़
 ## Leave Screenshots page
 
 leavePageRemoveAllData = सभी डेटा मिटाये
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = आपको अपने खाते को नष्ट करने के लिए firefox स्क्रीनशॉट स्थापित होना आवश्यक हैं
 leavePageErrorGeneric = एक त्रुटि उत्पन्न हुई
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = यह आपके सभी firefox स्क्रीनशॉट डेटा को हमेशा के लिए मिटा देगा.
