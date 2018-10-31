@@ -674,6 +674,7 @@ body {
 // CSS used for Annotation Text Tool
 .text-select {
   -moz-appearance: none; //sass-lint:disable-line no-vendor-prefixes
+  -webkit-appearance: none;
   appearance: none;
   background-color: $light-default;
   background-image: url("../img/icon-dropdown.svg");
