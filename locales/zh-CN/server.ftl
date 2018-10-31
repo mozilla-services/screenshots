@@ -18,7 +18,7 @@ buttonSignIn =
     .title = 登录
 screenshotsLogo =
     .title = Screenshots 主页
-bannerMessage = 请注册或登录，即可跨设备访问您的截图，并永久保存收藏的截图。
+bannerSignIn = <a>请注册或登录</a>，即可跨设备访问您的截图，并永久保存收藏的截图。
 bannerUpsell = { gScreenshotsDescription }<a>立即下载 Firefox</a>
 
 ## Footer
