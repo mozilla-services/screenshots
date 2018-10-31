@@ -245,7 +245,7 @@ set_sentry:
 	@if [[ -n "$(SCREENSHOTS_SENTRY)" ]] ; then echo "Setting default Sentry ${SCREENSHOTS_SENTRY}" ; fi
 	./bin/build-scripts/substitute-env.js webextension/buildSettings.js.template | ./bin/build-scripts/set_file webextension/build/buildSettings.js -
 
-build/.npm-install.log: package.json
+build/.npm-install.log: package.json package-lock.json
 	# Essentially .npm-install.log is just a timestamp showing the last time we ran
 	# the command
 	@mkdir -p $(@D)
