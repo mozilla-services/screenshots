@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Mewngofnodi
 screenshotsLogo =
     .title = Cartref Screenshots
-bannerMessage = Mewngofnodwch neu gofrestru i gael mynediad i'ch lluniau ar draws dyfeisiau a chadw eich ffefrynnau am byth.
+bannerSignIn = <a>Mewngofnodwch neu ymunwch</a> i gael mynediad at eich lluniau ar draws dyfeisiau a chadw eich ffefrynnau am byth.
 bannerUpsell = { gScreenshotsDescription } <a>Defnyddiwch Firefox</a>
 
 ## Footer
