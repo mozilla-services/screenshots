@@ -18,7 +18,7 @@ buttonSignIn =
     .title = S'annunziar
 screenshotsLogo =
     .title = Pagina da partenza da Screenshots
-bannerMessage = T'annunzia u ta registrescha per acceder a tes maletgs dal visur cun agid da mintga apparat e memorisar tes favurits per adina.
+bannerSignIn = <a>T'annunzia u ta registrescha</a> per acceder a tes maletgs dal visur cun agid da mintga apparat e memorisar tes favurits per adina.
 bannerUpsell = { gScreenshotsDescription } <a>Telechargiar Firefox</a>
 
 ## Footer
