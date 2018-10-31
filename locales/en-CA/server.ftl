@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Sign In
 screenshotsLogo =
     .title = Screenshots Home
-bannerMessage = Sign in or sign up to access your shots across devices and save your favourites forever.
+bannerSignIn = <a>Sign in or sign up</a> to access your shots across devices and save your favourites forever.
 bannerUpsell = { gScreenshotsDescription } <a>Get Firefox now</a>
 
 ## Footer
