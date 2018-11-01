@@ -1094,14 +1094,20 @@ app.get("/api/fxa-oauth/login/*", async function(req, res, next) {
     let state = stateBytes.toString("hex");
     let stateId = null;
 
+    const cookies = new Cookies(req, res, {keys: dbschema.getKeygrip("fxa-oauth")});
+
     if (req.deviceId) {
+      if (cookies.get("fxaState")) {
+        // Remove invalid fxaState cookie in favor of using deviceId as StateId
+        cookies.set("fxaState");
+        cookies.set("fxaState.sig");
+      }
       stateId = req.deviceId;
     } else {
       const uuidPromise = util.promisify(genUuid.generate);
       const uuid = await uuidPromise(genUuid.V_RANDOM);
       stateId = uuid.toString();
 
-      const cookies = new Cookies(req, res, {keys: dbschema.getKeygrip("fxa-oauth")});
       cookies.set("fxaState", stateId, {signed: true});
     }
 
@@ -1139,7 +1145,7 @@ app.get("/api/fxa-oauth/confirm-login", async function(req, res, next) {
   const cookies = new Cookies(req, res, {keys: dbschema.getKeygrip("fxa-oauth")});
 
   let stateId = cookies.get("fxaState");
-  if (stateId && (stateId.search(/^[a-zA-Z0-9_-]{1,255}$/) === -1)) {
+  if (stateId && (!/^[a-zA-Z0-9_-]{1,255}$/.test(stateId))) {
     const err = new Error("Bad stateId in confirm-login");
     next(err);
     return;
