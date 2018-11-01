@@ -67,7 +67,7 @@ homePageSaveShare = Guardar e partilhar
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageShaveShareFavoriteDescription = Tire a sua melhor captura. Depois guarde-a para a biblioteca online do Screenshots, e o Firefox copia a ligação para a sua área de transferência para partilha fácil. As capturas na biblioteca expiram automaticamente após duas semanas, mas pode apagá-las a qualquer altura ou escolher mantê-las por mais tempo.
 homePageSignInTitle = As suas capturas em todo o lado
-homePageSignInDescription = Inicie sessão no Screenshots com a sua Conta Firefox para aceder às suas capturas em qualquer lugar em que utilize o Firefox. Um bónus adicional: pode também guardar as suas capturas favoritas para sempre.
+homePageSignInDescription = Inicie sessão no Screenshots com a sua Conta Firefox para aceder às suas capturas onde quer que utilize o Firefox. Um bónus adicional: pode também guardar as suas capturas favoritas para sempre.
 homePageLegalLink = Legal
 homePagePrivacyLink = Privacidade
 homePageTermsLink = Termos
