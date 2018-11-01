@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Jeike
 screenshotsLogo =
     .title = Screenshots kuatiarogue ñepyrũ
-bannerMessage = Emoñepyrũ tembiapo eike hag̃ua ne ra’angakuérape opaite mba’e’oka guive ha eñongatu umi erohoryvéva opa árape g̃uarãva.
+bannerSignIn = <a>Emoñepyrũ tembiapo térã eñemboheraguapy</a> ehecha hag̃ua ne ra’anga opaite mba’e’okápe ha eñongatuete umi eguerohoryvéva.
 bannerUpsell = { gScreenshotsDescription } <a>Eguereko Firefox ko'ág̃a</a>
 
 ## Footer
@@ -77,7 +77,7 @@ homePageCookiesLink = Kookie
 
 leavePageRemoveAllData = Emboguete opaite mba’ekuaarã
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Emohendava’erã Firefox Screenshots embogue hag̃ua ne mba’ete
+leavePageErrorAuthRequired = Eguerekova’erã Firefox Screenshots mohendapyre térã Firefox mba’etépe tembiapo emboguete hag̃ua mba’ete
 leavePageErrorGeneric = Oiko peteĩ jejavy
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Póva omboguéta tapiaiterã opaite ne mba’ekuaarã Firefox Screenshots-gui.
