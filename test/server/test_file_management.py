@@ -149,7 +149,7 @@ def restart_server(**extra_env):
     else:
         env_print = ''
     print('  Starting server%s' % env_print)
-    server = run('./bin/run-server --no-auto', cwd=project_base, env=env, stdout=server_out, async=True)
+    server = run('./bin/run-server --no-auto', cwd=project_base, env=env, stdout=server_out, async_=True)
     server_options = extra_env
     time.sleep(3)
     text = []
