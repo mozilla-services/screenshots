@@ -4,5 +4,5 @@ requests==2.20.0
 sarge==0.1.5
 pytest==3.9.3
 psycopg2==2.7.5
-axe-selenium-python==2.1.5
-pytest-axe==1.1.4
+axe-selenium-python==2.1.4
+pytest-axe==1.1.3
