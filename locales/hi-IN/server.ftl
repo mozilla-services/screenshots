@@ -76,6 +76,8 @@ homePageCookiesLink = कुकीज़
 ## Leave Screenshots page
 
 leavePageRemoveAllData = सभी डेटा मिटाये
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = अपने ख़ाते को मिटाने के लिए आपके पास Firefox Screenshot इनस्टॉल होना चाहिए या Firefox ख़ाते में साइन इन होना चाहिए
 leavePageErrorGeneric = एक त्रुटि उत्पन्न हुई
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = यह आपके सभी firefox स्क्रीनशॉट डेटा को हमेशा के लिए मिटा देगा.
