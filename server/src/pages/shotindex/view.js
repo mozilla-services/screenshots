@@ -79,9 +79,12 @@ class Body extends React.Component {
         children.push(this.renderNoShots());
       }
     } else {
+      const masonryOptions = {
+        originLeft: !this.props.isRtl,
+      };
       return (
         <div className="masonry-wrapper">
-          <Masonry>
+          <Masonry options={masonryOptions}>
             {children}
           </Masonry>
         </div>
@@ -113,7 +116,7 @@ class Body extends React.Component {
     const hidden = totalPages < 2;
     let arrowheadPrev = this.props.staticLink("/static/img/arrowhead-left-16.svg");
     let arrowheadNext = this.props.staticLink("/static/img/arrowhead-right-16.svg");
-    if (document.dir === "rtl") {
+    if (this.props.isRtl) {
       [arrowheadNext, arrowheadPrev] = [arrowheadPrev, arrowheadNext];
     }
 
@@ -293,6 +296,7 @@ Body.propTypes = {
   shotsPerPage: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   staticLink: PropTypes.func,
   totalShots: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  isRtl: PropTypes.bool,
 };
 
 class Card extends React.Component {

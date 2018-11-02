@@ -372,10 +372,18 @@
 .undo-button {
   background: url("../img/annotation-redo.svg");
   transform: scale(-1, 1);
+
+  [dir="rtl"] & {
+    transform: scale(1, 1);
+  }
 }
 
 .redo-button {
   background-image: url("../img/annotation-redo.svg");
+
+  [dir="rtl"] & {
+    transform: scale(-1, 1);
+  }
 }
 
 .clear-button {
