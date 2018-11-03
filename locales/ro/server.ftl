@@ -8,7 +8,7 @@ gMyShots = Capturile mele
 gHomeLink = Start
 gNoShots =
     .alt = Nicio captură găsită
-gScreenshotsDescription = Capturile de ecran simplificate. Realizează, salvează și partajează capturile de ecran fără să părăsești Firefox.
+gScreenshotsDescription = Capturile de ecran simplificate. Realizează, salvează și partajează capturile de ecran fără să ieși din Firefox.
 
 ## Header
 
@@ -18,7 +18,6 @@ buttonSignIn =
     .title = Autentificare
 screenshotsLogo =
     .title = Pagina de start Screenshots
-bannerMessage = Autentifică-te sau înregistrează pentru a accesa capturile de ecran pe toate dispozitivele tale și salvează favoritele pentru totdeauna.
 bannerUpsell = { gScreenshotsDescription }<a>Obține Firefox acum</a>
 
 ## Footer
@@ -60,7 +59,7 @@ homePageGetStartedDescription = Găsește noua pictogramă Screenshots pe bara d
 homePageGetStartedDescriptionPageAction = Selectează pictograma Screenshots din meniul de acțiuni pe pagină în bara de adrese și meniul Screenshots va apărea în partea de sus în fereastra browserului.
 homePageCaptureRegion = Capturează o regiune
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Dă clic și trage pentru selectarea zonei de capturat sau pur și simplu poziționează cursorul deasupra și dă clic — Screenshots va selecta zona pentru tine. Îți place ce vezi? Selectează Salvează pentru accesarea online a capturii de ecran sau butonul săgeată în jos ca să o descarci pe calculator.
+homePageCaptureRegionDescription = Dă clic și trage pentru a selecta zona pe care vrei s-o capturezi. Sau pur și simplu poziționează cursorul deasupra și dă clic — Screenshots va selecta zona pentru tine. Îți place ce vezi? Selectează Salvează pentru a-ți accesa online captura de ecran sau butonul săgeată în jos pentru a o descărca pe calculator.
 homePageCapturePage = Fă o captură de pagină
 homePageCapturePageDescription = Folosește butoanele din dreapta sus pentru a captura pagini întregi. Butonul Salvează porțiunea vizibilă va captura zona pe care o poți vedea fără să derulezi și butonul Salvează pagina completă va captura toată pagina.
 homePageSaveShare = Salvează și partajează
@@ -72,8 +71,6 @@ homePageCookiesLink = Cookie-uri
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Elimină toate datele
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Trebuie să ai Firefox Screenshots instalat pentru a-ți șterge contul
 leavePageErrorGeneric = A intervenit o eroare.
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Acest lucru va șterge definitiv toate datele tale Firefox Screenshots.
@@ -133,7 +130,7 @@ shotPageBackToHomeButton =
     .title = Pagina de start
 shotPageAllShotsButton =
     .title = Toate capturile
-shotPageScreenshotsDescription = Capturile de ecran simplificate. Realizează, salvează și partajează capturile de ecran fără să părăsești Firefox.
+shotPageScreenshotsDescription = Capturile de ecran simplificate. Realizează, salvează și partajează capturile de ecran fără să ieși din Firefox.
 shotPageDMCAMessage = Această captură nu mai este disponibilă din cauza unei reclamații de proprietate intelectuală.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Te rugăm să trimiți un e-mail la { $dmca } pentru a solicita informații suplimentare.
