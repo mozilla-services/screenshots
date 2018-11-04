@@ -1,7 +1,7 @@
 flake8==3.6.0
 GitPython==2.1.11
 requests==2.20.0
-sarge==0.1.5
+sarge==0.1.5.post0
 pytest==3.9.3
 psycopg2==2.7.5
 axe-selenium-python==2.1.5
