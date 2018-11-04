@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Войти
 screenshotsLogo =
     .title = Главная страница Screenshots
-bannerMessage = Войдите или зарегистрируйтесь для получения доступа к вашим снимкам с различных устройств и навсегда сохраните необходимые.
+bannerSignIn = <a>Войдите или зарегистрируйтесь</a> для получения доступа к вашим снимкам с различных устройств и навсегда сохраните необходимые.
 bannerUpsell = { gScreenshotsDescription } <a>Загрузить Firefox</a>
 
 ## Footer
