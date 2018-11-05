@@ -10,6 +10,13 @@ gNoShots =
     .alt = Snimke nisu pronađene
 gScreenshotsDescription = Snimite zaslon jednostavno. Snimite, spremite i dijelite snimke zaslona bez da napustite Firefox.
 
+## Header
+
+buttonSettings =
+    .title = Postavke
+buttonSignIn =
+    .title = Prijava
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
@@ -38,7 +45,6 @@ homePageButtonMyShots = Idi na moje snimke
 homePageTeaser = Dolazi uskoro…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Besplatno preuzimanje
-homePageGetStarted = Započnite
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kako rade Firefox Screenshots
 homePageGetStartedTitle = Započnite
@@ -52,8 +58,6 @@ homePageCaptureRegionDescription = Kliknite i vucite kako biste odabrali područ
 homePageCapturePage = Snimi stranicu
 homePageCapturePageDescription = Koristite gumb gore desno kako biste snimili cijelu stranicu. Gumb Spremi vidljivo će snimiti područje koje možete vidjeti bez pomicanja stranice, a Spremi cijelu stranicu će snimiti sve na stranici.
 homePageSaveShare = Spremi i dijeli
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Kada napravite snimku, Firefox ju šalje u vašu biblioteku snimki i kopira poveznicu u vaš međuspremnik. Automatski čuvamo vašu snimku dva tjedna, ali je možete obrisati bilo kada ili izmijeniti vrijeme čuvanja kako biste čuvali snimke duže u svojoj biblioteci.
 homePageLegalLink = Pravne informacije
 homePagePrivacyLink = Privatnost
 homePageTermsLink = Uvjeti
@@ -62,8 +66,6 @@ homePageCookiesLink = Kolačići
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Ukloni sve podatke
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Morate imati Firefox Screenshot instalirano kako biste obrisali svoj račun
 leavePageErrorGeneric = Došlo je do greške
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Trajno ćete obrisati sve Firefox Screenshot podatke.
@@ -87,7 +89,8 @@ shotPageAlertErrorUpdatingTitle = Greška pri spremanju naslova
 shotPageConfirmDelete = Jeste li sigurni da želite trajno obrisati ovu sliku?
 shotPageShareButton =
     .title = Dijeli
-shotPageCopy = Kopiraj
+shotPageCopyButton =
+    .title = Kopiraj sliku u međuspremnik
 shotPageCopied = Kopirano
 shotPageShareFacebook =
     .title = Dijeli na Facebooku
@@ -112,13 +115,13 @@ shotPageExpiredMessage = Ova snimka je istekla.
 shotPageExpiredMessageDetails = Ovdje je stranica na kojoj je originalno uslikana:
 shotPageDeleteButton =
     .title = Obriši ovu snimku
-shotPageAbuseButton =
-    .title = Prijavi ovu snimku za zloupotrebu, spam i druge probleme
 shotPageDownloadShot =
     .title = Preuzimanje
-shotPageDownload = Preuzimanje
+shotPageEditButton =
+    .title = Uredi ovu sliku
+shotPageBackToHomeButton =
+    .title = Početna stranica
 shotPageScreenshotsDescription = Snimite zaslon jednostavno. Snimite, spremite i dijelite snimke zaslona bez da napustite Firefox.
-shotPageUpsellFirefox = Preuzmite Firefox sada
 shotPageDMCAMessage = Ova snimka više nije dostupna zbog zahtjeva za intelektualnim vlasništvom treće strane.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Pošaljite e-poštu na { $dmca } kako biste zatražili više informacija.
@@ -180,12 +183,65 @@ timeDiffFutureDays =
         [few] za { $number } dana
        *[other] za { $number } dana
     }
+errorThirdPartyCookiesEnabled = Ako ste napravili snimak ekrana i ne možete ga izbrisati, možda trebate privremeno omogućiti kolačiće trećih strana u postavkama vašeg preglednika.
+
+## Shot Page New Feature Promotion Dialog.
+
 
 ## Annotations
+
+annotationPenButton =
+    .title = Olovka
+annotationHighlighterButton =
+    .title = Isticanje
+annotationUndoButton =
+    .title = Poništi
+annotationRedoButton =
+    .title = Ponovi
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
+    .title = Očisti
+annotationCropButton =
+    .title = Izreži
+annotationCropConfirmButton = Potvrdi
+    .title = Potvrdi odabir
+annotationCropCancelButton = Otkaži
+    .title = Otkaži odabir
+annotationColorWhite =
+    .title = Bijela
+annotationColorBlack =
+    .title = Crna
+annotationColorRed =
+    .title = Crvena
+annotationColorGreen =
+    .title = Zelena
+annotationColorBlue =
+    .title = Plava
+annotationColorYellow =
+    .title = Žuta
+annotationColorPurple =
+    .title = Ljubičasta
+annotationColorGrey =
+    .title = Siva
+# Values shown in text size selection dropdown
+textSizeSmall = Mala
+textSizeMedium = Srednja
+textSizeLarge = Velika
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = Potvrdi
+    .title = Potvrdi
+textToolCancelButton = Otkaži
+    .title = Otkaži
+
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
 
 
 ## Settings Page
 
+settingsSignInButton = Prijava
+    .title = Prijava
 
 ## Shotindex page
 
@@ -199,19 +255,27 @@ shotIndexPageSearchResultsTitle = Moje snimke: traži { $searchTerm }
 shotIndexPageErrorRendering = Greška pri crtanju stranice: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Pretraži moje snimke
-shotIndexPageSearchButton =
-    .title = Traži
 shotIndexPageNoShotsMessage = Nema spremljenih snimki.
 shotIndexPageNoShotsInvitation = Samo naprijed, napravite nekoliko.
 shotIndexPageLookingForShots = Traženje vaših snimki…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Ne možemo pronaći niti jednu snimku koja odgovara vašem upitu.
+shotIndexPageMyShotsButton =
+    .title = Moje snimke
 shotIndexPageClearSearchButton =
     .title = Očisti pretraživanje
 shotIndexPageConfirmShotDelete = Obriši ovu snimku?
+shotIndexPagePreviousPage =
+    .title = Prethodna stranica
+shotIndexPageNextPage =
+    .title = Sljedeća stranica
 
 ## Delete Confirmation Dialog
 
+shotDeleteCancel = Otkaži
+    .title = Otkaži
+shotDeleteConfirm = Obriši
+    .title = Obriši
 
 ## Metrics page
 ## All metrics strings are optional for translation
