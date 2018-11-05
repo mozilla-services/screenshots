@@ -18,7 +18,7 @@ buttonSignIn =
     .title = ورود
 screenshotsLogo =
     .title = صفحه خانگی تصاویر صفحه
-bannerMessage = برای دسترسی به عکس‌ها در تمام دستگاه‌هایتان و ذخیره همیشگی عکس‌های مورد علاقه‌تان، وارد شوید یا ثبت نام کنید.
+bannerSignIn = <a>وارد شوید یا ثبت نام کنید</a> برای دسترسی به تصاویر که بر روی دستگاه‌ های شما هستند و تصویر مورد علاقه خود را برای همیشه ذخیره کنید.
 bannerUpsell = { gScreenshotsDescription } <a>هم‌اکنون فایرفاکس را دریافت کنید</a>
 
 ## Footer
@@ -77,7 +77,7 @@ homePageCookiesLink = کوکی‌ها
 
 leavePageRemoveAllData = حذف تمام داده‌ها
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = برای حذف حساب کاربری خود باید Firefox Screenshots نصب کرده باشید
+leavePageErrorAuthRequired = شما باید  Firefox Screenshots را نصب داشته باشید یا وارد حساب فایرفاکس خود شوید تا بتوانید حساب خود را حذف کنید
 leavePageErrorGeneric = خطایی رخ داده است.
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = این تمام اطلاعات Firefox Screenshots شما را به صورت دائمی حذف خواهد کرد.

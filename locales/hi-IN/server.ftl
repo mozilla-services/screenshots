@@ -64,6 +64,10 @@ homePageCaptureRegionDescription = जिस क्षेत्र को आप
 homePageCapturePage = एक पृष्ठ कैप्चर करें
 homePageCapturePageDescription = पूर्ण पृष्ठों को कैप्चर करने के लिए ऊपरी दाईं ओर के बटनों का उपयोग करें. दृश्य सहेजें बटन आप स्क्रॉल के बिना देख सकते हैं क्षेत्र पर कब्जा होगा, और पूरे पृष्ठ को बचाने के पृष्ठ पर सब कुछ कब्जा होगा.
 homePageSaveShare = सहेजें और साझा करें
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = अपना बेहतरीन स्क्रीनशॉट खींचें। फिर इसे ऑनलाइन स्क्रीनशॉट लाइब्रेरी में सहेजें, और आसानी से साझा करने हेतु Firefox लिंक को क्लिपबोर्ड में कॉपी कर लेता है। लाइब्रेरी में मौजूद स्क्रीनशॉट स्वतः रूप से दो हप्ते के बाद एक्स्पाय हो जाता है, पर आप उन्हें किसी भी समय मिटा सकते हैं या उन्हें अधिक दिनों तक रखने के लिए चुन सकते हैं।
+homePageSignInTitle = हर जगह आपके स्क्रीनशॉट
+homePageSignInDescription = सभी जगह जहाँ आप Firefox इस्तेमाल करते हैं वहाँ अपने स्क्रीनशॉट को देखने के लिए Screenshot में अपने Firefox ख़ाते द्वारा साइन इन करें। एक अतरिक्त बोनस: आप अपने पसंदीदा स्क्रीनशॉटों को हमेशा के लिए सहेज सकते हैं।
 homePageLegalLink = वैध
 homePagePrivacyLink = गोपनीयता
 homePageTermsLink = शर्तें
@@ -72,6 +76,8 @@ homePageCookiesLink = कुकीज़
 ## Leave Screenshots page
 
 leavePageRemoveAllData = सभी डेटा मिटाये
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = अपने ख़ाते को मिटाने के लिए आपके पास Firefox Screenshot इनस्टॉल होना चाहिए या Firefox ख़ाते में साइन इन होना चाहिए
 leavePageErrorGeneric = एक त्रुटि उत्पन्न हुई
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = यह आपके सभी firefox स्क्रीनशॉट डेटा को हमेशा के लिए मिटा देगा.

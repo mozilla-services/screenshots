@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Prisijungti
 screenshotsLogo =
     .title = Ekranų nuotraukų pradžia
-bannerMessage = Prisijunkite, norėdami pasiekti savo nuotraukas visuose įrenginiuose ir visam laikui įrašyti patinkančias.
+bannerSignIn = <a>Prisijunkite</a>, norėdami pasiekti savo nuotraukas visuose įrenginiuose ir visam laikui įrašyti patinkančias.
 bannerUpsell = { gScreenshotsDescription } <a>Parsisiųskite „Firefox“</a>
 
 ## Footer

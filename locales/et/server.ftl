@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Logi sisse
 screenshotsLogo =
     .title = Avaleht
-bannerMessage = Logi sisse või registreeru kasutajaks, et pääseda ligi ekraanipiltidele kõigist oma seadmetest ning salvestada lemmikud jäädavalt.
+bannerSignIn = <a>Logi sisse või registreeru kasutajaks</a>, et pääseda ligi ekraanipiltidele kõigist oma seadmetest ning salvestada lemmikud jäädavalt.
 bannerUpsell = { gScreenshotsDescription } <a>Hangi Firefox</a>
 
 ## Footer
@@ -65,7 +65,9 @@ homePageCapturePage = Lehe salvestamine
 homePageCapturePageDescription = Tervete lehtede salvestamiseks kasuta nuppe ülal paremal. Salvesta nähtav nupp valib ala, mida näed kerimata, ja Salvesta terve leht valib kogu lehe.
 homePageSaveShare = Salvestamine ja jagamine
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Kui teed pildi, siis postitab Firefox selle võrgus asuvasse ekraanipiltide kogusse ning kopeerib lõikepuhvrisse lingi. Salvestame ekraanipildi automaatselt kaheks nädalaks, kuid saad neid igal ajal kustutada või aegumistähtaega muuta ning neid kogus kauem hoida.
+homePageShaveShareFavoriteDescription = Tee oma parim pilt. Seejärel salvesta see võrgus olevasse kuvapiltide kogumikku ning Firefox kopeerib lingi pildile sinu seadme vahemällu, et saaksid pilti lihtsalt jagada. Kogumikku lisatud pildid aeguvad automaatselt kahe nädala pärast, aga sa võid kustutada need ka kiiremini või säilitada neid soovi korral kauem.
+homePageSignInTitle = Sinu pildid kõikjal
+homePageSignInDescription = Logi sisse oma Firefoxi kontoga, et pääseda ekraanipiltidele ligi kõikjalt, kus kasutad Firefoxi. Lisatud boonusena saad siis lemmik ekraanipilte säilitada jäädavalt.
 homePageLegalLink = Õiguslik teave
 homePagePrivacyLink = Privaatsus
 homePageTermsLink = Kasutustingimused
@@ -75,7 +77,7 @@ homePageCookiesLink = Küpsised
 
 leavePageRemoveAllData = Kõigi andmete eemaldamine
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Konto kustutamiseks peab Firefox Screenshots olema paigaldatud
+leavePageErrorAuthRequired = Oma konto kustutamiseks peab sul olema paigaldatud Firefox Screenshots või sa pead olema sisse logitud Firefoxi kontosse
 leavePageErrorGeneric = Tekkis viga
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = See kustutab jäädavalt kõik sinu Firefox Screenshots andmed.

@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Conectarse
 screenshotsLogo =
     .title = Inicio de Screenshots
-bannerMessage = Conéctate o registrate para acceder a tus capturas en todos tus dispositivos y guardar tus favoritas para siempre.
+bannerSignIn = <a>Conéctate o regístrate</a> para acceder a tus capturas en todos tus dispositivos y guardar tus favoritas para siempre.
 bannerUpsell = { gScreenshotsDescription } <a>Obtener Firefox ahora</a>
 
 ## Footer
@@ -65,7 +65,9 @@ homePageCapturePage = Captura una página
 homePageCapturePageDescription = Usa los botones en la parte superior derecha para capturar páginas completas. El botón para guardar lo visible capturará el área que puedes ver sin desplazarte por la página, y el de guardar la página completa capturará incluso lo que se encuentre más arriba o abajo de la pantalla.
 homePageSaveShare = Guardar y compartir
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Cuando tomas una captura, Firefox la publica a tu biblioteca de capturas de pantalla en línea y copia el enlace a tu portapapeles. Automáticamente almacenamos tu captura de pantalla por dos semanas, pero puedes eliminar las capturas en cualquier momento o cambiar la fecha de expiración para mantenerlas en tu biblioteca más tiempo.
+homePageShaveShareFavoriteDescription = Toma tu mejor captura. Luego guárdala en la biblioteca de capturas de pantalla en línea, y Firefox copiará el enlace a tu portapapeles para que puedas compartirla con facilidad. Las capturas de la biblioteca expiran automáticamente luego de dos semanas, pero si lo deseas puedes eliminarlas antes o mantenerlas por más tiempo.
+homePageSignInTitle = Tus capturas en todas partes
+homePageSignInDescription = Conéctate a Screenshots con tu cuenta de Firefox para acceder a tus capturas desde cualquier parte en que uses Firefox. Adicional a esto, ¡puedes guardar tus capturas favoritas para siempre!
 homePageLegalLink = Legal
 homePagePrivacyLink = Privacidad
 homePageTermsLink = Términos
@@ -75,7 +77,7 @@ homePageCookiesLink = Cookies
 
 leavePageRemoveAllData = Eliminar todos los datos
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Debes tener Firefox Screenshots instalado para eliminar tu cuenta
+leavePageErrorAuthRequired = Debes tener Firefox Screenshots instalado o conectarte a tu cuenta de Firefox para eliminar tu cuenta.
 leavePageErrorGeneric = Ocurrió un error
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Esto eliminará permanentemente todos tus datos de Firefox Screenshots

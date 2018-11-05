@@ -9,8 +9,6 @@ gHomeLink = Dhachaigh
 gNoShots =
     .alt = Cha deach glacadh a lorg
 gScreenshotsDescription = Glacaidhean-sgrìn gun duilgheadas sam bith. Tog, sàbhail is co-roinn iad gun Firefox fhàgail idir.
-gSettings = Roghainnean
-gSignIn = Clàraich a-steach
 
 ## Header
 
@@ -20,6 +18,7 @@ buttonSignIn =
     .title = Clàraich a-steach
 screenshotsLogo =
     .title = Dachaidh nan glacadh-sgrìn
+bannerSignIn = <a>Clàraich leinn no clàraich a-steach</a> a dh’fhaighinn greim air glacaidhean-sgrìn air feadh nan uidheaman agad is sàbhail an fheadhainn chudromach gu buan.
 bannerUpsell = { gScreenshotsDescription } <a>Faigh Firefox an-dràsta</a>
 
 ## Footer
@@ -66,7 +65,9 @@ homePageCapturePage = Glac duilleag
 homePageCapturePageDescription = Cleachd na putanan air an taobh deas gu h-àrd airson duilleag shlàn a ghlacadh. Glacaidh am putan “Sàbhail na tha ri fhaicinn” gach rud a chì thu gun a bhith a’ sgroladh agus glacaidh “Sàbhail an duilleag shlàn” gach rud air an duilleag.
 homePageSaveShare = Sàbhail is co-roinn
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Nuair a thogas tu glacadh-sgrìn, cuiridh Firefox e dhan leabhar-lann air loidhne agad agus cuiridh e ceangal ris air an stòr-bhòrd agad. Cumaidh sinn glacadh-sgrìn fad cola-deug gu fèin-obrachail ach is urrainn dhut glacadh a sguabadh às uair sam bith no an ceann-là a thèid a sguabadh às atharrachadh ma tha thu airson a chumail nas fhaide.
+homePageShaveShareFavoriteDescription = Tog glacadh agus sàbhail e ann an leabhar-lann nan glacaidhean-sgrìn air loidhne agad. Cuiridh Firefox lethbhreac dhen cheangal air an stòr-bhòrd agad airson ’s gum bi e furasta a cho-roinneadh. Falbhaidh an ùine air glacaidhean-sgrìn san leabhar-lann gu fèin-obrachail an dèidh cola-deug ach is urrainn dhut an sguabadh às uair sam bith no an cumail nas fhaide na sin.
+homePageSignInTitle = Thoir leat na glacaidhean-sgrìn agad
+homePageSignInDescription = Clàraich a-steach gu gleus nan glacaidhean-sgrìn leis a’ chunntas Firefox a dh’fhaighinn greim air na glacaidhean-sgrìn agad àite sam bith a chleachdas tu Firefox. Agus is urrainn dhut an fheadhainn chudromach a shàbhaladh gu buan.
 homePageLegalLink = Nòtaichean laghail
 homePagePrivacyLink = Prìobhaideachd
 homePageTermsLink = Na teirmichean
@@ -76,7 +77,7 @@ homePageCookiesLink = Briosgaidean
 
 leavePageRemoveAllData = Thoir air falbh an dàta air fad
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Feumaidh gleus glacaidhean-sgrìn Firefox a bhith stàlaichte agad mus urrainn dhut an cunntas agad a sguabadh às
+leavePageErrorAuthRequired = Feumaidh gleus nan glacaidhean-sgrìn aig Firefox a bhith stàlaichte agad no feumaidh tu a bhith clàraichte a-staigh sa chunntas Firefox agad mus urrainn dhut an cunntas agad a sguabadh às
 leavePageErrorGeneric = Thachair mearachd
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Sguabaidh seo an dàta air fad agad ann an gleus glacaidhean-sgrìn Firefox agad gu buan.
@@ -100,7 +101,6 @@ shotPageAlertErrorUpdatingTitle = Mearachd a’ sàbhaladh an tiotail
 shotPageConfirmDelete = A bheil thu cinnteach gu bheil thu airson an glacadh seo a sguabadh às gu buan?
 shotPageShareButton =
     .title = Co-roinn
-shotPageCopy = Dèan lethbhreac
 shotPageCopyButton =
     .title = Cuir lethbhreac dhen dealbh air an stòr-bhòrd
 shotPageCopied = Lethbhreac air a dhèanamh
@@ -137,13 +137,6 @@ shotPageBackToHomeButton =
     .title = Duilleag-dhachaigh
 shotPageAllShotsButton =
     .title = A h-uile glacadh
-shotPageAllShots = A h-uile glacadh
-shotPageDownload = Luchdaich a-nuas
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Tarraing
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Annsachd
-shotPageDelete = Sguab às
 shotPageScreenshotsDescription = Glacaidhean-sgrìn gun duilgheadas sam bith. Tog, sàbhail is co-roinn iad gun Firefox fhàgail idir.
 shotPageDMCAMessage = Chan eil an glacadh seo ri fhaighinn tuilleadh air sgàth tagradh an aghaidh briseadh IP a rinn cuideigin.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -222,6 +215,10 @@ errorThirdPartyCookiesEnabled = Ma thog thusa an glacadh seo ’s mur urrainn dh
 
 # Note: If possible, choose a short translation to better fit into the card.
 promoTitle = An aire!
+promoMessage = Leis na h-innealan deasachaidh ùra, ’s urrainn dhut na dealbhan a bhearradh, a chomharradh no fiù teacsa a chur riutha.
+promoLink = Feuch e
+promoCloseButton =
+    .title = Dùin an teachdaireachd
 
 ## Annotations
 
@@ -233,6 +230,8 @@ annotationUndoButton =
     .title = Neo-dhèan
 annotationRedoButton =
     .title = Ath-dhèan
+annotationTextButton =
+    .title = Cuir teacsa ris
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Falamhaich
@@ -264,11 +263,28 @@ annotationColorSeaGreen =
     .title = Glas
 annotationColorGrey =
     .title = Liath
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Meud an teacsa
+# Values shown in text size selection dropdown
+textSizeSmall = Beag
+textSizeMedium = Meadhanach
+textSizeLarge = Mòr
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = Dearbh
+    .title = Dearbh
+textToolCancelButton = Sguir dheth
+    .title = Sguir dheth
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Boí rí amrae for Laignib
 
 ## The following are the title and message for an error displayed as a Firefox
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = Chaidh rudeigin cearr
+copyImageErrorMessage = Chan urrainn dhuinn an glacadh a chur air an stòr-bhòrd.
 
 ## Settings Page
 
@@ -301,6 +317,8 @@ shotIndexPageNoShotsInvitation = Siuthad, tog feadhainn.
 shotIndexPageLookingForShots = A’ lorg nan glacaidhean agad...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Chan urrainn dhuinn glacadh sam bith a lorg a fhreagras ris na dh’iarr thu.
+shotIndexPageMyShotsButton =
+    .title = Na glacaidhean agam
 shotIndexPageClearSearchButton =
     .title = Falamhaich an lorg
 shotIndexPageConfirmShotDelete = A bheil thu airson an glacadh seo a sguabadh às?
@@ -308,6 +326,18 @@ shotIndexPagePreviousPage =
     .title = An duilleag roimhe
 shotIndexPageNextPage =
     .title = An ath-dhuilleag
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Chan e annsachd a tha sa ghlacadh seo agus falbhaidh an ùine air
+# This is the tooltip for a "heart" symbol in the upper top corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Tha an glacadh seo ’na annsachd agad agus chan fhalbh an ùine air
+shotIndexSyncedShot =
+    .title = Chaidh a ghlacadh air uidheam eile
+shotIndexAlertErrorFavoriteShot = Cha b’ urrainn dhuinn annsachd a dhèanamh dhen ghlacadh
 
 ## Delete Confirmation Dialog
 

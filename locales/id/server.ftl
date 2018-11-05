@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Masuk
 screenshotsLogo =
     .title = Beranda Screenshots
-bannerMessage = Masuk atau daftar untuk mengakses cuplikan layar Anda di semua perangkat dan simpan favorit Anda selamanya.
+bannerSignIn = <a>Masuk atau daftar</a> untuk mengakses tangkapan layar lintas peranti dan simpan favorit Anda untuk seterusnya.
 bannerUpsell = { gScreenshotsDescription } <a>Dapatkan Firefox sekarang juga</a>
 
 ## Footer

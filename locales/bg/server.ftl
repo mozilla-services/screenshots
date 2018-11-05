@@ -18,6 +18,7 @@ buttonSignIn =
     .title = Вписване
 screenshotsLogo =
     .title = Страница на Screenshots
+bannerSignIn = <a>Впишете се или се регистрирайте</a>, за да получите достъп до вашите снимки от други устройства и за да запазите вашите любими снимки завинаги.
 bannerUpsell = { gScreenshotsDescription } <a>Вземете Firefox сега</a>
 
 ## Footer
@@ -64,7 +65,9 @@ homePageCapturePage = Улавяне на страница
 homePageCapturePageDescription = Използвайте бутоните в горния десен ъгъл, за да снимате цели страници. Бутонът „Запазване на видимата област“ ще улови областта, която виждате без прелистване, а „Запазване на цялата страница“ – всичко на страницата.
 homePageSaveShare = Запазване и споделяне
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Когато направите снимка Firefox я публикува във вашата онлайн библиотека на Screenshots и копира препратката в буферната памет. Изображенията се пазят 2 седмици, но може да ги премахнете по всяко време или да промените кога да бъдат изтрити, за да ги задържите в библиотеката си за по дълго време.
+homePageShaveShareFavoriteDescription = Направете най-добрата си снимка. След това я запазете в онлайн библиотеката за снимки на екрана и Firefox ще копира препратката в системния буфер, така че лесно да я споделите. Снимките в библиотеката се изтриват автоматично след 2 седмици, но може да ги изтриете по всяко време или да ги задържите по-дълго.
+homePageSignInTitle = Вашите снимки – навсякъде
+homePageSignInDescription = Впишете се в Снимки на екрана с вашия Firefox Account, за да получите достъп до вашите снимки отвсякъде, където използвате Firefox. Като добавка: можете да запазите вашите любими снимки завинаги.
 homePageLegalLink = Правни въпроси
 homePagePrivacyLink = Поверителност
 homePageTermsLink = Условия
@@ -74,7 +77,7 @@ homePageCookiesLink = Бисквитки
 
 leavePageRemoveAllData = Премахване на всички данни
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Трябва да имате инсталиран Firefox Screenshots, за да изтриете вашата сметка
+leavePageErrorAuthRequired = Трябва да имате инсталирани Снимки на екрана за Firefox или да сте вписани с Firefox Account, за да може да изтриете вашата сметка
 leavePageErrorGeneric = Възникна грешка
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Така вашата информация в Firefox Screenshots ще бъде необратимо премахната.
@@ -322,6 +325,7 @@ shotIndexFavoriteIcon =
     .title = Това е отбелязана снимка и тя няма срок на съхранение
 shotIndexSyncedShot =
     .title = Снимка от друго устройство
+shotIndexAlertErrorFavoriteShot = Грешка при обновяване на състоянието на любимите снимки
 
 ## Delete Confirmation Dialog
 
