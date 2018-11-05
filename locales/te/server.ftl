@@ -9,6 +9,11 @@ gHomeLink = ముంగిలి
 gNoShots =
     .alt = తెరపట్లు కనుగొనబడలేదు
 
+## Header
+
+buttonSettings =
+    .title = అమరికలు
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
@@ -35,15 +40,12 @@ homePageButtonMyShots = నా తెరపట్లకు వెళ్ళండ
 homePageTeaser = త్వరలో వస్తుంది...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ఉచిత దింపుకోలు
-homePageGetStarted = మొదలుపెట్టడం
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots ఎలాపని చేస్తాయి
 homePageGetStartedTitle = మొదలుపెట్టడం
 homePageCaptureRegion = ఒక ప్రాంతాన్ని క్యాప్చర్ చేయండి
 homePageCapturePage = ఒక పేజీని క్యాప్చర్ చేయండి
 homePageSaveShare = భద్రపరుచుకొని పంచుకోండి
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = మీరు ఒక తెరపట్టుని తీసినప్పుడు,Firefox మీ ఆన్లైన్ తెరపట్ల లైబ్రరీకి మీ తెరపట్లను పోస్ట్ చేస్తుంది మరియు మీ క్లిప్బోర్డ్కు లంకెను నాకలు చేస్తుంది. మేము రెండు వారాలపాటు మీ తెరపట్లను స్వయంచాలకంగా నిల్వ చేస్తాము, కానీ మీరు ఎప్పుడైనా తెరపట్టుని తొలగించవచ్చు లేదా మీ లైబ్రరీలో ఎక్కువ కలం ఉంచడానికి గడువు తేదీని మార్చవచ్చు.
 homePageLegalLink = చట్టపరమైన
 homePagePrivacyLink = గోప్యం
 homePageTermsLink = నియమాలు
@@ -52,8 +54,6 @@ homePageCookiesLink = కుకీలు
 ## Leave Screenshots page
 
 leavePageRemoveAllData = డేటా అంతా తీసివేయి
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = మీ ఖాతాను తొలగించడానికి Firefox Screenshots స్థాపించి ఉండాలి
 leavePageErrorGeneric = ఒక దోషం ఏర్పడింది.
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = ఇది మీ Firefox స్క్రీన్షాట్ల డేటాను శాశ్వతంగా తుడిచి వేస్తుంది.
@@ -77,7 +77,6 @@ shotPageAlertErrorUpdatingTitle = శీర్షిక బద్రపరచడ
 shotPageConfirmDelete = మీరు ఖచ్చితంగా ఈ తెరపట్టును శాశ్వతంగా తొలగించాలనుకుంటున్నారా?
 shotPageShareButton =
     .title = పంచుకోండి
-shotPageCopy = నకలుతీయి
 shotPageCopied = నకలు చేయబడింది
 shotPageShareFacebook =
     .title = Facebookలో పంచుకోండి
@@ -102,15 +101,11 @@ shotPageExpiredMessage = ఈ తెరపట్టు గడువు ముగ�
 shotPageExpiredMessageDetails = ఇది మొదట సృష్టించబడిన పేజీ:
 shotPageDeleteButton =
     .title = ఈ తెరపట్టును తొలగించండి
-shotPageAbuseButton =
-    .title = దుర్వినియోగం, స్పామ్ లేదా ఇతర సమస్యలకు ఈ తెరపట్టును నివేదించండి
 shotPageDownloadShot =
     .title = దింపుకోండి
 shotPageEditButton =
     .title = ఈ చిత్రం సవరించు
-shotPageDownload = దింపుకోండి
 shotPageScreenshotsDescription = తెరపట్లు సులభతరమైనాయి. Firefoxను వదలకుండా తెరపట్లను తీసుకోండి,  భద్రపరచండి మరియు పంచుకోండి.
-shotPageUpsellFirefox = ఇప్పుడు Firefoxను పొందండి
 shotPageDMCAMessage = మూడవ పార్టీ మేధో సంపత్తి హక్కు కారణంగా ఈ తెరపట్టు అందుబాటులో లేదు.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = దయచేసి మరింత సమాచారం అభ్యర్థించడానికి { $dmca }కి ఇమెయిల్ చేయండి.
@@ -169,6 +164,9 @@ timeDiffFutureDays =
        *[other] { $number } రోజులలో
     }
 
+## Shot Page New Feature Promotion Dialog.
+
+
 ## Annotations
 
 annotationPenButton =
@@ -224,6 +222,11 @@ textToolCancelButton = రద్దుచేయి
 textToolInputPlaceholder =
     .placeholder = హలో
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+
 ## Settings Page
 
 settingsDisconnectButton = అనుసంధానం తెంచు
@@ -245,8 +248,6 @@ shotIndexPageErrorDeletingShot = షాట్ను తొలగించడం�
 shotIndexPageSearchResultsTitle = నా తెరపట్ల: { $searchTerm } కోసం శోధన
 shotIndexPageSearchPlaceholder =
     .placeholder = నా తెరపట్లను వెతకండి
-shotIndexPageSearchButton =
-    .title = వెతకండి
 shotIndexPageNoShotsMessage = భద్రపరచిన తెరపట్లు లేవు.
 shotIndexPageNoShotsInvitation = వెళ్ళండి, కొన్ని తెరపట్లు తీయండి.
 shotIndexPageLookingForShots = తెరపట్ల కొరకు చూస్తున్నాం…
@@ -259,12 +260,6 @@ shotIndexPagePreviousPage =
     .title = మునుపటి పేజీ
 shotIndexPageNextPage =
     .title = తదుపరి పేజీ
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = ఈ పట్టు ఎప్పటికీ కాలంచెల్లదు
 
 ## Delete Confirmation Dialog
 
