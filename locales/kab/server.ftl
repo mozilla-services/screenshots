@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Kcem
 screenshotsLogo =
     .title = Tuṭṭfa n wegdil agejdan
-bannerMessage = Qqen neɣ jerred akken ad tkecmeḍ ar tuṭṭfiwin-ik deg ibenkan daɣen ad teskelseḍ ayen tḥemmleḍ i lebda.
+bannerSignIn = <a>Qqen neɣ jerred</a> akken ad tkecmeḍ ar tuṭṭfiwin-ik deg ibenkan daɣen ad teskelseḍ ayen tḥemmleḍ i lebda.
 bannerUpsell = { gScreenshotsDescription }<a>Awi Firefox tura</a>
 
 ## Footer
@@ -77,7 +77,7 @@ homePageCookiesLink = Inagan n tuqqna
 
 leavePageRemoveAllData = Kkes akk isefka
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Yessefk ad yili ɣur-k Firefox Screenshots iyebded akken ad tekkseḍ amiḍan-ik
+leavePageErrorAuthRequired = Ilaq ad ttwasbedden inegzumzn n Firefox neɣ ad teqneḍ deg umiḍan n Firefox akken ad tekseḍ amiḍan-ik
 leavePageErrorGeneric = Teḍra-d tuccḍa
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ayagi ad yekkes ilebda akk isefka n tuṭṭufiwin n ugdil n Firefox.
