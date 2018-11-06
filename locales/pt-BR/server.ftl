@@ -18,7 +18,6 @@ buttonSignIn =
     .title = Entrar
 screenshotsLogo =
     .title = Página inicial do Screenshots
-bannerMessage = Entre ou cadastre-se para acessar suas capturas de tela entre dispositivos e salvar seus favoritos para sempre.
 bannerUpsell = { gScreenshotsDescription } <a>Baixe o Firefox agora mesmo</a>
 
 ## Footer
@@ -53,17 +52,17 @@ homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Download grátis
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Como o Firefox Screenshots funciona
-homePageGetStartedTitle = Iniciar
+homePageGetStartedTitle = Início
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Encontre o novo ícone do Screenshots na barra de ferramentas. Selecione, e o menu do Screenshots aparecerá no topo da janela do seu navegador.
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescriptionPageAction = Selecione o ícone do Screenshots no menu de ações da página, na barra de endereços, e o menu do Screenshots aparecerá no topo da janela do seu navegador.
-homePageCaptureRegion = Capturar uma região
+homePageGetStartedDescriptionPageAction = Selecione o ícone do Screenshots no menu de ações da página, na barra de endereços. O menu do Screenshots aparecerá no topo da janela do seu navegador.
+homePageCaptureRegion = Capture uma Região
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar. Ou simplesmente passe o mouse e clique — o Screenshots irá selecionar a área automaticamente pra você. Gostou do que viu? Clique em Salvar para acessar sua captura on-line ou no botão com a seta para baixo para baixar para seu computador.
-homePageCapturePage = Capturar uma página
-homePageCapturePageDescription = Utilize os botões no canto superior direito para capturar telas inteiras. O botão Salvar Área Visível irá capturar a área que você vê sem rolar a página, e Salvar Página Inteira irá capturar toda a página.
-homePageSaveShare = Salvar e compartilhar
+homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar. Ou simplesmente passe o mouse e clique — o Screenshots irá selecionar a área automaticamente pra você. Gostou do que escolheu? Clique em Salvar para acessar sua captura on-line, ou no botão com a seta para baixo para baixar para seu computador.
+homePageCapturePage = Capture uma Página
+homePageCapturePageDescription = Use os botões no canto superior direito para capturar telas inteiras. O botão Salvar Área Visível irá capturar a área que você vê sem rolar a página. O botão Salvar Página Inteira irá capturar toda a página.
+homePageSaveShare = Salve e Compartilhe
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageShaveShareFavoriteDescription = Tire sua melhor captura de tela e salve na biblioteca on-line do Screenshots, então, o Firefox copiará o link para a sua área de transferência para fácil compartilhamento. As capturas de tela na biblioteca expiram automaticamente após duas semanas, mas você pode apagá-las a qualquer momento ou escolher mantê-las por mais tempo.
 homePageSignInTitle = Suas capturas de tela em qualquer lugar
