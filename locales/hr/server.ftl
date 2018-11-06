@@ -132,6 +132,10 @@ shotPageDMCAIncludeLink = Uključite URL na ovu snimku u vašoj poruci e-pošte:
 shotPageKeepFor = Koliko dugo želite čuvati ovu snimku?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Odaberite vrijeme
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Na neodređeno vrijeme ∞
 shotPageKeepTenMinutes = 10 minuta
 shotPageKeepOneHour = 1 sat
 shotPageKeepOneDay = 1 dan
