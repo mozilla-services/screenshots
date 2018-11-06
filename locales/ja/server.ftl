@@ -9,15 +9,17 @@ gHomeLink = ホーム
 gNoShots =
     .alt = ショットが見つかりませんでした
 gScreenshotsDescription = スクリーンショットをもっと手軽に。Firefox を離れることなくスクリーンショットを撮影、保存、共有。
-gSettings = 設定
-gSignIn = ログイン
 
 ## Header
 
-signInButton =
-    .aria-label = ログイン
-settingsButton =
-    .aria-label = 設定
+buttonSettings =
+    .title = 設定
+buttonSignIn =
+    .title = ログイン
+screenshotsLogo =
+    .title = Screenshots ホーム
+bannerSignIn = <a>ログインまたはアカウント登録</a> してショットにアクセス。端末を問わずにショットへアクセスし、あなたのお気に入りを保存しましょう。
+bannerUpsell = { gScreenshotsDescription } <a>Firefox を今すぐ入手</a>
 
 ## Footer
 
@@ -25,6 +27,8 @@ settingsButton =
 footerLinkMozilla = Mozilla
 footerLinkTerms = 利用規約
 footerLinkPrivacy = プライバシー通知
+footerReportShot = ショットを報告
+    .title = このショットを不正利用またはスパム、他の問題で報告します
 footerLinkFaqs = よくある質問
 footerLinkDMCA = IP 侵害を報告
 footerLinkDiscourse = フィードバックを送る
@@ -60,8 +64,6 @@ homePageCaptureRegionDescription = クリック＆ドラッグでキャプチャ
 homePageCapturePage = ページをキャプチャ
 homePageCapturePageDescription = ページ全体をキャプチャするには右上のボタンを使ってください。[表示範囲を保存] ボタンはスクロールせずに見えている範囲のみをキャプチャ、[ページ全体を保存] ボタンはページ上のすべての要素をキャプチャできます。
 homePageSaveShare = 保存して共有
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = ショットを撮ると、Firefox はスクリーンショットをオンラインの Screenshots ライブラリへ投稿して、そのリンクをクリップボードへコピーします。スクリーンショットは自動的に 2 週間保存されますが、その間にいつでも削除したり、もっと長くライブラリに残せるよう期限を変更したりできます。
 homePageLegalLink = 法的通知
 homePagePrivacyLink = プライバシー
 homePageTermsLink = 利用規約
@@ -71,7 +73,7 @@ homePageCookiesLink = Cookie
 
 leavePageRemoveAllData = すべてのデータを削除
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = アカウントを削除するには Firefox Screenshots がインストールされている必要があります
+leavePageErrorAuthRequired = Firefox Screenshots をインストールするか Firefox アカウントにログインしてアカウントを削除してください
 leavePageErrorGeneric = 問題が発生しました
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = これによりあなたの Firefox Screenshots データはすべて永久に消去されます。
@@ -95,7 +97,8 @@ shotPageAlertErrorUpdatingTitle = タイトルの保存中に問題が発生し�
 shotPageConfirmDelete = 本当にこのショットを永久に削除しますか？
 shotPageShareButton =
     .title = 共有
-shotPageCopy = コピー
+shotPageCopyButton =
+    .title = 画像をクリップボードへコピー
 shotPageCopied = コピー完了
 shotPageShareFacebook =
     .title = Facebook で共有
@@ -120,17 +123,17 @@ shotPageExpiredMessage = このショットは期限切れとなりました。
 shotPageExpiredMessageDetails = この作成元となったページはこちらです:
 shotPageDeleteButton =
     .title = このショットを削除
-shotPageAbuseButton =
-    .title = 悪用、スパム、その他の問題についてこのショットを報告
 shotPageDownloadShot =
     .title = ダウンロード
 shotPageEditButton =
     .title = この画像を編集
 shotPagefavoriteButton =
     .title = お気に入りのショット
-shotPageDownload = ダウンロード
+shotPageBackToHomeButton =
+    .title = ホームページ
+shotPageAllShotsButton =
+    .title = すべてのショット
 shotPageScreenshotsDescription = スクリーンショットをもっと手軽に。Firefox を離れることなくスクリーンショットを撮影、保存、共有。
-shotPageUpsellFirefox = 今すぐ Firefox をダウンロード
 shotPageDMCAMessage = このショットは第三者からの知的所有権侵害の申し立てにより使用できなくなりました。
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = より詳しい情報は { $dmca } までお問い合わせください。
@@ -236,6 +239,11 @@ textToolCancelButton = キャンセル
 textToolInputPlaceholder =
     .placeholder = こんにちは
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+
 ## Settings Page
 
 settingsDisconnectButton = 接続を解除
@@ -262,13 +270,13 @@ shotIndexPageSearchResultsTitle = 自分のショット: { $searchTerm } を検�
 shotIndexPageErrorRendering = ページのレンダリング中に問題が発生しました: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = 自分のショットを検索
-shotIndexPageSearchButton =
-    .title = 検索
 shotIndexPageNoShotsMessage = 保存済みのショットはありません。
 shotIndexPageNoShotsInvitation = さぁ、いくつかショットを撮ってみましょう。
 shotIndexPageLookingForShots = あなたのショットを検索しています...
 shotIndexPageNoSearchResultsIntro = うーん
 shotIndexPageNoSearchResults = 検索語に一致するショットが見つかりませんでした。
+shotIndexPageMyShotsButton =
+    .title = マイショット
 shotIndexPageClearSearchButton =
     .title = 検索語を消去
 shotIndexPageConfirmShotDelete = このショットを削除しますか？
@@ -276,13 +284,7 @@ shotIndexPagePreviousPage =
     .title = 前のページ
 shotIndexPageNextPage =
     .title = 次のページ
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = このショットの期限はありません
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
