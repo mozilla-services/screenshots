@@ -10,6 +10,17 @@ gNoShots =
     .alt = Neniu ekrankopio trovita
 gScreenshotsDescription = Ekrankopioj, simple faritaj. Kopii, konservi kaj dividi ekrankopiojn sen forlasi Firefox.
 
+## Header
+
+buttonSettings =
+    .title = Agordoj
+buttonSignIn =
+    .title = Komenci seancon
+screenshotsLogo =
+    .title = Eka paĝo de ekrankopioj
+bannerSignIn = <a>Komencu seancon aŭ registriĝu</a> por aliri viajn ekrankopiojn en ĉiuj aparatoj kaj konservi la plej ŝatatajn por ĉiam.
+bannerUpsell = { gScreenshotsDescription } <a>Ricevi Firefox nun</a>
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
@@ -38,7 +49,6 @@ homePageButtonMyShots = Iri al 'Miaj ekrankopioj'
 homePageTeaser = Baldaŭ aperonta…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Senpaga elŝuto
-homePageGetStarted = Unuaj paŝoj
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kiel funkcias Firefox Screenshots
 homePageGetStartedTitle = Unuaj paŝoj
@@ -52,8 +62,6 @@ homePageCaptureRegionDescription = Alklaku kaŭ trenu por elekti la areon, kion 
 homePageCapturePage = Kapti paĝon
 homePageCapturePageDescription = Uzu la butonojn supre kaj dekstre por kapti tutajn paĝojn. La butono 'Konservi tion, kio videblas' kaptos la areon, kiun vi vidas se vi ne ŝovas. La butono 'Konservi tutan paĝon'  kaptos ĉion en la paĝo.
 homePageSaveShare = Konservi kaj dividi
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Kiam vi faras ekrankopion, FIrefox sendas ĝin al via reta deponejo de ekrankopioj kaj kopias la ligilon en via tondujo. Ni aŭtomate konservas vian ekrankopion dum du semajnoj, sed vi povas forigi ilin iam ajn aŭ ŝanĝi la daton de senvalidiĝo por teni ilin pli longe.
 homePageLegalLink = Leĝaĵoj
 homePagePrivacyLink = Privateco
 homePageTermsLink = Kondiĉoj
@@ -62,8 +70,6 @@ homePageCookiesLink = Kuketoj
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Forigi ĉiujn datumojn
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Por povi forigi vian konton vi devas havi Firefox Screenshots instalita
 leavePageErrorGeneric = Eraro okazis
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Tio ĉi definitive forigos ĉiujn viajn datumojn de Firefox Screenshots.
@@ -87,7 +93,6 @@ shotPageAlertErrorUpdatingTitle = Eraro dum konservo de titolo
 shotPageConfirmDelete = Ĉu vi certe volas definitive forigi tiun ĉi ekrankopion?
 shotPageShareButton =
     .title = Dividi
-shotPageCopy = Kopii
 shotPageCopied = Kopiita
 shotPageShareFacebook =
     .title = Dividi en Facebook
@@ -112,15 +117,11 @@ shotPageExpiredMessage = Tiu ĉi ekrankopio senvalidiĝis.
 shotPageExpiredMessageDetails = Jen la paĝo el kiu ĝi estis origine kreita:
 shotPageDeleteButton =
     .title = Forigi tiun ĉi ekrankopion
-shotPageAbuseButton =
-    .title = Raporti tiun ĉi ekrankopion pro misuzo, trudemon aŭ aliaj problemoj
 shotPageDownloadShot =
     .title = Elŝuti
 shotPageEditButton =
     .title = Redakti tiun ĉi bildon
-shotPageDownload = Elŝuti
 shotPageScreenshotsDescription = Ekrankopioj, simple faritaj. Kopii, konservi kaj dividi ekrankopiojn sen forlasi Firefox.
-shotPageUpsellFirefox = Ricevi Firefox nun
 shotPageDMCAMessage = Tiu ĉi ekrankopio ne plu estas havebla pro plendo pri intelekta kopirajto.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Bonvolu skribi retpoŝte al { $dmca } por peti pli da informo.
@@ -250,6 +251,11 @@ textToolCancelButton = Nuligi
 textToolInputPlaceholder =
     .placeholder = Saluton
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+
 ## Settings Page
 
 settingsDisconnectButton = Malkonekti
@@ -276,8 +282,6 @@ shotIndexPageSearchResultsTitle = Miaj ekrankopioj: serĉi { $searchTerm }
 shotIndexPageErrorRendering = Eraro dum montro de ekrano: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Serĉi miajn ekrankopiojn
-shotIndexPageSearchButton =
-    .title = Serĉi
 shotIndexPageNoShotsMessage = Neniu konservita ekrankopio.
 shotIndexPageNoShotsInvitation = Ek, kreu kelkajn.
 shotIndexPageLookingForShots = Ekrankopioj serĉataj…
@@ -290,12 +294,6 @@ shotIndexPagePreviousPage =
     .title = Antaŭa paĝo
 shotIndexPageNextPage =
     .title = Venonta paĝo
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Tiu ĉi ekrankopio ne senvalidiĝas
 
 ## Delete Confirmation Dialog
 
