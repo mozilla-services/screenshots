@@ -63,6 +63,7 @@ homePageCaptureRegionDescription = Dă clic și trage pentru a selecta zona pe c
 homePageCapturePage = Fă o captură de pagină
 homePageCapturePageDescription = Folosește butoanele din dreapta sus pentru a captura pagini întregi. Butonul Salvează porțiunea vizibilă va captura zona pe care o poți vedea fără să derulezi și butonul Salvează pagina completă va captura toată pagina.
 homePageSaveShare = Salvează și partajează
+homePageSignInTitle = Capturile tale oriunde
 homePageLegalLink = Mențiuni legale
 homePagePrivacyLink = Confidențialitate
 homePageTermsLink = Termeni
