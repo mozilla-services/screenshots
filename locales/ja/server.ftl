@@ -64,6 +64,7 @@ homePageCaptureRegionDescription = クリック＆ドラッグでキャプチャ
 homePageCapturePage = ページをキャプチャ
 homePageCapturePageDescription = ページ全体をキャプチャするには右上のボタンを使ってください。[表示範囲を保存] ボタンはスクロールせずに見えている範囲のみをキャプチャ、[ページ全体を保存] ボタンはページ上のすべての要素をキャプチャできます。
 homePageSaveShare = 保存して共有
+homePageSignInTitle = どこでも撮れるスクリーンショット
 homePageLegalLink = 法的通知
 homePagePrivacyLink = プライバシー
 homePageTermsLink = 利用規約
@@ -243,6 +244,8 @@ textToolInputPlaceholder =
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = 問題が発生しました
+copyImageErrorMessage = ショットをクリップボードにコピーできませんでした。
 
 ## Settings Page
 
@@ -284,11 +287,17 @@ shotIndexPagePreviousPage =
     .title = 前のページ
 shotIndexPageNextPage =
     .title = 次のページ
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = これはお気に入りのショットではないので保存期限が切れます。
 # This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = このお気に入りのショットは期限切れになりません
+shotIndexSyncedShot =
+    .title = 別の端末で撮影されたショット
 
 ## Delete Confirmation Dialog
 
