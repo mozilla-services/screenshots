@@ -10,13 +10,15 @@ This document is a summary of the metrics Firefox Screenshots will record, how w
 
 Additionally, it's important to recognize that Firefox Screenshots is an add-on in a browser as well as a server-side service.
 
-## deviceId / user ID
+## accountId / deviceId / user ID
 
-Each device that uses Screenshots (browser, profile, computer) generates a random UUID ID.  We call this the deviceId.  In addition a random secret is generated.  The two together are used to register and authenticate with the server.
+Each device that takes Screenshots (browser, profile, computer) generates a random UUID ID.  We call this the deviceId. In addition a random secret is generated.  The two together are used to register and authenticate with the server.
 
 The deviceId is only registered with the screenshots.firefox.com server when the user first saves a shot.  Starting Screenshots or downloading does not cause registration.
 
-Each event is sent to the server with its deviceId.  The server hashes this ID (combining it with a random server string that is rotated occasionally) before sending it to Google Analytics.  This hashed ID is generally called `cid` (customer ID, a Google Analytics term).
+An alternate way to authenticate with server is by successful signin to firefox account. An accountId which is a uid returned by fxa-auth-server is assigned once a user login with firefox account and its value is reset on signout from settings.
+
+Each event is sent to the server with its accountId or deviceId.  The server hashes this ID (combining it with a random server string that is rotated occasionally) before sending it to Google Analytics.  This hashed ID is generally called `cid` (customer ID, a Google Analytics term).
 
 For web page views (viewing and interacting with individual shots or My Shots) we serve up `/ga-activation.js` or `/ga-activation-hashed.js` (the latter for pages with private URLs).  This file is generated *per user* and includes the `cid`, if the user is authenticated with the service.
 
@@ -87,10 +89,10 @@ Event label: exactly what control invoked the action, such as toolbar-button.  T
 
 The `cd9` dimension holds the "login type". The values can be:
 
-* Empty: visitor is not logged in
+* `non-login`: visitor is not logged in
 * `extension`: logged in via the extension, with no FxA login
-* `extension-fxa`: logged in via the extension, WITH an FxA login
-* `browser-fxa`: using a non-Firefox browser, with an FxA login
+* `extension-fxa`: logged in via the extension, With a FxA login
+* `browser-fxa`: using a non-Firefox browser, with a FxA login
 
 #### A/B tests
 

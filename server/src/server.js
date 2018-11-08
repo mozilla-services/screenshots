@@ -328,7 +328,7 @@ app.get("/ga-activation-hashed.js", function(req, res) {
 
 function sendGaActivation(req, res, hashPage) {
   let promise;
-  let loginType = null;
+  let loginType = "non-login";
   if (req.accountId) {
     if (req.deviceId) {
       loginType = "extension-fxa";
