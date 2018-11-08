@@ -100,6 +100,7 @@ shotPageShareButton =
     .title = Share
 shotPageCopyButton =
     .title = Copy image to clipboard
+shotPageCopyActionLabel = Copy
 shotPageCopied = Copied
 shotPageShareFacebook =
     .title = Share on Facebook

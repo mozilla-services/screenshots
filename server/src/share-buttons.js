@@ -155,10 +155,10 @@ class ShareButtonPanel extends React.Component {
           value={ this.props.shot.viewUrl }
           onClick={ this.onClickInputField.bind(this) }
           onChange={ function() {} /* react gives a warning otherwise */ } />
-        <Localized id={ this.state.copy === "copy" ? "shotPageCopy" : "shotPageCopied" }>
+        <Localized id={ this.state.copy === "copy" ? "shotPageCopyActionLabel" : "shotPageCopied" }>
           <button
             className="button secondary copy-toggle"
-            onClick={ this.onClickCopyButton.bind(this) }></button>
+            onClick={ this.onClickCopyButton.bind(this) }>Copy</button>
         </Localized>
       </div>
       <Localized id="shotPagePrivacyMessage">
