@@ -83,6 +83,15 @@ Event label: exactly what control invoked the action, such as toolbar-button.  T
 * `selection`: anything that happens during the selection phase, that doesn't happen in the topbar
 * `keyboard`: any keyboard shortcut used
 
+#### Login status custom dimension
+
+The `cd9` dimension holds the "login type". The values can be:
+
+* Empty: visitor is not logged in
+* `extension`: logged in via the extension, with no FxA login
+* `extension-fxa`: logged in via the extension, WITH an FxA login
+* `browser-fxa`: using a non-Firefox browser, with an FxA login
+
 #### A/B tests
 
 ##### Test alternate share panel
