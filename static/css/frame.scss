@@ -71,13 +71,9 @@
   .expire-info {
     display: block;
     @include respond-to("small") {
-      display: none;
-    }
-    @include respond-to("large") {
-      display: none;
-    }
-    @include respond-to("extra-large") {
-      display: block;
+      &.time-diff {
+        display: none;
+      }
     }
   }
 }
