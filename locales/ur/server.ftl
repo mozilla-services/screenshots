@@ -9,6 +9,9 @@ gHomeLink = ابتدائی صفحہ
 gNoShots =
     .alt = کوئی شاٹس نہیں ملی
 
+## Header
+
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
@@ -29,7 +32,6 @@ creatingPageWaitMessage = آپکی شاٹ محفوظ کررہے ہیں
 homePageTeaser = جلد آرہا ہے…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = مفت ڈائونلوڈ کریں
-homePageGetStarted = شروع کریں
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots کیسے کام کرتا ہے
 homePageGetStartedTitle = شروع کریں
@@ -63,7 +65,6 @@ shotPageAlertErrorUpdatingTitle = عنوان محفوظ کرتے میں نقص �
 shotPageConfirmDelete = کیا آپ واقعی اس شا ٹ کو مکمل طور پر حذف کرنا چاہتے ہیں؟
 shotPageShareButton =
     .title = شیئر
-shotPageCopy = نقل کریں
 shotPageCopied = نقل شدہ
 shotPageShareFacebook =
     .title = Facebook پر شیئر کریں
@@ -82,8 +83,6 @@ shotPageDownloadShot =
     .title = ڈائونلوڈ
 shotPageEditButton =
     .title = اس نقش کی تدویین کریں
-shotPageDownload = ڈاؤن لوڈ
-shotPageUpsellFirefox = Firefox ابھی حاصل کریں
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = وقت کا انتخاب کریں
 # The ∞ is used to indicate that the shot won't expire. It is also used in
@@ -126,6 +125,9 @@ timeDiffFutureDays =
        *[other] { $number }  دنوں میں
     }
 
+## Shot Page New Feature Promotion Dialog.
+
+
 ## Annotations
 
 annotationPenButton =
@@ -158,7 +160,7 @@ annotationColorYellow =
 annotationColorPurple =
     .title = جامنی
 annotationColorSeaGreen =
-    .title = کائی 
+    .title = کائی
 annotationColorGrey =
     .title = سلیٹی
 # Note: annotationTextSize is a title for text size selection dropdown.
@@ -169,28 +171,34 @@ textSizeSmall = چھوٹا
 textSizeMedium = درمیانہ
 textSizeLarge = بڑا
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = تصدیق کریں
     .title = تصدیق کریں
-annotationTextCancelButton =
+textToolCancelButton = منسوخ کریں
     .title = منسوخ کریں
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
     .placeholder = ہیلو،
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = کچھ غلط ہو گیا
+
 ## Settings Page
 
-settingsDisconnectButton = منقطع 
+settingsDisconnectButton = منقطع
     .title = منقطع
 settingsGuestAccountMessage = مہمان اکاؤنٹ
 settingsSignInButton = سائن ان
     .title = سائن ان
+settingsClosePreferences =
+    .title = ترجیحات بند کریں
 
 ## Shotindex page
 
 shotIndexPageSearchPlaceholder =
     .placeholder = میری شاٹس تلاش کریں
-shotIndexPageSearchButton =
-    .title = تلاش
 shotIndexPageNoShotsInvitation = جائیں کچھ تخلیق کریں
 shotIndexPageLookingForShots = اپنی شاٹٹس تلاش کر رہے ہیں…
 shotIndexPageNoSearchResultsIntro = ہمم
@@ -201,12 +209,6 @@ shotIndexPagePreviousPage =
     .title = پچھلا صفحہ
 shotIndexPageNextPage =
     .title = اگلا صفحہ
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = یہ شاٹ زائدالمیاد
 
 ## Delete Confirmation Dialog
 
