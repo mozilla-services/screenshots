@@ -103,6 +103,7 @@ shotPageShareButton =
     .title = Delen
 shotPageCopyButton =
     .title = Afbeelding naar klembord kopiëren
+shotPageCopyActionLabel = Kopiëren
 shotPageCopied = Gekopieerd
 shotPageShareFacebook =
     .title = Delen op Facebook
