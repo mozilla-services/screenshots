@@ -103,6 +103,7 @@ shotPageShareButton =
     .title = Deli
 shotPageCopyButton =
     .title = Kopiraj sliko v odložišče
+shotPageCopyActionLabel = Kopiraj
 shotPageCopied = Kopirano
 shotPageShareFacebook =
     .title = Deli na Facebooku
