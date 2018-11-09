@@ -103,6 +103,7 @@ shotPageShareButton =
     .title = Падзяліцца
 shotPageCopyButton =
     .title = Капіяваць відарыс у буфер абмену
+shotPageCopyActionLabel = Капіяваць
 shotPageCopied = Скапіявана
 shotPageShareFacebook =
     .title = Падзяліцца на Фэйсбуку
