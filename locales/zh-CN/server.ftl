@@ -103,6 +103,7 @@ shotPageShareButton =
     .title = 分享
 shotPageCopyButton =
     .title = 复制截图到剪贴板
+shotPageCopyActionLabel = 复制
 shotPageCopied = 已复制
 shotPageShareFacebook =
     .title = 分享到 Facebook
