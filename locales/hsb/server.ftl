@@ -103,6 +103,7 @@ shotPageShareButton =
     .title = Dźělić
 shotPageCopyButton =
     .title = Wobraz do mjezyskłada kopěrować
+shotPageCopyActionLabel = Kopěrować
 shotPageCopied = Kopěrowany
 shotPageShareFacebook =
     .title = Na Facebooku dźělić
