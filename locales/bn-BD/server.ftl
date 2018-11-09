@@ -10,6 +10,15 @@ gNoShots =
     .alt = কোন শট পাওয়া যায়নি
 gScreenshotsDescription = স্ক্রিনশট নেওয়া এখন অনেক সহজ। ফায়ারফক্স থেকে বের না হয়েই স্ক্রিনশট নিন, সংরক্ষণ করুন এবং অন্যদের সাথে শেয়ারও করুন।
 
+## Header
+
+buttonSettings =
+    .title = সেটিং
+buttonSignIn =
+    .title = সাইন ইন
+screenshotsLogo =
+    .title = Screenshots নীড়
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
@@ -38,7 +47,6 @@ homePageButtonMyShots = আমার শটে যাও
 homePageTeaser = শীঘ্রই আসিতেছে...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = বিনামূল্যে ডাউনলোড
-homePageGetStarted = চলুন শুরু করি!
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots কিভাবে কাজ করে
 homePageGetStartedTitle = শুরু হয়েছে
@@ -52,8 +60,6 @@ homePageCaptureRegionDescription = ক্লিক এবং ড্রাগ ক
 homePageCapturePage = একটি পেজ ক্যাপচার করুন
 homePageCapturePageDescription = পেজসমূহ সম্পূর্ণ ক্যাপচার করতে চাইলে উপরের ডান দিকের বোতাম ব্যবহার করুন। আপনি স্ক্রলিং না করে একটি ওয়েব পেজের যতটুকু অংশ দেখতে পান, তা ক্যাপচার করে দৃশ্যমান সংরক্ষণ বোতামটি, আর সম্পূর্ণ পেজ সংরক্ষণ ওই ওয়েবে পেজের সবকিছু ক্যাপচার করে।
 homePageSaveShare = সংরক্ষণ এবং শেয়ার করুন
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = আপনি যখন কোন শট নেন, Firefox তখন আপনার স্ক্রিনশটটি আপনার অনলাইন স্ক্রিনশট লাইব্রেরীতে পোস্ট করে দেয়ও আর লিংকটা আপনার ক্লিপবোর্ডে কপি করে দেয়। আমরা স্বয়ংক্রিয় ভাবে আপনার স্ক্রিনশট দুই সপ্তাহের জন্যে সংরক্ষণ করি, আপনি চাইলে যেকোন সময় আপনার সটটি মুছে ফেলতে পারেন অথবা মেয়াদোত্তীর্ণের তারিখ বদল করে লম্বা সময়ের জন্যে রেখে দিতে পারেন।
 homePageLegalLink = আইনগত
 homePagePrivacyLink = গোপনীয়তা
 homePageTermsLink = শর্তাবলী
@@ -62,8 +68,6 @@ homePageCookiesLink = কুকি
 ## Leave Screenshots page
 
 leavePageRemoveAllData = সকল ডাটা অপসারণ করুন
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = আপনার একাউন্টটি অপসারণ করতে হলে Firefox Screenshots ইনস্টল করা থাকতে হবে।
 leavePageErrorGeneric = একটি ত্রুটি দেখা দিয়েছে।
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = এতে করে আপনার Firefox Screenshots এর সকল ডাটা স্থায়ীরূপে মুছে যাবে।
@@ -87,7 +91,6 @@ shotPageAlertErrorUpdatingTitle = টাইটেল সংরক্ষণে �
 shotPageConfirmDelete = আপনি কি নিশ্চিত যে আপনি এই শটটি মুছে ফেলতে চান?
 shotPageShareButton =
     .title = শেয়ার
-shotPageCopy = অনুলিপি
 shotPageCopied = কপি করা হয়েছে
 shotPageShareFacebook =
     .title = Facebook শেয়ার করুন
@@ -112,15 +115,17 @@ shotPageExpiredMessage = শটটি মেয়াদোত্তীর্ণ
 shotPageExpiredMessageDetails = এই সেই পেজ যা প্রথমে তৈরী করা হয়েছিলো:
 shotPageDeleteButton =
     .title = শটটি মুছে ফেলুন
-shotPageAbuseButton =
-    .title = এই শটটি কোনপ্রকার অপব্যবহার, স্প্যাম, অথবা অন্য কোন সমস্যার জন্যে রিপোর্ট করুন
 shotPageDownloadShot =
     .title = ডাউনলোড
 shotPageEditButton =
     .title = ছবি সম্পাদনা করুন
-shotPageDownload = ডাউনলোড
+shotPagefavoriteButton =
+    .title = শটটি প্রিয় হিসেবে চিহ্নিত করুন
+shotPageBackToHomeButton =
+    .title = নীড়পাতা
+shotPageAllShotsButton =
+    .title = সব শট
 shotPageScreenshotsDescription = স্ক্রিনশট নেওয়া অনেক সহজ করে দেওয়া হয়েছে। ফায়ারফক্স থেকে বের না হয়েই স্ক্রিনশট নিন, সংরক্ষণ করুন এবং অন্যদের সাথে শেয়ারও করুন।
-shotPageUpsellFirefox = এখন Firefox নিন
 shotPageDMCAMessage = এক তৃতীয় পক্ষের মেধাসত্ত্ব দাবীর প্রেক্ষিতে শটটি আর পাওয়া যাবে না।
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = আরও তথ্যের জন্যে { $dmca } কে মেইল করে অনুরোধ করুন।
@@ -250,6 +255,11 @@ textToolCancelButton = বাতিল
 textToolInputPlaceholder =
     .placeholder = স্বাগতম
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+
 ## Settings Page
 
 settingsDisconnectButton = বিচ্ছিন্ন
@@ -276,13 +286,13 @@ shotIndexPageSearchResultsTitle = আমার সটসমূহ: { $searchTerm
 shotIndexPageErrorRendering = { $error } পেজটি উপস্থাপনে ত্রুটি
 shotIndexPageSearchPlaceholder =
     .placeholder = আমার শটগুলো খুঁজুন
-shotIndexPageSearchButton =
-    .title = খুঁজুন
 shotIndexPageNoShotsMessage = কোন সংরক্ষিত শট নেই।
 shotIndexPageNoShotsInvitation = নিন, কিছু তৈরি করুন।
 shotIndexPageLookingForShots = আপনার শট খোঁজ করছি...
 shotIndexPageNoSearchResultsIntro = হমম
 shotIndexPageNoSearchResults = আমরা আপনার খোঁজার সাথে সম্পর্কিত কোন শট পাই নাই।
+shotIndexPageMyShotsButton =
+    .title = আমার শট
 shotIndexPageClearSearchButton =
     .title = সার্চ পরিষ্কার করুন
 shotIndexPageConfirmShotDelete = এই শটটি মুছবেন?
@@ -290,12 +300,6 @@ shotIndexPagePreviousPage =
     .title = আগের পাতা
 shotIndexPageNextPage =
     .title = পরের পাতা
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = শটটি এখনও শেষ হয়নি
 
 ## Delete Confirmation Dialog
 
