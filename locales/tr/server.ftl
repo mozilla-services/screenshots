@@ -103,6 +103,7 @@ shotPageShareButton =
     .title = Paylaş
 shotPageCopyButton =
     .title = Resmi panoya kopyala
+shotPageCopyActionLabel = Kopyala
 shotPageCopied = Kopyalandı
 shotPageShareFacebook =
     .title = Facebook'ta paylaş
