@@ -103,6 +103,7 @@ shotPageShareButton =
     .title = Diele
 shotPageCopyButton =
     .title = Ofbylding nei klamboerd kopiearje
+shotPageCopyActionLabel = Kopiearje
 shotPageCopied = Kopiearre
 shotPageShareFacebook =
     .title = Diele op Facebook
