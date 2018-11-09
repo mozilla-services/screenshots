@@ -103,6 +103,7 @@ shotPageShareButton =
     .title = Cundivider
 shotPageCopyButton =
     .title = Copiar il maletg en l'archiv provisoric
+shotPageCopyActionLabel = Copiar
 shotPageCopied = Copià
 shotPageShareFacebook =
     .title = Cundivider sin Facebook
