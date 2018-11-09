@@ -99,6 +99,9 @@ fi
 
 if [[ -n "$setup_profile" ]] ; then
   profile_dir="$(pwd)/Profile"
+  if [[ "$(uname -r)" =~ "Microsoft" ]] ; then
+    profile_dir="$(wslpath -w $profile_dir)"
+  fi
   if [[ -d "$profile_dir" ]] ; then
     echo "Using existing profile in $profile_dir running:"
     echo " " "${open[@]}" -n --args -new-instance -no-remote -profile "$profile_dir"

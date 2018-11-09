@@ -46,7 +46,12 @@ The server will automatically setup the tables in your database, and keep them u
 
 If you have growl and growlnotify installed on Mac OS X, you will get growl notifications when the server build has started and completed.
 
-We apologize but we have no story for development on Windows (though the add-on runs on Windows).  [We welcome feedback](https://github.com/mozilla-services/screenshots/issues/4289).
+#### Development on Windows
+
+It is possible to develop on Windows 10 with Windows Subsystem for Linux (WSL).  Windows 10 build 17046 or newer is required.  Do the following once you've installed WSL and a Linux distro:
+
+- Create a symlink to Nightly on Windows; ensure this is on your $PATH.  (E.g. `/home/moz/bin/firefox -> '/mnt/c/Program Files/Nightly/firefox.exe'`)
+- Clone the project to the Windows filesystem.  (E.g. `/mnt/c/projects/screenshots`, _not_ `/home/moz/projects/screenshots`)
 
 ### Linting and Testing
 
