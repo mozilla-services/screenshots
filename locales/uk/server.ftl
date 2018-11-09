@@ -103,6 +103,7 @@ shotPageShareButton =
     .title = Поділитися
 shotPageCopyButton =
     .title = Копіювати зображення в буфер обміну
+shotPageCopyActionLabel = Копіювати
 shotPageCopied = Скопійовано
 shotPageShareFacebook =
     .title = Поділитися на Facebook
