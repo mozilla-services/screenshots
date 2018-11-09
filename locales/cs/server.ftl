@@ -103,6 +103,7 @@ shotPageShareButton =
     .title = Sdílet
 shotPageCopyButton =
     .title = Zkopírovat do schránky
+shotPageCopyActionLabel = Kopírovat
 shotPageCopied = Zkopírováno
 shotPageShareFacebook =
     .title = Sdílet na Facebooku
