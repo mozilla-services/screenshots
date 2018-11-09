@@ -18,6 +18,7 @@ buttonSignIn =
     .title = Apertura de session
 screenshotsLogo =
     .title = Pagina initial de Screenshots
+bannerSignIn = <a>Authentica te o registra te</a> pro acceder tu instantaneos trans apparatos e salvar sempre tu favoritos.
 bannerUpsell = { gScreenshotsDescription } <a>Prende Firefox ora</a>
 
 ## Footer
