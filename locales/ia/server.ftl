@@ -18,7 +18,6 @@ buttonSignIn =
     .title = Apertura de session
 screenshotsLogo =
     .title = Pagina initial de Screenshots
-bannerMessage = Authentica te o registra te pro acceder tu instantaneos trans apparatos e salvar sempre tu favoritos.
 bannerUpsell = { gScreenshotsDescription } <a>Prende Firefox ora</a>
 
 ## Footer
@@ -64,8 +63,6 @@ homePageCaptureRegionDescription = Clicca e trahe pro seliger le area que tu vol
 homePageCapturePage = Capturar un pagina
 homePageCapturePageDescription = Usar le buttones in alto a dextra pro capturar le paginas integre. Le button Salvar lo visibile, capturara le area que tu pote vider sin rolar, e Salvar pagina integre, capturara tote le pagina.
 homePageSaveShare = Salvar e compartir
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Quando tu prende un instantaneo, Firefox posta tu instantaneo de schermo in tu bibliotheca online de instantaneos de schermo e copia le ligamine in tu area de transferentia. Nos automaticamente salva tu instantaneo de schermo pro duo septimanas, ma tu pote sempre cancellar instantaneos o cambiar le data de expiration pro los mantener in tu bibliotheca pro plus de tempore.
 homePageLegalLink = Notas legal
 homePagePrivacyLink = Confidentialitate
 homePageTermsLink = Terminos
@@ -74,8 +71,6 @@ homePageCookiesLink = Cookies
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Remover tote le datos
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Tu debe haber Firefox Screenshots installate pro cancellar tu conto.
 leavePageErrorGeneric = Un error occurreva
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Isto cancellara permanentemente tote le datos de tu Firefox Screenshots.
@@ -101,6 +96,7 @@ shotPageShareButton =
     .title = Compartir
 shotPageCopyButton =
     .title = Copiate imagine al area de transferentia!
+shotPageCopyActionLabel = Copiar
 shotPageCopied = Copiate
 shotPageShareFacebook =
     .title = Compartir in Facebook
