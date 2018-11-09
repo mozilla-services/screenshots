@@ -91,6 +91,7 @@ shotPageAlertErrorUpdatingTitle = টাইটেল সংরক্ষণে �
 shotPageConfirmDelete = আপনি কি নিশ্চিত যে আপনি এই শটটি মুছে ফেলতে চান?
 shotPageShareButton =
     .title = শেয়ার
+shotPageCopyActionLabel = অনুলিপি
 shotPageCopied = কপি করা হয়েছে
 shotPageShareFacebook =
     .title = Facebook শেয়ার করুন
