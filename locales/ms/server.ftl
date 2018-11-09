@@ -103,6 +103,7 @@ shotPageShareButton =
     .title = Kongsi
 shotPageCopyButton =
     .title = Salin imej ke klipbod
+shotPageCopyActionLabel = Salin
 shotPageCopied = Disalin
 shotPageShareFacebook =
     .title = Kongsi di Facebook
