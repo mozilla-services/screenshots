@@ -328,16 +328,32 @@ app.get("/ga-activation-hashed.js", function(req, res) {
 
 function sendGaActivation(req, res, hashPage) {
   let promise;
+  let loginType = "non-login";
+  if (req.accountId) {
+    if (req.deviceId) {
+      loginType = "extension-fxa";
+    } else {
+      loginType = "browser-fxa";
+    }
+  } else if (req.deviceId) {
+    loginType = "extension";
+  }
   setMonthlyCache(res, {private: true});
-  if (req.deviceId) {
-    promise = hashUserId(req.deviceId).then((uuid) => {
+  if (req.accountId || req.deviceId) {
+    promise = hashUserId(req.accountId || req.deviceId).then((uuid) => {
       return uuid.toString();
     });
   } else {
     promise = Promise.resolve("");
   }
   promise.then((userUuid) => {
-    const script = gaActivation.makeGaActivationString(config.gaId, userUuid, req.abTests, hashPage);
+    const script = gaActivation.makeGaActivationString({
+      gaId: config.gaId,
+      userId: userUuid,
+      abTests: req.abTests,
+      hashLocation: hashPage,
+      loginType,
+    });
     jsResponse(res, script);
   }).catch((e) => {
     errorResponse(res, "Error creating user UUID:", e);

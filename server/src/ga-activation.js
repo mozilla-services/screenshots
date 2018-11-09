@@ -133,6 +133,7 @@ const gaJs = `
 
 window.sendEvent = function (action, label, options) {
   var event = "web";
+  var loginType = "__LOGIN_TYPE__" || null;
   if (typeof label == "object") {
     if (options) {
       console.error("Error: got label and options");
@@ -146,6 +147,7 @@ window.sendEvent = function (action, label, options) {
       options[window.abTests[testName].gaField] = window.abTests[testName].value;
     }
   }
+  options.cd9 = loginType;
   console.debug("sendEvent", event + "/" + action + (label ? "/" + label : "") || "none", options || "no-options");
   ga("send", "event", event, action, label, options);
 };
@@ -153,7 +155,7 @@ window.sendEvent = function (action, label, options) {
 
 const idRegex = /^[a-zA-Z0-9_.,-]{1,1000}$/;
 
-exports.makeGaActivationString = function(gaId, userId, abTests, hashLocation) {
+exports.makeGaActivationString = function({gaId, userId, abTests, hashLocation, loginType}) {
   if (gaId === "") {
     // Don't enable ga if no id was provided
     return stubGaJs.replace(/__ABTESTS__/g, JSON.stringify(abTests));
@@ -171,5 +173,6 @@ exports.makeGaActivationString = function(gaId, userId, abTests, hashLocation) {
   let script = gaJs.replace(/__GA_ID__/g, gaId).replace(/__USER_ID__/g, userId);
   script = script.replace(/__HASH_LOCATION__/g, hashLocation ? "true" : "false");
   script = script.replace(/__ABTESTS__/g, JSON.stringify(abTests));
+  script = script.replace(/__LOGIN_TYPE__/g, loginType || "");
   return script;
 };
