@@ -64,6 +64,7 @@ homePageCaptureRegionDescription = Clicca e trahe pro seliger le area que tu vol
 homePageCapturePage = Capturar un pagina
 homePageCapturePageDescription = Usar le buttones in alto a dextra pro capturar le paginas integre. Le button Salvar lo visibile, capturara le area que tu pote vider sin rolar, e Salvar pagina integre, capturara tote le pagina.
 homePageSaveShare = Salvar e compartir
+homePageSignInTitle = Tu instantaneos ubique
 homePageLegalLink = Notas legal
 homePagePrivacyLink = Confidentialitate
 homePageTermsLink = Terminos
@@ -72,6 +73,8 @@ homePageCookiesLink = Cookies
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Remover tote le datos
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = Tu debe haber Firefox Screenshots installate o esser authenticate in un conto de Firefox pro deler tu proprie conto
 leavePageErrorGeneric = Un error occurreva
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Isto cancellara permanentemente tote le datos de tu Firefox Screenshots.
