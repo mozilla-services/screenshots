@@ -103,6 +103,7 @@ shotPageShareButton =
     .title = Teilen
 shotPageCopyButton =
     .title = Bildschirmfoto in Zwischenablage kopieren
+shotPageCopyActionLabel = Kopieren
 shotPageCopied = Kopiert
 shotPageShareFacebook =
     .title = Auf Facebook teilen
