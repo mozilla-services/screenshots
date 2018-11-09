@@ -103,6 +103,7 @@ shotPageShareButton =
     .title = Dela
 shotPageCopyButton =
     .title = Kopiera bild till urklipp
+shotPageCopyActionLabel = Kopiera
 shotPageCopied = Kopierad
 shotPageShareFacebook =
     .title = Dela på Facebook
