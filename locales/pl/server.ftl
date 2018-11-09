@@ -103,6 +103,7 @@ shotPageShareButton =
     .title = Udostępnij
 shotPageCopyButton =
     .title = Kopiuj obraz do schowka
+shotPageCopyActionLabel = Kopiuj
 shotPageCopied = Skopiowano
 shotPageShareFacebook =
     .title = Udostępnij na Facebooku
