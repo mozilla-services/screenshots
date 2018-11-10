@@ -20,6 +20,10 @@ screenshotsLogo =
     .title = Скриншоттар үй парағы
 bannerSignIn = Скриншоттарға әр түрлі құрылғылардан қатынау және таңдамалыларды мәңгі сақтау үшін <a>кіріңіз немесе тіркеліңіз</a>.
 bannerUpsell = { gScreenshotsDescription } <a>Firefox-ты қазір алу</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Firefox скриншоттарында не жаңалық бар?
+onboardingPromoMessage = Енді Firefox тіркелгісімен скриншоттарға кіріңіз және көбірек жасаңыз:
 
 ## Footer
 
