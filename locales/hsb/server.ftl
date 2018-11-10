@@ -20,6 +20,16 @@ screenshotsLogo =
     .title = Startowa strona Screenshots
 bannerSignIn = <a>Přizjewće so abo registrujće so</a>, zo byšće přez graty přistup na waše fota wobrazowki měł a składujće swoje fawority na přeco.
 bannerUpsell = { gScreenshotsDescription } <a>Wobstarajće so Firefox nětko</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Što je nowe w Firefox Screenshots?
+onboardingPromoMessage = Přizjewće so z kontom Firefox pola Screenshots a čińće wjace:
+onboardingPromoMessageListItem1 = Mějće přistup na swoju biblioteku na wšěch swojich gratach
+onboardingPromoMessageListItem2 = Składujće swoje najlubše fota wobrazowki na přeco
+onboardingPromoDismissButton = Zaćisnyć
+    .title = Zaćisnyć
+onboardingPromoSigninButton = Přizjewić
+    .title = Přizjewić
 
 ## Footer
 
