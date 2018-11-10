@@ -20,6 +20,16 @@ screenshotsLogo =
     .title = Strona główna Screenshots
 bannerSignIn = <a>Zaloguj się lub zarejestruj</a>, aby mieć dostęp do swoich zrzutów na wszystkich urządzeniach i zachować ulubione na zawsze.
 bannerUpsell = { gScreenshotsDescription } <a>Pobierz Firefoksa</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Co nowego w Firefox Screenshots?
+onboardingPromoMessage = Teraz możesz zalogować się w serwisie Screenshots za pomocą konta Firefoksa i mieć więcej możliwości:
+onboardingPromoMessageListItem1 = Dostęp do swojej kolekcji na wszystkich urządzeniach
+onboardingPromoMessageListItem2 = Zachowywanie ulubionych zrzutów na zawsze
+onboardingPromoDismissButton = Zamknij
+    .title = Zamknij
+onboardingPromoSigninButton = Zaloguj się
+    .title = Zaloguj się
 
 ## Footer
 
