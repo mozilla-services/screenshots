@@ -26,6 +26,10 @@ onboardingPromoTitle = Kas naujo su „Firefox Screenshots“?
 onboardingPromoMessage = Prisijunkite prie „Screenshots“ su „Firefox“ paskyra ir darykite daugiau:
 onboardingPromoMessageListItem1 = Pasiekite savo archyvą iš visų įrenginių
 onboardingPromoMessageListItem2 = Neribotai saugokite patinkančias nuotraukas
+onboardingPromoDismissButton = Paslėpti
+    .title = Paslėpti
+onboardingPromoSigninButton = Prisijungti
+    .title = Prisijungti
 
 ## Footer
 
@@ -109,6 +113,7 @@ shotPageShareButton =
     .title = Dalintis
 shotPageCopyButton =
     .title = Kopijuoti vaizdą į iškarpinę
+shotPageCopyActionLabel = Kopijuoti
 shotPageCopied = Nukopijuota
 shotPageShareFacebook =
     .title = Dalintis per „Facebook“
