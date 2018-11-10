@@ -20,6 +20,16 @@ screenshotsLogo =
     .title = Laman Screenshots
 bannerSignIn = <a>Daftar masuk atau mendaftar </a> untuk mengakses syot dalam peranti dan simpan syot kegemaran selama-lamanya.
 bannerUpsell = { gScreenshotsDescription } <a>Dapatkan Firefox sekarang</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Apa yang baharu dalam Firefox Screenshots?
+onboardingPromoMessage = Sekarang, log masuk ke Screenshota dengan Akaun Firefox dan lakukan:
+onboardingPromoMessageListItem1 = Akses pustaka dalam semua peranti anda
+onboardingPromoMessageListItem2 = Simpan syot kegemaran anda selama-lamanya
+onboardingPromoDismissButton = Abai
+    .title = Abai
+onboardingPromoSigninButton = Daftar masuk
+    .title = Daftar masuk
 
 ## Footer
 
