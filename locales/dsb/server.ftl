@@ -20,6 +20,16 @@ screenshotsLogo =
     .title = Startowy bok Screenshots
 bannerSignIn = <a>Pśizjawśo se abo registrěrujśo se</a>, aby pśez rědy pśistup na waše fota wobrazowki měł a składujśo swóje fawority na pśecej.
 bannerUpsell = { gScreenshotsDescription } <a>Wobstarajśo se Firefox něnto</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Co jo nowe w Firefox Screenshots?
+onboardingPromoMessage = Pśizjawśo se něnto z kontom Firefox pla Screenshots a cyńśo wěcej:
+onboardingPromoMessageListItem1 = Mějśo pśistup k swójej bibliotece na wšych swójich rědach
+onboardingPromoMessageListItem2 = Składujśo swóje nejlubše fota wobrazowki na pśecej
+onboardingPromoDismissButton = Zachyśiś
+    .title = Zachyśiś
+onboardingPromoSigninButton = Pśizjawiś
+    .title = Pśizjawiś
 
 ## Footer
 
@@ -103,6 +113,7 @@ shotPageShareButton =
     .title = Źěliś
 shotPageCopyButton =
     .title = Wobraz do mjazywótkłada kopěrowaś
+shotPageCopyActionLabel = Kopěrowaś
 shotPageCopied = Kopěrowany
 shotPageShareFacebook =
     .title = Na Facebooku źěliś
