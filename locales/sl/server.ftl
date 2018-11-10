@@ -20,6 +20,12 @@ screenshotsLogo =
     .title = Domača stran Screenshots
 bannerSignIn = <a>Prijavite ali registrirajte se</a>, da boste lahko svoje posnetke uporabljali na več napravah in priljubljene trajno shranili.
 bannerUpsell = { gScreenshotsDescription }<a>Prenesite Firefox zdaj</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Kaj je novega v Firefox Screenshots?
+onboardingPromoMessage = Prijavite se v Screenshots s svojim Firefox Računom in naredite več:
+onboardingPromoMessageListItem1 = Dostopajte do knjižnice na vseh svojih napravah
+onboardingPromoMessageListItem2 = Shranite svoje najljubše posnetke za vedno
 onboardingPromoDismissButton = Opusti
     .title = Opusti
 onboardingPromoSigninButton = Prijava
