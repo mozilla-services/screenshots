@@ -20,6 +20,16 @@ screenshotsLogo =
     .title = Cartref Screenshots
 bannerSignIn = <a>Mewngofnodwch neu ymunwch</a> i gael mynediad at eich lluniau ar draws dyfeisiau a chadw eich ffefrynnau am byth.
 bannerUpsell = { gScreenshotsDescription } <a>Defnyddiwch Firefox</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Beth sy'n newydd gyda Firefox Screenshots?
+onboardingPromoMessage = Nawr, mewngofnodwch i Screenshots gyda Chyfrif Firefox a gwneud mwy:
+onboardingPromoMessageListItem1 = Cael mynediad i'ch llyfrgell ar eich holl ddyfeisiau
+onboardingPromoMessageListItem2 = Cadwch eich hoff luniau am byth
+onboardingPromoDismissButton = Cau
+    .title = Cau
+onboardingPromoSigninButton = Mewngofnodi
+    .title = Mewngofnodi
 
 ## Footer
 
@@ -103,6 +113,7 @@ shotPageShareButton =
     .title = Cadw
 shotPageCopyButton =
     .title = Copïo'r ddelwedd i'r clipfwrdd
+shotPageCopyActionLabel = Copïo
 shotPageCopied = Copiwyd
 shotPageShareFacebook =
     .title = Rhannu ar Facebook
