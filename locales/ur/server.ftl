@@ -127,6 +127,8 @@ timeDiffFutureDays =
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = نوٹ لے!
 
 ## Annotations
 
@@ -134,6 +136,8 @@ annotationPenButton =
     .title = قلم
 annotationHighlighterButton =
     .title = روشن گر قلم
+annotationUndoButton =
+    .title = واپس کریں
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = صاف کریں
