@@ -20,6 +20,13 @@ screenshotsLogo =
     .title = Tuṭṭfa n wegdil agejdan
 bannerSignIn = <a>Qqen neɣ jerred</a> akken ad tkecmeḍ ar tuṭṭfiwin-ik deg ibenkan daɣen ad teskelseḍ ayen tḥemmleḍ i lebda.
 bannerUpsell = { gScreenshotsDescription }<a>Awi Firefox tura</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Amaynut deg Firefox Screenshots?
+onboardingPromoDismissButton = Zgel
+    .title = Zgel
+onboardingPromoSigninButton = Kcem
+    .title = Kcem
 
 ## Footer
 
@@ -103,6 +110,7 @@ shotPageShareButton =
     .title = Bḍu
 shotPageCopyButton =
     .title = Nɣel tugna ɣef affus
+shotPageCopyActionLabel = Nɣel
 shotPageCopied = Inγel
 shotPageShareFacebook =
     .title = Bḍu di Facebook
