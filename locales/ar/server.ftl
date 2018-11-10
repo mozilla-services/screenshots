@@ -16,6 +16,18 @@ buttonSettings =
     .title = الإعدادات
 buttonSignIn =
     .title = لِج
+screenshotsLogo =
+    .title = صفحة اللقطات الرئيسية
+bannerSignIn = <a>لِج إلى حسابك أو سجّل واحدا</a> للوصول إلى لقطاتك عبر مختلف الأجهزة وحفظ ما تحبّ منها للأبد.
+bannerUpsell = { gScreenshotsDescription } <a>نزّل فَيَرفُكس الآن</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = ما الجديد في لقطات فَيَرفُكس؟
+onboardingPromoMessage = يمكنك الآن الولوج إلى اللقطات بحساب فَيَرفُكس وإجراء ما هو أكثر وأكثر:
+onboardingPromoMessageListItem1 = الوصول إلى المكتبة لديك عبر مختلف الأجهزة
+onboardingPromoMessageListItem2 = تخزين اللقطات المحببة لديك للأبد
+onboardingPromoSigninButton = لِج
+    .title = لِج
 
 ## Footer
 
@@ -58,8 +70,7 @@ homePageCaptureRegionDescription = انقر واسحب لتحديد المنطق
 homePageCapturePage = التقط صفحة
 homePageCapturePageDescription = استخدم الأزرار أعلى اليسار لالتقاط صفحات كاملة. زر ”التقط الجزء المرئي“ سيلتقط المنطقة التي تراها دون تمرير الصفحة، وزر ”احفظ الصفحة كاملة“ سيلتقط كل شيء في الصفحة.
 homePageSaveShare = احفظ وشارِك
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = يضع فَيرفُكس لقطاتك التي تأخذها في مكتبة اللقطات على الشبكة وينسخ الرابط إلى الحافظة. نخزّن لقطاتك تلقائيا لمدة أسبوعين، ولكنك تستطيع حذفها في أي وقت أو تغيير وقت انتهائها لتبقيها في المكتبة لديك لفترة أطول.
+homePageSignInTitle = لقطاتك في كل مكان
 homePageLegalLink = قانونيّات
 homePagePrivacyLink = الخصوصية
 homePageTermsLink = الشروط
@@ -69,7 +80,7 @@ homePageCookiesLink = الكعكات
 
 leavePageRemoveAllData = أزِل كل البيانات
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = يجب أن تكون «لقطات فَيَرفُكس» مثبّتة لتحذف حسابك
+leavePageErrorAuthRequired = عليك تثبيت لقطات فَيَرفُكس أو الولوج إلى حساب فَيَرفُكس لحذف حسابك
 leavePageErrorGeneric = حدث خطأ ما
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = سيمحي هذا كل بيانات «لقطات فَيَرفُكس» إلى الأبد.
@@ -93,6 +104,9 @@ shotPageAlertErrorUpdatingTitle = خطأ أثناء حفظ العنوان
 shotPageConfirmDelete = أمتأكد أنك تريد حذف هذه اللقطة إلى الأبد؟
 shotPageShareButton =
     .title = شارِك
+shotPageCopyButton =
+    .title = انسخ اللقطة إلى الحافظة
+shotPageCopyActionLabel = انسخ
 shotPageCopied = نُسخت
 shotPageShareFacebook =
     .title = شارِك على فيسبوك
@@ -284,6 +298,7 @@ textToolInputPlaceholder =
 ## are passed from the shot page to the addon.
 
 copyImageErrorTitle = حدث خطأ ما
+copyImageErrorMessage = تعذّر نسخ اللقطة إلى الحافظة.
 
 ## Settings Page
 
@@ -325,6 +340,10 @@ shotIndexPagePreviousPage =
     .title = الصفحة السابقة
 shotIndexPageNextPage =
     .title = الصفحة التالية
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = هذه ليست لقطة محبّبة وسينقضي تاريخها
 # This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
