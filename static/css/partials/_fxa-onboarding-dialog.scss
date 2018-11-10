@@ -1,0 +1,110 @@
+.onboarding-promo-dialog {
+  background: #f7f7f7;
+  border: 1px solid $light-border;
+  border-radius: 3px;
+  box-shadow: $medium-box-shadow;
+  color: #0c0c0d;
+  min-height: 200px;
+  position: absolute;
+  inset-inline-start: 3px;
+  top: 47px;
+  z-index: 2;
+
+  .triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-inline-start: 9px solid transparent;
+    border-inline-end: 9px solid transparent;
+    border-bottom: 15px solid $light-border;
+    top: -15px;
+    inset-inline-start: 8px;
+
+    .triangle-inner {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-inline-start: 8px solid transparent;
+      border-inline-end: 8px solid transparent;
+      border-bottom: 13px solid $white;
+      inset-inline-start: -8px;
+      top: 2px;
+    }
+  }
+
+  &.right-align {
+    top: 70px;
+    width: 360px;
+    inset-inline-start: -300px;
+
+    @include respond-to("large") {
+      top: 85px;
+      width: 400px;
+      inset-inline-start: -310px;
+    }
+
+    .triangle {
+      inset-inline-start: 325px;
+      @include respond-to("large") {
+        inset-inline-start: 347px;
+      }
+    }
+  }
+
+  .promo-header {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    background: $white;
+
+    .promo-logo {
+      background-position: center;
+      background-image: url("../img/icon-promo.svg");
+      background-repeat: no-repeat;
+      background-size: 30px auto;
+      background-color: #0684ff;
+      width: 60px;
+      height: 100%;
+      display: block;
+    }
+
+    .promo-title {
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 0 16px;
+    }
+
+  }
+
+  .promo-message {
+    padding: 0 16px;
+    font-size: 14px;
+
+    ul {
+      padding-left: 16px;
+    }
+  }
+
+  .promo-footer {
+    height: 70px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    a {
+      font-weight: bold;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    button {
+      margin: 0 16px;
+      width: 120px;
+      height: 40px;
+    }
+  }
+}

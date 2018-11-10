@@ -5,36 +5,10 @@ const page = require("./page").page;
 const { AbstractShot } = require("../../../shared/shot");
 const { createThumbnailUrl } = require("../../../shared/thumbnailGenerator");
 const { shotGaFieldForValue } = require("../../ab-tests.js");
+const { PromotionStrategy } = require("../../promotion-strategy.js");
 
 // This represents the model we are rendering:
 let model;
-
-function shouldHighlightEditIcon(model) {
-  if (!model.isOwner) {
-    return false;
-  }
-  const hasSeen = localStorage.hasSeenEditButton;
-  if (!hasSeen && model.enableAnnotations) {
-    localStorage.hasSeenEditButton = "1";
-  }
-  return !hasSeen;
-}
-
-function shouldShowPromo(model) {
-  if (!model.isOwner || !model.enableAnnotations) {
-    return false;
-  }
-  let show = false;
-  const count = localStorage.hasSeenPromoDialog;
-  if (!count) {
-    localStorage.hasSeenPromoDialog = 1;
-    show = true;
-  } else if (count < 3) {
-    localStorage.hasSeenPromoDialog = parseInt(count, 10) + 1;
-    show = true;
-  }
-  return show;
-}
 
 function updateModel(authData) {
   Object.assign(model, authData);
@@ -75,8 +49,14 @@ exports.launch = function(data) {
       }
     }
   }
-  model.highlightEditButton = shouldHighlightEditIcon(model);
-  model.promoDialog = shouldShowPromo(model);
+
+  const promoStrategy = new PromotionStrategy();
+
+  model.hasFxaOnboardingDialog = promoStrategy.shouldShowOnboardingDialog(model.isOwner, true);
+  model.highlightEditButton =
+    promoStrategy.shouldHighlightEditIcon(model.isOwner, model.enableAnnotations);
+  model.promoDialog =
+    promoStrategy.shouldShowEditToolPromotion(model.isOwner, model.enableAnnotations, model.hasFxaOnboardingDialog);
 
   if (firstSet) {
     refreshHash();

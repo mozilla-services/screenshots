@@ -17,7 +17,8 @@ exports.HomePageHeader = class HomePageHeader extends React.Component {
   renderFxASignIn() {
       return (
           <SignInButton isFxaAuthenticated={this.props.hasFxa} initialPage=""
-                        staticLink={this.props.staticLink} />
+                        staticLink={this.props.staticLink}
+                        hasFxaOnboardingDialog={this.props.hasFxaOnboardingDialog} />
       );
   }
 
@@ -34,7 +35,8 @@ exports.HomePageHeader = class HomePageHeader extends React.Component {
 
     const signin = this.renderFxASignIn();
     return (
-      <Header hasLogo={true} isOwner={this.props.isOwner} hasFxa={this.props.hasFxa}>
+      <Header hasLogo={true} isOwner={this.props.isOwner} hasFxa={this.props.hasFxa}
+              hasFxaOnboardingDialog={this.props.hasFxaOnboardingDialog}>
         <div className="alt-actions">
           { myShots }
           { signin }
@@ -48,4 +50,5 @@ exports.HomePageHeader.propTypes = {
   hasFxa: PropTypes.bool,
   isOwner: PropTypes.bool,
   staticLink: PropTypes.func,
+  hasFxaOnboardingDialog: PropTypes.bool,
 };

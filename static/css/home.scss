@@ -53,7 +53,6 @@ body {
   background-size: 400px auto;
   flex: 0 0 420px;
   height: 440px;
-  z-index: 999;
 }
 
 .banner-image-back {
@@ -141,7 +140,7 @@ h2 {
   width: 260px;
 }
 
-.button.primary {
+.button.primary.download-firefox {
   background: #30e60b;
   color: #fff;
   text-align: start;

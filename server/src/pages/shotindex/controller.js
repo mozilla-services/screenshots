@@ -2,6 +2,7 @@ const sendEvent = require("../../browser-send-event.js");
 const page = require("./page").page;
 const { AbstractShot } = require("../../../shared/shot");
 const queryString = require("query-string");
+const { PromotionStrategy } = require("../../promotion-strategy.js");
 
 const FIVE_SECONDS = 5 * 1000;
 
@@ -65,6 +66,11 @@ exports.launch = function(m) {
     // The actual shot data hasn't been loaded yet, so we'll immediately request it:
     refreshModel();
   }
+
+  if (!firstRun) {
+    model.hasFxaOnboardingDialog = new PromotionStrategy().shouldShowOnboardingDialog();
+  }
+
   firstRun = false;
   render();
 };

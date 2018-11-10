@@ -10,8 +10,14 @@ exports.Header = function Header(props) {
       </Localized>
     </div> : null;
 
+  const banner = !props.hasFxaOnboardingDialog ?
+    <AdBanner key="banner"
+              isOwner={props.isOwner}
+              hasFxa={props.hasFxa}
+              shouldGetFirefox={props.shouldGetFirefox} /> : null;
+
   return [
-    <AdBanner key="banner" isOwner={props.isOwner} hasFxa={props.hasFxa} shouldGetFirefox={props.shouldGetFirefox} />,
+    banner,
     <header key="header" className="header-panel">
       {logo}
       {props.children}
@@ -25,4 +31,5 @@ exports.Header.propTypes = {
   isOwner: PropTypes.bool,
   hasFxa: PropTypes.bool,
   shouldGetFirefox: PropTypes.bool,
+  hasFxaOnboardingDialog: PropTypes.bool,
 };

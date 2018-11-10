@@ -2,6 +2,7 @@ const React = require("react");
 const PropTypes = require("prop-types");
 const { Localized } = require("fluent-react/compat");
 const sendEvent = require("./browser-send-event.js");
+const { PromotionStrategy } = require("./promotion-strategy.js");
 
 exports.AdBanner = class AdBanner extends React.Component {
   constructor(props) {
@@ -18,8 +19,9 @@ exports.AdBanner = class AdBanner extends React.Component {
 
   render() {
     let bannerContent = null;
+    const promoStrategy = new PromotionStrategy();
 
-    if (this.props.shouldGetFirefox && !this.props.isOwner) {
+    if (promoStrategy.shouldShowFirefoxBanner(this.props.shouldGetFirefox, this.props.isOwner)) {
       const upsellLink = <a className="upsellLink"
         href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition&utm_content=from-shot"
         onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a>;
@@ -28,7 +30,7 @@ exports.AdBanner = class AdBanner extends React.Component {
             Screenshots made simple. Take, save and share screenshots without leaving Firefox. {upsellLink}
           </p>
         </Localized>;
-    } else if (!this.props.hasFxa) {
+    } else if (promoStrategy.shouldShowFxaBanner(this.props.hasFxa)) {
       const signInLink = <a className="signInLink"
         href="/api/fxa-oauth/login/shots"
         onClick={ this.clickedSignIn.bind(this) }></a>;

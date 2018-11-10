@@ -446,7 +446,8 @@ class Body extends React.Component {
         <div id="frame" className="inverse-color-scheme full-height column-space">
         <ShotPageHeader isOwner={this.props.isOwner} hasFxa={this.props.hasFxa}
           shot={this.props.shot} expireTime={this.props.expireTime} shouldGetFirefox={renderGetFirefox}
-          staticLink={this.props.staticLink} shotActions={shotActions}>
+          staticLink={this.props.staticLink} shotActions={shotActions}
+          hasFxaOnboardingDialog={this.props.hasFxaOnboardingDialog}>
             { !this.props.isOwner ? downloadButton : null }
         </ShotPageHeader>
         <section className="clips">

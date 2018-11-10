@@ -104,6 +104,7 @@ class Body extends React.Component {
           isOwner={this.props.authenticated}
           hasFxa={this.props.hasFxa}
           staticLink={this.props.staticLink}
+          hasFxaOnboardingDialog={this.props.hasFxaOnboardingDialog}
         />
         <div className="banner">
           <div className="banner-image-back" />

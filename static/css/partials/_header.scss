@@ -56,6 +56,10 @@
     margin-inline-end: 0;
   }
 
+  .fxa-signin {
+    position: relative;
+  }
+
   a.nav-button {
     &:focus {
       outline: 1px dotted $black;

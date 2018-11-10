@@ -1,5 +1,6 @@
 /* globals Mozilla */
 const page = require("./page").page;
+const { PromotionStrategy } = require("../../promotion-strategy.js");
 
 let model;
 
@@ -15,6 +16,7 @@ exports.launch = function(m) {
       });
     }
   }
+  model.hasFxaOnboardingDialog = new PromotionStrategy().shouldShowOnboardingDialog();
   render();
 };
 
