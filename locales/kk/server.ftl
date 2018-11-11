@@ -24,6 +24,12 @@ bannerUpsell = { gScreenshotsDescription } <a>Firefox-ты қазір алу</a>
 # Sign in button in header
 onboardingPromoTitle = Firefox скриншоттарында не жаңалық бар?
 onboardingPromoMessage = Енді Firefox тіркелгісімен скриншоттарға кіріңіз және көбірек жасаңыз:
+onboardingPromoMessageListItem1 = Кітапханаңызға барлық құрылғыларыңыздан қатынаңыз
+onboardingPromoMessageListItem2 = Таңдамалы скриншоттарыңызды мәңгі сақтаңыз
+onboardingPromoDismissButton = Тайдыру
+    .title = Тайдыру
+onboardingPromoSigninButton = Кіру
+    .title = Кіру
 
 ## Footer
 
@@ -107,6 +113,7 @@ shotPageShareButton =
     .title = Бөлісу
 shotPageCopyButton =
     .title = Суретті алмасу буферіне көшіру
+shotPageCopyActionLabel = Көшіріп алу
 shotPageCopied = Көшірілген
 shotPageShareFacebook =
     .title = Facebook-те бөлісу
