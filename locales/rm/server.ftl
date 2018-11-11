@@ -20,6 +20,16 @@ screenshotsLogo =
     .title = Pagina da partenza da Screenshots
 bannerSignIn = <a>T'annunzia u ta registrescha</a> per acceder a tes maletgs dal visur cun agid da mintga apparat e memorisar tes favurits per adina.
 bannerUpsell = { gScreenshotsDescription } <a>Telechargiar Firefox</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Tge datti da nov en Firefox Screenshots?
+onboardingPromoMessage = Ussa pon ins s'annunziar en Screenshots cun in conto da Firefox per far dapli:
+onboardingPromoMessageListItem1 = Acceda a tia biblioteca cun tut tes apparats
+onboardingPromoMessageListItem2 = Memorisescha per adina tes maletgs favurits
+onboardingPromoDismissButton = Sbittar
+    .title = Sbittar
+onboardingPromoSigninButton = S'annunziar
+    .title = S'annunziar
 
 ## Footer
 
