@@ -18,8 +18,18 @@ buttonSignIn =
     .title = შესვლა
 screenshotsLogo =
     .title = Screenshots მთავარი
-bannerMessage = შედით ან შექმენით ანგარიში თქვენს გადაღებულ სურათებთან წვდომის მისაღებად სხვადასხვა მოწყობილობებიდან და რჩეულების სამუდამოდ შესანახად.
+bannerSignIn = <a>შედით ან შექმენით ანგარიში</a> თქვენ მიერ გადაღებულ სურათებთან წვდომის მისაღებად სხვადასხვა მოწყობილობებიდან და მათ სამუდამოდ შესანახად.
 bannerUpsell = { gScreenshotsDescription } <a>გადმოწერეთ Firefox ახლავე</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = რა სიახლეებია Firefox Screenshots-ში?
+onboardingPromoMessage = ახლა, შედით Screenshots-ზე Firefox-ანგარიშით რომ შეძლოთ:
+onboardingPromoMessageListItem1 = თქვენს ბიბლიოთეკასთან წვდომა ყველა თქვენი მოწყობილობიდან
+onboardingPromoMessageListItem2 = რჩეული სურათების სამუდამოდ შენახვა
+onboardingPromoDismissButton = გამოტოვება
+    .title = გამოტოვება
+onboardingPromoSigninButton = შესვლა
+    .title = შესვლა
 
 ## Footer
 
@@ -103,6 +113,7 @@ shotPageShareButton =
     .title = გაზიარება
 shotPageCopyButton =
     .title = სურათის დაკოპირება
+shotPageCopyActionLabel = დაკოპირება
 shotPageCopied = დაკოპირებულია
 shotPageShareFacebook =
     .title = გაზიარება Facebook-ით
