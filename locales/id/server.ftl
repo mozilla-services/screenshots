@@ -103,6 +103,7 @@ shotPageShareButton =
     .title = Bagikan
 shotPageCopyButton =
     .title = Salin gambar ke papan klip
+shotPageCopyActionLabel = Salin
 shotPageCopied = Tersalin
 shotPageShareFacebook =
     .title = Bagikan di Facebook
