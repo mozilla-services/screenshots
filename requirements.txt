@@ -1,6 +1,6 @@
 flake8==3.6.0
 GitPython==2.1.11
-requests==2.20.0
+requests==2.20.1
 sarge==0.1.5
 pytest==3.9.3
 psycopg2==2.7.5
