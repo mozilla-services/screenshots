@@ -20,7 +20,16 @@ screenshotsLogo =
     .title = Screenshots 主页
 bannerSignIn = 请<a>注册或登录</a>，即可跨设备访问您的截图，并永久保存收藏的截图。
 bannerUpsell = { gScreenshotsDescription }<a>立即下载 Firefox</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Firefox Screenshots 有什么新变化？
+onboardingPromoMessage = 现在，使用 Firefox 账号登录 Screenshots 可执行更多操作：
+onboardingPromoMessageListItem1 = 在您所有的设备上访问图库
 onboardingPromoMessageListItem2 = 永久存储您收藏的截图
+onboardingPromoDismissButton = 知道了
+    .title = 知道了
+onboardingPromoSigninButton = 登录
+    .title = 登录
 
 ## Footer
 
