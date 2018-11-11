@@ -18,6 +18,7 @@ buttonSignIn =
     .title = Autentificare
 screenshotsLogo =
     .title = Pagina de start Screenshots
+bannerSignIn = <a>Autentifică-te sau înregistrează-te</a> pentru a accesa propriile capturi pe toate dispozitivele și pentru a-ți salva favoritele pentru totdeauna.
 bannerUpsell = { gScreenshotsDescription }<a>Obține Firefox acum</a>
 
 ## Footer
@@ -63,7 +64,10 @@ homePageCaptureRegionDescription = Dă clic și trage pentru a selecta zona pe c
 homePageCapturePage = Fă o captură de pagină
 homePageCapturePageDescription = Folosește butoanele din dreapta sus pentru a captura pagini întregi. Butonul Salvează porțiunea vizibilă va captura zona pe care o poți vedea fără să derulezi și butonul Salvează pagina completă va captura toată pagina.
 homePageSaveShare = Salvează și partajează
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = Realizează cea mai bună captură. Apoi salveaz-o în biblioteca online Screnshots, iar Firefox va copia linkul în clipboard pentru o partajare ușoară. Capturile din bibliotecă expiră automat după două săptămâni, dar le poți șterge oricând, sau poți alege să le păstrezi pentru mai mult timp.
 homePageSignInTitle = Capturile tale oriunde
+homePageSignInDescription = Autentifică-te în Screenshots cu ajutorul contului Firefox pentru a-ți accesa capturile oriunde folosești Firefox. Un bonus în plus: îți poți salva capturile favorite pentru totdeauna.
 homePageLegalLink = Mențiuni legale
 homePagePrivacyLink = Confidențialitate
 homePageTermsLink = Termeni
@@ -72,6 +76,8 @@ homePageCookiesLink = Cookie-uri
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Elimină toate datele
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = Trebuie să ai Firefox Screenshots instalat sau să fii autentificat în contul Firefox pentru a-ți șterge contul.
 leavePageErrorGeneric = A intervenit o eroare.
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Acest lucru va șterge definitiv toate datele tale Firefox Screenshots.
