@@ -18,6 +18,10 @@ buttonSignIn =
     .title = সাইন ইন
 screenshotsLogo =
     .title = Screenshots নীড়
+onboardingPromoDismissButton = বাতিল
+    .title = বাতিল
+onboardingPromoSigninButton = সাইন ইন
+    .title = সাইন ইন
 
 ## Footer
 
