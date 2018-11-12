@@ -18,8 +18,18 @@ buttonSignIn =
     .title = Kennaskañ
 screenshotsLogo =
     .title = Degemer Screenshots
-bannerMessage = Kennaskit pe marilhit evit haeziñ ho tapadennoù war ho trevnadoù hag enrollañ ho pennrolloù da viken.
+bannerSignIn = <a>Kennaskit pe marilhit</a> evit haeziñ ho tapadennoù war ho holl drevnadoù hag enrollit ho pennrolloù da viken.
 bannerUpsell = { gScreenshotsDescription } <a>Kaout Firefox bremañ</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Petra nevez gant Firefox Screenshots?
+onboardingPromoMessage = Bremañ e c'hallit kennaskañ da Screenshots gant ur gont Firefox hag ober traoù ouzhpenn:
+onboardingPromoMessageListItem1 = Haezit ho skeudennaoueg war ho holl drevnadoù
+onboardingPromoMessageListItem2 = Mirit an tapadennoù gwellañ deoc'h da viken
+onboardingPromoDismissButton = Argas
+    .title = Argas
+onboardingPromoSigninButton = Kennaskañ
+    .title = Kennaskañ
 
 ## Footer
 
@@ -77,7 +87,7 @@ homePageCookiesLink = Toupinoù
 
 leavePageRemoveAllData = Dilemel an holl roadennoù
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Ret eo deoc'h kaout Firefox Screenshots staliet evit dilemel ho kont.
+leavePageErrorAuthRequired = Dav eo deoc'h staliañ Firefox Screenshots pe kennaskañ d'ho kont Firefox evit dilemel ho kont
 leavePageErrorGeneric = Degouezhet ez eus bet ur fazi
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Kement se a zilamo holl roadennoù Firefox Screenshots.
@@ -103,6 +113,7 @@ shotPageShareButton =
     .title = Rannañ
 shotPageCopyButton =
     .title = Eilañ ar skeudenn er golver
+shotPageCopyActionLabel = Eilañ
 shotPageCopied = Eilet
 shotPageShareFacebook =
     .title = Rannañ war Facebook
