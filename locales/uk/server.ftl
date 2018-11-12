@@ -20,6 +20,16 @@ screenshotsLogo =
     .title = Домівка Screenshots
 bannerSignIn = <a>Зареєструйтеся або увійдіть</a>, щоб мати доступ до знімків на всіх пристроях та зберігати обрані назавжди.
 bannerUpsell = { gScreenshotsDescription } <a>Отримати Firefox</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Що нового в Firefox Screenshots?
+onboardingPromoMessage = Тепер увійдіть до Screenshots за допомогою облікового запису Firefox і робіть більше:
+onboardingPromoMessageListItem1 = Отримуйте доступ до своєї бібліотеки на всіх пристроях
+onboardingPromoMessageListItem2 = Зберігайте обрані знімки назавжди
+onboardingPromoDismissButton = Відхилити
+    .title = Відхилити
+onboardingPromoSigninButton = Увійти
+    .title = Увійти
 
 ## Footer
 
