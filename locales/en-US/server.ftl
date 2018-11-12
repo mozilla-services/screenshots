@@ -291,6 +291,7 @@ settingsDescription = You can sign in with Firefox Accounts to sync all your scr
 settingsPageSubHeader = Sync & Accounts
 settingsClosePreferences =
     .title = Close preferences
+settingsFxaDisconnectAlertMessage = Are you sure you want to disconnect this device from your Firefox Account?
 
 ## Shotindex page
 
