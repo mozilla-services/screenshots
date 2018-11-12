@@ -20,6 +20,16 @@ screenshotsLogo =
     .title = Страница на Screenshots
 bannerSignIn = <a>Впишете се или се регистрирайте</a>, за да получите достъп до вашите снимки от други устройства и за да запазите вашите любими снимки завинаги.
 bannerUpsell = { gScreenshotsDescription } <a>Вземете Firefox сега</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Какво е новото във Firefox Screenshots?
+onboardingPromoMessage = Сега, впишете се в Screenshots с Firefox Account, за да:
+onboardingPromoMessageListItem1 = Имате достъп до библиотеката на всичките ви устройства
+onboardingPromoMessageListItem2 = Съхранявате любимите си снимки завинаги
+onboardingPromoDismissButton = Прекратяване
+    .title = Прекратяване
+onboardingPromoSigninButton = Вписване
+    .title = Вписване
 
 ## Footer
 
@@ -103,6 +113,7 @@ shotPageShareButton =
     .title = Споделяне
 shotPageCopyButton =
     .title = Копиране на снимката в системния буфер
+shotPageCopyActionLabel = Копиране
 shotPageCopied = Копирано
 shotPageShareFacebook =
     .title = Споделяне във Facebook
