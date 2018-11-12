@@ -11,6 +11,7 @@ IGNORE_COMMITS = [
     "^chore",
     "^pontoon",
     "UTF.*Pontoon",
+    "^Update dependency",
 ]
 
 parser = argparse.ArgumentParser(description='Generate a changelog')

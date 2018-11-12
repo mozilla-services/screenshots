@@ -1,3 +1,227 @@
+## Version 36.0.0
+
+* - NonFxA Shot takers should be briefly onboarded. Fixes [#4790](https://github.com/mozilla-services/screenshots/issues/4790) [31f1885](https://github.com/mozilla-services/screenshots/commit/31f1885)
+* - add custom dimension for login type to GA ([#5152](https://github.com/mozilla-services/screenshots/issues/5152))
+  * WIP update of [#5067](https://github.com/mozilla-services/screenshots/issues/5067), add custom dimension for login type to GA
+  * Update with accountId in metrics doc. Fixes [#5067](https://github.com/mozilla-services/screenshots/issues/5067) [c50e1fa](https://github.com/mozilla-services/screenshots/commit/c50e1fa)
+* Show expiration info on all screen sizes. Fixes: [#5068](https://github.com/mozilla-services/screenshots/issues/5068) ([#5119](https://github.com/mozilla-services/screenshots/issues/5119)) [299b5e7](https://github.com/mozilla-services/screenshots/commit/299b5e7)
+* - Clear icon doesn't display on safari ([#5130](https://github.com/mozilla-services/screenshots/issues/5130)). Fixes [#5120](https://github.com/mozilla-services/screenshots/issues/5120) [906464a](https://github.com/mozilla-services/screenshots/commit/906464a)
+* - Copy string on myshots shows blank ([#5153](https://github.com/mozilla-services/screenshots/issues/5153)). Fixes [#5146](https://github.com/mozilla-services/screenshots/issues/5146) [7c58bb1](https://github.com/mozilla-services/screenshots/commit/7c58bb1)
+* - RTL undo/redo icons and shots index. Fixes [#5126](https://github.com/mozilla-services/screenshots/issues/5126) [657d410](https://github.com/mozilla-services/screenshots/commit/657d410)
+* - Use correct logical margins for the left/right eyes. Fixes [#5122](https://github.com/mozilla-services/screenshots/issues/5122) [c11a219](https://github.com/mozilla-services/screenshots/commit/c11a219)
+* - Tools hidden behind shot at smaller width ([#5112](https://github.com/mozilla-services/screenshots/issues/5112)). Fixes [#5107](https://github.com/mozilla-services/screenshots/issues/5107) [56b4321](https://github.com/mozilla-services/screenshots/commit/56b4321)
+* - Hide edit button on mobile ([#5103](https://github.com/mozilla-services/screenshots/issues/5103)). Fixes [#4986](https://github.com/mozilla-services/screenshots/issues/4986) [d4e9aeb](https://github.com/mozilla-services/screenshots/commit/d4e9aeb)
+* - UI fixes in non-Firefox ([#5071](https://github.com/mozilla-services/screenshots/issues/5071)). Fixes [#5002](https://github.com/mozilla-services/screenshots/issues/5002) [9fb24f1](https://github.com/mozilla-services/screenshots/commit/9fb24f1)
+* Use 'upload', not 'save', to mean upload. ([#4963](https://github.com/mozilla-services/screenshots/issues/4963)). Fixes [#3503](https://github.com/mozilla-services/screenshots/issues/3503) [1ab37a5](https://github.com/mozilla-services/screenshots/commit/1ab37a5)
+* - Hide signin promo on not found pages if authenticated ([#5108](https://github.com/mozilla-services/screenshots/issues/5108)). Fixes [#5074](https://github.com/mozilla-services/screenshots/issues/5074) [f60cd2f](https://github.com/mozilla-services/screenshots/commit/f60cd2f)
+* - Bad Oauth State with FxA login. Fixes [#5102](https://github.com/mozilla-services/screenshots/issues/5102) [d2f5d77](https://github.com/mozilla-services/screenshots/commit/d2f5d77)
+* RTL major refactor ([#5055](https://github.com/mozilla-services/screenshots/issues/5055))* Issue [#4261](https://github.com/mozilla-services/screenshots/issues/4261) - part 1 - inject "dir=rtl" to <html> tag in case of RTL languages
+  * Use CSS Logical Properties and Values
+  * Fixed order of arrows for pagination
+  * Generating .rtl.css and .ltr.css files for non-Firefox and Chrome browsers [ec6aeae](https://github.com/mozilla-services/screenshots/commit/ec6aeae)
+* Make the "sign in or sign up" clickable in banner Fixes: [#5054](https://github.com/mozilla-services/screenshots/issues/5054)
+  CSS fixes:
+  * Move common colors into variables
+  * Remove left padding from sign-in link [f39042c](https://github.com/mozilla-services/screenshots/commit/f39042c)
+* - Hide Signin banner on non-owned shot if authenticated. Fixes [#5074](https://github.com/mozilla-services/screenshots/issues/5074) [c77a872](https://github.com/mozilla-services/screenshots/commit/c77a872)
+* [#5035](https://github.com/mozilla-services/screenshots/issues/5035) - Page not found and remove alternate color scheme ([#5065](https://github.com/mozilla-services/screenshots/issues/5065)). Fixes [#5034](https://github.com/mozilla-services/screenshots/issues/5034) [27bb443](https://github.com/mozilla-services/screenshots/commit/27bb443)
+* - Login flow should work from a non-Firefox browser (with no extension)
+  Needs better abstractions and a close look at all the references to deviceId.
+  Needs to be tested across all the use cases we care about.
+  Should fix the confirm-login cookie issue, so both cases (browser and extension) log in similarly. Fixes [#4959](https://github.com/mozilla-services/screenshots/issues/4959) [791fe5d](https://github.com/mozilla-services/screenshots/commit/791fe5d)
+* Define button color ([#5000](https://github.com/mozilla-services/screenshots/issues/5000))In Linux desktop with dark theme, default button text color is white or light gray. If button background is set to a light color, button text are not visible. So button text color and background color must both be defined. [20d5321](https://github.com/mozilla-services/screenshots/commit/20d5321)
+* - Add download button to non-owner shot page ([#5048](https://github.com/mozilla-services/screenshots/issues/5048)). Fixes [#5043](https://github.com/mozilla-services/screenshots/issues/5043) [62eaba1](https://github.com/mozilla-services/screenshots/commit/62eaba1)
+* Update circleci/node:8.12.0 Docker digest to 09a58e5 ([#5057](https://github.com/mozilla-services/screenshots/issues/5057)) [402ea6b](https://github.com/mozilla-services/screenshots/commit/402ea6b)
+* Add new onboarding image to manifest [5a6e3c7](https://github.com/mozilla-services/screenshots/commit/5a6e3c7)
+* Moved all meta-viewport declarations to a single location and removed unneeded maximum-scale parameter. ([#5046](https://github.com/mozilla-services/screenshots/issues/5046)) [e509af5](https://github.com/mozilla-services/screenshots/commit/e509af5)
+* - Adblockers hiding signin banner ([#5047](https://github.com/mozilla-services/screenshots/issues/5047)). Fixes [#5027](https://github.com/mozilla-services/screenshots/issues/5027) [6dfaed7](https://github.com/mozilla-services/screenshots/commit/6dfaed7)
+* A11y - Add lang attribte to <html> tag [74e5134](https://github.com/mozilla-services/screenshots/commit/74e5134)
+* Revert "Set useIsolating option for Fluent bundles" [ebee72d](https://github.com/mozilla-services/screenshots/commit/ebee72d)
+* - Remove wantsauth dependency for setting FxA cookie. Fixes [#4974](https://github.com/mozilla-services/screenshots/issues/4974) [c076b55](https://github.com/mozilla-services/screenshots/commit/c076b55)
+* Add 'pinned' option for page action. ([#4982](https://github.com/mozilla-services/screenshots/issues/4982)) [7c0c279](https://github.com/mozilla-services/screenshots/commit/7c0c279)
+* Set useIsolating option for Fluent bundles. ([#4863](https://github.com/mozilla-services/screenshots/issues/4863)) [c672f89](https://github.com/mozilla-services/screenshots/commit/c672f89)
+* Enable favorite shots on My Shots. ([#4934](https://github.com/mozilla-services/screenshots/issues/4934)) [7ff900d](https://github.com/mozilla-services/screenshots/commit/7ff900d)
+* Update Home Page Content [91a548b](https://github.com/mozilla-services/screenshots/commit/91a548b)
+* update onboarding slides [a05547a](https://github.com/mozilla-services/screenshots/commit/a05547a)
+* Handle fetch HTTP errors in FxA responses. ([#4788](https://github.com/mozilla-services/screenshots/issues/4788)) [0a5f0f5](https://github.com/mozilla-services/screenshots/commit/0a5f0f5)
+* - Header Without text labels. Fixes [#4848](https://github.com/mozilla-services/screenshots/issues/4848) [b4abe49](https://github.com/mozilla-services/screenshots/commit/b4abe49)
+* Delay device id generation until upload. ([#4819](https://github.com/mozilla-services/screenshots/issues/4819)) [6f7b918](https://github.com/mozilla-services/screenshots/commit/6f7b918)
+* Fix copy shot button race condition. ([#4957](https://github.com/mozilla-services/screenshots/issues/4957)) ([#4964](https://github.com/mozilla-services/screenshots/issues/4964)) [5f56443](https://github.com/mozilla-services/screenshots/commit/5f56443)
+* Handle thumbnail sizes with synced icon. ([#4958](https://github.com/mozilla-services/screenshots/issues/4958)) ([#4961](https://github.com/mozilla-services/screenshots/issues/4961)) [b39ccf0](https://github.com/mozilla-services/screenshots/commit/b39ccf0)
+* Add CONTENT_CDN to connect-src in CSP. ([#4956](https://github.com/mozilla-services/screenshots/issues/4956)) ([#4962](https://github.com/mozilla-services/screenshots/issues/4962)) [8015449](https://github.com/mozilla-services/screenshots/commit/8015449)
+* Add copy shot to clipboard. ([#4776](https://github.com/mozilla-services/screenshots/issues/4776)) ([#4917](https://github.com/mozilla-services/screenshots/issues/4917)) [5597b0b](https://github.com/mozilla-services/screenshots/commit/5597b0b)
+* Add synced shot indicator. ([#4847](https://github.com/mozilla-services/screenshots/issues/4847)) ([#4947](https://github.com/mozilla-services/screenshots/issues/4947)) [0d69850](https://github.com/mozilla-services/screenshots/commit/0d69850)
+* Fix `#hello` onboarding. ([#4886](https://github.com/mozilla-services/screenshots/issues/4886)) [45f6def](https://github.com/mozilla-services/screenshots/commit/45f6def)
+* Add Watchdog documentation. ([#4930](https://github.com/mozilla-services/screenshots/issues/4930)) [4380bcc](https://github.com/mozilla-services/screenshots/commit/4380bcc)
+* update color schemes on shot view and shot index view [35e6846](https://github.com/mozilla-services/screenshots/commit/35e6846)
+* Add logs only mode for Watchdog integration. ([#4926](https://github.com/mozilla-services/screenshots/issues/4926)) [e685f83](https://github.com/mozilla-services/screenshots/commit/e685f83)
+* - My Shots favorite icon indicator on signout. Fixes [#4923](https://github.com/mozilla-services/screenshots/issues/4923) [6d25109](https://github.com/mozilla-services/screenshots/commit/6d25109)
+* Catch Watchdog upstream error. ([#4871](https://github.com/mozilla-services/screenshots/issues/4871)) ([#4919](https://github.com/mozilla-services/screenshots/issues/4919)) [e4bd0a5](https://github.com/mozilla-services/screenshots/commit/e4bd0a5)
+* add channel column to shot uploads ([#4928](https://github.com/mozilla-services/screenshots/issues/4928))* add channel column to shot uploads. Fixes [#4748](https://github.com/mozilla-services/screenshots/issues/4748) Fixes [#4748](https://github.com/mozilla-services/screenshots/issues/4748) [c3c6cb7](https://github.com/mozilla-services/screenshots/commit/c3c6cb7)
+* Use download url on shot if mobile. ([#4876](https://github.com/mozilla-services/screenshots/issues/4876)) ([#4921](https://github.com/mozilla-services/screenshots/issues/4921)) [b4591cf](https://github.com/mozilla-services/screenshots/commit/b4591cf)
+* - Common Marketing Banner ([#4910](https://github.com/mozilla-services/screenshots/issues/4910)). Fixes [#4684](https://github.com/mozilla-services/screenshots/issues/4684) [55cd022](https://github.com/mozilla-services/screenshots/commit/55cd022)
+* - Update Favorite button on MyShots and Shot page. Fixes [#4791](https://github.com/mozilla-services/screenshots/issues/4791) [91dba74](https://github.com/mozilla-services/screenshots/commit/91dba74)
+* (3), round "PixelDimensions"'s display values to integer ([#4914](https://github.com/mozilla-services/screenshots/issues/4914)). Fixes [#4731](https://github.com/mozilla-services/screenshots/issues/4731) [c83734b](https://github.com/mozilla-services/screenshots/commit/c83734b)
+* prevent button contents from moving when clicked. Fixes [#4895](https://github.com/mozilla-services/screenshots/issues/4895) [53c894a](https://github.com/mozilla-services/screenshots/commit/53c894a)
+* use different secrets for different signing purposes ([#4883](https://github.com/mozilla-services/screenshots/issues/4883))
+  use different secrets for different signing purposes
+  This adds signing 'scopes', so that if you get something signed for one scope, you can't use it for another scope. E.g., you can't get a download URL and use that for an authentication key.
+  This keeps the 'legacy' scope, which is the current single key. This can be used now to make sure everything works when people upgrade, but removed later as people have used to the new specific scopes. But nothing new will be signed with the legacy scope once this is deployed.
+  This also updates some functions to use async/await.
+  Additionally, do not allow the download filename created for one image to be used for another image
+  Before this change you could take the `?download=...&sig=...` from one image and put it on another image URL, causing that other image to be downloaded with the other filename. Fixes [#4882](https://github.com/mozilla-services/screenshots/issues/4882) Fixes [#4882](https://github.com/mozilla-services/screenshots/issues/4882) [429a593](https://github.com/mozilla-services/screenshots/commit/429a593)
+* Use page specific footer on shot and My Shots. ([#4894](https://github.com/mozilla-services/screenshots/issues/4894)) ([#4898](https://github.com/mozilla-services/screenshots/issues/4898)) [ab6a6fe](https://github.com/mozilla-services/screenshots/commit/ab6a6fe)
+* make top border of "Edit shot title" box visible. Fixes [#4893](https://github.com/mozilla-services/screenshots/issues/4893) [38dfabe](https://github.com/mozilla-services/screenshots/commit/38dfabe)
+* - Fix delete Shot button styles on my shots. Fixes [#4889](https://github.com/mozilla-services/screenshots/issues/4889) [b72902a](https://github.com/mozilla-services/screenshots/commit/b72902a)
+* (2), displaying selection's dimensions when resizing. Fixes [#4731](https://github.com/mozilla-services/screenshots/issues/4731) [c05b490](https://github.com/mozilla-services/screenshots/commit/c05b490)
+* - SignIn button link on settings page. Fixes [#4896](https://github.com/mozilla-services/screenshots/issues/4896) [868295d](https://github.com/mozilla-services/screenshots/commit/868295d)
+* Update footer. ([#4846](https://github.com/mozilla-services/screenshots/issues/4846)) ([#4866](https://github.com/mozilla-services/screenshots/issues/4866))- Update layout and styles.
+  - Fix the bug where "Remove All Data" is shown to non-owners. [b114e13](https://github.com/mozilla-services/screenshots/commit/b114e13)
+* Exclude shots from Watchdog based on Firefox version/channel. ([#4770](https://github.com/mozilla-services/screenshots/issues/4770)) ([#4841](https://github.com/mozilla-services/screenshots/issues/4841)) [c402726](https://github.com/mozilla-services/screenshots/commit/c402726)
+* Fix shot expiration l10n strings for en-CA and en-GB. ([#4867](https://github.com/mozilla-services/screenshots/issues/4867)) [1647034](https://github.com/mozilla-services/screenshots/commit/1647034)
+* Localization Feedback [493dfc2](https://github.com/mozilla-services/screenshots/commit/493dfc2)
+* [FxA] Common Header Component. Fixes [#4685](https://github.com/mozilla-services/screenshots/issues/4685) [914c800](https://github.com/mozilla-services/screenshots/commit/914c800)
+* Upgrade eslint-plugin-mozilla and dangle commas. ([#4822](https://github.com/mozilla-services/screenshots/issues/4822)) [4af96bb](https://github.com/mozilla-services/screenshots/commit/4af96bb)
+* Move report abuse link to the footer. ([#4687](https://github.com/mozilla-services/screenshots/issues/4687)) ([#4842](https://github.com/mozilla-services/screenshots/issues/4842)) [ad2d174](https://github.com/mozilla-services/screenshots/commit/ad2d174)
+* ignore Renovate commits in generate-commit-log script. Fixes [#4650](https://github.com/mozilla-services/screenshots/issues/4650) [2b40438](https://github.com/mozilla-services/screenshots/commit/2b40438)
+* bring textbox into view when refocusing. Fixes [#4652](https://github.com/mozilla-services/screenshots/issues/4652) [c508586](https://github.com/mozilla-services/screenshots/commit/c508586)
+* make "Color Picker" and "Cancel" button visibly focusable. Fixes [#4663](https://github.com/mozilla-services/screenshots/issues/4663) [f91b297](https://github.com/mozilla-services/screenshots/commit/f91b297)
+* Update acceptance.md [183fa3f](https://github.com/mozilla-services/screenshots/commit/183fa3f)
+* Check some boxes based on our triage meeting [533738e](https://github.com/mozilla-services/screenshots/commit/533738e)
+* Remove favicon from UI and shot model. ([#4796](https://github.com/mozilla-services/screenshots/issues/4796)) [c030dec](https://github.com/mozilla-services/screenshots/commit/c030dec)
+* Stop capturing favicon URL. ([#4801](https://github.com/mozilla-services/screenshots/issues/4801)) ([#4838](https://github.com/mozilla-services/screenshots/issues/4838)) [07a742d](https://github.com/mozilla-services/screenshots/commit/07a742d)
+* Reverse preselection button tab order. ([#4669](https://github.com/mozilla-services/screenshots/issues/4669)) ([#4828](https://github.com/mozilla-services/screenshots/issues/4828)) [d41627f](https://github.com/mozilla-services/screenshots/commit/d41627f)
+* Add "dialog" role to addon ui frames. ([#4671](https://github.com/mozilla-services/screenshots/issues/4671)) ([#4827](https://github.com/mozilla-services/screenshots/issues/4827)) [84cb89c](https://github.com/mozilla-services/screenshots/commit/84cb89c)
+* Restore expiration info on shot page. ([#4825](https://github.com/mozilla-services/screenshots/issues/4825)) ([#4826](https://github.com/mozilla-services/screenshots/issues/4826)) [61eb732](https://github.com/mozilla-services/screenshots/commit/61eb732)
+* Use SCSS nesting for text tool colors ([#4701](https://github.com/mozilla-services/screenshots/issues/4701)) [596dc2a](https://github.com/mozilla-services/screenshots/commit/596dc2a)
+* Mark a shot as "image" type. When the URL is copy and pasted onto its own line in a [discourse.org](https://discourse.org) forum, the preview looks like this:
+  [![](https://screenshotscdn.firefoxusercontent.com/images/65241f16-f327-4f8f-a79e-a581088874eb.png)](https://screenshots.firefox.com/p2rtWjzO6zbC7JNf/forum.bors.tech)
+  If the OpenGraph type is set to "image", it'll actually embed the image directly without any of the superflouous title stuff, the same way it does for other image hosts like imgur. [360ecea](https://github.com/mozilla-services/screenshots/commit/360ecea)
+* Add an index for firefox_major_version. Add a firefox_channel column for future purposes [3cc65f0](https://github.com/mozilla-services/screenshots/commit/3cc65f0)
+* Start [#4748](https://github.com/mozilla-services/screenshots/issues/4748), add Firefox major version to the shot table. Given the date and version number we can later deduce the Firefox channel [e25a575]
+* - FxA SignIn from home, shot index and shot page. Fixes [#4683](https://github.com/mozilla-services/screenshots/issues/4683) [9345324](https://github.com/mozilla-services/screenshots/commit/9345324)
+* Pass the correct time amount to set expiration. ([#4807](https://github.com/mozilla-services/screenshots/issues/4807)) [4c3b003](https://github.com/mozilla-services/screenshots/commit/4c3b003)
+* Add shot id to Watchdog submission. ([#4769](https://github.com/mozilla-services/screenshots/issues/4769)) ([#4799](https://github.com/mozilla-services/screenshots/issues/4799)) [b6721b6](https://github.com/mozilla-services/screenshots/commit/b6721b6)
+* Add logs to Watchdog callbacks. ([#4768](https://github.com/mozilla-services/screenshots/issues/4768)) [f3766e3](https://github.com/mozilla-services/screenshots/commit/f3766e3)
+* Replace shot expiration with favorites for FxA users ([#4726](https://github.com/mozilla-services/screenshots/issues/4726))* Replace shot expiration with favorites for FxA users. ([#4688](https://github.com/mozilla-services/screenshots/issues/4688))
+  * Fix server tests that require an account id. ([#4688](https://github.com/mozilla-services/screenshots/issues/4688)) [46e8b73](https://github.com/mozilla-services/screenshots/commit/46e8b73)
+* - Add image editor new feature promotion dialog. Fixes [#4724](https://github.com/mozilla-services/screenshots/issues/4724) [431242f](https://github.com/mozilla-services/screenshots/commit/431242f)
+* Track undo/redo events. ([#4735](https://github.com/mozilla-services/screenshots/issues/4735)) ([#4761](https://github.com/mozilla-services/screenshots/issues/4761)) [1257f22](https://github.com/mozilla-services/screenshots/commit/1257f22)
+* - Localize Text tool confirm and cancel buttons. Fixes [#4757](https://github.com/mozilla-services/screenshots/issues/4757) [acfa9d9](https://github.com/mozilla-services/screenshots/commit/acfa9d9)
+* - Update color in text tool for localized sites. Fixes [#4741](https://github.com/mozilla-services/screenshots/issues/4741) [553f81d](https://github.com/mozilla-services/screenshots/commit/553f81d)
+* Update some packages via npm audit fix --force [3be689e](https://github.com/mozilla-services/screenshots/commit/3be689e)
+* Add special shot hostname config for Watchdog. ([#4725](https://github.com/mozilla-services/screenshots/issues/4725)) [b5a6727](https://github.com/mozilla-services/screenshots/commit/b5a6727)
+* -  Remove subtitle link favicon ([#4739](https://github.com/mozilla-services/screenshots/issues/4739)). Fixes [#4738](https://github.com/mozilla-services/screenshots/issues/4738) [b8705d3](https://github.com/mozilla-services/screenshots/commit/b8705d3)
+
+### Development changes
+
+* Remove david dependency, which was requiring an old npm version
+  The old npm version didn't support npm audit --json, and caused any invocations of npm BY npm run to use an old (v4) version of npm [ba442f9](https://github.com/mozilla-services/screenshots/commit/ba442f9)
+* switch to audit-filter from npm package [f9999f4](https://github.com/mozilla-services/screenshots/commit/f9999f4)
+* Add package-lock.json to the dependencies on npm install ([#5117](https://github.com/mozilla-services/screenshots/issues/5117))
+  This should cause npm install to be re-run anytime package-lock.json is updated [1c9bbaa](https://github.com/mozilla-services/screenshots/commit/1c9bbaa)
+* Add contributing info to the docs ([#5069](https://github.com/mozilla-services/screenshots/issues/5069)) [4baae80](https://github.com/mozilla-services/screenshots/commit/4baae80)
+* Add the test for invalid jpeg image data url
+  Modified invalid data image tests to use assignment instead of str.replace method. [b0c5b52](https://github.com/mozilla-services/screenshots/commit/b0c5b52)
+* renamed require.pip to requirements.txt ([#5079](https://github.com/mozilla-services/screenshots/issues/5079)) [59020b9](https://github.com/mozilla-services/screenshots/commit/59020b9)
+* added npm script to run a11y tests * removed tox and python3 a11y tests * moved a11y test reqs into bin/require.pip * updated a11y
+  tests to use dev version of screenshots * removed superfluous geckodriver
+  install in circleci [be8e25d](https://github.com/mozilla-services/screenshots/commit/be8e25d)
+* Fix and simplify Screenshots UI check test. There's no need to flip the pref and poll for the page action to appear
+  or disappear. Instead, just directly enable or disable via the
+  AddonManager. This won't conflict with the pref observing code, because
+  that code only reacts to pref changes, not to addon state changes. [d9a6cff](https://github.com/mozilla-services/screenshots/commit/d9a6cff)
+* Fix Postgres installation in CircleCI ([#5033](https://github.com/mozilla-services/screenshots/issues/5033))Something regressed the previous installation. This uses normal apt-get
+  installation, and then fixes up the config to add necessary users and
+  databases and change the authentication [98609fd](https://github.com/mozilla-services/screenshots/commit/98609fd)
+* Update tests to use the new, simpler way of accessing nsIDOMWindowUtils (landed upstream in bug 1476145) [91467b9](https://github.com/mozilla-services/screenshots/commit/91467b9)
+* Update page action ID in tests (landed upstream in bug 1466575) [fc50a2f](https://github.com/mozilla-services/screenshots/commit/fc50a2f)
+* * added accessibility tests for home page
+  * added tox to run tests in py27 and py35 * modified circleci config to run a11y tests [e912480](https://github.com/mozilla-services/screenshots/commit/e912480)
+* Fix npm audit fail issue 4803 ([#4948](https://github.com/mozilla-services/screenshots/issues/4948))
+* readme: remove reference to nsp
+  * remove comment from .nsprc
+  to make it valid JSON
+  * npmrc: add exceptions for ReDoS in dev deps
+  istanbul middleware
+  * nsprc: add exception for adm-zip file write advisory
+  https://www.npmjs.com/advisories/681
+  at paths:
+  jpm > firefox-profile > adm-zip
+  web-ext > firefox-profile > adm-zip
+  These 1) run from build tools that already have access to local the local
+  filesystem and 2) do not take input files outside the repo
+  * add npm lint:dep script to run npm audit with filter in CI
+  * ci: install npm@6.4.1 for audit support
+  * nsprc: switch to npmjs.org/advisories to fix filtering [292bde1](https://github.com/mozilla-services/screenshots/commit/292bde1)
+* Update localized FTL file for Fluent 0.8.0 ([#4955](https://github.com/mozilla-services/screenshots/issues/4955))Replace $timediff with `<timediff></timediff>`, update string IDs.
+  See also https://github.com/mozilla-services/screenshots/pull/4935 [34e0281](https://github.com/mozilla-services/screenshots/commit/34e0281)
+* Upgrade to fluent 0.8.0, fluent-react 0.8.1 ([#4935](https://github.com/mozilla-services/screenshots/issues/4935))* Upgrade to fluent 0.8.0, fluent-react 0.8.1
+  * Add the attrs prop to Localized where needed
+  Starting with fluent-react 0.6.0, <Localized> requires the attrs prop to
+  be passed in order to set any localized attributes as props on the
+  wrapped component. attrs should be an object with attribute names as
+  keys and booleans as values. For instance:
+  <Localized id="type-name" attrs={{placeholder: true}}>
+  <input
+  type="text"
+  placeholder="Localizable placeholder"
+  value={name}
+  onChange={…}
+  />
+  </Localized>
+  * Use a server-side markup parser
+  * Use Localized overlay for TimeDiffs
+  <Localized> can take other React elements as props. If an element of the
+  same name is then found in the translation, the element passed as prop
+  is inserted into the translation (keeping its props) and its children
+  are set to the text content of the element found in the translation.
+  * Use Localized overlay in AdBanner [1844afe](https://github.com/mozilla-services/screenshots/commit/1844afe)
+
+
+## Version 35.0.0
+
+This is an add-on only release. Server changes will be first released in 36.0.0
+
+* Migrate Screenshots to pure WebExtension ([#4864](https://github.com/mozilla-services/screenshots/issues/4864))* The addons system, not the Screenshots addon, will be responsible for
+  detecting changes to the 'extensions.screenshots.disabled' pref, and
+  starting up or shutting down the Screenshots webextension when changes
+  occur (bug 1488971).
+  * The LibraryButton code has been moved from bootstrap.js into the
+  embedded API. We'll be able to remove this code as soon as Library
+  menu items can be declared from the WebExtension manifest (bug 1366389).
+  * Move addon/webextension to webextension, update all the refs.
+  * Update makefile and build tools.
+  * Remove the script that deletes duplicate locales (en_CA) at build
+  time, because this breaks running with web-ext, and there is code to
+  handle duplicate locales inside export_mc.py already.
+  * Keep `jpm` because `addons-linter` seems to depend on it
+  * Still TODO: README files and docs directory not yet updated [010867e](https://github.com/mozilla-services/screenshots/commit/010867e)
+* displaying selection's coordinates when resizing. Fixes [#4731](https://github.com/mozilla-services/screenshots/issues/4731) [d53a6d2](https://github.com/mozilla-services/screenshots/commit/d53a6d2)
+(https://github.com/mozilla-services/screenshots/commit/e25a575)
+* Move history enabled and upload-disabled pref checks into webextension API ([#4810](https://github.com/mozilla-services/screenshots/issues/4810)). Fixes [#4531](https://github.com/mozilla-services/screenshots/issues/4531) [2a375ca](https://github.com/mozilla-services/screenshots/commit/2a375ca)
+* Move the ESR check from bootstrap into webextension API ([#4809](https://github.com/mozilla-services/screenshots/issues/4809))
+  * Add a webextension experiment API to Screenshots that exposes app update channel
+  * Move ESR check from bootstrap to webextension API. Fixes [#4802](https://github.com/mozilla-services/screenshots/issues/4802) [c5163ba](https://github.com/mozilla-services/screenshots/commit/c5163ba)
+* property is a white space separated listProperty is a white space separated list of values and not a single value.
+  https://www.w3.org/TR/2008/REC-rdfa-syntax-20081014/#A-property
+  Check that matches have a content attribute. [6a893a0](https://github.com/mozilla-services/screenshots/commit/6a893a0)
+* update acceptance for fxa [ca1b88e](https://github.com/mozilla-services/screenshots/commit/ca1b88e)
+* Send Telemetry pings from the WebExtension. Fixes [#3713](https://github.com/mozilla-services/screenshots/issues/3713) [d08961b](https://github.com/mozilla-services/screenshots/commit/d08961b)
+* Replace Telemetry pref check with Telemetry API check [db2f33f](https://github.com/mozilla-services/screenshots/commit/db2f33f)
+
+### Development tools
+
+* Disable code coverage in CI. ([#4728](https://github.com/mozilla-services/screenshots/issues/4728)) ([#4762](https://github.com/mozilla-services/screenshots/issues/4762)) [f2950b4](https://github.com/mozilla-services/screenshots/commit/f2950b4)
+* Remove nsp and use npm audit (but disable failures)nsp is deprecated. npm audit replaces it, but doesn't have any ability to ignore issues that we want to ignore. For now we're using npm audit || true to keep npm audit from making the build fail [a5935e1](https://github.com/mozilla-services/screenshots/commit/a5935e1)
+* Update some transient dependencies [57045df](https://github.com/mozilla-services/screenshots/commit/57045df)
+* Run npm audit fix on some packages. This doesn't change packages that require npm audit fix --force [d9717e1](https://github.com/mozilla-services/screenshots/commit/d9717e1)
+* Put in a package-lock.json file [6ea76b0](https://github.com/mozilla-services/screenshots/commit/6ea76b0)
+* Minor fixes for dev and stage xpi signing ([#4734](https://github.com/mozilla-services/screenshots/issues/4734))* Avoid logging the token in the curl command
+  * Document the additional dev-root pref in the install-test-local page [3286c19](https://github.com/mozilla-services/screenshots/commit/3286c19)
+* Sign dev and stage XPIs with the autograph dev-root ([#4729](https://github.com/mozilla-services/screenshots/issues/4729)). Fixes [#4665](https://github.com/mozilla-services/screenshots/issues/4665) [fc8e5aa](https://github.com/mozilla-services/screenshots/commit/fc8e5aa)
+* Add -s ours merge strategy to docs [2335c7a](https://github.com/mozilla-services/screenshots/commit/2335c7a)
+
 ## Version 34.0.0
 
 This release is a collection of server bug fixes for the annotation tools, Watchdog and docs update
@@ -21,9 +245,9 @@ This release is a collection of server bug fixes for the annotation tools added 
 
 ### Server Changes
 
-* Fix CSS to prevent shot darkening when white highlighter is selected. ([#4645](https://github.com/mozilla-services/screenshots/issues/4645)) 
-* Add placeholder text shown when first opening the text tool. ([#4681](https://github.com/mozilla-services/screenshots/issues/4681)) 
-* Limit text draggable to 5px inside canvas edge ([#4691](https://github.com/mozilla-services/screenshots/issues/4691)) 
+* Fix CSS to prevent shot darkening when white highlighter is selected. ([#4645](https://github.com/mozilla-services/screenshots/issues/4645))
+* Add placeholder text shown when first opening the text tool. ([#4681](https://github.com/mozilla-services/screenshots/issues/4681))
+* Limit text draggable to 5px inside canvas edge ([#4691](https://github.com/mozilla-services/screenshots/issues/4691))
 * Shrink text input toward its center and image. ([#4626](https://github.com/mozilla-services/screenshots/issues/4626))
 * Use text input element for text annotations. ([#4658](https://github.com/mozilla-services/screenshots/issues/4658))
 * Switch to ReactDOM.hydrate for React 16+. ([#4354](https://github.com/mozilla-services/screenshots/issues/4354))
