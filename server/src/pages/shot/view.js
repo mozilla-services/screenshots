@@ -296,7 +296,7 @@ class Body extends React.Component {
     if (typeof expireTime !== "number") {
       expireTime = expireTime.getTime();
     }
-    const deleteTime = new Date(expireTime + this.props.retentionTime);
+    const deleteTime = expireTime + this.props.retentionTime;
     let restoreWidget;
     const expirationTimeDiff = <TimeDiff date={deleteTime} />;
     const restoreDate = new Date(Date.now() + this.props.defaultExpiration).toLocaleString();
@@ -539,12 +539,10 @@ class Body extends React.Component {
   onClickFavorite() {
     if (this.props.expireTime) {
       sendEvent("set-favorite", "navbar");
-      const INDEFINITE = 0;
-      this.props.controller.changeShotExpiration(this.props.shot, INDEFINITE);
     } else {
       sendEvent("unset-favorite", "navbar");
-      this.props.controller.changeShotExpiration(this.props.shot, this.props.defaultExpiration);
     }
+    this.props.controller.changeShotExpiration(this.props.shot);
   }
 
   onClickDownload() {
