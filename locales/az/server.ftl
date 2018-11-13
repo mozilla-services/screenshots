@@ -20,6 +20,16 @@ screenshotsLogo =
     .title = Screenshots Ana Səhifəsi
 bannerSignIn = Cihazlarınız arasında görüntülərinizi görmək üçün <a>daxil olun və ya qeyd olun</a> və seçilmiş görüntülərinizi daimi olaraq saxlayın.
 bannerUpsell = { gScreenshotsDescription } <a>Firefox Endir</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Firefox Screenshots-dakı yeniliklər nələrdir?
+onboardingPromoMessage = Artıq Screenshots-a Firefox Hesabınız ilə daxil olun və daha çox iş görün:
+onboardingPromoMessageListItem1 = Kitabxananızı bütün cihazlarda görə bilərsiz
+onboardingPromoMessageListItem2 = Seçilmiş görüntülərinizi həmişəlik saxlaya bilərsiz
+onboardingPromoDismissButton = Qapat
+    .title = Qapat
+onboardingPromoSigninButton = Daxil ol
+    .title = Daxil ol
 
 ## Footer
 
@@ -103,6 +113,7 @@ shotPageShareButton =
     .title = Paylaş
 shotPageCopyButton =
     .title = Şəkli mübadilə buferinə köçür
+shotPageCopyActionLabel = Köçür
 shotPageCopied = Köçürüldü
 shotPageShareFacebook =
     .title = Facebook-da paylaş
