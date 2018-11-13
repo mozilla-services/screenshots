@@ -18,8 +18,18 @@ buttonSignIn =
     .title = Hyni
 screenshotsLogo =
     .title = Kreu i Screenshots
-bannerMessage = Që të përdorni shkrepjet tuaja nga çfarëdo pajisje, dhe që t’i ruani përgjithmonë shkrepjet e parapëlqyera, bëni hyrjen në llogarinë tuaj ose regjistrohuni për një të tillë.
+bannerSignIn = <a>Hyni ose regjistrohuni</a>, që të përdorni shkrepjet tuaj nëpër pajisje dhe t’i ruani të parapëlqyerat tuaja përgjithmonë.
 bannerUpsell = { gScreenshotsDescription } <a>Merreni Firefox-in që tani</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Ç’ka të re te Firefox Screenshots?
+onboardingPromoMessage = Tani hyni te Screenshots me një Llogari Firefox dhe bëni më tepër gjëra:
+onboardingPromoMessageListItem1 = Hyni në librarinë tuaj që nga krejt pajisjet tuaja
+onboardingPromoMessageListItem2 = Depozitojini përgjithmonë shkrepjet tuaj të parapëlqyera
+onboardingPromoDismissButton = Hidhe tej
+    .title = Hidheni tej
+onboardingPromoSigninButton = Hyni
+    .title = Hyni
 
 ## Footer
 
@@ -103,6 +113,7 @@ shotPageShareButton =
     .title = Ndajeni me të tjerë
 shotPageCopyButton =
     .title = Kopjoje figurën në të papastër
+shotPageCopyActionLabel = Kopjoje
 shotPageCopied = U kopjua
 shotPageShareFacebook =
     .title = Ndajeni në Facebook
