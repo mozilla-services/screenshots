@@ -18,7 +18,18 @@ buttonSignIn =
     .title = Entrar
 screenshotsLogo =
     .title = Página inicial do Screenshots
+bannerSignIn = <a>Entre ou cadastre-se</a> para acessar suas capturas em outros dispositivos e salvar suas preferidas para sempre.
 bannerUpsell = { gScreenshotsDescription } <a>Baixe o Firefox agora mesmo</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Quais as novidades no Firefox Screenshots?
+onboardingPromoMessage = Agora, entre no Screenshots com uma Conta Firefox e faça mais:
+onboardingPromoMessageListItem1 = Acesse sua biblioteca em todos os seus dispositivos
+onboardingPromoMessageListItem2 = Guarde suas capturas preferidas para sempre
+onboardingPromoDismissButton = Dispensar
+    .title = Dispensar
+onboardingPromoSigninButton = Entrar
+    .title = Entrar
 
 ## Footer
 
@@ -102,6 +113,7 @@ shotPageShareButton =
     .title = Compartilhar
 shotPageCopyButton =
     .title = Copiar a imagem para área de transferência
+shotPageCopyActionLabel = Copiar
 shotPageCopied = Copiado
 shotPageShareFacebook =
     .title = Compartilhar no Facebook
