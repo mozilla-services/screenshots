@@ -77,6 +77,7 @@ shotPageAlertErrorUpdatingTitle = శీర్షిక బద్రపరచడ
 shotPageConfirmDelete = మీరు ఖచ్చితంగా ఈ తెరపట్టును శాశ్వతంగా తొలగించాలనుకుంటున్నారా?
 shotPageShareButton =
     .title = పంచుకోండి
+shotPageCopyActionLabel = కాపీచెయ్యి
 shotPageCopied = నకలు చేయబడింది
 shotPageShareFacebook =
     .title = Facebookలో పంచుకోండి
@@ -105,6 +106,12 @@ shotPageDownloadShot =
     .title = దింపుకోండి
 shotPageEditButton =
     .title = ఈ చిత్రం సవరించు
+shotPagefavoriteButton =
+    .title = ఈ పట్టును మెచ్చుకోండి
+shotPageBackToHomeButton =
+    .title = ముంగిలి పేజీ
+shotPageAllShotsButton =
+    .title = అన్ని పట్లు
 shotPageScreenshotsDescription = తెరపట్లు సులభతరమైనాయి. Firefoxను వదలకుండా తెరపట్లను తీసుకోండి,  భద్రపరచండి మరియు పంచుకోండి.
 shotPageDMCAMessage = మూడవ పార్టీ మేధో సంపత్తి హక్కు కారణంగా ఈ తెరపట్టు అందుబాటులో లేదు.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -166,6 +173,8 @@ timeDiffFutureDays =
 
 ## Shot Page New Feature Promotion Dialog.
 
+promoCloseButton =
+    .title = గమనింపుని మూసివేయి
 
 ## Annotations
 
@@ -253,6 +262,8 @@ shotIndexPageNoShotsInvitation = వెళ్ళండి, కొన్ని �
 shotIndexPageLookingForShots = తెరపట్ల కొరకు చూస్తున్నాం…
 shotIndexPageNoSearchResultsIntro = హ్మ్మ్
 shotIndexPageNoSearchResults = మీ శోధనకు సరిపోలే ఏ తెరపట్టును కనుగొనలేకపోయాము.
+shotIndexPageMyShotsButton =
+    .title = నా పట్లు
 shotIndexPageClearSearchButton =
     .title = స్పష్టమైన శోధన
 shotIndexPageConfirmShotDelete = ఈ తెరపట్టును తొలగించాలా?
