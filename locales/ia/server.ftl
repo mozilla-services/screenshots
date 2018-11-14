@@ -74,6 +74,8 @@ homePageCaptureRegionDescription = Clicca e trahe pro seliger le area que tu vol
 homePageCapturePage = Capturar un pagina
 homePageCapturePageDescription = Usar le buttones in alto a dextra pro capturar le paginas integre. Le button Salvar lo visibile, capturara le area que tu pote vider sin rolar, e Salvar pagina integre, capturara tote le pagina.
 homePageSaveShare = Salvar e compartir
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = Prende tu le melior instantaneo. Pois salvar illo al bibliotheca online de Screenshots e Firefox copia le ligamine a tu area de transferentia pro un facile compartimento. Le instantaneos in le bibliotheca expira automaticamente post duo septimanas, ma tu pote deler illos a ulle tempore o eliger de mantener illos per plus longe tempore.
 homePageSignInTitle = Tu instantaneos ubique
 homePageSignInDescription = Authentica te Screenshots con tu conto Firefox pro acceder a tu instantaneos ubicunque tu usa Firefox. Un bonus addite: tu pote salvar anque tu instantaneos favorite per sempre.
 homePageLegalLink = Notas legal
