@@ -20,6 +20,16 @@ screenshotsLogo =
     .title = صفحه خانگی تصاویر صفحه
 bannerSignIn = <a>وارد شوید یا ثبت نام کنید</a> برای دسترسی به تصاویر که بر روی دستگاه‌ های شما هستند و تصویر مورد علاقه خود را برای همیشه ذخیره کنید.
 bannerUpsell = { gScreenshotsDescription } <a>هم‌اکنون فایرفاکس را دریافت کنید</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = چه چیزهایی جدیدی در Firefox Screenshots وجود دارد؟
+onboardingPromoMessage = همین الان به وسیله حساب فایرفاکس خودتون،‌ وارد حساب Screenshots  بشید و کارهای زیادی انجام بدید:
+onboardingPromoMessageListItem1 = دسترسی به کتابخانه خودتون بر روی تمامی دستگاه‌ها
+onboardingPromoMessageListItem2 = ذخیره بهترین تصویری که گرفتید برای همیشه
+onboardingPromoDismissButton = رد کردن
+    .title = ردکردن
+onboardingPromoSigninButton = واردشدن
+    .title = واردشدن
 
 ## Footer
 
@@ -103,6 +113,7 @@ shotPageShareButton =
     .title = هم‌رسانی
 shotPageCopyButton =
     .title = رونشت عکس به کلیپ‌بورد
+shotPageCopyActionLabel = برداشت
 shotPageCopied = رونوشت شد
 shotPageShareFacebook =
     .title = هم‌رسانی در فیسبوک
