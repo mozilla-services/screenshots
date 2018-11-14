@@ -222,11 +222,13 @@ $shot-width: 210px;
     background-color: $white;
     background-position: center;
     background-repeat: no-repeat;
-    &:hover {
-      background-color: $light-hover;
-    }
-    &:active {
-      background-color: $light-active;
+    &.link {
+      &:hover {
+        background-color: $light-hover;
+      }
+      &:active {
+        background-color: $light-active;
+      }
     }
   }
 
