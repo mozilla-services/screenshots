@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 download_dir = os.path.join(os.getcwd(), "test", "addon", ".artifacts")
 
-base_url = "https://screenshots.stage.mozaws.net/"
+base_url = os.getenv('SCREENSHOTS_BACKEND', "http://localhost:10080")
 
 _panel_button_locator = "pageActionButton"
 _take_screenshot_button_locator = (By.ID, "pageAction-panel-screenshots_mozilla_org")
