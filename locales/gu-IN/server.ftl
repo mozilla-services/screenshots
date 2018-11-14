@@ -9,8 +9,6 @@ gHomeLink = મુખ પૃષ્ઠ
 gNoShots =
     .alt = કોઈ શૉટ્સ મળ્યાં નથી
 gScreenshotsDescription = સ્ક્રીનશોટ સરળ બનાવી. Firefox છોડ્યાં વગર સ્ક્રીનશોટ લો, સાચવો અને વહેંચો.
-gSettings = સેટિંગ્સ
-gSignIn = સાઇન ઇન
 
 ## Header
 
@@ -20,7 +18,7 @@ buttonSignIn =
     .title = સાઇન ઇન કરો
 screenshotsLogo =
     .title = સ્ક્રીનશૉટ્સ હોમ
-bannerMessage = તમારા સમગ્ર ઉપકરણો પર તમારા સ્ક્રીનશૉટ્સને ઍક્સેસ કરવા માટે સાઇન ઇન કરો અથવા સાઇન અપ કરો અને હંમેશાં તમારા મનપસંદોને સાચવો.
+bannerSignIn = તમારા ઉપકરણને તમારા ઉપકરણ પર ઍક્સેસ કરવા અને તમારા મનપસંદ્સને હંમેશાં સાચવવા માટે<a>સાઇન ઇન કરો અથવા સાઇન અપ કરો</a>.
 
 ## Footer
 
@@ -65,8 +63,6 @@ homePageCaptureRegionDescription = તમે પકડવા માંગો છ
 homePageCapturePage = પૃષ્ઠને પકડો
 homePageCapturePageDescription = સંપૂર્ણ પૃષ્ઠોને પકડવા માટે ઉપલા જમણા બટન્સનો ઉપયોગ કરો. સાચવો દૃશ્યમાન બટન તે વિસ્તારને પકડવા કરશે જે તમે સ્ક્રોલિંગ વગર જોઈ શકો છો, અને પૂર્ણ પેજમાં સાચવો પૃષ્ઠ પર બધું પકડશે.
 homePageSaveShare = સાચવો અને વહેચો
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = જ્યારે તમે શોટ લો છો, Firefox તમારા સ્ક્રીનશૉટ્સને તમારી ઑનલાઇન સ્ક્રિનશોટ લાઇબ્રેરી પર પોસ્ટ કરે છે અને તમારા ક્લિપબોર્ડની લિંકને નકલ કરે છે. અમે આપના સ્ક્રીનશૉટને બે અઠવાડિયા માટે આપમેળે સંગ્રહિત કરીએ છીએ, પરંતુ તમે કોઈપણ સમયે શોટને કાઢી શકો છો અથવા તમારી લાઇબ્રેરીમાં લાંબા સમય સુધી રાખવા માટે સમાપ્તિ તારીખને બદલી શકો છો.
 homePageLegalLink = કાયદાકીય
 homePagePrivacyLink = ખાનગીપણું
 homePageTermsLink = શરતો
@@ -75,8 +71,6 @@ homePageCookiesLink = કુકીઓ
 ## Leave Screenshots page
 
 leavePageRemoveAllData = તમામ ડેટાને દૂર કરો
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = તમારા એકાઉન્ટને કાઢી નાખવા માટે તમારી પાસે Firefox સ્ક્રીનશોટ ઇન્સ્ટોલ છે
 leavePageErrorGeneric = એક ભૂલ આવી
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = આ તમારા બધા Firefox સ્ક્રિનશોટ્સ ડેટાને કાયમી ધોરણે કાઢી નાખશે.
@@ -100,7 +94,6 @@ shotPageAlertErrorUpdatingTitle = શીર્ષક સાચવવામાં
 shotPageConfirmDelete = શું તમે ખરેખર આ શોટને કાયમ માટે કાઢી નાખવા માંગો છો?
 shotPageShareButton =
     .title = વહેચો
-shotPageCopy = નકલ કરો
 shotPageCopied = નકલ કરેલું
 shotPageShareFacebook =
     .title = Facebook પર વહેચો
@@ -135,15 +128,7 @@ shotPageBackToHomeButton =
     .title = મુખ્યપૃષ્ઠ
 shotPageAllShotsButton =
     .title = બધા સ્ક્રીનશૉટ્સ
-shotPageAllShots = બધા સ્ક્રીનશૉટ્સ
-shotPageDownload = ડાઉનલોડ કરો
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = દોરો
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = પ્રિય
-shotPageDelete = કાઢી નાખો
 shotPageScreenshotsDescription = સ્ક્રીનશોટને સરળ બનાવી. Firefox છોડ્યાં વગર સ્ક્રીનશોટ લો, સાચવો અને વહેંચો.
-shotPageUpsellFirefox = હમણાં Firefox મેળવો
 shotPageDMCAMessage = તૃતીય પક્ષ બૌદ્ધિક સંપદા દાવાને કારણે આ શોટ હવે ઉપલબ્ધ નથી.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = વધુ માહિતી માટે વિનંતી કરવા માટે { $dmca } ઇમેઇલ કરો.
@@ -273,6 +258,11 @@ textToolCancelButton = રદ કરો
 textToolInputPlaceholder =
     .placeholder = હેલો
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+
 ## Settings Page
 
 settingsDisconnectButton = જોડાણ તોડો
@@ -299,8 +289,6 @@ shotIndexPageSearchResultsTitle = મારા શોટ્સ: માટે શ
 shotIndexPageErrorRendering = પૃષ્ઠ પ્રસ્તુતિમાં ભૂલ: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = મારા શોટ શોધો
-shotIndexPageSearchButton =
-    .title = શોધો
 shotIndexPageNoShotsMessage = કોઈ સાચવેલા શોટ નથી
 shotIndexPageNoShotsInvitation = જાઓ, કેટલાક બનાવો
 shotIndexPageLookingForShots = તમારા શૉટ્સ શોધી રહ્યાં છે…
