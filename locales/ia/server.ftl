@@ -75,6 +75,7 @@ homePageCapturePage = Capturar un pagina
 homePageCapturePageDescription = Usar le buttones in alto a dextra pro capturar le paginas integre. Le button Salvar lo visibile, capturara le area que tu pote vider sin rolar, e Salvar pagina integre, capturara tote le pagina.
 homePageSaveShare = Salvar e compartir
 homePageSignInTitle = Tu instantaneos ubique
+homePageSignInDescription = Authentica te Screenshots con tu conto Firefox pro acceder a tu instantaneos ubicunque tu usa Firefox. Un bonus addite: tu pote salvar anque tu instantaneos favorite per sempre.
 homePageLegalLink = Notas legal
 homePagePrivacyLink = Confidentialitate
 homePageTermsLink = Terminos
