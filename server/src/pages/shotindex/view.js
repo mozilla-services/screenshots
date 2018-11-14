@@ -334,13 +334,13 @@ class Card extends React.Component {
     let favoriteIndicator = null;
     if (!shot.expireTime) {
       favoriteIndicator = <Localized id="shotIndexFavoriteIcon" attrs={{title: true}}>
-          <div className={classnames("indicator fav-shot", {"inactive": !this.props.hasFxa})}
+          <div className={classnames("indicator link fav-shot", {"inactive": !this.props.hasFxa})}
             onClick={this.props.hasFxa ? this.onClickFavorite.bind(this, shot) : null}
             title=""></div>
         </Localized>;
     } else if (this.props.hasFxa) {
       favoriteIndicator = <Localized id="shotIndexNonFavoriteIcon" attrs={{title: true}}>
-          <div className="indicator non-fav-shot"
+          <div className="indicator link non-fav-shot"
             onClick={this.onClickFavorite.bind(this, shot)} title=""></div>
         </Localized>;
     }
