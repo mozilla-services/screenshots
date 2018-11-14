@@ -28,7 +28,9 @@ exports.HomePageHeader = class HomePageHeader extends React.Component {
       myShots = <Localized id="shotIndexPageMyShotsButton" attrs={{title: true}}>
           <a className="nav-button icon-shots" title="My Shots" href="/shots"
              onClick={ this.onClickMyShots.bind(this) } tabIndex="0">
-            <img src={this.props.staticLink("/static/img/icon-shots.svg")} />
+            <Localized id="imgMyShots" attrs={{alt: true}}>
+              <img alt="My Shots Icon" src={this.props.staticLink("/static/img/icon-shots.svg")} />
+            </Localized>
           </a>
         </Localized>;
     }
