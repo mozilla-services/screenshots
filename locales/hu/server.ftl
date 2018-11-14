@@ -20,6 +20,10 @@ screenshotsLogo =
     .title = Screenshots kezdőlap
 bannerSignIn = <a>Jelentkezzen be vagy regisztráljon</a> hogy elérje a képeit az összes eszközén, és végleg elmentse a kedvenceit.
 bannerUpsell = { gScreenshotsDescription } <a>Szerezze be a Firefoxot most</a>
+onboardingPromoDismissButton = Eltüntetés
+    .title = Eltüntetés
+onboardingPromoSigninButton = Bejelentkezés
+    .title = Bejelentkezés
 
 ## Footer
 
@@ -103,6 +107,7 @@ shotPageShareButton =
     .title = Megosztás
 shotPageCopyButton =
     .title = Kép vágólapra másolása
+shotPageCopyActionLabel = Másolás
 shotPageCopied = Átmásolva
 shotPageShareFacebook =
     .title = Megosztás Facebookon
