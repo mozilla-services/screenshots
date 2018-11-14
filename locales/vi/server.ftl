@@ -20,6 +20,16 @@ screenshotsLogo =
     .title = Trang chủ Screenshots
 bannerSignIn = <a>Đăng nhập hoặc đăng ký</a> để truy cập ảnh của bạn trên các thiết bị và lưu các mục yêu thích của bạn mãi mãi.
 bannerUpsell = { gScreenshotsDescription } <a>Tải Firefox ngay</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Có gì mới trong Firefox Screenshots?
+onboardingPromoMessage = Bây giờ, hãy đăng nhập vào Screenshots bằng Tài khoản Firefox và thực hiện thêm:
+onboardingPromoMessageListItem1 = Truy cập thư viện của bạn trên tất cả các thiết bị của bạn
+onboardingPromoMessageListItem2 = Lưu trữ ảnh yêu thích của bạn mãi mãi
+onboardingPromoDismissButton = Bỏ qua
+    .title = Bỏ qua
+onboardingPromoSigninButton = Đăng nhập
+    .title = Đăng nhập
 
 ## Footer
 
@@ -103,6 +113,7 @@ shotPageShareButton =
     .title = Chia sẻ
 shotPageCopyButton =
     .title = Sao chép hình ảnh vào clipboard
+shotPageCopyActionLabel = Sao chép
 shotPageCopied = Đã sao chép
 shotPageShareFacebook =
     .title = Chia sẻ trên Facebook
