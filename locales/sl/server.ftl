@@ -12,6 +12,8 @@ gScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in
 
 ## Header
 
+imgSettings =
+    .alt = Ikona nastavitev
 buttonSettings =
     .title = Nastavitve
 buttonSignIn =
