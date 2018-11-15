@@ -6,6 +6,22 @@
 
 gMyShots = E mæ föto
 gHomeLink = Pagina prinçipâ
+gNoShots =
+    .alt = Nisciunn-a föto atrovâ
+gScreenshotsDescription = O Screenshots o vegnî e cöse façili. Fanni föto, sarvili e condividdili sensa mai lasciâ Firefox.
+
+## Header
+
+buttonSettings =
+    .title = Inpostaçioin
+buttonSignIn =
+    .title = Intra
+screenshotsLogo =
+    .title = Pagina prinçipâ de Screenshots
+bannerSignIn = <a>Intra ò registrite</a> pe acede a-e teu föto spantegæ in sci teu dispoxitivi e sarva quelle che te piaxan de ciù pe de longo.
+bannerUpsell = { gScreenshotsDescription } <a>Piggite Firefox oua</a>
+onboardingPromoSigninButton = Intra
+    .title = Intra
 
 ## Footer
 
@@ -15,15 +31,22 @@ footerLinkTerms = Termini
 footerLinkPrivacy = Informativa in sciâ privacy
 footerLinkFaqs = Domande e risposte
 footerLinkDiscourse = Comenta
+footerLinkRemoveAllData = Scancella tutti i dæti
 
 ## Creating page
 
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
+creatingPageTitle = Creo { $title }
 creatingPageTitleDefault = pagina
 creatingPageWaitMessage = Registraçion föto…
 
 ## Home page
 
 homePageDownloadFirefoxTitle = Firefox
+homePageDownloadFirefoxSubTitle = Scarega de badda
+homePageGetStartedTitle = Pe iniçiâ
 
 ## Leave Screenshots page
 
@@ -39,11 +62,21 @@ notFoundPageDescription = Pagina no atrovâ.
 
 shotPageShareButton =
     .title = Condividdi
-shotPageCopy = Còpia
+shotPageCopyButton =
+    .title = Còpia inmagine inti aponti
 shotPageCopied = Copiou
+
+## Shot Page New Feature Promotion Dialog.
+
 
 ## Annotations
 
+
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorMessage = No riescio a copiâ a teu föto inti aponti.
 
 ## Settings Page
 
