@@ -12,6 +12,12 @@ gScreenshotsDescription = As capturas de ecrã tornadas simples. Tire, guarde e 
 
 ## Header
 
+imgSettings =
+    .alt = Ícone de definições
+imgSignIn =
+    .alt = ícone de início de sessão
+imgMyShots =
+    .alt = Ícone de minhas capturas
 buttonSettings =
     .title = Definições
 buttonSignIn =
