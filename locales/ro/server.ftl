@@ -20,6 +20,16 @@ screenshotsLogo =
     .title = Pagina de start Screenshots
 bannerSignIn = <a>Autentifică-te sau înregistrează-te</a> pentru a accesa propriile capturi pe toate dispozitivele și pentru a-ți salva favoritele pentru totdeauna.
 bannerUpsell = { gScreenshotsDescription }<a>Obține Firefox acum</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Ce este nou cu Firefox Screenshots?
+onboardingPromoMessage = Conectează-te acum în Screenshots cu un cont Firefox și fă mai multe:
+onboardingPromoMessageListItem1 = Accesează-ți biblioteca pe toate dispozitivele
+onboardingPromoMessageListItem2 = Stochează capturile tale favorite pentru totdeauna
+onboardingPromoDismissButton = Înlătură
+    .title = Înlătură
+onboardingPromoSigninButton = Autentifică-te
+    .title = Autentifică-te
 
 ## Footer
 
@@ -103,6 +113,7 @@ shotPageShareButton =
     .title = Partajează
 shotPageCopyButton =
     .title = Copiază imaginea în clipboard
+shotPageCopyActionLabel = Copiază
 shotPageCopied = Copiat
 shotPageShareFacebook =
     .title = Partajează pe Facebook
