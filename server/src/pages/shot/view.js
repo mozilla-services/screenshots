@@ -397,7 +397,9 @@ class Body extends React.Component {
         cancelDeleteHandler={this.cancelDeleteHandler.bind(this)}
         staticLink={this.props.staticLink} key="delete-shot-button" />;
 
-      editButton = this.props.enableAnnotations && !this.props.isMobile ?
+      const isUserAgentEdge = this.props.userAgent && (/Edge\/\d+/i.test(this.props.userAgent));
+
+      editButton = this.props.enableAnnotations && !this.props.isMobile && !isUserAgentEdge ?
         <div className="edit-shot-button" key="edit-shot-button">
           <Localized id="shotPageEditButton" attrs={{title: true}}>
             <button className="button transparent nav-button"
