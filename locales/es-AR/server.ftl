@@ -12,6 +12,10 @@ gScreenshotsDescription = Capturas de pantalla simples. Tomar, guardar y compart
 
 ## Header
 
+imgSettings =
+    .alt = Icono de configuración
+imgSignIn =
+    .alt = Icono de inicio de sesión
 buttonSettings =
     .title = Ajustes
 buttonSignIn =
