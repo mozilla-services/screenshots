@@ -20,6 +20,16 @@ screenshotsLogo =
     .title = Domovská stránka
 bannerSignIn = Pre prístup ku snímkam z iných zariadení alebo pre ich ukladanie sa, prosím, <a>prihláste alebo zaregistrujte</a>.
 bannerUpsell = { gScreenshotsDescription } <a>Prevezmite si Firefox hneď teraz</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Čo je nové vo Firefox Screenshots?
+onboardingPromoMessage = Po prihlásení sa pomocou účtu Firefox môžete:
+onboardingPromoMessageListItem1 = Mať prístup ku svojej knižnici na všetkých vašich zariadeniach
+onboardingPromoMessageListItem2 = Svoje obľúbené snímky si môžete ukladať naveky
+onboardingPromoDismissButton = Zavrieť
+    .title = Zavrieť
+onboardingPromoSigninButton = Prihlásiť sa
+    .title = Prihlásiť sa
 
 ## Footer
 
