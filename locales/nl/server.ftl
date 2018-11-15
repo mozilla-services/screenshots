@@ -12,6 +12,8 @@ gScreenshotsDescription = Schermafbeeldingen worden makkelijk. Maak, bewaar en d
 
 ## Header
 
+imgSettings =
+    .alt = Pictogram Instellingen
 buttonSettings =
     .title = Instellingen
 buttonSignIn =
