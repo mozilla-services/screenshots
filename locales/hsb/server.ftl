@@ -12,6 +12,12 @@ gScreenshotsDescription = Fota wobrazowki lochko činjene. Čińće, składujće
 
 ## Header
 
+imgSettings =
+    .alt = Symbol nastajenjow
+imgSignIn =
+    .alt = Symbol přizjewjenja
+imgMyShots =
+    .alt = Symbol fotow wobrazowki
 buttonSettings =
     .title = Nastajenja
 buttonSignIn =
