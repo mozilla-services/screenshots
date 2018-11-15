@@ -12,6 +12,12 @@ gScreenshotsDescription = Zrzuty ekranów dla wszystkich. Twórz, zapisuj i udo
 
 ## Header
 
+imgSettings =
+    .alt = Ikona ustawień
+imgSignIn =
+    .alt = Ikona logowania
+imgMyShots =
+    .alt = Ikona moich zrzutów
 buttonSettings =
     .title = Ustawienia
 buttonSignIn =
