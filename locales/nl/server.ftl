@@ -14,6 +14,10 @@ gScreenshotsDescription = Schermafbeeldingen worden makkelijk. Maak, bewaar en d
 
 imgSettings =
     .alt = Pictogram Instellingen
+imgSignIn =
+    .alt = Pictogram Aanmelden
+imgMyShots =
+    .alt = Pictogram Mijn afbeeldingen
 buttonSettings =
     .title = Instellingen
 buttonSignIn =
