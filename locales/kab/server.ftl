@@ -23,6 +23,7 @@ bannerUpsell = { gScreenshotsDescription }<a>Awi Firefox tura</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Amaynut deg Firefox Screenshots?
+onboardingPromoMessage = Tura, jerred ɣer Screenshots s umiḍan Firefox u xdem ugar:
 onboardingPromoDismissButton = Zgel
     .title = Zgel
 onboardingPromoSigninButton = Kcem
