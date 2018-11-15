@@ -12,6 +12,12 @@ gScreenshotsDescription = Screenshots made simple. Take, save, and share screens
 
 ## Header
 
+imgSettings =
+    .alt = Settings Icon
+imgSignIn =
+    .alt = Sign In Icon
+imgMyShots =
+    .alt = My Shots Icon
 buttonSettings =
     .title = Settings
 buttonSignIn =
