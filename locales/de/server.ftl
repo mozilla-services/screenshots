@@ -295,9 +295,10 @@ settingsSignInButton = Anmelden
     .title = Anmelden
 SettingsPageHeader = Einstellungen von Firefox Screenshots
 settingsDescription = Sie können sich mit Ihrem Firefox-Konto anmelden, um Ihre Bildschirmfotos zwischen Ihren Geräten zu synchronisieren und privat darauf zuzugreifen.
-settingsPageSubHeader = Sync & Konten
+settingsFirefoxAccountSubHeader = Firefox-Konto
 settingsClosePreferences =
     .title = Einstellungen schließen
+settingsFxaDisconnectDescription = Wenn Sie sich abmelden, müssen Sie sich erneut anmelden, um wieder auf Ihre Screenshots zugreifen zu können.
 
 ## Shotindex page
 
