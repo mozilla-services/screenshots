@@ -12,12 +12,6 @@ gScreenshotsDescription = Zrzuty ekranów dla wszystkich. Twórz, zapisuj i udo
 
 ## Header
 
-imgSettings =
-    .alt = Ikona ustawień
-imgSignIn =
-    .alt = Ikona logowania
-imgMyShots =
-    .alt = Ikona moich zrzutów
 buttonSettings =
     .title = Ustawienia
 buttonSignIn =
@@ -307,9 +301,11 @@ settingsSignInButton = Zaloguj się
     .title = Zaloguj się
 SettingsPageHeader = Ustawienia Firefox Screenshots
 settingsDescription = Można zalogować się za pomocą konta Firefoksa, aby synchronizować wszystkie zrzuty ekranu między urządzeniami i mieć do nich dostęp.
-settingsPageSubHeader = Synchronizacja i konta
+settingsFirefoxAccountSubHeader = Konto Firefoksa
 settingsClosePreferences =
     .title = Zamknij preferencje
+settingsFxaDisconnectAlertMessage = Czy na pewno rozłączyć to urządzenie od konta Firefoksa?
+settingsFxaDisconnectDescription = Po wylogowaniu odzyskanie dostępu do zrzutów użytkownika będzie wymagało ponownego zalogowania.
 
 ## Shotindex page
 
