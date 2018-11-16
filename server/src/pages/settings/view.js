@@ -42,6 +42,11 @@ class Body extends React.Component {
 
   renderAccountInfo() {
     const defaultAvatar = this.props.staticLink("/static/img/default-profile.svg");
+    const disconnectAlertMessage = <Localized id="settingsFxaDisconnectAlertMessage">
+      <div id="disconnectAlertMessage" hidden>
+        Are you sure you want to disconnect this device from your Firefox Account?
+      </div>
+    </Localized>;
     let info;
     let subInfo;
     if (this.props.accountInfo) {
@@ -90,12 +95,14 @@ class Body extends React.Component {
       </Localized>
       { info }
       { subInfo}
+      { disconnectAlertMessage }
     </div>;
   }
 
   onClickDisconnect() {
     sendEvent("start-disconnect", "settings", { useBeacon: true });
-    if (window.confirm("Are you sure you want to disconnect this device from your Firefox account?")) {
+    const message = document.getElementById("disconnectAlertMessage").textContent;
+    if (window.confirm(message)) {
       sendEvent("confirm-disconnect", "settings-popup-confirm", { useBeacon: true });
       controller.disconnectDevice();
     } else {
