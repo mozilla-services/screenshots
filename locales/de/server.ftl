@@ -298,6 +298,7 @@ settingsDescription = Sie können sich mit Ihrem Firefox-Konto anmelden, um Ihre
 settingsFirefoxAccountSubHeader = Firefox-Konto
 settingsClosePreferences =
     .title = Einstellungen schließen
+settingsFxaDisconnectAlertMessage = Möchten Sie dieses Gerät wirklich von Ihrem Firefox-Konto trennen?
 settingsFxaDisconnectDescription = Wenn Sie sich abmelden, müssen Sie sich erneut anmelden, um wieder auf Ihre Screenshots zugreifen zu können.
 
 ## Shotindex page
