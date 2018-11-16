@@ -499,10 +499,11 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
     [deviceId, accountId]
   ).then(rows => {
     deviceIds = rows.map(x => x.id);
+
   }).then(() => {
     if (!deviceIds.length) {
       shotsPage.totalShots = 0;
-      return [{totalShots: 0}];
+      return [{totalshots: 0}];
     }
 
     let idNums, sql, args;
@@ -542,6 +543,9 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
   }).then(() => {
     const offset = (pageNumber - 1) * SHOTS_PER_PAGE;
     let sql, args, idNums;
+    if (!deviceIds.length) {
+      return [];
+    }
 
     if (searchQuery) {
       idNums = idParamPositions(4, deviceIds);
