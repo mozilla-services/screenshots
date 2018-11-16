@@ -62,6 +62,11 @@ class Body extends React.Component {
           </div>
         </div>
       );
+      subInfo = (
+        <Localized id="settingsFxaDisconnectDescription">
+          <p className="sub-info">If you sign out, you will need to sign in again to regain access to your screenshots.</p>
+        </Localized>
+      );
     } else {
       info = (
         <div className="account-info">
@@ -90,12 +95,17 @@ class Body extends React.Component {
         <p className="header">Firefox Screenshots Settings</p>
       </Localized>
       <hr />
-      <Localized id="settingsPageSubHeader">
-        <p className="sub-header">Sync & Accounts</p>
-      </Localized>
-      { info }
-      { subInfo}
-      { disconnectAlertMessage }
+      <div className="settingsBody">
+        <div>
+          <Localized id="settingsFirefoxAccountSubHeader">
+            <p className="sub-header">Firefox Account</p>
+          </Localized>
+          { info }
+          { subInfo}
+          { disconnectAlertMessage }
+        </div>
+        <div className="fxaSyncImage"></div>
+      </div>
     </div>;
   }
 
