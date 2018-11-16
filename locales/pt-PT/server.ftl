@@ -295,10 +295,11 @@ settingsSignInButton = Iniciar sessão
     .title = Iniciar sessão
 SettingsPageHeader = Definições do Firefox Screenshots
 settingsDescription = Pode iniciar sessão com Contas Firefox para sincronizar todas as suas capturas de ecrã entre dispositivos e aceder-las privadamente.
-settingsPageSubHeader = Sync e contas
+settingsFirefoxAccountSubHeader = Conta Firefox
 settingsClosePreferences =
     .title = Fechar preferências
 settingsFxaDisconnectAlertMessage = Tem a certeza de que pretende desligar este dispositivo da sua Conta Firefox?
+settingsFxaDisconnectDescription = Se terminar sessão, irá precisar de iniciar sessão novamente para recuperar o acesso às suas capturas de ecrã.
 
 ## Shotindex page
 
