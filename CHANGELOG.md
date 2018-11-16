@@ -1,3 +1,16 @@
+## Version 36.1.0
+
+Version 36.0.0 didn't go to production. These additional fixes were added to this server release:
+
+* - Messaging on settings page. Fixes [#5052](https://github.com/mozilla-services/screenshots/issues/5052) [0e71f3b](https://github.com/mozilla-services/screenshots/commit/0e71f3b)
+* - My shots fail if accessed with zero shots and no deviceIds. Fixes [#5184](https://github.com/mozilla-services/screenshots/issues/5184) [ca76999](https://github.com/mozilla-services/screenshots/commit/ca76999)
+* -  Localize disconnect alert message ([#5169](https://github.com/mozilla-services/screenshots/issues/5169)). Fixes [#5168](https://github.com/mozilla-services/screenshots/issues/5168) [a23e377](https://github.com/mozilla-services/screenshots/commit/a23e377)
+* - Favorite shots from myshots page in Edge and Safari ([#5173](https://github.com/mozilla-services/screenshots/issues/5173)). Fixes [#5110](https://github.com/mozilla-services/screenshots/issues/5110) [104fc94](https://github.com/mozilla-services/screenshots/commit/104fc94)
+* - Hide edit tool icon in Microsoft Edge ([#5175](https://github.com/mozilla-services/screenshots/issues/5175)). Fixes [#5172](https://github.com/mozilla-services/screenshots/issues/5172) [b785432](https://github.com/mozilla-services/screenshots/commit/b785432)
+* - Empty alt text on homepage img tags ([#5181](https://github.com/mozilla-services/screenshots/issues/5181)). Fixes [#5179](https://github.com/mozilla-services/screenshots/issues/5179) [4c230ef](https://github.com/mozilla-services/screenshots/commit/4c230ef)
+* - Alt text for homepage img tags ([#5180](https://github.com/mozilla-services/screenshots/issues/5180)). Fixes [#5179](https://github.com/mozilla-services/screenshots/issues/5179) [1720237](https://github.com/mozilla-services/screenshots/commit/1720237)
+* - Remove sync icon active and hover state ([#5174](https://github.com/mozilla-services/screenshots/issues/5174)). Fixes [#5109](https://github.com/mozilla-services/screenshots/issues/5109) [856958c](https://github.com/mozilla-services/screenshots/commit/856958c)
+
 ## Version 36.0.0
 
 * - NonFxA Shot takers should be briefly onboarded. Fixes [#4790](https://github.com/mozilla-services/screenshots/issues/4790) [31f1885](https://github.com/mozilla-services/screenshots/commit/31f1885)
