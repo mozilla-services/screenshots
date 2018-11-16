@@ -24,6 +24,12 @@ bannerUpsell = { gScreenshotsDescription } <a>Télécharger Firefox</a>
 # Sign in button in header
 onboardingPromoTitle = Nouveautés de Firefox Screenshots
 onboardingPromoMessage = Désormais, vous pouvez vous connecter à Screenshots avec un compte Firefox et bénéficier de plus de possibilités :
+onboardingPromoMessageListItem1 = Accéder à votre galerie de captures depuis tous vos appareils
+onboardingPromoMessageListItem2 = Conserver indéfiniment vos photos préférées
+onboardingPromoDismissButton = Ignorer
+    .title = Ignorer
+onboardingPromoSigninButton = Se connecter
+    .title = Se connecter
 
 ## Footer
 
@@ -107,6 +113,7 @@ shotPageShareButton =
     .title = Partager
 shotPageCopyButton =
     .title = Copier l’image dans le presse-papiers
+shotPageCopyActionLabel = Copier
 shotPageCopied = Copié
 shotPageShareFacebook =
     .title = Partager sur Facebook
