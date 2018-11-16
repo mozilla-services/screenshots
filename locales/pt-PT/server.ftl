@@ -12,12 +12,6 @@ gScreenshotsDescription = As capturas de ecrã tornadas simples. Tire, guarde e 
 
 ## Header
 
-imgSettings =
-    .alt = Ícone de definições
-imgSignIn =
-    .alt = ícone de início de sessão
-imgMyShots =
-    .alt = Ícone de minhas capturas
 buttonSettings =
     .title = Definições
 buttonSignIn =
@@ -304,6 +298,7 @@ settingsDescription = Pode iniciar sessão com Contas Firefox para sincronizar t
 settingsPageSubHeader = Sync e contas
 settingsClosePreferences =
     .title = Fechar preferências
+settingsFxaDisconnectAlertMessage = Tem a certeza de que pretende desligar este dispositivo da sua Conta Firefox?
 
 ## Shotindex page
 
