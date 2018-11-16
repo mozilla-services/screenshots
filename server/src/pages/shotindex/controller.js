@@ -3,6 +3,7 @@ const page = require("./page").page;
 const { AbstractShot } = require("../../../shared/shot");
 const queryString = require("query-string");
 const { PromotionStrategy } = require("../../promotion-strategy.js");
+const { ShotUtils } = require("../../lib/shot-utils.js");
 
 const FIVE_SECONDS = 5 * 1000;
 
@@ -180,46 +181,15 @@ exports.deleteShot = function(shot) {
   req.send(`id=${encodeURIComponent(shot.id)}&_csrf=${encodeURIComponent(model.csrfToken)}`);
 };
 
-
 exports.toggleFavoriteShot = async function(shot) {
-  const url = model.backend + "/api/set-expiration";
-  const newExpiration = shot.isFavorite ? model.defaultExpirationMs : 0;
-  const body = new URLSearchParams();
-
-  body.append("id", shot.id);
-  body.append("expiration", newExpiration);
-  body.append("_csrf", model.csrfToken);
-
   try {
-    const resp = await fetch(url, {
-      method: "POST",
-      body,
-    });
-
-    if (!resp.ok) {
-      const exc = new Error(`Error calling /api/set-expiration: ${resp.status} ${resp.statusText}`);
-      window.Raven.captureException(exc);
-      throw exc;
-    }
-
-    if (newExpiration) {
-      shot.expireTime = Date.now() + newExpiration;
-    } else {
-      shot.expireTime = null;
-    }
-
-    shot.isFavorite = !shot.isFavorite;
-
+    const shotUtils = new ShotUtils();
+    await shotUtils.changeShotExpiration(shot, model.backend, model.csrfToken, model.defaultExpirationMs);
     render();
   } catch (err) {
-    console.warn("Error updating expiration:", err);
-
-    // The error could be one from the server or a network level error from
-    // fetch; we display a generic message either way as it's (probably?)
-    // friendlier than percolating a fetch error message up to the user.
-    const errorMessage = document.getElementById("shotIndexAlertErrorFavoriteShot").textContent;
-    if (errorMessage) {
-      window.alert(errorMessage);
+    const errElement = document.getElementById("shotIndexAlertErrorFavoriteShot");
+    if (errElement) {
+      window.alert(errElement.textContent);
     }
   }
 };

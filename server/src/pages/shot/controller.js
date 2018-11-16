@@ -6,6 +6,7 @@ const { AbstractShot } = require("../../../shared/shot");
 const { createThumbnailUrl } = require("../../../shared/thumbnailGenerator");
 const { shotGaFieldForValue } = require("../../ab-tests.js");
 const { PromotionStrategy } = require("../../promotion-strategy.js");
+const { ShotUtils } = require("../../lib/shot-utils.js");
 
 // This represents the model we are rendering:
 let model;
@@ -32,8 +33,8 @@ exports.launch = function(data) {
   model.shot = new AbstractShot(data.backend, data.id, data.shot);
   model.shot.contentUrl = `//${model.contentOrigin}/content/${model.shot.id}`;
   model.shot.urlIfDeleted = model.urlIfDeleted;
-  model.shot.expireTime = new Date(model.expireTime);
   model.shot.deleted = model.deleted;
+  model.shot.isFavorite = !model.expireTime;
   model.controller = exports;
   if (model.shot.abTests) {
     for (const testName in model.shot.abTests) {
@@ -88,32 +89,24 @@ exports.launch = function(data) {
   document.dispatchEvent(new CustomEvent("request-addon-present"));
 };
 
-exports.changeShotExpiration = function(shot, expiration) {
-  const wasExpired = model.expireTime !== null && model.expireTime < Date.now();
-  const url = model.backend + "/api/set-expiration";
-  const req = new XMLHttpRequest();
-  req.open("POST", url);
-  req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-  req.onload = function() {
-    if (req.status >= 300) {
-      const errorMessage = document.getElementById("shotPageAlertErrorUpdatingExpirationTime").textContent;
-      window.alert(errorMessage);
-      window.Raven.captureException(new Error(`Error calling /api/set-expiration: ${req.status} ${req.statusText}`));
-    } else {
-      if (expiration === 0) {
-        model.shot.expireTime = model.expireTime = null;
-      } else {
-        model.shot.expireTime = model.expireTime = Date.now() + expiration;
-      }
-      render();
+exports.changeShotExpiration = async function(shot, expiration) {
+  try {
+    const wasExpired = model.expireTime !== null && model.expireTime < Date.now();
+    const shotUtils = new ShotUtils();
+    await shotUtils.changeShotExpiration(shot, model.backend, model.csrfToken,
+                                         model.defaultExpiration, expiration);
+    model.expireTime = shot.expireTime;
+    model.shot.expireTime = shot.expireTime;
+    if (wasExpired) {
+      window.location.reload();
     }
-  };
-  if (wasExpired) {
-    req.onload = function() {
-      location.reload();
-    };
+    render();
+  } catch (err) {
+    const errElement = document.getElementById("shotPageAlertErrorUpdatingExpirationTime");
+    if (errElement) {
+      window.alert(errElement.textContent);
+    }
   }
-  req.send(`id=${encodeURIComponent(shot.id)}&expiration=${encodeURIComponent(expiration)}&_csrf=${encodeURIComponent(model.csrfToken)}`);
 };
 
 exports.deleteShot = function(shot) {
