@@ -301,9 +301,9 @@ settingsSignInButton = Prihlásiť sa
     .title = Prihlásiť sa
 SettingsPageHeader = Nastavenia Firefox Screenshots
 settingsDescription = Môžete sa prihlásiť pomocou svojho účtu Firefox a bezpečne synchronizovať svoje snímky obrazovky medzi zariadeniami.
-settingsPageSubHeader = Synchronizácia a účty
 settingsClosePreferences =
     .title = Zavrieť nastavenia
+settingsFxaDisconnectAlertMessage = Naozaj chcete toto zariadenie odpojiť od svojho účtu Firefox?
 
 ## Shotindex page
 
