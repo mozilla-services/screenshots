@@ -29,7 +29,7 @@
   position: relative;
 
   @include respond-to("small") {
-    width: 480px;
+    width: 380px;
   }
 
   @include respond-to("medium") {
@@ -50,9 +50,12 @@
 }
 
 .preferences {
+  margin: auto;
+  padding: 40px 20px 0 20px;
 
   @include respond-to("small") {
-    width: 480px;
+    width: 380px;
+    padding: 40px 0;
   }
 
   @include respond-to("medium") {
@@ -62,9 +65,6 @@
   @include respond-to("large") {
     width: 960px;
   }
-
-  margin: auto;
-  padding: 40px 20px 0 20px;
 
   .info-container {
     margin-inline-start: 30px;
@@ -133,6 +133,29 @@
 
     &:active {
       background-color: $light-active;
+    }
+  }
+
+  .settingsBody {
+    @include flex-container(row, flex-start, stretch, wrap);
+  }
+
+  .fxaSyncImage {
+    background-image: url("../img/fxa-sync.svg");
+    background-repeat: no-repeat;
+    background-size: 410px auto;
+    background-position: center center;
+    margin-top: $grid-unit;
+    min-width: 410px;
+    height: 300px;
+
+    @include respond-to("small") {
+      min-width: 380px;
+      background-size: 380px auto;
+    }
+
+    @include respond-to("large") {
+      margin-left: $grid-unit * 4;
     }
   }
 }
