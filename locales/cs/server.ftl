@@ -304,6 +304,7 @@ settingsDescription = Můžete se přihlásit pomocí svého účtu Firefoxu a b
 settingsPageSubHeader = Synchronizace a účty
 settingsClosePreferences =
     .title = Zavřít předvolby
+settingsFxaDisconnectAlertMessage = Opravdu chcete toto zařízení odpojit od svého účtu Firefoxu?
 
 ## Shotindex page
 
