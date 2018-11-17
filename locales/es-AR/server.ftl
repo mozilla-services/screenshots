@@ -12,12 +12,6 @@ gScreenshotsDescription = Capturas de pantalla simples. Tomar, guardar y compart
 
 ## Header
 
-imgSettings =
-    .alt = Icono de configuración
-imgSignIn =
-    .alt = Icono de inicio de sesión
-imgMyShots =
-    .alt = Icono de Capturas
 buttonSettings =
     .title = Ajustes
 buttonSignIn =
@@ -301,9 +295,11 @@ settingsSignInButton = Iniciar sesión
     .title = Iniciar sesión
 SettingsPageHeader = Configuración de Firefox Screenshots
 settingsDescription = Puede iniciar sesión con su cuenta de Firefox para sincronizar todas las capturas de pantalla de sus dispositivos y acceder a ellas de forma privada.
-settingsPageSubHeader = Sincronización y cuentas
+settingsFirefoxAccountSubHeader = Firefox Account
 settingsClosePreferences =
     .title = Cerrar preferencias
+settingsFxaDisconnectAlertMessage = ¿Seguro que querés desconectar este dispositivo de tu cuenta de Firefox?
+settingsFxaDisconnectDescription = Si cerrás la sesión, tendrás que volver a iniciar la para recuperar el acceso a tus capturas de pantalla.
 
 ## Shotindex page
 
