@@ -295,9 +295,10 @@ settingsSignInButton = Logga in
     .title = Logga in
 SettingsPageHeader = Inställningar Firefox Screenshots
 settingsDescription = Du kan logga in med Firefox-konton för att synkronisera alla dina skärmbilder på olika enheter och få tillgång till dem privat.
-settingsPageSubHeader = Synkronisera & Konton
+settingsFirefoxAccountSubHeader = Firefox-konto
 settingsClosePreferences =
     .title = Stäng inställningar
+settingsFxaDisconnectAlertMessage = Är du säker på att du vill koppla bort den här enheten från ditt Firefox-konto?
 
 ## Shotindex page
 
