@@ -281,6 +281,7 @@ settingsFirefoxAccountSubHeader = Firefox 账户
 settingsClosePreferences =
     .title = 关闭首选项
 settingsFxaDisconnectAlertMessage = 您确定要将此设备与 Firefox 账户断开连接吗？
+settingsFxaDisconnectDescription = 退出后，需要再次登录才能访问截图。
 
 ## Shotindex page
 
