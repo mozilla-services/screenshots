@@ -289,7 +289,7 @@ settingsSignInButton = Daftar masuk
     .title = Daftar masuk
 SettingsPageHeader = Tetapan Firefox Screenshots
 settingsDescription = Anda boleh daftar masuk dengan Akaun Firefox untuk sync skrinsyot semua peranti dan akses secara peribadi.
-settingsPageSubHeader = Sync & Akaun
+settingsFirefoxAccountSubHeader = Akaun Firefox
 settingsClosePreferences =
     .title = Tutup keutamaan
 
