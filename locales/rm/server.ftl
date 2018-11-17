@@ -295,9 +295,11 @@ settingsSignInButton = S'annunziar
     .title = S'annunziar
 SettingsPageHeader = Preferenzas da Firefox Screenshots
 settingsDescription = Ti pos t'annunziar cun tes conto da Firefox per sincronisar tut tes maletgs dal visur tranter tut tes apparats – cun access privat.
-settingsPageSubHeader = Sincronisaziun & contos
+settingsFirefoxAccountSubHeader = Conto da Firefox
 settingsClosePreferences =
     .title = Serrar las preferenzas
+settingsFxaDisconnectAlertMessage = Vuls ti propi deconnectar quest apparat dal conto da Firefox?
+settingsFxaDisconnectDescription = Sche ti sortas, stos ti danovamain t'annunziar per puspè avair access a tes maletgs dal visur.
 
 ## Shotindex page
 
