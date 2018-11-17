@@ -12,12 +12,6 @@ gScreenshotsDescription = Schermafbeeldingen worden makkelijk. Maak, bewaar en d
 
 ## Header
 
-imgSettings =
-    .alt = Pictogram Instellingen
-imgSignIn =
-    .alt = Pictogram Aanmelden
-imgMyShots =
-    .alt = Pictogram Mijn afbeeldingen
 buttonSettings =
     .title = Instellingen
 buttonSignIn =
@@ -301,9 +295,11 @@ settingsSignInButton = Aanmelden
     .title = Aanmelden
 SettingsPageHeader = Instellingen van Firefox Screenshots
 settingsDescription = U kunt zich aanmelden met Firefox Accounts om al uw schermafbeeldingen tussen apparaten te synchroniseren en deze privé te benaderen.
-settingsPageSubHeader = Sync en accounts
+settingsFirefoxAccountSubHeader = Firefox-account
 settingsClosePreferences =
     .title = Voorkeuren sluiten
+settingsFxaDisconnectAlertMessage = Weet u zeker dat u dit apparaat van uw Firefox-account wilt loskoppelen?
+settingsFxaDisconnectDescription = Als u zich afmeldt, dient u zich opnieuw aan te melden om weer toegang tot uw schermafbeeldingen te krijgen.
 
 ## Shotindex page
 
