@@ -12,12 +12,6 @@ gScreenshotsDescription = Fota wobrazowki lochko činjene. Čińće, składujće
 
 ## Header
 
-imgSettings =
-    .alt = Symbol nastajenjow
-imgSignIn =
-    .alt = Symbol přizjewjenja
-imgMyShots =
-    .alt = Symbol fotow wobrazowki
 buttonSettings =
     .title = Nastajenja
 buttonSignIn =
@@ -313,9 +307,11 @@ settingsSignInButton = Přizjewić
     .title = Přizjewić
 SettingsPageHeader = Nastajenja Firefox Screenshots
 settingsDescription = Móžeće so z Firefox Accounts přizjewić, zo byšće wšě swoje fota wobrazowki přez graty synchronizował a priwatny přistup na nje měł.
-settingsPageSubHeader = Synchronizacija a konta
+settingsFirefoxAccountSubHeader = Konto Firefox
 settingsClosePreferences =
     .title = Nastajenja začinić
+settingsFxaDisconnectAlertMessage = Chceće tutón grat woprawdźe ze swojeho konta Firefox dźělić?
+settingsFxaDisconnectDescription = Jeli so wozjwjeće, dyrbiće so znowa přizjewić, zo byšće přistup na swoje fota wobrazowki wróćo dóstał.
 
 ## Shotindex page
 
