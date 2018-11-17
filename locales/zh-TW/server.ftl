@@ -271,9 +271,11 @@ settingsSignInButton = 登入
     .title = 登入
 SettingsPageHeader = Firefox Screenshots 設定
 settingsDescription = 使用 Firefox 帳號登入後，您就可以在不同裝置間同步拍攝的擷圖，並以私人的方式使用。
-settingsPageSubHeader = 同步與帳號
+settingsFirefoxAccountSubHeader = Firefox 帳號
 settingsClosePreferences =
     .title = 關閉偏好設定
+settingsFxaDisconnectAlertMessage = 您確定要將中斷裝置與 Firefox 帳號的連結嗎？
+settingsFxaDisconnectDescription = 登出後，需要再次登入才能取回擷圖。
 
 ## Shotindex page
 
