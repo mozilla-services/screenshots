@@ -19,7 +19,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Startside for Screenshots
 bannerMessage = Log ind eller tilmeld dig for at få adgang til dine skærmbilleder på alle dine enheder, og gem dine favoritter for evigt.
-bannerUpsell = { gScreenshotsDescription } </a>Hent Firefox nu<a>
+bannerUpsell = { gScreenshotsDescription } <a>Hent Firefox nu</a>
 
 ## Footer
 
