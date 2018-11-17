@@ -292,6 +292,8 @@ settingsDescription = Anda boleh daftar masuk dengan Akaun Firefox untuk sync sk
 settingsFirefoxAccountSubHeader = Akaun Firefox
 settingsClosePreferences =
     .title = Tutup keutamaan
+settingsFxaDisconnectAlertMessage = Adakah anda pasti mahu memutuskan sambungan peranti ini dengan Akaun Firefox anda?
+settingsFxaDisconnectDescription = Jika log keluar, anda perlu log masuk sekali lagi untuk mendapatkan semula akses ke skrinsyot anda.
 
 ## Shotindex page
 
