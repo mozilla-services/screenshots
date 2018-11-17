@@ -299,6 +299,7 @@ settingsFirefoxAccountSubHeader = Firefox-konto
 settingsClosePreferences =
     .title = Stäng inställningar
 settingsFxaDisconnectAlertMessage = Är du säker på att du vill koppla bort den här enheten från ditt Firefox-konto?
+settingsFxaDisconnectDescription = Om du loggar ut måste du logga in igen för att få tillgång till dina skärmbilder.
 
 ## Shotindex page
 
