@@ -289,9 +289,11 @@ settingsSignInButton = Кіру
     .title = Кіру
 SettingsPageHeader = Firefox Screenshots баптаулары
 settingsDescription = Құрылғыларыңыз арасында скриншоттарды синхрондау және оларға жеке қатынау үшін Firefox тіркелгісі көмегімен кіре аласыз.
-settingsPageSubHeader = Синхрондау және тіркелгілер
+settingsFirefoxAccountSubHeader = Firefox тіркелгісі
 settingsClosePreferences =
     .title = Баптауларды жабу
+settingsFxaDisconnectAlertMessage = Бұл құрылғыны Firefox тіркелгіңізден ажыратқыңыз келе ме?
+settingsFxaDisconnectDescription = Шығатын болсаңыз, скриншоттарға қатынау үшін қайтадан кіруіңіз керек болады.
 
 ## Shotindex page
 
