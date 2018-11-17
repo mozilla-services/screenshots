@@ -20,6 +20,16 @@ screenshotsLogo =
     .title = Dachaidh nan glacadh-sgrìn
 bannerSignIn = <a>Clàraich leinn no clàraich a-steach</a> a dh’fhaighinn greim air glacaidhean-sgrìn air feadh nan uidheaman agad is sàbhail an fheadhainn chudromach gu buan.
 bannerUpsell = { gScreenshotsDescription } <a>Faigh Firefox an-dràsta</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Dè tha ùr ann an gleus nan glacaidhean-sgrìn aig Firefox?
+onboardingPromoMessage = Clàraich a-steach le cunntas Firefox is bidh cothrom agam air barrachd ghleusan:
+onboardingPromoMessageListItem1 = Faigh cothrom air an leabhar-lann agad air feadh nan uidheaman agad
+onboardingPromoMessageListItem2 = Cum na glacaidhean as fhearr leat gu buan
+onboardingPromoDismissButton = Leig seachad
+    .title = Leig seachad
+onboardingPromoSigninButton = Clàraich a-steach
+    .title = Clàraich a-steach
 
 ## Footer
 
@@ -103,6 +113,7 @@ shotPageShareButton =
     .title = Co-roinn
 shotPageCopyButton =
     .title = Cuir lethbhreac dhen dealbh air an stòr-bhòrd
+shotPageCopyActionLabel = Dèan lethbhreac
 shotPageCopied = Lethbhreac air a dhèanamh
 shotPageShareFacebook =
     .title = Co-roinn air Facebook
@@ -296,9 +307,11 @@ settingsSignInButton = Clàraich a-steach
     .title = Clàraich a-steach
 SettingsPageHeader = Roghainnean ghlacaidhean-sgrìn Firefox
 settingsDescription = ’S urrainn dhut clàradh a-steach gu cunntasan Firefox airson na glacaidhean-sgrìn agad a shioncronachadh air feadh nan uidheaman agad is cothrom fhaighinn orra gu prìobhaideach.
-settingsPageSubHeader = Sioncronachadh ⁊ cunntasan
+settingsFirefoxAccountSubHeader = Cunntas Firefox
 settingsClosePreferences =
     .title = Dùin na roghainnean
+settingsFxaDisconnectAlertMessage = A bheil thu cinnteach gu bheil thu airson an t-uidheam seo a dhì-cheangal on chunntas Firefox agad?
+settingsFxaDisconnectDescription = Ma chlàraicheas tu a-mach, bidh agad ri clàradh a-steach a-rithist mus fhaigh thu cothrom air na glacaidhean-sgrìn agad.
 
 ## Shotindex page
 
