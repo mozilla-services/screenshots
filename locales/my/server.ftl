@@ -18,8 +18,18 @@ buttonSignIn =
     .title = ဝင်ရန်
 screenshotsLogo =
     .title = Screenshots မူလစာမျက်နှာ
-bannerMessage = ဖမ်းယူချက်များကို ကိရိယာများတွင် အသုံးပြုရန် နှင့် သိမ်းထားရန် ဝင်ရောက်ပါ သို့မဟုတ် မှတ်ပုံတင်ပါ။
+bannerSignIn = သင့်ရိုက်ချက်အသုံးပြုခြင်းရရှိရန် အကောင့်အသစ်ဝင်ရောက်ခြင်း သို့မဟုတ် အကောင့်ဝင်ရောက်ခြင်းကိုလုပ်ဆောင်ပြီး သင့်ကြိုက်နှစ်သက်ရာများကို အမြဲသိမ်းမည်
 bannerUpsell = { gScreenshotsDescription } <a>Firefox ကို ယခုပင် ရယူပါ</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Firefoxရဲ့ရိုက်ချက်များနှင့်ပတ်သက်၍ အသစ်များ
+onboardingPromoMessage = အခုFirefox ကိုသင့်အကောင့်နှင့် Screenshots အတွက်လက်မှတ်ရေးထိုးခြင်းနှင့်ပိုမိုလုပ်ဆောင်
+onboardingPromoMessageListItem1 = သင့်ကိရိယာများအားလုံးပေါ်တွင်သင်၏စာကြည့်တိုက်ကိုဝင်ရောက်
+onboardingPromoMessageListItem2 = အမြဲသင်အကြိုက်ဆုံးရိုက်ချက်များကိုသိုလှောင်မည်
+onboardingPromoDismissButton = ထုတ်ပစ်ပါ
+    .title = ထုတ်ပစ်ပါ
+onboardingPromoSigninButton = ၀င်ပါ
+    .title = ၀င်ပါ
 
 ## Footer
 
@@ -77,7 +87,7 @@ homePageCookiesLink = ကွတ်ကီးများ
 
 leavePageRemoveAllData = ဒေတာအားလုံးကို ဖျက်ရန်
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = သင့်အကောင့်ကို ဖျက်ရန် Firefox Screenshots ကို တပ်ဆင်ပြီးသား ဖြစ်ရမည်။
+leavePageErrorAuthRequired = သင့်အကောင့်ဖျက်သိမ်းရန် အကောင့်ကိုဝင်ရောက်ခြင်း သို့မဟုတ် ရိုက်ချက်များအသုံးပြုမှု ထည့်သွင်းထားခြင်း ရှိရမည်
 leavePageErrorGeneric = အမှားတစ်ခု ဖြစ်ခဲ့သည်
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = ဒီဟာက firefox မှ သင့်ရိုက်ချက်များကို အရှင်းဖျက်ပစ်လိမ့်မည်
@@ -103,6 +113,7 @@ shotPageShareButton =
     .title = မျှဝေရန်
 shotPageCopyButton =
     .title = ရုပ်ပုံကို ကလစ်ဘုတ်သို့ ကူးယူရန်
+shotPageCopyActionLabel = ကူးယူပါ
 shotPageCopied = ကူးထားသည်
 shotPageShareFacebook =
     .title = Facebook ပေါ်သို့ မျှဝေပါ
@@ -278,9 +289,11 @@ settingsSignInButton = ဝင်ပါ
     .title = ဝင်ပါ
 SettingsPageHeader = Firefox မှ ပုံဖမ်းရိုက်ချက် အပြင်အဆင်များ
 settingsDescription = သင့်မျက်နှာပြင်ပုံဖမ်းချက်များကို ကိရိယာအားလုံးတွင် တစ်ပြေးညီဖြစ်စေရန်နှင့် ကိုယ်တိုင် အသုံးပြုနိုင်ရန် Firefox Accounts နှင့် ဝင်နိုင်ပါသည်။
-settingsPageSubHeader = ချိတ်ဆက်ခြင်း နှင့်အကောင့်များ
+settingsFirefoxAccountSubHeader = Firefox အကောင့်
 settingsClosePreferences =
     .title = စိတ်ကြိုက်ပြင်ဆင်မှုများ ပိတ်ပါ
+settingsFxaDisconnectAlertMessage = သင့် Firefox အကောင့်ကို သင့်ကိရိယာမှ ချိတ်ဆက်မှုရပ်တန့်ခြင်းလုပ်ချင်ပါသလား?
+settingsFxaDisconnectDescription = သင့်အကောင့်ထွက်ခဲ့လှျင် ရိုက်ချက်အသုံးပြုခြင်းလုပ်ဆောင်ရန် နောက်တစ်ကြိမ်ပြန်လည်ဝင်ရောက်ရလိမ့်မည်
 
 ## Shotindex page
 
