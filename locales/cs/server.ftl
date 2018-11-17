@@ -301,10 +301,11 @@ settingsSignInButton = Přihlásit
     .title = Přihlášení
 SettingsPageHeader = Nastavení Firefox Screenshots
 settingsDescription = Můžete se přihlásit pomocí svého účtu Firefoxu a bezpečně synchronizovat všechny své snímky napříč všemi zařízeními.
-settingsPageSubHeader = Synchronizace a účty
+settingsFirefoxAccountSubHeader = Účet Firefoxu
 settingsClosePreferences =
     .title = Zavřít předvolby
 settingsFxaDisconnectAlertMessage = Opravdu chcete toto zařízení odpojit od svého účtu Firefoxu?
+settingsFxaDisconnectDescription = Pokud se nyní odhlásíte, pro opětovný přístup k vašim snímkům obrazovky bude nutné se znovu přihlásit.
 
 ## Shotindex page
 
