@@ -301,9 +301,11 @@ settingsSignInButton = Prisijungti
     .title = Prisijungti
 SettingsPageHeader = „Firefox“ ekrano nuotraukų nuostatos
 settingsDescription = Galite prisijungti su „Firefox“ paskyra, norėdami sinchronizuoti savo ekrano nuotraukas visuose įrenginiuose, ir saugiai jas pasiekti.
-settingsPageSubHeader = Sinchronizavimas ir paskyros
+settingsFirefoxAccountSubHeader = „Firefox“ paskyra
 settingsClosePreferences =
     .title = Užverti nuostatas
+settingsFxaDisconnectAlertMessage = Ar tikrai norite atjungti šį įrenginį nuo savo „Firefox“ paskyros?
+settingsFxaDisconnectDescription = Jei atsijungsite, norėdami pasiekti savo nuotraukas turėsite prisijungti iš naujo.
 
 ## Shotindex page
 
