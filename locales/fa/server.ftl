@@ -295,9 +295,11 @@ settingsSignInButton = ورود
     .title = ورود
 SettingsPageHeader = تنظیمات نماگرفتِ فایرفاکس
 settingsDescription = شما می‌توانید برای همگام‌سازی نماهای خود در سایر دستگاه و دسترسی خصوصی به آنها، وارد حساب فایرفاکس خود شوید.
-settingsPageSubHeader = همگام‌سازی و حساب‌ها
+settingsFirefoxAccountSubHeader = حساب فایرفاکس
 settingsClosePreferences =
     .title = بستن ترجیحات
+settingsFxaDisconnectAlertMessage = آیا مطمئن هستید که می‌خواهید این دستگاه را از حساب فایرفاکس خود جدا کنید؟
+settingsFxaDisconnectDescription = اگر از سیستم خارج شوید، مجددا باید وارد سیستم شوید تا دوباره به تصاویر خود دسترسی داشته باشید.
 
 ## Shotindex page
 
