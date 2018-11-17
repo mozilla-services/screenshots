@@ -12,8 +12,6 @@ gScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in
 
 ## Header
 
-imgSettings =
-    .alt = Ikona nastavitev
 buttonSettings =
     .title = Nastavitve
 buttonSignIn =
@@ -309,7 +307,7 @@ settingsSignInButton = Prijava
     .title = Prijava
 SettingsPageHeader = Nastavitve za Firefox Screenshots
 settingsDescription = Lahko se prijavite s Firefox Accounts in sinhronizirate posnetke zaslona na različnih napravah ter jih uporabljate v zasebnosti.
-settingsPageSubHeader = Sinhronizacija in računi
+settingsFirefoxAccountSubHeader = Firefox Račun
 settingsClosePreferences =
     .title = Zapri nastavitve
 
