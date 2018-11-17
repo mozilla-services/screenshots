@@ -295,9 +295,11 @@ settingsSignInButton = Authenticar se
     .title = Authenticar se
 SettingsPageHeader = Configurationes de Firefox Screenshots
 settingsDescription = Tu pote authenticar te con Firefox Accounts pro synchronisar tote tu instantaneos de schermo trans tu apparatos e acceder los privatemente.
-settingsPageSubHeader = Sync & contos
+settingsFirefoxAccountSubHeader = Conto Firefox
 settingsClosePreferences =
     .title = Clauder le preferentias
+settingsFxaDisconnectAlertMessage = Desira tu vermente disconnecter iste apparato ex tu conto Firefox?
+settingsFxaDisconnectDescription = Si tu te disconnecte, pois tu besoniara de authenticar te de novo pro reganiar le accesso a tu instantaneos de schermo.
 
 ## Shotindex page
 
