@@ -295,9 +295,11 @@ settingsSignInButton = Se connecter
     .title = Se connecter
 SettingsPageHeader = Paramètres de Firefox Screenshots
 settingsDescription = Vous pouvez vous connecter à votre compte Firefox pour synchroniser vos captures sur tous vos appareils et y accéder de façon privée.
-settingsPageSubHeader = Comptes et synchronisation
+settingsFirefoxAccountSubHeader = Compte Firefox
 settingsClosePreferences =
     .title = Fermer les préférences
+settingsFxaDisconnectAlertMessage = Voulez-vous vraiment déconnecter cet appareil de votre compte Firefox ?
+settingsFxaDisconnectDescription = Si vous vous déconnectez, vous devrez vous reconnecter pour accéder à nouveau à vos captures d’écran.
 
 ## Shotindex page
 
