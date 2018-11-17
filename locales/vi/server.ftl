@@ -277,9 +277,11 @@ settingsSignInButton = Đăng nhập
     .title = Đăng nhập
 SettingsPageHeader = Cài đặt Firefox Screenshots
 settingsDescription = Bạn có thể đăng nhập tài khoản Firefox để đồng bộ hóa tất cả ảnh chụp màn hình của bạn trên thiết bị và truy cập chúng một cách riêng tư.
-settingsPageSubHeader = Đồng bộ & Tài khoản
+settingsFirefoxAccountSubHeader = Tài khoản Firefox
 settingsClosePreferences =
     .title = Đóng cài đặt
+settingsFxaDisconnectAlertMessage = Bạn có chắc chắn muốn ngắt kết nối thiết bị này khỏi Tài khoản Firefox của mình không?
+settingsFxaDisconnectDescription = Nếu bạn đăng xuất, bạn sẽ cần phải đăng nhập lại để lấy lại quyền truy cập vào ảnh chụp màn hình của mình.
 
 ## Shotindex page
 
