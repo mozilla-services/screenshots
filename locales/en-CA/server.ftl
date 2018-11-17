@@ -295,10 +295,11 @@ settingsSignInButton = Sign In
     .title = Sign in
 SettingsPageHeader = Firefox Screenshots Settings
 settingsDescription = You can sign in with Firefox Accounts to sync all your screenshots across devices and access them privately.
-settingsPageSubHeader = Sync & Accounts
+settingsFirefoxAccountSubHeader = Firefox Account
 settingsClosePreferences =
     .title = Close preferences
 settingsFxaDisconnectAlertMessage = Are you sure you want to disconnect this device from your Firefox Account?
+settingsFxaDisconnectDescription = If you sign out, you will need to sign in again to regain access to your screenshots.
 
 ## Shotindex page
 
