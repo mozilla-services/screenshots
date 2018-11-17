@@ -307,9 +307,11 @@ settingsSignInButton = Pśizjawiś
     .title = Pśizjawiś
 SettingsPageHeader = Nastajenja Firefox Screenshots
 settingsDescription = Móžośo se z Firefox Accounts pśizjawiś, aby wšykne swóje fota wobrazowki pśez rědy synchronizěrował a priwatny pśistup k nim měł.
-settingsPageSubHeader = Synchronizacija a konta
+settingsFirefoxAccountSubHeader = Konto Firefox
 settingsClosePreferences =
     .title = Nastajenja zacyniś
+settingsFxaDisconnectAlertMessage = Cośo toś ten rěd napšawdu ze swójogo konta Firefox źěliś?
+settingsFxaDisconnectDescription = Jolic se wózjwjaśo, musyśo se znowego pśizjawiś, ab pśistup k swójim fotam wobrazowki slědk dostał.
 
 ## Shotindex page
 
