@@ -20,6 +20,10 @@ screenshotsLogo =
     .title = Beranda Screenshots
 bannerSignIn = <a>Masuk atau daftar</a> untuk mengakses tangkapan layar lintas peranti dan simpan favorit Anda untuk seterusnya.
 bannerUpsell = { gScreenshotsDescription } <a>Dapatkan Firefox sekarang juga</a>
+onboardingPromoDismissButton = Tutup
+    .title = Tutup
+onboardingPromoSigninButton = Masuk
+    .title = Masuk
 
 ## Footer
 
@@ -261,7 +265,6 @@ settingsSignInButton = Masuk
     .title = Masuk
 SettingsPageHeader = Setelan Firefox Screenshots
 settingsDescription = Anda dapat masuk dengan Firefox Accounts untuk sinkronisasi semua tangkapan layar Anda antar perangkat dan mengaksesnya secara privat.
-settingsPageSubHeader = Sync & Akun
 settingsClosePreferences =
     .title = Tutup pengaturan
 
