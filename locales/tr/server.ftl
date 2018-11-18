@@ -271,9 +271,11 @@ settingsSignInButton = Giriş yap
     .title = Giriş yap
 SettingsPageHeader = Firefox Screenshots Ayarları
 settingsDescription = Ekran görüntülerinizi tüm cihazlarınız arasında eşitlemek ve onlara gizliliğinizi koruyarak ulaşmak için Firefox Hesabınıza giriş yapabilirsiniz.
-settingsPageSubHeader = Sync ve Hesaplar
+settingsFirefoxAccountSubHeader = Firefox Hesabı
 settingsClosePreferences =
     .title = Tercihleri kapat
+settingsFxaDisconnectAlertMessage = Bu cihazın Firefox Hesabınızla bağlantısını kesmek istediğinizden emin misiniz?
+settingsFxaDisconnectDescription = Çıkış yaparsanız ekran görüntülerinize erişmek istediğinizde yeniden giriş yapmanız gerekecektir.
 
 ## Shotindex page
 
