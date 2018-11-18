@@ -80,7 +80,7 @@
     "svgo": "1.1.1",
     "uglify-es": "3.3.9",
     "uglifyify": "5.0.1",
-    "web-ext": "2.9.1"
+    "web-ext": "2.9.2"
   },
   "engine-strict": true,
   "engines": {
