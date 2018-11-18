@@ -295,7 +295,7 @@ settingsSignInButton = Вписване
     .title = Вписване
 SettingsPageHeader = Настройки на Firefox Screenshots
 settingsDescription = Ако се впишете с Firefox Accounts всички снимки на екрана ще бъдат синхронизирани между устройствата ви и ще ги имате поверителен достъп до тях.
-settingsPageSubHeader = Синхронизиране и сметки
+settingsFirefoxAccountSubHeader = Firefox Account
 settingsClosePreferences =
     .title = Затваряне
 
