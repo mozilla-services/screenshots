@@ -298,6 +298,8 @@ settingsDescription = Ако се впишете с Firefox Accounts всичк�
 settingsFirefoxAccountSubHeader = Firefox Account
 settingsClosePreferences =
     .title = Затваряне
+settingsFxaDisconnectAlertMessage = Сигурни ли сте, че искате да изключите това устройство от Firefox Account?
+settingsFxaDisconnectDescription = Ако се отпишете, ще трябва да се впишете отново за възстановяване на достъпа до вашите снимки.
 
 ## Shotindex page
 
