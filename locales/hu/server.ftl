@@ -20,6 +20,12 @@ screenshotsLogo =
     .title = Screenshots kezdőlap
 bannerSignIn = <a>Jelentkezzen be vagy regisztráljon</a> hogy elérje a képeit az összes eszközén, és végleg elmentse a kedvenceit.
 bannerUpsell = { gScreenshotsDescription } <a>Szerezze be a Firefoxot most</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Mik az újdonságok a Firefox Screenshotsban?
+onboardingPromoMessage = Jelentkezzen be most a Screenshotsba egy Firefox fiókkal, és tegyen többet:
+onboardingPromoMessageListItem1 = Érje el könyvtárát az összes eszközén
+onboardingPromoMessageListItem2 = Örökre tárolja el a kedvenc képeit
 onboardingPromoDismissButton = Eltüntetés
     .title = Eltüntetés
 onboardingPromoSigninButton = Bejelentkezés
@@ -289,9 +295,11 @@ settingsSignInButton = Bejelentkezés
     .title = Bejelentkezés
 SettingsPageHeader = A Firefox Screenshots beállításai
 settingsDescription = Bejelentkezhet a Firefox fiókjával, hogy szinkronizálja a képernyőképeit az összes eszköze között, és privát módon érje el őket.
-settingsPageSubHeader = Szinkronizálás és fiókok
+settingsFirefoxAccountSubHeader = Firefox fiók
 settingsClosePreferences =
     .title = Beállítások bezárása
+settingsFxaDisconnectAlertMessage = Biztosan le akarja választani ezt az eszközt a Firefox fiókjától?
+settingsFxaDisconnectDescription = Ha kijelentkezik, akkor újra be kell jelentkeznie, hogy elérje a képernyőképeit.
 
 ## Shotindex page
 
