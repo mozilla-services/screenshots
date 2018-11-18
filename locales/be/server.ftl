@@ -301,7 +301,7 @@ settingsSignInButton = Увайсці
     .title = Увайсці
 SettingsPageHeader = Налады Firefox Screenshots
 settingsDescription = Вы можаце ўвайсці з уліковым запісам Firefox, каб сінхранізаваць усе свае здымкі экрана паміж прыладамі і мець да іх прыватны доступ.
-settingsPageSubHeader = Сінхранізацыя і ўліковыя запісы
+settingsFirefoxAccountSubHeader = Уліковы запіс Firefox
 settingsClosePreferences =
     .title = Закрыць налады
 
