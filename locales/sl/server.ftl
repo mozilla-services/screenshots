@@ -310,6 +310,8 @@ settingsDescription = Lahko se prijavite s Firefox Accounts in sinhronizirate po
 settingsFirefoxAccountSubHeader = Firefox Račun
 settingsClosePreferences =
     .title = Zapri nastavitve
+settingsFxaDisconnectAlertMessage = Ali ste prepričani, da želite odklopiti to napravo od svojega Firefox Računa?
+settingsFxaDisconnectDescription = Če se odjavite, se boste morali za ponovni dostop do posnetkov zaslona znova prijaviti.
 
 ## Shotindex page
 
