@@ -18,6 +18,7 @@ const LibraryButton = {
 
   init(webExtension) {
     this._initialized = true;
+    this.visible = !Services.prefs.getBoolPref("extensions.screenshots.upload-disabled", false);
     const permissionPages = [...webExtension.permissions].filter(p => (/^https?:\/\//i).test(p));
     if (permissionPages.length > 1) {
       Cu.reportError(new Error("Should not have more than 1 permission page, but got: " + JSON.stringify(permissionPages)));
@@ -27,6 +28,7 @@ const LibraryButton = {
     this.ICON_URL = webExtension.getURL("icons/icon-v2.svg");
     this.LABEL = webExtension.localizeMessage("libraryLabel");
     CustomizableUI.addListener(this);
+    Services.prefs.addObserver("extensions.screenshots.upload-disabled", this);
     for (const win of CustomizableUI.windows) {
       this.onWindowOpened(win);
     }
@@ -36,6 +38,7 @@ const LibraryButton = {
     if (!this._initialized) {
       return;
     }
+    this.visible = false;
     for (const win of CustomizableUI.windows) {
       const item = win.document.getElementById(this.ITEM_ID);
       if (item) {
@@ -43,6 +46,7 @@ const LibraryButton = {
       }
     }
     CustomizableUI.removeListener(this);
+    Services.prefs.removeObserver("extensions.screenshots.upload-disabled", this);
     this._initialized = false;
   },
 
@@ -51,6 +55,9 @@ const LibraryButton = {
     // If the library view doesn't exist (on non-photon builds, for instance),
     // this will be null, and we bail out early.
     if (!libraryViewInsertionPoint) {
+      return;
+    }
+    if (!this.visible) {
       return;
     }
     const parent = libraryViewInsertionPoint.parentNode;
@@ -64,6 +71,24 @@ const LibraryButton = {
     item.setAttribute("label", this.LABEL);
 
     parent.insertBefore(item, nextSibling);
+  },
+
+  observe(aSubject, aTopic, aData) {
+    if (aData === "extensions.screenshots.upload-disabled") {
+      this.visible = !Services.prefs.getBoolPref("extensions.screenshots.upload-disabled", false);
+      if (!this.visible) {
+        for (const win of CustomizableUI.windows) {
+          const item = win.document.getElementById(this.ITEM_ID);
+          if (item) {
+            item.remove();
+          }
+        }
+      } else {
+        for (const win of CustomizableUI.windows) {
+          this.onWindowOpened(win);
+        }
+      }
+    }
   },
 };
 
