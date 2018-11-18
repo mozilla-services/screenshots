@@ -75,7 +75,7 @@ homePageCapturePage = Fă o captură de pagină
 homePageCapturePageDescription = Folosește butoanele din dreapta sus pentru a captura pagini întregi. Butonul Salvează porțiunea vizibilă va captura zona pe care o poți vedea fără să derulezi și butonul Salvează pagina completă va captura toată pagina.
 homePageSaveShare = Salvează și partajează
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Realizează cea mai bună captură. Apoi salveaz-o în biblioteca online Screnshots, iar Firefox va copia linkul în clipboard pentru o partajare ușoară. Capturile din bibliotecă expiră automat după două săptămâni, dar le poți șterge oricând, sau poți alege să le păstrezi pentru mai mult timp.
+homePageShaveShareFavoriteDescription = Realizează cea mai bună captură. Apoi salveaz-o în biblioteca online Screenshots, iar Firefox va copia linkul în clipboard pentru o partajare ușoară. Capturile din bibliotecă expiră automat după două săptămâni, dar le poți șterge oricând, sau poți alege să le păstrezi pentru mai mult timp.
 homePageSignInTitle = Capturile tale oriunde
 homePageSignInDescription = Autentifică-te în Screenshots cu ajutorul contului Firefox pentru a-ți accesa capturile oriunde folosești Firefox. Un bonus în plus: îți poți salva capturile favorite pentru totdeauna.
 homePageLegalLink = Mențiuni legale
@@ -301,7 +301,6 @@ settingsSignInButton = Autentifică-te
     .title = Autentifică-te
 SettingsPageHeader = Setări Firefox Screenshots
 settingsDescription = Te poți autentifica cu conturi Firefox pentru a sincroniza toate capturile de ecran de pe toate dispozitivele și pentru a le accesa în mod privat.
-settingsPageSubHeader = Sincronizare și conturi
 settingsClosePreferences =
     .title = Închide preferințele
 
