@@ -301,9 +301,11 @@ settingsSignInButton = Войти
     .title = Войти
 SettingsPageHeader = Параметры Firefox Screenshots
 settingsDescription = Вы можете войти в Аккаунт Firefox, чтобы синхронизировать все снимки экрана между устройствами и приватно получить к ним доступ.
-settingsPageSubHeader = Синхронизация и Аккаунты
+settingsFirefoxAccountSubHeader = Аккаунт Firefox
 settingsClosePreferences =
     .title = Закрыть настройки
+settingsFxaDisconnectAlertMessage = Вы уверены, что хотите отключить это устройство от своего Аккаунта Firefox?
+settingsFxaDisconnectDescription = Если вы выйдете, вам нужно будет снова войти, чтобы восстановить доступ к вашим снимкам экрана.
 
 ## Shotindex page
 
