@@ -299,6 +299,7 @@ settingsFirefoxAccountSubHeader = Firefox-account
 settingsClosePreferences =
     .title = Foarkarren slute
 settingsFxaDisconnectAlertMessage = Binne jo wis dat jo dit apparaat fan jo Firefox-account loskeppelje wolle?
+settingsFxaDisconnectDescription = As jo jo ôfmelde, moatte jo jo opnij oanmelde om wer tagong ta jo skermôfbyldingen te krijen.
 
 ## Shotindex page
 
