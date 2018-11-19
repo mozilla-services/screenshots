@@ -295,7 +295,7 @@ settingsSignInButton = Entrar
     .title = Entrar
 SettingsPageHeader = Configurações do Firefox Screenshots
 settingsDescription = Você pode entrar com a Conta Firefox para sincronizar todas as suas capturas de tela entres os dispositivos e acessá-las privativamente.
-settingsPageSubHeader = Sync e Conta Firefox
+settingsFirefoxAccountSubHeader = Conta Firefox
 settingsClosePreferences =
     .title = Fechar preferências
 
