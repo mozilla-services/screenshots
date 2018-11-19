@@ -4,7 +4,7 @@
 ## Global phrases shared across pages, prefixed with 'g'
 gMyShots = My Shots
 gHomeLink = Home
-gNoShots
+gNoShots =
     .alt = No shots found
 gScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
 
