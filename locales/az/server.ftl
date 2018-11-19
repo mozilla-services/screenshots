@@ -295,9 +295,11 @@ settingsSignInButton = Daxil ol
     .title = Daxil ol
 SettingsPageHeader = Firefox Screenshots Tənzimləmələri
 settingsDescription = Firefox Hesabınıza daxil olaraq ekran görüntülərinizi cihazlarınız arasında paylaşa və onları məxfi olaraq işlədə bilərsiz.
-settingsPageSubHeader = Sync və Hesablar
+settingsFirefoxAccountSubHeader = Firefox Hesabı
 settingsClosePreferences =
     .title = Nizamlamaları qapat
+settingsFxaDisconnectAlertMessage = Bu cihazı Firefox Hesabınızdan ayırmaq istədiyinizə əminsiniz?
+settingsFxaDisconnectDescription = Əgər çıxsanız ekran görüntülərinizi təkrar görmək üçün daxil olmalı olacaqsınız.
 
 ## Shotindex page
 
