@@ -295,9 +295,10 @@ settingsSignInButton = Oanmelde
     .title = Oanmelde
 SettingsPageHeader = Ynstellingen fan Firefox Screenshots
 settingsDescription = Jo kinne jo oanmelde mei Firefox Accounts om al jo skermôfbyldingen tusken apparaten te syngronisearjen en dizze privee te benaderjen.
-settingsPageSubHeader = Sync en accounts
+settingsFirefoxAccountSubHeader = Firefox-account
 settingsClosePreferences =
     .title = Foarkarren slute
+settingsFxaDisconnectAlertMessage = Binne jo wis dat jo dit apparaat fan jo Firefox-account loskeppelje wolle?
 
 ## Shotindex page
 
