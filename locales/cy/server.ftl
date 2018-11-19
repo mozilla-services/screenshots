@@ -319,9 +319,11 @@ settingsSignInButton = Mewngofnodi
     .title = Mewngofnodi
 SettingsPageHeader = Gosodiadau Firefox Screenshots
 settingsDescription = Gallwch fewngofnodi gyda Chyfrifon Firefox i gydweddu eich holl luniau sgrin ar draws dyfeisiau a chael mynediad atyn nhw'n breifat.
-settingsPageSubHeader = Cydweddu a Chyfrifon
+settingsFirefoxAccountSubHeader = Cyfrif Firefox
 settingsClosePreferences =
     .title = Cau'r dewisiadau
+settingsFxaDisconnectAlertMessage = Ydych chi'n siŵr eich bod am ddatgysylltu'r ddyfais hon oddi wrth eich Cyfrif Firefox?
+settingsFxaDisconnectDescription = Os byddwch yn allgofnodi, bydd angen i chi fewngofnodi eto i adennill mynediad i'ch lluniau sgrin.
 
 ## Shotindex page
 
