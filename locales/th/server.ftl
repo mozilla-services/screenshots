@@ -218,6 +218,7 @@ shotIndexPageErrorRendering = เกิดข้อผิดพลาดใน�
 shotIndexPageSearchPlaceholder =
     .placeholder = ค้นหาภาพหน้าจอของฉัน
 shotIndexPageNoShotsMessage = ไม่มีภาพหน้าจอที่บันทึกไว้
+shotIndexPageNoShotsInvitation = เริ่มจับภาพหน้าจอ
 shotIndexPageLookingForShots = กำลังมองหาภาพหน้าจอของคุณ…
 shotIndexPageNoSearchResultsIntro = หืมม
 shotIndexPageClearSearchButton =
@@ -238,11 +239,13 @@ shotDeleteConfirm = ลบ
 ## Metrics page
 ## All metrics strings are optional for translation
 
+metricsPageTotalsQueryTitle = รวม
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = ภาพรวมของ Screenshots
 metricsPageTotalsQueryDevices = อุปกรณ์ลงทะเบียนทั้งหมด
 metricsPageTotalsQueryExpiredShots = หมดอายุ (แต่สามารถกู้คืนได้)
 metricsPageTotalsQueryExpiredDeletedShots = หมดอายุ (และถูกลบแล้ว)
+metricsPageShotsQueryTitle = จำนวนภาพตามวัน
 metricsPageShotsQueryCount = จำนวนภาพหน้าจอ
 metricsPageShotsQueryDay = วัน
 metricsPageUsersQueryTitle = ผู้ใช้ตามวัน
@@ -255,6 +258,7 @@ metricsPageTotalRetentionQueryUsers = จำนวนผู้ใช้
 metricsPageVersionQueryTitle = รุ่นส่วนเสริม
 metricsPageVersionQueryVersion = รุ่นส่วนเสริม
 metricsPageVersionQueryLastSeen = วัน
+metricsPageHeader = ข้อมูลสถิติ
 # Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = สร้างขึ้นเมื่อ: { $created }
 # Note { $time } is a placeholder for a number of milliseconds, like '100'
