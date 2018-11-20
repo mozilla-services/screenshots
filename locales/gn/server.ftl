@@ -299,6 +299,7 @@ settingsFirefoxAccountSubHeader = Firefox Account
 settingsClosePreferences =
     .title = Jeguerohoryvéva moheñói
 settingsFxaDisconnectAlertMessage = ¿Eipe’asépa ko mba’e’oka ne mba’ete Firefox peguágui?
+settingsFxaDisconnectDescription = Embotýramo tembiapo, emoñepyrũjeyva’erã eikekuaa jey hag̃ua ne mba’erechaha jejapyhýpe.
 
 ## Shotindex page
 
