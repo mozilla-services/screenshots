@@ -20,6 +20,9 @@ screenshotsLogo =
     .title = स्क्रीनशॉट होम
 bannerSignIn = अपने पसंदीदा स्क्रीनशॉट को हमेशा के लिए सहेजने और अन्य उपकरणों पर देखने के लिए <a>साइन इन या साइन अप</a> करें।
 bannerUpsell = { gScreenshotsDescription } <a>Firefox अभी पायें</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Firefox Screenshots के साथ नया क्या है?
 
 ## Footer
 
@@ -284,7 +287,6 @@ settingsSignInButton = साइन इन
     .title = साइन इन
 SettingsPageHeader = Firefox स्क्रीनशॉट सेटिंग
 settingsDescription = आप सभी उपकरण पर अपने स्क्रीनशॉट सिंक करने और उन्हें निजी रूप से एक्सेस करने के लिए Firefox खातों के साथ साइन इन कर सकते हैं।
-settingsPageSubHeader = संकालन एवं खाते
 settingsClosePreferences =
     .title = प्राथमिकताएँ बंद करें
 
