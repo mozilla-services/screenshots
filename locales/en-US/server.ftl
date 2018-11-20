@@ -63,8 +63,6 @@ homePageDownloadFirefoxSubTitle = Free Download
 homePageHowScreenshotsWorks = How Firefox Screenshots Works
 homePageGetStartedTitle = Get Started
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Find the new Screenshots icon on your toolbar. Select it, and the Screenshots menu will appear on top of your browser window.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Select the Screenshots icon from the page actions menu in the address bar, and the Screenshots menu will appear on top of your browser window.
 homePageCaptureRegion = Capture a Region
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
