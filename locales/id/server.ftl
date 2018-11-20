@@ -20,6 +20,12 @@ screenshotsLogo =
     .title = Beranda Screenshots
 bannerSignIn = <a>Masuk atau daftar</a> untuk mengakses tangkapan layar lintas peranti dan simpan favorit Anda untuk seterusnya.
 bannerUpsell = { gScreenshotsDescription } <a>Dapatkan Firefox sekarang juga</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Apa yang baru dari Firefox Screenshots?
+onboardingPromoMessage = Sekarang, masuk ke Screenshots dengan Firefox Account dan lakukan lebih banyak:
+onboardingPromoMessageListItem1 = Akses pustaka Anda dari semua perangkat Anda
+onboardingPromoMessageListItem2 = Simpan cuplikan favorit Anda selamanya
 onboardingPromoDismissButton = Tutup
     .title = Tutup
 onboardingPromoSigninButton = Masuk
@@ -265,8 +271,11 @@ settingsSignInButton = Masuk
     .title = Masuk
 SettingsPageHeader = Setelan Firefox Screenshots
 settingsDescription = Anda dapat masuk dengan Firefox Accounts untuk sinkronisasi semua tangkapan layar Anda antar perangkat dan mengaksesnya secara privat.
+settingsFirefoxAccountSubHeader = Firefox Account
 settingsClosePreferences =
     .title = Tutup pengaturan
+settingsFxaDisconnectAlertMessage = Apakah Anda yakin ingin memutuskan perangkat ini dari Firefox Account Anda?
+settingsFxaDisconnectDescription = Jika keluar, Anda akan perlu masuk lain untuk mendapatkan akses kembali ke cuplikan layar Anda.
 
 ## Shotindex page
 
