@@ -291,7 +291,7 @@ settingsSignInButton = Kcem
     .title = Kcem
 SettingsPageHeader = Iγewwaṛen n tuṭṭfa Firefox
 settingsDescription = Tzemreḍ ad tkecmeḍ s imiḍanen n Firefox i umtawi n tuṭṭfiwin-inek deg akk ibenkan u ad tesεuḍ anekcum uslig γer-sent.
-settingsPageSubHeader = Amtawi & imiḍanen
+settingsFirefoxAccountSubHeader = Amiḍan Firefox
 settingsClosePreferences =
     .title = Mdel ismenyifen
 
