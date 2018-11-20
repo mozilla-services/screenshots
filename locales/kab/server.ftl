@@ -294,6 +294,8 @@ settingsDescription = Tzemreḍ ad tkecmeḍ s imiḍanen n Firefox i umtawi n t
 settingsFirefoxAccountSubHeader = Amiḍan Firefox
 settingsClosePreferences =
     .title = Mdel ismenyifen
+settingsFxaDisconnectAlertMessage = Tebɣiḍ ad tekkseḍ tuqqna n ibenk-agi seg umiḍan-ik/im Firefox?
+settingsFxaDisconnectDescription = Ma tefɣeḍ, issefk ad teqqneḍ i tikkelt nniḍen akken ad tkecmeḍ ɣer Tuṭṭfiwin n wegdil-ik/im.
 
 ## Shotindex page
 
