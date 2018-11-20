@@ -4,7 +4,6 @@ exports.createModel = function(req) {
   const model = {
     title: "Firefox Screenshots",
     isFirefox: !!firefoxVersion && !isMobile,
-    firefoxVersion,
   };
   return model;
 };
