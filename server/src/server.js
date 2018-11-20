@@ -1176,11 +1176,9 @@ app.get("/api/fxa-oauth/confirm-login", async function(req, res, next) {
     const { access_token: accessToken } = await tradeCode(code);
     const { uid: accountId } = await getAccountId(accessToken);
 
-    if (req.deviceId) {
-      await registerAccount(req.deviceId, accountId, accessToken);
-      const { avatar, displayName, email } = await fetchProfileData(accessToken);
-      await saveProfileData(accountId, avatar, displayName, email);
-    }
+    await registerAccount(req.deviceId, accountId, accessToken);
+    const { avatar, displayName, email } = await fetchProfileData(accessToken);
+    await saveProfileData(accountId, avatar, displayName, email);
 
     if (config.gaId) {
       const analytics = ua(config.gaId);

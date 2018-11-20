@@ -8,7 +8,7 @@ exports.createModel = function(req) {
   };
 
   return db.select(`
-    SELECT accounts.avatarurl, accounts.nickname, accounts.email FROM accounts, devices
+    SELECT accounts.avatarurl, accounts.nickname, accounts.email FROM accounts
     WHERE accounts.id = $1
     `,
     [req.accountId]

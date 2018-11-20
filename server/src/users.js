@@ -245,6 +245,9 @@ exports.registerAccount = function(deviceId, accountId, accessToken) {
       `UPDATE accounts SET token = $2 WHERE id = $1`,
       [accountId, accessToken]
     ).then(() => {
+      if (!deviceId) {
+        return null;
+      }
       return db.queryWithClient(
         client,
         `UPDATE devices SET accountid = $2 WHERE id = $1`,
