@@ -283,16 +283,15 @@ copyImageErrorMessage = Unable to copy your shot to the clipboard.
 settingsDisconnectButton = Disconnect
     .title = Disconnect
 settingsGuestAccountMessage = Guest Account
-settingsSignInInvite = Sign in to sync across devices
 settingsSignInButton = Sign In
     .title = Sign in
 SettingsPageHeader = Firefox Screenshots Settings
-settingsDescription = You can sign in with Firefox Accounts to sync all your screenshots across devices and access them privately.
 settingsFirefoxAccountSubHeader = Firefox Account
 settingsClosePreferences =
     .title = Close preferences
 settingsFxaDisconnectAlertMessage = Are you sure you want to disconnect this device from your Firefox Account?
 settingsFxaDisconnectDescription = If you sign out, you will need to sign in again to regain access to your screenshots.
+settingsFxaConnectDescription = You can sign in to access your screenshots across devices.
 
 ## Shotindex page
 

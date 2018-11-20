@@ -6,8 +6,8 @@ const app = express();
 exports.app = app;
 
 app.get("/", function(req, res) {
-  if (!(req.deviceId || req.accountId)) {
-    res.status(403).send("You must have Screenshots installed");
+  if (!req.accountId) {
+    res.redirect("/");
     return;
   }
   if (req.originalUrl === "/settings/") {

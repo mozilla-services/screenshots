@@ -75,9 +75,6 @@ class Body extends React.Component {
             <Localized id="settingsGuestAccountMessage">
               <p className="title">Guest Account</p>
             </Localized>
-            <Localized id="settingsSignInInvite">
-              <p className="info">Sign in to sync across devices</p>
-            </Localized>
             <Localized id="settingsSignInButton" attrs={{title: true}}>
               <a className="account-buttons" href="/api/fxa-oauth/login/" onClick={ this.onClickConnect.bind(this)} title="Sign in">Sign In</a>
             </Localized>
@@ -85,8 +82,8 @@ class Body extends React.Component {
         </div>
       );
       subInfo = (
-        <Localized id="settingsDescription">
-          <p className="sub-info">You can sign in with Firefox Accounts to sync all your screenshots across devices and access them privately.</p>
+        <Localized id="settingsFxaConnectDescription">
+          <p className="sub-info">You can sign in to access your screenshots across devices.</p>
         </Localized>
       );
     }
