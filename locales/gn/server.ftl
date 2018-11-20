@@ -20,6 +20,16 @@ screenshotsLogo =
     .title = Screenshots kuatiarogue ñepyrũ
 bannerSignIn = <a>Emoñepyrũ tembiapo térã eñemboheraguapy</a> ehecha hag̃ua ne ra’anga opaite mba’e’okápe ha eñongatuete umi eguerohoryvéva.
 bannerUpsell = { gScreenshotsDescription } <a>Eguereko Firefox ko'ág̃a</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = ¿Mba’e ipyahúva ejuhukuaa Firefox Screenshots-pe?
+onboardingPromoMessage = Ko’ág̃a, emoñepyrũ tembiapo Screenshots-pe Firefox mba’ete ndive ha ndepya’eve hag̃ua:
+onboardingPromoMessageListItem1 = Eike ne arandukarendápe opaite ne mba’e’oka guive.
+onboardingPromoMessageListItem2 = Eñongatu ne ra’ãnga opa árape g̃uarã
+onboardingPromoDismissButton = Mboyke
+    .title = Mboyke
+onboardingPromoSigninButton = Emoñepyrũ tembiapo
+    .title = Emoñepyrũ tembiapo
 
 ## Footer
 
@@ -103,6 +113,7 @@ shotPageShareButton =
     .title = Moherakuã
 shotPageCopyButton =
     .title = Embohasa ta'anga kuatiajokohápe
+shotPageCopyActionLabel = Monguatia
 shotPageCopied = Monguatiapyre
 shotPageShareFacebook =
     .title = Emoherakuã Facebook-pe
@@ -284,9 +295,10 @@ settingsSignInButton = Eñepyrũ tembiapo
     .title = Eñepyrũ tembiapo
 SettingsPageHeader = Firefox Screenshots ñemboheko
 settingsDescription = Ikatu emoñepyrũ tembiapo ne mba’ete Firefox pegua emoñondive hag̃ua opaite mba’erechaha japyhypy ne mba’e’okápe ha eike pype ñemigua rupive.
-settingsPageSubHeader = Ñembojuehe ha mba’ete
+settingsFirefoxAccountSubHeader = Firefox Account
 settingsClosePreferences =
     .title = Jeguerohoryvéva moheñói
+settingsFxaDisconnectAlertMessage = ¿Eipe’asépa ko mba’e’oka ne mba’ete Firefox peguágui?
 
 ## Shotindex page
 
