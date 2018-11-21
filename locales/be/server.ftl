@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Сцягнуць бясплатна
 homePageHowScreenshotsWorks = Як працуе Firefox Screenshots
 homePageGetStartedTitle = Пачаць
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Знайдзіце новы значок Screenshots на паліцы прылад. Націсніце на яго і з'явіцца меню.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Выберыце значок Screenshots з меню Дзеянні старонкі ў адрасным радку і меню Screenshots з'явіцца ў верхняй частцы акна браўзера.
 homePageCaptureRegion = Захоп вобласці
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -296,14 +294,15 @@ copyImageErrorMessage = Немагчыма скапіраваць ваш зды�
 settingsDisconnectButton = Адлучыцца
     .title = Адлучыцца
 settingsGuestAccountMessage = Гасцявы уліковы запіс
-settingsSignInInvite = Увайдзіце для сінхранізацыі паміж прыладамі
 settingsSignInButton = Увайсці
     .title = Увайсці
 SettingsPageHeader = Налады Firefox Screenshots
-settingsDescription = Вы можаце ўвайсці з уліковым запісам Firefox, каб сінхранізаваць усе свае здымкі экрана паміж прыладамі і мець да іх прыватны доступ.
 settingsFirefoxAccountSubHeader = Уліковы запіс Firefox
 settingsClosePreferences =
     .title = Закрыць налады
+settingsFxaDisconnectAlertMessage = Вы ўпэўнены, што хочаце адлучыць гэту прыладу ад свайго ўліковага запісу Firefox?
+settingsFxaDisconnectDescription = Калі вы выйдзіце, вам спатрэбіцца ўвайсці ізноў, каб аднавіць доступ да вашых здымкаў.
+settingsFxaConnectDescription = Вы можаце ўвайсці, каб мець доступ да сваіх здымкаў экрана з розных прылад.
 
 ## Shotindex page
 
