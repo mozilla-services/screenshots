@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Download gratuito
 homePageHowScreenshotsWorks = Come funziona Firefox Screenshots
 homePageGetStartedTitle = Per iniziare
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Individua la nuova icona Screenshots nella barra degli strumenti. Selezionala e nella parte superiore della finestra del browser apparirà il menu di Firefox Screenshots.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Seleziona l’icona di Screenshots tra le azioni disponibili per la pagina nella barra degli indirizzi. Il menu di Screenshots apparirà in alto nella finestra del browser.
 homePageCaptureRegion = Cattura un’area dello schermo
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -290,12 +288,10 @@ copyImageErrorMessage = Impossibile copiare l’immagine negli appunti.
 settingsDisconnectButton = Disconnetti
     .title = Disconnetti
 settingsGuestAccountMessage = Account ospite
-settingsSignInInvite = Accedi per sincronizzare attraverso più dispositivi
 settingsSignInButton = Accedi
     .title = Accedi
 SettingsPageHeader = Impostazioni di Firefox Screenshots
-settingsDescription = Puoi accedere con il tuo account Firefox per sincronizzare le immagini attraverso più dispositivi, e accedervi in piena riservatezza.
-settingsPageSubHeader = Sync e account Firefox
+settingsFirefoxAccountSubHeader = Account Firefox
 settingsClosePreferences =
     .title = Chiudi impostazioni
 
