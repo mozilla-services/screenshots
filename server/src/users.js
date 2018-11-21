@@ -90,7 +90,7 @@ exports.checkLogin = function(deviceId, secret, addonVersion) {
   });
 };
 
-exports.registerLogin = function(deviceId, data, canUpdate) {
+exports.registerLogin = function(deviceId, accountId, data, canUpdate) {
   if (!deviceId) {
     throw new Error("No deviceId given");
   }
@@ -102,9 +102,9 @@ exports.registerLogin = function(deviceId, data, canUpdate) {
   }
   const secretHashed = createHash(data.secret);
   return db.insert(
-    `INSERT INTO devices (id, secret_hashed)
-     VALUES ($1, $2)`,
-    [deviceId, secretHashed || null]
+    `INSERT INTO devices (id, secret_hashed, accountid)
+     VALUES ($1, $2, $3)`,
+    [deviceId, secretHashed || null, accountId || null]
   ).then((inserted) => {
     const userAbTests = abTests.updateAbTests({}, getForceAbTests());
     if (inserted) {
