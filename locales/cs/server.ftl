@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Stáhnout zdarma
 homePageHowScreenshotsWorks = Jak služba Firefox Screenshots funguje
 homePageGetStartedTitle = Jak začít
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Novou ikonu služby Screenshots najdete na vaší liště. Po kliknutí se zobrazí nabídka v horní části okna vašeho prohlížeče.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = V adresním řádku v nabídce akcí stránky klepněte na pořízení snímku, a v horní částí okna prohlížeče se objeví nabídka služby Screenshots.
 homePageCaptureRegion = Vytvořte snímek oblasti
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -296,16 +294,15 @@ copyImageErrorMessage = Snímek se nepodařilo do schránky zkopírovat.
 settingsDisconnectButton = Odpojit
     .title = Odpojit
 settingsGuestAccountMessage = Účet pro hosta
-settingsSignInInvite = Přihlaste se pro synchronizaci napříč zařízeními
 settingsSignInButton = Přihlásit
     .title = Přihlášení
 SettingsPageHeader = Nastavení Firefox Screenshots
-settingsDescription = Můžete se přihlásit pomocí svého účtu Firefoxu a bezpečně synchronizovat všechny své snímky napříč všemi zařízeními.
 settingsFirefoxAccountSubHeader = Účet Firefoxu
 settingsClosePreferences =
     .title = Zavřít předvolby
 settingsFxaDisconnectAlertMessage = Opravdu chcete toto zařízení odpojit od svého účtu Firefoxu?
 settingsFxaDisconnectDescription = Pokud se nyní odhlásíte, pro opětovný přístup k vašim snímkům obrazovky bude nutné se znovu přihlásit.
+settingsFxaConnectDescription = Pro přístup k vašim snímkům z kteréhokoliv zařízení se stačí přihlásit.
 
 ## Shotindex page
 
