@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Téléchargement gratuit
 homePageHowScreenshotsWorks = Principes de fonctionnement de Firefox Screenshots
 homePageGetStartedTitle = Pour bien commencer
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Repérez la nouvelle icône Screenshots dans votre barre d’outils. Cliquez dessus et le menu Screenshots apparaîtra en haut de votre fenêtre de navigation.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Cliquez sur l’icône Screenshots depuis le menu des actions de la page dans la barre d’adresse, puis le menu Screenshots s’affichera en haut de votre fenêtre de navigation.
 homePageCaptureRegion = Capturez une zone de la page
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -290,16 +288,15 @@ copyImageErrorMessage = Impossible de copier votre capture dans le presse-papier
 settingsDisconnectButton = Se déconnecter
     .title = Se déconnecter
 settingsGuestAccountMessage = Compte invité
-settingsSignInInvite = Se connecter pour synchroniser les données entre les appareils
 settingsSignInButton = Se connecter
     .title = Se connecter
 SettingsPageHeader = Paramètres de Firefox Screenshots
-settingsDescription = Vous pouvez vous connecter à votre compte Firefox pour synchroniser vos captures sur tous vos appareils et y accéder de façon privée.
 settingsFirefoxAccountSubHeader = Compte Firefox
 settingsClosePreferences =
     .title = Fermer les préférences
 settingsFxaDisconnectAlertMessage = Voulez-vous vraiment déconnecter cet appareil de votre compte Firefox ?
 settingsFxaDisconnectDescription = Si vous vous déconnectez, vous devrez vous reconnecter pour accéder à nouveau à vos captures d’écran.
+settingsFxaConnectDescription = Vous pouvez vous connecter pour accéder à vos captures d’écran sur tous vos appareils.
 
 ## Shotindex page
 
