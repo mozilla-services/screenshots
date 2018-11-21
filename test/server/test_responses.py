@@ -45,7 +45,7 @@ def test_settings_page_requires_auth():
     user = ScreenshotsClient()
 
     resp = requests.get(urljoin(user.backend, "/settings"))
-    assert resp.status_code == 403
+    assert resp.url == user.backend + "/"
 
 
 def test_metrics_page():
