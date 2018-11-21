@@ -15,10 +15,10 @@ To release the server:
   - This will trigger a deploy to stage. A deploy will take about 30 minutes.
   - View the CI build of [server-prod](https://circleci.com/gh/mozilla-services/screenshots/tree/server-prod)
   - IRC will get updates (no update until deploy happens)
-  - https://screenshots.stage.mozaws.net/__version__ will show the status
+  - [`https://screenshots.stage.mozaws.net/__version__`](https://screenshots.stage.mozaws.net/__version__) will show the status
 - [ ] Ping our ops contact on IRC to deploy to prod
   - As of Q3 2018, primary is oremj, secondary is miles
-  - https://screenshots.firefox.com/__version__ will show the status
+  - [`https://screenshots.firefox.com/__version__`](https://screenshots.firefox.com/__version__) will show the status
   - IRC will get updates
 
 Note if someone needs to re-deploy the last stage deployment (e.g., some dependent resource has been updated), then going to the [CircleCI server-prod builds](https://circleci.com/gh/mozilla-services/screenshots/tree/server-prod), finding the latest build, and "rebuilding" it should trigger a redeployment of stage.
