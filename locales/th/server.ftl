@@ -205,6 +205,7 @@ annotationColorGrey =
 
 settingsDisconnectButton = ตัดการเชื่อมต่อ
     .title = ตัดการเชื่อมต่อ
+settingsGuestAccountMessage = บัญชีผู้มาเยือน
 settingsSignInButton = ลงชื่อเข้า
     .title = ลงชื่อเข้า
 SettingsPageHeader = การตั้งค่า Firefox Screenshots
@@ -262,6 +263,7 @@ metricsPageRetentionQueryUsers = จำนวนผู้ใช้
 metricsPageTotalRetentionQueryTitle = การเก็บข้อมูลทั้งหมด
 metricsPageTotalRetentionQueryUsers = จำนวนผู้ใช้
 metricsPageVersionQueryTitle = รุ่นส่วนเสริม
+metricsPageVersionQueryUsers = จำนวนผู้ใช้ที่เข้าสู่ระบบ
 metricsPageVersionQueryVersion = รุ่นส่วนเสริม
 metricsPageVersionQueryLastSeen = วัน
 metricsPageHeader = ข้อมูลสถิติ
