@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Darmowe pobieranie
 homePageHowScreenshotsWorks = Jak działa Firefox Screenshots
 homePageGetStartedTitle = Wprowadzenie
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Znajdź ikonę Screenshots na pasku narzędzi. Kliknij ją, aby wyświetlić menu Screenshots.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Wybierz ikonę Screenshots z menu interakcji na pasku adresu, a menu Screenshots pojawi się na górze przeglądarki.
 homePageCaptureRegion = Zrzut obszaru
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -296,16 +294,15 @@ copyImageErrorMessage = Nie można skopiować zrzutu do schowka.
 settingsDisconnectButton = Rozłącz
     .title = Rozłącz
 settingsGuestAccountMessage = Konto gościa
-settingsSignInInvite = Zaloguj się, aby synchronizować między urządzeniami
 settingsSignInButton = Zaloguj się
     .title = Zaloguj się
 SettingsPageHeader = Ustawienia Firefox Screenshots
-settingsDescription = Można zalogować się za pomocą konta Firefoksa, aby synchronizować wszystkie zrzuty ekranu między urządzeniami i mieć do nich dostęp.
 settingsFirefoxAccountSubHeader = Konto Firefoksa
 settingsClosePreferences =
     .title = Zamknij preferencje
 settingsFxaDisconnectAlertMessage = Czy na pewno rozłączyć to urządzenie od konta Firefoksa?
 settingsFxaDisconnectDescription = Po wylogowaniu odzyskanie dostępu do zrzutów użytkownika będzie wymagało ponownego zalogowania.
+settingsFxaConnectDescription = Można się zalogować, aby mieć dostęp do swoich zrzutów ekranu na wszystkich urządzeniach.
 
 ## Shotindex page
 
