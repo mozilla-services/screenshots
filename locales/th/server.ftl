@@ -93,6 +93,9 @@ shotPageShareEmail =
 shotPageShareLink = รับลิงก์ที่แบ่งปันได้ไปยังภาพหน้าจอนี้:
 shotPageCopyImageText =
     .label = คัดลอกข้อความภาพ
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = กู้คืนจนถึง { $date }
 shotPageExpiredMessage = ภาพหน้าจอนี้หมดอายุแล้ว
 shotPageDeleteButton =
     .title = ลบภาพหน้าจอนี้
@@ -243,6 +246,7 @@ metricsPageTotalsQueryTitle = รวม
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = ภาพรวมของ Screenshots
 metricsPageTotalsQueryDevices = อุปกรณ์ลงทะเบียนทั้งหมด
+metricsPageTotalsQueryActiveShots = ภาพที่ใช้งานอยู่
 metricsPageTotalsQueryExpiredShots = หมดอายุ (แต่สามารถกู้คืนได้)
 metricsPageTotalsQueryExpiredDeletedShots = หมดอายุ (และถูกลบแล้ว)
 metricsPageShotsQueryTitle = จำนวนภาพตามวัน
@@ -253,7 +257,9 @@ metricsPageUsersQueryCount = จำนวนผู้ใช้
 metricsPageUsersQueryDay = วัน
 metricsPageUserShotsQueryTitle = จำนวนภาพหน้าจอต่อผู้ใช้
 metricsPageUserShotsQueryCount = จำนวนผู้ใช้
+metricsPageRetentionQueryTitle = การเก็บข้อมูลตามสัปดาห์
 metricsPageRetentionQueryUsers = จำนวนผู้ใช้
+metricsPageTotalRetentionQueryTitle = การเก็บข้อมูลทั้งหมด
 metricsPageTotalRetentionQueryUsers = จำนวนผู้ใช้
 metricsPageVersionQueryTitle = รุ่นส่วนเสริม
 metricsPageVersionQueryVersion = รุ่นส่วนเสริม
