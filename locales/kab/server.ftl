@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Sider baṭel
 homePageHowScreenshotsWorks = Amek iteddu Firefox Screenshots
 homePageGetStartedTitle = Bdu
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Af-d tignit tamaynut n Screenshots deg ufeggag n ifecka. Sit s ufella sakin umuɣ Screenshots ad d-iban s nnig n usfaylu-ik n tunigin.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Fren tignit n Screenshots  seg umuγ n tigawin n usebter deg ufeggag n tansiwin, sakin amuγ Screenshots  ad id-ttwasken d asawen deg usfaylu n iminig inek.
 homePageCaptureRegion = Ṭṭef tamnaḍt
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -286,16 +284,15 @@ copyImageErrorMessage = Ur zmir ara ad inɣel tuṭṭfa-inek ɣer "ɣef afus".
 settingsDisconnectButton = Ffeɣ
     .title = Ffeɣ
 settingsGuestAccountMessage = Amiɛdan n inebgi
-settingsSignInInvite = Kcem i umtawi deg ibenkan
 settingsSignInButton = Kcem
     .title = Kcem
 SettingsPageHeader = Iγewwaṛen n tuṭṭfa Firefox
-settingsDescription = Tzemreḍ ad tkecmeḍ s imiḍanen n Firefox i umtawi n tuṭṭfiwin-inek deg akk ibenkan u ad tesεuḍ anekcum uslig γer-sent.
 settingsFirefoxAccountSubHeader = Amiḍan Firefox
 settingsClosePreferences =
     .title = Mdel ismenyifen
 settingsFxaDisconnectAlertMessage = Tebɣiḍ ad tekkseḍ tuqqna n ibenk-agi seg umiḍan-ik/im Firefox?
 settingsFxaDisconnectDescription = Ma tefɣeḍ, issefk ad teqqneḍ i tikkelt nniḍen akken ad tkecmeḍ ɣer Tuṭṭfiwin n wegdil-ik/im.
+settingsFxaConnectDescription = Tzemreḍ ad teqneḍ akken ad tkecmeḍ ɣer tuṭṭfiwin-inek deg ibenkan.
 
 ## Shotindex page
 
