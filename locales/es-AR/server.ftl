@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Descarga gratuita
 homePageHowScreenshotsWorks = Como funciona Firefox Screenshots
 homePageGetStartedTitle = Primeros pasos
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Buscá el nuevo ícono de Screenshots en la barra de herramientas. Seleccionalo y el menú de Screenshots aparecerá encima de la ventana del navegador.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Seleccioná el ícono de Screenshots en el menú de acciones de la barra de direcciones y aparecerá el menú en la parte superior de la ventana del navegador.
 homePageCaptureRegion = Capturar una región
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -290,16 +288,15 @@ copyImageErrorMessage = No se puede copiar su captura en el portapapeles.
 settingsDisconnectButton = Desconectar
     .title = Desconectar
 settingsGuestAccountMessage = Cuenta de invitado
-settingsSignInInvite = Regístrese para sincronizar entre dispositivos
 settingsSignInButton = Iniciar sesión
     .title = Iniciar sesión
 SettingsPageHeader = Configuración de Firefox Screenshots
-settingsDescription = Puede iniciar sesión con su cuenta de Firefox para sincronizar todas las capturas de pantalla de sus dispositivos y acceder a ellas de forma privada.
 settingsFirefoxAccountSubHeader = Firefox Account
 settingsClosePreferences =
     .title = Cerrar preferencias
 settingsFxaDisconnectAlertMessage = ¿Seguro que querés desconectar este dispositivo de tu cuenta de Firefox?
 settingsFxaDisconnectDescription = Si cerrás la sesión, tendrás que volver a iniciar la para recuperar el acceso a tus capturas de pantalla.
+settingsFxaConnectDescription = Puede iniciar sesión para acceder a sus capturas de pantalla a través de dispositivos.
 
 ## Shotindex page
 
