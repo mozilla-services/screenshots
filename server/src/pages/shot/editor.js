@@ -86,7 +86,7 @@ exports.Editor = class Editor extends React.Component {
     const toolContent = this.state.isCanvasRendered ? this.renderSelectedTool() : null;
     const toolBar = this.state.isCanvasRendered ? this.renderToolBar() : null;
     const display = this.loader || this.renderCanvas(toolContent);
-    return <div className="full-height column-space"
+    return <div className="full-height column-space" role="main"
       onMouseMove={this.onMouseMove.bind(this)}>
       { toolBar }
       { display }

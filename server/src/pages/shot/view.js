@@ -279,7 +279,7 @@ class Body extends React.Component {
     }
 
     return <reactruntime.BodyTemplate {...this.props}>
-      <div className="column-center full-height">
+      <div className="column-center full-height" role="main">
         <Localized id="gNoShots" attrs={{alt: true}}>
           <img src={ this.props.staticLink("/static/img/image-nope_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
         </Localized>
@@ -315,7 +315,7 @@ class Body extends React.Component {
     // Note: any attributes used here need to be preserved
     // in the render() function
     return <reactruntime.BodyTemplate {...this.props}>
-      <div className="column-center full-height">
+      <div className="column-center full-height" role="main">
         <img src={ this.props.staticLink("/static/img/image-expired_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
         <div className="alt-content">
           <Localized id="shotPageExpiredMessage">
@@ -452,7 +452,7 @@ class Body extends React.Component {
           hasFxaOnboardingDialog={this.props.hasFxaOnboardingDialog}>
             { !this.props.isOwner ? downloadButton : null }
         </ShotPageHeader>
-        <section className="clips">
+        <section className="clips" role="main">
           { this.props.isOwner && this.props.loginFailed ? <LoginFailedWarning /> : null }
           { errorMessages }
           { clips }

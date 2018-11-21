@@ -104,115 +104,117 @@ class Body extends React.Component {
           staticLink={this.props.staticLink}
           hasFxaOnboardingDialog={this.props.hasFxaOnboardingDialog}
         />
-        <div className="banner">
-          <div className="banner-image-back" />
-          <div className="banner-container">
-            <div className="banner-content">
-              <h1>Firefox Screenshots</h1>
-              <Localized id="gScreenshotsDescription">
-                <p>
-                  Screenshots made simple. Take, save, and share screenshots
-                  without leaving Firefox.
-                </p>
-              </Localized>
-              {this.renderGetFirefox()}
+        <main>
+          <div className="banner">
+            <div className="banner-image-back" />
+            <div className="banner-container">
+              <div className="banner-content">
+                <h1>Firefox Screenshots</h1>
+                <Localized id="gScreenshotsDescription">
+                  <p>
+                    Screenshots made simple. Take, save, and share screenshots
+                    without leaving Firefox.
+                  </p>
+                </Localized>
+                {this.renderGetFirefox()}
+              </div>
+              <div className="banner-image-front" />
             </div>
-            <div className="banner-image-front" />
           </div>
-        </div>
-        <Localized id="homePageHowScreenshotsWorks">
-          <h2 id="how-screenshots-works">How Screenshots Works</h2>
-        </Localized>
-        <section id="section-1">
-          <div className="container">
-            <div className="section-content align-left">
-              <Localized id="homePageGetStartedTitle">
-                <h3>Get Started</h3>
-              </Localized>
-              <Localized id="homePageGetStartedDescriptionPageAction">
-                <p>
-                  Select the Screenshots icon from the page actions menu in
-                  the address bar, and the Screenshots menu will appear on top
-                  of your browser window.
-                </p>
-              </Localized>
+          <Localized id="homePageHowScreenshotsWorks">
+            <h2 id="how-screenshots-works">How Screenshots Works</h2>
+          </Localized>
+          <section id="section-1">
+            <div className="container">
+              <div className="section-content align-left">
+                <Localized id="homePageGetStartedTitle">
+                  <h3>Get Started</h3>
+                </Localized>
+                <Localized id="homePageGetStartedDescriptionPageAction">
+                  <p>
+                    Select the Screenshots icon from the page actions menu in
+                    the address bar, and the Screenshots menu will appear on top
+                    of your browser window.
+                  </p>
+                </Localized>
+              </div>
+              <div className="section-image align-right page-action" />
             </div>
-            <div className="section-image align-right page-action" />
-          </div>
-        </section>
-        <section id="section-2">
-          <div className="container">
-            <div className="section-content align-right">
-              <Localized id="homePageCaptureRegion">
-                <h3>Capture a Region</h3>
-              </Localized>
-              <Localized id="homePageCaptureRegionDescription">
-                <p>
-                  Click and drag to select the area you want to capture. Or just
-                  hover and click — Screenshots will select the area for you.
-                  Like what you see? Select Save to access your screenshot
-                  online or the down arrow button to download it to your
-                  computer.
-                </p>
-              </Localized>
+          </section>
+          <section id="section-2">
+            <div className="container">
+              <div className="section-content align-right">
+                <Localized id="homePageCaptureRegion">
+                  <h3>Capture a Region</h3>
+                </Localized>
+                <Localized id="homePageCaptureRegionDescription">
+                  <p>
+                    Click and drag to select the area you want to capture. Or just
+                    hover and click — Screenshots will select the area for you.
+                    Like what you see? Select Save to access your screenshot
+                    online or the down arrow button to download it to your
+                    computer.
+                  </p>
+                </Localized>
+              </div>
+              <div className="section-image align-left" />
             </div>
-            <div className="section-image align-left" />
-          </div>
-        </section>
-        <section id="section-3">
-          <div className="container">
-            <div className="section-content align-left">
-              <Localized id="homePageCapturePage">
-                <h3>Capture a Page</h3>
-              </Localized>
-              <Localized id="homePageCapturePageDescription">
-                <p>
-                  Use the buttons in the upper right to capture full pages.
-                  The Save Visible button will capture the area you can view
-                  without scrolling, and the Save Full Page will capture
-                  everything on the page.
-                </p>
-              </Localized>
+          </section>
+          <section id="section-3">
+            <div className="container">
+              <div className="section-content align-left">
+                <Localized id="homePageCapturePage">
+                  <h3>Capture a Page</h3>
+                </Localized>
+                <Localized id="homePageCapturePageDescription">
+                  <p>
+                    Use the buttons in the upper right to capture full pages.
+                    The Save Visible button will capture the area you can view
+                    without scrolling, and the Save Full Page will capture
+                    everything on the page.
+                  </p>
+                </Localized>
+              </div>
+              <div className="section-image align-right" />
             </div>
-            <div className="section-image align-right" />
-          </div>
-        </section>
-        <section id="section-4">
-          <div className="container">
-            <div className="section-content align-right">
-              <Localized id="homePageSaveShare">
-                <h3>Save and Share</h3>
-              </Localized>
-              <Localized id="homePageShaveShareFavoriteDescription">
-                <p>
-                  Take your best shot. Then save it to the online Screenshots
-                  library, and Firefox copies the link to your clipboard for
-                  easy sharing. Shots in the library automatically expire after
-                  two weeks, but you can delete them at any time or choose to
-                  keep them longer.
-                </p>
-              </Localized>
+          </section>
+          <section id="section-4">
+            <div className="container">
+              <div className="section-content align-right">
+                <Localized id="homePageSaveShare">
+                  <h3>Save and Share</h3>
+                </Localized>
+                <Localized id="homePageShaveShareFavoriteDescription">
+                  <p>
+                    Take your best shot. Then save it to the online Screenshots
+                    library, and Firefox copies the link to your clipboard for
+                    easy sharing. Shots in the library automatically expire after
+                    two weeks, but you can delete them at any time or choose to
+                    keep them longer.
+                  </p>
+                </Localized>
+              </div>
+              <div className="section-image align-left" />
             </div>
-            <div className="section-image align-left" />
-          </div>
-        </section>
-        <section id="section-5">
-          <div className="container">
-            <div className="section-content align-left">
-              <Localized id="homePageSignInTitle">
-                <h3>Your Shots Everywhere</h3>
-              </Localized>
-              <Localized id="homePageSignInDescription">
-                <p>
-                  Sign in to Screenshots with your Firefox Account to access
-                  your shots everywhere you use Firefox. An added bonus: you can
-                  also save your favorite shots forever.
-                </p>
-              </Localized>
+          </section>
+          <section id="section-5">
+            <div className="container">
+              <div className="section-content align-left">
+                <Localized id="homePageSignInTitle">
+                  <h3>Your Shots Everywhere</h3>
+                </Localized>
+                <Localized id="homePageSignInDescription">
+                  <p>
+                    Sign in to Screenshots with your Firefox Account to access
+                    your shots everywhere you use Firefox. An added bonus: you can
+                    also save your favorite shots forever.
+                  </p>
+                </Localized>
+              </div>
+              <div className="section-image align-right" />
             </div>
-            <div className="section-image align-right" />
-          </div>
-        </section>
+          </section>
+        </main>
         <Footer {...this.props} />
       </reactruntime.BodyTemplate>
     );

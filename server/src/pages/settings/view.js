@@ -26,7 +26,7 @@ class Body extends React.Component {
   render() {
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <div className="full-height">
+        <div className="full-height" role="main">
           <div id="settings-header">
             <Localized id="settingsClosePreferences" attrs={{title: true}}>
               <a className="button close-preferences" href="/shots" title="Close preferences"></a>

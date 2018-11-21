@@ -45,11 +45,13 @@ class Body extends React.Component {
             enableUserSettings={this.props.enableUserSettings} staticLink={this.props.staticLink}
             hasFxaOnboardingDialog={this.props.hasFxaOnboardingDialog} />
           { this.props.disableSearch ? null : this.renderSearchForm() }
-          <div id="shot-index" className="flex-1">
-            { this.renderShots() }
-          </div>
-          { this.renderPageNavigation() }
-          { this.renderErrorMessages() }
+          <main>
+            <div id="shot-index" className="flex-1">
+              { this.renderShots() }
+            </div>
+            { this.renderPageNavigation() }
+            { this.renderErrorMessages() }
+          </main>
           <MyShotsFooter {...this.props} />
         </div>
       </reactruntime.BodyTemplate>
