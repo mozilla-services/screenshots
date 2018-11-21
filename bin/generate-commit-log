@@ -12,6 +12,7 @@ IGNORE_COMMITS = [
     "^pontoon",
     "UTF.*Pontoon",
     "^Update dependency",
+    "^Update.*Docker digest to",
 ]
 
 parser = argparse.ArgumentParser(description='Generate a changelog')

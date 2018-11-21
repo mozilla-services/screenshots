@@ -1,6 +1,15 @@
+## Version 36.2.0
+
+Another candidate release.
+
+* - Access settings page directly from url. Fixes [#5185](https://github.com/mozilla-services/screenshots/issues/5185) [635ef90](https://github.com/mozilla-services/screenshots/commit/635ef90)
+* - Remove legacy content from homepage. Fixes [#5187](https://github.com/mozilla-services/screenshots/issues/5187) [6f78f7d](https://github.com/mozilla-services/screenshots/commit/6f78f7d)
+* Settings page shows incorrect signin page after login with new firefox account. Fixes [#5193](https://github.com/mozilla-services/screenshots/issues/5193) [a800b25](https://github.com/mozilla-services/screenshots/commit/a800b25)
+* Fixes da locale's bannerUpsell anchor tag order ([#5192](https://github.com/mozilla-services/screenshots/issues/5192)). Fixes [#5190](https://github.com/mozilla-services/screenshots/issues/5190) [0e0f243](https://github.com/mozilla-services/screenshots/commit/0e0f243)
+
 ## Version 36.1.0
 
-Version 36.0.0 didn't go to production. These additional fixes were added to this server release:
+Both this and version 36.0.0 didn't go to production. These additional fixes were added to this server release:
 
 * - Messaging on settings page. Fixes [#5052](https://github.com/mozilla-services/screenshots/issues/5052) [0e71f3b](https://github.com/mozilla-services/screenshots/commit/0e71f3b)
 * - My shots fail if accessed with zero shots and no deviceIds. Fixes [#5184](https://github.com/mozilla-services/screenshots/issues/5184) [ca76999](https://github.com/mozilla-services/screenshots/commit/ca76999)
