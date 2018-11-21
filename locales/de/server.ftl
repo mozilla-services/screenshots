@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Kostenloser Download
 homePageHowScreenshotsWorks = Wie Firefox Screenshots funktioniert
 homePageGetStartedTitle = Menü aufrufen
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Das neue Screenshots-Symbol findest Du in der Symbolleiste. Wenn Du diese öffnest, erscheint das Screenshots-Menü oben in Deinem Browser-Fenster.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Wähle das Screenshots-Symbol aus dem Menü „Aktionen für Seite“ in der Adressleiste aus. Dann erscheint oben in Deinem Browser-Fenster das Screenshots-Menü.
 homePageCaptureRegion = Einen Bereich aufnehmen
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -290,16 +288,15 @@ copyImageErrorMessage = Ihr Bildschirmfoto konnte nicht in die Zwischenablage ko
 settingsDisconnectButton = Verbindung trennen
     .title = Verbindung trennen
 settingsGuestAccountMessage = Gastkonto
-settingsSignInInvite = Melden Sie sich an, um Geräte zu synchronisieren
 settingsSignInButton = Anmelden
     .title = Anmelden
 SettingsPageHeader = Einstellungen von Firefox Screenshots
-settingsDescription = Sie können sich mit Ihrem Firefox-Konto anmelden, um Ihre Bildschirmfotos zwischen Ihren Geräten zu synchronisieren und privat darauf zuzugreifen.
 settingsFirefoxAccountSubHeader = Firefox-Konto
 settingsClosePreferences =
     .title = Einstellungen schließen
 settingsFxaDisconnectAlertMessage = Möchten Sie dieses Gerät wirklich von Ihrem Firefox-Konto trennen?
 settingsFxaDisconnectDescription = Wenn Sie sich abmelden, müssen Sie sich erneut anmelden, um wieder auf Ihre Screenshots zugreifen zu können.
+settingsFxaConnectDescription = Sie können sich anmelden, um geräteübergreifend auf Ihre Bildschirmfotos zuzugreifen.
 
 ## Shotindex page
 
