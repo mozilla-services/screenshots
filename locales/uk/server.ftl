@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Безплатне завантаження
 homePageHowScreenshotsWorks = Як працює Firefox Screenshots
 homePageGetStartedTitle = Початок роботи
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Знайдіть нову піктограму знімків екрану в панелі інструментів. Натисніть на неї і з'явиться меню.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Оберіть піктограму Screenshots в меню дій для сторінки в панелі адреси і перед вами з'явиться меню Screenshots.
 homePageCaptureRegion = Захопити область
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -301,9 +299,11 @@ settingsSignInButton = Увійти
     .title = Увійти
 SettingsPageHeader = Налаштування Firefox Screenshots
 settingsDescription = Ви можете увійти з обліковим записом Firefox для синхронізації усіх знімків між різними пристроями.
-settingsPageSubHeader = Синхронізація й Облікові записи
+settingsFirefoxAccountSubHeader = Обліковий запис Firefox
 settingsClosePreferences =
     .title = Закрити налаштування
+settingsFxaDisconnectAlertMessage = Ви впевнені, що хочете від'єднати цей пристрій від облікового запису Firefox?
+settingsFxaDisconnectDescription = Якщо ви вийдете, вам необхідно буде увійти знову для отримання доступу до своїх знімків.
 
 ## Shotindex page
 
