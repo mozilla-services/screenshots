@@ -541,7 +541,7 @@ app.post("/api/register", function(req, res) {
     simpleResponse(res, "Bad request, no secret", 400);
     return;
   }
-  registerLogin(vars.deviceId, {
+  registerLogin(vars.deviceId, req.accountId, {
     secret: vars.secret,
     nickname: vars.nickname || null,
     avatarurl: vars.avatarurl || null,
