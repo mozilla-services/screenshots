@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = အခမဲ့ ဆွဲယူပါ
 homePageHowScreenshotsWorks = Firefox Screenshots အလုပ်လုပ်ပုံ
 homePageGetStartedTitle = စတင်ပါ
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Screenshots ပုံငယ်အသစ်ကို ကိရိယာဘားတန်းတွင် ရှာပါ။ ၎င်းကို ရွေးပါ၊ ထိုအခါ Screenshots မီနူး ဘရောင်ဇာဝင်းဒိုး၏ အပေါ်ဘက်တွင် ပေါ်လာပါမည်။
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = လိပ်စာဘားတန်းရှိ စာမျက်နှာဆိုင်ရာ လုပ်ဆောင်ချက်များ မီနူးထဲမှ Screenshots ပုံငယ်ကို ရွေးပါ။ ထိုအခါ Screenshots မီနူး သင့်ဘရောင်ဇာ၏ အပေါ်ဘက်နားတွင် ပေါ်လာပါမည်။
 homePageCaptureRegion = နယ်ပယ် တစ်ခုကို ပုံဖမ်းရန်
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -284,16 +282,15 @@ copyImageErrorMessage = သင့်ဖမ်းယူချက်ကို က�
 settingsDisconnectButton = မချိတ်ဆက်ပါ
     .title = မချိတ်ဆက်ပါ
 settingsGuestAccountMessage = ဧည့်သည် အကောင့်
-settingsSignInInvite = ကိရိယာများအားလုံးကို တစ်ပြေးညီဖြစ်စေရန် ဝင်ပါ။
 settingsSignInButton = ဝင်ပါ
     .title = ဝင်ပါ
 SettingsPageHeader = Firefox မှ ပုံဖမ်းရိုက်ချက် အပြင်အဆင်များ
-settingsDescription = သင့်မျက်နှာပြင်ပုံဖမ်းချက်များကို ကိရိယာအားလုံးတွင် တစ်ပြေးညီဖြစ်စေရန်နှင့် ကိုယ်တိုင် အသုံးပြုနိုင်ရန် Firefox Accounts နှင့် ဝင်နိုင်ပါသည်။
 settingsFirefoxAccountSubHeader = Firefox အကောင့်
 settingsClosePreferences =
     .title = စိတ်ကြိုက်ပြင်ဆင်မှုများ ပိတ်ပါ
 settingsFxaDisconnectAlertMessage = သင့် Firefox အကောင့်ကို သင့်ကိရိယာမှ ချိတ်ဆက်မှုရပ်တန့်ခြင်းလုပ်ချင်ပါသလား?
 settingsFxaDisconnectDescription = သင့်အကောင့်ထွက်ခဲ့လှျင် ရိုက်ချက်အသုံးပြုခြင်းလုပ်ဆောင်ရန် နောက်တစ်ကြိမ်ပြန်လည်ဝင်ရောက်ရလိမ့်မည်
+settingsFxaConnectDescription = သင့်မျက်နှာပြင်ဖမ်းယူချက်များကို ကိရိယာအားလုံးတွင် အသုံးပြုရန် ဝင်ရောက်နိုင်သည်။
 
 ## Shotindex page
 
