@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Ücretsiz indir
 homePageHowScreenshotsWorks = Firefox Screenshots nasıl çalışıyor?
 homePageGetStartedTitle = Başlayın
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Araç çubuğunuzdaki yeni Screenshots simgesini bulun. Ona tıkladığınızda tarayıcı pencerenizin üzerinde Screenshots menüsü açılacak.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Adres çubuğundaki sayfa eylemleri menüsünden “Ekran görüntüsü al”a tıklayın. Tarayıcı pencerenizin üzerinde Screenshots menüsü belirecek.
 homePageCaptureRegion = Bir bölgeyi yakalama
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -266,16 +264,15 @@ copyImageErrorMessage = Görüntü panoya kopyalanamadı.
 settingsDisconnectButton = Bağlantıyı kes
     .title = Bağlantıyı kes
 settingsGuestAccountMessage = Konuk hesabı
-settingsSignInInvite = Cihazlar arasında eşitlemek için giriş yapın
 settingsSignInButton = Giriş yap
     .title = Giriş yap
 SettingsPageHeader = Firefox Screenshots Ayarları
-settingsDescription = Ekran görüntülerinizi tüm cihazlarınız arasında eşitlemek ve onlara gizliliğinizi koruyarak ulaşmak için Firefox Hesabınıza giriş yapabilirsiniz.
 settingsFirefoxAccountSubHeader = Firefox Hesabı
 settingsClosePreferences =
     .title = Tercihleri kapat
 settingsFxaDisconnectAlertMessage = Bu cihazın Firefox Hesabınızla bağlantısını kesmek istediğinizden emin misiniz?
 settingsFxaDisconnectDescription = Çıkış yaparsanız ekran görüntülerinize erişmek istediğinizde yeniden giriş yapmanız gerekecektir.
+settingsFxaConnectDescription = Ekran görüntülerinize tüm cihazlarınızdan erişmek için giriş yapabilirsiniz.
 
 ## Shotindex page
 
