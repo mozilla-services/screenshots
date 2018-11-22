@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Gratis nedladdning
 homePageHowScreenshotsWorks = Så här fungerar Firefox Screenshots
 homePageGetStartedTitle = Kom igång
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Hitta ikonen för nya Screenshots i verktygsfältet. Markera den och menyn för Screenshots kommer att visas ovanpå ditt webbläsarfönster.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Välj ikonen Screenshots från menyn Åtgärder för sidan i adressfältet och menyn Screenshots kommer att visas ovanpå ditt webbläsarfönster.
 homePageCaptureRegion = Fånga ett område
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -290,16 +288,15 @@ copyImageErrorMessage = Det gick inte att kopiera din bild till urklipp.
 settingsDisconnectButton = Koppla från
     .title = Koppla från
 settingsGuestAccountMessage = Gästkonto
-settingsSignInInvite = Logga in för att synkronisera alla enheter
 settingsSignInButton = Logga in
     .title = Logga in
 SettingsPageHeader = Inställningar Firefox Screenshots
-settingsDescription = Du kan logga in med Firefox-konton för att synkronisera alla dina skärmbilder på olika enheter och få tillgång till dem privat.
 settingsFirefoxAccountSubHeader = Firefox-konto
 settingsClosePreferences =
     .title = Stäng inställningar
 settingsFxaDisconnectAlertMessage = Är du säker på att du vill koppla bort den här enheten från ditt Firefox-konto?
 settingsFxaDisconnectDescription = Om du loggar ut måste du logga in igen för att få tillgång till dina skärmbilder.
+settingsFxaConnectDescription = Du kan logga in för att komma åt dina skärmbilder mellan enheter.
 
 ## Shotindex page
 
