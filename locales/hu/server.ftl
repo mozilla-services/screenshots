@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Ingyenes letöltés
 homePageHowScreenshotsWorks = Hogyan működik a Firefox képernyőképek
 homePageGetStartedTitle = Kezdő lépések
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Keresse az új Screenshots ikont az eszköztáron. Válassza ki, és a Screenshots menü megjelenik a böngészőablak fölött.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Válassza a Screenshots ikont a lapműveletek menüből a címsávban, és megjelenik a Screenshots menü a böngészőablak tetején.
 homePageCaptureRegion = Terület befogása
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -290,16 +288,15 @@ copyImageErrorMessage = Nem másolható a képernyőkép a vágólapra.
 settingsDisconnectButton = Kapcsolat bontása
     .title = Kapcsolat bontása
 settingsGuestAccountMessage = Vendégfiók
-settingsSignInInvite = Jelentkezzen be az eszközök közti szinkronizációhoz
 settingsSignInButton = Bejelentkezés
     .title = Bejelentkezés
 SettingsPageHeader = A Firefox Screenshots beállításai
-settingsDescription = Bejelentkezhet a Firefox fiókjával, hogy szinkronizálja a képernyőképeit az összes eszköze között, és privát módon érje el őket.
 settingsFirefoxAccountSubHeader = Firefox fiók
 settingsClosePreferences =
     .title = Beállítások bezárása
 settingsFxaDisconnectAlertMessage = Biztosan le akarja választani ezt az eszközt a Firefox fiókjától?
 settingsFxaDisconnectDescription = Ha kijelentkezik, akkor újra be kell jelentkeznie, hogy elérje a képernyőképeit.
+settingsFxaConnectDescription = Bejelentkezhet, hogy hozzáférjen a képernyőképeihez az összes eszközén.
 
 ## Shotindex page
 
