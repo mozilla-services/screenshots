@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Brezplačen prenos
 homePageHowScreenshotsWorks = Kako Firefox Screenshots deluje
 homePageGetStartedTitle = Začnite
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Poiščite ikono Screenshots v svoji orodni vrstici. Izberite jo in na vrhu okna vašega brskalnika se bo pojavil meni Screenshots.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = V naslovni vrstici v meniju dejanj strani izberite ikono Screenshots in meni orodja se bo prikazal na vrhu okna brskalnika.
 homePageCaptureRegion = Zajemite območje
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -302,16 +300,15 @@ copyImageErrorMessage = Posnetka ni bilo mogoče kopirati v odložišče.
 settingsDisconnectButton = Prekini povezavo
     .title = Prekini povezavo
 settingsGuestAccountMessage = Račun za goste
-settingsSignInInvite = Prijavite se za sinhronizacijo med napravami
 settingsSignInButton = Prijava
     .title = Prijava
 SettingsPageHeader = Nastavitve za Firefox Screenshots
-settingsDescription = Lahko se prijavite s Firefox Accounts in sinhronizirate posnetke zaslona na različnih napravah ter jih uporabljate v zasebnosti.
 settingsFirefoxAccountSubHeader = Firefox Račun
 settingsClosePreferences =
     .title = Zapri nastavitve
 settingsFxaDisconnectAlertMessage = Ali ste prepričani, da želite odklopiti to napravo od svojega Firefox Računa?
 settingsFxaDisconnectDescription = Če se odjavite, se boste morali za ponovni dostop do posnetkov zaslona znova prijaviti.
+settingsFxaConnectDescription = Če se prijavite, lahko svoje posnetke zaslona spremljate na različnih napravah.
 
 ## Shotindex page
 
