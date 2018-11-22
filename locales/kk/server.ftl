@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Тегін жүктеп алу
 homePageHowScreenshotsWorks = Firefox скриншоттары қалай жұмыс жасайды
 homePageGetStartedTitle = Бастау
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Саймандар панеліңізден жаңа скриншоттар таңбашасын табыңыз. Оны таңдаңыз, және скриншоттар мәзірі браузер терезеңіздің үстінен шығады.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Адрестік жолақтың бет әрекеттері мәзірінен Скриншоттар таңбашасын таңдаңыз, одан кейін Скриншоттар терезесі браузер терезесінің жоғарғы жағынан шығады.
 homePageCaptureRegion = Аймақты түсіру
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -284,16 +282,15 @@ copyImageErrorMessage = Скриншотыңызды алмасу буферін
 settingsDisconnectButton = Байланысты үзу
     .title = Байланысты үзу
 settingsGuestAccountMessage = Қонақ тіркелгісі
-settingsSignInInvite = Құрылғылар арасында синхрондау үшін кіріңіз
 settingsSignInButton = Кіру
     .title = Кіру
 SettingsPageHeader = Firefox Screenshots баптаулары
-settingsDescription = Құрылғыларыңыз арасында скриншоттарды синхрондау және оларға жеке қатынау үшін Firefox тіркелгісі көмегімен кіре аласыз.
 settingsFirefoxAccountSubHeader = Firefox тіркелгісі
 settingsClosePreferences =
     .title = Баптауларды жабу
 settingsFxaDisconnectAlertMessage = Бұл құрылғыны Firefox тіркелгіңізден ажыратқыңыз келе ме?
 settingsFxaDisconnectDescription = Шығатын болсаңыз, скриншоттарға қатынау үшін қайтадан кіруіңіз керек болады.
+settingsFxaConnectDescription = Құрылғыларыңыздағы скриншоттарға қатынау үшін кіруіңізге болады.
 
 ## Shotindex page
 
