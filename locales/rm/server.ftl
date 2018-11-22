@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Telechargia gratuita
 homePageHowScreenshotsWorks = Co Firefox Screenshots funcziuna
 homePageGetStartedTitle = Cumenzar
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Il nov simbol da Screenshots chattas ti en la trav d'utensils. Cun cliccar sisur s'avra il menu da Screenshots sisum tia fanestra dal navigatur.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Tscherna l'icona da Screenshots en il menu d'acziuns da la pagina en la trav d'adressas. Lura cumpara il menu Screenshots sisum la fanestra dal navigatur.
 homePageCaptureRegion = Fotografar ina zona
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -290,16 +288,15 @@ copyImageErrorMessage = Impussibel da copiar tes maletg en l'archiv provisoric.
 settingsDisconnectButton = Deconnectar
     .title = Deconnectar
 settingsGuestAccountMessage = Conto da giast
-settingsSignInInvite = S'annunziar per sincronisar las datas tranter tut tes apparats
 settingsSignInButton = S'annunziar
     .title = S'annunziar
 SettingsPageHeader = Preferenzas da Firefox Screenshots
-settingsDescription = Ti pos t'annunziar cun tes conto da Firefox per sincronisar tut tes maletgs dal visur tranter tut tes apparats – cun access privat.
 settingsFirefoxAccountSubHeader = Conto da Firefox
 settingsClosePreferences =
     .title = Serrar las preferenzas
 settingsFxaDisconnectAlertMessage = Vuls ti propi deconnectar quest apparat dal conto da Firefox?
 settingsFxaDisconnectDescription = Sche ti sortas, stos ti danovamain t'annunziar per puspè avair access a tes maletgs dal visur.
+settingsFxaConnectDescription = Ti pos t'annunziar per acceder als maletgs dal visur sin tut tes apparats.
 
 ## Shotindex page
 
