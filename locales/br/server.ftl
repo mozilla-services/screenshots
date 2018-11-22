@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Pellgargadur digoust
 homePageHowScreenshotsWorks = Penaos ez a en-dro Firefox Screenshots
 homePageGetStartedTitle = Kregiñ ganti
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Klaskit an arlun Tapadenn-skramm nevez war ho parrenn-ostilhoù. Klikit warnañ evit diskouez lañser an tapadennoù-skramm e krec'h prenestr ho merdeer.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Klikit war an arlun Tapadennoù-skramm war lañser gwezhioù ar bajenn er varrenn-chomlec'h evit diskouez lañser an tapadennoù-skramm e krec'h prenestr ho merdeer.
 homePageCaptureRegion = Skeudenniñ ul lodenn
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -304,14 +302,15 @@ copyImageErrorMessage = N'haller ket eilañ ho tapadenn er golver
 settingsDisconnectButton = Digennaskañ
     .title = Digennaskañ
 settingsGuestAccountMessage = Kont kouviad
-settingsSignInInvite = Kennaskit evit goubredañ etre ho trevnadoù
 settingsSignInButton = Kennaskañ
     .title = Kennaskañ
 SettingsPageHeader = Arventennoù Firefox Screenshots
-settingsDescription = Gallout a rit kennaskañ gant Firefox Accounts evit goubredañ holl ho tapadennoù skramm etre ho trevnadoù hag haeziñ anezho ent prevez.
-settingsPageSubHeader = Goubredañ & Kontoù
+settingsFirefoxAccountSubHeader = Kont Firefox
 settingsClosePreferences =
     .title = Serriñ ar gwellvezioù
+settingsFxaDisconnectAlertMessage = Ha sur oc'h e fell deoc'h digennaskañ an trevnad-mañ deus ho kont Firefox?
+settingsFxaDisconnectDescription = Ma tigennaskit ho po ezhomm adkennaskañ evit haeziñ ho tapadennoù-skramm en-dro.
+settingsFxaConnectDescription = Gallout a rit kennaskañ evit haeziñ ho tapadennoù-skramm war ho holl drevnadoù.
 
 ## Shotindex page
 
