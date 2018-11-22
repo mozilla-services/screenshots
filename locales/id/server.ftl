@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Unduh Gratis
 homePageHowScreenshotsWorks = Cara Kerja Firefox Screenshots
 homePageGetStartedTitle = Memulai
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Temukan ikon Screenshots baru di bilah alat Anda. Pilih, kemudian menu Screenshots akan muncul di bagian atas jendela peramban Anda.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Pilih ikon Screenshot dari menu tindakan laman di bilah alamat, dan menu Screenshots akan muncul di atas jendela peramban Anda.
 homePageCaptureRegion = Tangkap Bagian
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -266,16 +264,15 @@ copyImageErrorMessage = Gagal menyalin tangkapan layar Anda ke papan klip
 settingsDisconnectButton = Putuskan
     .title = Putuskan
 settingsGuestAccountMessage = Akun Tamu
-settingsSignInInvite = Masuk untuk sinkronisasi antar perangkat
 settingsSignInButton = Masuk
     .title = Masuk
 SettingsPageHeader = Setelan Firefox Screenshots
-settingsDescription = Anda dapat masuk dengan Firefox Accounts untuk sinkronisasi semua tangkapan layar Anda antar perangkat dan mengaksesnya secara privat.
 settingsFirefoxAccountSubHeader = Firefox Account
 settingsClosePreferences =
     .title = Tutup pengaturan
 settingsFxaDisconnectAlertMessage = Apakah Anda yakin ingin memutuskan perangkat ini dari Firefox Account Anda?
 settingsFxaDisconnectDescription = Jika keluar, Anda akan perlu masuk lain untuk mendapatkan akses kembali ke cuplikan layar Anda.
+settingsFxaConnectDescription = Anda dapat masuk untuk mengakses cuplikan layar Anda di sepanjang perangkat.
 
 ## Shotindex page
 
