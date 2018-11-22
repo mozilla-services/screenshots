@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = 免费下载
 homePageHowScreenshotsWorks = 如何使用 Firefox Screenshots
 homePageGetStartedTitle = 开始使用
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = 在工具栏上找到新增的“屏幕截图”图标，点击它，截图菜单将出现在浏览器窗口的顶部。
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = 点击地址栏中的“页面动作”菜单，选择“截图”按钮，截图菜单会显示在您的浏览器窗口的顶部。
 homePageCaptureRegion = 截取选定区域
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -272,16 +270,15 @@ copyImageErrorMessage = 无法将截图复制到剪贴板。
 settingsDisconnectButton = 断开连接
     .title = 断开连接
 settingsGuestAccountMessage = 游客账户
-settingsSignInInvite = 登录以在设备间同步
 settingsSignInButton = 登录
     .title = 登录
 SettingsPageHeader = Firefox Screenshots 设置
-settingsDescription = 您可以使用 Firefox 账号登录以在设备间同步所有屏幕截图和私密地存取。
 settingsFirefoxAccountSubHeader = Firefox 账户
 settingsClosePreferences =
     .title = 关闭首选项
 settingsFxaDisconnectAlertMessage = 您确定要将此设备与 Firefox 账户断开连接吗？
 settingsFxaDisconnectDescription = 退出后，需要再次登录才能访问截图。
+settingsFxaConnectDescription = 您可以登录以跨设备访问屏幕截图。
 
 ## Shotindex page
 
