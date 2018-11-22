@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Pulsuz Endir
 homePageHowScreenshotsWorks = Firefox Ekran Görüntüləri necə işləyir
 homePageGetStartedTitle = Başla
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Alət sətrinizdə yeni Ekran Görüntüləri ikonunu tapın. Onu seçin və Ekran Görüntüləri menyusu səyyahınızın pəncərəsinin üstündə peyda olacaq.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Ünvan sətrindəki səhifə əməliyyatları menyusundan Ekran Görüntüləri ikonunu seçin  və Ekran Görüntüləri menyusu səyyahınızın pəncərəsinin üstündə peyda olacaq.
 homePageCaptureRegion = Bölgəni çək
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -290,16 +288,15 @@ copyImageErrorMessage = Şəkliniz mübadilə buferinə köçürülə bilmir.
 settingsDisconnectButton = Əlaqəni kəs
     .title = Əlaqəni kəs
 settingsGuestAccountMessage = Qonaq Hesabı
-settingsSignInInvite = Cihazlar arasında sinxronlaşma üçün daxil olun
 settingsSignInButton = Daxil ol
     .title = Daxil ol
 SettingsPageHeader = Firefox Screenshots Tənzimləmələri
-settingsDescription = Firefox Hesabınıza daxil olaraq ekran görüntülərinizi cihazlarınız arasında paylaşa və onları məxfi olaraq işlədə bilərsiz.
 settingsFirefoxAccountSubHeader = Firefox Hesabı
 settingsClosePreferences =
     .title = Nizamlamaları qapat
 settingsFxaDisconnectAlertMessage = Bu cihazı Firefox Hesabınızdan ayırmaq istədiyinizə əminsiniz?
 settingsFxaDisconnectDescription = Əgər çıxsanız ekran görüntülərinizi təkrar görmək üçün daxil olmalı olacaqsınız.
+settingsFxaConnectDescription = Daxil olaraq görüntülərinizi bütün cihazlarınızda görə bilərsiz.
 
 ## Shotindex page
 
