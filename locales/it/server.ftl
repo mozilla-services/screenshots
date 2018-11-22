@@ -294,6 +294,7 @@ SettingsPageHeader = Impostazioni di Firefox Screenshots
 settingsFirefoxAccountSubHeader = Account Firefox
 settingsClosePreferences =
     .title = Chiudi impostazioni
+settingsFxaDisconnectAlertMessage = Disconnettere questo dispositivo dal proprio account Firefox?
 
 ## Shotindex page
 
