@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Tải về miễn phí
 homePageHowScreenshotsWorks = Cách để Firefox Screenshots làm việc
 homePageGetStartedTitle = Bắt đầu
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Tìm biểu tượng Ảnh chụp màn hình mới trên thanh công cụ của bạn. Chọn nó, và trình đơn Ảnh chụp màn hình sẽ xuất hiện ở đầu cửa sổ trình duyệt của bạn.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Chọn biểu tượng Ảnh chụp màn hình từ trình đơn tác vụ trên trang trong thanh địa chỉ và trình đơn Ảnh chụp màn hình sẽ xuất hiện trên đầu cửa sổ trình duyệt của bạn.
 homePageCaptureRegion = Chụp một khu vực
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -272,16 +270,15 @@ copyImageErrorMessage = Không thể sao chép ảnh chụp của bạn vào cli
 settingsDisconnectButton = Ngắt kết nối
     .title = Ngắt kết nối
 settingsGuestAccountMessage = Tài khoản khách
-settingsSignInInvite = Đăng nhập để đồng bộ trên các thiết bị
 settingsSignInButton = Đăng nhập
     .title = Đăng nhập
 SettingsPageHeader = Cài đặt Firefox Screenshots
-settingsDescription = Bạn có thể đăng nhập tài khoản Firefox để đồng bộ hóa tất cả ảnh chụp màn hình của bạn trên thiết bị và truy cập chúng một cách riêng tư.
 settingsFirefoxAccountSubHeader = Tài khoản Firefox
 settingsClosePreferences =
     .title = Đóng cài đặt
 settingsFxaDisconnectAlertMessage = Bạn có chắc chắn muốn ngắt kết nối thiết bị này khỏi Tài khoản Firefox của mình không?
 settingsFxaDisconnectDescription = Nếu bạn đăng xuất, bạn sẽ cần phải đăng nhập lại để lấy lại quyền truy cập vào ảnh chụp màn hình của mình.
+settingsFxaConnectDescription = Bạn có thể đăng nhập để truy cập ảnh chụp màn hình của mình trên các thiết bị.
 
 ## Shotindex page
 
