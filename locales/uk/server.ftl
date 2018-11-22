@@ -294,16 +294,15 @@ copyImageErrorMessage = Не вдалося скопіювати ваш знім
 settingsDisconnectButton = Від'єднатися
     .title = Від'єднатися
 settingsGuestAccountMessage = Обліковий запис гостя
-settingsSignInInvite = Увійдіть для синхронізації на всіх пристроях
 settingsSignInButton = Увійти
     .title = Увійти
 SettingsPageHeader = Налаштування Firefox Screenshots
-settingsDescription = Ви можете увійти з обліковим записом Firefox для синхронізації усіх знімків між різними пристроями.
 settingsFirefoxAccountSubHeader = Обліковий запис Firefox
 settingsClosePreferences =
     .title = Закрити налаштування
 settingsFxaDisconnectAlertMessage = Ви впевнені, що хочете від'єднати цей пристрій від облікового запису Firefox?
 settingsFxaDisconnectDescription = Якщо ви вийдете, вам необхідно буде увійти знову для отримання доступу до своїх знімків.
+settingsFxaConnectDescription = Ви можете увійти, щоб отримати доступ до своїх знімків екрана на різних пристроях.
 
 ## Shotindex page
 
