@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Gratis downloaden
 homePageHowScreenshotsWorks = Hoe Firefox Screenshots werkt
 homePageGetStartedTitle = Aan de slag
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Zoek het nieuwe Screenshots-pictogram op uw werkbalk. Selecteer het, en het Screenshots-menu verschijnt boven in uw browservenster.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Selecteer het Screenshots-pictogram vanuit het menu Pagina-acties in de adresbalk, en het Screenshots-menu verschijnt boven in uw browservenster.
 homePageCaptureRegion = Een gebied vastleggen
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -290,16 +288,15 @@ copyImageErrorMessage = Kan uw afbeelding niet naar het klembord kopiëren.
 settingsDisconnectButton = Verbinding verbreken
     .title = Verbinding verbreken
 settingsGuestAccountMessage = Gastaccount
-settingsSignInInvite = Meld u aan om tussen apparaten te synchroniseren
 settingsSignInButton = Aanmelden
     .title = Aanmelden
 SettingsPageHeader = Instellingen van Firefox Screenshots
-settingsDescription = U kunt zich aanmelden met Firefox Accounts om al uw schermafbeeldingen tussen apparaten te synchroniseren en deze privé te benaderen.
 settingsFirefoxAccountSubHeader = Firefox-account
 settingsClosePreferences =
     .title = Voorkeuren sluiten
 settingsFxaDisconnectAlertMessage = Weet u zeker dat u dit apparaat van uw Firefox-account wilt loskoppelen?
 settingsFxaDisconnectDescription = Als u zich afmeldt, dient u zich opnieuw aan te melden om weer toegang tot uw schermafbeeldingen te krijgen.
+settingsFxaConnectDescription = U kunt zich aanmelden om uw schermafbeeldingen op meerdere apparaten te benaderen.
 
 ## Shotindex page
 
