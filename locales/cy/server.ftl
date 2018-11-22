@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Ar Gael am Ddim
 homePageHowScreenshotsWorks = Sut mae Firefox Screenshots yn gweithio
 homePageGetStartedTitle = Cychwyn Arni
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Chwiliwch am eicon newydd Screenshots ar eich bar offer. Cliciwch arno a bydd dewislen Screenshots yn ymddangos ar frig ffenestr eich porwr.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Dewiswch eicon Screenshots o'r ddewislen gweithredoedd tudalen tyn y bar cyfeiriad a bydd dewislen Screenshots yn ymddangos ar frig ffenestr eich porwr.
 homePageCaptureRegion = Cipio Ardal
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -314,16 +312,15 @@ copyImageErrorMessage = Methu copïo eich llun i'r clipfwrdd
 settingsDisconnectButton = Datgysylltu
     .title = Datgysylltu
 settingsGuestAccountMessage = Cyfrif Gwestai
-settingsSignInInvite = Mewngofnodi i gydweddu ar draws dyfeisiau
 settingsSignInButton = Mewngofnodi
     .title = Mewngofnodi
 SettingsPageHeader = Gosodiadau Firefox Screenshots
-settingsDescription = Gallwch fewngofnodi gyda Chyfrifon Firefox i gydweddu eich holl luniau sgrin ar draws dyfeisiau a chael mynediad atyn nhw'n breifat.
 settingsFirefoxAccountSubHeader = Cyfrif Firefox
 settingsClosePreferences =
     .title = Cau'r dewisiadau
 settingsFxaDisconnectAlertMessage = Ydych chi'n siŵr eich bod am ddatgysylltu'r ddyfais hon oddi wrth eich Cyfrif Firefox?
 settingsFxaDisconnectDescription = Os byddwch yn allgofnodi, bydd angen i chi fewngofnodi eto i adennill mynediad i'ch lluniau sgrin.
+settingsFxaConnectDescription = Gallwch fewngofnodi i gael mynediad i'ch lluniau ar draws dyfeisiau.
 
 ## Shotindex page
 
