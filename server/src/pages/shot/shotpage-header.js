@@ -163,7 +163,7 @@ class EditableTitle extends React.Component {
     if (this.state.isSaving) {
       className += " saving";
     }
-    return <span ref={titleElement => this.titleElement = titleElement} className={className} {...handlers}>{this.state.isSaving || this.props.title}</span>;
+    return <h1 ref={titleElement => this.titleElement = titleElement} className={className} {...handlers}>{this.state.isSaving || this.props.title}</h1>;
   }
 
   renderEditing() {

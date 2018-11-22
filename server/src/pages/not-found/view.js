@@ -32,6 +32,9 @@ class Body extends React.Component {
           <Header hasLogo={true} hasFxa={this.props.hasFxa} />
           <div id="shot-index" className="flex-1" role="main">
             <div className="no-shots" key="no-shots-found">
+              <Localized id="notFoundPageDescription">
+                <h1 hidden>Page not found.</h1>
+              </Localized>
               <Localized id="gNoShots" attrs={{alt: true}}>
                 <img src={ this.props.staticLink("/static/img/image-nope_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
               </Localized>

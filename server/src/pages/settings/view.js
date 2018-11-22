@@ -92,7 +92,7 @@ class Body extends React.Component {
     }
     return <div className="preferences">
       <Localized id="SettingsPageHeader">
-        <p className="header">Firefox Screenshots Settings</p>
+        <h1 className="header">Firefox Screenshots Settings</h1>
       </Localized>
       <hr />
       <div className="settingsBody">

@@ -30,6 +30,9 @@ class Body extends React.Component {
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <div className="column-center full-height" role="main">
+          <Localized id="leavePageRemoveAllData">
+            <h1 hidden>Remove All Data</h1>
+          </Localized>
           <Localized id="gNoShots" attrs={{alt: true}}>
             <img src={ this.props.staticLink("/static/img/image-nope_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
           </Localized>

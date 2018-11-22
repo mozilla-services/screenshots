@@ -47,6 +47,9 @@ class Body extends React.Component {
           { this.props.disableSearch ? null : this.renderSearchForm() }
           <main>
             <div id="shot-index" className="flex-1">
+              <Localized id="gMyShots">
+                <h1 hidden>My Shot</h1>
+              </Localized>
               { this.renderShots() }
             </div>
             { this.renderPageNavigation() }
