@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Dermotne ześěgnjenje
 homePageHowScreenshotsWorks = Kak Firefox Screenshots funkcioněrujo
 homePageGetStartedTitle = Prědne kšace
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Symbol nowego Screenshots na swójej symbolowej rědce namakajośo.  Wubjeŕśo jen a meni Screenshots se górjejce we woknje wašogo wobglědowaka zjawijo.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Wubjeŕśo symbol Screenshots z menija akcijow boka w adresowem pólu, a meni Screenshots pokažo se górjejce we woknje wobglědowaka.
 homePageCaptureRegion = Wobcerk fotografěrowaś
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -302,16 +300,15 @@ copyImageErrorMessage = Njejo móžno, wašo foto wobrazowki do mjazywótkłada 
 settingsDisconnectButton = Zwisk źěliś
     .title = Zwisk źěliś
 settingsGuestAccountMessage = Góstne konto
-settingsSignInInvite = Pśizjawśo se, aby pśez rědy synchronizěrował
 settingsSignInButton = Pśizjawiś
     .title = Pśizjawiś
 SettingsPageHeader = Nastajenja Firefox Screenshots
-settingsDescription = Móžośo se z Firefox Accounts pśizjawiś, aby wšykne swóje fota wobrazowki pśez rědy synchronizěrował a priwatny pśistup k nim měł.
 settingsFirefoxAccountSubHeader = Konto Firefox
 settingsClosePreferences =
     .title = Nastajenja zacyniś
 settingsFxaDisconnectAlertMessage = Cośo toś ten rěd napšawdu ze swójogo konta Firefox źěliś?
 settingsFxaDisconnectDescription = Jolic se wózjwjaśo, musyśo se znowego pśizjawiś, ab pśistup k swójim fotam wobrazowki slědk dostał.
+settingsFxaConnectDescription = Móžośo se pśizjawiś, aby pśistup k swójim fotam wobrazowki pśez rědy měł.
 
 ## Shotindex page
 
