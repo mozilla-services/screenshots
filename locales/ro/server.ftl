@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Descărcare gratuită
 homePageHowScreenshotsWorks = Cum funcționează Firefox Screenshots
 homePageGetStartedTitle = Începe
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Găsește noua pictogramă Screenshots pe bara de unelte. Selecteaz-o și meniul Screenshots va apărea în partea de sus a ferestrei browserului.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Selectează pictograma Screenshots din meniul de acțiuni pe pagină în bara de adrese și meniul Screenshots va apărea în partea de sus în fereastra browserului.
 homePageCaptureRegion = Capturează o regiune
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -296,13 +294,15 @@ copyImageErrorMessage = Nu se poate copia captura pe clipboard.
 settingsDisconnectButton = Deconectează-te
     .title = Deconectează-te
 settingsGuestAccountMessage = Cont ca vizitator
-settingsSignInInvite = Autentifică-te pentru a sincroniza toate dispozitivele
 settingsSignInButton = Autentifică-te
     .title = Autentifică-te
 SettingsPageHeader = Setări Firefox Screenshots
-settingsDescription = Te poți autentifica cu conturi Firefox pentru a sincroniza toate capturile de ecran de pe toate dispozitivele și pentru a le accesa în mod privat.
+settingsFirefoxAccountSubHeader = Cont Firefox
 settingsClosePreferences =
     .title = Închide preferințele
+settingsFxaDisconnectAlertMessage = Ești sigur că vrei să deconectezi acest dispozitiv de la contul Firefox?
+settingsFxaDisconnectDescription = Dacă te deconectezi, va trebui să te autentifici din nou ca să ai iar acces la capturile tale de ecran.
+settingsFxaConnectDescription = Te poți autentifica pentru acces la capturile tale de ecran pe toate dispozitivele.
 
 ## Shotindex page
 
