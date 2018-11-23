@@ -61,8 +61,6 @@ homePageDownloadFirefoxSubTitle = تنزيل مجاني
 homePageHowScreenshotsWorks = كيف تعمل لقطات فَيرفُكس
 homePageGetStartedTitle = ابدأ
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = ابحث عن أيقونة اللقطات في شريط الأدوات. انقرها وستظهر قائمة اللقطات على نافذة المتصفّح.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = انقر أيقونة اللقطات من قائمة إجراءات الصفحة في شريط العنوان وستظهر قائمة اللقطات أعلى نافذة المتصفح.
 homePageCaptureRegion = التقط منطقة
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -305,14 +303,13 @@ copyImageErrorMessage = تعذّر نسخ اللقطة إلى الحافظة.
 settingsDisconnectButton = اقطع الاتصال
     .title = اقطع الاتصال
 settingsGuestAccountMessage = حساب ضيف
-settingsSignInInvite = لِج للمزامنة بين الأجهزة
 settingsSignInButton = لِج
     .title = لِج
 SettingsPageHeader = إعدادات لقطات شاشة فَيَرفُكس
-settingsDescription = يمكنك الولوج مستخدما حسابات فَيَرفُكس لمزامنة كل لقطات الشاشة عبر الأجهزة والوصول إليها بشكل خاص منها.
-settingsPageSubHeader = المزامنة والحسابات
+settingsFirefoxAccountSubHeader = حساب فَيَرفُكس
 settingsClosePreferences =
     .title = أغلِق التفضيلات
+settingsFxaDisconnectAlertMessage = أمتأكّد من فصل هذا الجهاز من حساب فَيَرفُكس لديك؟
 
 ## Shotindex page
 
@@ -349,6 +346,8 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = هذه لقطة في قائمة المفضلة، صلاحيتها لا تنقضي
+shotIndexSyncedShot =
+    .title = أُخذت اللقطة من جهاز آخر
 
 ## Delete Confirmation Dialog
 
