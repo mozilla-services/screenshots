@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = უფასო ჩამოტვირთვ
 homePageHowScreenshotsWorks = როგორ მუშაობს Firefox Screenshots
 homePageGetStartedTitle = დაიწყეთ
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = მონახეთ Screenshots-ის ახალი ხატულა ხელსაწყოთა ზოლზე. დააჭირეთ და Screenshots-ის მენიუ გამოჩნდება ბრაუზერის ფანჯრის ზედა მხარეს.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = აირჩიეთ Screenshots-ის ხატულა მისამართების ველში არსებულ, მოქმედებების მენიუში და Screenshots-ის ღილაკები გამოჩნდება ბრაუზერის ფანჯრის ზედა მხარეს.
 homePageCaptureRegion = სივრცისთვის სურათის გადაღება
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -286,14 +284,15 @@ copyImageErrorMessage = სურათის დაკოპირება ვ
 settingsDisconnectButton = კავშირის შეწყვეტა
     .title = კავშირის შეწყვეტა
 settingsGuestAccountMessage = სტუმრის ანგარიში
-settingsSignInInvite = შესვლა, მოწყობილობებზე დასინქრონებისთვის
 settingsSignInButton = შესვლა
     .title = შესვლა
 SettingsPageHeader = Firefox Screenshots-ის პარამეტრები
-settingsDescription = შეგიძლიათ Firefox-ანგარიშზე შესვლა, გადაღებული სურათების ყველა მოწყობილობაზე უსაფრთხოდ დასინქრონებისთვის.
-settingsPageSubHeader = სინქრონიზაცია და ანგარიშები
+settingsFirefoxAccountSubHeader = Firefox-ანგარიში
 settingsClosePreferences =
     .title = პარამეტრების დახურვა
+settingsFxaDisconnectAlertMessage = ნამდვილად გსურთ ამ მოწყობილობის გამოთიშვა Firefox-ანგარიშისგან?
+settingsFxaDisconnectDescription = ანგარიშიდან გამოსვლის შემდეგ, ხელახლა დაგჭირდებათ შესვლა, თქვენს გადაღებულ სურათებთან წვდომის აღსადგენად.
+settingsFxaConnectDescription = შეგიძლიათ შეხვიდეთ ანგარიშზე, თქვენს გადაღებულ სურათებთან წვდომის მისაღებად სხვადასხვა მოწყობილობებზე.
 
 ## Shotindex page
 
