@@ -295,6 +295,8 @@ settingsFirefoxAccountSubHeader = Account Firefox
 settingsClosePreferences =
     .title = Chiudi impostazioni
 settingsFxaDisconnectAlertMessage = Disconnettere questo dispositivo dal proprio account Firefox?
+settingsFxaDisconnectDescription = Se ti disconnetti, dovrai accedere di nuovo per ritrovare i tuoi screenshot.
+settingsFxaConnectDescription = Accedi all’account per ritrovare i tuoi screenshot su tutti i dispositivi.
 
 ## Shotindex page
 
