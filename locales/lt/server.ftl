@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Nemokamas atsisiuntimas
 homePageHowScreenshotsWorks = Kaip veikia „Firefox“ ekrano nuotraukos
 homePageGetStartedTitle = Pradėkite
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Raskite naująją „Firefox“ ekrano nuotraukų piktogramą savo įrankinėje. Pasirinkite ją ir ekrano nuotraukų meniu pasirodys virš jūsų naršyklės lango.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Pasirinkite ekrano nuotraukų piktogramą iš tinklalapio veiksmų meniu, esančio adreso juostoje. Tuomet virš jūsų naršyklės lango pasirodys ekrano nuotraukų meniu.
 homePageCaptureRegion = Fotografuokite sritį
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -296,16 +294,15 @@ copyImageErrorMessage = Jūsų nuotraukos nepavyko nukopijuoti į iškarpinę.
 settingsDisconnectButton = Atsijungti
     .title = Atsijungti
 settingsGuestAccountMessage = Svečio paskyra
-settingsSignInInvite = Prisijunkite, norėdami sinchronizuoti visuose įrenginiuose
 settingsSignInButton = Prisijungti
     .title = Prisijungti
 SettingsPageHeader = „Firefox“ ekrano nuotraukų nuostatos
-settingsDescription = Galite prisijungti su „Firefox“ paskyra, norėdami sinchronizuoti savo ekrano nuotraukas visuose įrenginiuose, ir saugiai jas pasiekti.
 settingsFirefoxAccountSubHeader = „Firefox“ paskyra
 settingsClosePreferences =
     .title = Užverti nuostatas
 settingsFxaDisconnectAlertMessage = Ar tikrai norite atjungti šį įrenginį nuo savo „Firefox“ paskyros?
 settingsFxaDisconnectDescription = Jei atsijungsite, norėdami pasiekti savo nuotraukas turėsite prisijungti iš naujo.
+settingsFxaConnectDescription = Norėdami pasiekti savo ekrano nuotraukas kituose įrenginiuose, prisijunkite.
 
 ## Shotindex page
 
