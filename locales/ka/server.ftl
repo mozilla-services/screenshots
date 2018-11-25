@@ -110,8 +110,8 @@ shotPageConfirmDelete = ნამდვილად გსურთ ამ ს�
 shotPageShareButton =
     .title = გაზიარება
 shotPageCopyButton =
-    .title = სურათის დაკოპირება
-shotPageCopyActionLabel = დაკოპირება
+    .title = სურათის ასლი
+shotPageCopyActionLabel = ასლი
 shotPageCopied = დაკოპირებულია
 shotPageShareFacebook =
     .title = გაზიარება Facebook-ით
@@ -124,7 +124,7 @@ shotPageShareEmail =
 shotPageShareLink = გასაზიარებელი ბმულის მიღება
 shotPagePrivacyMessage = ამ ბმულის საშუალებით, ნებისმიერს შეეძლება სურათის ნახვა.
 shotPageCopyImageText =
-    .label = სურათის ტექსტის დაკოპირება
+    .label = სურათის ტექსტის ასლი
 shotPageConfirmDeletion = ნამდვილად გსურთ ამ სურათის სამუდამოდ წაშლა?
 # Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageTimeExpirationMessage = თუ არაფერს მოიმოქმედებთ, ეს სურათი სამუდამოდ წაიშლება <timediff></timediff>.
@@ -277,7 +277,7 @@ textToolInputPlaceholder =
 ## are passed from the shot page to the addon.
 
 copyImageErrorTitle = რაღაც ხარვეზი წარმოიქმნა
-copyImageErrorMessage = სურათის დაკოპირება ვერ მოხერხდა.
+copyImageErrorMessage = სურათის ასლის აღება ვერ მოხერხდა.
 
 ## Settings Page
 
