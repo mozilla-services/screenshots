@@ -20,6 +20,16 @@ screenshotsLogo =
     .title = Avaleht
 bannerSignIn = <a>Logi sisse või registreeru kasutajaks</a>, et pääseda ligi ekraanipiltidele kõigist oma seadmetest ning salvestada lemmikud jäädavalt.
 bannerUpsell = { gScreenshotsDescription } <a>Hangi Firefox</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Mis on uut Firefox Screenshots keskkonnas?
+onboardingPromoMessage = Nüüd saad keskkonda sisse logida Firefoxi kontoga ja teha rohkem asju:
+onboardingPromoMessageListItem1 = pääsed ligi piltidele kõigist oma seadmetest
+onboardingPromoMessageListItem2 = saad salvestada pilte igavesti
+onboardingPromoDismissButton = Peida
+    .title = Peida
+onboardingPromoSigninButton = Logi sisse
+    .title = Logi sisse
 
 ## Footer
 
@@ -54,8 +64,6 @@ homePageDownloadFirefoxSubTitle = Tasuta allalaadimine
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kuidas Firefox Screenshots töötab
 homePageGetStartedTitle = Alustamine
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Leia tööriistaribalt uus Screenshots ikoon. Vali see ning veebilehitseja aknas avaneb Screenshots menüü.
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Vali Screenshotsi ikoon lehe tegevuste menüüst ja su brauseriakna kohal avaneb ekraanipiltide tegemise menüü.
 homePageCaptureRegion = Piirkonna valimine
@@ -103,6 +111,7 @@ shotPageShareButton =
     .title = Jaga
 shotPageCopyButton =
     .title = Kopeeri pilt vahemällu
+shotPageCopyActionLabel = Kopeeri
 shotPageCopied = Kopeeritud
 shotPageShareFacebook =
     .title = Jaga Facebookis
@@ -279,14 +288,15 @@ copyImageErrorMessage = Pilti pole võimalik vahemällu kopeerida.
 settingsDisconnectButton = Ühenda lahti
     .title = Ühenda lahti
 settingsGuestAccountMessage = Külaliskonto
-settingsSignInInvite = Seadmete vahel sünkimiseks logi sisse
 settingsSignInButton = Logi sisse
     .title = Logi sisse
 SettingsPageHeader = Firefox Screenshots'i seaded
-settingsDescription = Saad Firefoxi kontoga sisse logida ning vaadata ja sünkida pilte privaatselt seadmete vahel.
-settingsPageSubHeader = Sünkimine ja kontod
+settingsFirefoxAccountSubHeader = Firefoxi konto
 settingsClosePreferences =
     .title = Sulge seaded
+settingsFxaDisconnectAlertMessage = Kas oled kindel, et soovid selle seadme Firefoxi kontost lahti ühendada?
+settingsFxaDisconnectDescription = Kui logid välja, siis pead oma piltide nägemiseks uuesti sisse logima.
+settingsFxaConnectDescription = Sa võid sisse logida, et näha pilte kõigis oma seadmetes.
 
 ## Shotindex page
 
