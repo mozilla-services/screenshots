@@ -54,8 +54,6 @@ homePageDownloadFirefoxSubTitle = Descarga gratuita
 homePageHowScreenshotsWorks = Cómo funciona Firefox Screenshots
 homePageGetStartedTitle = Comenzar
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Busca el icono de Screenshots en tu barra de herramientas. Selecciónalo y te aparecerá el menú en la parte superior de la ventana del navegador.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Selecciona el icono de Screenshots en el menú de acciones con la página. y te aparecerá el menú en la parte superior de la ventana del navegador.
 homePageCaptureRegion = Captura un área
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -63,6 +61,10 @@ homePageCaptureRegionDescription = Haz clic y arrastra para seleccionar el área
 homePageCapturePage = Captura una página
 homePageCapturePageDescription = Utiliza los botones de la parte superior derecha para capturar páginas completas. El botón Guardar área visible capturará lo que puedes ver sin deslizarte; Guardar página completa guardará todo lo que aparece en la página.
 homePageSaveShare = Guardar y compartir
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = Haz tu mejor captura. Luego guárdala en la biblioteca en línea y Firefox copiará el enlace a tu portapapeles para que puedas compartirlo fácilmente. Las capturas que están en la biblioteca caducan automáticamente al cabo de dos semanas, pero puedes eliminarlas en cualquier momento u optar por conservarlas durante más tiempo.
+homePageSignInTitle = Tus capturas en todas partes
+homePageSignInDescription = Inicia sesión en Screenshots con tu cuenta de Firefox para acceder a tus capturas desde cualquier lugar donde uses Firefox. Una ventaja adicional: también puedes guardar para siempre tus capturas favoritas.
 homePageLegalLink = Legal
 homePagePrivacyLink = Privacidad
 homePageTermsLink = Términos
@@ -71,6 +73,8 @@ homePageCookiesLink = Cookies
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Eliminar todos los datos
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = Debes tener instalado Firefox Screenshots o iniciar sesión en tu cuenta Firefox para eliminar tu cuenta.
 leavePageErrorGeneric = Se produjo un error
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Esta acción eliminará de forma permanente todos tus datos de Firefox Screenshots.
@@ -265,18 +269,16 @@ textToolInputPlaceholder =
 ## are passed from the shot page to the addon.
 
 copyImageErrorTitle = Algo no ha ido bien
+copyImageErrorMessage = No se puede copiar tu captura al portapapeles.
 
 ## Settings Page
 
 settingsDisconnectButton = Desconectar
     .title = Desconectar
 settingsGuestAccountMessage = Cuenta de invitado
-settingsSignInInvite = Iniciar sesión para sincronizar entre dispositivos
 settingsSignInButton = Iniciar sesión
     .title = Iniciar sesión
 SettingsPageHeader = Configuración de Firefox Screenshots
-settingsDescription = Puedes iniciar sesión con tu cuenta de Firefox para sincronizar todas las capturas de pantalla de tus dispositivos y acceder a ellas de forma privada.
-settingsPageSubHeader = Sincronización y cuentas
 settingsClosePreferences =
     .title = Cerrar preferencias
 
