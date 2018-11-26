@@ -1,6 +1,12 @@
-## Version 36.2.0
+## Version 36.3.0
 
 Another candidate release.
+
+* Register account with device when fxa logged in before first upload. Fixes [#5210](https://github.com/mozilla-services/screenshots/issues/5210) [5128c53](https://github.com/mozilla-services/screenshots/commit/5128c53)
+
+## Version 36.2.0
+
+Another candidate release, did not go to production.
 
 * - Access settings page directly from url. Fixes [#5185](https://github.com/mozilla-services/screenshots/issues/5185) [635ef90](https://github.com/mozilla-services/screenshots/commit/635ef90)
 * - Remove legacy content from homepage. Fixes [#5187](https://github.com/mozilla-services/screenshots/issues/5187) [6f78f7d](https://github.com/mozilla-services/screenshots/commit/6f78f7d)
