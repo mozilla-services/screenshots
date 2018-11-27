@@ -20,6 +20,10 @@ screenshotsLogo =
     .title = Página de inicio de Screenshots
 bannerSignIn = <a>Iniciar sesión o registrarse</a> para acceder a tus capturas a través de tus dispositivos y guardar tus favoritos para siempre.
 bannerUpsell = { gScreenshotsDescription } <a>Obtener Firefox ahora</a>
+onboardingPromoDismissButton = Descartar
+    .title = Descartar
+onboardingPromoSigninButton = Iniciar sesión
+    .title = Iniciar sesión
 
 ## Footer
 
@@ -54,8 +58,6 @@ homePageDownloadFirefoxSubTitle = Descargar gratis
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Cómo trabaja Firefox Screenshots
 homePageGetStartedTitle = Comenzar
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Encuentra el nuevo ícono de Screenshots en tu barra de herramientas. Selecciónalo y el menú de Screenshots aparecerá en la parte superior de tu ventana de navegación.
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Selecciona el ícono Screenshots en el menú de acciones de la página en la barra de direcciones y el menú Screenshots aparecerá en la parte superior de la ventana del navegador.
 homePageCaptureRegion = Captura una región
@@ -103,6 +105,7 @@ shotPageShareButton =
     .title = Compartir
 shotPageCopyButton =
     .title = Copiar la imagen al portapapeles
+shotPageCopyActionLabel = Copiar
 shotPageCopied = Copiado
 shotPageShareFacebook =
     .title = Compartir en Facebook
@@ -279,14 +282,15 @@ copyImageErrorMessage = No se puede copiar su captura al portapapeles.
 settingsDisconnectButton = Desconectar
     .title = Desconectar
 settingsGuestAccountMessage = Cuenta de invitado
-settingsSignInInvite = Inicia sesión para sincronizar dispositivos
 settingsSignInButton = Iniciar sesión
     .title = Iniciar sesión
 SettingsPageHeader = Configuración de Firefox Screenshots
-settingsDescription = Puedes iniciar sesión con tu cuenta de Firefox para sincronizar todas las capturas de pantalla de tus dispositivos y acceder a ellas de forma privada.
-settingsPageSubHeader = Sincronización y cuentas
+settingsFirefoxAccountSubHeader = Cuenta de Firefox
 settingsClosePreferences =
     .title = Cerrar preferencias
+settingsFxaDisconnectAlertMessage = ¿Estás seguro que quieres desconectar este dispositivo de tu cuenta de Firefox?
+settingsFxaDisconnectDescription = Si cierras la sesión, tendrás que volver a iniciarla para recuperar el acceso a tus capturas de pantalla.
+settingsFxaConnectDescription = Puedes iniciar sesión para acceder a tus capturas de pantalla a través de varios dispositivos.
 
 ## Shotindex page
 
