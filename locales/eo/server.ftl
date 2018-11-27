@@ -257,6 +257,7 @@ textToolInputPlaceholder =
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = Io ne bone funkciis
 
 ## Settings Page
 
@@ -266,8 +267,12 @@ settingsGuestAccountMessage = Gasta konto
 settingsSignInButton = Komenci seancon
     .title = Komenci seancon
 SettingsPageHeader = Agordoj de Firefox Screenshots
+settingsFirefoxAccountSubHeader = Konto de Firefox
 settingsClosePreferences =
     .title = Fermi preferojn
+settingsFxaDisconnectAlertMessage = Ĉu vi certe volas malkonekti tiun ĉi aparaton de via konto de Firefox?
+settingsFxaDisconnectDescription = Se vi finas la seancon, vi devos poste komenci novan por aliri denove viajn ekrankopiojn.
+settingsFxaConnectDescription = Vi povas komenci seancon por aliri viajn ekrankopiojn en ĉiuj viaj aparatoj.
 
 ## Shotindex page
 
@@ -286,6 +291,8 @@ shotIndexPageNoShotsInvitation = Ek, kreu kelkajn.
 shotIndexPageLookingForShots = Ekrankopioj serĉataj…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Ni ne povis trovi iun ajn ekrankopion kiu kongruu kun via serĉo.
+shotIndexPageMyShotsButton =
+    .title = Miaj ekrankopioj
 shotIndexPageClearSearchButton =
     .title = Viŝi serĉon
 shotIndexPageConfirmShotDelete = Ĉu forigi tiun ĉi ekrankopion?
