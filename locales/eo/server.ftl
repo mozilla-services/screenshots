@@ -95,6 +95,7 @@ shotPageAlertErrorUpdatingTitle = Eraro dum konservo de titolo
 shotPageConfirmDelete = Ĉu vi certe volas definitive forigi tiun ĉi ekrankopion?
 shotPageShareButton =
     .title = Dividi
+shotPageCopyActionLabel = Kopii
 shotPageCopied = Kopiita
 shotPageShareFacebook =
     .title = Dividi en Facebook
@@ -123,6 +124,8 @@ shotPageDownloadShot =
     .title = Elŝuti
 shotPageEditButton =
     .title = Redakti tiun ĉi bildon
+shotPageAllShotsButton =
+    .title = Ĉiuj ekrankopioj
 shotPageScreenshotsDescription = Ekrankopioj, simple faritaj. Kopii, konservi kaj dividi ekrankopiojn sen forlasi Firefox.
 shotPageDMCAMessage = Tiu ĉi ekrankopio ne plu estas havebla pro plendo pri intelekta kopirajto.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
