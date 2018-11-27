@@ -64,6 +64,7 @@ homePageCaptureRegionDescription = Alklaku kaŭ trenu por elekti la areon, kion 
 homePageCapturePage = Kapti paĝon
 homePageCapturePageDescription = Uzu la butonojn supre kaj dekstre por kapti tutajn paĝojn. La butono 'Konservi tion, kio videblas' kaptos la areon, kiun vi vidas se vi ne ŝovas. La butono 'Konservi tutan paĝon'  kaptos ĉion en la paĝo.
 homePageSaveShare = Konservi kaj dividi
+homePageSignInTitle = Viaj ekrankopioj ĉe ĉiu aparato
 homePageLegalLink = Leĝaĵoj
 homePagePrivacyLink = Privateco
 homePageTermsLink = Kondiĉoj
@@ -124,6 +125,8 @@ shotPageDownloadShot =
     .title = Elŝuti
 shotPageEditButton =
     .title = Redakti tiun ĉi bildon
+shotPageBackToHomeButton =
+    .title = Eka paĝo
 shotPageAllShotsButton =
     .title = Ĉiuj ekrankopioj
 shotPageScreenshotsDescription = Ekrankopioj, simple faritaj. Kopii, konservi kaj dividi ekrankopiojn sen forlasi Firefox.
@@ -303,6 +306,8 @@ shotIndexPagePreviousPage =
     .title = Antaŭa paĝo
 shotIndexPageNextPage =
     .title = Venonta paĝo
+shotIndexSyncedShot =
+    .title = Ekrankopio farita en alia aparato
 
 ## Delete Confirmation Dialog
 
