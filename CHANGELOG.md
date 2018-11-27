@@ -1,6 +1,12 @@
+## Version 36.4.0
+
+Another release candidate, final before production.
+
+* revert the event-stream version to 3.3.4. This therefore removes the bad flatmap-stream package. [6d6f7d4](https://github.com/mozilla-services/screenshots/commit/6d6f7d4)
+
 ## Version 36.3.0
 
-Another candidate release.
+Another candidate release. Almost went to production!
 
 * Register account with device when fxa logged in before first upload. Fixes [#5210](https://github.com/mozilla-services/screenshots/issues/5210) [5128c53](https://github.com/mozilla-services/screenshots/commit/5128c53)
 
