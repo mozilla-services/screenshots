@@ -20,6 +20,10 @@ screenshotsLogo =
     .title = Eka paĝo de ekrankopioj
 bannerSignIn = <a>Komencu seancon aŭ registriĝu</a> por aliri viajn ekrankopiojn en ĉiuj aparatoj kaj konservi la plej ŝatatajn por ĉiam.
 bannerUpsell = { gScreenshotsDescription } <a>Ricevi Firefox nun</a>
+onboardingPromoDismissButton = Ignori
+    .title = Ignori
+onboardingPromoSigninButton = Komenci seancon
+    .title = Ensaluti per via konto de Firefox
 
 ## Footer
 
@@ -52,8 +56,6 @@ homePageDownloadFirefoxSubTitle = Senpaga elŝuto
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kiel funkcias Firefox Screenshots
 homePageGetStartedTitle = Unuaj paŝoj
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Trovu la novan emblemon de Firefox Screenshots en via ilaro. Elektu ĝin, kaj ĝia menuo aperos ĉe la supra parto de via retumila fenestro.
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Elektu la emblemon de Firefox Screenshots en la menuo «Retaĝaj agoj» en la adresa strio, kaj la menuo aperos sur la fenestro de via retumilo.
 homePageCaptureRegion = Kapti areon
@@ -261,12 +263,9 @@ textToolInputPlaceholder =
 settingsDisconnectButton = Malkonekti
     .title = Malkonekti
 settingsGuestAccountMessage = Gasta konto
-settingsSignInInvite = Komenci seancon por speguli inter aparatoj
 settingsSignInButton = Komenci seancon
     .title = Komenci seancon
 SettingsPageHeader = Agordoj de Firefox Screenshots
-settingsDescription = Vi povas komenci seancon per konto de Firefox, por speguli vian ekrankopiojn en ĉiuj aparatoj kaj private aliri ilin.
-settingsPageSubHeader = Spegulado kaj kontoj
 settingsClosePreferences =
     .title = Fermi preferojn
 
