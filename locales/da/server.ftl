@@ -20,6 +20,9 @@ screenshotsLogo =
     .title = Startside for Screenshots
 bannerSignIn = <a>Log ind eller tilmeld dig</a> for at få adgang til dine skærmbilleder på alle dine enheder, og gem dine favoritter for evigt.
 bannerUpsell = { gScreenshotsDescription } <a>Hent Firefox nu</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Nyheder i Firefox Screenshots
 onboardingPromoMessage = Log ind på Screenshots med din Firefox-konto og gør mere:
 onboardingPromoMessageListItem1 = Få adgang til dit arkiv på alle dine enheder
 onboardingPromoMessageListItem2 = Gem dine favoritter for evigt
@@ -69,6 +72,9 @@ homePageCaptureRegionDescription = Klik og træk for at vælge det område, du v
 homePageCapturePage = Gem en side
 homePageCapturePageDescription = Brug knapperne i højre øverste hjørne for at tage skærmbilleder af hele sider. Knappen "Gem synligt område" vil tage et skærmbillede af det område, du kan se uden at scrolle - mens "Gem hele siden" vil gemme et skærmbillede af alt på siden.
 homePageSaveShare = Gem og del
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = Tag et godt skærmbillede. Gem det så online i Screenshots-arkivet, mens Firefox gemmer linket til skærmbilledet i din udklipsholder, så du nemt kan dele det. Skærmbilleder i arkivet udløber automatisk efter to uger, men du kan slette dem når som helst eller vælge at gemme dem i længere tid.
+homePageSignInTitle = Få adgang til dine skærmbilleder overalt
 homePageSignInDescription = Log ind på Screenshots med din Firefox-konto for at få adgang til dine skærmbilleder overalt, hvor du bruger Firefox. En ekstra bonus: Du kan også gemme dine favoritter for evigt.
 homePageLegalLink = Juridisk information
 homePagePrivacyLink = Privatliv
