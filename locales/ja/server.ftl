@@ -73,6 +73,7 @@ homePageSaveShare = 保存して共有
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageShaveShareFavoriteDescription = ベストショットを撮りましょう。オンラインの Screenshots ライブラリーに保存すると、Firefox がそのリンクをクリップボードに自動的にコピーし、簡単に共有できます。ライブラリー内のショットは、自動的に 2 週間後に消えますが、いつでも削除したり、保存期間を延ばしたりできます。
 homePageSignInTitle = どこでも撮れるスクリーンショット
+homePageSignInDescription = Firefox アカウントで Screenshots にログインし、Firefox を使用してどこからでもショットにアクセスできます。おまけ: お気に入りのショットを永久保存することもできます。
 homePageLegalLink = 法的通知
 homePagePrivacyLink = プライバシー
 homePageTermsLink = 利用規約
@@ -108,6 +109,7 @@ shotPageShareButton =
     .title = 共有
 shotPageCopyButton =
     .title = 画像をクリップボードへコピー
+shotPageCopyActionLabel = コピー
 shotPageCopied = コピー完了
 shotPageShareFacebook =
     .title = Facebook で共有
@@ -263,8 +265,12 @@ settingsGuestAccountMessage = ゲストアカウント
 settingsSignInButton = ログイン
     .title = ログイン
 SettingsPageHeader = Firefox Screenshots の設定
+settingsFirefoxAccountSubHeader = Firefox アカウント
 settingsClosePreferences =
     .title = 設定を閉じる
+settingsFxaDisconnectAlertMessage = 本当に、このデバイスを Firefox アカウントから切断しますか？
+settingsFxaDisconnectDescription = ログアウトすると、スクリーンショットにアクセスするには、再びログインする必要があります。
+settingsFxaConnectDescription = ログインすると、デバイスをまたがってスクリーンショットにアクセスできます。
 
 ## Shotindex page
 
