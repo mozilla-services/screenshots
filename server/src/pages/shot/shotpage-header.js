@@ -70,7 +70,9 @@ exports.ShotPageHeader = class ShotPageHeader extends React.Component {
           <EditableTitle title={shot.title} isOwner={this.props.isOwner} />
           <div className="shot-subtitle">
             { linkTextShort ? <a className="subtitle-link" rel="noopener noreferrer" href={ shot.url } target="_blank" onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> : null }
+            { linkTextShort ? <span>&nbsp;&bull;&nbsp;</span> : null }
             <span className="time-diff expire-info">{ timeDiff }</span>
+            <span>&nbsp;&bull;&nbsp;</span>
             { expirationSubtitle }
           </div>
         </div>

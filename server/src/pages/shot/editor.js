@@ -218,11 +218,11 @@ exports.Editor = class Editor extends React.Component {
         </div>
       </div>
       <div className="shot-edit-alt-actions">
-        <Localized id="annotationSaveEditButton" attrs={{title: true}}>
-          <button className="button primary save" id="save" onClick={ this.onClickSave.bind(this) } disabled = { this.state.actionsDisabled } title="Save edit">Save</button>
-        </Localized>
         <Localized id="annotationCancelEditButton" attrs={{title: true}}>
           <button className="button secondary cancel" id="cancel" onClick={this.onClickCancel.bind(this)} title="Cancel editing" disabled = { this.state.actionsDisabled }>Cancel</button>
+        </Localized>
+        <Localized id="annotationSaveEditButton" attrs={{ title: true }}>
+          <button className="button primary save" id="save" onClick={this.onClickSave.bind(this)} disabled={this.state.actionsDisabled} title="Save edit">Save</button>
         </Localized>
       </div>
     </div>;

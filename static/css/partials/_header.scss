@@ -9,13 +9,10 @@
 
   @include respond-to("large") {
     @include flex-container(row, center, center);
-    flex-basis: $grid-unit * 4.8;
   }
 
   background-color: $light-default;
   display: flex;
-  flex-basis: $grid-unit * 6.5;
-  height: 100%;
   width: 100%;
 
   .logo {
@@ -60,12 +57,6 @@
     position: relative;
   }
 
-  a.nav-button {
-    &:focus {
-      outline: 1px dotted $black;
-    }
-  }
-
   .nav-button {
     @include flex-container(column, center, center);
 
@@ -89,8 +80,10 @@
     height: 60px;
     width: 60px;
     border: none;
+    transition: background 125ms;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $light-hover;
       border-radius: 0;
     }
@@ -112,8 +105,8 @@
     }
 
     &.inactive {
-      opacity: 0.4;
       cursor: default;
+      display: none;
     }
 
     span {
@@ -126,14 +119,11 @@
   }
 
   .nav-link {
-    @include respond-to("large") {
-      height: 96px;
-    }
     @include flex-container(column, center, center);
     color: $black;
     border-inline-end: 1px solid $light-border;
     height: 70px;
-    
+
     &:hover {
       background-color: $light-hover;
     }
@@ -145,7 +135,7 @@
 
 .upsell {
   @include flex-container(row, center, center);
-  
+
   @include respond-to("small") {
     font-size: 13px;
   }
@@ -155,6 +145,7 @@
   color: $black;
   background: #efeff1;
   width: 100%;
+  line-height: 1.6rem;
 
   .message {
     padding-top: 16px;
@@ -164,7 +155,7 @@
   }
 
   .logo {
-    background-position: left center; 
+    background-position: left center;
     background-image: url("../img/firefox-logo.svg");
     background-repeat: no-repeat;
     background-size: 24px auto;
@@ -180,11 +171,27 @@
   }
 
   .upsellLink {
-    padding-inline-start: 10px;
-    color: $medium-dark-blue;
+    background: $link-blue;
+    border-radius: 3px;
+    color:$white;
+    font-weight: bold;
+    padding-inline-start: 16px;
+    padding: 6px;
+    transition: background 125ms;
+    white-space: nowrap;
+
+    &:hover,
+    &:focus {
+      background: $link-blue-hover;
+    }
+
+    &:active {
+      background: $link-blue-active;
+    }
   }
 
   .signInLink {
-    color: $medium-dark-blue;
+    color: $link-blue;
+    font-weight: bold;
   }
 }

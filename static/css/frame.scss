@@ -71,7 +71,8 @@
   .expire-info {
     display: block;
     @include respond-to("small") {
-      &.time-diff {
+      &.time-diff,
+      & + span {
         display: none;
       }
     }
@@ -149,11 +150,12 @@
 
   &.editable {
     cursor: default;
-    padding-inline-end: 28px;
+    padding-inline-end: 32px;
 
     &:hover {
       @include respond-to("large") {
         background-size: 24px 24px;
+        background-position: right 9px;
       }
       background-image: url("/static/img/pencil.svg");
       background-position: right 5px;
@@ -185,26 +187,20 @@
     padding-bottom: 1px;
     margin: 0 0 4px 0;
   }
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 29px;
-  padding-bottom: 1px;
-  padding-inline-start: 2px;
 
   border-radius: $border-radius;
   border: 1px solid $active-blue;
-  
+  font-size: 24px;
+  font-weight: bold;
+  inset-inline-start: -3px;
+  line-height: 29px;
   margin: 0;
-  overflow: auto;
   max-width: 100px;
+  overflow: auto;
+  padding-bottom: 1px;
+  padding-inline-start: 2px;
   position: relative;
   top: -2px;
-  inset-inline-start: -3px;
-}
-
-.subtitle-link,
-.time-diff {
-  margin-inline-end: 8px;
 }
 
 .subtitle-link {
@@ -428,7 +424,6 @@ body {
 .editor-header {
   @include respond-to("medium") {
     @include flex-container(row, space-between, stretch, wrap);
-    height: $grid-unit * 5;
   }
 
   @include respond-to("small") {
@@ -436,16 +431,16 @@ body {
     height: $grid-unit * 7;
   }
   display: flex;
-  height: 100px;
+  height: 96px;
   z-index: 2;
   position: fixed;
   width: 100%;
+  pointer-events: none;
 
   .shot-edit-main-actions {
     @include respond-to("medium") {
       @include flex-container(row, flex-start, center);
       margin-inline-end: 10px;
-      padding-top: 4px;
     }
 
     @include respond-to("small") {
@@ -465,10 +460,12 @@ body {
 
   .shot-edit-alt-actions {
     @include flex-container(row, flex-end, center);
+    margin: 0 20px;
   }
 
   .button {
-    margin: $grid-unit * 0.25;
+    margin-inline: $grid-unit * 0.5;
+    pointer-events: all;
   }
 
   .cancel,
@@ -496,13 +493,15 @@ body {
 }
 
 .annotation-tools {
-  margin: $grid-unit;
+  margin: auto $grid-unit;
   display: flex;
   flex-direction: row;
+  align-items: center;
   background: $white;
   box-shadow: $medium-box-shadow;
   border-radius: $border-radius;
   height: 50px;
+  pointer-events: all;
 }
 
 .annotation-main-actions {
@@ -518,11 +517,13 @@ body {
 }
 
 .main-container {
+  align-items: center;
   display: flex;
   flex-direction: column;
   flex: 1;
   justify-content: center;
-  margin-top: $grid-unit * 5;
+  margin: $grid-unit auto;
+  padding: $grid-unit * 4.8;
   position: relative;
   z-index: 1;
 
@@ -535,8 +536,8 @@ body {
   box-shadow: $large-box-shadow;
   display: flex;
   justify-content: center;
-  margin: 20px auto;
   z-index: 9999;
+  position: relative;
 }
 
 .canvas-container .image-holder {
@@ -566,20 +567,20 @@ body {
 
 .centered {
   position: absolute;
-  margin: auto;
   overflow: hidden;
   top: 0;
   bottom: 0;
 }
 
 #color-button-container {
-  min-width: 40px;
-  margin: 0 5px;
+  width: 40px;
+  height: 40px;
+  margin: 5px 10px;
+  position: relative;
 }
 
 #color-button-highlight {
   display:none;
-  margin-top: $grid-unit/4;
   min-width: 40px;
   height: 40px;
   border-radius: 3px;
@@ -592,7 +593,7 @@ body {
   position: absolute;
   height: 22px;
   width: 22px;
-  margin-top: 13.5px;
+  margin-top: 9.5px;
   margin-inline-end: 10px;
   margin-bottom: 0;
   margin-inline-start: 9px;

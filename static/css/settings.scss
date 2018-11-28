@@ -6,9 +6,6 @@
   background-size: $grid-unit $grid-unit;
   background-repeat: no-repeat;
   background-position: center center;
-  position: absolute;
-  inset-inline-end: 0;
-  top: 0;
 
   &:hover {
     background-color: $light-hover;
@@ -25,8 +22,11 @@
 }
 
 #settings-header {
-  margin: 40px auto 15px;
-  position: relative;
+  align-items: flex-end;
+  display: flex;
+  height: 72px;
+  justify-content: flex-end;
+  margin: 0 auto;
 
   @include respond-to("small") {
     width: 380px;
@@ -51,7 +51,7 @@
 
 .preferences {
   margin: auto;
-  padding: 40px 20px 0 20px;
+  padding: 20px 20px 0 20px;
 
   @include respond-to("small") {
     width: 380px;
@@ -85,13 +85,19 @@
 
   .account-info {
     @include flex-container(row, start, center);
+
+    img {
+      border-radius: 50%;
+      box-shadow: $small-box-shadow;
+      overflow: hidden;
+    }
   }
 
   .title {
     font-weight: 500;
     font-size: 17px;
     color: #0c0c0d;
-    margin: 0;
+    margin: 0 0 10px;
   }
 
   .info {

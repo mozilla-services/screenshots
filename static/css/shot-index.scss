@@ -80,9 +80,9 @@ $shot-width: 210px;
 
 .shot {
   background: $white;
-  box-shadow: $medium-box-shadow;
+  box-shadow: $large-box-shadow;
   margin: 15px;
-  transition: box-shadow 250ms $bezier;
+  transition: box-shadow 250ms;
   width: $shot-width;
 
   .share-panel {
@@ -238,6 +238,8 @@ $shot-width: 210px;
     inset-inline-end: 12px;
     top: 12px;
     background-size: 20px 20px;
+    border: 1px solid $light-hover;
+    box-shadow: $small-box-shadow;
   }
 
   .fav-shot {
