@@ -20,6 +20,14 @@ screenshotsLogo =
     .title = Screenshots ホーム
 bannerSignIn = <a>ログインまたはアカウント登録</a> してショットにアクセス。端末を問わずにショットへアクセスし、あなたのお気に入りを保存しましょう。
 bannerUpsell = { gScreenshotsDescription } <a>Firefox を今すぐ入手</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Firefox Screenshots の新機能
+onboardingPromoMessage = Screenshots に Firefox アカウントでログインして、より多くのことを行えます:
+onboardingPromoMessageListItem1 = すべてのデバイスからライブラリーにアクセス
+onboardingPromoMessageListItem2 = お気に入りのショットを永久保存
+onboardingPromoSigninButton = ログイン
+    .title = ログイン
 
 ## Footer
 
@@ -55,8 +63,6 @@ homePageDownloadFirefoxSubTitle = 無料ダウンロード
 homePageHowScreenshotsWorks = Firefox Screenshots の仕組み
 homePageGetStartedTitle = はじめよう
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = ツールバー上にある新しい Screenshots アイコンを見つけてください。それを選択すれば、ブラウザーウィンドウの上に Screenshots メニューが表示されます。
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = アドレスバー内のページアクションメニューから Screenshots アイコンを選択すれば、ブラウザーウィンドウ上に Screenshots メニューが表示されます。
 homePageCaptureRegion = 選択範囲をキャプチャ
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -64,6 +70,8 @@ homePageCaptureRegionDescription = クリック＆ドラッグでキャプチャ
 homePageCapturePage = ページをキャプチャ
 homePageCapturePageDescription = ページ全体をキャプチャするには右上のボタンを使ってください。[表示範囲を保存] ボタンはスクロールせずに見えている範囲のみをキャプチャ、[ページ全体を保存] ボタンはページ上のすべての要素をキャプチャできます。
 homePageSaveShare = 保存して共有
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = ベストショットを撮りましょう。オンラインの Screenshots ライブラリーに保存すると、Firefox がそのリンクをクリップボードに自動的にコピーし、簡単に共有できます。ライブラリー内のショットは、自動的に 2 週間後に消えますが、いつでも削除したり、保存期間を延ばしたりできます。
 homePageSignInTitle = どこでも撮れるスクリーンショット
 homePageLegalLink = 法的通知
 homePagePrivacyLink = プライバシー
@@ -252,12 +260,9 @@ copyImageErrorMessage = ショットをクリップボードにコピーでき�
 settingsDisconnectButton = 接続を解除
     .title = 接続を解除
 settingsGuestAccountMessage = ゲストアカウント
-settingsSignInInvite = ログインして端末間で同期
 settingsSignInButton = ログイン
     .title = ログイン
 SettingsPageHeader = Firefox Screenshots の設定
-settingsDescription = Firefox Accounts でログインすれば、端末間ですべてのスクリーンショットを同期し、非公開のままアクセスできます。
-settingsPageSubHeader = 同期 & アカウント
 settingsClosePreferences =
     .title = 設定を閉じる
 
