@@ -18,8 +18,15 @@ buttonSignIn =
     .title = Log ind
 screenshotsLogo =
     .title = Startside for Screenshots
-bannerMessage = Log ind eller tilmeld dig for at få adgang til dine skærmbilleder på alle dine enheder, og gem dine favoritter for evigt.
+bannerSignIn = <a>Log ind eller tilmeld dig</a> for at få adgang til dine skærmbilleder på alle dine enheder, og gem dine favoritter for evigt.
 bannerUpsell = { gScreenshotsDescription } <a>Hent Firefox nu</a>
+onboardingPromoMessage = Log ind på Screenshots med din Firefox-konto og gør mere:
+onboardingPromoMessageListItem1 = Få adgang til dit arkiv på alle dine enheder
+onboardingPromoMessageListItem2 = Gem dine favoritter for evigt
+onboardingPromoDismissButton = Luk
+    .title = Luk
+onboardingPromoSigninButton = Log ind
+    .title = Log ind
 
 ## Footer
 
@@ -55,8 +62,6 @@ homePageDownloadFirefoxSubTitle = Gratis download
 homePageHowScreenshotsWorks = Sådan virker Firefox Screenshots
 homePageGetStartedTitle = Kom i gang
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Find det nye Screenshots-ikon på din værktøjslinje. Vælg det, og Screenshots-menuen vises øverst i browservinduet.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Klik på Screenshots-ikonet i menuen Sidehandlinger i adressefeltet for at få vist Screenshots-menuen øverst i browser-vinduet.
 homePageCaptureRegion = Gem et område
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -64,8 +69,7 @@ homePageCaptureRegionDescription = Klik og træk for at vælge det område, du v
 homePageCapturePage = Gem en side
 homePageCapturePageDescription = Brug knapperne i højre øverste hjørne for at tage skærmbilleder af hele sider. Knappen "Gem synligt område" vil tage et skærmbillede af det område, du kan se uden at scrolle - mens "Gem hele siden" vil gemme et skærmbillede af alt på siden.
 homePageSaveShare = Gem og del
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Når du tager et skærmbillede, sender Firefox det til dit online Screenshots-bibliotek og gemmer linket til din udklipsholder. Vi gemmer automatisk dit skærmbillede i to uger, men du kan slette skærmbilleder når som helst eller ændre udløbsdatoen for at beholde billederne i dit bibliotek i længere tid.
+homePageSignInDescription = Log ind på Screenshots med din Firefox-konto for at få adgang til dine skærmbilleder overalt, hvor du bruger Firefox. En ekstra bonus: Du kan også gemme dine favoritter for evigt.
 homePageLegalLink = Juridisk information
 homePagePrivacyLink = Privatliv
 homePageTermsLink = Betingelser
@@ -75,7 +79,7 @@ homePageCookiesLink = Cookies
 
 leavePageRemoveAllData = Fjern alle data
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Du skal have Firefox Screenshots installeret for at slette din konto
+leavePageErrorAuthRequired = For at slette din konto skal du have Firefox Screenshots installeret eller være logget ind på din Firefox-konto.
 leavePageErrorGeneric = Der opstod en fejl
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Dette vil slette alle dine Firefox Screenshots-data permanent.
@@ -101,6 +105,7 @@ shotPageShareButton =
     .title = Del
 shotPageCopyButton =
     .title = Kopier billede til udklipsholderen
+shotPageCopyActionLabel = Kopier
 shotPageCopied = Kopieret
 shotPageShareFacebook =
     .title = Del på Facebook
@@ -277,14 +282,15 @@ copyImageErrorMessage = Kunne ikke kopiere dit skærmbillede til udklipsholderen
 settingsDisconnectButton = Afbryd forbindelsen
     .title = Afbryd forbindelsen
 settingsGuestAccountMessage = Gæstekonto
-settingsSignInInvite = Log ind for at synkronisere alle dine enheder
 settingsSignInButton = Log ind
     .title = Log ind
 SettingsPageHeader = Indstillinger for Firefox Screenshots
-settingsDescription = Du kan logge ind med Firefox-konti for at synkronisere alle dine skærmbilleder på tværs af enheder og få adgang til dem privat.
-settingsPageSubHeader = Synkronisering & konti
+settingsFirefoxAccountSubHeader = Firefox-konto
 settingsClosePreferences =
     .title = Luk indstillinger
+settingsFxaDisconnectAlertMessage = Er du sikker på, at du vil afbryde forbindelsen mellem denne enhed og din Firefox-konto?
+settingsFxaDisconnectDescription = Hvis du logger ud, skal du logge ind igen for at få adgang til dine skærmbilleder.
+settingsFxaConnectDescription = Du kan logge ind og få adgang til dine skærmbilleder på alle dine enheder.
 
 ## Shotindex page
 
