@@ -118,6 +118,7 @@ const SITE_CDN = (config.siteCdn && (new URL(config.siteCdn)).host) || "";
 const CONTENT_NAME = config.contentOrigin || "";
 const CONTENT_CDN = (config.contentCdn && (new URL(config.contentCdn)).host) || "";
 const FXA_SERVER = config.fxa.profileServer && require("url").parse(config.fxa.profileServer).host;
+const FXA_USER_CONTENT = config.fxa.profileImageServer || "";
 
 function addHSTS(req, res) {
   // Note: HSTS will only produce warning on a localhost self-signed cert
@@ -1220,7 +1221,7 @@ app.use((req, res, next) => {
       if (!DO_NOT_SEND_CSP) {
         res.header(
           "Content-Security-Policy",
-          `default-src 'self'; img-src 'self' ${FXA_SERVER} www.google-analytics.com ${SITE_CDN} ${CONTENT_CDN} ${CONTENT_NAME} data:; script-src 'self' ${SITE_CDN} www.google-analytics.com 'nonce-${uuid}'; style-src 'self' ${SITE_CDN} 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' ${SITE_CDN} ${CONTENT_CDN} www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
+          `default-src 'self'; img-src 'self' ${FXA_SERVER} ${FXA_USER_CONTENT} www.google-analytics.com ${SITE_CDN} ${CONTENT_CDN} ${CONTENT_NAME} data:; script-src 'self' ${SITE_CDN} www.google-analytics.com 'nonce-${uuid}'; style-src 'self' ${SITE_CDN} 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' ${SITE_CDN} ${CONTENT_CDN} www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
       }
       res.header("X-Frame-Options", "DENY");
       next();
