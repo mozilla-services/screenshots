@@ -16,6 +16,8 @@ To release the server:
   - View the CI build of [server-prod](https://circleci.com/gh/mozilla-services/screenshots/tree/server-prod)
   - IRC will get updates (no update until deploy happens)
   - [`https://screenshots.stage.mozaws.net/__version__`](https://screenshots.stage.mozaws.net/__version__) will show the status
+  - Look at [CircleCI](https://circleci.com/gh/mozilla-services/screenshots) for a `server-prod` build
+  - Look at [DockerHub](https://hub.docker.com/r/mozilla/screenshots/tags/) for tagged Docker builds (this is what actually triggers the stage deployment)
 - [ ] Ping our ops contact on IRC to deploy to prod
   - As of Q3 2018, primary is oremj, secondary is miles
   - [`https://screenshots.firefox.com/__version__`](https://screenshots.firefox.com/__version__) will show the status
