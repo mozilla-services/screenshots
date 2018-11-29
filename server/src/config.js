@@ -99,6 +99,13 @@ const conf = convict({
       env: "FXA_CLIENT_SECRET",
       arg: "fxa-client-secret",
     },
+    profileImageServer: {
+      doc: "Firefox Account user avatar url",
+      format: String,
+      default: "https://firefoxusercontent.com",
+      env: "FXA_PROFILE_IMAGE_URI",
+      arg: "fxa-profile-image-uri",
+    },
   },
   db: {
     user: {
