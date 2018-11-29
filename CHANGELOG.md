@@ -1,6 +1,13 @@
+## Version 36.5.0
+
+A small followup server release.
+
+* - Settings page fails to  display account avatar. Fixes [#5223](https://github.com/mozilla-services/screenshots/issues/5223) [ee63fd4](https://github.com/mozilla-services/screenshots/commit/ee63fd4)
+* Many style updates for FxA and editor [823cd0f](https://github.com/mozilla-services/screenshots/commit/823cd0f)
+
 ## Version 36.4.0
 
-Another release candidate, final before production.
+Another release candidate, final before production. Went live on November 28, 2018.
 
 * revert the event-stream version to 3.3.4. This therefore removes the bad flatmap-stream package. [6d6f7d4](https://github.com/mozilla-services/screenshots/commit/6d6f7d4)
 
