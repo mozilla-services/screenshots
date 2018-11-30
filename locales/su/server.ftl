@@ -77,3 +77,6 @@ footerReportShot = Laporkeun Téwakan
 ## Metrics page
 ## All metrics strings are optional for translation
 
+metricsPageVersionQueryUsers = Jumlah pamaké nu asup log
+metricsPageVersionQueryLastSeen = Poé
+metricsPageHeader = Métrik
