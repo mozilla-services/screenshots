@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Свободно изтегляне
 homePageHowScreenshotsWorks = Как работи Firefox Screenshots
 homePageGetStartedTitle = Първи стъпки
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Новата пиктограма на Screenshots се намира на лентата с инструменти. Като я изберете от нея се отваря менюто най-горе във вашия четец.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Изберете „Снимка на екрана“ от менюто с действия със страницата в адресната лента и менюто на „Screenshots“ ще се появи върху текущата страница.
 homePageCaptureRegion = Улавяне на част от екрана
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -290,16 +288,15 @@ copyImageErrorMessage = Снимката не може да бъде копир�
 settingsDisconnectButton = Изключване
     .title = Изключване
 settingsGuestAccountMessage = Сметка за гости
-settingsSignInInvite = Вписване в Sync за синхронизиране между устрайствата
 settingsSignInButton = Вписване
     .title = Вписване
 SettingsPageHeader = Настройки на Firefox Screenshots
-settingsDescription = Ако се впишете с Firefox Accounts всички снимки на екрана ще бъдат синхронизирани между устройствата ви и ще ги имате поверителен достъп до тях.
 settingsFirefoxAccountSubHeader = Firefox Account
 settingsClosePreferences =
     .title = Затваряне
 settingsFxaDisconnectAlertMessage = Сигурни ли сте, че искате да изключите това устройство от Firefox Account?
 settingsFxaDisconnectDescription = Ако се отпишете, ще трябва да се впишете отново за възстановяване на достъпа до вашите снимки.
+settingsFxaConnectDescription = Можете да се впишете, за да имате достъп до вашите снимки на всички ваши устройства.
 
 ## Shotindex page
 
