@@ -26,6 +26,8 @@ onboardingPromoTitle = ما الجديد في لقطات فَيَرفُكس؟
 onboardingPromoMessage = يمكنك الآن الولوج إلى اللقطات بحساب فَيَرفُكس وإجراء ما هو أكثر وأكثر:
 onboardingPromoMessageListItem1 = الوصول إلى المكتبة لديك عبر مختلف الأجهزة
 onboardingPromoMessageListItem2 = تخزين اللقطات المحببة لديك للأبد
+onboardingPromoDismissButton = أهمِل
+    .title = أهمِل
 onboardingPromoSigninButton = لِج
     .title = لِج
 
@@ -35,6 +37,8 @@ onboardingPromoSigninButton = لِج
 footerLinkMozilla = موزيلا
 footerLinkTerms = الشروط
 footerLinkPrivacy = تنويه الخصوصية
+footerReportShot = أبلِغ عن اللقطة
+    .title = أبلِغ عن أن هذه اللقطة فيها إساءة أو سخام أو مشاكل أخرى
 footerLinkFaqs = الأسئلة الشائعة
 footerLinkDMCA = أبلغ عن انتهاك للملكية الفكرية
 footerLinkDiscourse = أخبرنا بانطباعك
@@ -68,7 +72,10 @@ homePageCaptureRegionDescription = انقر واسحب لتحديد المنطق
 homePageCapturePage = التقط صفحة
 homePageCapturePageDescription = استخدم الأزرار أعلى اليسار لالتقاط صفحات كاملة. زر ”التقط الجزء المرئي“ سيلتقط المنطقة التي تراها دون تمرير الصفحة، وزر ”احفظ الصفحة كاملة“ سيلتقط كل شيء في الصفحة.
 homePageSaveShare = احفظ وشارِك
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = خُذ أفضل لقطاتك واحفظها في مكتبة اللقطات على الإنترنت، وسينسخ فَيَرفُكس رابطها إلى الحافظة لديك لتشاركها بسهولة. تنقضي اللقطات في المكتبة تلقائيا بعد أسبوعين، ولكنك تستطيع حذفها متى ما أردت أو إبقائها في المكتبة لوقت أطول.
 homePageSignInTitle = لقطاتك في كل مكان
+homePageSignInDescription = لِج إلى اللقطات بحساب فَيَرفُكس لتصل إلى لقطاتك في أي مكان تستخدم عليه فَيَرفُكس. وكإضافة لك: يمكنك حفظ اللقطات المفضلة لديك لأبد الزمان.
 homePageLegalLink = قانونيّات
 homePagePrivacyLink = الخصوصية
 homePageTermsLink = الشروط
@@ -310,6 +317,8 @@ settingsFirefoxAccountSubHeader = حساب فَيَرفُكس
 settingsClosePreferences =
     .title = أغلِق التفضيلات
 settingsFxaDisconnectAlertMessage = أمتأكّد من فصل هذا الجهاز من حساب فَيَرفُكس لديك؟
+settingsFxaDisconnectDescription = إن خرجت فسيكون عليك الولوج ثانيةً لتصل إلى لقطاتك.
+settingsFxaConnectDescription = يمكنك الولوج لتصل إلى لقطاتك عبر مختلف الأجهزة.
 
 ## Shotindex page
 
@@ -348,6 +357,7 @@ shotIndexFavoriteIcon =
     .title = هذه لقطة في قائمة المفضلة، صلاحيتها لا تنقضي
 shotIndexSyncedShot =
     .title = أُخذت اللقطة من جهاز آخر
+shotIndexAlertErrorFavoriteShot = عطل في تحديث حالة اللقطة المفضلة
 
 ## Delete Confirmation Dialog
 
