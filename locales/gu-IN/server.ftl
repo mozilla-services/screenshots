@@ -271,6 +271,8 @@ textToolInputPlaceholder =
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = કંઈક ખોટું થયું
+copyImageErrorMessage = તમારા શોટને ક્લિપબોર્ડ પર નકલ કરવામાં અસમર્થ.
 
 ## Settings Page
 
@@ -280,8 +282,10 @@ settingsGuestAccountMessage = મહેમાન ખાતું
 settingsSignInButton = સાઇન ઇન
     .title = સાઇન ઇન
 SettingsPageHeader = Firefox સ્ક્રીનશોટ સેટિંગ્સ
+settingsFirefoxAccountSubHeader = FireFox ખાતું
 settingsClosePreferences =
     .title = પસંદગીઓ બંધ કરો
+settingsFxaDisconnectAlertMessage = શું તમે ખરેખર આ ઉપકરણનો જોડાણ તમારા Firefox ખાતામાંથી  દૂર કરવા માંગો છો?
 
 ## Shotindex page
 
