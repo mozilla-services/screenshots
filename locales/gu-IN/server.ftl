@@ -5,7 +5,7 @@
 ## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = મારા શોટ્સ
-gHomeLink = મુખ પૃષ્ઠ
+gHomeLink = મુખ્ય પૃષ્ઠ
 gNoShots =
     .alt = કોઈ શૉટ્સ મળ્યાં નથી
 gScreenshotsDescription = સ્ક્રીનશોટ સરળ બનાવી. Firefox છોડ્યાં વગર સ્ક્રીનશોટ લો, સાચવો અને વહેંચો.
@@ -19,6 +19,14 @@ buttonSignIn =
 screenshotsLogo =
     .title = સ્ક્રીનશૉટ્સ હોમ
 bannerSignIn = તમારા ઉપકરણને તમારા ઉપકરણ પર ઍક્સેસ કરવા અને તમારા મનપસંદ્સને હંમેશાં સાચવવા માટે<a>સાઇન ઇન કરો અથવા સાઇન અપ કરો</a>.
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Firefox Screenshots સાથે નવું શું છે?
+onboardingPromoMessage = હવે, Firefox એકાઉન્ટ સાથે Screenshots પર સાઇન ઇન કરો અને વધુ કરો:
+onboardingPromoMessageListItem1 = તમારા બધા ઉપકરણો પર તમારી લાઇબ્રેરીને ઍક્સેસ કરો
+onboardingPromoMessageListItem2 = તમારા મનપસંદ શોટ્સ કાયમ માટે સંગ્રહિત કરો
+onboardingPromoSigninButton = સાઇન ઇન કરો
+    .title = સાઇન ઇન કરો
 
 ## Footer
 
@@ -53,8 +61,6 @@ homePageDownloadFirefoxSubTitle = મફત ડાઉનલોડ
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots કેવી રીતે કામ કરે છે
 homePageGetStartedTitle = શરૂ કરો
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = તમારા ટૂલબાર પરના નવા સ્ક્રીનશોટ ચિહ્નને શોધો. તેને પસંદ કરો, અને સ્ક્રીનશોટ મેનૂ તમારી બ્રાઉઝર વિંડોની ટોચ પર દેખાશે.
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = સરનામાં બારમાં પૃષ્ઠ ક્રિયાઓ મેનૂમાંથી સ્ક્રીનશોટ્સ ચિહ્ન પસંદ કરો, અને સ્ક્રીનશોટ મેનૂ તમારા બ્રાઉઝર વિંડોની ટોચ પર દેખાશે.
 homePageCaptureRegion = પ્રદેશને પકડો
@@ -94,6 +100,9 @@ shotPageAlertErrorUpdatingTitle = શીર્ષક સાચવવામાં
 shotPageConfirmDelete = શું તમે ખરેખર આ શોટને કાયમ માટે કાઢી નાખવા માંગો છો?
 shotPageShareButton =
     .title = વહેચો
+shotPageCopyButton =
+    .title = ક્લિપબોર્ડ પર છબીની નકલ કરો
+shotPageCopyActionLabel = નકલ કરો
 shotPageCopied = નકલ કરેલું
 shotPageShareFacebook =
     .title = Facebook પર વહેચો
@@ -268,12 +277,9 @@ textToolInputPlaceholder =
 settingsDisconnectButton = જોડાણ તોડો
     .title = જોડાણ તોડો
 settingsGuestAccountMessage = મહેમાન ખાતું
-settingsSignInInvite = સમગ્ર ઉપકરણો પર સમન્વયન કરવા માટે સાઇન ઇન કરો
 settingsSignInButton = સાઇન ઇન
     .title = સાઇન ઇન
 SettingsPageHeader = Firefox સ્ક્રીનશોટ સેટિંગ્સ
-settingsDescription = તમે બધા ઉપકરણો પર તમારા બધા સ્ક્રીનશૉટ્સને સમન્વયિત કરવા અને તેમને ખાનગીમાં ઍક્સેસ કરવા માટે FIrefox ખાતા સાથે સાઇન ઇન કરી શકો છો.
-settingsPageSubHeader = સમન્વયન અને ખાતા
 settingsClosePreferences =
     .title = પસંદગીઓ બંધ કરો
 
