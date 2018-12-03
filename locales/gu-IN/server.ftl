@@ -19,12 +19,15 @@ buttonSignIn =
 screenshotsLogo =
     .title = સ્ક્રીનશૉટ્સ હોમ
 bannerSignIn = તમારા ઉપકરણને તમારા ઉપકરણ પર ઍક્સેસ કરવા અને તમારા મનપસંદ્સને હંમેશાં સાચવવા માટે<a>સાઇન ઇન કરો અથવા સાઇન અપ કરો</a>.
+bannerUpsell = { gScreenshotsDescription } <a>હવે Firefox મેળવો</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Firefox Screenshots સાથે નવું શું છે?
 onboardingPromoMessage = હવે, Firefox એકાઉન્ટ સાથે Screenshots પર સાઇન ઇન કરો અને વધુ કરો:
 onboardingPromoMessageListItem1 = તમારા બધા ઉપકરણો પર તમારી લાઇબ્રેરીને ઍક્સેસ કરો
 onboardingPromoMessageListItem2 = તમારા મનપસંદ શોટ્સ કાયમ માટે સંગ્રહિત કરો
+onboardingPromoDismissButton = રદ કરો
+    .title = રદ કરો
 onboardingPromoSigninButton = સાઇન ઇન કરો
     .title = સાઇન ઇન કરો
 
@@ -69,6 +72,10 @@ homePageCaptureRegionDescription = તમે પકડવા માંગો છ
 homePageCapturePage = પૃષ્ઠને પકડો
 homePageCapturePageDescription = સંપૂર્ણ પૃષ્ઠોને પકડવા માટે ઉપલા જમણા બટન્સનો ઉપયોગ કરો. સાચવો દૃશ્યમાન બટન તે વિસ્તારને પકડવા કરશે જે તમે સ્ક્રોલિંગ વગર જોઈ શકો છો, અને પૂર્ણ પેજમાં સાચવો પૃષ્ઠ પર બધું પકડશે.
 homePageSaveShare = સાચવો અને વહેચો
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = તમારા શ્રેષ્ઠ શૉટ લો. પછી તેને ઑનલાઇન સ્ક્રીનશોટ લાઇબ્રેરી પર સાચવો, અને સરળ વહેંચણી માટે Firefox લિંકને તમારા ક્લિપબોર્ડ પર કૉપિ કરે છે. લાઇબ્રેરીમાંના શોટ્સ આપમેળે બે અઠવાડિયા પછી જતા રહે છે, પરંતુ તમે તેને કોઈપણ સમયે કાઢી શકો છો અથવા તેમને વધુ સમય સુધી રાખવાનું પસંદ કરી શકો છો.
+homePageSignInTitle = તમારા શોટ્સ દરેક જગ્યાએ
+homePageSignInDescription = જ્યાં પણ તમે તમારા શોટને ઍક્સેસ કરવા માટે Firefox નો ઉપયોગ કરો છો ત્યા તમારા સ્ક્રીનશોટ સાથે Firefox એકાઉન્ટ પર સાઇન ઇન કરો.  ઉમેરાયેલ બોનસ: તમે તમારા મનપસંદ શોટને હંમેશાં સાચવી પણ શકો છો.
 homePageLegalLink = કાયદાકીય
 homePagePrivacyLink = ખાનગીપણું
 homePageTermsLink = શરતો
@@ -77,6 +84,8 @@ homePageCookiesLink = કુકીઓ
 ## Leave Screenshots page
 
 leavePageRemoveAllData = તમામ ડેટાને દૂર કરો
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = તમારું એકાઉન્ટ કાઢી નાખવા માટે તમારી પાસે Firefox સ્ક્રીનશોટ્સ ઇન્સ્ટોલ કરેલું અથવા Firefox એકાઉન્ટમાં સાઇન ઇન હોવું આવશ્યક છે
 leavePageErrorGeneric = એક ભૂલ આવી
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = આ તમારા બધા Firefox સ્ક્રિનશોટ્સ ડેટાને કાયમી ધોરણે કાઢી નાખશે.
@@ -286,6 +295,8 @@ settingsFirefoxAccountSubHeader = FireFox ખાતું
 settingsClosePreferences =
     .title = પસંદગીઓ બંધ કરો
 settingsFxaDisconnectAlertMessage = શું તમે ખરેખર આ ઉપકરણનો જોડાણ તમારા Firefox ખાતામાંથી  દૂર કરવા માંગો છો?
+settingsFxaDisconnectDescription = જો તમે સાઇન આઉટ કરો છો, તો તમારે તમારા સ્ક્રીનશૉટ્સની પરવાનગી ફરીથી મેળવવા માટે ફરીથી સાઇન ઇન કરવાની જરૂર પડશે.
+settingsFxaConnectDescription = તમે સમગ્ર ઉપકરણો પર તમારા સ્ક્રીનશૉટ્સને ઍક્સેસ કરવા માટે સાઇન ઇન કરી શકો છો.
 
 ## Shotindex page
 
@@ -322,6 +333,9 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = આ એક મનપસંદ શોટ છે અને તે સમાપ્ત થતો નથી
+shotIndexSyncedShot =
+    .title = શોટ બીજા ઉપકરણ પર લેવામાં આવ્યો છે
+shotIndexAlertErrorFavoriteShot = મનપસંદ શૉટ સ્થિતિ અપડેટ કરવામાં ભૂલ
 
 ## Delete Confirmation Dialog
 
