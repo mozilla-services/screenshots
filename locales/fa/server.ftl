@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = دریافت رایگان
 homePageHowScreenshotsWorks = Firefox Screenshots چگونه کار می‌کند
 homePageGetStartedTitle = شروع کنید
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = شمایل جدید Screenshots را در نوار ابزار خود پیدا کنید. انتخابش کنید، سپس منوی Screenshots در بالای پنجره مرورگر شما نمایان خواهد شد.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = انتخاب شمایل برای تصویر از صفحه از بخش فهرست اقدامات در آدرس بار،‌ و فهرست تصاویر لحظه ای در بالای پنجره مرورگر ظاهر خواهد شد.
 homePageCaptureRegion = گرفتن عکس از یک ناحیه
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -290,16 +288,15 @@ copyImageErrorMessage = امکان برداشت یک نسخه از تصویر ش
 settingsDisconnectButton = قطع اتصال
     .title = قطع اتصال
 settingsGuestAccountMessage = حساب مهمان
-settingsSignInInvite = برای همگام‌سازی با سایر دستگاه‌ها وارد شوید
 settingsSignInButton = ورود
     .title = ورود
 SettingsPageHeader = تنظیمات نماگرفتِ فایرفاکس
-settingsDescription = شما می‌توانید برای همگام‌سازی نماهای خود در سایر دستگاه و دسترسی خصوصی به آنها، وارد حساب فایرفاکس خود شوید.
 settingsFirefoxAccountSubHeader = حساب فایرفاکس
 settingsClosePreferences =
     .title = بستن ترجیحات
 settingsFxaDisconnectAlertMessage = آیا مطمئن هستید که می‌خواهید این دستگاه را از حساب فایرفاکس خود جدا کنید؟
 settingsFxaDisconnectDescription = اگر از سیستم خارج شوید، مجددا باید وارد سیستم شوید تا دوباره به تصاویر خود دسترسی داشته باشید.
+settingsFxaConnectDescription = می‌توانید برای دسترسی به عکس‌هایتان در تمام دستگاه‌ها، وارد شوید.
 
 ## Shotindex page
 
