@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Emboguejy reiete
 homePageHowScreenshotsWorks = Mba’éicha omba’apo Firefox Screenshots
 homePageGetStartedTitle = Jeguata ñepyrũ
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Eheka Screenshots ra’anga’i pyahu tembipuru rendápe. Embosa’y ha Screenshots poravorã ehecháta pe kundaha rovetã ári.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Embosa’y Screenshots ra’anga’i poravorã oku’éva tembipuru rendápe ha ehecháta pe poravorã kundaha rovetã yvate gotyo.
 homePageCaptureRegion = Ejapyhy peteĩ tendaguasu
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -290,16 +288,15 @@ copyImageErrorMessage = Ndaikatúi embohasa nde japyhykue kuatiajokohápe.
 settingsDisconnectButton = Ñesẽte
     .title = Ñesẽte
 settingsGuestAccountMessage = Pepirũva mba’ete
-settingsSignInInvite = Eñemboheraguapy embojuehe hag̃ua mba’e’oka pa’ũme
 settingsSignInButton = Eñepyrũ tembiapo
     .title = Eñepyrũ tembiapo
 SettingsPageHeader = Firefox Screenshots ñemboheko
-settingsDescription = Ikatu emoñepyrũ tembiapo ne mba’ete Firefox pegua emoñondive hag̃ua opaite mba’erechaha japyhypy ne mba’e’okápe ha eike pype ñemigua rupive.
 settingsFirefoxAccountSubHeader = Firefox Account
 settingsClosePreferences =
     .title = Jeguerohoryvéva moheñói
 settingsFxaDisconnectAlertMessage = ¿Eipe’asépa ko mba’e’oka ne mba’ete Firefox peguágui?
 settingsFxaDisconnectDescription = Embotýramo tembiapo, emoñepyrũjeyva’erã eikekuaa jey hag̃ua ne mba’erechaha jejapyhýpe.
+settingsFxaConnectDescription = Ikatu emoñepyrũ tembiapo eikekuaa hag̃ua nde mba’erechaha japyhypyrépe mba’e’oka rupive.
 
 ## Shotindex page
 
