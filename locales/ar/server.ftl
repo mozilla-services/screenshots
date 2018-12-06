@@ -127,7 +127,7 @@ shotPageCopyImageText =
     .label = انسخ نص الصورة
 shotPageConfirmDeletion = أمتأكد أنك تريد حذف هذه اللقطة إلى الأبد؟
 # Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageTimeExpirationMessage = إذا لم تفعل أي شيء، ستُحذف هذه اللقطة دون رجعة <timediff></timediff>.
+shotPageTimeExpirationMessage = إن تركت اللقطة وشأنها فستُحذف دون رجعة <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = استعدها حتى { $date }
