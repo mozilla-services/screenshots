@@ -39,6 +39,9 @@ footerLinkPrivacy = Iber Privasi
 footerReportShot = Laporkeun Téwakan
     .title = Laporkeun ieu téwakan ku alesan penyalahgunaan, spam, atawa masalah lianna
 footerLinkFaqs = LD
+footerLinkDMCA = Laporkeun pelanggaran IP
+footerLinkDiscourse = Béré Pangdeudeul
+footerLinkRemoveAllData = Piceun Sakabéh Data
 
 ## Creating page
 
@@ -51,21 +54,53 @@ creatingPageWaitMessage = Neundeun téwakan anjeun...
 
 ## Home page
 
+homePageButtonMyShots = Miang ka Téwakan Kami
 homePageTeaser = Bakal Datang...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Undeur Haratis
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Cara Gawé Firefox Screenshots
 homePageGetStartedTitle = Mitembeyan
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Pilih ikon Screenshots ti menu peta kaca dina palang alamat, menu Screenshots bakal némbongan dina punclut jandéla panyungsi anjeun.
+homePageCaptureRegion = Téwak Kotakan
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Klik jeung gusur pikeun milih kotakan anu rék ditéwak. Atawa arahkeun jeung klik — Screenshots bakal mangmilihkeun kotakanana. Resep? Pilih Teundeun pikeun muka téwakan layar onlén atawa tombol jamparing turun pikeun ngundeur.
+homePageCapturePage = Téwak Kaca
+homePageSaveShare = Teundeun jeung Bagikeun
+homePageSignInTitle = Téwakan Anjeun di Mamana
+homePageSignInDescription = Asup ka Screenshots maké Akun Firefox pikeun muka téwakan anjeun di mana waé maké Firefox. Bonus émbohna: anjeun ogé bisa neundeun téwakan kameumeut salilana.
+homePageLegalLink = Légal
+homePagePrivacyLink = Privasi
+homePageTermsLink = Katangtuan
+homePageCookiesLink = Kuki
 
 ## Leave Screenshots page
 
+leavePageRemoveAllData = Piceun Sakabéh Data
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = Anjeun kudu masang Firefox Screenshots atawa asup ka Akun Firefox pikeun ngahapus akun
+leavePageErrorGeneric = Aya éror
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Ieu bakal ngahapus permanén sakur data Firefox Screenshots Anjeun.
+leavePageButtonProceed = Teruskeun
+leavePageButtonCancel = Bolay
+leavePageDeleted = Sakur téwakan layar anjeun geus dipupus!
 
 ## Not Found page
 
+notFoundPageTitle = Kaca Teu Kapanggih
+notFoundPageIntro = Beu.
+notFoundPageDescription = Kaca teu kapanggih.
 
 ## Shot page
 
+# This is the HTML title tag of the page
+shotPageTitle = Téwakan layar: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = Eror neundeun kadaluwarsa
+shotPageAlertErrorDeletingShot = Eror mupus téwakan
+shotPageAlertErrorUpdatingTitle = Eror neundeun judul
+shotPageConfirmDelete = Nyaan rék mupus permanén ieu téwakan?
 shotPageShareButton =
     .title = Bagikeun
 shotPageCopyButton =
@@ -84,7 +119,13 @@ shotPageShareLink = Jieun tutumbu bagikeuneun pikeun ieu téwakan:
 shotPagePrivacyMessage = Sakur nu boga tutumbuna bisa nempo ieu téwakan.
 shotPageCopyImageText =
     .label = Tiron téks gambar
+shotPageConfirmDeletion = Nyaan rék mupus permanén ieu téwakan?
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = teundeun nepi ka { $date }
 shotPageExpiredMessage = Ieu téwakan geus kadaluwarsa.
+# Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Ti dieu asal dijieunna ieu kaca:
 shotPageDeleteButton =
     .title = Pupus ieu téwakan
 shotPageDownloadShot =
@@ -95,6 +136,14 @@ shotPageBackToHomeButton =
     .title = Tepas
 shotPageAllShotsButton =
     .title = Sakabéh Téwakan
+shotPageDMCAMessage = Ieu téwakan geus teu bisa dibuka alatan ayana klaim kekayaan inteléktual pihak katilu.
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Mangga kirim surél { $dmca } pikeun émbaran leuwih teleb.
+# Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Lamun Téwakan anjeun nepi ka diklaim sababaraha kali, aksés ka Firefox Screenshots bisa ditutup.
+# Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Tuliskeun ogé URL téwakanana dina surél anjeun: { $url }
+shotPageKeepFor = Sabaraha lila ieu téwakan rék diteundeun?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Pilih mangsa
 # The ∞ is used to indicate that the shot won't expire. It is also used in
@@ -129,20 +178,94 @@ timeDiffDaysAgo =
        *[other] { $number } poé kaliwat
     }
 timeDiffFutureSeconds = sababaraha detik kaliwat
+timeDiffFutureMinutes =
+    { $number ->
+       *[other] dina { $number } menit
+    }
+timeDiffFutureHours =
+    { $number ->
+       *[other] dina { $number } jam
+    }
+timeDiffFutureDays =
+    { $number ->
+       *[other] dina { $number } poé
+    }
 
 ## Shot Page New Feature Promotion Dialog.
 
+promoLink = Cobaan
+promoCloseButton =
+    .title = Tutup iber
 
 ## Annotations
 
+annotationPenButton =
+    .title = Péna
+annotationUndoButton =
+    .title = Bedo
+annotationRedoButton =
+    .title = Pigawé deui
+annotationTextButton =
+    .title = Tambahkeun téks
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
+    .title = Beresihan
+annotationCropButton =
+    .title = Keureut
+annotationSaveEditButton = Teundeun
+    .title = Teundeun ropéa
+annotationCancelEditButton = Bolay
+    .title = Bolay ngaropéa
+annotationCropCancelButton = Bolay
+    .title = Bolaykeun pilihan
+annotationColorWhite =
+    .title = Bodas
+annotationColorBlack =
+    .title = Hideung
+annotationColorRed =
+    .title = Beureum
+annotationColorGreen =
+    .title = Héjo
+annotationColorBlue =
+    .title = Bulao
+annotationColorYellow =
+    .title = Konéng
+annotationColorPurple =
+    .title = Bungur
+annotationColorGrey =
+    .title = Hawuk
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Ukuran téks
+# Values shown in text size selection dropdown
+textSizeSmall = Leutik
+textSizeMedium = Sedeng
+textSizeLarge = Badag
+textToolCancelButton = Bolay
+    .title = Bolay
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Euy
 
 ## The following are the title and message for an error displayed as a Firefox
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = Aya masalah
+copyImageErrorMessage = Teu bisa niron téwakan anjeun kana papan klip.
 
 ## Settings Page
 
+settingsDisconnectButton = Pegatkeun
+    .title = Pegatkeun
+settingsGuestAccountMessage = Akun Tamu
+settingsSignInButton = Asup
+    .title = Asup
+SettingsPageHeader = Setélan Firefox Screenshots
+settingsFirefoxAccountSubHeader = Akun Firefox
+settingsClosePreferences =
+    .title = Tutup préferénsi
+settingsFxaDisconnectAlertMessage = Anjeun yakin rék megatkeun gawai ieu ti Akun Firefox anjeun?
 
 ## Shotindex page
 
