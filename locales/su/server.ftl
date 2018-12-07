@@ -266,16 +266,50 @@ settingsFirefoxAccountSubHeader = Akun Firefox
 settingsClosePreferences =
     .title = Tutup préferénsi
 settingsFxaDisconnectAlertMessage = Anjeun yakin rék megatkeun gawai ieu ti Akun Firefox anjeun?
+settingsFxaDisconnectDescription = Lamun kaluar, anjeun kudu asup deui pikeun bisa muka deui téwakan layar.
+settingsFxaConnectDescription = Anjeun bisa asup pikeun muka téwakan layar meuntas gawai.
 
 ## Shotindex page
 
+shotIndexPageSearchPlaceholder =
+    .placeholder = Paluruh téwakan kami
+shotIndexPageNoShotsInvitation = Sok atuh, jieun.
+shotIndexPageLookingForShots = Nyaliksik téwakan anjeun...
+shotIndexPageMyShotsButton =
+    .title = Téwakan Kami
+shotIndexPageClearSearchButton =
+    .title = Beresihan pamaluruhan
+shotIndexPageConfirmShotDelete = Pupus ieu téwakan?
+shotIndexPagePreviousPage =
+    .title = Kaca saméméhna
+shotIndexPageNextPage =
+    .title = Kaca satuluyna
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Ieu lain téwakan petingan sarta bakal kadaluwarsa
+# This is the tooltip for a "heart" symbol in the upper top corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Ieu téwakan petingan sarta moal kadaluwarsa
+shotIndexSyncedShot =
+    .title = Téwakan anu dicokot tina séjén alat
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = Yakin anjeun rék mupus ieu téwakan?
+shotDeleteCancel = Bolay
+    .title = Bolay
+shotDeleteConfirm = Pupus
+    .title = Pupus
 
 ## Metrics page
 ## All metrics strings are optional for translation
 
+# Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Métrik Firefox Screenshots
+metricsPageTotalsQueryTitle = Jumlah
 metricsPageVersionQueryUsers = Jumlah pamaké nu asup log
 metricsPageVersionQueryLastSeen = Poé
 metricsPageHeader = Métrik
