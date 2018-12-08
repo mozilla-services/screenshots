@@ -18,7 +18,6 @@ buttonSignIn =
     .title = Kirjaudu sisään
 screenshotsLogo =
     .title = Screenshots-etusivu
-bannerMessage = Kirjaudu tai rekisteröidy, niin voit käyttää kaappauksiasi kaikilta laitteiltasi ja tallentaa suosikkisi ikuisesti.
 bannerUpsell = { gScreenshotsDescription } <a>Hanki Firefox nyt</a>
 
 ## Footer
@@ -55,8 +54,6 @@ homePageDownloadFirefoxSubTitle = Lataa ilmaiseksi
 homePageHowScreenshotsWorks = Miten Firefox Screenshots toimii
 homePageGetStartedTitle = Aloitetaan
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Huomaa uusi Screenshots-kuvake työkalupalkissa. Valitse se, niin Screenshots-valikko avautuu selainikkunan päälle.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Valitse Screenshots-kuvake osoitepalkissa olevasta Sivun toiminnot -valikosta, niin Screenshots-valikko avautuu selainikkunan päälle.
 homePageCaptureRegion = Kaappaa alue
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -72,8 +69,6 @@ homePageCookiesLink = Evästeet
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Poista kaikki tiedot
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Tilin poistamiseksi Firefox Screenshots pitää olla asennettuna
 leavePageErrorGeneric = Tapahtui virhe
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Tämä poistaa kaikki Firefox Screenshots -palvelun tietosi pysyvästi.
@@ -275,12 +270,10 @@ copyImageErrorMessage = Kuvakaappausta ei voitu kopioida leikepöydälle.
 settingsDisconnectButton = Katkaise yhteys
     .title = Katkaise yhteys
 settingsGuestAccountMessage = Vierastili
-settingsSignInInvite = Voit synkronoida tiedot laitteiden välillä kirjautumalla sisään
 settingsSignInButton = Kirjaudu sisään
     .title = Kirjaudu sisään
 SettingsPageHeader = Firefox Screenshots -asetukset
-settingsDescription = Voit kirjautua sisään Firefox-tilille ja synkronoida kaikki kaappauksesi laitteiden välillä ja katsella niitä yksityisesti.
-settingsPageSubHeader = Synkronointi ja tilit
+settingsFirefoxAccountSubHeader = Firefox-tili
 settingsClosePreferences =
     .title = Sulje asetukset
 
