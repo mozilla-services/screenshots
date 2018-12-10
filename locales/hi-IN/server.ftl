@@ -111,6 +111,7 @@ shotPageShareButton =
     .title = साझा
 shotPageCopyButton =
     .title = चित्र को क्लिपबोर्ड में कॉपी करें
+shotPageCopyActionLabel = कॉपी
 shotPageCopied = नक़ल की गयी
 shotPageShareFacebook =
     .title = firefox पर साझा करें
@@ -290,8 +291,12 @@ settingsGuestAccountMessage = अतिथि खाता
 settingsSignInButton = साइन इन
     .title = साइन इन
 SettingsPageHeader = Firefox स्क्रीनशॉट सेटिंग
+settingsFirefoxAccountSubHeader = Firefox खाता
 settingsClosePreferences =
     .title = प्राथमिकताएँ बंद करें
+settingsFxaDisconnectAlertMessage = क्या आप निश्चित रूप से इस उपकरण को अपने Firefox खाते से असंबद्ध करना चाहते हैं?
+settingsFxaDisconnectDescription = यदि आप साइन आउट करते हैं, तो आपको अपने स्क्रीनशॉट तक पहुँच प्राप्त करने के लिए फिर से साइन इन करना होगा।
+settingsFxaConnectDescription = आप उपकरणों पर अपने स्क्रीनशॉट तक पहुँचने के लिए साइन इन कर सकते हैं।
 
 ## Shotindex page
 
