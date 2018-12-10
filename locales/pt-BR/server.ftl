@@ -23,7 +23,7 @@ bannerUpsell = { gScreenshotsDescription } <a>Baixe o Firefox agora mesmo</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Quais as novidades no Firefox Screenshots?
-onboardingPromoMessage = Agora, entre no Screenshots com uma Conta Firefox e faça mais:
+onboardingPromoMessage = Entre no Screenshots com uma Conta Firefox e faça mais:
 onboardingPromoMessageListItem1 = Acesse sua biblioteca em todos os seus dispositivos
 onboardingPromoMessageListItem2 = Guarde suas capturas preferidas para sempre
 onboardingPromoDismissButton = Dispensar
@@ -73,7 +73,7 @@ homePageCapturePage = Capture uma Página
 homePageCapturePageDescription = Use os botões no canto superior direito para capturar telas inteiras. O botão Salvar Área Visível irá capturar a área que você vê sem rolar a página. O botão Salvar Página Inteira irá capturar toda a página.
 homePageSaveShare = Salve e Compartilhe
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Tire sua melhor captura de tela e salve na biblioteca on-line do Screenshots, então, o Firefox copiará o link para a sua área de transferência para fácil compartilhamento. As capturas de tela na biblioteca expiram automaticamente após duas semanas, mas você pode apagá-las a qualquer momento ou escolher mantê-las por mais tempo.
+homePageShaveShareFavoriteDescription = Tire sua melhor captura. Então salve na biblioteca on-line do Screenshots e o Firefox copia o link para sua área de transferência para facilitar o compartilhamento. As capturas na biblioteca expiram automaticamente após duas semanas, mas você pode apagá-las a qualquer momento, ou escolher mantê-las por mais tempo.
 homePageSignInTitle = Suas capturas de tela em qualquer lugar
 homePageSignInDescription = Entre no Screenshots com a sua Conta Firefox para acessar suas capturas de tela em qualquer lugar que utilize o Firefox. Bônus adicional: você também pode salvar suas capturas de tela favoritas para sempre.
 homePageLegalLink = Jurídico
