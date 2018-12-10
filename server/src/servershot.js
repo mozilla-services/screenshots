@@ -325,7 +325,8 @@ class Shot extends AbstractShot {
 }
 
 Shot.getRawBytesForClip = function(uid) {
-  return db.select(
+  return Promise.all([
+     db.select(
     `SELECT images.url, images.contenttype, data.deviceid, devices.accountid
      FROM devices, images
       JOIN data ON images.shotid = data.id
@@ -334,7 +335,16 @@ Shot.getRawBytesForClip = function(uid) {
       AND data.block_type = 'none'
       AND data.deviceid = devices.id
       AND NOT data.deleted`, [uid]
-  ).then((rows) => {
+  ),  db.select(
+    `SELECT images.url
+     FROM devices, images
+      JOIN data ON images.shotid = data.id
+     WHERE (data.expire_time IS NULL OR data.expire_time > NOW())
+      AND data.block_type = 'none'
+      AND data.deviceid = devices.id
+      AND NOT data.deleted`
+  )]).then((results) => {
+    const rows = results[0];
     if (!rows.length) {
       return null;
     }
@@ -342,9 +352,10 @@ Shot.getRawBytesForClip = function(uid) {
       .then(result => {
         result.ownerId = rows[0].deviceid;
         result.accountId = rows[0].accountid;
+        result.allUrls = results[1];
         return result;
       });
-  });
+  })
 };
 
 exports.Shot = Shot;
@@ -412,6 +423,9 @@ Shot.get = async function(backend, id, deviceId, accountId) {
   shot.expireTime = rawValue.expireTime;
   shot.deleted = rawValue.deleted;
   shot.blockType = rawValue.blockType;
+  shot.allShotIds = rawValue.allShotIds;
+  shot.prevShotId = rawValue.prevShotId;
+  shot.nextShotId= rawValue.nextShotId;
   return shot;
 };
 
@@ -429,14 +443,30 @@ Shot.getRawValue = function(id, deviceId, accountId) {
     query += ` AND deviceid = $2`;
     params.push(deviceId);
   }
-  return db.select(
+  return Promise.all([
+    db.select(
     query,
     params
-  ).then((rows) => {
-    if (!rows.length) {
+  ),
+   db.select(
+    `SELECT shotid
+     FROM devices, images
+      JOIN data ON images.shotid = data.id
+     WHERE (data.expire_time IS NULL OR data.expire_time > NOW())
+      AND data.block_type = 'none'
+      AND data.deviceid = devices.id
+      AND NOT data.deleted`
+  )
+   ]).then(function(results){
+    
+    if(!results[0].length){
       return null;
     }
-    const row = rows[0];
+    const row = results[0][0];
+    var shotIds = results[1];
+    //console.log("DB RESULT FOR SHOT IDS: "+ JSON.stringify(results[1])+"%%%%%%%%%%%%%%%%%%%%%%%%");
+
+    var adjacentShotIds = getAdjacentShotLinks(shotIds, id);
     return {
       deviceId: row.deviceid,
       value: row.value,
@@ -446,8 +476,11 @@ Shot.getRawValue = function(id, deviceId, accountId) {
       deleted: row.deleted,
       blockType: row.block_type,
       accountId: row.accountid,
+      allShotIds: shotIds,
+      prevShotId: adjacentShotIds.prev,
+      nextShotId: adjacentShotIds.next
     };
-  });
+  })
 };
 
 Shot.checkOwnership = function(shotId, deviceId, accountId) {
@@ -1038,6 +1071,26 @@ function resolveAllPromises(mapping) {
       throw result;
     }
   );
+}
+
+//helper function to determine urls for prev/next links for shots 
+function getAdjacentShotLinks(allShotIdObjs, thisShotId){
+  var allShotIds = [];
+  allShotIdObjs.forEach(obj => {allShotIds.push(obj.shotid)});
+  var currShotIndex = allShotIds.indexOf(thisShotId);
+
+  if(currShotIndex==-1 || allShotIds.length == 1){
+    return{
+      prev: thisShotId,
+      next: thisShotId
+    }
+  }
+  var nextId= currShotIndex == (allShotIds.length -1) ? allShotIds[0] : allShotIds[currShotIndex+2];
+  var prevId= currShotIndex == 0 ?(allShotIds.length -1) : allShotIds[currShotIndex-1];
+  return{
+    prev: prevId,
+    next: nextId
+  }
 }
 
 Shot.prototype.atob = require("atob");

@@ -11,6 +11,7 @@ const reactruntime = require("../../reactruntime");
 const { Editor } = require("./editor");
 const { isValidClipImageUrl } = require("../../../shared/shot");
 const { ShotPageHeader } = require("./shotpage-header");
+const {Col, Row} = require("react-bootstrap");
 
 class Clip extends React.Component {
   constructor(props) {
@@ -54,7 +55,7 @@ class Clip extends React.Component {
                     ? this.props.downloadUrl
                     : clip.image.url;
 
-    return <div ref={clipContainer => this.clipContainer = clipContainer} className="clip-container">
+    return <div id="FLAG" ref={clipContainer => this.clipContainer = clipContainer} className="clip-container">
       { this.copyTextContextMenu() }
       <a href={ clipUrl } onClick={ this.onClickClip.bind(this) } contextMenu="clip-image-context">
         { node }
@@ -454,8 +455,23 @@ class Body extends React.Component {
         </ShotPageHeader>
         <section className="clips">
           { this.props.isOwner && this.props.loginFailed ? <LoginFailedWarning /> : null }
-          { errorMessages }
-          { clips }
+          { errorMessages }    
+          <Row>
+            <Col>
+              <a href={this.props.backend+"/"+this.props.prevShotId}>
+                Previous
+             </a>
+            </Col>  
+            <Col>
+             { clips }
+            </Col>
+            <Col>
+
+             <a href={this.props.backend+"/"+this.props.nextShotId}>
+               Next
+              </a>
+            </Col>
+          </Row>
         </section>
         <ShotFooter {...this.props} />
       </div>

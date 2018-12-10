@@ -1,0 +1,4 @@
++ npm@6.4.1
+added 387 packages from 770 contributors and audited 23839 packages in 57.157s
+found 37 vulnerabilities (28 low, 7 moderate, 1 high, 1 critical)
+  run `npm audit fix` to fix them, or `npm audit` for details

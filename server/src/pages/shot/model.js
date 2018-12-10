@@ -29,6 +29,9 @@ exports.createModel = function(req) {
     isOwner: req.shot.isOwner,
     gaId: req.config.gaId,
     deviceId: req.deviceId,
+    allShotIds: req.shot.allShotIds,
+    prevShotId: req.shot.prevShotId,
+    nextShotId: req.shot.nextShotId,
     buildTime,
     simple: false,
     shotDomain: req.url, // FIXME: should be a property of the shot
@@ -74,6 +77,9 @@ exports.createModel = function(req) {
     isMobile,
     enableAnnotations,
     copyImageErrorMessage,
+    allShotIds: req.shot.allShotIds,
+    prevShotId: req.shot.prevShotId,
+    nextShotId: req.shot.nextShotId
   };
   if (serverPayload.expireTime !== null && Date.now() > serverPayload.expireTime) {
     clientPayload.shot = {

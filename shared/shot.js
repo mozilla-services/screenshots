@@ -227,7 +227,8 @@ class AbstractShot {
       }
     }
   }
-
+ 
+  
   /** Update any and all attributes in the json object, with deep updating
       of `json.clips` */
   update(json) {
@@ -743,3 +744,4 @@ if (typeof exports !== "undefined") {
   exports.originFromUrl = originFromUrl;
   exports.isValidClipImageUrl = isValidClipImageUrl;
 }
+
