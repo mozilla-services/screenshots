@@ -271,10 +271,20 @@ settingsFxaConnectDescription = Anjeun bisa asup pikeun muka téwakan layar meun
 
 ## Shotindex page
 
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Éror mupus téwakan: { $status } { $statusText }
+# { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Téwakan Kami: sungsi { $searchTerm }
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
+shotIndexPageErrorRendering = Éror midangkeun kaca: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Paluruh téwakan kami
+shotIndexPageNoShotsMessage = Taya teundeunan téwakan.
 shotIndexPageNoShotsInvitation = Sok atuh, jieun.
 shotIndexPageLookingForShots = Nyaliksik téwakan anjeun...
+shotIndexPageNoSearchResults = Taya téwakan anu cocog jeung pamaluruhan anjeun.
 shotIndexPageMyShotsButton =
     .title = Téwakan Kami
 shotIndexPageClearSearchButton =
@@ -310,6 +320,32 @@ shotDeleteConfirm = Pupus
 # Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Métrik Firefox Screenshots
 metricsPageTotalsQueryTitle = Jumlah
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Tinjauan Screenshots
+metricsPageTotalsQueryDevices = Jumlah paranti kadaptar
+metricsPageTotalsQueryActiveShots = Téwakan aktip
+metricsPageTotalsQueryExpiredShots = Kadaluwarsa (tapi bisa diala deui)
+metricsPageTotalsQueryExpiredDeletedShots = Kadaluwarsa (jeung dihapus)
+metricsPageShotsQueryTitle = Téwakan dumasar Poé
+metricsPageShotsQueryDescription = Jumlah téwakan dijieun unggal poé (30 poé panungtung)
+metricsPageShotsQueryCount = Jumlah téwakan
+metricsPageShotsQueryDay = Poé
+metricsPageUsersQueryTitle = Pamaké dumasar Poé
+metricsPageUsersQueryDescription = Jumlah pamaké anu nyieun sahanteuna hiji téwakan, dumasar poé (30 poé panungtung)
+metricsPageUsersQueryCount = Jumlah pamaké
+metricsPageUsersQueryDay = Poé
+metricsPageUserShotsQueryTitle = Jumlah Téwakan unggal Pamaké
+metricsPageUserShotsQueryDescription = Jumlah pamaké anu boga N téwakan
+metricsPageUserShotsQueryCount = Jumlah pamaké
+metricsPageUserShotsQueryShots = Jumlah kira-kira téwakan aktip (teu kadaluwarsa)
+metricsPageRetentionQueryUsers = Jumlah pamaké
+metricsPageRetentionQueryDays = Poé ti munggaran nyieun téwakan nepi ka nu pang anyarna
+metricsPageRetentionQueryFirstWeek = Minggu munggaran pamaké nyieun téwakan
+metricsPageTotalRetentionQueryUsers = Jumlah pamaké
+metricsPageVersionQueryTitle = Vérsi Pangeuyeub
 metricsPageVersionQueryUsers = Jumlah pamaké nu asup log
+metricsPageVersionQueryVersion = Vérsi pangeuyeub
 metricsPageVersionQueryLastSeen = Poé
 metricsPageHeader = Métrik
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Dijieun dina: { $created }
