@@ -56,7 +56,7 @@ creatingPageWaitMessage = Salvando captura…
 ## Home page
 
 homePageDescription =
-    .content = Capturas de tela intuitivas diretamente no navegador. Capture, salve e compartilhe telas enquanto navega na Web utilizando Firefox.
+    .content = Capturas de tela intuitivas diretamente no navegador. Capture, salve e compartilhe telas enquanto navega na web usando o Firefox.
 homePageButtonMyShots = Ir para minhas capturas
 homePageTeaser = Em breve…
 homePageDownloadFirefoxTitle = Firefox
