@@ -23,6 +23,13 @@ bannerUpsell = { gScreenshotsDescription } <a>Firefox अभी पायें<
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Firefox Screenshots के साथ नया क्या है?
+onboardingPromoMessage = अब, Firefox खाते के साथ स्क्रीनशॉट में साइन इन करें और अधिक करें:
+onboardingPromoMessageListItem1 = अपने सभी उपकरणों पर अपनी लाइब्रेरी तक पहुँचें
+onboardingPromoMessageListItem2 = अपने पसंदीदा शॉट हमेशा के लिए संग्रहित करें
+onboardingPromoDismissButton = निरस्त करें
+    .title = निरस्त करें
+onboardingPromoSigninButton = साइन इन
+    .title = साइन इन
 
 ## Footer
 
@@ -57,8 +64,6 @@ homePageDownloadFirefoxSubTitle = मुफ्त डाउनलोड
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox स्क्रीनशॉट कैसे काम करता हैं
 homePageGetStartedTitle = प्रारंभ करें
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = अपने टूलबार पर नया स्क्रीनशॉट आइकन पाए । इसका चयन करें, और स्क्रीनशॉट मेनू आपके ब्राउज़र विंडो पर दिखाई देगा ।
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = पता बार में पृष्ठ क्रिया मेनू से स्क्रीनशॉट आइकन का चयन करें, और स्क्रीनशॉट मेनू आपकी ब्राउज़र विंडो के शीर्ष पर दिखाई देगा।
 homePageCaptureRegion = एक क्षेत्र कैप्चर करें
@@ -282,11 +287,9 @@ copyImageErrorMessage = आपके स्क्रीनशॉट को क�
 settingsDisconnectButton = असम्बद्ध करें
     .title = असम्बद्ध करें
 settingsGuestAccountMessage = अतिथि खाता
-settingsSignInInvite = उपकरणों में संकालन के लिए साइन इन करें
 settingsSignInButton = साइन इन
     .title = साइन इन
 SettingsPageHeader = Firefox स्क्रीनशॉट सेटिंग
-settingsDescription = आप सभी उपकरण पर अपने स्क्रीनशॉट सिंक करने और उन्हें निजी रूप से एक्सेस करने के लिए Firefox खातों के साथ साइन इन कर सकते हैं।
 settingsClosePreferences =
     .title = प्राथमिकताएँ बंद करें
 
