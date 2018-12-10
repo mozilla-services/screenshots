@@ -141,6 +141,8 @@ annotationUndoButton =
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = صاف کریں
+annotationCropButton =
+    .title = کراپ کریں
 annotationSaveEditButton = محفوظ کریں
     .title = تدوین محفوظ کریں
 annotationCancelEditButton = منسوخ کریں
