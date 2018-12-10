@@ -138,6 +138,8 @@ annotationHighlighterButton =
     .title = روشن گر قلم
 annotationUndoButton =
     .title = واپس کریں
+annotationTextButton =
+    .title = متن شامل کریں
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = صاف کریں
