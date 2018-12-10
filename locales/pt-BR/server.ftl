@@ -220,9 +220,9 @@ promoCloseButton =
 ## Annotations
 
 annotationPenButton =
-    .title = Caneta
+    .title = Pintar
 annotationHighlighterButton =
-    .title = Marcador
+    .title = Destacar
 annotationUndoButton =
     .title = Desfazer
 annotationRedoButton =
@@ -257,7 +257,7 @@ annotationColorYellow =
 annotationColorPurple =
     .title = Roxo
 annotationColorSeaGreen =
-    .title = Verde mar
+    .title = Oceano
 annotationColorGrey =
     .title = Cinza
 # Note: annotationTextSize is a title for text size selection dropdown.
