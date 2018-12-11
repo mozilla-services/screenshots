@@ -284,6 +284,7 @@ shotIndexPageSearchPlaceholder =
 shotIndexPageNoShotsMessage = Taya teundeunan téwakan.
 shotIndexPageNoShotsInvitation = Sok atuh, jieun.
 shotIndexPageLookingForShots = Nyaliksik téwakan anjeun...
+shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Taya téwakan anu cocog jeung pamaluruhan anjeun.
 shotIndexPageMyShotsButton =
     .title = Téwakan Kami
