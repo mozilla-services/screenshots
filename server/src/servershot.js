@@ -1076,8 +1076,14 @@ function resolveAllPromises(mapping) {
 //helper function to determine urls for prev/next links for shots 
 function getAdjacentShotLinks(allShotIdObjs, thisShotId){
   var allShotIds = [];
-  allShotIdObjs.forEach(obj => {allShotIds.push(obj.shotid)});
-  var currShotIndex = allShotIds.indexOf(thisShotId);
+  allShotIdObjs.forEach((obj,idx, array) => {
+    //ensure no shot ids are duplicated in the array
+    if(idx >0 && array[idx-1].shotid != array[idx].shotid)
+      allShotIds.push(obj.shotid);
+  });
+  
+
+  const currShotIndex = allShotIds.indexOf(thisShotId);
 
   if(currShotIndex==-1 || allShotIds.length == 1){
     return{
@@ -1085,8 +1091,10 @@ function getAdjacentShotLinks(allShotIdObjs, thisShotId){
       next: thisShotId
     }
   }
-  var nextId= currShotIndex == (allShotIds.length -1) ? allShotIds[0] : allShotIds[currShotIndex+2];
-  var prevId= currShotIndex == 0 ?(allShotIds.length -1) : allShotIds[currShotIndex-1];
+  var nextIndex = currShotIndex == (allShotIds.length -1) ? 0 : currShotIndex+1;
+  var nextId= allShotIds[nextIndex];
+  var prevId= currShotIndex == 0 ?(allShotIds[allShotIds.length -1]) : allShotIds[currShotIndex-1];
+  console.log("++++++++++++++++DEBUG OUTPUT: [allShotIds]: "+JSON.stringify(allShotIds)+" [currShotIndex] "+ currShotIndex + " [currsShotIndex++] "+ nextIndex + " thisId: "+ allShotIds[currShotIndex] + " [nextShotId]"+allShotIds[nextIndex] + "[currentShotId]" + allShotIds[currShotIndex]);
   return{
     prev: prevId,
     next: nextId

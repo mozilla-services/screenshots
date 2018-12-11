@@ -11,7 +11,6 @@ const reactruntime = require("../../reactruntime");
 const { Editor } = require("./editor");
 const { isValidClipImageUrl } = require("../../../shared/shot");
 const { ShotPageHeader } = require("./shotpage-header");
-const {Col, Row} = require("react-bootstrap");
 
 class Clip extends React.Component {
   constructor(props) {
@@ -30,6 +29,18 @@ class Clip extends React.Component {
       this.setState({paddingTop});
     };
     window.addEventListener("resize", onResize, true);
+    
+    window.addEventListener("keypress", (event)=>{
+        const keyName = event.key;
+        if(keyName == "ArrowLeft"){
+          //window.location.replace(this.props.prevShotId);
+          document.getElementById('prev').click();
+        } 
+        if (keyName == "ArrowRight"){
+          document.getElementById('next').click();
+        }
+    });
+
 
     onResize();
     // FIXME: need to remove event listener on unmount
@@ -456,22 +467,21 @@ class Body extends React.Component {
         <section className="clips">
           { this.props.isOwner && this.props.loginFailed ? <LoginFailedWarning /> : null }
           { errorMessages }    
-          <Row>
-            <Col>
-              <a href={this.props.backend+"/"+this.props.prevShotId}>
+          <div>
+            <div style={{float: " left"}}>
+              <a id="prev" href={this.props.backend+"/"+this.props.prevShotId}>
                 Previous
              </a>
-            </Col>  
-            <Col>
+            </div>  
+            <div style={{float: " left"}}>
              { clips }
-            </Col>
-            <Col>
-
-             <a href={this.props.backend+"/"+this.props.nextShotId}>
+            </div>
+            <div style={{float: " left"}}>
+             <a id="next" href={this.props.backend+"/"+this.props.nextShotId}>
                Next
               </a>
-            </Col>
-          </Row>
+            </div>
+          </div>
         </section>
         <ShotFooter {...this.props} />
       </div>
