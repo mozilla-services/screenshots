@@ -464,7 +464,6 @@ Shot.getRawValue = function(id, deviceId, accountId) {
     }
     const row = results[0][0];
     var shotIds = results[1];
-    //console.log("DB RESULT FOR SHOT IDS: "+ JSON.stringify(results[1])+"%%%%%%%%%%%%%%%%%%%%%%%%");
 
     var adjacentShotIds = getAdjacentShotLinks(shotIds, id);
     return {
@@ -1094,7 +1093,6 @@ function getAdjacentShotLinks(allShotIdObjs, thisShotId){
   var nextIndex = currShotIndex == (allShotIds.length -1) ? 0 : currShotIndex+1;
   var nextId= allShotIds[nextIndex];
   var prevId= currShotIndex == 0 ?(allShotIds[allShotIds.length -1]) : allShotIds[currShotIndex-1];
-  console.log("++++++++++++++++DEBUG OUTPUT: [allShotIds]: "+JSON.stringify(allShotIds)+" [currShotIndex] "+ currShotIndex + " [currsShotIndex++] "+ nextIndex + " thisId: "+ allShotIds[currShotIndex] + " [nextShotId]"+allShotIds[nextIndex] + "[currentShotId]" + allShotIds[currShotIndex]);
   return{
     prev: prevId,
     next: nextId
