@@ -8,6 +8,7 @@ gMyShots = Téwakan Kami
 gHomeLink = Tepas
 gNoShots =
     .alt = Taya téwakan kapanggih
+gScreenshotsDescription = Screenshots jadi gampang. Cokot, teundeun, jeung bagikeun téwakan layar tanpa ninggalkeun Firefox.
 
 ## Header
 
