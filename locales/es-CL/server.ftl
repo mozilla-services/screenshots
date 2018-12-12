@@ -293,6 +293,9 @@ SettingsPageHeader = Ajustes de Firefox Screenshots
 settingsFirefoxAccountSubHeader = Cuenta de Firefox
 settingsClosePreferences =
     .title = Cerrar preferencias
+settingsFxaDisconnectAlertMessage = ¿Estás seguro de que quieres desconectar este dispositivo de tu cuenta de Firefox?
+settingsFxaDisconnectDescription = Si cierras la sesión, tendrás que volver a conectarte para recuperar el acceso a tus capturas de pantalla.
+settingsFxaConnectDescription = Puedes conectarte para acceder a tus capturas de pantalla en todos tus dispositivos.
 
 ## Shotindex page
 
