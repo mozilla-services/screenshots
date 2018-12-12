@@ -137,6 +137,7 @@ shotPageBackToHomeButton =
     .title = Tepas
 shotPageAllShotsButton =
     .title = Sakabéh Téwakan
+shotPageScreenshotsDescription = Screenshots jadi gampang. Cokot, teundeun, jeung bagikeun téwakan layar tanpa ninggalkeun Firefox.
 shotPageDMCAMessage = Ieu téwakan geus teu bisa dibuka alatan ayana klaim kekayaan inteléktual pihak katilu.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Mangga kirim surél { $dmca } pikeun émbaran leuwih teleb.
