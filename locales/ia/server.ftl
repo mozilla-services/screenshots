@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Discargamento gratuito
 homePageHowScreenshotsWorks = Como Firefox Screenshots functiona
 homePageGetStartedTitle = Comenciar
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Trova le nove instantaneos sur tu barra de instrumentos. Elige lo, e le menu del instantaneos apparera al culmine de tu fenestra del navigator.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Elige le icone de instantaneos ex le menu de actiones de pagina in le barra de adresses e le menu del instantaneos apparera al culmine de tu fenestra del navigator.
 homePageCaptureRegion = Capturar un area de schermo
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -122,7 +120,7 @@ shotPageShareTwitter =
 shotPageSharePinterest =
     .title = Compartir sur Pinterest
 shotPageShareEmail =
-    .title = Comparti un ligamine via e-posta
+    .title = Comparti un ligamine via email
 shotPageShareLink = Obtene un ligamine compartibile a iste instantaneo:
 shotPagePrivacyMessage = Totes pote vider iste instantaneo per iste ligamine.
 shotPageCopyImageText =
@@ -151,7 +149,7 @@ shotPageAllShotsButton =
 shotPageScreenshotsDescription = Le instantaneos de schermo a un maniera simple. Captura, salva e comparti le instantaneos de tu schermo sin exir de Firefox.
 shotPageDMCAMessage = Iste instantaneo non es plus disponibile per un reclamation de proprietate intellectual de tertie parte.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
-shotPageDMCAContact = Per favor e-posta { $dmca } pro querer altere informationes.
+shotPageDMCAContact = Per favor invia un email a { $dmca } pro querer altere informationes.
 # Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Si tu Instantaneos es subjecte a trop reclamationes, nos pote revocar tu accesso a Firefox Screenshots.
 # Note: { $url } is a placeholder for a shot page URL
@@ -290,11 +288,9 @@ copyImageErrorMessage = Impossibile copiar tu instantaneo al tabula de transfere
 settingsDisconnectButton = Disconnecter
     .title = Disconnecter
 settingsGuestAccountMessage = Conto hospite
-settingsSignInInvite = Authentica te pro synchronisar te trans apparatos differente
 settingsSignInButton = Authenticar se
     .title = Authenticar se
 SettingsPageHeader = Configurationes de Firefox Screenshots
-settingsDescription = Tu pote authenticar te con Firefox Accounts pro synchronisar tote tu instantaneos de schermo trans tu apparatos e acceder los privatemente.
 settingsFirefoxAccountSubHeader = Conto Firefox
 settingsClosePreferences =
     .title = Clauder le preferentias
