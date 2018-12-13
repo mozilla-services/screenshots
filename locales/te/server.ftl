@@ -13,6 +13,10 @@ gNoShots =
 
 buttonSettings =
     .title = అమరికలు
+buttonSignIn =
+    .title = ప్రవేశించండి
+screenshotsLogo =
+    .title = తెరపట్ల ముంగిలి
 
 ## Footer
 
@@ -244,7 +248,6 @@ settingsGuestAccountMessage = అతిథి ఖాతా
 settingsSignInButton = ప్రవేశించండి
     .title = ప్రవేశించండి
 SettingsPageHeader = Firefox తెరపట్ల అమరికలు
-settingsPageSubHeader = సింక్ & ఖాతాలు
 settingsClosePreferences =
     .title = అభిరుచులను మూసివేయి
 
