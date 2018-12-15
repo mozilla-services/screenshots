@@ -65,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Shkarkim Falas
 homePageHowScreenshotsWorks = Si Funksionon Firefox Screenshots
 homePageGetStartedTitle = Fillojani
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Gjeni te paneli juaj ikonën e re për Screenshots. Përzgjidheni, dhe menuja Shkrepje do të shfaqet në krye të dritares së shfletuesit tuaj.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Përzgjidhni ikonën Shkrepje, prej menusë së veprimeve mbi faqe, te shtylla e adresave, dhe menuja Shkrepje do të shfaqet në krye të dritares së shfletuesit tuaj.
 homePageCaptureRegion = Fotografoni një Zonë
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -289,14 +287,15 @@ copyImageErrorMessage = S’u arrit të kopjohej në të papastër shkrepja juaj
 settingsDisconnectButton = Shkëputu
     .title = Shkëputu
 settingsGuestAccountMessage = Llogari vizitori
-settingsSignInInvite = Që të bëhet njëkohësim nëpër pajisje, bëni hyrjen
 settingsSignInButton = Hyni
     .title = Hyni
 SettingsPageHeader = Rregullime për Firefox Screenshots
-settingsDescription = Mund të bëni hyrjen me Llogari Firefox, që të bëni njëkohësimin e krejt fotove tuaja të ekranit nëpër pajisje dhe për t’i përdorur ato privatisht.
-settingsPageSubHeader = Njëkohësim & Llogari
+settingsFirefoxAccountSubHeader = Llogari Firefox
 settingsClosePreferences =
     .title = Mbylli parapëlqimet
+settingsFxaDisconnectAlertMessage = Jeni i sigurt se doni të shkëputet kjo pajisje nga llogaria juaj Firefox?
+settingsFxaDisconnectDescription = Nëse bëni daljen, do t’ju duhet të ribëni hyrjen që të rifitoni kontrollin mbi shkrepjet tuaja.
+settingsFxaConnectDescription = Mund të bëni hyrjen që të përdorni shkrepjet në pajisje të ndryshme.
 
 ## Shotindex page
 
