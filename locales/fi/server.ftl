@@ -19,6 +19,8 @@ buttonSignIn =
 screenshotsLogo =
     .title = Screenshots-etusivu
 bannerUpsell = { gScreenshotsDescription } <a>Hanki Firefox nyt</a>
+onboardingPromoSigninButton = Kirjaudu sisään
+    .title = Kirjaudu sisään
 
 ## Footer
 
@@ -94,6 +96,7 @@ shotPageShareButton =
     .title = Jaa
 shotPageCopyButton =
     .title = Kopioi kuva leikepöydälle
+shotPageCopyActionLabel = Kopioi
 shotPageCopied = Kopioitu
 shotPageShareFacebook =
     .title = Jaa Facebookissa
@@ -276,6 +279,7 @@ SettingsPageHeader = Firefox Screenshots -asetukset
 settingsFirefoxAccountSubHeader = Firefox-tili
 settingsClosePreferences =
     .title = Sulje asetukset
+settingsFxaDisconnectAlertMessage = Haluatko varmasti katkaista tämän laitteen yhteyden Firefox-tiliisi?
 
 ## Shotindex page
 
