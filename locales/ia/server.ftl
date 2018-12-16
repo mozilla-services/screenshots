@@ -296,6 +296,7 @@ settingsClosePreferences =
     .title = Clauder le preferentias
 settingsFxaDisconnectAlertMessage = Desira tu vermente disconnecter iste apparato ex tu conto Firefox?
 settingsFxaDisconnectDescription = Si tu te disconnecte, pois tu besoniara de authenticar te de novo pro reganiar le accesso a tu instantaneos de schermo.
+settingsFxaConnectDescription = Tu pote authenticar te pro acceder a tu instantaneos de schermo trans apparatos differente.
 
 ## Shotindex page
 
