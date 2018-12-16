@@ -18,8 +18,11 @@ buttonSignIn =
     .title = Σύνδεση
 screenshotsLogo =
     .title = Αρχική σελίδα Screenshots
-bannerMessage = Συνδεθείτε ή εγγραφείτε για πρόσβαση στα στιγμιότυπά σας από όλες τις συσκευές και αποθήκευση των αγαπημένων σας για πάντα.
 bannerUpsell = { gScreenshotsDescription } <a>Λήψη του Firefox τώρα</a>
+onboardingPromoDismissButton = Απόρριψη
+    .title = Απόρριψη
+onboardingPromoSigninButton = Σύνδεση
+    .title = Σύνδεση
 
 ## Footer
 
@@ -55,8 +58,6 @@ homePageDownloadFirefoxSubTitle = Δωρεάν λήψη
 homePageHowScreenshotsWorks = Πώς λειτουργεί το Firefox Screenshots
 homePageGetStartedTitle = Ξεκινήστε
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Βρείτε το νέο εικονίδιο του Screenshots στη γραμμή εργαλείων σας. Επιλέξτε το και το μενού του Screenshots θα εμφανιστεί στο πάνω μέρος του παραθύρου του προγράμματος περιήγησής σας.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Επιλέξτε το εικονίδιο του Screenshots από το μενού ενεργειών σελίδας στη γραμμή διευθύνσεων και το μενού του Screenshots θα εμφανιστεί στο πάνω μέρος του παραθύρου του προγράμματος περιήγησής σας.
 homePageCaptureRegion = Καταγραφή περιοχής
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -64,8 +65,6 @@ homePageCaptureRegionDescription = Κάντε κλικ και σύρετε γι�
 homePageCapturePage = Καταγραφή σελίδας
 homePageCapturePageDescription = Χρησιμοποιήστε τα κουμπιά επάνω δεξιά για να καταγράψετε πλήρεις σελίδες σε στιγμιότυπα. Το κουμπί "Αποθήκευση ορατού" θα καταγράψει την περιοχή που μπορείτε να δείτε χωρίς κύλιση, ενώ το "Αποθήκευση πλήρους σελίδας" θα καταγράψει τα πάντα στη σελίδα.
 homePageSaveShare = Αποθήκευση και κοινή χρήση
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Όταν καταγράψετε ένα στιγμιότυπο, το Firefox προσθέτει το στιγμιότυπό σας στη διαδικτυακή βιβλιοθήκη του Screenshots σας και αντιγράφει το σύνδεσμο στο πρόχειρό σας. Αποθηκεύουμε αυτόματα το στιγμιότυπό σας για δύο εβδομάδες, αλλά μπορείτε να διαγράψετε τα στιγμιότυπά σας ανά πάσα στιγμή ή να αλλάξετε την ημερομηνία λήξης για να τα κρατήσετε στη βιβλιοθήκη σας για περισσότερο καιρό.
 homePageLegalLink = Νομικά
 homePagePrivacyLink = Απόρρητο
 homePageTermsLink = Όροι
@@ -74,8 +73,6 @@ homePageCookiesLink = Cookies
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Πλήρης εκκαθάριση δεδομένων
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Πρέπει να έχετε εγκαταστήσει το Firefox Screenshots, ώστε να διαγράψετε το λογαριασμό σας
 leavePageErrorGeneric = Προέκυψε σφάλμα
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Αυτό θα διαγράψει οριστικά όλα τα δεδομένα του Firefox Screenshots σας.
@@ -101,6 +98,7 @@ shotPageShareButton =
     .title = Κοινή χρήση
 shotPageCopyButton =
     .title = Αντιγραφή εικόνας στο πρόχειρο
+shotPageCopyActionLabel = Αντιγραφή
 shotPageCopied = Αντιγράφηκε
 shotPageShareFacebook =
     .title = Κοινοποίηση στο Facebook
@@ -276,12 +274,9 @@ copyImageErrorTitle = Κάτι πήγε στραβά
 settingsDisconnectButton = Αποσύνδεση
     .title = Αποσύνδεση
 settingsGuestAccountMessage = Λογαριασμός επισκέπτη
-settingsSignInInvite = Συνδεθείτε για συγχρονισμό των συσκευών σας
 settingsSignInButton = Είσοδος
     .title = Είσοδος
 SettingsPageHeader = Ρυθμίσεις Firefox Screenshots
-settingsDescription = Μπορείτε να συνδεθείτε στους Λογαριασμούς Firefox για να συγχρονίσετε όλα τα στιγμιότυπα οθόνης σας με τις συσκευές και να έχετε πρόσβαση σε αυτές με ασφάλεια.
-settingsPageSubHeader = Συγχρονισμός & λογαριασμοί
 settingsClosePreferences =
     .title = Κλείσιμο προτιμήσεων
 
