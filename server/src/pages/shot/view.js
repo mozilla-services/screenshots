@@ -368,7 +368,7 @@ class Body extends React.Component {
       <Localized id="shotPageDownloadShot" attrs={{title: true}}>
         <button className={`button transparent nav-button`} onClick={this.onClickDownload.bind(this)}
                 title="Download the shot image">
-          <img src={this.props.staticLink("/static/img/icon-download.svg")} />
+          <img alt="" src={this.props.staticLink("/static/img/icon-download.svg")} />
         </button>
       </Localized></div>;
 
@@ -387,7 +387,7 @@ class Body extends React.Component {
         <Localized id="shotPagefavoriteButton" attrs={{title: true}}>
           <button className={`button transparent nav-button ${inactive}`}
                   disabled={!this.props.hasFxa} onClick={this.onClickFavorite.bind(this)}>
-            <img src={favImgSrc} />
+            <img alt="" src={favImgSrc} />
           </button>
         </Localized></div>;
 
@@ -406,7 +406,7 @@ class Body extends React.Component {
                     title="Edit this image"
                     onClick={this.onClickEdit.bind(this)}
                     ref={(edit) => { this.editButton = edit; }}>
-              <img src={this.props.staticLink("/static/img/icon-pen.svg")} />
+              <img alt="" src={this.props.staticLink("/static/img/icon-pen.svg")} />
             </button>
           </Localized>
           <PromoDialog promoClose={this.promoClose.bind(this)} display={this.state.promoDialog} />
@@ -419,7 +419,7 @@ class Body extends React.Component {
           <button className="button nav-button transparent copy"
                   title="Copy image to clipboard"
                   onClick={this.onClickCopy.bind(this)}>
-            <img src={this.props.staticLink("/static/img/icon-copy.svg")} />
+            <img alt="" src={this.props.staticLink("/static/img/icon-copy.svg")} />
           </button>
         </Localized></div>;
     }

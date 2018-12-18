@@ -367,7 +367,7 @@ class Card extends React.Component {
         key={shot.id}>
         <a href={shot.viewUrl} onClick={this.onOpen.bind(this, shot.viewUrl)}>
           <div className="shot-image-container">
-            <img src={imageUrl} />
+            <img alt="" src={imageUrl} />
           </div>
           <div className="shot-info">
           <div className="title-container">

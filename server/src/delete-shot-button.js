@@ -93,7 +93,7 @@ exports.DeleteShotButton = class DeleteShotButton extends React.Component {
             title="Delete this shot permanently"
             onClick={this.onClickDelete.bind(this)}
             ref={this.trashButtonRef}>
-            <img src={this.props.staticLink("/static/img/icon-trash.svg")} />
+            <img alt="" src={this.props.staticLink("/static/img/icon-trash.svg")} />
           </button>
         </Localized>
         { confirmationPanel }

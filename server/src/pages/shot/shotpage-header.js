@@ -33,7 +33,7 @@ exports.ShotPageHeader = class ShotPageHeader extends React.Component {
     return (
       <Localized id="shotPageAllShotsButton" attrs={{title: true}}>
         <a className="nav-button icon-shots" href="/shots" tabIndex="0" title="All Shots">
-          <img src={this.props.staticLink("/static/img/icon-shots.svg")} />
+          <img alt="" src={this.props.staticLink("/static/img/icon-shots.svg")} />
         </a>
       </Localized>
     );
