@@ -121,6 +121,8 @@ shotPagePrivacyMessage = Sakur nu boga tutumbuna bisa nempo ieu téwakan.
 shotPageCopyImageText =
     .label = Tiron téks gambar
 shotPageConfirmDeletion = Nyaan rék mupus permanén ieu téwakan?
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Lamun diantep, ieu téwakan bakal dipupus permanén <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = teundeun nepi ka { $date }
@@ -344,7 +346,9 @@ metricsPageUserShotsQueryShots = Jumlah kira-kira téwakan aktip (teu kadaluwars
 metricsPageRetentionQueryUsers = Jumlah pamaké
 metricsPageRetentionQueryDays = Poé ti munggaran nyieun téwakan nepi ka nu pang anyarna
 metricsPageRetentionQueryFirstWeek = Minggu munggaran pamaké nyieun téwakan
+metricsPageTotalRetentionQueryDescription = Lilana pamaké nyieun téwakan, dumasar minggu
 metricsPageTotalRetentionQueryUsers = Jumlah pamaké
+metricsPageTotalRetentionQueryDays = Lilana pamaké geus nyieun téwakan
 metricsPageVersionQueryTitle = Vérsi Pangeuyeub
 metricsPageVersionQueryUsers = Jumlah pamaké nu asup log
 metricsPageVersionQueryVersion = Vérsi pangeuyeub
