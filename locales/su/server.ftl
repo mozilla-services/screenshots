@@ -55,6 +55,8 @@ creatingPageWaitMessage = Neundeun téwakan anjeun...
 
 ## Home page
 
+homePageDescription =
+    .content = Potret layar intuitif dipanggang katuhu kana panyungsi dina. Capture, simpen na bagikeun Potret layar anjeun ngotéktak wéb nganggo pangotéktak Firefox.
 homePageButtonMyShots = Miang ka Téwakan Kami
 homePageTeaser = Bakal Datang...
 homePageDownloadFirefoxTitle = Firefox
@@ -356,3 +358,5 @@ metricsPageVersionQueryLastSeen = Poé
 metricsPageHeader = Métrik
 # Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Dijieun dina: { $created }
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (waktu database: { $waktu }mdet)
