@@ -18,8 +18,14 @@ buttonSignIn =
     .title = כניסה
 screenshotsLogo =
     .title = דף הבית של Screenshots
-bannerMessage = עליך להיכנס או להירשם כדי לגשת לצילומים שלך בכל המכשירים ולשמור את המועדפים שלך לעד.
 bannerUpsell = { gScreenshotsDescription } <a>קבלת Firefox כעת</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = מה חדש ב־Firefox Screenshots?
+onboardingPromoDismissButton = סגירה
+    .title = סגירה
+onboardingPromoSigninButton = כניסה
+    .title = כניסה
 
 ## Footer
 
@@ -55,8 +61,6 @@ homePageDownloadFirefoxSubTitle = הורדה חינמית
 homePageHowScreenshotsWorks = איך Firefox Screenshots עובד
 homePageGetStartedTitle = תחילת עבודה
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = לפניך סמל חדש ל־Screenshots בסרגל הכלים שלך. עם בחירתו יופיע תפריט על גבי חלון הדפדפן שלך.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = ניתן לבחור בסמל Screenshots מתפריט פעולות הדף שבשורת הכתובת, ותפריט ה־Screenshots יופיע מעל חלון הדפדפן שלך.
 homePageCaptureRegion = לכידת אזור
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -76,8 +80,6 @@ homePageCookiesLink = עוגיות
 ## Leave Screenshots page
 
 leavePageRemoveAllData = הסרת כל הנתונים
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = על Firefox Screenshots להיות מותקן כדי למחוק את החשבון שלך
 leavePageErrorGeneric = אירעה שגיאה
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = פעולה זו תמחק לצמיתות את כל נתוני ה־Firefox Screenshots שלך.
@@ -103,6 +105,7 @@ shotPageShareButton =
     .title = שיתוף
 shotPageCopyButton =
     .title = העתקת תמונה ללוח העריכה
+shotPageCopyActionLabel = העתקה
 shotPageCopied = הועתק
 shotPageShareFacebook =
     .title = שיתוף ב־Facebook
@@ -203,6 +206,8 @@ errorThirdPartyCookiesEnabled = אם צילמת את התמונה הזאת ול�
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = תרשמו לעצמכם!
 promoMessage = כלי העריכה המעודכנים מאפשרים לך לחתוך, להדגיש ואפילו להוסיף טקסט לצילום המסך שלך.
 promoLink = כדאי להתנסות
 promoCloseButton =
@@ -279,12 +284,10 @@ copyImageErrorMessage = לא ניתן להעתיק את צילום המסך של
 settingsDisconnectButton = ניתוק
     .title = ניתוק
 settingsGuestAccountMessage = חשבון אורח
-settingsSignInInvite = יש להיכנס כדי לסנכרן בין התקנים
 settingsSignInButton = כניסה
     .title = כניסה
 SettingsPageHeader = הגדרות צילומי המסך של Firefox
-settingsDescription = ניתן להיכנס עם חשבון Firefox כדי לסנכרן את כל צילומי המסך שלך ולגשת אליהם בפרטיות.
-settingsPageSubHeader = סנכרון וחשבונות
+settingsFirefoxAccountSubHeader = חשבון Firefox
 settingsClosePreferences =
     .title = סגירת העדפות
 
