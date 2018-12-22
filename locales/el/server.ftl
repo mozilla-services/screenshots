@@ -19,6 +19,10 @@ buttonSignIn =
 screenshotsLogo =
     .title = Αρχική σελίδα Screenshots
 bannerUpsell = { gScreenshotsDescription } <a>Λήψη του Firefox τώρα</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Τι νέο υπάρχει στο Firefox Screenshots;
+onboardingPromoMessage = Τώρα, συνδεθείτε στο Screenshots με ένα Λογαριασμό Firefox και κάντε περισσότερα:
 onboardingPromoDismissButton = Απόρριψη
     .title = Απόρριψη
 onboardingPromoSigninButton = Σύνδεση
@@ -277,6 +281,7 @@ settingsGuestAccountMessage = Λογαριασμός επισκέπτη
 settingsSignInButton = Είσοδος
     .title = Είσοδος
 SettingsPageHeader = Ρυθμίσεις Firefox Screenshots
+settingsFirefoxAccountSubHeader = Λογαριασμός Firefox
 settingsClosePreferences =
     .title = Κλείσιμο προτιμήσεων
 
