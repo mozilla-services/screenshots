@@ -18,11 +18,14 @@ buttonSignIn =
     .title = Σύνδεση
 screenshotsLogo =
     .title = Αρχική σελίδα Screenshots
+bannerSignIn = <a>Συνδεθείτε ή εγγραφείτε</a> για πρόσβαση στα στιγμιότυπά σας από όλες τις συσκευές και αποθήκευση των αγαπημένων σας για πάντα.
 bannerUpsell = { gScreenshotsDescription } <a>Λήψη του Firefox τώρα</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Τι νέο υπάρχει στο Firefox Screenshots;
 onboardingPromoMessage = Τώρα, συνδεθείτε στο Screenshots με ένα Λογαριασμό Firefox και κάντε περισσότερα:
+onboardingPromoMessageListItem1 = Πρόσβαση στη βιβλιοθήκη σας από όλες τις συσκευές σας
+onboardingPromoMessageListItem2 = Αποθήκευση αγαπημένων στιγμιότυπων για πάντα
 onboardingPromoDismissButton = Απόρριψη
     .title = Απόρριψη
 onboardingPromoSigninButton = Σύνδεση
@@ -69,6 +72,7 @@ homePageCaptureRegionDescription = Κάντε κλικ και σύρετε γι�
 homePageCapturePage = Καταγραφή σελίδας
 homePageCapturePageDescription = Χρησιμοποιήστε τα κουμπιά επάνω δεξιά για να καταγράψετε πλήρεις σελίδες σε στιγμιότυπα. Το κουμπί "Αποθήκευση ορατού" θα καταγράψει την περιοχή που μπορείτε να δείτε χωρίς κύλιση, ενώ το "Αποθήκευση πλήρους σελίδας" θα καταγράψει τα πάντα στη σελίδα.
 homePageSaveShare = Αποθήκευση και κοινή χρήση
+homePageSignInTitle = Τα στιγμιότυπά σας παντού
 homePageLegalLink = Νομικά
 homePagePrivacyLink = Απόρρητο
 homePageTermsLink = Όροι
@@ -76,7 +80,9 @@ homePageCookiesLink = Cookies
 
 ## Leave Screenshots page
 
-leavePageRemoveAllData = Πλήρης εκκαθάριση δεδομένων
+leavePageRemoveAllData = Διαγραφή όλων των δεδομένων
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = Πρέπει να έχετε εγκαταστήσει το Firefox Screenshots ή να έχετε συνδεθεί στο λογαριασμό Firefox για να διαγράψετε το λογαριασμό σας
 leavePageErrorGeneric = Προέκυψε σφάλμα
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Αυτό θα διαγράψει οριστικά όλα τα δεδομένα του Firefox Screenshots σας.
@@ -272,6 +278,7 @@ textToolInputPlaceholder =
 ## are passed from the shot page to the addon.
 
 copyImageErrorTitle = Κάτι πήγε στραβά
+copyImageErrorMessage = Αδυναμία αντιγραφής στιγμιότυπου στο πρόχειρο.
 
 ## Settings Page
 
@@ -284,6 +291,9 @@ SettingsPageHeader = Ρυθμίσεις Firefox Screenshots
 settingsFirefoxAccountSubHeader = Λογαριασμός Firefox
 settingsClosePreferences =
     .title = Κλείσιμο προτιμήσεων
+settingsFxaDisconnectAlertMessage = Θέλετε σίγουρα να αποσυνδέσετε αυτή τη συσκευή από το λογαριασμό Firefox σας;
+settingsFxaDisconnectDescription = Αν αποσυνδεθείτε, θα πρέπει να συνδεθείτε ξανά για να αποκτήσετε ξανά πρόσβαση στα στιγμιότυπά σας.
+settingsFxaConnectDescription = Μπορείτε να συνδεθείτε για πρόσβαση στα στιγμιότυπά σας από όλες τις συσκευές σας.
 
 ## Shotindex page
 
@@ -320,6 +330,9 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Αυτό είναι ένα αγαπημένο στιγμιότυπο και δεν λήγει
+shotIndexSyncedShot =
+    .title = Στιγμιότυπο από άλλη συσκευή
+shotIndexAlertErrorFavoriteShot = Σφάλμα ενημέρωσης κατάστασης αγαπημένων στιγμιότυπων
 
 ## Delete Confirmation Dialog
 
