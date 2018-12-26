@@ -72,7 +72,10 @@ homePageCaptureRegionDescription = Κάντε κλικ και σύρετε γι�
 homePageCapturePage = Καταγραφή σελίδας
 homePageCapturePageDescription = Χρησιμοποιήστε τα κουμπιά επάνω δεξιά για να καταγράψετε πλήρεις σελίδες σε στιγμιότυπα. Το κουμπί "Αποθήκευση ορατού" θα καταγράψει την περιοχή που μπορείτε να δείτε χωρίς κύλιση, ενώ το "Αποθήκευση πλήρους σελίδας" θα καταγράψει τα πάντα στη σελίδα.
 homePageSaveShare = Αποθήκευση και κοινή χρήση
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = Κάνετε λήψη του καλύτερου στιγμιότυπου. Έπειτα, το αποθηκεύετε στη διαδικτυακή βιβλιοθήκη του Screenshots και το Firefox αντιγράφει το σύνδεσμο στο πρόχειρό σας για εύκολη κοινοποίηση. Τα στιγμιότυπα στη βιβλιοθήκη λήγουν αυτόματα μετά από δύο εβδομάδες, αλλά μπορείτε να τα διαγράψετε ανά πάσα στιγμή ή να τα κρατήσετε περισσότερο.
 homePageSignInTitle = Τα στιγμιότυπά σας παντού
+homePageSignInDescription = Συνδεθείτε στο Screenshots με το λογαριασμό Firefox σας για πρόσβαση στα στιγμιότυπά σας όπου χρησιμοποιείτε το Firefox. Κι επιπλέον: μπορείτε να αποθηκεύσετε τα αγαπημένα σας στιγμιότυπα για πάντα.
 homePageLegalLink = Νομικά
 homePagePrivacyLink = Απόρρητο
 homePageTermsLink = Όροι
