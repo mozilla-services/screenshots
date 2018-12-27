@@ -70,6 +70,7 @@ homePageCaptureRegion = Téwak Kotakan
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klik jeung gusur pikeun milih kotakan anu rék ditéwak. Atawa arahkeun jeung klik — Screenshots bakal mangmilihkeun kotakanana. Resep? Pilih Teundeun pikeun muka téwakan layar onlén atawa tombol jamparing turun pikeun ngundeur.
 homePageCapturePage = Téwak Kaca
+homePageCapturePageDescription = Paké tombol di luhur lebah katuhu pikeun néwak sakabéh kaca. Tombol Teundeun Sakatempo bakal néwak eusi kaca anu harita katempo, anapon Teundeun Kaca Lengkep bakal néwak sakur anu aya dina éta kaca.
 homePageSaveShare = Teundeun jeung Bagikeun
 homePageSignInTitle = Téwakan Anjeun di Mamana
 homePageSignInDescription = Asup ka Screenshots maké Akun Firefox pikeun muka téwakan anjeun di mana waé maké Firefox. Bonus émbohna: anjeun ogé bisa neundeun téwakan kameumeut salilana.
