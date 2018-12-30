@@ -23,7 +23,7 @@ bannerUpsell = { gScreenshotsDescription } <a>Merreni Firefox-in që tani</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Ç’ka të re te Firefox Screenshots?
-onboardingPromoMessage = Tani hyni te Screenshots me një Llogari Firefox dhe bëni më tepër gjëra:
+onboardingPromoMessage = Pas kësaj, hyni te Screenshots me një Llogari Firefox dhe bëni më tepër gjëra:
 onboardingPromoMessageListItem1 = Hyni në librarinë tuaj që nga krejt pajisjet tuaja
 onboardingPromoMessageListItem2 = Depozitojini përgjithmonë shkrepjet tuaj të parapëlqyera
 onboardingPromoDismissButton = Hidhe tej
@@ -37,8 +37,8 @@ onboardingPromoSigninButton = Hyni
 footerLinkMozilla = Mozilla
 footerLinkTerms = Kushte
 footerLinkPrivacy = Shënim Mbi Privatësinë
-footerReportShot = Njoftoni për Shkrepjen
-    .title = Njoftoni për këtë shkrepje për abuzim, mesazh të padëshiruar, ose për probleme të tjera
+footerReportShot = Njoftoni rreth Shkrepjes
+    .title = Njoftoni rreth kësaj shkrepjeje për abuzim, mesazh të padëshiruar, ose për probleme të tjera
 footerLinkFaqs = FAQ
 footerLinkDMCA = Njoftoni Cenim IP-je
 footerLinkDiscourse = Jepni Përshtypjet
@@ -49,7 +49,7 @@ footerLinkRemoveAllData = Hiqi Krejt të Dhënat
 # Note: { $title } is a placeholder for the title of the web page
 # captured in the screenshot. The default, for pages without titles, is
 # creatingPageTitleDefault.
-creatingPageTitle = Krijiim i { $title }
+creatingPageTitle = Krijim i { $title }
 creatingPageTitleDefault = faqe
 creatingPageWaitMessage = Po ruhet shkrepja juaj…
 
