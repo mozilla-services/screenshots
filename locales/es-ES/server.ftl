@@ -19,6 +19,10 @@ buttonSignIn =
 screenshotsLogo =
     .title = Página de inicio de Screenshots
 bannerUpsell = { gScreenshotsDescription } <a>Obtener Firefox ahora</a>
+onboardingPromoDismissButton = Descartar
+    .title = Descartar
+onboardingPromoSigninButton = Iniciar sesión
+    .title = Iniciar sesión
 
 ## Footer
 
@@ -100,6 +104,7 @@ shotPageShareButton =
     .title = Compartir
 shotPageCopyButton =
     .title = Copiar la imagen al portapapeles
+shotPageCopyActionLabel = Copiar
 shotPageCopied = Copiada
 shotPageShareFacebook =
     .title = Compartir en Facebook
@@ -279,8 +284,12 @@ settingsGuestAccountMessage = Cuenta de invitado
 settingsSignInButton = Iniciar sesión
     .title = Iniciar sesión
 SettingsPageHeader = Configuración de Firefox Screenshots
+settingsFirefoxAccountSubHeader = Cuenta de Firefox
 settingsClosePreferences =
     .title = Cerrar preferencias
+settingsFxaDisconnectAlertMessage = ¿Estás seguro de que quieres desconectar este dispositivo de tu cuenta de Firefox?
+settingsFxaDisconnectDescription = Si cierras la sesión, tendrás que volver a iniciarla para recuperar el acceso a tus capturas de pantalla.
+settingsFxaConnectDescription = Puedes iniciar sesión para acceder a tus capturas de pantalla a través de todos tus dispositivos.
 
 ## Shotindex page
 
@@ -317,6 +326,9 @@ shotIndexNonFavoriteIcon =
 # a favorite by the owner.
 shotIndexFavoriteIcon =
     .title = Esta es una captura favorita y no caduca
+shotIndexSyncedShot =
+    .title = Captura realizada en otro dispositivo
+shotIndexAlertErrorFavoriteShot = Error al actualizar el estado de la captura favorita
 
 ## Delete Confirmation Dialog
 
