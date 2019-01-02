@@ -285,6 +285,18 @@ copyImageErrorMessage = Unable to copy your shot to the clipboard.
 
 ## Settings Page
 
+settingsDisconnectButton = Disconnect
+    .title = Disconnect
+settingsGuestAccountMessage = Guest Account
+settingsSignInButton = Sign In
+    .title = Sign in
+SettingsPageHeader = Firefox Screenshots Settings
+settingsFirefoxAccountSubHeader = Firefox Account
+settingsClosePreferences =
+    .title = Close preferences
+settingsFxaDisconnectAlertMessage = Are you sure you want to disconnect this device from your Firefox Account?
+settingsFxaDisconnectDescription = If you sign out, you will need to sign in again to regain access to your screenshots.
+settingsFxaConnectDescription = You can sign in to access your screenshots across devices.
 
 ## Shotindex page
 
@@ -303,6 +315,8 @@ shotIndexPageNoShotsInvitation = Go on, create some.
 shotIndexPageLookingForShots = Looking for your shots…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = We canʼt find any shots that match your search.
+shotIndexPageMyShotsButton =
+    .title = My Shots
 shotIndexPageClearSearchButton =
     .title = Clear search
 shotIndexPageConfirmShotDelete = Delete this shot?
@@ -310,9 +324,26 @@ shotIndexPagePreviousPage =
     .title = Previous page
 shotIndexPageNextPage =
     .title = Next page
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = This is not a favourite shot and it will expire
+# This is the tooltip for a "heart" symbol in the upper top corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = This is a favourite shot and it does not expire
+shotIndexSyncedShot =
+    .title = Shot taken on another device
+shotIndexAlertErrorFavoriteShot = Error updating favourite shot status
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = Are you sure you want to delete this shot?
+shotDeleteCancel = Cancel
+    .title = Cancel
+shotDeleteConfirm = Delete
+    .title = Delete
 
 ## Metrics page
 ## All metrics strings are optional for translation
