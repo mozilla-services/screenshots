@@ -16,7 +16,7 @@
     "content-disposition": "0.5.2",
     "convict": "4.4.0",
     "cookies": "0.7.3",
-    "core-js": "2.5.7",
+    "core-js": "2.6.1",
     "csurf": "1.9.0",
     "envc": "2.5.0",
     "escape-html": "1.0.3",
