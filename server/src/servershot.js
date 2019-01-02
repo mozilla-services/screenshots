@@ -725,6 +725,39 @@ Shot.deleteEverythingForDevice = function(backend, deviceId, accountId) {
     .then(deleteShotRecords);
 };
 
+Shot.userHasShots = async function(deviceId, accountId) {
+  let deviceIds = [{id: deviceId}];
+  if (accountId) {
+    deviceIds = await db.select(
+      `SELECT devices.id
+      FROM devices
+      WHERE devices.id = $1 OR devices.accountid = $2
+      `,
+        [deviceId, accountId]);
+  }
+  deviceIds = deviceIds.map(row => row.id);
+  const markers1 = db.markersForArgs(1, deviceIds.length);
+  const markers2 = db.markersForArgs(deviceIds.length + 1, deviceIds.length);
+  const hasSome = await db.select(`
+    SELECT
+      EXISTS (
+        SELECT data.id
+        FROM data
+        WHERE data.expire_time IS NULL
+              AND NOT data.deleted
+              AND data.deviceid IN (${markers1})
+      ) AS hasindefinite,
+      EXISTS (
+        SELECT data.id
+        FROM data
+        WHERE NOT data.deleted
+              AND data.deviceid IN (${markers2})
+      ) AS hasany
+    `, deviceIds.concat(deviceIds));
+  return {hasIndefinite: hasSome[0].hasindefinite, hasAny: hasSome[0].hasany};
+};
+
+
 const ClipRewrites = class ClipRewrites {
 
   constructor(shot) {
