@@ -251,6 +251,8 @@ annotationColorYellow =
     .title = Konéng
 annotationColorPurple =
     .title = Bungur
+annotationColorSeaGreen =
+    .title = Héjo Laut
 annotationColorGrey =
     .title = Hawuk
 # Note: annotationTextSize is a title for text size selection dropdown.
@@ -260,6 +262,9 @@ annotationTextSize =
 textSizeSmall = Leutik
 textSizeMedium = Sedeng
 textSizeLarge = Badag
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = Sahkeun
+    .title = Sahkeun
 textToolCancelButton = Bolay
     .title = Bolay
 # Default placeholder used in input field when adding text annotations
