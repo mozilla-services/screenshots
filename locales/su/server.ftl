@@ -72,6 +72,8 @@ homePageCaptureRegionDescription = Klik jeung gusur pikeun milih kotakan anu ré
 homePageCapturePage = Téwak Kaca
 homePageCapturePageDescription = Paké tombol di luhur lebah katuhu pikeun néwak sakabéh kaca. Tombol Teundeun Sakatempo bakal néwak eusi kaca anu harita katempo, anapon Teundeun Kaca Lengkep bakal néwak sakur anu aya dina éta kaca.
 homePageSaveShare = Teundeun jeung Bagikeun
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = Téwak sahadéna. Teundeun di pabukon Screenshots onlén, laju ku Firefox ditiron tutumbuna kana papan klip ngarah gampang babagi. Téwakan dina pabukon bakal kadaluwarsa sanggeus dua minggu, tapi bisa dihapus iraha waé atawa diteundeun leuwih lila.
 homePageSignInTitle = Téwakan Anjeun di Mamana
 homePageSignInDescription = Asup ka Screenshots maké Akun Firefox pikeun muka téwakan anjeun di mana waé maké Firefox. Bonus émbohna: anjeun ogé bisa neundeun téwakan kameumeut salilana.
 homePageLegalLink = Légal
@@ -138,6 +140,8 @@ shotPageDownloadShot =
     .title = Undeur
 shotPageEditButton =
     .title = Ropéa ieu gambar
+shotPagefavoriteButton =
+    .title = Paporitkeun ieu téwakan
 shotPageBackToHomeButton =
     .title = Tepas
 shotPageAllShotsButton =
