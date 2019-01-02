@@ -10,6 +10,23 @@ gNoShots =
     .alt = No shots found
 gScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
 
+## Header
+
+buttonSettings =
+    .title = Settings
+buttonSignIn =
+    .title = Sign In
+screenshotsLogo =
+    .title = Screenshots Home
+bannerSignIn = <a>Sign in or sign up</a> to access your shots across devices and save your favourites forever.
+bannerUpsell = { gScreenshotsDescription } <a>Get Firefox now</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = What’s new with Firefox Screenshots?
+onboardingPromoMessage = Now, sign in to Screenshots with a Firefox Account and do more:
+onboardingPromoMessageListItem1 = Access your library on all of your devices
+onboardingPromoMessageListItem2 = Store your favourite shots forever
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
@@ -38,12 +55,9 @@ homePageButtonMyShots = Go To My Shots
 homePageTeaser = Coming Soon…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Free Download
-homePageGetStarted = Get Started
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = How Firefox Screenshots Works
 homePageGetStartedTitle = Get Started
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Find the new Screenshots icon on your toolbar. Select it, and the Screenshots menu will appear on top of your browser window.
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Select the Screenshots icon from the page actions menu in the address bar, and the Screenshots menu will appear on top of your browser window.
 homePageCaptureRegion = Capture a Region
@@ -52,8 +66,6 @@ homePageCaptureRegionDescription = Click and drag to select the area you want to
 homePageCapturePage = Capture a Page
 homePageCapturePageDescription = Use the buttons in the upper right to capture full pages. The Save Visible button will capture the area you can view without scrolling, and Save Full Page will capture everything on the page.
 homePageSaveShare = Save and Share
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = When you take a shot, Firefox posts your screenshot to your online Screenshots library and copies the link to your clipboard. We automatically store your screenshot for two weeks, but you can delete shots at any time or change the expiration date to keep them in your library for longer.
 homePageLegalLink = Legal
 homePagePrivacyLink = Privacy
 homePageTermsLink = Terms
@@ -62,8 +74,6 @@ homePageCookiesLink = Cookies
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Remove All Data
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = You must have Firefox Screenshots installed to delete your account
 leavePageErrorGeneric = An error occurred
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = This will permanently erase all of your Firefox Screenshots data.
@@ -87,7 +97,6 @@ shotPageAlertErrorUpdatingTitle = Error saving title
 shotPageConfirmDelete = Are you sure you want to delete this shot permanently?
 shotPageShareButton =
     .title = Share
-shotPageCopy = Copy
 shotPageCopied = Copied
 shotPageShareFacebook =
     .title = Share on Facebook
@@ -112,13 +121,9 @@ shotPageExpiredMessage = This shot has expired.
 shotPageExpiredMessageDetails = Here is the page it was originally created from:
 shotPageDeleteButton =
     .title = Delete this shot
-shotPageAbuseButton =
-    .title = Report this shot for abuse, spam, or other problems
 shotPageDownloadShot =
     .title = Download
-shotPageDownload = Download
 shotPageScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
-shotPageUpsellFirefox = Get Firefox now
 shotPageDMCAMessage = This shot is no longer available due to a third party intellectual property claim.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Please email { $dmca } to request further information.
@@ -159,20 +164,25 @@ timeDiffDaysAgo =
        *[other] { $number } days ago
     }
 timeDiffFutureSeconds = in a few seconds
-timeDiffFutureMinutes = { $number ->
-    [one] in 1 minute
-    *[other] in { $number } minutes
-}
-timeDiffFutureHours = { $number ->
-    [one] in 1 hour
-    *[other] in { $number } hours
-}
+timeDiffFutureMinutes =
+    { $number ->
+        [one] in 1 minute
+       *[other] in { $number } minutes
+    }
+timeDiffFutureHours =
+    { $number ->
+        [one] in 1 hour
+       *[other] in { $number } hours
+    }
 timeDiffFutureDays =
     { $number ->
         [one] tomorrow
        *[other] in { $number } days
     }
 errorThirdPartyCookiesEnabled = If you took this shot and cannot delete it, you may need to temporarily enable third party cookies from your browser’s preferences.
+
+## Shot Page New Feature Promotion Dialog.
+
 
 ## Annotations
 
@@ -183,6 +193,11 @@ annotationHighlighterButton =
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Clear
+
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
 
 ## Settings Page
 
@@ -199,8 +214,6 @@ shotIndexPageSearchResultsTitle = My Shots: search for { $searchTerm }
 shotIndexPageErrorRendering = Error rendering page: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Search my shots
-shotIndexPageSearchButton =
-    .title = Search
 shotIndexPageNoShotsMessage = No saved shots.
 shotIndexPageNoShotsInvitation = Go on, create some.
 shotIndexPageLookingForShots = Looking for your shots…
