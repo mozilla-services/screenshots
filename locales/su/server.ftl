@@ -216,6 +216,8 @@ promoCloseButton =
 
 annotationPenButton =
     .title = Péna
+annotationHighlighterButton =
+    .title = Panyorot
 annotationUndoButton =
     .title = Bedo
 annotationRedoButton =
@@ -231,6 +233,8 @@ annotationSaveEditButton = Teundeun
     .title = Teundeun ropéa
 annotationCancelEditButton = Bolay
     .title = Bolay ngaropéa
+annotationCropConfirmButton = Sahkeun
+    .title = Sahkeun pilihan
 annotationCropCancelButton = Bolay
     .title = Bolaykeun pilihan
 annotationColorWhite =
