@@ -26,6 +26,10 @@ onboardingPromoTitle = What’s new with Firefox Screenshots?
 onboardingPromoMessage = Now, sign in to Screenshots with a Firefox Account and do more:
 onboardingPromoMessageListItem1 = Access your library on all of your devices
 onboardingPromoMessageListItem2 = Store your favourite shots forever
+onboardingPromoDismissButton = Dismiss
+    .title = Dismiss
+onboardingPromoSigninButton = Sign In
+    .title = Sign In
 
 ## Footer
 
@@ -33,6 +37,8 @@ onboardingPromoMessageListItem2 = Store your favourite shots forever
 footerLinkMozilla = Mozilla
 footerLinkTerms = Terms
 footerLinkPrivacy = Privacy Notice
+footerReportShot = Report Shot
+    .title = Report this shot for abuse, spam, or other problems
 footerLinkFaqs = FAQs
 footerLinkDMCA = Report IP Infringement
 footerLinkDiscourse = Give Feedback
@@ -66,6 +72,10 @@ homePageCaptureRegionDescription = Click and drag to select the area you want to
 homePageCapturePage = Capture a Page
 homePageCapturePageDescription = Use the buttons in the upper right to capture full pages. The Save Visible button will capture the area you can view without scrolling, and Save Full Page will capture everything on the page.
 homePageSaveShare = Save and Share
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = Take your best shot. Then save it to the online Screenshots library, and Firefox copies the link to your clipboard for easy sharing. Shots in the library automatically expire after two weeks, but you can delete them at any time or choose to keep them longer.
+homePageSignInTitle = Your Shots Everywhere
+homePageSignInDescription = Sign in to Screenshots with your Firefox Account to access your shots everywhere you use Firefox. An added bonus: you can also save your favourite shots forever.
 homePageLegalLink = Legal
 homePagePrivacyLink = Privacy
 homePageTermsLink = Terms
@@ -74,6 +84,8 @@ homePageCookiesLink = Cookies
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Remove All Data
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = You must have Firefox Screenshots installed or signed in to Firefox Account to delete your account
 leavePageErrorGeneric = An error occurred
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = This will permanently erase all of your Firefox Screenshots data.
@@ -97,6 +109,9 @@ shotPageAlertErrorUpdatingTitle = Error saving title
 shotPageConfirmDelete = Are you sure you want to delete this shot permanently?
 shotPageShareButton =
     .title = Share
+shotPageCopyButton =
+    .title = Copy image to clipboard
+shotPageCopyActionLabel = Copy
 shotPageCopied = Copied
 shotPageShareFacebook =
     .title = Share on Facebook
@@ -123,6 +138,14 @@ shotPageDeleteButton =
     .title = Delete this shot
 shotPageDownloadShot =
     .title = Download
+shotPageEditButton =
+    .title = Edit this image
+shotPagefavoriteButton =
+    .title = Favourite this shot
+shotPageBackToHomeButton =
+    .title = Homepage
+shotPageAllShotsButton =
+    .title = All Shots
 shotPageScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
 shotPageDMCAMessage = This shot is no longer available due to a third party intellectual property claim.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -134,6 +157,10 @@ shotPageDMCAIncludeLink = Please include the URL of this shot in your email: { $
 shotPageKeepFor = How long should this shot be retained?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Select time
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Indefinitely ∞
 shotPageKeepTenMinutes = 10 Minutes
 shotPageKeepOneHour = 1 Hour
 shotPageKeepOneDay = 1 Day
@@ -183,6 +210,12 @@ errorThirdPartyCookiesEnabled = If you took this shot and cannot delete it, you 
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Take Note!
+promoMessage = Updated editing tools let you crop, highlight, and even add text to your shot.
+promoLink = Give them a try
+promoCloseButton =
+    .title = Close notification
 
 ## Annotations
 
@@ -190,14 +223,65 @@ annotationPenButton =
     .title = Pen
 annotationHighlighterButton =
     .title = Highlighter
+annotationUndoButton =
+    .title = Undo
+annotationRedoButton =
+    .title = Redo
+annotationTextButton =
+    .title = Add text
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Clear
+annotationCropButton =
+    .title = Crop
+annotationSaveEditButton = Save
+    .title = Save edit
+annotationCancelEditButton = Cancel
+    .title = Cancel editing
+annotationCropConfirmButton = Confirm
+    .title = Confirm selection
+annotationCropCancelButton = Cancel
+    .title = Cancel selection
+annotationColorWhite =
+    .title = White
+annotationColorBlack =
+    .title = Black
+annotationColorRed =
+    .title = Red
+annotationColorGreen =
+    .title = Green
+annotationColorBlue =
+    .title = Blue
+annotationColorYellow =
+    .title = Yellow
+annotationColorPurple =
+    .title = Purple
+annotationColorSeaGreen =
+    .title = Sea Green
+annotationColorGrey =
+    .title = Grey
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Text size
+# Values shown in text size selection dropdown
+textSizeSmall = Small
+textSizeMedium = Medium
+textSizeLarge = Large
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = Confirm
+    .title = Confirm
+textToolCancelButton = Cancel
+    .title = Cancel
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Hello
 
 ## The following are the title and message for an error displayed as a Firefox
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = Something went wrong
+copyImageErrorMessage = Unable to copy your shot to the clipboard.
 
 ## Settings Page
 
