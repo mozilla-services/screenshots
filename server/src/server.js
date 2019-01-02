@@ -1268,6 +1268,8 @@ app.use("/creating", require("./pages/creating/server").app);
 
 app.use("/settings", require("./pages/settings/server").app);
 
+app.use("/hosting-shutdown", require("./pages/hosting-shutdown/server").app);
+
 app.use("/", require("./pages/shot/server").app);
 
 app.use("/", require("./pages/homepage/server").app);
