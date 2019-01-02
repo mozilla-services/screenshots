@@ -201,9 +201,13 @@ timeDiffFutureDays =
     { $number ->
        *[other] dina { $number } poé
     }
+errorThirdPartyCookiesEnabled = Lamun teu bisa dihapus, sigana kudu ngahurungkeun kuki pihak katilu pikeun samentawis dina préferénsi panyungsi.
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Catet!
+promoMessage = Parabot pangropéa nu anyar bisa ngeureut, nyirian, turta nambahkeun téks kana téwakan anjeun.
 promoLink = Cobaan
 promoCloseButton =
     .title = Tutup iber
