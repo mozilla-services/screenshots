@@ -1198,6 +1198,14 @@ app.get("/api/fxa-oauth/confirm-login", async function(req, res, next) {
   }
 });
 
+app.get("/api/has-shots", async function(req, res) {
+  if (!(req.deviceId || req.accountId)) {
+    res.status(401).send("Authentication required");
+  }
+  const hasShots = await Shot.userHasShots(req.deviceId, req.accountId);
+  res.send(hasShots);
+});
+
 app.post("/watchdog/:submissionId", function(req, res) {
   Watchdog.handleResult(req);
   res.end();
