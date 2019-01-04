@@ -17,6 +17,10 @@ exports.AdBanner = class AdBanner extends React.Component {
     sendEvent("fxa-signin-ad-banner", {useBeacon: true});
   }
 
+  clickedDeprecation() {
+    sendEvent("clicked-deprecation-banner", {useBeacon: true});
+  }
+
   render() {
     let bannerContent = null;
     const promoStrategy = new PromotionStrategy();
@@ -39,6 +43,14 @@ exports.AdBanner = class AdBanner extends React.Component {
             <a>Sign in or sign up</a> to sync shots across devices, save your favorite shots forever.
           </p>
         </Localized>;
+    } else if (promoStrategy.shouldShowDeprecation()) {
+      // eslint-disable-next-line no-unused-vars
+      const deprecationLink = <a className="deprecationLink" href="/hosting-shutdown" onClick={ this.clickedDeprecation.bind(this) }></a>;
+      bannerContent = /* <Localized id="deprecationWarning" a={deprecationLink}> */
+          <p>
+            Please note: <a>the screenshots.firefox.com service is shutting down</a>. But Firefox will still support Screenshots!
+          </p>
+        /* </Localized> */;
     }
 
     if (bannerContent) {

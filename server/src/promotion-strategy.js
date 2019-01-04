@@ -64,6 +64,10 @@ class PromotionStrategy {
     }
     return false;
   }
+
+  shouldShowDeprecation() {
+    return true;
+  }
 }
 
 if (typeof exports !== "undefined") {
