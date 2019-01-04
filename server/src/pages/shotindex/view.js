@@ -344,6 +344,8 @@ class Card extends React.Component {
             onClick={this.onClickFavorite.bind(this, shot)} title=""></div>
         </Localized>;
     }
+    // Disabling all favorites for now:
+    favoriteIndicator = null;
 
     let syncedShotIndicator = null;
     if (shot.isSynced) {

@@ -390,6 +390,8 @@ class Body extends React.Component {
             <img src={favImgSrc} />
           </button>
         </Localized></div>;
+      // Disabling all favorites for now:
+      favoriteShotButton = null;
 
       trashOrFlagButton = <DeleteShotButton
         clickDeleteHandler={this.clickDeleteHandler.bind(this)}
