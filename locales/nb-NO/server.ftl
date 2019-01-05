@@ -23,6 +23,7 @@ bannerUpsell = { gScreenshotsDescription } <a>Hent Firefox nå</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Nyheter i Firefox Screenshots
+onboardingPromoMessage = Logg inn på Screenshots med en Firefox-konto og gjør mer:
 onboardingPromoMessageListItem1 = Få tilgang til biblioteket på alle enhetene dine
 onboardingPromoMessageListItem2 = Lagre favorittbildene dine for alltid
 onboardingPromoDismissButton = Lukk
