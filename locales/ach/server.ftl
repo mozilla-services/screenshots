@@ -12,6 +12,8 @@ buttonSettings =
     .title = Ter
 buttonSignIn =
     .title = Dony iyie
+onboardingPromoSigninButton = Dony Iyie
+    .title = Dony Iyie
 
 ## Footer
 
@@ -40,8 +42,6 @@ homePageDownloadFirefoxSubTitle = Gam me nono
 homePageHowScreenshotsWorks = Kit ma Firefox Screenshots Tiyo Kede
 homePageGetStartedTitle = Caki
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Nong cal Screenshots manyen i gitic mamegi. Yer, ka jami ayera me Screenshots bi nyute i wii dirica me layeny mamegi.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Yer cal me Screenshots ki i jami ayera me potbuk ma i lanyut me kanonge, ka jami ayera me Screenshots bi nyute iwi dirica me layeny mamegi.
 homePageCaptureRegion = Mak bute
 homePageCapturePage = mak potbuk
@@ -54,8 +54,6 @@ homePageCookiesLink = Angija
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Kwany Data weng
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Myero ibed ki Firefox Screenshots ma kiketo me kwanyo akaunt mamegi
 leavePageErrorGeneric = Bal otime
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Man bi jwayo data ni weng me Firefox Screenshots matwal.
