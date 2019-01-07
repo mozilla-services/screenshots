@@ -26,6 +26,8 @@ onboardingPromoTitle = Firefox Screenshots の新機能
 onboardingPromoMessage = Screenshots に Firefox アカウントでログインして、より多くのことを行えます:
 onboardingPromoMessageListItem1 = すべてのデバイスからライブラリーにアクセス
 onboardingPromoMessageListItem2 = お気に入りのショットを永久保存
+onboardingPromoDismissButton = 無視する
+    .title = 無視
 onboardingPromoSigninButton = ログイン
     .title = ログイン
 
@@ -309,6 +311,7 @@ shotIndexFavoriteIcon =
     .title = このお気に入りのショットは期限切れになりません
 shotIndexSyncedShot =
     .title = 別の端末で撮影されたショット
+shotIndexAlertErrorFavoriteShot = お気に入りのショットの状態の更新時にエラーが発生しました
 
 ## Delete Confirmation Dialog
 
