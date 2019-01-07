@@ -72,6 +72,7 @@ homePageCaptureRegionDescription = Klikk og dra for å velge området du vil ta 
 homePageCapturePage = Ta skjermbilde av en side
 homePageCapturePageDescription = Bruk knappene øverst til høyre for å ta skjermbilde av hele sider. Knappen «Lagre synlig område» tar skjermbilde av området du kan se uten å rulle, og «Lagre hele siden» vil ta skjermbilde av alt på siden.
 homePageSaveShare = Lagre og del
+homePageSignInTitle = Dine skjermbilder overalt
 homePageLegalLink = Juridisk
 homePagePrivacyLink = Personvern
 homePageTermsLink = Vilkår
