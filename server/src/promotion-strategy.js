@@ -1,6 +1,9 @@
 class PromotionStrategy {
   /* Display Firefox Account onboarding dialog in header below signin button */
   shouldShowOnboardingDialog(isOwner, isShotPage) {
+    // Because we are deprecating the server, we never want to show this.
+    return false;
+    /*
     let show = false;
     // Exit without showing dialog on non-owner shot page
     if (isShotPage && !isOwner) {
@@ -16,6 +19,7 @@ class PromotionStrategy {
       show = true;
     }
     return show;
+    */
   }
 
   /* Display edit tool promotion on shot page below edit button */
@@ -59,10 +63,14 @@ class PromotionStrategy {
 
   /* Display FxA signin ad-banner inside header */
   shouldShowFxaBanner(hasFxa) {
+    // Because we are deprecating the server, we never want to show this.
+    return false;
+    /*
     if (!hasFxa) {
       return true;
     }
     return false;
+    */
   }
 
   shouldShowDeprecation() {
