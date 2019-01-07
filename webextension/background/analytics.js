@@ -7,6 +7,9 @@ this.analytics = (function() {
 
   let telemetryPrefKnown = false;
   let telemetryEnabled;
+  // If we ever get a 410 Gone response from the server, we'll stop trying to send events for the rest
+  // of the session
+  let hasReturnedGone = false;
 
   const EVENT_BATCH_DURATION = 1000; // ms for setTimeout
   let pendingEvents = [];
@@ -109,6 +112,10 @@ this.analytics = (function() {
     const abTests = auth.getAbTests();
     for (const [gaField, value] of Object.entries(abTests)) {
       options[gaField] = value;
+    }
+    if (hasReturnedGone) {
+      // We don't want to save or send the events anymore
+      return Promise.resolve();
     }
     pendingEvents.push({
       eventTime: Date.now(),
@@ -307,15 +314,17 @@ this.analytics = (function() {
   }
 
   function fetchWatcher(request) {
-    catcher.watchPromise(
-      request.then(response => {
-        if (!response.ok) {
-          throw new Error(`Bad response from ${request.url}: ${response.status} ${response.statusText}`);
-        }
-        return response;
-      }),
-      true
-    );
+    request.then(response => {
+      if (response.status === 410) { // Gone
+        hasReturnedGone = true;
+        pendingEvents = [];
+      }
+      if (!response.ok) {
+        log.debug(`Error code in event response: ${response.status} ${response.statusText}`);
+      }
+    }).catch(error => {
+      log.debug(`Error event in response: ${error}`);
+    });
   }
 
   return exports;
