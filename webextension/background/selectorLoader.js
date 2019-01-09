@@ -1,4 +1,4 @@
-/* globals catcher, communication, log */
+/* globals catcher, communication, log, main */
 
 "use strict";
 
@@ -70,6 +70,12 @@ this.selectorLoader = (function() {
     catcher.watchPromise(hasSeenOnboarding.then(onboarded => {
       loadingTabs.add(tabId);
       let promise = downloadOnlyCheck(tabId);
+      promise = promise.then(() => {
+        browser.tabs.executeScript(tabId, {
+          code: `window.hasAnyShots = ${!!main.hasAnyShots()};`,
+          runAt: "document_start",
+        });
+      });
       if (onboarded) {
         promise = promise.then(() => {
           return executeModules(tabId, standardScripts.concat(selectorScripts));
