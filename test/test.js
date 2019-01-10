@@ -321,47 +321,6 @@ describe("Test Screenshots", function() {
     }).catch(done);
   });
 
-  it("should navigate to My Shots", function(done) {
-    let currentTabs, startingTabCount;
-    driver.getAllWindowHandles().then(tabs => {
-      startingTabCount = tabs.length;
-    }).then(() => {
-      return driver.get(backend);
-    }).then(() => {
-      return startScreenshots(driver);
-    }).then(() => {
-      return driver.wait(
-        until.ableToSwitchToFrame(By.id(PRESELECTION_IFRAME_ID))
-      );
-    }).then(() => {
-      return driver.wait(
-        until.elementLocated(By.css(".myshots-button"))
-      );
-    }).then(myShotsButton => {
-      return myShotsButton.click();
-    }).then(() => {
-      return driver.wait(
-        () => {
-          return driver.getAllWindowHandles().then(tabs => {
-            currentTabs = tabs;
-            return currentTabs.length > startingTabCount;
-          });
-        }
-      );
-    }).then(() => {
-      return driver.switchTo().window(currentTabs[currentTabs.length - 1]);
-    }).then(() => {
-      return driver.wait(
-        until.elementLocated(By.css("#shot-index-page"))
-      );
-    }).then(() => {
-      return driver.getCurrentUrl();
-    }).then(url => {
-      assert.equal(url, `${backend}/shots`, `Navigated to ${url} instead of My Shots at ${backend}/shots`);
-      done();
-    }).catch(done);
-  });
-
   it("should show onboarding with #hello", async function() {
     await driver.get(`${backend}/#hello`);
     await driver.setContext(firefox.Context.CONTENT);
@@ -406,7 +365,7 @@ describe("Test Screenshots", function() {
     .catch(done);
   });
 
-  it("should remain on original tab with UI overlay on save failure", function(done) {
+  it.skip("should remain on original tab with UI overlay on save failure", function(done) {
     const badAddon = path.join(process.cwd(), "build", "screenshots-webextension-server-down.zip");
     driver.installAddon(badAddon)
     .then(() => startAutoSelectionShot(driver))

@@ -37,8 +37,8 @@ function csrfHeadersValid(req) {
   const referer = req.headers.referer;
 
   if (isAuthPath(req.path)) {
-    // web ext background scripts don't send headers
-    return origin === undefined && referer === undefined;
+    // web ext background scripts don't send headers, or send a moz-extension origin
+    return (origin === undefined || origin.startsWith("moz-extension:")) && referer === undefined;
   }
 
   return true;

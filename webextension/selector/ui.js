@@ -83,6 +83,10 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     return window.downloadOnly;
   };
 
+  const showMyShots = exports.showMyShots = function() {
+    return window.hasAnyShots;
+  };
+
   // the download notice is rendered in iframes that match the document height
   // or the window height. If parent iframe matches window height, pass in true
   function renderDownloadNotice(initAtBottom = false) {
@@ -300,10 +304,10 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
                      <div class="preview-instructions" data-l10n-id="screenshotInstructions"></div>
                      <button class="cancel-shot">${browser.i18n.getMessage("cancelScreenshot")}</button>
                      <div class="myshots-all-buttons-container">
-                       ${isDownloadOnly() ? "" : `
+                       ${showMyShots() ? `
                          <button class="myshots-button" tabindex="3" data-l10n-id="myShotsLink"></button>
                          <div class="spacer"></div>
-                       `}
+                       ` : ""}
                        <button class="visible" tabindex="2" data-l10n-id="saveScreenshotVisibleArea"></button>
                        <button class="full-page" tabindex="1" data-l10n-id="saveScreenshotFullPage"></button>
                      </div>
@@ -318,7 +322,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
             this.document.documentElement.lang = browser.i18n.getMessage("@@ui_locale");
             const overlay = this.document.querySelector(".preview-overlay");
             localizeText(this.document);
-            if (!(isDownloadOnly())) {
+            if (showMyShots()) {
               overlay.querySelector(".myshots-button").addEventListener(
                 "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onOpenMyShots)));
             }
