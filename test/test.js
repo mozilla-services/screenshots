@@ -365,7 +365,7 @@ describe("Test Screenshots", function() {
     .catch(done);
   });
 
-  it("should remain on original tab with UI overlay on save failure", function(done) {
+  it.skip("should remain on original tab with UI overlay on save failure", function(done) {
     const badAddon = path.join(process.cwd(), "build", "screenshots-webextension-server-down.zip");
     driver.installAddon(badAddon)
     .then(() => startAutoSelectionShot(driver))
