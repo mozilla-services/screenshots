@@ -18,7 +18,16 @@ buttonSignIn =
     .title = Inicia la sessió
 screenshotsLogo =
     .title = Pàgina d'inici del Firefox Screenshots
+bannerSignIn = <a>Registreu-vos o inicieu la sessió</a> per accedir a les vostres captures en tots els dispositius i conservar les vostres preferides per sempre.
 bannerUpsell = { gScreenshotsDescription } <a>Baixeu el Firefox ara</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Novetats del Firefox Screenshots
+onboardingPromoMessage = Ara, si inicieu la sessió al Firefox Screenshots amb un compte del Firefox, podreu:
+onboardingPromoMessageListItem1 = Accedir a la vostra biblioteca des de tots els vostres dispositius
+onboardingPromoMessageListItem2 = Desar per sempre les vostres captures preferides
+onboardingPromoDismissButton = Tanca
+    .title = Tanca
 onboardingPromoSigninButton = Inicia la sessió
     .title = Inicia la sessió
 
