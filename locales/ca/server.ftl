@@ -72,6 +72,9 @@ homePageCaptureRegionDescription = Feu clic i arrossegueu per seleccionar l'àre
 homePageCapturePage = Captureu una pàgina
 homePageCapturePageDescription = Utilitzeu els botons de la part superior dreta per capturar pàgines senceres. El botó «Captura la part visible» capturarà l'àrea que es visualitza sense desplaçar-se, i el botó «Captura tota la pàgina» capturarà tot el contingut de la pàgina.
 homePageSaveShare = Deseu i compartiu
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = Feu una captura de pantalla. A continuació, deseu-la a la biblioteca de captures de pantalla en línia i el Firefox copiarà l'enllaç al porta-retalls per poder-la compartir fàcilment. Les captures de la biblioteca caduquen automàticament després de dues setmanes, però podeu suprimir-les en qualsevol moment o bé conservar-les durant més temps.
+homePageSignInTitle = Les vostres captures a tot arreu
 homePageLegalLink = Avís legal
 homePagePrivacyLink = Privadesa
 homePageTermsLink = Condicions d'ús
@@ -105,6 +108,7 @@ shotPageShareButton =
     .title = Comparteix
 shotPageCopyButton =
     .title = Copia la imatge al porta-retalls
+shotPageCopyActionLabel = Copia
 shotPageCopied = S'ha copiat
 shotPageShareFacebook =
     .title = Comparteix al Facebook
@@ -284,6 +288,7 @@ settingsGuestAccountMessage = Compte de convidat
 settingsSignInButton = Inicia la sessió
     .title = Inicia la sessió
 SettingsPageHeader = Paràmetres del Firefox Screenshots
+settingsFirefoxAccountSubHeader = Compte del Firefox
 settingsClosePreferences =
     .title = Tanca les preferències
 
