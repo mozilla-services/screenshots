@@ -20,6 +20,9 @@ screenshotsLogo =
     .title = Eka paĝo de ekrankopioj
 bannerSignIn = <a>Komencu seancon aŭ registriĝu</a> por aliri viajn ekrankopiojn en ĉiuj aparatoj kaj konservi la plej ŝatatajn por ĉiam.
 bannerUpsell = { gScreenshotsDescription } <a>Ricevi Firefox nun</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Kio estas nova en Firefox Screenshots?
 onboardingPromoDismissButton = Ignori
     .title = Ignori
 onboardingPromoSigninButton = Komenci seancon
@@ -31,6 +34,8 @@ onboardingPromoSigninButton = Komenci seancon
 footerLinkMozilla = Mozilla
 footerLinkTerms = Kondiĉoj
 footerLinkPrivacy = Rimarko pri privateco
+footerReportShot = Denunci ekrankopion
+    .title = Denunci tiun ĉi ekrankopion pro eksceso, trudmesaĝado aŭ aliaj problemoj
 footerLinkFaqs = Oftaj demandoj
 footerLinkDMCA = Raporti malobservon de IP
 footerLinkDiscourse = Sendi komentojn
