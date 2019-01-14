@@ -470,7 +470,8 @@ Shot.emptyShotsPage = {
   shots: null,
 };
 
-Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pageNumber) {
+Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pageNumber, shotsPerPage) {
+  shotsPerPage = shotsPerPage || SHOTS_PER_PAGE;
   if (!deviceId && !accountId) {
     throw new Error("Empty deviceId: " + deviceId);
   }
@@ -479,7 +480,7 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
   }
   const shotsPage = {
     pageNumber,
-    shotsPerPage: SHOTS_PER_PAGE,
+    shotsPerPage,
   };
   let deviceIds = [];
   let likeQuery = "";
@@ -490,6 +491,8 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
     });
   };
 
+  console.log("ready to run things");
+
   // accountId is null if not set, treated as NULL in the SQL query
   return db.select(
     `SELECT DISTINCT devices.id
@@ -499,6 +502,7 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
     [deviceId, accountId]
   ).then(rows => {
     deviceIds = rows.map(x => x.id);
+    console.log("!!! deviceIds", deviceIds, rows, rows.length);
 
   }).then(() => {
     if (!deviceIds.length) {
@@ -535,13 +539,14 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
     }
     return db.select(sql, args);
   }).then(rows => {
+    console.log("query result", rows.length, rows);
     if (!rows.length) {
       shotsPage.totalShots = 0;
     } else {
       shotsPage.totalShots = rows[0].totalshots;
     }
   }).then(() => {
-    const offset = (pageNumber - 1) * SHOTS_PER_PAGE;
+    const offset = (pageNumber - 1) * shotsPerPage;
     let sql, args, idNums;
     if (!deviceIds.length) {
       return [];
@@ -561,7 +566,7 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
         ORDER BY rank DESC, data.created DESC
         LIMIT $3 OFFSET $4
         `;
-      args = [searchQuery, likeQuery, SHOTS_PER_PAGE, offset].concat(deviceIds);
+      args = [searchQuery, likeQuery, shotsPerPage, offset].concat(deviceIds);
     } else {
       idNums = idParamPositions(2, deviceIds);
       sql = `
@@ -573,7 +578,7 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
       ORDER BY data.created DESC
       LIMIT $1 OFFSET $2
       `;
-      args = [SHOTS_PER_PAGE, offset].concat(deviceIds);
+      args = [shotsPerPage, offset].concat(deviceIds);
     }
     return db.select(sql, args);
   }).then((rows) => {
