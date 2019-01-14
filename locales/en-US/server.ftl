@@ -338,6 +338,12 @@ shotDeleteCancel = Cancel
 shotDeleteConfirm = Delete
     .title = Delete
 
+## Export page
+
+exportTitle = Export
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. The file will be saved to "exportTitle_files" (it will be "_files" for all locales)
+exportInstructions = To export: use File &gt; Save Page As... and you will find your screenshots in Export_files/
+
 ## Metrics page
 ## All metrics strings are optional for translation
 

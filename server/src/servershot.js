@@ -491,8 +491,6 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
     });
   };
 
-  console.log("ready to run things");
-
   // accountId is null if not set, treated as NULL in the SQL query
   return db.select(
     `SELECT DISTINCT devices.id
@@ -502,8 +500,6 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
     [deviceId, accountId]
   ).then(rows => {
     deviceIds = rows.map(x => x.id);
-    console.log("!!! deviceIds", deviceIds, rows, rows.length);
-
   }).then(() => {
     if (!deviceIds.length) {
       shotsPage.totalShots = 0;
@@ -539,7 +535,6 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
     }
     return db.select(sql, args);
   }).then(rows => {
-    console.log("query result", rows.length, rows);
     if (!rows.length) {
       shotsPage.totalShots = 0;
     } else {

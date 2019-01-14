@@ -934,7 +934,7 @@ app.post("/api/set-expiration", function(req, res) {
   });
 });
 
-app.get("/images/:imageid", function(req, res) {
+function serveImage(req, res) {
   const embedded = req.query.embedded;
   const download = req.query.download;
   const sig = req.query.sig;
@@ -997,7 +997,10 @@ app.get("/images/:imageid", function(req, res) {
   }).catch((e) => {
     errorResponse(res, "Error getting image from database:", e);
   });
-});
+}
+
+app.get("/images/:imageid", serveImage);
+app.get("/images/:imageid/:filename", serveImage);
 
 app.get("/__version__", function(req, res) {
   dbschema.getCurrentDbPatchLevel().then(level => {
@@ -1269,6 +1272,8 @@ if (!config.disableMetrics) {
 }
 
 app.use("/shots", require("./pages/shotindex/server").app);
+
+app.use("/export", require("./pages/export/server").app);
 
 app.use("/leave-screenshots", require("./pages/leave-screenshots/server").app);
 
