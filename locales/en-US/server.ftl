@@ -340,9 +340,8 @@ shotDeleteConfirm = Delete
 
 ## Export page
 
-exportTitle = Export
-# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. The file will be saved to "exportTitle_files" (it will be "_files" for all locales)
-exportInstructions = To export: use File &gt; Save Page As... and you will find your screenshots in Export_files/
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. Do not localize "Export_files/"
+exportInstructions = To export: use File > Save Page As... and you will find your screenshots in Export_files/
 
 ## Metrics page
 ## All metrics strings are optional for translation

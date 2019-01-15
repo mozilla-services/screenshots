@@ -1,6 +1,7 @@
 exports.createModel = function(req) {
-  // FIXME: update title for export:
-  const title = req.getText("exportTitle");
+  // We don't localize this title to make the instructions more consistent,
+  // since the page title will be part of the saved filename/folder:
+  const title = "Export";
   const serverModel = {
     title,
   };
