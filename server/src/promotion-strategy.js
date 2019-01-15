@@ -74,7 +74,7 @@ class PromotionStrategy {
   }
 
   shouldShowDeprecation() {
-    return true;
+    return false;
   }
 }
 
