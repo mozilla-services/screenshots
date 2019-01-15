@@ -7,9 +7,12 @@ this.analytics = (function() {
 
   let telemetryPrefKnown = false;
   let telemetryEnabled;
-  // If we ever get a 410 Gone response from the server, we'll stop trying to send events for the rest
+  // If we ever get a 410 Gone response (or 404) from the server, we'll stop trying to send events for the rest
   // of the session
   let hasReturnedGone = false;
+  // If there's this many entirely failed responses (e.g., server can't be contacted), then stop sending events
+  // for the rest of the session:
+  let serverFailedResponses = 3;
 
   const EVENT_BATCH_DURATION = 1000; // ms for setTimeout
   let pendingEvents = [];
@@ -61,6 +64,9 @@ this.analytics = (function() {
   function sendTiming(timingLabel, timingVar, timingValue) {
     // sendTiming is only called in response to sendEvent, so no need to check
     // the telemetry pref again here.
+    if (hasReturnedGone || serverFailedResponses <= 0) {
+      return;
+    }
     const timingCategory = "addon";
     pendingTimings.push({
       timingCategory,
@@ -113,7 +119,7 @@ this.analytics = (function() {
     for (const [gaField, value] of Object.entries(abTests)) {
       options[gaField] = value;
     }
-    if (hasReturnedGone) {
+    if (hasReturnedGone || serverFailedResponses <= 0) {
       // We don't want to save or send the events anymore
       return Promise.resolve();
     }
@@ -315,14 +321,21 @@ this.analytics = (function() {
 
   function fetchWatcher(request) {
     request.then(response => {
-      if (response.status === 410) { // Gone
+      if (response.status === 410 || response.status === 404) { // Gone
         hasReturnedGone = true;
         pendingEvents = [];
+        pendingTimings = [];
       }
       if (!response.ok) {
         log.debug(`Error code in event response: ${response.status} ${response.statusText}`);
       }
     }).catch(error => {
+      serverFailedResponses--;
+      if (serverFailedResponses <= 0) {
+        log.info(`Server is not responding, no more events will be sent`);
+        pendingEvents = [];
+        pendingTimings = [];
+      }
       log.debug(`Error event in response: ${error}`);
     });
   }
