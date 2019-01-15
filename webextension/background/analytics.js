@@ -5,6 +5,9 @@
 this.analytics = (function() {
   const exports = {};
 
+  const GA_PORTION = 0.1; // 10% of users will send to the server/GA
+  // This is set from storage, or randomly; if it is less that GA_PORTION then we send analytics:
+  let myGaSegment = 1;
   let telemetryPrefKnown = false;
   let telemetryEnabled;
   // If we ever get a 410 Gone response (or 404) from the server, we'll stop trying to send events for the rest
@@ -24,6 +27,10 @@ this.analytics = (function() {
     headers: { "content-type": "application/json" },
     credentials: "include",
   };
+
+  function shouldSendEvents() {
+    return !hasReturnedGone && serverFailedResponses > 0 && myGaSegment < GA_PORTION;
+  }
 
   function flushEvents() {
     if (pendingEvents.length === 0) {
@@ -64,7 +71,7 @@ this.analytics = (function() {
   function sendTiming(timingLabel, timingVar, timingValue) {
     // sendTiming is only called in response to sendEvent, so no need to check
     // the telemetry pref again here.
-    if (hasReturnedGone || serverFailedResponses <= 0) {
+    if (!shouldSendEvents()) {
       return;
     }
     const timingCategory = "addon";
@@ -119,7 +126,7 @@ this.analytics = (function() {
     for (const [gaField, value] of Object.entries(abTests)) {
       options[gaField] = value;
     }
-    if (hasReturnedGone || serverFailedResponses <= 0) {
+    if (!shouldSendEvents()) {
       // We don't want to save or send the events anymore
       return Promise.resolve();
     }
@@ -339,6 +346,18 @@ this.analytics = (function() {
       log.debug(`Error event in response: ${error}`);
     });
   }
+
+  async function init() {
+    const result = await browser.storage.local.get(["myGaSegment"]);
+    if (!result.myGaSegment) {
+      myGaSegment = Math.random();
+      await browser.storage.local.set({myGaSegment});
+    } else {
+      myGaSegment = result.myGaSegment;
+    }
+  }
+
+  init();
 
   return exports;
 })();
