@@ -934,6 +934,18 @@ app.post("/api/set-expiration", function(req, res) {
   });
 });
 
+app.get("/api/tmp-do-not-ship-set-all-indefinite", async function(req, res) {
+  if (!(req.deviceId || req.accountId)) {
+    simpleResponse(res, "Not logged in", 401);
+    return;
+  }
+  const { shots } = await Shot.getShotsForDevice(req.backend, req.deviceId, req.accountId, null, 0);
+  for (const shot of shots) {
+    await Shot.setExpiration(req.backend, shot.id, req.deviceId, 0, req.accountId);
+  }
+  simpleResponse(res, "Some shots set to indefinite", 200);
+});
+
 app.get("/images/:imageid", function(req, res) {
   const embedded = req.query.embedded;
   const download = req.query.download;
