@@ -80,7 +80,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
   }
 
   const showMyShots = exports.showMyShots = function() {
-    return window.hasAnyShots && !window.downloadOnly;
+    return window.hasAnyShots;
   };
 
   function initializeIframe() {
