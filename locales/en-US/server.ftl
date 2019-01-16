@@ -340,8 +340,8 @@ shotDeleteConfirm = Delete
 
 ## Export page
 
-# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. Do not localize "Export_files/"
-exportInstructions = To export: use File > Save Page As... and you will find your screenshots in Export_files/
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the filename of the folder that will be created
+exportInstructions = To export: use File > Save Page As... and you will find your screenshots in the folder { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation

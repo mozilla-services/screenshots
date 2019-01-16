@@ -37,9 +37,9 @@ class Body extends React.Component {
         <div className="column-space full-height" id="shot-index-page">
           <Header hasLogo={true} isOwner={true} />
           <div id="shot-index" className="flex-1">
-            <Localized id="exportInstructions">
+            <Localized id="exportInstructions" $folder="Export_files">
               <p id="exportInstructions">
-                To export: use File &gt; Save Page As... and you will find your screenshots in Export_files/
+                To export: use File > Save Page As... and you will find your screenshots in the folder Export_files
               </p>
             </Localized>
             { this.renderShots() }
