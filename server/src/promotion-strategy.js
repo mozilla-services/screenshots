@@ -55,10 +55,13 @@ class PromotionStrategy {
 
   /* Display upsell ad-banner inside header */
   shouldShowFirefoxBanner(shouldGetFirefox, isOwner) {
+    return false;
+    /*
     if (shouldGetFirefox && !isOwner) {
       return true;
     }
     return false;
+    */
   }
 
   /* Display FxA signin ad-banner inside header */
