@@ -8,7 +8,6 @@ gMyShots = Mes captures d’écran
 gHomeLink = Accueil
 gNoShots =
     .alt = Aucune capture trouvée
-gScreenshotsDescription = Des captures en un clin d’œil. Capturez l’écran, enregistrez et partagez sans quitter Firefox.
 
 ## Header
 
@@ -71,11 +70,6 @@ homePageCaptureRegion = Capturez une zone de la page
 homePageCaptureRegionDescription = Sélectionnez une zone de la page par cliquer-glisser ou bien survolez un élément et Screenshots sélectionnera la zone pour vous. Lorsque cela vous convient, cliquez sur « Enregistrer » pour accéder à votre capture d’écran en ligne ou sur le bouton représentant une flèche vers le bas pour la télécharger sur votre ordinateur.
 homePageCapturePage = Capturez une page
 homePageCapturePageDescription = Utilisez les boutons en haut à droite pour capturer des pages complètes. Le bouton « Capturer la zone visible » permet de capturer la zone que vous pouvez afficher sans faire défiler la page, et le bouton « Capturer la page complète » capturera l’ensemble de la page.
-homePageSaveShare = Enregistrez et partagez
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Prenez votre meilleure capture d’écran. Enregistrez-la dans la bibliothèque de captures en ligne et Firefox copiera le lien dans votre presse-papiers pour que vous puissiez en diffuser facilement l’adresse. Les captures de la bibliothèque sont automatiquement supprimées au bout de deux semaines, cependant vous pouvez choisir de les supprimer à tout moment ou de les conserver plus longtemps.
-homePageSignInTitle = Vos captures d’écran disponibles partout
-homePageSignInDescription = Si vous associez Screenshots à votre compte Firefox, vous accéderez à vos captures d’écran partout où vous utilisez Firefox. Et en prime : vous pourrez sauvegarder vos captures préférées indéfiniment.
 homePageLegalLink = Mentions légales
 homePagePrivacyLink = Confidentialité
 homePageTermsLink = Conditions d’utilisation
@@ -146,7 +140,6 @@ shotPageBackToHomeButton =
     .title = Page d’accueil
 shotPageAllShotsButton =
     .title = Toutes les captures
-shotPageScreenshotsDescription = Des captures en un clin d’œil. Capturez l’écran, enregistrez et partagez sans quitter Firefox.
 shotPageDMCAMessage = Cette capture n’est plus disponible, car un tiers a signalé une atteinte aux droits de la propriété intellectuelle.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Veuillez contacter { $dmca } pour demander plus d’informations.
@@ -344,6 +337,11 @@ shotDeleteCancel = Annuler
     .title = Annuler
 shotDeleteConfirm = Supprimer
     .title = Supprimer
+
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Pour exporter : utilisez Fichier > Enregistrer sous… et vous trouverez vos captures d’écran dans le dossier { $folder }.
 
 ## Metrics page
 ## All metrics strings are optional for translation
