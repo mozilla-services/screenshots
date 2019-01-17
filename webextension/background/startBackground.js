@@ -11,9 +11,9 @@ const startTime = Date.now();
 this.startBackground = (function() {
   const exports = {startTime};
   // Wait until this many milliseconds to check the server for shots (for the purpose of migration warning):
-  const CHECK_SERVER_TIME = 10000; // 10 seconds
+  const CHECK_SERVER_TIME = 5000; // 5 seconds
   // If we want to pop open the tab showing the server status, wait this many milliseconds to open it:
-  const OPEN_SERVER_TAB_TIME = 10 * 60 * 1000; // 10 minutes
+  const OPEN_SERVER_TAB_TIME = 5000; // 5 seconds
   let hasSeenServerStatus = false;
   let _resolveServerStatus;
   exports.serverStatus = new Promise((resolve, reject) => {
