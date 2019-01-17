@@ -11,15 +11,6 @@ NO_CLOSE = if not empty then when the test is finished, the browser will not be 
 */
 
 const backend = process.env.SCREENSHOTS_BACKEND || "http://localhost:10080";
-const { URL } = require("url");
-let backendUrl;
-
-try {
-  backendUrl = new URL(backend);
-} catch (e) {
-  throw new Error(`SCREENSHOTS_BACKEND is not a valid URL: ${e.message}`);
-}
-
 const assert = require("assert");
 const firefox = require("selenium-webdriver/firefox");
 const webdriver = require("selenium-webdriver");
@@ -40,7 +31,6 @@ const shooterSelector = By.css(`#${SHOOTER_BUTTON_ID}, #${TOOLBAR_SHOOTER_BUTTON
 const SLIDE_IFRAME_ID = "firefox-screenshots-onboarding-iframe";
 const PRESELECTION_IFRAME_ID = "firefox-screenshots-preselection-iframe";
 const SELECTION_IFRAME_ID = "firefox-screenshots-selection-iframe";
-const PREVIEW_IFRAME_ID = "firefox-screenshots-preview-iframe";
 const addonFileLocation = path.join(process.cwd(), "build", "screenshots.zip");
 const downloadDir = path.join(process.cwd(), "test", "addon", ".artifacts");
 
@@ -139,13 +129,9 @@ function focusIframe(driver, iframeId) {
   });
 }
 
-function closeTab(driver) {
-  return driver.close()
-  .then(() => driver.getAllWindowHandles())
-  .then((tabs) => driver.switchTo().window(tabs[tabs.length - 1]))
-  .then(() => driver.switchTo().defaultContent());
-}
-
+// FIXME: I feel like this routine *should* get used somewhere in the tests, but at the moment
+// it is not being used.
+// eslint-disable-next-line no-unused-vars
 function skipOnboarding(driver) {
   return focusIframe(driver, SLIDE_IFRAME_ID).then(() => {
     return driver.findElement(By.id("skip"));
@@ -158,20 +144,20 @@ function skipOnboarding(driver) {
   });
 }
 
-async function startScreenshotsWithUrl(driver, url) {
-  const req = await driver.get(url);
-  const onboarding = await startScreenshots(driver);
-  if (onboarding) {
-    return skipOnboarding(driver);
+async function performAutoSelection(driver, tries = 3) {
+  await driver.switchTo().defaultContent();
+  await driver.actions().move({x: 100 + Math.floor(Math.random() * 20), y: 100}).click().perform();
+  await driver.switchTo().defaultContent();
+  await driver.wait(until.ableToSwitchToFrame(By.id(SELECTION_IFRAME_ID)));
+  try {
+    await driver.wait(until.elementLocated(By.css(".highlight-button-copy")), 500);
+  } catch (error) {
+    if (tries <= 0) {
+      throw error;
+    }
+    return performAutoSelection(driver, tries - 1);
   }
-
-  return req;
-}
-
-function performAutoSelection(driver) {
-  return driver.actions().move({x: 100, y: 100}).click().perform()
-  .then(() => driver.switchTo().defaultContent())
-  .then(() => driver.wait(until.ableToSwitchToFrame(By.id(SELECTION_IFRAME_ID))));
+  return null;
 }
 
 function startAutoSelectionShot(driver) {
@@ -180,58 +166,12 @@ function startAutoSelectionShot(driver) {
   .then(() => performAutoSelection(driver));
 }
 
-/** Waits when ready, calls creator to create the shot, waits for the resulting
-    promise to complete, then watches for the
-    new tab to open and load, and returns the shot URL.  The new tab
-    will be switched to by the driver */
-function expectCreatedShot(driver, creator) {
-  // We keep track of how many tabs we start with, so we can detect when
-  // a new tab is added (which signals that the saving worked)
-  let startingTabCount;
-  return driver.getAllWindowHandles().then((tabs) => {
-    startingTabCount = tabs.length;
-    return creator();
-  }).then(() => {
-    return driver.wait(() => {
-      return driver.getAllWindowHandles().then((tabs) => {
-        // On CircleCI there is consistently one weird tab with the id "22"
-        // It's not a normal tab, so we ignore it:
-        tabs = tabs.filter((t) => t !== "22");
-        return tabs.length > startingTabCount;
-      });
-    });
-  }).then(() => {
-    return driver.getAllWindowHandles();
-  }).then((tabs) => {
-    tabs = tabs.filter((t) => t !== "22");
-    if (tabs.length < startingTabCount) {
-      throw new Error("New tab did not open");
-    }
-    return driver.switchTo().window(tabs[tabs.length - 1]);
-  }).then(() => {
-    return driver.wait(() => {
-      return driver.getCurrentUrl().then((url) => {
-        return url !== "about:blank" && !url.includes("/creating/");
-      });
-    });
-  }).then(() => {
-    return driver.getCurrentUrl();
-  });
-}
-
-function verifyShotUrl(shotUrl) {
-  assert(shotUrl.startsWith(backend), `Got url ${shotUrl} that doesn't start with ${backend}`);
-  const url = new URL(shotUrl);
-  if (!url.pathname.endsWith(backendUrl.hostname)) {
-    throw new Error(`Unexpected URL: ${shotUrl}`);
-  }
-}
-
 describe("Test Screenshots", function() {
   this.timeout(120000);
 
   before(async function() {
     driver = await getDriver();
+    // await driver.switchTo().defaultContent();
   });
 
   after(function() {
@@ -266,132 +206,60 @@ describe("Test Screenshots", function() {
       }).catch(done);
   });
 
-  it("should take a shot", function(done) {
-    driver.get(backend).then(() => {
-      return startScreenshots(driver);
-    }).then((onboarding) => {
-      if (!onboarding) {
-        throw new Error("Expected to get onboarding");
-      }
-      return skipOnboarding(driver);
-    }).then(() => {
-      return driver.wait(
-        until.ableToSwitchToFrame(By.id(PRESELECTION_IFRAME_ID))
-      );
-    }).then(() => {
-      return driver.wait(
-        until.elementLocated(By.css(".visible"))
-      );
-    }).then((visibleButton) => {
-      return visibleButton.click();
-    }).then(() => {
-      return driver.switchTo().defaultContent();
-    }).then(() => {
-      return driver.wait(
-        until.ableToSwitchToFrame(By.id(PREVIEW_IFRAME_ID))
-      );
-    }).then(() => {
-      return driver.wait(
-        until.elementLocated(By.css(".preview-button-save"))
-      );
-    }).then((saveButton) => {
-      return driver.wait(
-        until.elementIsVisible(saveButton)
-      );
-    }).then((saveButton) => {
-      return expectCreatedShot(driver, () => {
-        saveButton.click();
-      });
-    }).then((shotUrl) => {
-      verifyShotUrl(shotUrl);
-      done();
-    }).catch(done);
-  });
-
   it("should take an auto selection shot", function(done) {
     startAutoSelectionShot(driver).then(() => {
-      return driver.wait(until.elementLocated(By.css(".highlight-button-save")));
-    }).then((saveButton) => {
-      return expectCreatedShot(driver, () => {
-        saveButton.click();
-      });
-    }).then((shotUrl) => {
-      verifyShotUrl(shotUrl);
+      return driver.wait(until.elementLocated(By.css(".highlight-button-copy")));
+    }).then((copyButton) => {
+      return copyButton.click();
+    }).then(() => {
+      // FIXME: somehow verify an image was copied
       done();
     }).catch(done);
   });
 
   it("should show onboarding with #hello", async function() {
+    await driver.setContext(firefox.Context.CONTENT);
+    await driver.switchTo().defaultContent();
+    await driver.get(`http://example.org`);
     await driver.get(`${backend}/#hello`);
     await driver.setContext(firefox.Context.CONTENT);
     const slideFrame = await driver.wait(until.elementLocated(By.id(SLIDE_IFRAME_ID)));
     assert(slideFrame, "Navigating to #hello should show onboarding");
   });
 
-  it("should download a shot", function(done) {
+  it("should download a shot", async function() {
     const startingFileCount = fs.readdirSync(downloadDir).length;
     const filenameRegex = /^Screenshot.+ Firefox Screenshots\.png$/;
     let files;
-    startAutoSelectionShot(driver)
-    .then(() => driver.wait(until.elementLocated(By.css(".highlight-button-download"))))
-    .then(downloadButton => downloadButton.click())
-    .then(() => driver.wait(() => {
+    await startAutoSelectionShot(driver);
+    const downloadButton = await driver.wait(until.elementLocated(By.css(".highlight-button-download")));
+    await downloadButton.click();
+    await driver.wait(() => {
       return util.promisify(fs.readdir)(downloadDir).then(foundFiles => {
         files = foundFiles;
         return (files.length > startingFileCount);
       });
-    }, 2000))
-    .then(() => {
-      // check for a file created within a couple seconds
-      // @TODO maybe check the dimensions of the image if we wanna get fancy
-      const matches = files.filter(filename => {
-        if (!filenameRegex.test(filename)) {
-          return false;
-        }
-        const stat = fs.statSync(path.join(downloadDir, filename));
-        return ((stat.mtime.getTime() - Date.now()) < 2000);
-      });
-      assert(matches.length, `Shot was not downloaded to ${downloadDir}`);
-      // clean up the dir
-      const unlinkPromise = util.promisify(fs.unlink);
-      files.forEach(filename => {
-        filename !== ".gitignore" && unlinkPromise(path.join(downloadDir, filename));
-      });
-    })
+    }, 2000);
+    // check for a file created within a couple seconds
+    // @TODO maybe check the dimensions of the image if we wanna get fancy
+    const matches = files.filter(filename => {
+      if (!filenameRegex.test(filename)) {
+        return false;
+      }
+      const stat = fs.statSync(path.join(downloadDir, filename));
+      return ((stat.mtime.getTime() - Date.now()) < 2000);
+    });
+    assert(matches.length, `Shot was not downloaded to ${downloadDir}`);
+    // clean up the dir
+    const unlinkPromise = util.promisify(fs.unlink);
+    for (const filename of files) {
+      if (filename !== ".gitignore") {
+        await unlinkPromise(path.join(downloadDir, filename));
+      }
+    }
     // Downloading seems to put the browser in a weird state that we can't reset
-    // unless the tab is closed
-    .then(() => closeTab(driver))
-    .then(() => done())
-    .catch(done);
+    // unless the tab is closed (except lately this has been *breaking* the tests instead of fixing them)
+    // await closeTab(driver);
   });
 
-  it.skip("should remain on original tab with UI overlay on save failure", function(done) {
-    const badAddon = path.join(process.cwd(), "build", "screenshots-webextension-server-down.zip");
-    driver.installAddon(badAddon)
-    .then(() => startAutoSelectionShot(driver))
-    .then(() => driver.wait(until.elementLocated(By.css(".highlight-button-save"))))
-    .then((saveButton) => saveButton.click())
-    .then(() => driver.getAllWindowHandles())
-    .then((tabs) => driver.switchTo().window(tabs[tabs.length - 1]))
-    .then(() => driver.switchTo().defaultContent())
-    .then(() => driver.findElement(By.id(PRESELECTION_IFRAME_ID)))
-    .then(selectionFrame => assert(selectionFrame.isDisplayed()))
-    .then(() => driver.getCurrentUrl())
-    .then((url) => {
-      assert.equal(url, `${backend}/`, `Navigated away from ${backend}`);
-
-      // Doing this in case there are tests after this one.
-      driver.installAddon(addonFileLocation).then(() => done()).catch(done);
-    }).catch(done);
-  });
-
-  it("should not display the Save button", async function() {
-    const driver = await getDriver({"extensions.screenshots.upload-disabled": true});
-    await startScreenshotsWithUrl(driver, backend);
-    await performAutoSelection(driver);
-    // There is a download-only button when there's no Save as the primary button.
-    // No assert is necessary; if the element is found, then then the test
-    // passed. A NoSuchElementError will be thrown if it's not found.
-    await driver.findElement({className: "download-only-button"});
-  });
 });

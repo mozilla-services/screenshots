@@ -26,7 +26,7 @@ class Head extends React.Component {
         <Localized id="homePageDescription" attrs={{ content: true }}>
           <meta
             name="description"
-            content="Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox."
+            content="Intuitive screenshots baked right into the browser. Capture and download screenshots as you browse the Web using Firefox."
           />
         </Localized>
         <meta property="og:title" content={this.props.title} />
@@ -34,14 +34,14 @@ class Head extends React.Component {
         <Localized id="homePageDescription" attrs={{ content: true }}>
           <meta
             property="og:description"
-            content="Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox."
+            content="Intuitive screenshots baked right into the browser. Capture and download screenshots as you browse the Web using Firefox."
           />
         </Localized>
         <meta name="twitter:title" content={this.props.title} />
         <Localized id="homePageDescription" attrs={{ content: true }}>
           <meta
             name="twitter:description"
-            content="Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox."
+            content="Intuitive screenshots baked right into the browser. Capture and download screenshots as you browse the Web using Firefox."
           />
         </Localized>
         <meta name="twitter:card" content="summary" />
@@ -109,9 +109,9 @@ class Body extends React.Component {
           <div className="banner-container">
             <div className="banner-content">
               <h1>Firefox Screenshots</h1>
-              <Localized id="gScreenshotsDescription">
+              <Localized id="gScreenshotsDescriptionServerless">
                 <p>
-                  Screenshots made simple. Take, save, and share screenshots
+                  Screenshots made simple. Capture and download screenshots
                   without leaving Firefox.
                 </p>
               </Localized>
@@ -131,9 +131,9 @@ class Body extends React.Component {
               </Localized>
               <Localized id="homePageGetStartedDescriptionPageAction">
                 <p>
-                  Select the Screenshots icon from the page actions menu in
-                  the address bar, and the Screenshots menu will appear on top
-                  of your browser window.
+                  Select the Screenshots icon from the page actions menu in the
+                  address bar, and the Screenshots menu will appear on top of
+                  your browser window.
                 </p>
               </Localized>
             </div>
@@ -167,10 +167,10 @@ class Body extends React.Component {
               </Localized>
               <Localized id="homePageCapturePageDescription">
                 <p>
-                  Use the buttons in the upper right to capture full pages.
-                  The Save Visible button will capture the area you can view
-                  without scrolling, and the Save Full Page will capture
-                  everything on the page.
+                  Use the buttons in the upper right to capture full pages. The
+                  Save Visible button will capture the area you can view without
+                  scrolling, and the Save Full Page will capture everything on
+                  the page.
                 </p>
               </Localized>
             </div>
@@ -180,37 +180,17 @@ class Body extends React.Component {
         <section id="section-4">
           <div className="container">
             <div className="section-content align-right">
-              <Localized id="homePageSaveShare">
-                <h3>Save and Share</h3>
+              <Localized id="homePageDownloadCopy">
+                <h3>Download or Copy</h3>
               </Localized>
-              <Localized id="homePageShaveShareFavoriteDescription">
+              <Localized id="homePageDownloadCopyDescription">
                 <p>
-                  Take your best shot. Then save it to the online Screenshots
-                  library, and Firefox copies the link to your clipboard for
-                  easy sharing. Shots in the library automatically expire after
-                  two weeks, but you can delete them at any time or choose to
-                  keep them longer.
+                  Take your best shot. Screenshots lets you download your
+                  selection it or copy it right to your clipboard.
                 </p>
               </Localized>
             </div>
             <div className="section-image align-left" />
-          </div>
-        </section>
-        <section id="section-5">
-          <div className="container">
-            <div className="section-content align-left">
-              <Localized id="homePageSignInTitle">
-                <h3>Your Shots Everywhere</h3>
-              </Localized>
-              <Localized id="homePageSignInDescription">
-                <p>
-                  Sign in to Screenshots with your Firefox Account to access
-                  your shots everywhere you use Firefox. An added bonus: you can
-                  also save your favorite shots forever.
-                </p>
-              </Localized>
-            </div>
-            <div className="section-image align-right" />
           </div>
         </section>
         <Footer {...this.props} />

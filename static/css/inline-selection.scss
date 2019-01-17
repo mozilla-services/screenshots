@@ -190,103 +190,6 @@ $very-light-grey: #ededed;
   }
 }
 
-.notice {
-  display: flex;
-  height: 41px;
-  inset-inline-start: 50%;
-  position: fixed;
-  transform: translate(-50%, 0);
-  transition: top 125ms ease-out, translate 125ms ease-out;
-  user-select: none;
-  will-change: top, translate;
-  z-index: $overlay-z-index + 1;
-
-  .notice-wrapper {
-    align-items: center;
-    background: $gray;
-    border-radius: 100px;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    padding: 10px 15px;
-  }
-
-  .notice-content {
-    color: #fff;
-    flex: 1;
-    font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-    white-space: nowrap;
-  }
-
-  .notice-help {
-    background-image: url("MOZ_EXTENSION/icons/help-16.svg");
-    background-position: center center;
-    background-repeat: no-repeat;
-    height: 16px;
-    width: 16px;
-  }
-
-  &.middle {
-    display: none;
-    top: calc(50% - 21px);
-  }
-}
-
-.preview-button-save:active,
-.preview-button-save:focus,
-.preview-button-save:hover {
-  ~ .notice.middle {
-    display: block;
-  }
-}
-
-.notice-tooltip {
-  background: #fff;
-  border-radius: 3px;
-  border: 1px solid #9d9d9e;
-  bottom: 60px;
-  color: #000;
-  cursor: default;
-  display: none;
-  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 22px;
-  overflow-wrap: break-word;
-  padding: 15px;
-  position: absolute;
-  inset-inline-end: -14px;
-  white-space: normal;
-  width: 300px;
-  z-index: $overlay-z-index + 1;
-
-  .notice:hover & {
-    display: block;
-  }
-
-  p {
-    margin: 0;
-  }
-
-  ul {
-    margin-bottom: 0;
-  }
-
-  /* down-arrow for the tooltip */
-  &::after {
-    border-inline-start: 10px solid transparent;
-    border-inline-end: 10px solid transparent;
-    border-top: 10px solid #f9f9fa;
-    content: "";
-    height: 0;
-    inset-inline-start: 86%;
-    position: absolute;
-    top: 100%;
-    width: 0;
-  }
-}
 
 .preview-overlay {
   align-items: center;
@@ -312,7 +215,7 @@ $very-light-grey: #ededed;
 }
 
 .highlight {
-  border-radius: 2px;
+  border-radius: 1px;
   border: 2px dashed rgba(255, 255, 255, 0.8);
   box-sizing: border-box;
   cursor: move;
@@ -326,7 +229,7 @@ $very-light-grey: #ededed;
 
 .highlight-buttons {
   @include flex-container(row, center, center);
-  bottom: -55px;
+  bottom: -58px;
   position: absolute;
   inset-inline-end: 5px;
   z-index: 6;
@@ -339,58 +242,44 @@ $very-light-grey: #ededed;
     inset-inline-end: auto;
     inset-inline-start: 5px;
   }
+
+  > button {
+    box-shadow: 0 0 0 1px rgba(12, 12, 13, 0.1), 0 2px 8px rgba(12, 12, 13, 0.1);
+  }
 }
 
 .highlight-button-cancel {
   @extend .button;
   @extend .secondary;
-  border: 1px solid $light-active;
   margin: 5px;
   width: 40px;
-}
-
-.highlight-button-save {
-  @extend .button;
-  @extend .primary;
-  font-size: 18px;
-  margin: 5px;
-  min-width: 80px;
-
-  img {
-    padding-inline-end: 8px;
-  }
 }
 
 .highlight-button-download {
   @extend .button;
-  @extend .secondary;
-  border: 1px solid $light-active;
-  // Overrides display: flex from .button, which causes hover problems
-  display: block;
+  @extend .primary;
   margin: 5px;
-  width: 40px;
+  width: auto;
+  font-size: 18px;
 
-  &.download-only-button {
-    font-size: 18px;
-    width: auto;
-
-    img {
-      height: 16px;
-      width: 16px;
-
-      padding-inline-end: 8px;
-    }
+  img {
+    height: 16px;
+    width: 16px;
+    padding-inline-end: 8px;
   }
 }
 
 .highlight-button-copy {
   @extend .button;
   @extend .secondary;
-  border: 1px solid $light-active;
-  // Overrides display: flex from .button, which causes hover problems
-  display: block;
   margin: 5px;
-  width: 40px;
+  width: auto;
+
+  img {
+    height: 16px;
+    width: 16px;
+    padding-inline-end: 8px;
+  }
 }
 
 .pixel-dimensions {
@@ -408,42 +297,51 @@ $very-light-grey: #ededed;
 }
 
 .preview-buttons {
-  @include flex-container(row, center, center);
-  position: absolute;
-  top: -2px;
+  @include flex-container(row, flex-end, center);
+  padding-inline-end: 4px;
   inset-inline-end: 0;
+  width: 100%;
+  position: absolute;
+  height: 60px;
+  border-radius: 4px 4px 0 0;
+  background: rgba(249, 249, 250, 0.8);
+  top: 0;
+  border: 1px solid rgba(249, 249, 250, 0.2);
+  border-bottom: 0;
+  box-sizing: border-box;
 }
 
 .preview-image  {
+  @include flex-container(column, center, center);
+  margin: 24px auto;
   position: relative;
-  height: 80%;
-  max-width: 100%;
-  margin: auto 2em;
+  max-width: 80%;
+  max-height: 95%;
   text-align: center;
   animation-delay: 50ms;
-  animation: bounce-in 300ms forwards ease-in-out;
+  display: flex;
 }
 
-.preview-image > img {
+.preview-image-wrapper {
+  background: rgba(249, 249, 250, 0.8);
+  border-radius: 0 0 4px 4px;
   display: block;
-  width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 90%;
-  margin: 50px auto;
-  border: 1px solid rgba(255, 255, 255, 0.8);;
+  min-width: 320px;
+  overflow-y: scroll;
+  padding: 0 60px;
+  margin-top: 60px;
+  border: 1px solid rgba(249, 249, 250, 0.2);
+  border-top: 0;
 }
 
-.preview-button-save {
-  @extend .button;
-  @extend .primary;
-  font-size: 18px;
-  margin: 5px;
-  min-width: 80px;
-
-  img {
-    padding-inline-end: 8px;
-  }
+.preview-image-wrapper > img {
+  box-shadow: 0 0 0 1px rgba(12, 12, 13, 0.1), 0 2px 8px rgba(12, 12, 13, 0.1);
+  height: auto;
+  margin-bottom: 60px;
+  max-width: 100%;
+  width: 100%;
 }
 
 // FIXME: some of the styles in .fixed-container were copied from
@@ -542,8 +440,9 @@ $very-light-grey: #ededed;
   height: 80px;
   padding: 8px;
   position: absolute;
-  inset-inline-end: 5px;
-  top: 5px;
+  inset-inline-end: 8px;
+  top: 8px;
+  box-shadow: 0 0 0 1px rgba(12, 12, 13, 0.1), 0 2px 8px rgba(12, 12, 13, 0.1);
 
   .spacer {
     background-color: #c9c9c9;

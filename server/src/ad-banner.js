@@ -45,11 +45,17 @@ exports.AdBanner = class AdBanner extends React.Component {
         </Localized>;
     } else if (promoStrategy.shouldShowDeprecation()) {
       // eslint-disable-next-line no-unused-vars
-      const deprecationLink = <a className="deprecationLink" href="/hosting-shutdown" onClick={ this.clickedDeprecation.bind(this) }></a>;
       bannerContent = /* <Localized id="deprecationWarning" a={deprecationLink}> */
+        <div>
           <p>
-            Please note: <a>the screenshots.firefox.com service is shutting down</a>. But Firefox will still support Screenshots!
+            The Firefox Screenshots server is shutting down in June of 2019. Download any saved screenshots you want to keep.
           </p>
+          <p>
+              Screenshots will continue to be a part of Firefox. You can still
+          capture screenshots, download them or copy them to your clipboard.
+          <a href="SUMO-PAGE">&nbsp;Learn more</a>.
+          </p>
+      </div>
         /* </Localized> */;
     }
 
