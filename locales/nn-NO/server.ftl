@@ -18,8 +18,18 @@ buttonSignIn =
     .title = Logg inn
 screenshotsLogo =
     .title = Startside for Screenshots
-bannerMessage = Logg på eller registrer deg for å få tilgang til bilda dine på tvers av eininga og lagre favorittane dine for alltid.
+bannerSignIn = <a>Logg på eller registrer deg</a> for å få tilgang til bilda dine på tvers av einingar, og lagre favorittane dine for alltid.
 bannerUpsell = { gScreenshotsDescription } <a>Hent Firefox no</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Nyheiter i Firefox Screenshots
+onboardingPromoMessage = Logg inn på Screenshots med ein Firefox-konto og gjer meir:
+onboardingPromoMessageListItem1 = Få tilgang til biblioteket på alle einingane dine
+onboardingPromoMessageListItem2 = Lagre favorittbilda dine for alltid
+onboardingPromoDismissButton = Lat att
+    .title = Lat att
+onboardingPromoSigninButton = Logg inn
+    .title = Logg inn
 
 ## Footer
 
@@ -55,8 +65,6 @@ homePageDownloadFirefoxSubTitle = Gratis nedlasting
 homePageHowScreenshotsWorks = Slik fungerer Firefox Screenshots
 homePageGetStartedTitle = Kom i gang
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Finn det nye Screenshots-ikonet på verktøylinja. Vel det, og Screenshots-menyen blir vist øvst i nettlesarvindauget.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Vel ikonet «Ta eit skjermbilde» frå menyen Sidehandlingar for sida i adresselinja og skjermbilde-menyen vil visast utanpå nettlesarvindauget ditt.
 homePageCaptureRegion = Knips eit områdde
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -64,8 +72,7 @@ homePageCaptureRegionDescription = Klikk og dra for å velje området du vil ta 
 homePageCapturePage = Knips ei side
 homePageCapturePageDescription = Bruk knappene øvst til høgre for å ta skjermbilde av heile sider. Knappen «Lagre synleg område» tar skjermbilde av området du kan sjå utan å rulle, og «Lagre heile sida» vil ta skjermbilde av alt på sida.
 homePageSaveShare = Lagre og del
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Når du tar eit bilde, lastar Firefox opp skjermbildet ditt i det nettbaserte Screenshots-bibliotek ditt og kopierer lenka til utklippstavla. Vi lagrar skjermbildet automatisk i to veker, men du kan når som helst slette bilde eller endre utgåttdatoen for å behalde dei i biblioteket ditt lenger.
+homePageSignInTitle = Dine skjermbilde overalt
 homePageLegalLink = Juridisk
 homePagePrivacyLink = Personvern
 homePageTermsLink = Vilkår
@@ -74,8 +81,6 @@ homePageCookiesLink = Infokapslar
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Fjern alle data
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Du må ha Firefox Screenshots installert for å slette kontoen din
 leavePageErrorGeneric = Det oppstod ein feil
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Dette vil permanent slette alle dataa dine i Firefox Screenshots.
@@ -101,6 +106,7 @@ shotPageShareButton =
     .title = Del
 shotPageCopyButton =
     .title = Kopier bildet til utklippstavla
+shotPageCopyActionLabel = Kopier
 shotPageCopied = Kopiert
 shotPageShareFacebook =
     .title = Del på Facebook
@@ -277,12 +283,10 @@ copyImageErrorMessage = Klarte ikkje å kopiere skjermbildet ditt til utklippsta
 settingsDisconnectButton = Kople frå
     .title = Kople frå
 settingsGuestAccountMessage = Gjestekonto
-settingsSignInInvite = Logg inn for å synkronisere på tvers av einingar
 settingsSignInButton = Logg inn
     .title = Logg inn
 SettingsPageHeader = Innstillingar for Firefox Screenshots
-settingsDescription = Du kan logge inn med Firefox-kontoar for å synkronisere alle skjermbilda dine på tvers av einingar og få tilgang til dei privat.
-settingsPageSubHeader = Synkronisering og kontoar
+settingsFirefoxAccountSubHeader = Firefox-konto
 settingsClosePreferences =
     .title = Lat att innstillingar
 

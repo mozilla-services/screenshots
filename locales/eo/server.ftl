@@ -20,10 +20,16 @@ screenshotsLogo =
     .title = Eka paĝo de ekrankopioj
 bannerSignIn = <a>Komencu seancon aŭ registriĝu</a> por aliri viajn ekrankopiojn en ĉiuj aparatoj kaj konservi la plej ŝatatajn por ĉiam.
 bannerUpsell = { gScreenshotsDescription } <a>Ricevi Firefox nun</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Kio estas nova en Firefox Screenshots?
+onboardingPromoMessage = Nun komencu seancon en Screenshots per via konto de Firefox por:
+onboardingPromoMessageListItem1 = Aliri vian bibliotekon ĉe viaj ĉiuj aparatoj
+onboardingPromoMessageListItem2 = Konservi viajn plej ŝatatajn ekrankopiojn por ĉiam
 onboardingPromoDismissButton = Ignori
     .title = Ignori
 onboardingPromoSigninButton = Komenci seancon
-    .title = Ensaluti per via konto de Firefox
+    .title = Komenci seancon per via konto de Firefox
 
 ## Footer
 
@@ -31,6 +37,8 @@ onboardingPromoSigninButton = Komenci seancon
 footerLinkMozilla = Mozilla
 footerLinkTerms = Kondiĉoj
 footerLinkPrivacy = Rimarko pri privateco
+footerReportShot = Denunci ekrankopion
+    .title = Denunci tiun ĉi ekrankopion pro eksceso, trudmesaĝado aŭ aliaj problemoj
 footerLinkFaqs = Oftaj demandoj
 footerLinkDMCA = Raporti malobservon de IP
 footerLinkDiscourse = Sendi komentojn
@@ -64,7 +72,10 @@ homePageCaptureRegionDescription = Alklaku kaŭ trenu por elekti la areon, kion 
 homePageCapturePage = Kapti paĝon
 homePageCapturePageDescription = Uzu la butonojn supre kaj dekstre por kapti tutajn paĝojn. La butono 'Konservi tion, kio videblas' kaptos la areon, kiun vi vidas se vi ne ŝovas. La butono 'Konservi tutan paĝon'  kaptos ĉion en la paĝo.
 homePageSaveShare = Konservi kaj dividi
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = Faru vian plej bonan ekrankopion. Sekve konservu ĝin en la enreta biblioteko de Screenshots, kaj Firefox kopios ligilon al via tondujo por facile ĝin diskonigi. Ekrankopioj konservitaj en la biblioteko aŭtomate senvalidiĝos post du semajnoj, tamen vi povas forigi ilin iam ajn aŭ decidi gardi ilin pli longe.
 homePageSignInTitle = Viaj ekrankopioj ĉe ĉiu aparato
+homePageSignInDescription = Komencu seancon en Screenshots per via konto de Firefox por aliri viajn ekrankopiojn ĉie, kie vi uzas Firefox. Krom tio, vi povas konservi viajn plej ŝatatajn ekrankopiojn por ĉiam.
 homePageLegalLink = Leĝaĵoj
 homePagePrivacyLink = Privateco
 homePageTermsLink = Kondiĉoj
@@ -73,6 +84,8 @@ homePageCookiesLink = Kuketoj
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Forigi ĉiujn datumojn
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = Por forigi vian konton vi devas havi Firefox Screenshots instalita, aŭ esti komencinta seancon per via konto de Firefox
 leavePageErrorGeneric = Eraro okazis
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Tio ĉi definitive forigos ĉiujn viajn datumojn de Firefox Screenshots.
@@ -96,6 +109,8 @@ shotPageAlertErrorUpdatingTitle = Eraro dum konservo de titolo
 shotPageConfirmDelete = Ĉu vi certe volas definitive forigi tiun ĉi ekrankopion?
 shotPageShareButton =
     .title = Dividi
+shotPageCopyButton =
+    .title = Kopii bildon al tondujo
 shotPageCopyActionLabel = Kopii
 shotPageCopied = Kopiita
 shotPageShareFacebook =
@@ -125,6 +140,8 @@ shotPageDownloadShot =
     .title = Elŝuti
 shotPageEditButton =
     .title = Redakti tiun ĉi bildon
+shotPagefavoriteButton =
+    .title = Marki tiun ĉi ekrankopion kiel plejl ŝatatan
 shotPageBackToHomeButton =
     .title = Eka paĝo
 shotPageAllShotsButton =
@@ -154,9 +171,9 @@ shotPageSaveExpiration = konservi
 shotPageCancelExpiration = nuligi
 shotPageDoesNotExpire = ĉiam valida
 # Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageTimeExpiresIn = senvalidiĝas post <timediff></timediff>
+shotPageTimeExpiresIn = senvalidiĝas <timediff></timediff>
 # Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageTimeExpired = senvalidiĝis antaŭ <timediff></timediff>
+shotPageTimeExpired = senvalidiĝis <timediff></timediff>
 timeDiffJustNow = ĵus
 timeDiffMinutesAgo =
     { $number ->
@@ -264,6 +281,7 @@ textToolInputPlaceholder =
 ## are passed from the shot page to the addon.
 
 copyImageErrorTitle = Io ne bone funkciis
+copyImageErrorMessage = Ne eblis kopii vian ekrankopion al la tondujo.
 
 ## Settings Page
 
@@ -306,12 +324,22 @@ shotIndexPagePreviousPage =
     .title = Antaŭa paĝo
 shotIndexPageNextPage =
     .title = Venonta paĝo
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Tiu ĉi ne estas plej ŝatata ekrankopio, kaj ĝi senvalidiĝos
+# This is the tooltip for a "heart" symbol in the upper top corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Tiu ĉi estas plej ŝatata ekrankopio, kiu ne senvalidiĝos
 shotIndexSyncedShot =
     .title = Ekrankopio farita en alia aparato
+shotIndexAlertErrorFavoriteShot = Eraro dum aktualigo de stato de plej ŝatata ekrankopio
 
 ## Delete Confirmation Dialog
 
-shotDeleteConfirmationMessage = Ĉu vi certe volas forigi tiun ĉi ekrankopio?
+shotDeleteConfirmationMessage = Ĉu vi certe volas forigi tiun ĉi ekrankopion?
 shotDeleteCancel = Nuligi
     .title = Nuligi
 shotDeleteConfirm = Forigi

@@ -18,7 +18,16 @@ buttonSignIn =
     .title = Inicia la sessió
 screenshotsLogo =
     .title = Pàgina d'inici del Firefox Screenshots
+bannerSignIn = <a>Registreu-vos o inicieu la sessió</a> per accedir a les vostres captures en tots els dispositius i conservar les vostres preferides per sempre.
 bannerUpsell = { gScreenshotsDescription } <a>Baixeu el Firefox ara</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Novetats del Firefox Screenshots
+onboardingPromoMessage = Ara, si inicieu la sessió al Firefox Screenshots amb un compte del Firefox, podreu:
+onboardingPromoMessageListItem1 = Accedir a la vostra biblioteca des de tots els vostres dispositius
+onboardingPromoMessageListItem2 = Desar per sempre les vostres captures preferides
+onboardingPromoDismissButton = Tanca
+    .title = Tanca
 onboardingPromoSigninButton = Inicia la sessió
     .title = Inicia la sessió
 
@@ -63,6 +72,10 @@ homePageCaptureRegionDescription = Feu clic i arrossegueu per seleccionar l'àre
 homePageCapturePage = Captureu una pàgina
 homePageCapturePageDescription = Utilitzeu els botons de la part superior dreta per capturar pàgines senceres. El botó «Captura la part visible» capturarà l'àrea que es visualitza sense desplaçar-se, i el botó «Captura tota la pàgina» capturarà tot el contingut de la pàgina.
 homePageSaveShare = Deseu i compartiu
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageShaveShareFavoriteDescription = Feu una captura de pantalla. A continuació, deseu-la a la biblioteca de captures de pantalla en línia i el Firefox copiarà l'enllaç al porta-retalls per poder-la compartir fàcilment. Les captures de la biblioteca caduquen automàticament després de dues setmanes, però podeu suprimir-les en qualsevol moment o bé conservar-les durant més temps.
+homePageSignInTitle = Les vostres captures a tot arreu
+homePageSignInDescription = Inicieu la sessió al Firefox Screenshots amb el compte del Firefox per accedir a les vostres captures arreu on utilitzeu el Firefox. I encara més: podeu desar les vostres captures preferides per sempre.
 homePageLegalLink = Avís legal
 homePagePrivacyLink = Privadesa
 homePageTermsLink = Condicions d'ús
@@ -71,6 +84,8 @@ homePageCookiesLink = Galetes
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Elimina totes les dades
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = Heu de tenir el Firefox Screenshots instal·lat o haver iniciat la sessió al compte del Firefox per suprimir el vostre compte
 leavePageErrorGeneric = S'ha produït un error
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Aquesta operació esborrarà totes les vostres dades del Firefox Screenshots.
@@ -96,6 +111,7 @@ shotPageShareButton =
     .title = Comparteix
 shotPageCopyButton =
     .title = Copia la imatge al porta-retalls
+shotPageCopyActionLabel = Copia
 shotPageCopied = S'ha copiat
 shotPageShareFacebook =
     .title = Comparteix al Facebook
@@ -275,8 +291,12 @@ settingsGuestAccountMessage = Compte de convidat
 settingsSignInButton = Inicia la sessió
     .title = Inicia la sessió
 SettingsPageHeader = Paràmetres del Firefox Screenshots
+settingsFirefoxAccountSubHeader = Compte del Firefox
 settingsClosePreferences =
     .title = Tanca les preferències
+settingsFxaDisconnectAlertMessage = Esteu segur que voleu desconnectar aquest dispositiu del vostre compte del Firefox?
+settingsFxaDisconnectDescription = Si tanqueu la sessió, haureu de tornar a iniciar-la per accedir a les vostres captures de pantalla.
+settingsFxaConnectDescription = Podeu iniciar la sessió per accedir a les vostres captures de pantalla en tots els dispositius.
 
 ## Shotindex page
 
