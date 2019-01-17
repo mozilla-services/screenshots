@@ -33,8 +33,10 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
     }
 
     const localeScripts = [];
-    for (const locale of this.props.userLocales) {
-      localeScripts.push(<script key={`l10n-${locale}`} src={this.props.staticLink(`/static/locales/${locale}.js`)} />);
+    if (!this.props.noBrowserJavascript) {
+      for (const locale of this.props.userLocales) {
+        localeScripts.push(<script key={`l10n-${locale}`} src={this.props.staticLink(`/static/locales/${locale}.js`)} />);
+      }
     }
     const wantsAuth = !this.props.authenticated;
 
@@ -52,7 +54,7 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
         { wantsAuth ? <script src={ this.props.staticLink("/static/js/wantsauth.js") } /> : null }
         { activationScript }
         { localeScripts }
-        { this.props.sentryPublicDSN ? <script src={this.props.staticLink("/install-raven.js")} async /> : null }
+        { this.props.sentryPublicDSN && !this.props.noBrowserJavascript ? <script src={this.props.staticLink("/install-raven.js")} async /> : null }
         {this.props.children}
       </head>
     </LocalizationProvider>
@@ -72,6 +74,7 @@ exports.HeadTemplate.propTypes = {
   userLocales: PropTypes.array,
   authenticated: PropTypes.bool,
   parseMarkup: PropTypes.func,
+  noBrowserJavascript: PropTypes.bool,
 };
 
 exports.BodyTemplate = class Body extends React.Component {
