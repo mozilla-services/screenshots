@@ -44,19 +44,18 @@ exports.AdBanner = class AdBanner extends React.Component {
           </p>
         </Localized>;
     } else if (promoStrategy.shouldShowDeprecation()) {
-      // eslint-disable-next-line no-unused-vars
-      bannerContent = /* <Localized id="deprecationWarning" a={deprecationLink}> */
-        <div>
-          <p>
-            The Firefox Screenshots server is shutting down in June of 2019. Download any saved screenshots you want to keep.
-          </p>
-          <p>
-              Screenshots will continue to be a part of Firefox. You can still
-          capture screenshots, download them or copy them to your clipboard.
-          <a href="SUMO-PAGE">&nbsp;Learn more</a>.
-          </p>
-      </div>
-        /* </Localized> */;
+      // FIXME: should be updated to the SUMO page later:
+      const shutdownLink = "/export";
+      bannerContent = <div>
+        <p>
+          <Localized id="shutdownWarningIntro">
+            <b>Saved screenshots are expiring soon.</b>
+          </Localized>
+          <Localized id="shutdownWarningBody" a={shutdownLink}>
+            Starting in June, Screenshots will no longer offer online storage. Want to keep shots from your library? <a>Download them to your computer.</a>
+          </Localized>
+        </p>
+      </div>;
     }
 
     if (bannerContent) {
