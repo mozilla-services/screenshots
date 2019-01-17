@@ -8,7 +8,7 @@ gMyShots = My Shots
 gHomeLink = Home
 gNoShots =
     .alt = No shots found
-gScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
+gScreenshotsDescriptionServerless = Screenshots made simple. Capture and download screenshots without leaving Firefox.
 
 ## Header
 
@@ -71,11 +71,9 @@ homePageCaptureRegion = Capture a Region
 homePageCaptureRegionDescription = Click and drag to select the area you want to capture. Or just hover and click — Screenshots will select the area for you. Like what you see? Select Save to access your screenshot online or the down arrow button to download it to your computer.
 homePageCapturePage = Capture a Page
 homePageCapturePageDescription = Use the buttons in the upper right to capture full pages. The Save Visible button will capture the area you can view without scrolling, and Save Full Page will capture everything on the page.
-homePageSaveShare = Save and Share
+homePageDownloadCopy = Download or Copy
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Take your best shot. Then save it to the online Screenshots library, and Firefox copies the link to your clipboard for easy sharing. Shots in the library automatically expire after two weeks, but you can delete them at any time or choose to keep them longer.
-homePageSignInTitle = Your Shots Everywhere
-homePageSignInDescription = Sign in to Screenshots with your Firefox Account to access your shots everywhere you use Firefox. An added bonus: you can also save your favourite shots forever.
+homePageDownloadCopyDescription = Take your best shot. Screenshots lets you download your selection or copy it right to your clipboard.
 homePageLegalLink = Legal
 homePagePrivacyLink = Privacy
 homePageTermsLink = Terms
@@ -146,7 +144,7 @@ shotPageBackToHomeButton =
     .title = Homepage
 shotPageAllShotsButton =
     .title = All Shots
-shotPageScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
+shotPageScreenshotsDescriptionServerless = Screenshots made simple. Capture and download screenshots without leaving Firefox.
 shotPageDMCAMessage = This shot is no longer available due to a third party intellectual property claim.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Please email { $dmca } to request further information.
