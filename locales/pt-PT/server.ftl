@@ -345,6 +345,11 @@ shotDeleteCancel = Cancelar
 shotDeleteConfirm = Apagar
     .title = Apagar
 
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Para exportar: utilize Ficheiro > Guardar página como… e você irá encontrar as suas capturas de ecrã na pasta { $folder }
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
