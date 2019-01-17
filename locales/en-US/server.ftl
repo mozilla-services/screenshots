@@ -69,9 +69,9 @@ homePageCaptureRegion = Capture a Region
 homePageCaptureRegionDescription = Click and drag to select the area you want to capture. Or just hover and click — Screenshots will select the area for you. Like what you see? Select Save to access your screenshot online or the down arrow button to download it to your computer.
 homePageCapturePage = Capture a Page
 homePageCapturePageDescription = Use the buttons in the upper right to capture full pages. The Save Visible button will capture the area you can view without scrolling, and Save Full Page will capture everything on the page.
-homePageDownloadCopy = Download and Copy
+homePageDownloadCopy = Download or Copy
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageDownloadCopyDescription = Take your best shot. Screenshots lets you download your selection it or copy it right to your clipboard.
+homePageDownloadCopyDescription = Take your best shot. Screenshots lets you download your selection or copy it right to your clipboard.
 homePageLegalLink = Legal
 homePagePrivacyLink = Privacy
 homePageTermsLink = Terms
