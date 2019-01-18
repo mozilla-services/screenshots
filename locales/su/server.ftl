@@ -8,7 +8,6 @@ gMyShots = Téwakan Kami
 gHomeLink = Tepas
 gNoShots =
     .alt = Taya téwakan kapanggih
-gScreenshotsDescription = Screenshots jadi gampang. Cokot, teundeun, jeung bagikeun téwakan layar tanpa ninggalkeun Firefox.
 
 ## Header
 
@@ -71,11 +70,6 @@ homePageCaptureRegion = Téwak Kotakan
 homePageCaptureRegionDescription = Klik jeung gusur pikeun milih kotakan anu rék ditéwak. Atawa arahkeun jeung klik — Screenshots bakal mangmilihkeun kotakanana. Resep? Pilih Teundeun pikeun muka téwakan layar onlén atawa tombol jamparing turun pikeun ngundeur.
 homePageCapturePage = Téwak Kaca
 homePageCapturePageDescription = Paké tombol di luhur lebah katuhu pikeun néwak sakabéh kaca. Tombol Teundeun Sakatempo bakal néwak eusi kaca anu harita katempo, anapon Teundeun Kaca Lengkep bakal néwak sakur anu aya dina éta kaca.
-homePageSaveShare = Teundeun jeung Bagikeun
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Téwak sahadéna. Teundeun di pabukon Screenshots onlén, laju ku Firefox ditiron tutumbuna kana papan klip ngarah gampang babagi. Téwakan dina pabukon bakal kadaluwarsa sanggeus dua minggu, tapi bisa dihapus iraha waé atawa diteundeun leuwih lila.
-homePageSignInTitle = Téwakan Anjeun di Mamana
-homePageSignInDescription = Asup ka Screenshots maké Akun Firefox pikeun muka téwakan anjeun di mana waé maké Firefox. Bonus émbohna: anjeun ogé bisa neundeun téwakan kameumeut salilana.
 homePageLegalLink = Légal
 homePagePrivacyLink = Privasi
 homePageTermsLink = Katangtuan
@@ -146,7 +140,6 @@ shotPageBackToHomeButton =
     .title = Tepas
 shotPageAllShotsButton =
     .title = Sakabéh Téwakan
-shotPageScreenshotsDescription = Screenshots jadi gampang. Cokot, teundeun, jeung bagikeun téwakan layar tanpa ninggalkeun Firefox.
 shotPageDMCAMessage = Ieu téwakan geus teu bisa dibuka alatan ayana klaim kekayaan inteléktual pihak katilu.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Mangga kirim surél { $dmca } pikeun émbaran leuwih teleb.
@@ -330,6 +323,7 @@ shotIndexFavoriteIcon =
     .title = Ieu téwakan petingan sarta moal kadaluwarsa
 shotIndexSyncedShot =
     .title = Téwakan anu dicokot tina séjén alat
+shotIndexAlertErrorFavoriteShot = Kasalahan ngamutahirkeun status téwakan petingan
 
 ## Delete Confirmation Dialog
 
@@ -338,6 +332,9 @@ shotDeleteCancel = Bolay
     .title = Bolay
 shotDeleteConfirm = Pupus
     .title = Pupus
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
@@ -363,9 +360,11 @@ metricsPageUserShotsQueryTitle = Jumlah Téwakan unggal Pamaké
 metricsPageUserShotsQueryDescription = Jumlah pamaké anu boga N téwakan
 metricsPageUserShotsQueryCount = Jumlah pamaké
 metricsPageUserShotsQueryShots = Jumlah kira-kira téwakan aktip (teu kadaluwarsa)
+metricsPageRetentionQueryTitle = Reténsi Minggon
 metricsPageRetentionQueryUsers = Jumlah pamaké
 metricsPageRetentionQueryDays = Poé ti munggaran nyieun téwakan nepi ka nu pang anyarna
 metricsPageRetentionQueryFirstWeek = Minggu munggaran pamaké nyieun téwakan
+metricsPageTotalRetentionQueryTitle = Jumlah Reténsi
 metricsPageTotalRetentionQueryDescription = Lilana pamaké nyieun téwakan, dumasar minggu
 metricsPageTotalRetentionQueryUsers = Jumlah pamaké
 metricsPageTotalRetentionQueryDays = Lilana pamaké geus nyieun téwakan
