@@ -8,7 +8,6 @@ gMyShots = Mijn afbeeldingen
 gHomeLink = Startpagina
 gNoShots =
     .alt = Geen afbeeldingen gevonden
-gScreenshotsDescriptionServerless = Schermafdrukken op een simpele manier. Leg schermafdrukken vast en download ze zonder Firefox te verlaten.
 
 ## Header
 
