@@ -8,6 +8,7 @@ gMyShots = Mijn afbeeldingen
 gHomeLink = Startpagina
 gNoShots =
     .alt = Geen afbeeldingen gevonden
+gScreenshotsDescriptionServerless = Schermafbeeldingen op een simpele manier. Leg schermafbeeldingen vast en download ze zonder Firefox te verlaten.
 
 ## Header
 
@@ -70,6 +71,9 @@ homePageCaptureRegion = Een gebied vastleggen
 homePageCaptureRegionDescription = Klik en sleep om het gebied dat u wilt vastleggen te verslepen. Of wijs aan en klik – Screenshots selecteert het gebied voor u. Tevreden met wat u ziet? Selecteer Opslaan om uw schermafbeelding online te benaderen, of het pijltje naar beneden om deze naar uw computer op te slaan.
 homePageCapturePage = Een pagina vastleggen
 homePageCapturePageDescription = Gebruik de knoppen in de rechterbovenhoek om volledige pagina’s vast te leggen. De knop Zichtbaar gebied opslaan legt het gebied vast dat u zonder scrollen kunt zien, en Volledige pagina opslaan legt alles op de pagina vast.
+homePageDownloadCopy = Downloaden of kopiëren
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Met Screenshots kunt u uw selectie downloaden of deze rechtstreeks naar uw klembord kopiëren.
 homePageLegalLink = Juridisch
 homePagePrivacyLink = Privacy
 homePageTermsLink = Voorwaarden
@@ -140,6 +144,7 @@ shotPageBackToHomeButton =
     .title = Startpagina
 shotPageAllShotsButton =
     .title = Alle afbeeldingen
+shotPageScreenshotsDescriptionServerless = Schermafbeeldingen op een simpele manier. Leg schermafbeeldingen vast en download ze zonder Firefox te verlaten.
 shotPageDMCAMessage = Deze afbeelding is vanwege een claim op intellectueel eigendom door een externe partij niet meer beschikbaar.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Stuur een e-mail naar { $dmca } om meer informatie op te vragen.
@@ -340,6 +345,8 @@ shotDeleteConfirm = Verwijderen
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Om te exporteren: gebruik Bestand > Pagina opslaan als… en u vindt uw schermafbeeldingen in de map { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
