@@ -8,7 +8,7 @@ gMyShots = Fy Lluniau
 gHomeLink = Cartrefi
 gNoShots =
     .alt = Heb ganfod lluniau
-gScreenshotsDescription = Lluniau sgrin wedi ei wneud yn syml. Cipio, cadw a rhannu lluniau sgrin heb adael Firefox.
+gScreenshotsDescriptionServerless = Lluniau sgrin syml. Cipio a llwytho i lawr lluniau sgrin heb adael Firefox.
 
 ## Header
 
@@ -71,11 +71,9 @@ homePageCaptureRegion = Cipio Ardal
 homePageCaptureRegionDescription = Cliciwch a llusgo i ddewis ardal i'w gipio. Neu hofran a chlicio - bydd Screenshots yn dewis yr ardal i chi. Hoffi beth welwch chi? Dewiswch Cadw i gael mynediad i'ch llun ar-lein neu'r saeth i lawr i'w lwytho i lawr i'ch cyfrifiadur.
 homePageCapturePage = Cipio Tudalen
 homePageCapturePageDescription = Defnyddiwch y botymau ar y brig de i gipio tudalennau cyfan. Bydd y botwm Cadw'r Gweledol y cipio'r ardal rydych y gallu ei weld heb sgrolio ac mae Cadw'r Dudalen Gyfan yn cipio popeth sydd ar y dudalen.
-homePageSaveShare = Cadw a Rhannu
+homePageDownloadCopy = Llwytho i Lawr neu Gopïo
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Cymrwch eich llun gorau. Yna cadw'r llun ar-lein yn  lyfrgell Screenshot ac mae Firefox yn copïo'r ddolen i'ch clipfwrdd ar gyfer rhannu hawdd. Mae lluniau yn y llyfrgell yn dod i ben yn awtomatig ymhen pythefnos, ond gallwch chi eu dileu pryd bynnag yr hoffech chi neu eu cadw am yn hirach.
-homePageSignInTitle = Eich Lluniau ym Mhob Man
-homePageSignInDescription = Mewngofnodwch i Screenshots gyda'ch cyfrif Firefox i gael mynediad i'ch lluniau ym mhob man lle rydych yn defnyddio Firefox. Yn ychwanegol: gallwch gadw eich hoff luniau am byth.
+homePageDownloadCopyDescription = Cymrwch y llun gorau. Mae Screenshots yn gadael i chi lwytho i lawr eich dewis neu ei gopïo i'ch clipfwrdd.
 homePageLegalLink = Cyfreithiol
 homePagePrivacyLink = Preifatrwydd
 homePageTermsLink = Amodau
@@ -146,7 +144,7 @@ shotPageBackToHomeButton =
     .title = Tudalen Cartref
 shotPageAllShotsButton =
     .title = Pob Llun
-shotPageScreenshotsDescription = Lluniau sgrin hawdd. Cipio, cadw a rhannu lluniau sgrin heb adael Firefox.
+shotPageScreenshotsDescriptionServerless = Lluniau sgrin syml. Cipio a llwytho i lawr lluniau sgrin heb adael Firefox.
 shotPageDMCAMessage = Nid yw'r llun ar gael bellach oherwydd cais eiddo deallusol trydydd parti.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = E-bostiwch { $dmca } i ofyn am rhagor o wybodaeth.
@@ -368,6 +366,11 @@ shotDeleteCancel = Diddymu
     .title = Diddymu
 shotDeleteConfirm = Dileu
     .title = Dileu
+
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = I allforio: defnyddiwch Ffeil> Cadw Tudalen Fel... a bydd eich lluniau sgrin yn y ffolder { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
