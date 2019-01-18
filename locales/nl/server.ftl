@@ -8,7 +8,7 @@ gMyShots = Mijn afbeeldingen
 gHomeLink = Startpagina
 gNoShots =
     .alt = Geen afbeeldingen gevonden
-gScreenshotsDescription = Schermafbeeldingen worden makkelijk. Maak, bewaar en deel schermafbeeldingen zonder Firefox te verlaten.
+gScreenshotsDescriptionServerless = Schermafdrukken op een simpele manier. Leg schermafdrukken vast en download ze zonder Firefox te verlaten.
 
 ## Header
 
@@ -71,11 +71,6 @@ homePageCaptureRegion = Een gebied vastleggen
 homePageCaptureRegionDescription = Klik en sleep om het gebied dat u wilt vastleggen te verslepen. Of wijs aan en klik – Screenshots selecteert het gebied voor u. Tevreden met wat u ziet? Selecteer Opslaan om uw schermafbeelding online te benaderen, of het pijltje naar beneden om deze naar uw computer op te slaan.
 homePageCapturePage = Een pagina vastleggen
 homePageCapturePageDescription = Gebruik de knoppen in de rechterbovenhoek om volledige pagina’s vast te leggen. De knop Zichtbaar gebied opslaan legt het gebied vast dat u zonder scrollen kunt zien, en Volledige pagina opslaan legt alles op de pagina vast.
-homePageSaveShare = Opslaan en delen
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Maak uw beste afbeelding. Sla deze daarna op naar de online Screenshots-bibliotheek, en Firefox kopieert de koppeling naar uw klembord om deze eenvoudig te kunnen delen. Afbeeldingen in de bibliotheek verlopen na twee weken automatisch, maar u kunt ze altijd verwijderen of langer behouden.
-homePageSignInTitle = Uw afbeeldingen overal
-homePageSignInDescription = Meld u aan bij Screenshots met uw Firefox-account om uw afbeeldingen overal waar u Firefox gebruikt te bekijken. Extra bonus: u kunt uw favoriete afbeeldingen ook voor altijd bewaren.
 homePageLegalLink = Juridisch
 homePagePrivacyLink = Privacy
 homePageTermsLink = Voorwaarden
@@ -146,7 +141,6 @@ shotPageBackToHomeButton =
     .title = Startpagina
 shotPageAllShotsButton =
     .title = Alle afbeeldingen
-shotPageScreenshotsDescription = Schermafbeeldingen worden makkelijk. Maak, bewaar en deel schermafbeeldingen zonder Firefox te verlaten.
 shotPageDMCAMessage = Deze afbeelding is vanwege een claim op intellectueel eigendom door een externe partij niet meer beschikbaar.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Stuur een e-mail naar { $dmca } om meer informatie op te vragen.
@@ -344,6 +338,9 @@ shotDeleteCancel = Annuleren
     .title = Annuleren
 shotDeleteConfirm = Verwijderen
     .title = Verwijderen
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
