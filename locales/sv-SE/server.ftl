@@ -8,7 +8,7 @@ gMyShots = Mina skärmbilder
 gHomeLink = Hem
 gNoShots =
     .alt = Inga skärmbilder hittades
-gScreenshotsDescription = Ta enkelt skärmbilder. Fånga, spara och dela skärmbilder utan att lämna Firefox.
+gScreenshotsDescriptionServerless = Skärmbilder görs enkelt. Fånga och ladda ner skärmbilder utan att lämna Firefox.
 
 ## Header
 
@@ -71,11 +71,9 @@ homePageCaptureRegion = Fånga ett område
 homePageCaptureRegionDescription = Klicka och dra för att välja det område du vill fånga. Eller bara hovra och klicka — Screenshots kommer att välja området åt dig. Gilla du vad du ser? Välj Spara för att få tillgång till skärmbilden på webben eller nedåt-tangenten för att ladda ner den till din dator.
 homePageCapturePage = Fånga en sida
 homePageCapturePageDescription = Använd knapparna längst upp till höger för att fånga hela sidor. Knappen "Spara synligt område" kommer att fånga upp det område du kan visa utan att scrolla och "Spara hela sidan" tar upp allt på sidan.
-homePageSaveShare = Spara och dela
+homePageDownloadCopy = Hämta eller kopiera
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Ta dina bästa bilder. Spara sedan det på nätet i Screenshots-bibliotek och Firefox kopierar länken till ditt urklipp för enkel delning. Bilder i biblioteket upphör automatiskt efter två veckor, men du kan ta bort dem när som helst eller välja att behålla dem längre.
-homePageSignInTitle = Dina bilder överallt
-homePageSignInDescription = Logga in på Screenshots med ditt Firefox-konto för att komma åt dina bilder överallt där du använder Firefox. En extra bonus: du kan också spara dina favoritbilder för alltid.
+homePageDownloadCopyDescription = Ta din bästa bild. Skärmbilder låter dig ladda ner ditt val eller kopiera det direkt till ditt urklipp.
 homePageLegalLink = Juridisk information
 homePagePrivacyLink = Sekretess
 homePageTermsLink = Villkor
@@ -146,7 +144,7 @@ shotPageBackToHomeButton =
     .title = Startsida
 shotPageAllShotsButton =
     .title = Alla skärmbilder
-shotPageScreenshotsDescription = Ta enkelt skärmbilder. Fånga, spara och dela skärmbilder utan att lämna Firefox.
+shotPageScreenshotsDescriptionServerless = Skärmbilder görs enkelt. Fånga och ladda ner skärmbilder utan att lämna Firefox.
 shotPageDMCAMessage = Denna skärmbild är inte längre tillgänglig på grund av upphovsrättsanspråk från tredje part.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Vänligen mejla { $dmca } för att begära ytterligare information.
@@ -344,6 +342,11 @@ shotDeleteCancel = Avbryt
     .title = Avbryt
 shotDeleteConfirm = Ta bort
     .title = Ta bort
+
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = För att exportera: använd Arkiv > Spara sida som... och du hittar dina skärmbilder i mappen { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
