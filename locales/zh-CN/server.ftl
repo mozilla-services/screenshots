@@ -326,7 +326,7 @@ shotDeleteConfirm = 删除
 ## Export page
 
 # Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
-exportInstructions = 若要导出：使用“文件 > 另存文件为…”就可以在 { $folder } 文件夹中找到您的屏幕截图
+exportInstructions = 若要导出：选择“文件 > 另存文件为…”就可以在 { $folder } 文件夹中找到您的屏幕截图
 
 ## Metrics page
 ## All metrics strings are optional for translation
