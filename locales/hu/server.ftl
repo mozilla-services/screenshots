@@ -8,7 +8,7 @@ gMyShots = Az Ön képei
 gHomeLink = Kezdőlap
 gNoShots =
     .alt = Nem találhatóak képek
-gScreenshotsDescription = Képernyőképek egyszerűen. Készítsen, mentsen és ossza meg a képernyőképeit a Firefox elhagyása nélkül.
+gScreenshotsDescriptionServerless = Képernyőképek, egyszerűen. Rögzítsen és töltsön le képernyőképeket a Firefox elhagyása nélkül.
 
 ## Header
 
@@ -71,11 +71,9 @@ homePageCaptureRegion = Terület befogása
 homePageCaptureRegionDescription = Kattintson és húzza a befogandó terület kiválasztásához. Vagy csak vigye fölé és kattintson – a Screenshots kijelöli a területet Ön helyett. Tetszik amit lát? Válassza a Mentést, hogy online is elérje a képernyőképeit, vagy a lefelé mutató nyilat a számítógépre letöltéshez.
 homePageCapturePage = Lap befogása
 homePageCapturePageDescription = Használja a jobb felső sarokban lévő gombokat a teljes lapok befogásához. A Láthatóak mentése gomb a görgetés nélkül látható területet fogja be, a Teljes lap mentése pedig mindent, ami a lapon található.
-homePageSaveShare = Mentés és megosztás
+homePageDownloadCopy = Letöltés vagy másolása
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Fogja a kedvenc képét. Aztán mentse az online Screenshots könyvtárba, és a Firefox a vágólapra másolja a hivatkozást az egyszerű megosztás érdekében. A könyvtárban található képernyőképek két hét után automatikusan törlődnek, de bármikor törölheti, vagy tovább is megtarthatja őket.
-homePageSignInTitle = Az Ön képei mindenhol
-homePageSignInDescription = Jelentkezzen be a Screenshotsba a Firefox fiókjával, hogy elérje az összes képernyőképét az összes eszközén, ahol használ Firefoxot. Egy további bónusz: örökre el is mentheti a kedvenc képeit.
+homePageDownloadCopyDescription = Vegye a legjobb képet. A Screenshots lehetővé teszi, hogy letöltse a kijelölést, vagy másolja közvetlenül a vágólapra.
 homePageLegalLink = Jogi információk
 homePagePrivacyLink = Adatvédelem
 homePageTermsLink = Feltételek
@@ -146,7 +144,7 @@ shotPageBackToHomeButton =
     .title = Kezdőlap
 shotPageAllShotsButton =
     .title = Összes kép
-shotPageScreenshotsDescription = Képernyőképek egyszerűen. Készítsen, mentsen és ossza meg a képernyőképeit a Firefox elhagyása nélkül.
+shotPageScreenshotsDescriptionServerless = Képernyőképek, egyszerűen. Rögzítsen és töltsön le képernyőképeket a Firefox elhagyása nélkül.
 shotPageDMCAMessage = A kép egy harmadik fél szerzői jogi követelése miatt már nem érhető el.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = További információ kéréséhez küldjön egy e-mailt ide: { $dmca }
@@ -344,6 +342,11 @@ shotDeleteCancel = Mégse
     .title = Mégse
 shotDeleteConfirm = Törlés
     .title = Törlés
+
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Exportálás: használja a Fájl > Oldal mentése másként… lehetőséget, és a képernyőképeket a { $folder } mappában találja
 
 ## Metrics page
 ## All metrics strings are optional for translation
