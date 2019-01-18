@@ -8,7 +8,7 @@ gMyShots = 我的截图
 gHomeLink = 首页
 gNoShots =
     .alt = 没有找到截图
-gScreenshotsDescription = 使截图更简单。截取、保存以及分享截图，一切都在 Firefox。
+gScreenshotsDescriptionServerless = 截图顺手拈来，不必离开 Firefox 即可截取和下载屏幕截图。
 
 ## Header
 
@@ -71,11 +71,7 @@ homePageCaptureRegion = 截取选定区域
 homePageCaptureRegionDescription = 单击并拖动以选择要截图的区域。或者悬停并单击，让屏幕截图为您选中区域。您可以选择“保存”进入您的在线截图库或点击“向下箭头”按钮下载截图到您的计算机。
 homePageCapturePage = 截取整个网页
 homePageCapturePageDescription = 使用右上角的按钮来截图整个页面。保存可视区域将截取当前可见区域的内容，保存完整页面将截取整个网页的内容。
-homePageSaveShare = 保存并分享
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = 截取最棒的截图，保存到您的 Screenshots 在线图库，Firefox 就会将链接复制到剪切板以方便您分享。图库中的截图会在两周后自动过期，但您也可以随时删除它们，或延长保存时间。
-homePageSignInTitle = 您的截图，随身带着走
-homePageSignInDescription = 使用 Firefox 账号登录 Screenshots，在任何使用 Firefox 的地方访问您的截图。锦上添花：您收藏的截图可以永久保存。
+homePageDownloadCopy = 下载或复制
 homePageLegalLink = 法律
 homePagePrivacyLink = 隐私
 homePageTermsLink = 使用条款
@@ -146,7 +142,7 @@ shotPageBackToHomeButton =
     .title = 主页
 shotPageAllShotsButton =
     .title = 所有截图
-shotPageScreenshotsDescription = 截图更简单。不必离开 Firefox 就能截取、保存以及分享截图。
+shotPageScreenshotsDescriptionServerless = 截图顺手拈来，不必离开 Firefox 即可截取和下载屏幕截图。
 shotPageDMCAMessage = 由于第三方宣告知识产权，此截图不再可用。
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = 请发送电子邮件至 { $dmca } 来请求进一步信息。
@@ -326,6 +322,9 @@ shotDeleteCancel = 取消
     .title = 取消
 shotDeleteConfirm = 删除
     .title = 删除
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
