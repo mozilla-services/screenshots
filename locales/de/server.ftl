@@ -8,6 +8,7 @@ gMyShots = Meine Bildschirmfotos
 gHomeLink = Startseite
 gNoShots =
     .alt = Keine Bildschirmfotos gefunden
+gScreenshotsDescriptionServerless = Bildschirmfotos leicht gemacht. Bildschirmfotos speichern und herunterladen ohne Firefox zu verlassen.
 
 ## Header
 
@@ -70,6 +71,9 @@ homePageCaptureRegion = Einen Bereich aufnehmen
 homePageCaptureRegionDescription = Lege Deine Auswahl fest, indem Du die Maus über den aufzunehmenden Bereich ziehst. Oder nur mit der Maus drübergehen und Screenshots wählt den Bereich für Dich aus. Damit zufrieden? Dann bitte klicken und auf „Speichern“ gehen, um Dein Bildschirmfoto online zu speichern. Oder direkt auf den Downloadpfeil, um den Screenshot auf Deinem Rechner herunterzuladen.
 homePageCapturePage = Eine ganze Seite aufnehmen
 homePageCapturePageDescription = Für die Aufnahme ganzer Seiten bitte oben auf die Schaltfläche “Gesamte Seite speichern” klicken. Während die Schaltfläche „Sichtbaren Bereich speichern“ den Bereich erfasst, der ohne Scrollen sichtbar ist, fertigt die Schaltfläche “Ganze Seite speichern” einen Screenshot an, der auch den Bereich erfasst, der erst durch Scrollen sichtbar wird.
+homePageDownloadCopy = Herunterladen oder Kopieren
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Mit Screenshots können Sie Ihre Auswahl herunterladen oder direkt in die Zwischenablage kopieren.
 homePageLegalLink = Rechtliches
 homePagePrivacyLink = Datenschutz
 homePageTermsLink = Nutzungsbedingungen
@@ -140,6 +144,7 @@ shotPageBackToHomeButton =
     .title = Startseite
 shotPageAllShotsButton =
     .title = Alle Bildschirmfotos
+shotPageScreenshotsDescriptionServerless = Bildschirmfotos leicht gemacht. Bildschirmfotos speichern und herunterladen ohne Firefox zu verlassen.
 shotPageDMCAMessage = Dieses Bildschirmfoto ist aufgrund von Urheberrechtsansprüchen von Dritten nicht mehr verfügbar.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Weitere Informationen erhälst Du per E-Mail an { $dmca }.
