@@ -8,7 +8,6 @@ gMyShots = Τα στιγμιότυπά μου
 gHomeLink = Αρχική
 gNoShots =
     .alt = Δεν βρέθηκαν στιγμιότυπα
-gScreenshotsDescription = Η λήψη στιγμιοτύπων έγινε εύκολη. Λήψη, αποθήκευση και κοινή χρήση στιγμιοτύπων χωρίς να φύγετε από το Firefox.
 
 ## Header
 
@@ -71,11 +70,7 @@ homePageCaptureRegion = Καταγραφή περιοχής
 homePageCaptureRegionDescription = Κάντε κλικ και σύρετε για να επιλέξετε την περιοχή που θέλετε να καταγράψετε σε στιγμιότυπο. Ή απλά μετακινήστε τον κέρσορα και κάντε κλικ — το Screenshots θα επιλέξει για εσάς την περιοχή. Σάς αρέσει αυτό που βλέπετε; Επιλέξτε "Αποθήκευση" για να αποκτήσετε πρόσβαση στο στιγμιότυπό σας διαδικτυακά ή το κάτω βέλος για να κάνετε λήψη της εικόνας στον υπολογιστή σας.
 homePageCapturePage = Καταγραφή σελίδας
 homePageCapturePageDescription = Χρησιμοποιήστε τα κουμπιά επάνω δεξιά για να καταγράψετε πλήρεις σελίδες σε στιγμιότυπα. Το κουμπί "Αποθήκευση ορατού" θα καταγράψει την περιοχή που μπορείτε να δείτε χωρίς κύλιση, ενώ το "Αποθήκευση πλήρους σελίδας" θα καταγράψει τα πάντα στη σελίδα.
-homePageSaveShare = Αποθήκευση και κοινή χρήση
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Κάνετε λήψη του καλύτερου στιγμιότυπου. Έπειτα, το αποθηκεύετε στη διαδικτυακή βιβλιοθήκη του Screenshots και το Firefox αντιγράφει το σύνδεσμο στο πρόχειρό σας για εύκολη κοινοποίηση. Τα στιγμιότυπα στη βιβλιοθήκη λήγουν αυτόματα μετά από δύο εβδομάδες, αλλά μπορείτε να τα διαγράψετε ανά πάσα στιγμή ή να τα κρατήσετε περισσότερο.
-homePageSignInTitle = Τα στιγμιότυπά σας παντού
-homePageSignInDescription = Συνδεθείτε στο Screenshots με το λογαριασμό Firefox σας για πρόσβαση στα στιγμιότυπά σας όπου χρησιμοποιείτε το Firefox. Κι επιπλέον: μπορείτε να αποθηκεύσετε τα αγαπημένα σας στιγμιότυπα για πάντα.
+homePageDownloadCopy = Λήψη ή αντιγραφή
 homePageLegalLink = Νομικά
 homePagePrivacyLink = Απόρρητο
 homePageTermsLink = Όροι
@@ -146,7 +141,6 @@ shotPageBackToHomeButton =
     .title = Αρχική σελίδα
 shotPageAllShotsButton =
     .title = Όλα τα στιγμιότυπα
-shotPageScreenshotsDescription = Η λήψη στιγμιοτύπων έγινε εύκολη. Λήψη, αποθήκευση και κοινή χρήση στιγμιοτύπων χωρίς να φύγετε από το Firefox.
 shotPageDMCAMessage = Αυτό το στιγμιότυπο δεν είναι πλέον διαθέσιμο λόγω ισχυρισμού πνευματικής ιδιοκτησίας ενός τρίτου.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Παρακαλώ στείλτε email στο { $dmca } για να ζητήσετε περαιτέρω πληροφορίες.
@@ -344,6 +338,11 @@ shotDeleteCancel = Ακύρωση
     .title = Ακύρωση
 shotDeleteConfirm = Διαγραφή
     .title = Διαγραφή
+
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Για εξαγωγή: χρησιμοποιήστε το Αρχείο > Αποθήκευση σελίδας ως… και θα βρείτε τα στιγμιότυπα στο φάκελο { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
