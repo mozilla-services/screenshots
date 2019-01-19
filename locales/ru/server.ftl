@@ -8,7 +8,7 @@ gMyShots = Мои снимки
 gHomeLink = Главная
 gNoShots =
     .alt = снимков не найдено
-gScreenshotsDescription = Скриншоты стали простыми. Делайте, сохраняйте и делитесь скриншотами, не покидая Firefox.
+gScreenshotsDescriptionServerless = Делать скриншоты теперь просто. Создавайте и загружайте скриншоты, не покидая Firefox.
 
 ## Header
 
@@ -71,11 +71,9 @@ homePageCaptureRegion = Захватите область
 homePageCaptureRegionDescription = Щёлкните и перетащите, чтобы выбрать область, которую вы хотите захватить. Или просто наведите мышью и щёлкните — Скриншоты выберут область сами. Нравится, что вы видите? Выберите «Сохранить», чтобы получить возможность опубликовать ваш скриншот онлайн, или щёлкните по кнопке со стрелкой вниз, чтобы загрузить снимок на ваш компьютер.
 homePageCapturePage = Захватите страницу
 homePageCapturePageDescription = С помощью кнопок в верхнем правом углу вы можете захватить страницу целиком. Кнопка «Сохранить видимое» захватит видимое содержимое страницы, которое доступно без прокручивания, а «Сохранить всю страницу» захватит всю страницу целиком.
-homePageSaveShare = Сохраните и поделитесь
+homePageDownloadCopy = Загрузить или скопировать
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Сделайте свой лучший снимок. Затем сохраните его в онлайн-библиотеке скриншотов, а Firefox скопирует ссылку в буфер обмена, чтобы вы могли легко им поделиться. Скриншоты сохраняются в библиотеке в течение двух недель, но вы можете удалить их в любое время, или хранить подольше.
-homePageSignInTitle = Ваши снимки всегда с вами
-homePageSignInDescription = Войдите в Скриншоты с помощью вашего Аккаунта Firefox, чтобы получить доступ к вашим снимкам везде, где вы используете Firefox. Дополнительный бонус: вы сможете сохранять любимые вами снимки навсегда.
+homePageDownloadCopyDescription = Сделайте свой лучший снимок. Screenshots позволяют вам загружать или копировать их прямо в буфер обмена.
 homePageLegalLink = Юридическая информация
 homePagePrivacyLink = Приватность
 homePageTermsLink = Условия использования
@@ -146,7 +144,7 @@ shotPageBackToHomeButton =
     .title = Домашняя страница
 shotPageAllShotsButton =
     .title = Все снимки
-shotPageScreenshotsDescription = Скриншоты стали простыми. Делайте, сохраняйте и делитесь скриншотами, не покидая Firefox.
+shotPageScreenshotsDescriptionServerless = Делать скриншоты теперь просто. Создавайте и загружайте скриншоты, не покидая Firefox.
 shotPageDMCAMessage = Этот снимок больше недоступен из-за нарушения авторских прав третьей стороны.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Пожалуйста, напишите на { $dmca }, чтобы запросить дополнительную информацию.
@@ -350,6 +348,11 @@ shotDeleteCancel = Отмена
     .title = Отмена
 shotDeleteConfirm = Удалить
     .title = Удалить
+
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Для экспорта: используйте «Файл» > «Сохранить как…» и вы найдете свои скриншоты в папке { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
