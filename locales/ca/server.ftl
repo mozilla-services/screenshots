@@ -8,7 +8,7 @@ gMyShots = Les meves captures
 gHomeLink = Inici
 gNoShots =
     .alt = No s'ha trobat cap captura
-gScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures de pantalla, deseu-les i compartiu-les sense sortir del Firefox.
+gScreenshotsDescriptionServerless = Captures de pantalla sense complicacions. Feu captures de pantalla i baixeu-les sense sortir del Firefox.
 
 ## Header
 
@@ -71,11 +71,6 @@ homePageCaptureRegion = Captureu una àrea
 homePageCaptureRegionDescription = Feu clic i arrossegueu per seleccionar l'àrea que voleu capturar. O bé, passeu-hi el ratolí per sobre i feu clic: el Firefox Screenshots seleccionarà l'àrea automàticament. Us agrada? Trieu «Desa» per accedir a la captura de pantalla en línia o premeu el botó de fletxa cap avall per baixar-la a l'ordinador.
 homePageCapturePage = Captureu una pàgina
 homePageCapturePageDescription = Utilitzeu els botons de la part superior dreta per capturar pàgines senceres. El botó «Captura la part visible» capturarà l'àrea que es visualitza sense desplaçar-se, i el botó «Captura tota la pàgina» capturarà tot el contingut de la pàgina.
-homePageSaveShare = Deseu i compartiu
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Feu una captura de pantalla. A continuació, deseu-la a la biblioteca de captures de pantalla en línia i el Firefox copiarà l'enllaç al porta-retalls per poder-la compartir fàcilment. Les captures de la biblioteca caduquen automàticament després de dues setmanes, però podeu suprimir-les en qualsevol moment o bé conservar-les durant més temps.
-homePageSignInTitle = Les vostres captures a tot arreu
-homePageSignInDescription = Inicieu la sessió al Firefox Screenshots amb el compte del Firefox per accedir a les vostres captures arreu on utilitzeu el Firefox. I encara més: podeu desar les vostres captures preferides per sempre.
 homePageLegalLink = Avís legal
 homePagePrivacyLink = Privadesa
 homePageTermsLink = Condicions d'ús
@@ -146,7 +141,7 @@ shotPageBackToHomeButton =
     .title = Pàgina d'inici
 shotPageAllShotsButton =
     .title = Totes les captures
-shotPageScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures de pantalla, deseu-les i compartiu-les sense sortir del Firefox.
+shotPageScreenshotsDescriptionServerless = Captures de pantalla sense complicacions. Feu captures de pantalla i baixeu-les sense sortir del Firefox.
 shotPageDMCAMessage = Aquesta captura ja no està disponible a causa d'una reclamació de propietat intel·lectual d'un tercer.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Envieu un correu electrònic a { $dmca } per sol·licitar més informació.
@@ -344,6 +339,9 @@ shotDeleteCancel = Cancel·la
     .title = Cancel·la
 shotDeleteConfirm = Suprimeix
     .title = Suprimeix
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
