@@ -8,7 +8,7 @@ gMyShots = لقطاتي
 gHomeLink = البداية
 gNoShots =
     .alt = لم يُعثر على لقطات
-gScreenshotsDescription = لقطات الشاشة صارت أسهل. خذ لقطات الشاشة و احفظها و شاركها دون مغادرة فَيرفُكس.
+gScreenshotsDescriptionServerless = لقطات الشاشة باتت أسهل. خذ لقطات الشاشة دون مغادرة فَيَرفُكس.
 
 ## Header
 
@@ -71,11 +71,9 @@ homePageCaptureRegion = التقط منطقة
 homePageCaptureRegionDescription = انقر واسحب لتحديد المنطقة التي تريد التقاطها. أو حتى مجرد التحويم و النقر؛ ستحدد لقطات الشاشة المنطقة نيابة عنك. أيعجبك ما ترى؟ اختر احفظ للوصول لقطتك للشاشة على الإنترنت، أو زِر السهم لأسفل لتنزيلها إلى حاسوبك.
 homePageCapturePage = التقط صفحة
 homePageCapturePageDescription = استخدم الأزرار أعلى اليسار لالتقاط صفحات كاملة. زر ”التقط الجزء المرئي“ سيلتقط المنطقة التي تراها دون تمرير الصفحة، وزر ”احفظ الصفحة كاملة“ سيلتقط كل شيء في الصفحة.
-homePageSaveShare = احفظ وشارِك
+homePageDownloadCopy = نزّل أو انسخ
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = خُذ أفضل لقطاتك واحفظها في مكتبة اللقطات على الإنترنت، وسينسخ فَيَرفُكس رابطها إلى الحافظة لديك لتشاركها بسهولة. تنقضي اللقطات في المكتبة تلقائيا بعد أسبوعين، ولكنك تستطيع حذفها متى ما أردت أو إبقائها في المكتبة لوقت أطول.
-homePageSignInTitle = لقطاتك في كل مكان
-homePageSignInDescription = لِج إلى اللقطات بحساب فَيَرفُكس لتصل إلى لقطاتك في أي مكان تستخدم عليه فَيَرفُكس. وكإضافة لك: يمكنك حفظ اللقطات المفضلة لديك لأبد الزمان.
+homePageDownloadCopyDescription = خُذ أفضل اللقطات. تتيح لك لقطات الشاشة بتنزيل ما حدّدت أو نسخه مباشرة إلى الحافظة.
 homePageLegalLink = قانونيّات
 homePagePrivacyLink = الخصوصية
 homePageTermsLink = الشروط
@@ -146,7 +144,6 @@ shotPageBackToHomeButton =
     .title = صفحة البداية
 shotPageAllShotsButton =
     .title = كل اللقطات
-shotPageScreenshotsDescription = لقطات الشاشة صارت أسهل. خذ لقطات الشاشة و احفظها و شاركها دون مغادرة فَيرفُكس.
 shotPageDMCAMessage = لم تعد هذه اللقطة متاحة نظرًا لادعاء الملكية الفكرية لطرف آخر.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = رجاء أرسل بريدا إلكترونيا إلى { $dmca } لطلب المزيد من المعلومات.
@@ -366,6 +363,11 @@ shotDeleteCancel = ألغِ
     .title = ألغِ
 shotDeleteConfirm = احذف
     .title = احذف
+
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = لتصديرها: استخدم ”ملف > احفظ الصفحة باسم…“ وستجد لقطاتك في المجلد { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
