@@ -8,7 +8,7 @@ gMyShots = Moje fota wobrazowki
 gHomeLink = Startowa strona
 gNoShots =
     .alt = Žane fota wobrazowki namakane
-gScreenshotsDescription = Fota wobrazowki lochko činjene. Čińće, składujće a dźělće fota wobrazowki bjez toho, zo byšće Firefox wopušćił.
+gScreenshotsDescriptionServerless = Fota wobrazowki lochko wutworjene. Wutworće a sćehńće fota wobrazowki, bjeztoho zo byšće Firefox wopušćił.
 
 ## Header
 
@@ -71,11 +71,9 @@ homePageCaptureRegion = Wobłuk fotografować
 homePageCaptureRegionDescription = Klikńće a ćehńće, zo byšće wobłuk wubrał, kotryž chceće natočić. Abo stajće prosće kursor nad tym a klikńće  - Screenshots budźe wobłuk za was wuběrać. Spodoba so wam, štož widźiće? Wubjerće „Składować“ za přistup na swoje foto wobrazowki online abo tłóčatko ze šipkom dele, zo byšće jo na swój ličak sćahnył.
 homePageCapturePage = Stronu fotografować
 homePageCapturePageDescription = Wužiwajće tłóčatka horjeka naprawo, zo byšće cyłe strony fotografował. Tłóčatko "Wobłuk fotografować" tón wobłuk zapřijima, kotryž móžeće bjez kulenje strony widźeć a tłóčatko "Stronu fotografować" składuje cyłu stronu.
-homePageSaveShare = Składować a dźělić
+homePageDownloadCopy = Sćahnyć abo kopěrować
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Čińće swoje najlěpše foto wobrazowki. Składujće jo potom w bibliotece fotow wobrazowkow online, a Fiefox kopěruje wotkaz do swojeho mjezyskłada za lochke zhromadne wužiwanje. Fota wobrazowki w bibliotece po dwěmaj tydźenjomaj awtomatisce spadnu, ale móžeće je kóždy čas zhašeć abo rozsudźić, hač je dlej wobchowaće.
-homePageSignInTitle = Waše fota wobrazowki wšudźe
-homePageSignInDescription = Přizjewće so pola Screenshots ze swojim kontom Firefox, zo byšće wšudźe přistup k swojim fotam wobrazowki měł, hdźež Firefox wužiwaće. Přidatny bonus: móžeće tež swoje najlubše fota wobrazowki na přeco składować.
+homePageDownloadCopyDescription = Wutworće swoje najlěpše foto wobrazowki. Wobrazowki wam zmóžnja, waš wuběr sćahnyć abo jón direktnje do wašeho mjezyskłada kopěrować.
 homePageLegalLink = Prawniske
 homePagePrivacyLink = Priwatnosć
 homePageTermsLink = Wuměnjenja
@@ -146,7 +144,7 @@ shotPageBackToHomeButton =
     .title = Startowa strona
 shotPageAllShotsButton =
     .title = Wšě fota wobrazowki
-shotPageScreenshotsDescription = Fota wobrazowki lochko činjene. Čińće, składujće a dźělće fota wobrazowki bjez toho, zo byšće Firefox wopušćił.
+shotPageScreenshotsDescriptionServerless = Fota wobrazowki lochko wutworjene. Wutworće a sćehńće fota wobrazowki, bjeztoho zo byšće Firefox wopušćił.
 shotPageDMCAMessage = Tute foto wobrazowki dla prawow awtorstwa třećich hižo k dispoziciji njeje.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Dalše informacije přez e-mejl na { $dmca } dóstanjeće.
@@ -356,6 +354,11 @@ shotDeleteCancel = Přetorhnyć
     .title = Přetorhnyć
 shotDeleteConfirm = Zhašeć
     .title = Zhašeć
+
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Zo byšće eksportował, wužiwajće Dataja > Stronu składować jako… a namakaće swoje fota wobrazowki w rjadowaku { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
