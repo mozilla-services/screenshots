@@ -144,6 +144,7 @@ shotPageBackToHomeButton =
     .title = صفحة البداية
 shotPageAllShotsButton =
     .title = كل اللقطات
+shotPageScreenshotsDescriptionServerless = لقطات الشاشة باتت أسهل. خذ لقطات الشاشة و نزّلها دون مغادرة فَيَرفُكس.
 shotPageDMCAMessage = لم تعد هذه اللقطة متاحة نظرًا لادعاء الملكية الفكرية لطرف آخر.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = رجاء أرسل بريدا إلكترونيا إلى { $dmca } لطلب المزيد من المعلومات.
