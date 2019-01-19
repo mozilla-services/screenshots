@@ -8,7 +8,7 @@ gMyShots = Mano nuotraukos
 gHomeLink = Pradžia
 gNoShots =
     .alt = Nuotraukų nerasta
-gScreenshotsDescription = Ekrano nuotraukos paprastai. Darykite, saugokite ir dalinkitės ekrano nuotraukomis nepalikdami „Firefox“.
+gScreenshotsDescriptionServerless = Ekrano nuotraukos paprastai. Fotografuokite ir atsisiųskite ekrano nuotraukas nepalikdami „Firefox“.
 
 ## Header
 
@@ -71,11 +71,9 @@ homePageCaptureRegion = Fotografuokite sritį
 homePageCaptureRegionDescription = Spustelėkite ir tempkite norėdami pažymėti norimą nufotografuoti sritį. Arba tiesiog užveskite pelę ir spustelėkite – bus pažymėta toji sritis. Patinka, ką matote? Pasirinkite „Įrašyti“, norėdami pasiekti savo nuotrauką internete, arba rodyklę žemyn, norėdami atsisiųsti ją į savo kompiuterį.
 homePageCapturePage = Fotografuokite tinklalapį
 homePageCapturePageDescription = Naudokitės mygtukais viršuje dešinėje, norėdami nufotografuoti visą tinklalapį. Mygtukas „Įrašyti matomą“ nufotografuos sritį, kurią matote neslinkdami pelės, o „Įrašyti visą tinklalapį“ nufotografuos viską, kas jame yra.
-homePageSaveShare = Įrašykite ir dalinkitės
+homePageDownloadCopy = Atsisiųsti arba kopijuoti
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Padarykite geriausią nuotrauką, Įrašykite ją į „Screenshots“ archyvą internete, o „Firefox“ į jūsų iškarpinę nukopijuos saitą dalinimuisi. Nuotraukos iš archyvo išnyksta po dviejų savaičių, tačiau jūs galite ištrinti jas anksčiau, arba pasirinkti saugoti ilgesniam laikui.
-homePageSignInTitle = Jūsų nuotraukos visur
-homePageSignInDescription = Prisijungę prie „Screenshots“ su savo „Firefox“ paskyra, nuotraukas galėsite pasiekti visur, kur naudojate „Firefox“. O papildomai: patinkančias nuotraukas galėsite įrašyti visam laikui.
+homePageDownloadCopyDescription = Padarykite geriausią kadrą. Ekrano nuotraukos leidžia jūsų pasirinkimą atsisiųsti, arba nukopijuoti jį tiesiai į iškarpinę.
 homePageLegalLink = Teisinė informacija
 homePagePrivacyLink = Privatumas
 homePageTermsLink = Nuostatai
@@ -146,7 +144,7 @@ shotPageBackToHomeButton =
     .title = Pradžios tinklalapis
 shotPageAllShotsButton =
     .title = Visos nuotraukos
-shotPageScreenshotsDescription = Ekrano nuotraukos paprastai. Darykite, saugokite ir dalinkitės ekrano nuotraukomis nepalikdami „Firefox“.
+shotPageScreenshotsDescriptionServerless = Ekrano nuotraukos paprastai. Fotografuokite ir atsisiųskite ekrano nuotraukas nepalikdami „Firefox“.
 shotPageDMCAMessage = Ši nuotrauka nepasiekiama dėl trečiųjų šalių intelektinės nuosavybės teisių.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Prašome susisiekti su { $dmca } dėl daugiau informacijos.
@@ -350,6 +348,9 @@ shotDeleteCancel = Atsisakyti
     .title = Atsisakyti
 shotDeleteConfirm = Pašalinti
     .title = Pašalinti
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
