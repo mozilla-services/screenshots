@@ -351,6 +351,8 @@ shotDeleteConfirm = Pašalinti
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Norėdami eksportuoti: pasirinkite „Failas“ > „Įrašyti tinklalapį kaip…“, ir savo nuotraukas rasite aplanke „{ $folder }“.
 
 ## Metrics page
 ## All metrics strings are optional for translation
