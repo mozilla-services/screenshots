@@ -8,7 +8,7 @@ gMyShots = Moje zrzuty
 gHomeLink = Strona główna
 gNoShots =
     .alt = Brak zrzutów
-gScreenshotsDescription = Zrzuty ekranów dla wszystkich. Twórz, zapisuj i udostępniaj zrzuty ekranu prosto z Firefoksa.
+gScreenshotsDescriptionServerless = Proste zrzuty ekranu. Wykonuj i pobieraj zrzuty bez opuszczania Firefoksa.
 
 ## Header
 
@@ -71,11 +71,7 @@ homePageCaptureRegion = Zrzut obszaru
 homePageCaptureRegionDescription = Kliknij i przeciągnij nad obszarem, który chcesz przechwycić. Możesz również kliknąć dowolny element strony — Screenshots wybierze obszar automatycznie. Może być? Kliknij Zapisz, aby zapisać zrzut w Internecie lub ikonę strzałki, aby pobrać go na komputer.
 homePageCapturePage = Zrzut strony
 homePageCapturePageDescription = Użyj przycisków u góry po prawej, aby tworzyć zrzuty całych stron. Przycisk „Zapisz widoczne” umożliwia tworzenie jedynie wyświetlanego obszaru, a „Zapisz całą stronę” utworzy zrzut całej zawartości strony.
-homePageSaveShare = Zapisz i udostępnij
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Wykonaj zrzut i zachowaj go w internetowej kolekcji serwisu Screenshots, a Firefox skopiuje odnośnik do schowka, który możesz łatwo udostępnić. Zrzuty w kolekcji są automatycznie usuwane po dwóch tygodniach, ale w każdej chwili możesz je usunąć lub zachować na dłużej.
-homePageSignInTitle = Twoje zrzuty na każdym urządzeniu
-homePageSignInDescription = Zaloguj się w serwisie Screenshots za pomocą konta Firefoksa, aby mieć dostęp do swoich zrzutów wszędzie tam, gdzie używasz Firefoksa. Dodatkowy bonus: możesz też zachować ulubione zrzuty na zawsze.
+homePageDownloadCopy = Pobierz lub skopiuj
 homePageLegalLink = Podstawa prawna
 homePagePrivacyLink = Prywatność
 homePageTermsLink = Warunki korzystania z usługi
@@ -146,7 +142,6 @@ shotPageBackToHomeButton =
     .title = Strona główna
 shotPageAllShotsButton =
     .title = Wszystkie zrzuty
-shotPageScreenshotsDescription = Zrzuty ekranu dla każdego. Twórz, zapisuj i udostępniaj zrzuty ekranu bez opuszczania Firefoksa.
 shotPageDMCAMessage = Ten zrzut został usunięty z powodu roszczeń prawnych strony trzeciej.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Wyślij wiadomość do { $dmca } w celu uzyskania dalszych informacji.
@@ -350,6 +345,9 @@ shotDeleteCancel = Anuluj
     .title = Anuluj
 shotDeleteConfirm = Usuń
     .title = Usuń
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
