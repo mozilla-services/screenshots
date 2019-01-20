@@ -8,7 +8,6 @@ gMyShots = Mi instantaneos
 gHomeLink = Initio
 gNoShots =
     .alt = Nulle instantaneos trovate
-gScreenshotsDescription = Le instantaneos a un maniera simple. Captura, salva e comparti le instantaneos de tu schermo sin exir de Firefox.
 
 ## Header
 
@@ -71,11 +70,7 @@ homePageCaptureRegion = Capturar un area de schermo
 homePageCaptureRegionDescription = Clicca e trahe pro seliger le area que tu vole capturar. O solo sur-vola e clicca - Screenshots eligera le area pro te. TU ama lo que tu vide? Elige Salvar pro acceder a tu instantaneos online o le flecha-a-basso pro lo discargar sur tu computator.
 homePageCapturePage = Capturar un pagina
 homePageCapturePageDescription = Usar le buttones in alto a dextra pro capturar le paginas integre. Le button Salvar lo visibile, capturara le area que tu pote vider sin rolar, e Salvar pagina integre, capturara tote le pagina.
-homePageSaveShare = Salvar e compartir
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Prende tu le melior instantaneo. Pois salvar illo al bibliotheca online de Screenshots e Firefox copia le ligamine a tu area de transferentia pro un facile compartimento. Le instantaneos in le bibliotheca expira automaticamente post duo septimanas, ma tu pote deler illos a ulle tempore o eliger de mantener illos per plus longe tempore.
-homePageSignInTitle = Tu instantaneos ubique
-homePageSignInDescription = Authentica te Screenshots con tu conto Firefox pro acceder a tu instantaneos ubicunque tu usa Firefox. Un bonus addite: tu pote salvar anque tu instantaneos favorite per sempre.
+homePageDownloadCopy = Discargar o copiar
 homePageLegalLink = Notas legal
 homePagePrivacyLink = Confidentialitate
 homePageTermsLink = Terminos
@@ -146,7 +141,6 @@ shotPageBackToHomeButton =
     .title = Pagina initial
 shotPageAllShotsButton =
     .title = Tote le instantaneos
-shotPageScreenshotsDescription = Le instantaneos de schermo a un maniera simple. Captura, salva e comparti le instantaneos de tu schermo sin exir de Firefox.
 shotPageDMCAMessage = Iste instantaneo non es plus disponibile per un reclamation de proprietate intellectual de tertie parte.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Per favor invia un email a { $dmca } pro querer altere informationes.
@@ -344,6 +338,9 @@ shotDeleteCancel = Cancellar
     .title = Cancellar
 shotDeleteConfirm = Deler
     .title = Deler
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
