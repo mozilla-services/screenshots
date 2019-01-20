@@ -8,7 +8,7 @@ gMyShots = Mis capturas
 gHomeLink = Inicio
 gNoShots =
     .alt = No se han encontrado capturas
-gScreenshotsDescription = Hemos simplificado las capturas de pantalla. Haz, guarda y comparte capturas de pantalla sin salir de Firefox.
+gScreenshotsDescriptionServerless = Capturas de pantalla simplificadas. Haz y descarga capturas de pantalla sin salir de Firefox.
 
 ## Header
 
@@ -71,11 +71,9 @@ homePageCaptureRegion = Captura un área
 homePageCaptureRegionDescription = Haz clic y arrastra para seleccionar el área que quieras capturar. O pasa el ratón por encima y haz clic - Screenshots lo hará por ti. ¿Te gusta? Selecciona Guardar para acceder a tus capturas en línea o pulsa la tecla de la flecha hacia abajo para descargarlo en tu equipo.
 homePageCapturePage = Captura una página
 homePageCapturePageDescription = Utiliza los botones de la parte superior derecha para capturar páginas completas. El botón Guardar área visible capturará lo que puedes ver sin deslizarte; Guardar página completa guardará todo lo que aparece en la página.
-homePageSaveShare = Guardar y compartir
+homePageDownloadCopy = Descargar o copiar
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Haz tu mejor captura. Luego guárdala en la biblioteca en línea y Firefox copiará el enlace a tu portapapeles para que puedas compartirlo fácilmente. Las capturas que están en la biblioteca caducan automáticamente al cabo de dos semanas, pero puedes eliminarlas en cualquier momento u optar por conservarlas durante más tiempo.
-homePageSignInTitle = Tus capturas en todas partes
-homePageSignInDescription = Inicia sesión en Screenshots con tu cuenta de Firefox para acceder a tus capturas desde cualquier lugar donde uses Firefox. Una ventaja adicional: también puedes guardar para siempre tus capturas favoritas.
+homePageDownloadCopyDescription = Haz tu mejor captura. Screenshots te permite descargar tu selección o copiarla directamente en tu portapapeles.
 homePageLegalLink = Legal
 homePagePrivacyLink = Privacidad
 homePageTermsLink = Términos
@@ -146,7 +144,7 @@ shotPageBackToHomeButton =
     .title = Página de inicio
 shotPageAllShotsButton =
     .title = Todas las capturas
-shotPageScreenshotsDescription = Hemos simplificado las capturas de pantalla. Haz, guarda y comparte capturas de pantalla sin salir de Firefox.
+shotPageScreenshotsDescriptionServerless = Capturas de pantalla simplificadas. Haz y descarga capturas de pantalla sin salir de Firefox.
 shotPageDMCAMessage = Esta captura ya no está disponible por una reclamación de propiedad intelectual de terceros.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Envía un correo a { $dmca } para solicitar más información.
@@ -344,6 +342,11 @@ shotDeleteCancel = Cancelar
     .title = Cancelar
 shotDeleteConfirm = Eliminar
     .title = Eliminar
+
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Para exportar: usa Archivo> Guardar página como... y encontrarás tus capturas de pantalla en la carpeta { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
