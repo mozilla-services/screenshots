@@ -8,7 +8,7 @@ gMyShots = Менің скриншоттарым
 gHomeLink = Үйге
 gNoShots =
     .alt = Скриншоттар табылмады
-gScreenshotsDescription = Скриншоттар қарапайым түрде. Тура Firefox ішінен скриншоттарды түсіру, сақтау және олармен бөлісу.
+gScreenshotsDescriptionServerless = Скриншоттарды жасау оңай. Скриншоттарды Firefox-тан шықпай-ақ түсіру және жүктеу.
 
 ## Header
 
@@ -71,11 +71,7 @@ homePageCaptureRegion = Аймақты түсіру
 homePageCaptureRegionDescription = Түсіргіңіз келетін аймақты таңдау үшін шертіп, тартып апарыңыз. Немесе тек үстіне апарып, шертіңіз — Скриншоттар сайманы аймақты сіз үшін таңдайды. Көргенді ұнаттыңыз ба? Скриншотыңызды желіде сақтау үшін Сақтау, ал, оны компьютеріңізге жүктеп алу үшін, төменге қарап тұрған бағдарша батырмасын басыңыз.
 homePageCapturePage = Парақты түсіру
 homePageCapturePageDescription = Толық парақтарды түсіру үшін, жоғары оң жақтағы батырмаларды қолданыңыз. Көрінетінді сақтау батырмасы айналдырусыз көрініп тұрған аймақты түсіреді, ал, Толық парақты түсіру парақтағы барлық нәрсені скриншотқа түсіреді.
-homePageSaveShare = Сақтау және бөлісу
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Тамаша скриншотты жасаңыз. Оны желідегі Скриншоттар жинағына сақтаңыз, Firefox жеңіл бөлісу үшін оның сілтемесін алмасу буферіне көшіріп алады. Жинақтағы скриншоттар мерзімі екі аптадан кейін аяқталады, бірақ, кез келген уақытта оларды қолмен өшіруге, немесе сақтау мерзіміз ұзартуға болады.
-homePageSignInTitle = Скриншоттарыңыз әр жерде
-homePageSignInDescription = Firefox-ты қолданатын әр жеріңізде скриншоттарға қатынау үшін, Скриншоттарға өз Firefox тіркелгіңізбен кіріңіз. Қосымша: таңдамалы скриншоттарыңызды мәңгі сақтай аласыз.
+homePageDownloadCopy = Жүктеу немесе көшіріп алу
 homePageLegalLink = Құқықтық ақпарат
 homePagePrivacyLink = Жекелік
 homePageTermsLink = Қолдану шарттары
@@ -146,7 +142,6 @@ shotPageBackToHomeButton =
     .title = Үй парағы
 shotPageAllShotsButton =
     .title = Барлық скриншоттар
-shotPageScreenshotsDescription = Скриншоттар қарапайым түрде. Тура Firefox ішінен скриншоттарды түсіру, сақтау және олармен бөлісу.
 shotPageDMCAMessage = Бұл скриншот үшінші жақтың зияткерлік меншігі арызы салдарынан енді қолжетерсіз.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Көбірек білу үшін, { $dmca } адресіне жазыңыз.
@@ -338,6 +333,9 @@ shotDeleteCancel = Бас тарту
     .title = Бас тарту
 shotDeleteConfirm = Өшіру
     .title = Өшіру
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
