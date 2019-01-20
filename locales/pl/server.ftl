@@ -8,7 +8,7 @@ gMyShots = Moje zrzuty
 gHomeLink = Strona główna
 gNoShots =
     .alt = Brak zrzutów
-gScreenshotsDescriptionServerless = Proste zrzuty ekranu. Wykonuj i pobieraj zrzuty bez opuszczania Firefoksa.
+gScreenshotsDescriptionServerless = Proste zrzuty ekranu. Wykonuj i pobieraj zrzuty bez wychodzenia z Firefoksa.
 
 ## Header
 
@@ -56,7 +56,7 @@ creatingPageWaitMessage = Zapisywanie zrzutu…
 ## Home page
 
 homePageDescription =
-    .content = Intuicyjne tworzenie zrzutów ekranu z poziomu przeglądarki. Twórz, zapisuj i udostępniaj zrzuty podczas przeglądania Internetu za pomocą Firefoksa.
+    .content = Intuicyjne tworzenie zrzutów ekranu z poziomu przeglądarki. Wykonuj, zapisuj i udostępniaj zrzuty podczas przeglądania Internetu za pomocą Firefoksa.
 homePageButtonMyShots = Przejdź do moich zrzutów
 homePageTeaser = Wkrótce…
 homePageDownloadFirefoxTitle = Firefox
@@ -72,6 +72,8 @@ homePageCaptureRegionDescription = Kliknij i przeciągnij nad obszarem, który c
 homePageCapturePage = Zrzut strony
 homePageCapturePageDescription = Użyj przycisków u góry po prawej, aby tworzyć zrzuty całych stron. Przycisk „Zapisz widoczne” umożliwia tworzenie jedynie wyświetlanego obszaru, a „Zapisz całą stronę” utworzy zrzut całej zawartości strony.
 homePageDownloadCopy = Pobierz lub skopiuj
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Zrób najlepsze ujęcie. Screenshots umożliwia pobranie wybranego obszaru lub skopiowanie go prosto do schowka.
 homePageLegalLink = Podstawa prawna
 homePagePrivacyLink = Prywatność
 homePageTermsLink = Warunki korzystania z usługi
@@ -142,6 +144,7 @@ shotPageBackToHomeButton =
     .title = Strona główna
 shotPageAllShotsButton =
     .title = Wszystkie zrzuty
+shotPageScreenshotsDescriptionServerless = Proste zrzuty ekranu. Wykonuj i pobieraj zrzuty bez wychodzenia z Firefoksa.
 shotPageDMCAMessage = Ten zrzut został usunięty z powodu roszczeń prawnych strony trzeciej.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Wyślij wiadomość do { $dmca } w celu uzyskania dalszych informacji.
@@ -348,6 +351,8 @@ shotDeleteConfirm = Usuń
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Aby wyeksportować, kliknij Plik → Zapisz stronę jako…, a zrzut ekranu znajdzie się w folderze „{ $folder }”
 
 ## Metrics page
 ## All metrics strings are optional for translation
