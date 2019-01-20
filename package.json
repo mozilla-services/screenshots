@@ -52,7 +52,7 @@
     "valid-url": "1.0.9"
   },
   "devDependencies": {
-    "addons-linter": "1.5.2",
+    "addons-linter": "1.5.3",
     "audit-filter": "0.3.0",
     "babel-cli": "6.26.0",
     "babel-polyfill": "6.26.0",
