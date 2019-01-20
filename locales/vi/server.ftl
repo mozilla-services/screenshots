@@ -8,7 +8,7 @@ gMyShots = Các ảnh chụp của tôi
 gHomeLink = Trang chủ
 gNoShots =
     .alt = Không có ảnh chụp nào
-gScreenshotsDescription = Ảnh chụp màn hình được thực hiện đơn giản. Thực hiện, lưu và chia sẻ ảnh chụp màn hình mà không rời khỏi Firefox.
+gScreenshotsDescriptionServerless = Ảnh chụp màn hình được tạo đơn giản. Chụp và tải về ảnh chụp màn hình mà không cần rời khỏi Firefox.
 
 ## Header
 
@@ -71,11 +71,9 @@ homePageCaptureRegion = Chụp một khu vực
 homePageCaptureRegionDescription = Nhấp và kéo để chọn khu vực bạn muốn chụp. Hoặc chỉ cần di chuột và nhấp vào - Ảnh chụp màn hình sẽ chọn khu vực cho bạn. Giống như những gì bạn thấy? Chọn Lưu để truy cập trực tuyến ảnh chụp màn hình hoặc nút mũi tên xuống để tải nó về máy tính của bạn.
 homePageCapturePage = Chụp một trang
 homePageCapturePageDescription = Sử dụng các nút ở phía trên bên phải để chụp toàn bộ trang. Nút Lưu Ghi nhớ sẽ chụp khu vực bạn có thể xem mà không cần di chuyển, và Lưu toàn bộ Trang sẽ chụp mọi thứ trên trang.
-homePageSaveShare = Lưu và chia sẻ
+homePageDownloadCopy = Tải về hoặc sao chép
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Chụp ảnh tốt nhất của bạn. Sau đó lưu nó vào thư viện Ảnh chụp màn hình trực tuyến và Firefox sao chép liên kết vào clipboard của bạn để dễ dàng chia sẻ. Các bức ảnh trong thư viện sẽ tự động hết hạn sau hai tuần, nhưng bạn có thể xóa chúng bất cứ lúc nào hoặc chọn giữ chúng lâu hơn.
-homePageSignInTitle = Ảnh chụp của bạn ở mọi nơi
-homePageSignInDescription = Đăng nhập vào Screenshots bằng Tài khoản Firefox của bạn để truy cập các ảnh của bạn khi sử dụng Firefox. Một phần thưởng thêm: bạn cũng có thể lưu các ảnh yêu thích của bạn mãi mãi.
+homePageDownloadCopyDescription = Tạo ảnh chụp tốt nhất cho bạn. Screenshots cho phép bạn tải xuống lựa chọn của bạn hoặc sao chép nó ngay vào clipboard của bạn.
 homePageLegalLink = Thông tin pháp lý
 homePagePrivacyLink = Chính sách riêng tư
 homePageTermsLink = Điều khoản
@@ -146,7 +144,7 @@ shotPageBackToHomeButton =
     .title = Trang chủ
 shotPageAllShotsButton =
     .title = Tất cả ảnh chụp
-shotPageScreenshotsDescription = Ảnh chụp màn hình được thực hiện đơn giản. Thực hiện, lưu và chia sẻ ảnh chụp màn hình mà không rời khỏi Firefox.
+shotPageScreenshotsDescriptionServerless = Ảnh chụp màn hình được tạo đơn giản. Chụp và tải về ảnh chụp màn hình mà không cần rời khỏi Firefox.
 shotPageDMCAMessage = Bức ảnh này không còn nữa do yêu cầu sở hữu trí tuệ của bên thứ ba.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Vui lòng gửi email cho { $dmca } để yêu cầu thêm thông tin.
@@ -326,6 +324,11 @@ shotDeleteCancel = Hủy bỏ
     .title = Hủy bỏ
 shotDeleteConfirm = Xóa
     .title = Xóa
+
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Để xuất ảnh: sử dụng Tập tin > Lưu trang dưới dạng... và bạn sẽ tìm thấy ảnh chụp màn hình của mình trong thư mục { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
