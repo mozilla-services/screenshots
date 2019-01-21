@@ -73,7 +73,7 @@ homePageCapturePage = Stronu fotografować
 homePageCapturePageDescription = Wužiwajće tłóčatka horjeka naprawo, zo byšće cyłe strony fotografował. Tłóčatko "Wobłuk fotografować" tón wobłuk zapřijima, kotryž móžeće bjez kulenje strony widźeć a tłóčatko "Stronu fotografować" składuje cyłu stronu.
 homePageDownloadCopy = Sćahnyć abo kopěrować
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageDownloadCopyDescription = Wutworće swoje najlěpše foto wobrazowki. Wobrazowki wam zmóžnja, waš wuběr sćahnyć abo jón direktnje do wašeho mjezyskłada kopěrować.
+homePageDownloadCopyDescription = Wutworće swoje najlěpše foto wobrazowki. Fota wobrazowki wam zmóžnja, waš wuběr sćahnyć abo jón direktnje do wašeho mjezyskłada kopěrować.
 homePageLegalLink = Prawniske
 homePagePrivacyLink = Priwatnosć
 homePageTermsLink = Wuměnjenja
