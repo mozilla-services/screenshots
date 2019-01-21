@@ -8,6 +8,7 @@ gMyShots = Mi instantaneos
 gHomeLink = Initio
 gNoShots =
     .alt = Nulle instantaneos trovate
+gScreenshotsDescriptionServerless = Instantaneos rendite simple. Captura e discarga instantaneos de schermo sin lassar Firefox.
 
 ## Header
 
@@ -71,6 +72,8 @@ homePageCaptureRegionDescription = Clicca e trahe pro seliger le area que tu vol
 homePageCapturePage = Capturar un pagina
 homePageCapturePageDescription = Usar le buttones in alto a dextra pro capturar le paginas integre. Le button Salvar lo visibile, capturara le area que tu pote vider sin rolar, e Salvar pagina integre, capturara tote le pagina.
 homePageDownloadCopy = Discargar o copiar
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Prende tu melior captura. Screenshots te permitte de discargar tu selection o de copiar lo in tu area de transferentia.
 homePageLegalLink = Notas legal
 homePagePrivacyLink = Confidentialitate
 homePageTermsLink = Terminos
@@ -141,6 +144,7 @@ shotPageBackToHomeButton =
     .title = Pagina initial
 shotPageAllShotsButton =
     .title = Tote le instantaneos
+shotPageScreenshotsDescriptionServerless = Instantaneos rendite simple. Captura e discarga instantaneos de schermo sin lassar Firefox.
 shotPageDMCAMessage = Iste instantaneo non es plus disponibile per un reclamation de proprietate intellectual de tertie parte.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Per favor invia un email a { $dmca } pro querer altere informationes.
