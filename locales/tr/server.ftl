@@ -8,7 +8,7 @@ gMyShots = Görüntülerim
 gHomeLink = Ana Sayfa
 gNoShots =
     .alt = Görüntü bulunamadı
-gScreenshotsDescription = Ekran görüntüsü almayı basitleştirdik. Firefox’tan çıkmadan ekran görüntüleri alabilir, kaydedebilir ve paylaşabilirsiniz.
+gScreenshotsDescriptionServerless = Ekran görüntüsü almayı basitleştirdik. Firefox’tan çıkmadan ekran görüntülerini yakalayıp indirebilirsiniz.
 
 ## Header
 
@@ -71,11 +71,9 @@ homePageCaptureRegion = Bir bölgeyi yakalama
 homePageCaptureRegionDescription = Tıklayıp sürükleyerek yakalamak istediğiniz bölgeyi seçin. İstediğiniz bölgenin üstüne fareyle gidip bir kez tıklarsanız Screenshots bölgeyi sizin için seçer. Seçimden memnunsanız “Kaydet” düğmesine tıklayarak ekrna görüntüsünü internete yükleyebilir veya ok düğmesine tıklayarak bilgisayarınıza indirebilirsiniz.
 homePageCapturePage = Tüm sayfayı yakalama
 homePageCapturePageDescription = Sayfanın tamamını kaydetmek isterseniz sağ üst köşedeki düğmeleri kullanın. “Görünür alanı kaydet” düğmesi, sayfayı kaydırmadan pencerede gördüğünüz kısmı yakalar. “Tüm sayfayı kaydet” ise sayfadaki her şeyi yakalar.
-homePageSaveShare = Kaydetme ve paylaşma
+homePageDownloadCopy = İster indir ister kopyala
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Ekran görüntünüzü çekin, sonra da çevrimiçi Screenshots arşinize kaydedin. Firefox, kolayca paylaşmanız için linki kendiliğinden kopyalar. Arşivinizdeki görüntüler iki hafta sonra otomatik olarak silinir ama onları istediğiniz zaman da silebilir veya daha uzun süre tutabilirsiniz.
-homePageSignInTitle = Görüntüleriniz her yerde
-homePageSignInDescription = Ekran görüntülerinize Firefox’u kullandığınız her yerden ulaşmak için Screenshots’a Firefox Hesabınızla giriş yapın. Sevdiğiniz ekran görüntülerini süresiz kaydetme olanağına da kavuşacaksınız.
+homePageDownloadCopyDescription = Screenshots, seçiminizi indirmenize veya anında panoya kopyalamanıza izin verir.
 homePageLegalLink = Yasal Notlar
 homePagePrivacyLink = Gizlilik
 homePageTermsLink = Koşullar
@@ -146,7 +144,7 @@ shotPageBackToHomeButton =
     .title = Ana sayfa
 shotPageAllShotsButton =
     .title = Tüm görüntüler
-shotPageScreenshotsDescription = Ekran görüntüsü almayı basitleştirdik. Firefox’tan çıkmadan ekran görüntüleri alabilir, kaydedebilir ve paylaşabilirsiniz.
+shotPageScreenshotsDescriptionServerless = Ekran görüntüsü almayı basitleştirdik. Firefox’tan çıkmadan ekran görüntülerini yakalayıp indirebilirsiniz.
 shotPageDMCAMessage = Üçüncü bir şahsın telif hakkı iddiası nedeniyle bu görüntü artık kullanılamaz.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Daha fazla bilgi almak isterseniz { $dmca } adresine e-posta gönderebilirsiniz.
@@ -320,6 +318,9 @@ shotDeleteCancel = Vazgeç
     .title = Vazgeç
 shotDeleteConfirm = Sil
     .title = Sil
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
