@@ -8,6 +8,7 @@ gMyShots = Téwakan Kami
 gHomeLink = Tepas
 gNoShots =
     .alt = Taya téwakan kapanggih
+gScreenshotsDescriptionServerless = Screenshots jadi gampang. Téwak jeung unduh téwakan layar tanpa ninggalkeun Firefox.
 
 ## Header
 
@@ -70,6 +71,7 @@ homePageCaptureRegion = Téwak Kotakan
 homePageCaptureRegionDescription = Klik jeung gusur pikeun milih kotakan anu rék ditéwak. Atawa arahkeun jeung klik — Screenshots bakal mangmilihkeun kotakanana. Resep? Pilih Teundeun pikeun muka téwakan layar onlén atawa tombol jamparing turun pikeun ngundeur.
 homePageCapturePage = Téwak Kaca
 homePageCapturePageDescription = Paké tombol di luhur lebah katuhu pikeun néwak sakabéh kaca. Tombol Teundeun Sakatempo bakal néwak eusi kaca anu harita katempo, anapon Teundeun Kaca Lengkep bakal néwak sakur anu aya dina éta kaca.
+homePageDownloadCopy = Unduh atawa Tiron
 homePageLegalLink = Légal
 homePagePrivacyLink = Privasi
 homePageTermsLink = Katangtuan
@@ -140,6 +142,7 @@ shotPageBackToHomeButton =
     .title = Tepas
 shotPageAllShotsButton =
     .title = Sakabéh Téwakan
+shotPageScreenshotsDescriptionServerless = Screenshots jadi gampang. Téwak jeung unduh téwakan layar tanpa ninggalkeun Firefox.
 shotPageDMCAMessage = Ieu téwakan geus teu bisa dibuka alatan ayana klaim kekayaan inteléktual pihak katilu.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Mangga kirim surél { $dmca } pikeun émbaran leuwih teleb.
