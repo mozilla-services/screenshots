@@ -8,6 +8,7 @@ gMyShots = Le mie immagini
 gHomeLink = Pagina iniziale
 gNoShots =
     .alt = Nessuna immagine trovata
+gScreenshotsDescriptionServerless = Screenshots: ti semplifica la vita! Cattura e scarica i tuoi screenshot direttamente da Firefox.
 
 ## Header
 
@@ -71,6 +72,8 @@ homePageCaptureRegionDescription = Fai clic e trascina per selezionare l’area 
 homePageCapturePage = Cattura una pagina
 homePageCapturePageDescription = Utilizza i pulsanti in alto a destra per catturare la pagina. Il pulsante “Salva l’area visibile” cattura l’area visualizzata sullo schermo senza scorrere la pagina, mentre “Salva l’intera schermata” ne cattura il contenuto completo.
 homePageDownloadCopy = Scarica o Copia
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Scegli l’inquadratura migliore. Con Screenshots puoi scaricare la porzione di schermo che hai selezionato o copiarla direttamente negli appunti.
 homePageLegalLink = Note legali
 homePagePrivacyLink = Privacy
 homePageTermsLink = Condizioni di utilizzo
@@ -141,6 +144,7 @@ shotPageBackToHomeButton =
     .title = Pagina iniziale
 shotPageAllShotsButton =
     .title = Tutte le immagini
+shotPageScreenshotsDescriptionServerless = Screenshots: ti semplifica la vita! Cattura e scarica i tuoi screenshot direttamente da Firefox.
 shotPageDMCAMessage = Questa immagine non è più disponibile a causa di una segnalazione di violazione della proprietà intellettuale da parte di soggetti terzi.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Invia un’email a { $dmca } per richiedere ulteriori informazioni.
@@ -341,6 +345,8 @@ shotDeleteConfirm = Elimina
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Per esportare uno screenshot seleziona File > Salva pagina con nome... e troverai i tuoi screenshot nella cartella { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
