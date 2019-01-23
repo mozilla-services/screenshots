@@ -8,7 +8,7 @@ gMyShots = Che japyhypy
 gHomeLink = Ñepyrũ
 gNoShots =
     .alt = Ndojejuhúi japyhypy
-gScreenshotsDescriptionServerless = Mba’erechaha momichĩmby japyhypyre. Ejapo ha emboguejy mba’rechaha japyhypyre esẽ’ỹre Firefox-gui.
+gScreenshotsDescriptionServerless = Mba’erechaha momichĩmby japyhypyre. Ejapo ha emboguejy mba’erechaha japyhypyre esẽ’ỹre Firefox-gui.
 
 ## Header
 
@@ -71,6 +71,9 @@ homePageCaptureRegion = Ejapyhy peteĩ tendaguasu
 homePageCaptureRegionDescription = Ehesakutu ha embosyryry eiporavo hag̃ua umi rejapyhyséva. Térã ehasánte hi’ári ha eikutu — Screenshots oiporavóta pe korá ndéve g̃uarã. ¿Emoneĩpa pe ehecháva? Eiporavo Ñongatu eike hag̃ua nde japyhypy ñandutiguáva térã pe votõ hu’y yvy gotyogua eñongatu hag̃ua ne mohendahápe.
 homePageCapturePage = Peteĩ kuatiarogue jejapyhy
 homePageCapturePageDescription = Eipuru umi votõ yvategua akatúvape oĩva ejapyhy hag̃ua kuatiarogue tuichaháicha. Pe votõ Ñongatu Jehecháva ojapyhýta pe kora ikatúva rehecha eku’e’ỹre ha Kuatiarogue Tuichaháicha Ñongatu ojapyhypáta kuatiaroguépe.
+homePageDownloadCopy = Emboguejy térã embokuatia
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Ejapo mba’erechaha japyhypy iporãvéva. Screenshots omoneĩ emboguejývo nde poravopy térã embohasávo nde kuatiajokohapetevoi.
 homePageLegalLink = Añetegua
 homePagePrivacyLink = Ñemigua
 homePageTermsLink = Jejapopy
@@ -141,6 +144,7 @@ shotPageBackToHomeButton =
     .title = Kuatiarogue ñepyrũ
 shotPageAllShotsButton =
     .title = Opaite japyhypy
+shotPageScreenshotsDescriptionServerless = Mba’erechaha momichĩmby japyhypyre. Ejapo ha emboguejy mba’erechaha japyhypyre esẽ’ỹre Firefox-gui.
 shotPageDMCAMessage = Ko japyhypy ndojepurukuaái peteĩ tapicha akaguai rupi ha'eha ijára.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Eguerahauka peteĩ ñanduti veve { $dmca }-pe ejerure hag̃ua maranduve.
@@ -341,6 +345,8 @@ shotDeleteConfirm = Mbogue
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Eguerahauka hag̃ua: eipuru Marandurenda> Eñongatu kuatiarogue pyahu... ha ejujhúta nde mba’erechaha japyhypyre { $folder } ñongatuhápe
 
 ## Metrics page
 ## All metrics strings are optional for translation
