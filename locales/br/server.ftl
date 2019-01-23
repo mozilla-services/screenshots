@@ -8,7 +8,7 @@ gMyShots = Ma zapadennoù
 gHomeLink = Degemer
 gNoShots =
     .alt = Tapadenn ebet kavet
-gScreenshotsDescription = Tapadennoù-skramm en un doare aes. Skeudennit, enrollit ha rannit an tapadennoù-skramm hep kuitaat Firefox.
+gScreenshotsDescriptionServerless = Tapadennoù-skramm en un doare eeun. Skeudennit ha pellgargit tapadennoù-skramm hep kuitaat Firefox.
 
 ## Header
 
@@ -71,11 +71,9 @@ homePageCaptureRegion = Skeudenniñ ul lodenn
 homePageCaptureRegionDescription = Klikit ha riklit evit diuzañ ar vaezienn a fell deoc'h skeudenniñ. Gallout a rit ivez klikañ hepken ha diuzet e vo ar vaezienn evidoc'h. Plijout a ra deoc'h ar pezh a welit? Dibabit "Enrollañ" evit haeziñ ho tapadenn-skramm enlinenn pe an arlun bit war-zu an traoñ evit e bellgargañ war hoc'h urzhiataer.
 homePageCapturePage = Skeudenniñ ur bajenn
 homePageCapturePageDescription = Arverit an afelloù e krec'h a-zehou evit skeudenniñ pajennoù a-bezh. An afell "Enrollañ ar pezh vez gwelet" a skeudenno ar vaezienn a c'haller gwelet hep dibunañ, ha "Enrollañ ar bajenn a-bezh" a skeudenno pep tra er bajenn.
-homePageSaveShare = Enrollañ ha rannañ
+homePageDownloadCopy = Pellgargañ pe eilañ
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Tapit ho skeudennoù gwellañ. Enrollit anezho er skeudennaoueg enlinenn hag e vo eilet an ere er golver gant Firefox evit gallout rannañ anezho en un doare aes. An tapadennoù er skeudennaoueg a zo diamzeret goude div sizhun, met gallout a rit dilemel anezho forzh pegoulz me divizout mirout anezho pelloc'h.
-homePageSignInTitle = Ho tapadennoù e pep lec'h
-homePageSignInDescription = Kennaskit d'an tapadennoù gant ho kont Firefox evit o haeziñ pep lec'h e arverit Firefox. Un draig ouzhpenn: gallout a rit ivez enrollañ ho tapadennoù gwellañ da viken.
+homePageDownloadCopyDescription = Mirit ho tapadennoù gwellañ. Screenshots a ginnig deoc'h pellgargañ ho tibab pe eilañ en ho kolver.
 homePageLegalLink = Lezennel
 homePagePrivacyLink = Buhez prevez
 homePageTermsLink = Termenoù
@@ -146,7 +144,7 @@ shotPageBackToHomeButton =
     .title = Degemer
 shotPageAllShotsButton =
     .title = An holl dapadennoù
-shotPageScreenshotsDescription = Tapadennoù-skramm en un doare aes. Skeudennit, enrollit ha rannit tapadennoù-skramm hep kuitaat Firefox.
+shotPageScreenshotsDescriptionServerless = Tapadennoù-skramm en un doare eeun. Skeudennit ha pellgargit tapadennoù-skramm hep kuitaat Firefox.
 shotPageDMCAMessage = An dapadenn-mañ n'eo ket hegerz ket abalamour m'eo bet danevellet gant un trede evit abegoù perc'henniezh kefredel.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Skrivit ur postel da: { $dmca } evit goulenn titouroù ouzhpenn.
@@ -358,6 +356,11 @@ shotDeleteCancel = Nullañ
     .title = Nullañ
 shotDeleteConfirm = Dilemel
     .title = Dilemel
+
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Evit ezporzhiañ : arverit Restr > Enrollañ ar bajenn evel... ha kavout a reot ho tapadennoù-skramm en teuliad { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
