@@ -8,7 +8,7 @@ gMyShots = Mes maletgs dal visur
 gHomeLink = Pagina da partenza
 gNoShots =
     .alt = Chattà nagins maletgs dal visur
-gScreenshotsDescription = La via simpla per far maletgs dal visur: Far, memorisar e cundivider ils maletgs dal visur senza bandunar Firefox.
+gScreenshotsDescriptionServerless = Maletgs dal visur senza schaschin. Fa e telechargia maletgs dal visur senza bandunar Firefox.
 
 ## Header
 
@@ -71,11 +71,9 @@ homePageCaptureRegion = Fotografar ina zona
 homePageCaptureRegionDescription = Clicca e tira per tscherner la zona che ti vuls fotografar. U clicca simplamain insanua sin il cuntegn da la pagina — Screenshots tscherna la zona per tai. Sche quai che ti vesas ta cunvegna, tscherna «Memorisar» per avair access online a tes maletg dal visur u tscherna la frizza che mussa engiu per al telechargiar sin tes computer.
 homePageCapturePage = Fotografar ina pagina
 homePageCapturePageDescription = Utilisescha ils buttuns sisum a dretga per fotografar paginas entiras. Il buttun «Memorisar la regiun visibla» fotografescha la zona che ti vesas senza defilar e «Memorisar la pagina cumpletta» fotografescha l'entira pagina.
-homePageSaveShare = Memorisar e cundivider
+homePageDownloadCopy = Telechargiar u copiar
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Piglia tes meglier maletg. Al memorisescha lura en la biblioteca online da Screenshots e Firefox copiescha la colliaziun en tes archiv provisoric per che ti al possias cundivider a moda simpla. Maletgs en la biblioteca scrodan automaticamain suenter duas emnas, ma ti als pos stizzar da tut temp u decider d'als preservar pli ditg.
-homePageSignInTitle = Tes maletgs dal visur adina tar tai
-homePageSignInDescription = T'annunzia cun tes conto da Firefox tar Screenshots per acceder a tes maletgs dal visur, dapertut nua che ti utiliseschas Firefox. E sco bonus: ti pos era memorisar tes maletgs preferids per adina.
+homePageDownloadCopyDescription = Fa in maletg sco s'auda. Screenshots ta lascha telechargiar tia selecziun u la copiar directamain en l'archiv provisoric.
 homePageLegalLink = Infurmaziuns giuridicas
 homePagePrivacyLink = Protecziun da datas
 homePageTermsLink = Cundiziuns d'utilisaziun
@@ -146,7 +144,7 @@ shotPageBackToHomeButton =
     .title = Pagina da partenza
 shotPageAllShotsButton =
     .title = Tut ils maletgs
-shotPageScreenshotsDescription = Maletgs dal visur en in batterdegl. Prender, memorisar e cundivider maletgs dal visur senza bandunar Firefox.
+shotPageScreenshotsDescriptionServerless = Maletgs dal visur senza schaschin. Fa e telechargia maletgs dal visur senza bandunar Firefox.
 shotPageDMCAMessage = Quest maletg n'è betg pli disponibel perquai che terzas persunas ha fatg valair ina violaziun dals dretgs d'autur.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Scriva p.pl. a { $dmca } per retschaiver ulteriuras infurmaziuns.
@@ -344,6 +342,11 @@ shotDeleteCancel = Interrumper
     .title = Interrumper
 shotDeleteConfirm = Stizzar
     .title = Stizzar
+
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Per exportar: tscherna Datoteca > Memorisar la pagina sut… e ti vegns a chattar tes maletgs dal visur en l'ordinatur { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
