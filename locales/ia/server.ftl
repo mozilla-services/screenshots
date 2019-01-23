@@ -345,6 +345,8 @@ shotDeleteConfirm = Deler
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Pro exportar: usa File> Salvar pagina como… e tu trovara tu instantaneos in le plica { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
