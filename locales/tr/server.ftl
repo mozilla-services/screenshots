@@ -321,6 +321,8 @@ shotDeleteConfirm = Sil
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Dışarı aktarmak için Dosya > Sayfayı farklı kaydet… seçeneğini kullanın. Ekran görüntülerinizi { $folder } klasöründe bulabilirsiniz
 
 ## Metrics page
 ## All metrics strings are optional for translation
