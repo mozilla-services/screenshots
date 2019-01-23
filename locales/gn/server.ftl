@@ -8,7 +8,7 @@ gMyShots = Che japyhypy
 gHomeLink = Ñepyrũ
 gNoShots =
     .alt = Ndojejuhúi japyhypy
-gScreenshotsDescription = Mba’erechaha japyhypy pererĩva. Japyhy, ñongatu ha moherakuã mba’erechaha japyhypy eheja’ỹre Firefox.
+gScreenshotsDescriptionServerless = Mba’erechaha momichĩmby japyhypyre. Ejapo ha emboguejy mba’rechaha japyhypyre esẽ’ỹre Firefox-gui.
 
 ## Header
 
@@ -71,11 +71,6 @@ homePageCaptureRegion = Ejapyhy peteĩ tendaguasu
 homePageCaptureRegionDescription = Ehesakutu ha embosyryry eiporavo hag̃ua umi rejapyhyséva. Térã ehasánte hi’ári ha eikutu — Screenshots oiporavóta pe korá ndéve g̃uarã. ¿Emoneĩpa pe ehecháva? Eiporavo Ñongatu eike hag̃ua nde japyhypy ñandutiguáva térã pe votõ hu’y yvy gotyogua eñongatu hag̃ua ne mohendahápe.
 homePageCapturePage = Peteĩ kuatiarogue jejapyhy
 homePageCapturePageDescription = Eipuru umi votõ yvategua akatúvape oĩva ejapyhy hag̃ua kuatiarogue tuichaháicha. Pe votõ Ñongatu Jehecháva ojapyhýta pe kora ikatúva rehecha eku’e’ỹre ha Kuatiarogue Tuichaháicha Ñongatu ojapyhypáta kuatiaroguépe.
-homePageSaveShare = Eñongatu ha emoherakuã
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Ejapietékevoi. Upéi eñongatu mba’erechaha japyhypy arandukarenda jeikehápe, ha Firefox omomguatiáta nde kuatiajokohápe emoherakuãkuaa hag̃ua. Umi ta’ãnga arandukarenda pegua ndoikovéima ohasávo mokõi arapokõindy, hákatu ikatu avei emboguete ejapose vove térã eheja hetave ára.
-homePageSignInTitle = Eha'ã oparupirei
-homePageSignInDescription = Emoñepyrũ tembiapo mba’erechaha japyhypýpe ne mba’ete Firefox pegua ndive ehecha hag̃ua ne ra’ãnga Firefox reipuruhápe opa henda rupi. Avei eguerekove: eñongatukuaa avei ne ra’ãnga eguerohoryvéva opa árape g̃uarã.
 homePageLegalLink = Añetegua
 homePagePrivacyLink = Ñemigua
 homePageTermsLink = Jejapopy
@@ -146,7 +141,6 @@ shotPageBackToHomeButton =
     .title = Kuatiarogue ñepyrũ
 shotPageAllShotsButton =
     .title = Opaite japyhypy
-shotPageScreenshotsDescription = Japyhypy mba'erechaha jejapónteva. Eñohẽ, eñongatu ha emoherakuã mba'erechaha japyhypy eheja'ỹre Firefox.
 shotPageDMCAMessage = Ko japyhypy ndojepurukuaái peteĩ tapicha akaguai rupi ha'eha ijára.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Eguerahauka peteĩ ñanduti veve { $dmca }-pe ejerure hag̃ua maranduve.
@@ -344,6 +338,9 @@ shotDeleteCancel = Heja
     .title = Heja
 shotDeleteConfirm = Mbogue
     .title = Mbogue
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
