@@ -8,7 +8,6 @@ gMyShots = Moji posnetki
 gHomeLink = Domov
 gNoShots =
     .alt = Ni najdenih posnetkov
-gScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in delite zaslonske posnetke, ne da bi zapustili Firefox.
 
 ## Header
 
@@ -71,11 +70,7 @@ homePageCaptureRegion = Zajemite območje
 homePageCaptureRegionDescription = Kliknite in povlecite, da izberete območje, ki ga želite zajeti, ali pa samo kliknite in Screenshots bo izbral območje za vas. Vam je všeč, kar vidite? Izberite Shrani za dostop do vašega posnetka na spletu ali puščico navzdol za prenos na računalnik.
 homePageCapturePage = Zajemite stran
 homePageCapturePageDescription = Za zajem celotnih strani uporabite gumbe zgoraj desno. Gumb Shrani vidno bo zajel območje, ki je vidno brez drsenja, gumb Shrani celotno stran pa celotno vsebino strani.
-homePageSaveShare = Shranite in delite
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Zajemite najboljše posnetke. Nato jih shranite v spletno knjižnico Screenshots in Firefox bo povezavo do posnetka nemudoma kopiral v odložišče. Posnetki v knjižnici samodejno potečejo po dveh tednih, lahko pa jih kadarkoli izbrišete ali obdržite dlje.
-homePageSignInTitle = Vaši posnetki vsepovsod
-homePageSignInDescription = Prijavite se v Screenshots s Firefox Računom za dostop do posnetkov, kjerkoli uporabljate Firefox. Dodatna ugodnost: svoje priljubljene posnetke lahko shranite trajno.
+homePageDownloadCopy = Prenesite ali kopirajte
 homePageLegalLink = Pravno obvestilo
 homePagePrivacyLink = Zasebnost
 homePageTermsLink = Pogoji
@@ -146,7 +141,6 @@ shotPageBackToHomeButton =
     .title = Domača stran
 shotPageAllShotsButton =
     .title = Vsi posnetki
-shotPageScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in delite zaslonske posnetke, ne da bi zapustili Firefox.
 shotPageDMCAMessage = Ta posnetek ni več na voljo zaradi zahtev intelektualne lastnine tretje osebe.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Za več informacij pošljite e-pošto na { $dmca }
@@ -356,6 +350,9 @@ shotDeleteCancel = Prekliči
     .title = Prekliči
 shotDeleteConfirm = Izbriši
     .title = Izbriši
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
