@@ -8,6 +8,7 @@ gMyShots = Τα στιγμιότυπά μου
 gHomeLink = Αρχική
 gNoShots =
     .alt = Δεν βρέθηκαν στιγμιότυπα
+gScreenshotsDescriptionServerless = Τα στιγμιότυπα έγιναν εύκολη υπόθεση. Κάντε δημιουργία και λήψη μέσα από το Firefox.
 
 ## Header
 
@@ -71,6 +72,8 @@ homePageCaptureRegionDescription = Κάντε κλικ και σύρετε γι�
 homePageCapturePage = Καταγραφή σελίδας
 homePageCapturePageDescription = Χρησιμοποιήστε τα κουμπιά επάνω δεξιά για να καταγράψετε πλήρεις σελίδες σε στιγμιότυπα. Το κουμπί "Αποθήκευση ορατού" θα καταγράψει την περιοχή που μπορείτε να δείτε χωρίς κύλιση, ενώ το "Αποθήκευση πλήρους σελίδας" θα καταγράψει τα πάντα στη σελίδα.
 homePageDownloadCopy = Λήψη ή αντιγραφή
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Τα καλύτερα στιγμιότυπά σας. Το Screenshots σάς επιτρέπει να κάνετε λήψη της επιλογής σας ή αντιγραφή στο πρόχειρο.
 homePageLegalLink = Νομικά
 homePagePrivacyLink = Απόρρητο
 homePageTermsLink = Όροι
@@ -141,6 +144,7 @@ shotPageBackToHomeButton =
     .title = Αρχική σελίδα
 shotPageAllShotsButton =
     .title = Όλα τα στιγμιότυπα
+shotPageScreenshotsDescriptionServerless = Τα στιγμιότυπα έγιναν εύκολη υπόθεση. Κάντε δημιουργία και λήψη μέσα από το Firefox.
 shotPageDMCAMessage = Αυτό το στιγμιότυπο δεν είναι πλέον διαθέσιμο λόγω ισχυρισμού πνευματικής ιδιοκτησίας ενός τρίτου.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Παρακαλώ στείλτε email στο { $dmca } για να ζητήσετε περαιτέρω πληροφορίες.
