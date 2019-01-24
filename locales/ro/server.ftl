@@ -8,7 +8,7 @@ gMyShots = Capturile mele
 gHomeLink = Start
 gNoShots =
     .alt = Nicio captură găsită
-gScreenshotsDescription = Capturile de ecran simplificate. Realizează, salvează și partajează capturile de ecran fără să ieși din Firefox.
+gScreenshotsDescriptionServerless = Capturi de ecran simple. Efectuează și descarcă capturi de ecran fără să ieși din Firefox.
 
 ## Header
 
@@ -71,11 +71,9 @@ homePageCaptureRegion = Capturează o regiune
 homePageCaptureRegionDescription = Dă clic și trage pentru a selecta zona pe care vrei s-o capturezi. Sau pur și simplu poziționează cursorul deasupra și dă clic — Screenshots va selecta zona pentru tine. Îți place ce vezi? Selectează Salvează pentru a-ți accesa online captura de ecran sau butonul săgeată în jos pentru a o descărca pe calculator.
 homePageCapturePage = Fă o captură de pagină
 homePageCapturePageDescription = Folosește butoanele din dreapta sus pentru a captura pagini întregi. Butonul Salvează porțiunea vizibilă va captura zona pe care o poți vedea fără să derulezi și butonul Salvează pagina completă va captura toată pagina.
-homePageSaveShare = Salvează și partajează
+homePageDownloadCopy = Descarcă sau copiază
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Realizează cea mai bună captură. Apoi salveaz-o în biblioteca online Screenshots, iar Firefox va copia linkul în clipboard pentru o partajare ușoară. Capturile din bibliotecă expiră automat după două săptămâni, dar le poți șterge oricând, sau poți alege să le păstrezi pentru mai mult timp.
-homePageSignInTitle = Capturile tale oriunde
-homePageSignInDescription = Autentifică-te în Screenshots cu ajutorul contului Firefox pentru a-ți accesa capturile oriunde folosești Firefox. Un bonus în plus: îți poți salva capturile favorite pentru totdeauna.
+homePageDownloadCopyDescription = Fă cea mai bună captură de ecran. Screenshots permite descărcarea selecției sau copierea ei direct în clipboard.
 homePageLegalLink = Mențiuni legale
 homePagePrivacyLink = Confidențialitate
 homePageTermsLink = Termeni
@@ -146,7 +144,7 @@ shotPageBackToHomeButton =
     .title = Pagina de start
 shotPageAllShotsButton =
     .title = Toate capturile
-shotPageScreenshotsDescription = Capturile de ecran simplificate. Realizează, salvează și partajează capturile de ecran fără să ieși din Firefox.
+shotPageScreenshotsDescriptionServerless = Capturi de ecran simple. Efectuează și descarcă capturi de ecrane fără să ieși din Firefox.
 shotPageDMCAMessage = Această captură nu mai este disponibilă din cauza unei reclamații de proprietate intelectuală.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Te rugăm să trimiți un e-mail la { $dmca } pentru a solicita informații suplimentare.
@@ -350,6 +348,9 @@ shotDeleteCancel = Renunță
     .title = Renunță
 shotDeleteConfirm = Șterge
     .title = Șterge
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
