@@ -8,7 +8,15 @@ gMyShots = 내 스크린샷
 gHomeLink = 홈
 gNoShots =
     .alt = 스크린샷 없음
-gScreenshotsDescription = 스크린샷이 쉬워졌습니다. Firefox 안에서 스크린샷을 찍고 저장하고 공유해 보세요.
+
+## Header
+
+buttonSettings =
+    .title = 설정
+buttonSignIn =
+    .title = 로그인
+screenshotsLogo =
+    .title = Screenshots 홈
 
 ## Footer
 
@@ -38,12 +46,9 @@ homePageButtonMyShots = 내 스크린샷
 homePageTeaser = 곧 공개됩니다…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = 무료 다운로드
-homePageGetStarted = 시작하기
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots 사용법
 homePageGetStartedTitle = 시작하기
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = 툴바에 추가된 스크린샷 아이콘을 찾으세요. 선택하면 브라우저 창에 스크린샷 메뉴가 나타납니다.
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = 검색 주소창의 페이지 작업 메뉴에서 스크린샷 아이콘을 선택하면 브라우저 창의 상단에 스크린샷 메뉴가 나타납니다.
 homePageCaptureRegion = 영역 캡처
@@ -51,9 +56,6 @@ homePageCaptureRegion = 영역 캡처
 homePageCaptureRegionDescription = 캡처할 영역을 드래그해서 선택하세요. 아니면 그냥 마우스를 올리고 클릭하세요 — 스크린샷이 자동으로 영역을 선택해줍니다. 마음에 드세요? 저장을 누르면 온라인에서 스크린샷에 접근할 수 있고 아래 방향 화살표를 누르면 컴퓨터에 다운 받을 수 있습니다.
 homePageCapturePage = 페이지 캡처
 homePageCapturePageDescription = 전체 페이지를 캡처하기 위해서 오른쪽 상단에 있는 버튼을 사용하세요. 보이는 영역 저장 버튼은 스크롤 하지 않은 현재 보고 있는 영역을 캡처하고 전체 페이지 저장은 페이지의 모든 내용을 캡처합니다.
-homePageSaveShare = 저장하고 공유
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = 스크린샷을 찍으면 Firefox가 스크린샷을 온라인 스크린샷 라이브러리에 올리고 링크를 클립보드에 복사합니다. 스크린샷은 2주 동안 보관되지만 언제든지 삭제할 수 있고 더 오래 보관할 수 있게 만료 날짜를 변경할 수 있습니다.
 homePageLegalLink = 법률
 homePagePrivacyLink = 개인정보
 homePageTermsLink = 이용약관
@@ -62,8 +64,6 @@ homePageCookiesLink = 쿠키
 ## Leave Screenshots page
 
 leavePageRemoveAllData = 모든 데이터 삭제
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = 계정을 삭제하기 위해서는 Firefox Screenshots이 설치되어 있어야 함
 leavePageErrorGeneric = 오류 발생
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = 모든 Firefox Screenshots 데이타가 영구적으로 지워집니다.
@@ -87,7 +87,6 @@ shotPageAlertErrorUpdatingTitle = 제목 저장 중 오류
 shotPageConfirmDelete = 이 스크린샷을 영구적으로 삭제하시겠습니까?
 shotPageShareButton =
     .title = 공유
-shotPageCopy = 복사
 shotPageCopied = 복사됨
 shotPageShareFacebook =
     .title = 페이스북에 공유
@@ -109,18 +108,13 @@ shotPageTimeExpirationMessage = 아무것도 하지 않으신다면, 이 스크�
 shotPageRestoreButton = { $date }까지 복구
 shotPageExpiredMessage = 이 스크린샷은 만료되었습니다.
 # Note: This phrase is followed by an empty line, then the URL of the source page
-shotPageExpiredMessageDetails = 이 스크린샷의 원본 페이지: 
+shotPageExpiredMessageDetails = 이 스크린샷의 원본 페이지:
 shotPageDeleteButton =
     .title = 이 스크린샷 삭제
-shotPageAbuseButton =
-    .title = 오용, 스팸 등의 이유로 이 스크린샷 신고
 shotPageDownloadShot =
     .title = 다운로드
 shotPageEditButton =
     .title = 현재 이미지 편집
-shotPageDownload = 다운로드
-shotPageScreenshotsDescription = 스크린샷을 간편하게. Firefox 내에서 찍고, 저장하고, 공유하세요.
-shotPageUpsellFirefox = Firefox 다운로드
 shotPageDMCAMessage = 저작권상의 문제로 이 스크린샷을 더 이상 표시할 수 없습니다.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = 자세한 사항은 { $dmca }으로 문의하시기 바랍니다.
@@ -157,6 +151,9 @@ timeDiffFutureMinutes = { $number }분 내
 timeDiffFutureHours = { $number }시간 내
 timeDiffFutureDays = { $number }일 내
 errorThirdPartyCookiesEnabled = 이 스크린샷을 삭제할 수 없다면 브라우저의 설정에서 제3자 쿠키를 일시적으로 활성화해야 할 수도 있습니다.
+
+## Shot Page New Feature Promotion Dialog.
+
 
 ## Annotations
 
@@ -200,17 +197,19 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = 회색
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+
 ## Settings Page
 
 settingsDisconnectButton = 연결 끊기
     .title = 연결 끊기
 settingsGuestAccountMessage = 게스트 계정
-settingsSignInInvite = 기기별 동기화를 위해 로그인
 settingsSignInButton = 로그인
     .title = 로그인
 SettingsPageHeader = Firefox Screenshots 설정
-settingsDescription = Firefox 계정에 로그인하면 다양한 기기에서 안전하게 스크린 샷에 접근할 수 있습니다.
-settingsPageSubHeader = 동기화 및 계정
 settingsClosePreferences =
     .title = 환경 설정 닫기
 
@@ -226,8 +225,6 @@ shotIndexPageSearchResultsTitle = 내 스크린샷: { $searchTerm }으로 검색
 shotIndexPageErrorRendering = 페이지 렌더링 중 오류: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = 내 스크린샷 검색
-shotIndexPageSearchButton =
-    .title = 검색
 shotIndexPageNoShotsMessage = 저장된 스크린샷이 없습니다.
 shotIndexPageNoShotsInvitation = 하나 만들어 보세요.
 shotIndexPageLookingForShots = 스크린샷 찾아보는 중..
@@ -240,12 +237,6 @@ shotIndexPagePreviousPage =
     .title = 이전 페이지
 shotIndexPageNextPage =
     .title = 다음 페이지
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = 이 스크린샷은 만료되지 않습니다
 
 ## Delete Confirmation Dialog
 
@@ -254,6 +245,9 @@ shotDeleteCancel = 취소
     .title = 취소
 shotDeleteConfirm = 삭제
     .title = 삭제
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
