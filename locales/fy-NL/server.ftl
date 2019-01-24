@@ -8,7 +8,7 @@ gMyShots = Myn ôfbyldingen
 gHomeLink = Startside
 gNoShots =
     .alt = Gjin ôfbyldingen fûn
-gScreenshotsDescription = Skermôfbyldingen wurde maklik. Meitsje, bewarje en diel skermôfbyldingen sûnder Firefox te ferlitten.
+gScreenshotsDescriptionServerless = Skermôfbyldingen op in ienfâldige manier. Lis skermôfbyldingen fêst en download se sûnder Firefox te ferlitten.
 
 ## Header
 
@@ -71,11 +71,9 @@ homePageCaptureRegion = In gebiet fêstlizze
 homePageCaptureRegionDescription = Klik en sleep om it gebiet dat jo fêstlizze wolle te ferslepen. Of wiis oan en klik – Screenshots selektearret it gebiet foar jo. Tefreden mei wat jo sjogge? Selektearje Bewarje om jo skermôfbylding online te benaderjen, of it pylkje nei ûnder om dizze nei jo kompjûter te bewarjen.
 homePageCapturePage = In side fêstlizze
 homePageCapturePageDescription = Brûk de knoppen yn de rjochter boppehoek om folsleine siden fêst te lizzen. De knop Sichtber gebiet bewarje leit it gebied fêst dat jo sûnder skowen sjen kinne, en Folsleine side bewarje leit alles op de side fêst.
-homePageSaveShare = Bewarje en diele
+homePageDownloadCopy = Downloade of kopiearje
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Meitsje jo bêste ôfbylding. Bewarje dizze dêrnei nei de online Screenshots-biblioteek, en Firefox kopiearret de keppeling nei jo klamboerd om dizze ienfâldich diel te kinnen. Ofbyldingen yn de biblioteek ferrinne nei twa wiken automatysk, mar jo kinne se altyd fuortsmite of langer behâlde.
-homePageSignInTitle = Jo ôfbyldingen oeral
-homePageSignInDescription = Meld jo oan by Screenshots mei jo Firefox-account om jo ôfbyldingen oeral wêr't jo Firefox brûke te besjen. Ekstra boanus: jo kinne jo favorite ôfbyldingen ek foar altyd bewarje.
+homePageDownloadCopyDescription = Mei Screenshots kinne jo jo seleksje downloade of dizze streekrjocht nei jo klamboerd kopiearje.
 homePageLegalLink = Juridysk
 homePagePrivacyLink = Privacy
 homePageTermsLink = Betingsten
@@ -146,7 +144,7 @@ shotPageBackToHomeButton =
     .title = Startside
 shotPageAllShotsButton =
     .title = Alle ôfbyldingen
-shotPageScreenshotsDescription = Skermôfbyldingen wurde maklik. Meitsje, bewarje en diel skermôfbyldingen sûnder Firefox te ferlitten.
+shotPageScreenshotsDescriptionServerless = Skermôfbyldingen op in ienfâldige manier. Lis skermôfbyldingen fêst en download se sûnder Firefox te ferlitten.
 shotPageDMCAMessage = Dizze ôfbylding is fanwegen in claim op yntellektueel eigendom troch in eksterne partij net mear beskikber.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Stjoer in e-mail nei { $dmca } om mear ynformaasje op te freegjen.
@@ -344,6 +342,11 @@ shotDeleteCancel = Annulearje
     .title = Annulearje
 shotDeleteConfirm = Fuortsmite
     .title = Fuortsmite
+
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Om te eksportearjen: brûk Bestân > Side bewarje as… en jo fine jo skermôfbyldingen yn de map { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
