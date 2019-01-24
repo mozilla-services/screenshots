@@ -20,6 +20,7 @@ screenshotsLogo =
     .title = Startowa strona Screenshots
 bannerSignIn = <a>Přizjewće so abo registrujće so</a>, zo byšće přez graty přistup na waše fota wobrazowki měł a składujće swoje fawority na přeco.
 bannerUpsell = { gScreenshotsDescription } <a>Wobstarajće so Firefox nětko</a>
+shutdownWarning = <b>Składowane fota wobrazowki bórze spadnu.</b> Wot junija Screenshots žadyn składowak online njeposkići. Chceće fota wobrazowki ze swojeje biblioteki wobchować? <a>Sćehńće je do swojeho ličaka.</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Što je nowe w Firefox Screenshots?
