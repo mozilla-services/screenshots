@@ -17,9 +17,7 @@ screenshotsLogo =
     .title = Screenshots Home
 bannerSignIn = <a>Sign in or sign up</a> to access your shots across devices and save your favorites forever.
 bannerUpsell = {gScreenshotsDescription} <a>Get Firefox now</a>
-# These two messages are presented in a banner on all pages, like: <b>shutdownWarningIntro</b> shutdownWarningBody
-shutdownWarningIntro = Saved screenshots are expiring soon.
-shutdownWarningBody = Starting in June, Screenshots will no longer offer online storage. Want to keep shots from your library? <a>Download them to your computer.</a>
+shutdownWarning = <b>Saved screenshots are expiring soon.</b> Starting in June, Screenshots will no longer offer online storage. Want to keep shots from your library? <a>Download them to your computer.</a>
 
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header

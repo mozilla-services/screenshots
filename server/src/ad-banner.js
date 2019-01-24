@@ -45,14 +45,14 @@ exports.AdBanner = class AdBanner extends React.Component {
         </Localized>;
     } else if (promoStrategy.shouldShowDeprecation()) {
       // FIXME: should be updated to the SUMO page later:
-      const shutdownLink = "/export";
+      const shutdownLink = <a href="/export"></a>;
       bannerContent = <div>
         <p>
-          <Localized id="shutdownWarningIntro">
-            <b>Saved screenshots are expiring soon.</b>
-          </Localized>
-          <Localized id="shutdownWarningBody" a={shutdownLink}>
-            Starting in June, Screenshots will no longer offer online storage. Want to keep shots from your library? <a>Download them to your computer.</a>
+          <Localized id="shutdownWarning" b={<b />} a={shutdownLink}>
+            <span>
+              <b>Saved screenshots are expiring soon.</b>
+              Starting in June, Screenshots will no longer offer online storage. Want to keep shots from your library? <a>Download them to your computer.</a>
+            </span>
           </Localized>
         </p>
       </div>;
