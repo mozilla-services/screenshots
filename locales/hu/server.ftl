@@ -20,6 +20,7 @@ screenshotsLogo =
     .title = Screenshots kezdőlap
 bannerSignIn = <a>Jelentkezzen be vagy regisztráljon</a> hogy elérje a képeit az összes eszközén, és végleg elmentse a kedvenceit.
 bannerUpsell = { gScreenshotsDescription } <a>Szerezze be a Firefoxot most</a>
+shutdownWarning = <b>A mentett képernyőképek hamarosan lejárnak.</b> Júniustól kezdődően, a Screenshots már nem fog online tárhelyet kínálni. Meg akarja tartani a képernyőképeit? <a>Mentse le azokat a számítógépére.</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Mik az újdonságok a Firefox Screenshotsban?
