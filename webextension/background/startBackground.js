@@ -160,7 +160,7 @@ this.startBackground = (function() {
       const body = await resp.json();
       _resolveServerStatus.resolve(body);
     } catch (e) {
-    _resolveServerStatus.reject(e);
+      _resolveServerStatus.reject(e);
     }
   }
 
@@ -181,7 +181,11 @@ this.startBackground = (function() {
     console.error("Error finding Screenshots server status:", String(e), e.stack);
   });
 
-  setTimeout(checkExpiration, CHECK_SERVER_TIME);
+  setTimeout(() => {
+    window.requestIdleCallback(() => {
+      checkExpiration();
+    });
+  }, CHECK_SERVER_TIME);
 
   return exports;
 })();
