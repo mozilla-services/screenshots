@@ -8,7 +8,17 @@ gMyShots = எனது பிடிப்புகள்
 gHomeLink = முகப்பு
 gNoShots =
     .alt = பிடிப்புகள் ஏதுமில்லை
-gScreenshotsDescription = திரைப்பிடிப்புகள் எளிமையாகியது. பயர்பாஃசை விட்டு விலகாமல் பிடியுங்கள், சேமியுங்கள் பகிருங்கள்.
+
+## Header
+
+buttonSettings =
+    .title = அமைவுகள்
+buttonSignIn =
+    .title = உள்நுழை
+onboardingPromoDismissButton = நிராகரி
+    .title = நிராகரி
+onboardingPromoSigninButton = உள்நுழை
+    .title = உள்நுழை
 
 ## Footer
 
@@ -17,7 +27,7 @@ footerLinkMozilla = மொசில்லா
 footerLinkTerms = விதிமுறைகள்
 footerLinkPrivacy = தனியுரிம அறிக்கை
 footerLinkFaqs = அகேகேகள்
-footerLinkDMCA = IP வரம்ப மீறுதலை புகார் செய் 
+footerLinkDMCA = IP வரம்ப மீறுதலை புகார் செய்
 footerLinkDiscourse = கருத்து தெரிவிக்கவும்
 footerLinkRemoveAllData = அனைத்து தரவையும் நீக்கு
 
@@ -36,13 +46,11 @@ homePageButtonMyShots = எனது பிடிப்புகளுக்க�
 homePageTeaser = விரைவில் வருகிறது...
 homePageDownloadFirefoxTitle = பயர்பாஃசு
 homePageDownloadFirefoxSubTitle = இலவச பிதிவிறக்கம்
-homePageGetStarted = தொடங்கவும்
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = பயர்பாஃசு திரைப்பிடிப்புகள் எவ்வாறு வேலைச்செய்கிறது
 homePageGetStartedTitle = தொடங்கவும்
 homePageCaptureRegion = ஒரு மண்டலத்தைக் கைப்பற்று
 homePageCapturePage = ஒரு பக்கத்தைக் கைப்பற்று
-homePageSaveShare = சேமித்து பகிர்
 homePageLegalLink = சட்டபூர்வ
 homePagePrivacyLink = தனியுரிமை
 homePageTermsLink = விதிமுறைகள்
@@ -51,8 +59,6 @@ homePageCookiesLink = நினைவிகள்
 ## Leave Screenshots page
 
 leavePageRemoveAllData = அனைத்து தகவலையும் நீக்கு
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = உங்களின் கணக்கை அழிக்க பயர்பாஃசு திரைபிடிப்புகள் நிறுவப்பட்டிருக்க வேண்டும்
 leavePageErrorGeneric = ஒரு பிழை ஏற்பட்டது:
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = உங்களின் பயர்பாஃசு திரைப்பிடிப்பு தரவுகளை இது நிரந்தரமாக துடைத்துவிடும்.
@@ -76,7 +82,6 @@ shotPageAlertErrorUpdatingTitle = தலைப்பைச் சேமிப்
 shotPageConfirmDelete = இந்தத் திரைப்பிடிப்பை நிரந்தரமாக அழித்திடவா?
 shotPageShareButton =
     .title = பகிர்
-shotPageCopy = நகலெடு
 shotPageCopied = நகலெடுக்கப்பட்டது
 shotPageShareFacebook =
     .title = முகநூலுக்கு பகிர்க
@@ -99,15 +104,10 @@ shotPageExpiredMessage = இந்த பிடிப்பு காலாவ�
 shotPageExpiredMessageDetails = இது உண்மையில் உருவாக்கப்பட்ட பக்கம் இதோ:
 shotPageDeleteButton =
     .title = இந்த பிடிப்பை அழித்திடு
-shotPageAbuseButton =
-    .title = துன்புறுத்தல், எரிதம், அல்லது பிற பிரச்சினைகளுக்காக இந்த பிடிப்பைப் புகார்செய்
 shotPageDownloadShot =
     .title = பதிவிறக்கம்
 shotPageEditButton =
     .title = இந்தப் படத்தைத் திருத்து
-shotPageDownload = பதிவிறக்கம்
-shotPageScreenshotsDescription = திரைப்பிடிப்புகள் எளிமையாகியது. பயர்பாஃசை விட்டு விலகாமல் பிடியுங்கள், சேமியுங்கள் பகிருங்கள்.
-shotPageUpsellFirefox = இப்போதே பயர்பாஃசைப் பெறுக
 shotPageDMCAMessage = மூன்றாம் தரப்பு அறிவுசார் சொத்துரிமை கோரலால் இந்த பிடிப்பு நீக்கப்பட்டது.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = கூடுதல் விவரங்களைக் கோர { $dmca } என்பதற்கு மின்னஞ்சல் செய்யுங்கள்.
@@ -134,7 +134,7 @@ shotPageDoesNotExpire = காலாவதியாகாது
 # Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageTimeExpiresIn = காலாவதியாகிறது <timediff></timediff>
 # Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageTimeExpired = காலாவதியானது <timediff></timediff> 
+shotPageTimeExpired = காலாவதியானது <timediff></timediff>
 timeDiffJustNow = சற்று முன்
 timeDiffMinutesAgo =
     { $number ->
@@ -162,10 +162,18 @@ timeDiffFutureDays =
        *[one] நாளை
     }
 
+## Shot Page New Feature Promotion Dialog.
+
+
 ## Annotations
 
 annotationPenButton =
     .title = பேனா
+
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
 
 ## Settings Page
 
@@ -174,8 +182,6 @@ annotationPenButton =
 
 shotIndexPageSearchPlaceholder =
     .placeholder = எனது பிடிப்பைத் தேடு
-shotIndexPageSearchButton =
-    .title = தேடு
 shotIndexPageNoShotsMessage = சேமித்த பிடிப்புகள் இல்லை.
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageClearSearchButton =
@@ -187,6 +193,9 @@ shotIndexPageNextPage =
     .title = அடுத்த பக்கம்
 
 ## Delete Confirmation Dialog
+
+
+## Export page
 
 
 ## Metrics page
