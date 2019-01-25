@@ -8,7 +8,6 @@ gMyShots = Mine skærmbilleder
 gHomeLink = Start
 gNoShots =
     .alt = Ingen skærmbilleder fundet
-gScreenshotsDescription = Skærmbilleder helt enkelt. Tag, gem og del skærmbilleder uden at forlade Firefox.
 
 ## Header
 
@@ -71,11 +70,7 @@ homePageCaptureRegion = Gem et område
 homePageCaptureRegionDescription = Klik og træk for at vælge det område, du vil tage et skærmbillede af. Eller hold musen over et element på siden og klik. Vælg "Gem" for at kunne tilgå dit skærmbillede på nettet eller knappen med pil nedad for at hente billedet ned på din computer.
 homePageCapturePage = Gem en side
 homePageCapturePageDescription = Brug knapperne i højre øverste hjørne for at tage skærmbilleder af hele sider. Knappen "Gem synligt område" vil tage et skærmbillede af det område, du kan se uden at scrolle - mens "Gem hele siden" vil gemme et skærmbillede af alt på siden.
-homePageSaveShare = Gem og del
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Tag et godt skærmbillede. Gem det så online i Screenshots-arkivet, mens Firefox gemmer linket til skærmbilledet i din udklipsholder, så du nemt kan dele det. Skærmbilleder i arkivet udløber automatisk efter to uger, men du kan slette dem når som helst eller vælge at gemme dem i længere tid.
-homePageSignInTitle = Få adgang til dine skærmbilleder overalt
-homePageSignInDescription = Log ind på Screenshots med din Firefox-konto for at få adgang til dine skærmbilleder overalt, hvor du bruger Firefox. En ekstra bonus: Du kan også gemme dine favoritter for evigt.
+homePageDownloadCopy = Hent eller kopier
 homePageLegalLink = Juridisk information
 homePagePrivacyLink = Privatliv
 homePageTermsLink = Betingelser
@@ -146,7 +141,6 @@ shotPageBackToHomeButton =
     .title = Startside
 shotPageAllShotsButton =
     .title = Alle skærmbilleder
-shotPageScreenshotsDescription = Skærmbilleder helt enkelt. Tag, gem og del skærmbilleder uden af forlade Firefox.
 shotPageDMCAMessage = Dette skærmbillede er ikke længere tilgængeligt, fordi tredjepart har gjort krav på den intellektuelle ejendomsret.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Send en mail til { $dmca } for at få yderligere oplysninger.
@@ -344,6 +338,9 @@ shotDeleteCancel = Fortryd
     .title = Fortryd
 shotDeleteConfirm = Slet
     .title = Slet
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
