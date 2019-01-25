@@ -8,6 +8,7 @@ gMyShots = Mes captures d’écran
 gHomeLink = Accueil
 gNoShots =
     .alt = Aucune capture trouvée
+gScreenshotsDescriptionServerless = Les captures d’écran en toute simplicité. Réalisez et téléchargez des captures d’écran sans quitter Firefox.
 
 ## Header
 
@@ -70,6 +71,7 @@ homePageCaptureRegion = Capturez une zone de la page
 homePageCaptureRegionDescription = Sélectionnez une zone de la page par cliquer-glisser ou bien survolez un élément et Screenshots sélectionnera la zone pour vous. Lorsque cela vous convient, cliquez sur « Enregistrer » pour accéder à votre capture d’écran en ligne ou sur le bouton représentant une flèche vers le bas pour la télécharger sur votre ordinateur.
 homePageCapturePage = Capturez une page
 homePageCapturePageDescription = Utilisez les boutons en haut à droite pour capturer des pages complètes. Le bouton « Capturer la zone visible » permet de capturer la zone que vous pouvez afficher sans faire défiler la page, et le bouton « Capturer la page complète » capturera l’ensemble de la page.
+homePageDownloadCopy = Télécharger ou copier
 homePageLegalLink = Mentions légales
 homePagePrivacyLink = Confidentialité
 homePageTermsLink = Conditions d’utilisation
