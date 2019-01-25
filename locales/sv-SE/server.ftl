@@ -20,6 +20,7 @@ screenshotsLogo =
     .title = Startsida för Screenshots
 bannerSignIn = <a>Logga in eller registrera dig</a> för att komma åt dina bilder på enheter och spara dina favoriter för alltid.
 bannerUpsell = { gScreenshotsDescription } <a>Hämta Firefox nu</a>
+shutdownWarning = <b>Sparade skärmbilder upphör snart.</b>Från och med juni erbjuder Screenshots inte längre lagring online. Vill du behålla bilder från ditt bibliotek? <a>Ladda ner dem till din dator.</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Vad är nytt med Firefox Screenshots?
