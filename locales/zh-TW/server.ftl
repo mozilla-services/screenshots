@@ -20,6 +20,7 @@ screenshotsLogo =
     .title = Screenshots 首頁
 bannerSignIn = 請<a>註冊或登入</a>，即可在不同裝置間存取您的擷圖，並永久保存最愛的圖片。
 bannerUpsell = { gScreenshotsDescription } <a>立即下載 Firefox</a>
+shutdownWarning = <b>將結束儲存擷圖到雲端的功能</b>六月起，Screenshots 將不再提供雲端儲存空間。想把圖片存下來？<a>可以下載到您的電腦上。</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Firefox Screenshots 有什麼新鮮事？
