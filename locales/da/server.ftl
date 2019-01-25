@@ -8,6 +8,7 @@ gMyShots = Mine skærmbilleder
 gHomeLink = Start
 gNoShots =
     .alt = Ingen skærmbilleder fundet
+gScreenshotsDescriptionServerless = Skærmbilleder på den nemme måde. Tag og hent skærmbilleder uden at forlade Firefox.
 
 ## Header
 
@@ -71,6 +72,8 @@ homePageCaptureRegionDescription = Klik og træk for at vælge det område, du v
 homePageCapturePage = Gem en side
 homePageCapturePageDescription = Brug knapperne i højre øverste hjørne for at tage skærmbilleder af hele sider. Knappen "Gem synligt område" vil tage et skærmbillede af det område, du kan se uden at scrolle - mens "Gem hele siden" vil gemme et skærmbillede af alt på siden.
 homePageDownloadCopy = Hent eller kopier
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Tag et godt skærmbillede. Med Screenshots kan du hente et skærmbillede af din markering eller kopiere det til din udklipsholder.
 homePageLegalLink = Juridisk information
 homePagePrivacyLink = Privatliv
 homePageTermsLink = Betingelser
@@ -141,6 +144,7 @@ shotPageBackToHomeButton =
     .title = Startside
 shotPageAllShotsButton =
     .title = Alle skærmbilleder
+shotPageScreenshotsDescriptionServerless = Skærmbilleder på den nemme måde. Tag og hent skærmbilleder uden at forlade Firefox.
 shotPageDMCAMessage = Dette skærmbillede er ikke længere tilgængeligt, fordi tredjepart har gjort krav på den intellektuelle ejendomsret.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Send en mail til { $dmca } for at få yderligere oplysninger.
@@ -341,6 +345,8 @@ shotDeleteConfirm = Slet
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Sådan eksporterer du: Klik på menuen Filer > Gem side som…, og du kan så finde dine skærmbilleder i mappen { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
