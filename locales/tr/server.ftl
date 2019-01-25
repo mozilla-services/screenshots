@@ -20,6 +20,7 @@ screenshotsLogo =
     .title = Screenshots ana sayfası
 bannerSignIn = Görüntülerinize tüm cihazlarınızdan ulaşmak ve favorilerinizi kalıcı olarak saklamak için <a>giriş yapın veya kaydolun</a>.
 bannerUpsell = { gScreenshotsDescription } <a>Firefox’u indir</a>
+shutdownWarning = <b>Kayıtlı ekran görüntüleriniz bir süre sonra silinecek.</b> Screenshots, Haziran'dan itibaren çevrimiçi depolama olanağı sunmayacak. Arşivinizdeki görüntüleri saklamak istiyorsanız <a>onları bilgisayarınıza indirin</a>.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Firefox Screenshots’taki yenilikler neler?
