@@ -72,6 +72,8 @@ homePageCaptureRegionDescription = Klik jeung gusur pikeun milih kotakan anu ré
 homePageCapturePage = Téwak Kaca
 homePageCapturePageDescription = Paké tombol di luhur lebah katuhu pikeun néwak sakabéh kaca. Tombol Teundeun Sakatempo bakal néwak eusi kaca anu harita katempo, anapon Teundeun Kaca Lengkep bakal néwak sakur anu aya dina éta kaca.
 homePageDownloadCopy = Unduh atawa Tiron
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Téwak sing hadé. Hasil Screenshots bisa diunduh sapamilih atawa ditiron langsung kana papan klip.
 homePageLegalLink = Légal
 homePagePrivacyLink = Privasi
 homePageTermsLink = Katangtuan
@@ -338,6 +340,8 @@ shotDeleteConfirm = Pupus
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Pikeun ékspor: paké File > Save Page As… anjeun bakal manggihan téwakan layar anjeun dina folder { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
