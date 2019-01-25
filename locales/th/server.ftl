@@ -8,7 +8,6 @@ gMyShots = ภาพหน้าจอของฉัน
 gHomeLink = หน้าแรก
 gNoShots =
     .alt = ไม่พบภาพหน้าจอ
-gScreenshotsDescription = ทำให้การจับภาพหน้าจอเป็นไปอย่างง่ายดาย จับภาพ บันทึก และแบ่งปันภาพหน้าจอโดยไม่ต้องออกจาก Firefox
 
 ## Header
 
@@ -16,7 +15,16 @@ buttonSettings =
     .title = การตั้งค่า
 buttonSignIn =
     .title = ลงชื่อเข้า
+screenshotsLogo =
+    .title = หน้าแรก Screenshots
 bannerUpsell = { gScreenshotsDescription } <a>รับ Firefox ตอนนี้</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = มีอะไรใหม่ใน Firefox Screenshots?
+onboardingPromoDismissButton = ยกเลิก
+    .title = ยกเลิก
+onboardingPromoSigninButton = ลงชื่อเข้า
+    .title = ลงชื่อเข้า
 
 ## Footer
 
@@ -24,6 +32,8 @@ bannerUpsell = { gScreenshotsDescription } <a>รับ Firefox ตอนนี�
 footerLinkMozilla = Mozilla
 footerLinkTerms = ข้อกำหนด
 footerLinkPrivacy = ประกาศความเป็นส่วนตัว
+footerReportShot = รายงานช็อต
+    .title = รายงานช็อตนี้เมื่อพบการไปใช้ในทางที่ผิด ขยะไปรษณีย์อิเล็กทรอนิกส์ หรือปัญหาอื่น ๆ
 footerLinkFaqs = คำถามที่พบบ่อย
 footerLinkDMCA = รายงานการละเมิดทรัพย์สินทางปัญญา
 footerLinkDiscourse = เสนอข้อคิดเห็น
@@ -51,8 +61,7 @@ homePageHowScreenshotsWorks = Firefox Screenshots ทำงานอย่าง
 homePageGetStartedTitle = เริ่มต้น
 homePageCaptureRegion = จับภาพเป็นบริเวณ
 homePageCapturePage = จับภาพหน้า
-homePageSaveShare = บันทึกและแบ่งปัน
-homePageSignInTitle = ภาพหน้าจอของคุณในทุกที่
+homePageDownloadCopy = ดาวน์โหลดหรือคัดลอก
 homePageLegalLink = ข้อกฎหมาย
 homePagePrivacyLink = ความเป็นส่วนตัว
 homePageTermsLink = ข้อกำหนด
@@ -81,6 +90,9 @@ shotPageAlertErrorDeletingShot = เกิดข้อผิดพลาดใ�
 shotPageAlertErrorUpdatingTitle = เกิดข้อผิดพลาดในการบันทึกชื่อเรื่อง
 shotPageShareButton =
     .title = แบ่งปัน
+shotPageCopyButton =
+    .title = คัดลอกรูปภาพไปยังคลิปบอร์ด
+shotPageCopyActionLabel = คัดลอก
 shotPageCopied = คัดลอกแล้ว
 shotPageShareFacebook =
     .title = แบ่งปันบน Facebook
@@ -103,6 +115,12 @@ shotPageDownloadShot =
     .title = ดาวน์โหลด
 shotPageEditButton =
     .title = แก้ไขภาพนี้
+shotPagefavoriteButton =
+    .title = คั่นภาพนี้
+shotPageBackToHomeButton =
+    .title = หน้าแรก
+shotPageAllShotsButton =
+    .title = ช็อตทั้งหมด
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = โปรดอีเมลมายัง { $dmca } เพื่อขอข้อมูลเพิ่มเติม
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
@@ -120,6 +138,10 @@ shotPageKeepOneMonth = 1 เดือน
 shotPageSaveExpiration = บันทึก
 shotPageCancelExpiration = ยกเลิก
 shotPageDoesNotExpire = ไม่หมดอายุ
+# Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageTimeExpiresIn = หมดอายุ <timediff> </timediff>
+# Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageTimeExpired = หมดอายุแล้ว <timediff></timediff>
 timeDiffJustNow = เมื่อกี้นี้
 timeDiffMinutesAgo =
     { $number ->
@@ -195,11 +217,28 @@ annotationColorSeaGreen =
     .title = เขียวน้ำทะเล
 annotationColorGrey =
     .title = เทา
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = ขนาดตัวอักษร
+# Values shown in text size selection dropdown
+textSizeSmall = เล็ก
+textSizeMedium = ปานกลาง
+textSizeLarge = ใหญ่
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = ยืนยัน
+    .title = ยืนยัน
+textToolCancelButton = ยกเลิก
+    .title = ยกเลิก
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = สวัสดี
 
 ## The following are the title and message for an error displayed as a Firefox
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = มีบางอย่างผิดพลาด
+copyImageErrorMessage = ไม่สามารถคัดลอกช็อตของคุณไปยังคลิปบอร์ด
 
 ## Settings Page
 
@@ -209,6 +248,7 @@ settingsGuestAccountMessage = บัญชีผู้มาเยือน
 settingsSignInButton = ลงชื่อเข้า
     .title = ลงชื่อเข้า
 SettingsPageHeader = การตั้งค่า Firefox Screenshots
+settingsFirefoxAccountSubHeader = Firefox Account
 settingsClosePreferences =
     .title = ปิดค่ากำหนด
 
@@ -225,6 +265,8 @@ shotIndexPageNoShotsMessage = ไม่มีภาพหน้าจอที�
 shotIndexPageNoShotsInvitation = เริ่มจับภาพหน้าจอ
 shotIndexPageLookingForShots = กำลังมองหาภาพหน้าจอของคุณ…
 shotIndexPageNoSearchResultsIntro = หืมม
+shotIndexPageMyShotsButton =
+    .title = ภาพหน้าจอของฉัน
 shotIndexPageClearSearchButton =
     .title = ล้างการค้นหา
 shotIndexPageConfirmShotDelete = ลบภาพหน้าจอนี้?
@@ -239,6 +281,9 @@ shotDeleteCancel = ยกเลิก
     .title = ยกเลิก
 shotDeleteConfirm = ลบ
     .title = ลบ
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
