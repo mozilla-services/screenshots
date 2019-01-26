@@ -20,6 +20,7 @@ screenshotsLogo =
     .title = Главная страница Screenshots
 bannerSignIn = <a>Войдите или зарегистрируйтесь</a> для получения доступа к вашим снимкам с различных устройств и навсегда сохраните необходимые.
 bannerUpsell = { gScreenshotsDescription } <a>Загрузить Firefox</a>
+shutdownWarning = <b>Срок хранения сохранённых снимков экрана скоро истекает.</b> Начиная с июня, Screenshots более не будет предлагать использовать онлайн-хранилище. Хотите сохранить снимки из своей библиотеки? <a> Загрузите их на свой компьютер.</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Что нового в Firefox Screenshots?
