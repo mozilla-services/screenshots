@@ -72,6 +72,7 @@ homePageCaptureRegion = Uhvatite dio stranice
 homePageCaptureRegionDescription = Kliknite i vucite kako biste odabrali područje koje želite snimiti. Ili samo pređite mišem i kliknite — snimke zaslona će odabrati područje za vas. Sviđa vam se što vidite? Odaberite Spremi kako biste pristupili svojoj snimci na internetu ili gumb sa strelicom prema dolje kako biste je preuzeli na svoje računalo.
 homePageCapturePage = Snimi stranicu
 homePageCapturePageDescription = Koristite gumb gore desno kako biste snimili cijelu stranicu. Gumb Spremi vidljivo će snimiti područje koje možete vidjeti bez pomicanja stranice, a Spremi cijelu stranicu će snimiti sve na stranici.
+homePageDownloadCopy = Preuzmi ili kopiraj
 homePageLegalLink = Pravne informacije
 homePagePrivacyLink = Privatnost
 homePageTermsLink = Uvjeti
