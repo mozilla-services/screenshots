@@ -8,7 +8,7 @@ gMyShots = Mé snímky
 gHomeLink = Domů
 gNoShots =
     .alt = Žádné snímky nenalezeny
-gScreenshotsDescription = Jednoduchá tvorba snímků webových stránek. Vytvářejte, ukládejte i sdílejte přímo z Firefoxu.
+gScreenshotsDescriptionServerless = Snímky stránek jdou i jednoduše. Zachyťte a stahuje obsah stránek přímo ve Firefoxu.
 
 ## Header
 
@@ -20,6 +20,7 @@ screenshotsLogo =
     .title = Domovská stránka
 bannerSignIn = Pro přístup ke snímkům z jiných zařízení nebo jejich ukládání se prosím <a>přihlaste nebo zaregistrujte</a>.
 bannerUpsell = { gScreenshotsDescription } <a>Získat Firefox</a>
+shutdownWarning = <b>Uloženým snímkům brzy vyprší platnost.</b> Od července už služba Screenshots nebude nabízet možnost nahrávat snímky na internet. Své dosud nahrané snímky si můžete <a>stáhnout na svůj počítač</a>.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Co je nového ve Firefox Screenshots?
@@ -71,11 +72,9 @@ homePageCaptureRegion = Vytvořte snímek oblasti
 homePageCaptureRegionDescription = Stiskem tlačítka myši a tahem vyberete oblast stránky. A nebo jen najeďte myší — doplněk Screenshots pro vás oblast vybere sám. Líbí se vám to? Klikněte na tlačítko Uložit pro nahrání snímku na internet, nebo na šipku pro jeho stažené do počítače.
 homePageCapturePage = Vytvořte snímek celé stránky
 homePageCapturePageDescription = Použijte tlačítka v pravém horním rohu pro zachycení celé stránky. Tlačítko Uložit viditelnou oblast vybere část stránky, která se vejde na obrazovku a právě ji vidíte, kdežto Uložit celou stránku zachytí i to, co se na obrazovku nevešlo.
-homePageSaveShare = Uložte a sdílejte
+homePageDownloadCopy = Stáhnout nebo zkopírovat
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Pořiďte snímek a uložte si jej do své online knihovny. Firefox hned zkopíruje do vaší schránky odkaz pro snadné sdílení. Snímky v knihovně jsou automaticky mazány po dvou týdnech, ale můžete je smazat dříve nebo jejich platnost naopak prodloužit.
-homePageSignInTitle = Vaše snímky všude s vámi
-homePageSignInDescription = Pro přístup ke snímkům z jiných zařízení nebo jejich trvalé ukládání se prosím přihlaste ke službě Screenshots svým účtem Firefoxu.
+homePageDownloadCopyDescription = Funkce screenshots umožňuje zachycení a stažení nebo zkopírování výběru webové stránky rovnou do schránky.
 homePageLegalLink = Právní informace
 homePagePrivacyLink = Soukromí
 homePageTermsLink = Podmínky
@@ -146,7 +145,7 @@ shotPageBackToHomeButton =
     .title = Domovská stránka
 shotPageAllShotsButton =
     .title = Všechny snímky
-shotPageScreenshotsDescription = Jednoduchá tvorba snímků webových stránek. Vytvářejte, ukládejte i sdílejte přímo z Firefoxu.
+shotPageScreenshotsDescriptionServerless = Snímky stránek jdou i jednoduše. Zachyťte a stahuje obsah stránek přímo ve Firefoxu.
 shotPageDMCAMessage = Tento snímek již není dostupný z důvodu uplatnění nároku na duševní vlastnictví třetí strany.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Další informace si můžete vyžádat e-mailem na { $dmca }.
@@ -350,6 +349,11 @@ shotDeleteCancel = Zrušit
     .title = Zrušit
 shotDeleteConfirm = Smazat
     .title = Smazat
+
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Pro exportování klepněte na Soubor > Uložit stránku jako… a poté najdete své snímky ve složce { $folder }.
 
 ## Metrics page
 ## All metrics strings are optional for translation
