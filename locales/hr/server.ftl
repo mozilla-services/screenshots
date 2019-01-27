@@ -8,7 +8,7 @@ gMyShots = Moje snimke
 gHomeLink = Početna
 gNoShots =
     .alt = Snimke nisu pronađene
-gScreenshotsDescription = Snimite zaslon jednostavno. Snimite, spremite i dijelite snimke zaslona bez da napustite Firefox.
+gScreenshotsDescriptionServerless = Snimke zaslona pojednostavljene. Uhvatite i preuzmite snimke zaslona bez da napustite Firefox.
 
 ## Header
 
@@ -16,6 +16,21 @@ buttonSettings =
     .title = Postavke
 buttonSignIn =
     .title = Prijava
+screenshotsLogo =
+    .title = Snimke zaslona početna
+bannerSignIn = <a>Prijavite se ili registrirajte</a> kako biste imali pristup svojim snimkama sa svih uređaja i spremili vaše omiljene zauvijek.
+bannerUpsell = { gScreenshotsDescription }<a>Preuzmite Fiirefox sada</a>
+shutdownWarning = <b>Spremljene snimke uskoro istječu.</b> Od lipnja, snimke zaslona neće više nuditi pohranu na mreži. Želite li zadržati svoju biblioteku? <a>Preuzmite snimke na svoje računalo.</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Što je novo u Firefox snimkama zaslona?
+onboardingPromoMessage = Prijavite se u snimke zaslona s Firefox računom i učinite više:
+onboardingPromoMessageListItem1 = Pristupite svojoj biblioteci na svim svojim uređajima
+onboardingPromoMessageListItem2 = Čuvajte svoje omiljene snimke zauvijek
+onboardingPromoDismissButton = Odbaci
+    .title = Odbaci
+onboardingPromoSigninButton = Prijavi se
+    .title = Prijavi se
 
 ## Footer
 
@@ -23,6 +38,8 @@ buttonSignIn =
 footerLinkMozilla = Mozilla
 footerLinkTerms = Uvjeti
 footerLinkPrivacy = Politika privatnost
+footerReportShot = Prijavi snimku
+    .title = Prijavi ovu snimku zbog kršenja pravila, neželjene pošte ili drugih problema
 footerLinkFaqs = ČPP
 footerLinkDMCA = Prijavite kršenje vlasničkih prava
 footerLinkDiscourse = Pošaljite nam povratnu informaciju
@@ -49,15 +66,12 @@ homePageDownloadFirefoxSubTitle = Besplatno preuzimanje
 homePageHowScreenshotsWorks = Kako rade Firefox Screenshots
 homePageGetStartedTitle = Započnite
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Pronađite novu ikonu za snimke zaslona na vašoj alatnoj traci. Odaberite ju i izbornik za snimke zaslona će se pojaviti na vrhu prozora pretraživača.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Odaberite ikonu snimke ekrana iz izbornika radnji stranice u adresnoj traci i izbornik snimke ekrana će se pojaviti povrh prozora vašeg pretraživača.
 homePageCaptureRegion = Uhvatite dio stranice
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Kliknite i vucite kako biste odabrali područje koje želite snimiti. Ili samo pređite mišem i kliknite — snimke zaslona će odabrati područje za vas. Sviđa vam se što vidite? Odaberite Spremi kako biste pristupili svojoj snimci na internetu ili gumb sa strelicom prema dolje kako biste je preuzeli na svoje računalo.
 homePageCapturePage = Snimi stranicu
 homePageCapturePageDescription = Koristite gumb gore desno kako biste snimili cijelu stranicu. Gumb Spremi vidljivo će snimiti područje koje možete vidjeti bez pomicanja stranice, a Spremi cijelu stranicu će snimiti sve na stranici.
-homePageSaveShare = Spremi i dijeli
 homePageLegalLink = Pravne informacije
 homePagePrivacyLink = Privatnost
 homePageTermsLink = Uvjeti
@@ -121,7 +135,6 @@ shotPageEditButton =
     .title = Uredi ovu sliku
 shotPageBackToHomeButton =
     .title = Početna stranica
-shotPageScreenshotsDescription = Snimite zaslon jednostavno. Snimite, spremite i dijelite snimke zaslona bez da napustite Firefox.
 shotPageDMCAMessage = Ova snimka više nije dostupna zbog zahtjeva za intelektualnim vlasništvom treće strane.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Pošaljite e-poštu na { $dmca } kako biste zatražili više informacija.
@@ -280,6 +293,9 @@ shotDeleteCancel = Otkaži
     .title = Otkaži
 shotDeleteConfirm = Obriši
     .title = Obriši
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
