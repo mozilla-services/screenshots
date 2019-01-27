@@ -73,6 +73,8 @@ homePageCaptureRegionDescription = Kliknite i vucite kako biste odabrali područ
 homePageCapturePage = Snimi stranicu
 homePageCapturePageDescription = Koristite gumb gore desno kako biste snimili cijelu stranicu. Gumb Spremi vidljivo će snimiti područje koje možete vidjeti bez pomicanja stranice, a Spremi cijelu stranicu će snimiti sve na stranici.
 homePageDownloadCopy = Preuzmi ili kopiraj
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Iskoristi svoju najbolju priliku. Snimke zaslona vam omogućuju da preuzmete vaš odabir ili kopirate ga u vaš međuspremnik.
 homePageLegalLink = Pravne informacije
 homePagePrivacyLink = Privatnost
 homePageTermsLink = Uvjeti
@@ -81,6 +83,8 @@ homePageCookiesLink = Kolačići
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Ukloni sve podatke
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = Morati imati Firefox snimke zaslona instalirane ili biti prijavljeni u vaš Firefox račun kako biste obrisali svoj račun.
 leavePageErrorGeneric = Došlo je do greške
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Trajno ćete obrisati sve Firefox Screenshot podatke.
@@ -106,6 +110,7 @@ shotPageShareButton =
     .title = Dijeli
 shotPageCopyButton =
     .title = Kopiraj sliku u međuspremnik
+shotPageCopyActionLabel = Kopiraj
 shotPageCopied = Kopirano
 shotPageShareFacebook =
     .title = Dijeli na Facebooku
@@ -134,8 +139,13 @@ shotPageDownloadShot =
     .title = Preuzimanje
 shotPageEditButton =
     .title = Uredi ovu sliku
+shotPagefavoriteButton =
+    .title = Označite snimak omiljenim
 shotPageBackToHomeButton =
     .title = Početna stranica
+shotPageAllShotsButton =
+    .title = Sve snimke
+shotPageScreenshotsDescriptionServerless = Snimke zaslona pojednostavljene. Snimite i preuzmite snimke zaslona bez napuštanja Firefoxa.
 shotPageDMCAMessage = Ova snimka više nije dostupna zbog zahtjeva za intelektualnim vlasništvom treće strane.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Pošaljite e-poštu na { $dmca } kako biste zatražili više informacija.
@@ -205,6 +215,12 @@ errorThirdPartyCookiesEnabled = Ako ste napravili snimak ekrana i ne možete ga 
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Na znanje!
+promoMessage = Nadograđeni alati za uređivanje omogućuju vam da obrežete, istaknete i dodate tekst na vaše snimke.
+promoLink = Pokušajte
+promoCloseButton =
+    .title = Zatvorite obavijest
 
 ## Annotations
 
@@ -216,11 +232,17 @@ annotationUndoButton =
     .title = Poništi
 annotationRedoButton =
     .title = Ponovi
+annotationTextButton =
+    .title = Dodaj tekst
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Očisti
 annotationCropButton =
     .title = Izreži
+annotationSaveEditButton = Spremi
+    .title = Spremi uređivanje
+annotationCancelEditButton = Odustani
+    .title = Odustani od uređivanja
 annotationCropConfirmButton = Potvrdi
     .title = Potvrdi odabir
 annotationCropCancelButton = Otkaži
@@ -239,8 +261,13 @@ annotationColorYellow =
     .title = Žuta
 annotationColorPurple =
     .title = Ljubičasta
+annotationColorSeaGreen =
+    .title = Morsko zelena
 annotationColorGrey =
     .title = Siva
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Veličina teksta
 # Values shown in text size selection dropdown
 textSizeSmall = Mala
 textSizeMedium = Srednja
@@ -250,16 +277,31 @@ textToolConfirmButton = Potvrdi
     .title = Potvrdi
 textToolCancelButton = Otkaži
     .title = Otkaži
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Pozdrav
 
 ## The following are the title and message for an error displayed as a Firefox
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = Nešto je pošlo po zlu
+copyImageErrorMessage = Nije moguće kopirati vašu snimku u međuspremnik.
 
 ## Settings Page
 
+settingsDisconnectButton = Prekini vezu
+    .title = Prekini vezu
+settingsGuestAccountMessage = Gost račun
 settingsSignInButton = Prijava
     .title = Prijava
+SettingsPageHeader = Postavke Firefox snimki zaslona
+settingsFirefoxAccountSubHeader = Firefox račun
+settingsClosePreferences =
+    .title = Zatvori postavke
+settingsFxaDisconnectAlertMessage = Jeste li sigurni da želite prekinuti vezu ovog uređaja s Firefox računom?
+settingsFxaDisconnectDescription = Ukoliko se odjavite, trebat ćete se ponovno prijaviti kako biste povratili pristup svojim snimkama zaslona.
+settingsFxaConnectDescription = Možete se prijaviti kako biste pristupili snimkama zaslona na više uređaja.
 
 ## Shotindex page
 
@@ -287,9 +329,22 @@ shotIndexPagePreviousPage =
     .title = Prethodna stranica
 shotIndexPageNextPage =
     .title = Sljedeća stranica
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Ovo nije omiljeni snimak i isteći će
+# This is the tooltip for a "heart" symbol in the upper top corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Ovo je omiljeni snimak i ne istječe
+shotIndexSyncedShot =
+    .title = Snimak snimljen na drugom uređaju
+shotIndexAlertErrorFavoriteShot = Greška pri ažuriranju statusa omiljenih snimaka
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = Jeste li sigurni da želite obrisati ovaj snimak?
 shotDeleteCancel = Otkaži
     .title = Otkaži
 shotDeleteConfirm = Obriši
@@ -297,6 +352,8 @@ shotDeleteConfirm = Obriši
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Za izvoz: koristite Datoteka > Spremi stranicu kao… i pronaći ćete svoje snimke u mapi { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
