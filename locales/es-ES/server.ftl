@@ -20,6 +20,7 @@ screenshotsLogo =
     .title = Página de inicio de Screenshots
 bannerSignIn = <a>Inicia sesión o regístrate</a> para acceder a tus capturas en todos tus dispositivos y guardar tus favoritas para siempre.
 bannerUpsell = { gScreenshotsDescription } <a>Obtener Firefox ahora</a>
+shutdownWarning = <b>Las capturas de pantalla guardadas serán eliminadas en breve.</b> A partir de junio, Screenshots ya no ofrecerá almacenamiento en línea. ¿Quieres conservar las capturas de tu biblioteca? <a>Descárgalas a tu ordenador.</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Novedades de Firefox Screenshots
