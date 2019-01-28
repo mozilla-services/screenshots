@@ -8,7 +8,6 @@ gMyShots = Omat kaappaukset
 gHomeLink = Etusivu
 gNoShots =
     .alt = Kaappauksia ei löytynyt
-gScreenshotsDescription = Kuvakaappaukset helposti. Ota, tallenna ja jaa kuvakaappauksia poistumatta Firefoxista.
 
 ## Header
 
@@ -62,7 +61,7 @@ homePageCaptureRegion = Kaappaa alue
 homePageCaptureRegionDescription = Valitse kaapattava alue napsauttamalla ja vetämällä. Tai pidä hiirtä sen päällä ja napsauta – Screenshots valitsee alueen puolestasi. PIdätkö näkemästäsi? Valitse Tallenna, niin voit katsella kuvakaappaustasi verkossa, tai alas osoittava nuoli, niin voit ladata sen tietokoneellesi.
 homePageCapturePage = Kaappaa sivu
 homePageCapturePageDescription = Kaappaa kokonaisia sivuja käyttämällä yläoikean kulman painikkeita. Tallenna näkyvä alue -painike kaappaa alueen, jonka voit nähdä vierittämättä sivua, ja Tallenna koko sivu -painike tallentaa kaiken sivulla olevan.
-homePageSaveShare = Tallenna ja jaa
+homePageDownloadCopy = Lataa tai kopioi
 homePageLegalLink = Lakiteksti
 homePagePrivacyLink = Tietosuoja
 homePageTermsLink = Käyttöehdot
@@ -131,7 +130,6 @@ shotPageBackToHomeButton =
     .title = Etusivu
 shotPageAllShotsButton =
     .title = Kaikki kaappaukset
-shotPageScreenshotsDescription = Kuvakaappaukset helposti. Ota, tallenna ja jaa kuvakaappauksia poistumatta Firefoxista.
 shotPageDMCAMessage = Tämä kaappaus ei ole enää saatavissa, koska kolmas osapuoli teki immateriaalioikeusvaatimuksen.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Pyydä lisätietoja lähettämällä sähköpostia osoitteeseen { $dmca }.
@@ -326,6 +324,9 @@ shotDeleteCancel = Peruuta
     .title = Peruuta
 shotDeleteConfirm = Poista
     .title = Poista
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
