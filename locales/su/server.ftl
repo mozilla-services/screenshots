@@ -20,6 +20,7 @@ screenshotsLogo =
     .title = Tepas Screenshots
 bannerSignIn = <a>Asup atawa daptar</a> pikeun muka téwakan ti sakur gawai sarta teundeun anu petinganana salilana.
 bannerUpsell = { gScreenshotsDescription } <a>Cokot Firefox ayeuna</a>
+shutdownWarning = <b>Téwakan layar anu diteundeun sakeudeung deui kadaluwarsa.</b> Ti Juni, Screenshots moal nawaran deui teundeunan onlén. Rék nyimpen téwakan ti pabukon anjeun? <a>Unduh kana komputer.</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Naon nu anyar ti Firefox Screenshots?
@@ -368,6 +369,7 @@ metricsPageUserShotsQueryDescription = Jumlah pamaké anu boga N téwakan
 metricsPageUserShotsQueryCount = Jumlah pamaké
 metricsPageUserShotsQueryShots = Jumlah kira-kira téwakan aktip (teu kadaluwarsa)
 metricsPageRetentionQueryTitle = Reténsi Minggon
+metricsPageRetentionQueryDescription = Jumlah poé ti téwakan munggaran nepi ka anu pang anyarna, dukumpulkeun mingguan
 metricsPageRetentionQueryUsers = Jumlah pamaké
 metricsPageRetentionQueryDays = Poé ti munggaran nyieun téwakan nepi ka nu pang anyarna
 metricsPageRetentionQueryFirstWeek = Minggu munggaran pamaké nyieun téwakan
