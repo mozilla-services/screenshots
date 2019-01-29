@@ -1,6 +1,17 @@
+## Version 37.1.0
+
+A Firefox release.
+
+* Cache startup server check. This applies to the migration code that runs on startup. Fixes [#5332](https://github.com/mozilla-services/screenshots/issues/5332) [9f9b04a](https://github.com/mozilla-services/screenshots/commit/9f9b04a)
+* Show context menu when there's a text selection ([#5334](https://github.com/mozilla-services/screenshots/issues/5334)). Fixes [#5330](https://github.com/mozilla-services/screenshots/issues/5330) [ce5db49](https://github.com/mozilla-services/screenshots/commit/ce5db49)
+* Enable pageAction on reader mode ([#5282](https://github.com/mozilla-services/screenshots/issues/5282)). Fixes [#5235](https://github.com/mozilla-services/screenshots/issues/5235) [242f4a2](https://github.com/mozilla-services/screenshots/commit/242f4a2)
+* Add additional requestIdleCallback wait around migration server check ([#5335](https://github.com/mozilla-services/screenshots/issues/5335)). Fixes [#5333](https://github.com/mozilla-services/screenshots/issues/5333) [6506b2b](https://github.com/mozilla-services/screenshots/commit/6506b2b)
+* - Screenshots keyboard shortcut.
+  Just go with ctrl + shift + s, which will be command + shift + s on mac. Fixes [#5089](https://github.com/mozilla-services/screenshots/issues/5089) [dc35fa0](https://github.com/mozilla-services/screenshots/commit/dc35fa0)
+
 ## Version 37.0.0
 
-This is a Firefox release. A server release to go with this will follow shortly.
+This is a Firefox release. A server release to go with this will follow shortly. Note that this didn't get into Firefox, and is followed up with 37.1.0.
 
 ### Add-on changes
 
