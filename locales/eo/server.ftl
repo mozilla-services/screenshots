@@ -8,7 +8,6 @@ gMyShots = Miaj ekrankopioj
 gHomeLink = Eka paĝo
 gNoShots =
     .alt = Neniu ekrankopio trovita
-gScreenshotsDescription = Ekrankopioj, simple faritaj. Kopii, konservi kaj dividi ekrankopiojn sen forlasi Firefox.
 
 ## Header
 
@@ -71,11 +70,7 @@ homePageCaptureRegion = Kapti areon
 homePageCaptureRegionDescription = Alklaku kaŭ trenu por elekti la areon, kion vi volas kapti. Aŭ simple ŝvebu kaj alklaku — La ekrankopia ilo elektos la areon por vi. Ĉu vi ŝatas kion vi vidas? Elektu 'Konservi' por rete aliri vian ekrankopion aŭ la butonon kun la sageto malsupre por elŝuti al via komputilo.
 homePageCapturePage = Kapti paĝon
 homePageCapturePageDescription = Uzu la butonojn supre kaj dekstre por kapti tutajn paĝojn. La butono 'Konservi tion, kio videblas' kaptos la areon, kiun vi vidas se vi ne ŝovas. La butono 'Konservi tutan paĝon'  kaptos ĉion en la paĝo.
-homePageSaveShare = Konservi kaj dividi
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Faru vian plej bonan ekrankopion. Sekve konservu ĝin en la enreta biblioteko de Screenshots, kaj Firefox kopios ligilon al via tondujo por facile ĝin diskonigi. Ekrankopioj konservitaj en la biblioteko aŭtomate senvalidiĝos post du semajnoj, tamen vi povas forigi ilin iam ajn aŭ decidi gardi ilin pli longe.
-homePageSignInTitle = Viaj ekrankopioj ĉe ĉiu aparato
-homePageSignInDescription = Komencu seancon en Screenshots per via konto de Firefox por aliri viajn ekrankopiojn ĉie, kie vi uzas Firefox. Krom tio, vi povas konservi viajn plej ŝatatajn ekrankopiojn por ĉiam.
+homePageDownloadCopy = Elŝuti aŭ kopii
 homePageLegalLink = Leĝaĵoj
 homePagePrivacyLink = Privateco
 homePageTermsLink = Kondiĉoj
@@ -146,7 +141,6 @@ shotPageBackToHomeButton =
     .title = Eka paĝo
 shotPageAllShotsButton =
     .title = Ĉiuj ekrankopioj
-shotPageScreenshotsDescription = Ekrankopioj, simple faritaj. Kopii, konservi kaj dividi ekrankopiojn sen forlasi Firefox.
 shotPageDMCAMessage = Tiu ĉi ekrankopio ne plu estas havebla pro plendo pri intelekta kopirajto.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Bonvolu skribi retpoŝte al { $dmca } por peti pli da informo.
@@ -344,6 +338,9 @@ shotDeleteCancel = Nuligi
     .title = Nuligi
 shotDeleteConfirm = Forigi
     .title = Forigi
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
