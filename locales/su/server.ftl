@@ -378,6 +378,7 @@ metricsPageTotalRetentionQueryDescription = Lilana pamaké nyieun téwakan, duma
 metricsPageTotalRetentionQueryUsers = Jumlah pamaké
 metricsPageTotalRetentionQueryDays = Lilana pamaké geus nyieun téwakan
 metricsPageVersionQueryTitle = Vérsi Pangeuyeub
+metricsPageVersionQueryDescription = Vérsi pangeuyeub anu dipaké salila login, 14 poé panungtung
 metricsPageVersionQueryUsers = Jumlah pamaké nu asup log
 metricsPageVersionQueryVersion = Vérsi pangeuyeub
 metricsPageVersionQueryLastSeen = Poé
