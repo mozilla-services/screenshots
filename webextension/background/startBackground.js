@@ -122,12 +122,17 @@ this.startBackground = (function() {
         break;
       }
     }
-    const result = await browser.storage.local.get(["registrationInfo", "hasSeenServerStatus"]);
+    const result = await browser.storage.local.get(["registrationInfo", "hasSeenServerStatus", "hasShotsResponse"]);
     hasSeenServerStatus = result.hasSeenServerStatus;
     const { registrationInfo } = result;
     if (!backend || !registrationInfo || !registrationInfo.registered) {
       // The add-on hasn't been used, or at least no upload has occurred
       _resolveServerStatus.resolve({hasIndefinite: false, hasAny: false});
+      return;
+    }
+    if (result.hasShotsResponse) {
+      // We've already retrieved information from the server
+      _resolveServerStatus.resolve(result.hasShotsResponse);
       return;
     }
     const loginUrl = `${backend}/api/login`;
@@ -158,6 +163,7 @@ this.startBackground = (function() {
         throw new Error(`Bad response from server: ${resp.status}`);
       }
       const body = await resp.json();
+      browser.storage.local.set({hasShotsResponse: body});
       _resolveServerStatus.resolve(body);
     } catch (e) {
       _resolveServerStatus.reject(e);
