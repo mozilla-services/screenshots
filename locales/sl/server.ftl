@@ -8,6 +8,7 @@ gMyShots = Moji posnetki
 gHomeLink = Domov
 gNoShots =
     .alt = Ni najdenih posnetkov
+gScreenshotsDescriptionServerless = Poenostavljeni posnetki zaslona. Zajemajte in prenesite posnetke zaslona, berz da bi zapustili Firefox.
 
 ## Header
 
@@ -71,6 +72,8 @@ homePageCaptureRegionDescription = Kliknite in povlecite, da izberete območje, 
 homePageCapturePage = Zajemite stran
 homePageCapturePageDescription = Za zajem celotnih strani uporabite gumbe zgoraj desno. Gumb Shrani vidno bo zajel območje, ki je vidno brez drsenja, gumb Shrani celotno stran pa celotno vsebino strani.
 homePageDownloadCopy = Prenesite ali kopirajte
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Zajemite najboljši posnetek. Screenshots vam omogoča, da svojo izbiro prenesete ali kopirate v odložišče.
 homePageLegalLink = Pravno obvestilo
 homePagePrivacyLink = Zasebnost
 homePageTermsLink = Pogoji
