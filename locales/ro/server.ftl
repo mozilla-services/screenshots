@@ -20,6 +20,7 @@ screenshotsLogo =
     .title = Pagina de start Screenshots
 bannerSignIn = <a>Autentifică-te sau înregistrează-te</a> pentru a accesa propriile capturi pe toate dispozitivele și pentru a-ți salva favoritele pentru totdeauna.
 bannerUpsell = { gScreenshotsDescription }<a>Obține Firefox acum</a>
+shutdownWarning = <b> Capturile de ecran salvate expiră în curând. </b> Începând din iunie, Screenshots nu va mai oferi spațiu de stocare online. Vrei să îți păstrezi capturile din bibliotecă? <a>Descarcă-le pe calculator.</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Ce este nou cu Firefox Screenshots?
@@ -351,6 +352,8 @@ shotDeleteConfirm = Șterge
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Pentru export: Folosește Fișier > Salvează pagina ca… și îți vei regăsi capturile de ecran în dosarul { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
