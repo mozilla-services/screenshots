@@ -142,6 +142,7 @@ shotPageBackToHomeButton =
     .title = Page d’accueil
 shotPageAllShotsButton =
     .title = Toutes les captures
+shotPageScreenshotsDescriptionServerless = Les captures d’écran en toute simplicité. Réalisez et téléchargez des captures d’écran sans quitter Firefox.
 shotPageDMCAMessage = Cette capture n’est plus disponible, car un tiers a signalé une atteinte aux droits de la propriété intellectuelle.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Veuillez contacter { $dmca } pour demander plus d’informations.
