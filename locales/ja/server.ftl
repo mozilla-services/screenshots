@@ -8,7 +8,6 @@ gMyShots = 自分のショット
 gHomeLink = ホーム
 gNoShots =
     .alt = ショットが見つかりませんでした
-gScreenshotsDescription = スクリーンショットをもっと手軽に。Firefox を離れることなくスクリーンショットを撮影、保存、共有。
 
 ## Header
 
@@ -71,11 +70,9 @@ homePageCaptureRegion = 選択範囲をキャプチャ
 homePageCaptureRegionDescription = クリック＆ドラッグでキャプチャしたい範囲を選択します。あるいは単純にマウスを当ててクリックすれば、Screenshots が自動的に範囲を選択してくれます。範囲を確定したら、保存ボタンをクリックすればオンラインでスクリーンショットを参照できます。また下向きの矢印ボタンでコンピューターに保存することもできます。
 homePageCapturePage = ページをキャプチャ
 homePageCapturePageDescription = ページ全体をキャプチャするには右上のボタンを使ってください。[表示範囲を保存] ボタンはスクロールせずに見えている範囲のみをキャプチャ、[ページ全体を保存] ボタンはページ上のすべての要素をキャプチャできます。
-homePageSaveShare = 保存して共有
+homePageDownloadCopy = ダウンロードまたはコピー
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = ベストショットを撮りましょう。オンラインの Screenshots ライブラリーに保存すると、Firefox がそのリンクをクリップボードに自動的にコピーし、簡単に共有できます。ライブラリー内のショットは、自動的に 2 週間後に消えますが、いつでも削除したり、保存期間を延ばしたりできます。
-homePageSignInTitle = どこでも撮れるスクリーンショット
-homePageSignInDescription = Firefox アカウントで Screenshots にログインし、Firefox を使用してどこからでもショットにアクセスできます。おまけ: お気に入りのショットを永久保存することもできます。
+homePageDownloadCopyDescription = 最高のショットを撮りましょう。Screenshots は選択したものをダウンロードまたはクリップボードにコピーできます。
 homePageLegalLink = 法的通知
 homePagePrivacyLink = プライバシー
 homePageTermsLink = 利用規約
@@ -146,7 +143,6 @@ shotPageBackToHomeButton =
     .title = ホームページ
 shotPageAllShotsButton =
     .title = すべてのショット
-shotPageScreenshotsDescription = スクリーンショットをもっと手軽に。Firefox を離れることなくスクリーンショットを撮影、保存、共有。
 shotPageDMCAMessage = このショットは第三者からの知的所有権侵害の申し立てにより使用できなくなりました。
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = より詳しい情報は { $dmca } までお問い合わせください。
@@ -320,6 +316,11 @@ shotDeleteCancel = キャンセル
     .title = キャンセル
 shotDeleteConfirm = 削除
     .title = 削除
+
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = 書き出すには: [ファイル] メニューの [名前を付けて保存...] から保存します。スクリーンショットは { $folder } フォルダーにあります。
 
 ## Metrics page
 ## All metrics strings are optional for translation
