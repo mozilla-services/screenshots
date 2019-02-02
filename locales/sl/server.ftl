@@ -8,7 +8,7 @@ gMyShots = Moji posnetki
 gHomeLink = Domov
 gNoShots =
     .alt = Ni najdenih posnetkov
-gScreenshotsDescriptionServerless = Poenostavljeni posnetki zaslona. Zajemajte in prenesite posnetke zaslona, brez da bi zapustili Firefox.
+gScreenshotsDescriptionServerless = Poenostavljeni posnetki zaslona. Zajemajte in prenesite posnetke zaslona, ne da bi zapustili Firefox.
 
 ## Header
 
@@ -144,7 +144,7 @@ shotPageBackToHomeButton =
     .title = Domača stran
 shotPageAllShotsButton =
     .title = Vsi posnetki
-shotPageScreenshotsDescriptionServerless = Poenostavljeni posnetki zaslona. Zajemajte in prenesite posnetke zaslona, brez da bi zapustili Firefox.
+shotPageScreenshotsDescriptionServerless = Poenostavljeni posnetki zaslona. Zajemajte in prenesite posnetke zaslona, ne da bi zapustili Firefox.
 shotPageDMCAMessage = Ta posnetek ni več na voljo zaradi zahtev intelektualne lastnine tretje osebe.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Za več informacij pošljite e-pošto na { $dmca }
