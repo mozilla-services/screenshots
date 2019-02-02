@@ -20,6 +20,7 @@ screenshotsLogo =
     .title = Ekranų nuotraukų pradžia
 bannerSignIn = <a>Prisijunkite</a>, norėdami pasiekti savo nuotraukas visuose įrenginiuose ir visam laikui įrašyti patinkančias.
 bannerUpsell = { gScreenshotsDescription } <a>Parsisiųskite „Firefox“</a>
+shutdownWarning = <b>Įrašytos ekrano nuotraukos netrukus pradings.</b> Nuo birželio nebebus teikiama saugojimo internete paslauga. Norite išsaugoti turimas nuotraukas? <a>Parsisiųskite jas į savo kompiuterį.</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Kas naujo su „Firefox Screenshots“?
