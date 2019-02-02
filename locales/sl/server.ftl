@@ -20,6 +20,7 @@ screenshotsLogo =
     .title = Domača stran Screenshots
 bannerSignIn = <a>Prijavite ali registrirajte se</a>, da boste lahko svoje posnetke uporabljali na več napravah in priljubljene trajno shranili.
 bannerUpsell = { gScreenshotsDescription }<a>Prenesite Firefox zdaj</a>
+shutdownWarning = <b>Shranjeni posnetki bodo kmalu potekli.</b> Od junija ne bomo več ponujali spletne shrambe. Želite obdržati posnetke iz svoje knjižnice? <a> Prenesite si jih na računalnik.</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Kaj je novega v Firefox Screenshots?
@@ -357,6 +358,8 @@ shotDeleteConfirm = Izbriši
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Za izvoz v meniju Datoteka kliknite Shrani stran kot ... in vaši posnetki zaslona se bodo shranili v mapo { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
