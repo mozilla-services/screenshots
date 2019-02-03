@@ -126,7 +126,7 @@ shotPageCopyImageText =
     .label = 複製圖片文字
 shotPageConfirmDeletion = 您確定要永久刪除這張擷圖嗎？
 # Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageTimeExpirationMessage = 若不做任何事，將在<timediff></timediff>刪除此擷圖。
+shotPageTimeExpirationMessage = 若不做任何事，將在 <timediff></timediff> 刪除此擷圖。
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = 還原直到 { $date }
@@ -170,17 +170,17 @@ shotPageSaveExpiration = 儲存
 shotPageCancelExpiration = 取消
 shotPageDoesNotExpire = 不過期
 # Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageTimeExpiresIn = <timediff></timediff> 後過期
+shotPageTimeExpiresIn = <timediff></timediff>過期
 # Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageTimeExpired = 已過期 <timediff></timediff>
+shotPageTimeExpired = 已於 <timediff></timediff> 過期
 timeDiffJustNow = 剛剛
 timeDiffMinutesAgo = { $number } 分鐘前
 timeDiffHoursAgo = { $number } 小時前
 timeDiffDaysAgo = { $number } 天前
-timeDiffFutureSeconds = 幾秒內
-timeDiffFutureMinutes = { $number } 分鐘內
-timeDiffFutureHours = { $number } 小時內
-timeDiffFutureDays = { $number } 天內
+timeDiffFutureSeconds = 幾秒後
+timeDiffFutureMinutes = { $number } 分鐘後
+timeDiffFutureHours = { $number } 小時後
+timeDiffFutureDays = { $number } 天後
 errorThirdPartyCookiesEnabled = 若您拍了這張圖卻無法山圖，可能需要到瀏覽器的偏好設定中暫時允許第三方 Cookie。
 
 ## Shot Page New Feature Promotion Dialog.
