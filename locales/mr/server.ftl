@@ -8,16 +8,15 @@ gMyShots = माझे शॉट्स
 gHomeLink = मुख्य पटल
 gNoShots =
     .alt = शॉट्स सापडले नाहीत
-gScreenshotsDescription = स्क्रीनशॉट्स आता सरळसोपे. Firefox ला न सोडता स्क्रीनशॉट घ्या, जतन करा आणि सामायिक करा.
-gSettings = सेटिंग
-gSignIn = साइन इन
 
 ## Header
 
-signInButton =
-    .aria-label = साइन इन
-settingsButton =
-    .aria-label = सेटिंग
+buttonSettings =
+    .title = सेटिंग
+buttonSignIn =
+    .title = साइन इन करा
+onboardingPromoDismissButton = बरखास्त
+    .title = बरखास्त
 
 ## Footer
 
@@ -51,17 +50,12 @@ homePageDownloadFirefoxSubTitle = मोफत डाऊनलोड
 homePageHowScreenshotsWorks = Firefox स्क्रीनशॉट्स कसे काम करतात
 homePageGetStartedTitle = सुरूवात करा
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = आपल्या टूलबारवरील नवीन स्क्रिनशॉट्स चिन्ह शोधा. ते निवडा, आणि स्क्रीनशॉट मेनू आपल्या ब्राउझर विंडोच्या शीर्षस्थानी दिसेल.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = पत्ता पट्टी वरच्या पृष्ठ क्रिया मेनू मधून स्क्रीनशॉटचे चिन्ह निवडा, आणि आपल्या ब्राउझर पटलावर स्क्रीनशॉट मेनू अवतरेल.
 homePageCaptureRegion = क्षेत्र कॅप्चर करा
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = प्रतिमा बनवायचे क्षेत्र निवडण्यासाठी क्लिक करून ओढा. किंवा फक्त वरचेवर फिरवा आणि क्लिक करा — स्क्रीनशॉट्स आपल्यासाठी क्षेत्र निवडेल. आपण पाहिले ते आवडले का? आपले स्क्रीनशॉट नंतर वापरण्यासाठी जतन करणे निवडा किंवा डाउनलोड करण्यासाठी खालील बाणाचे बटन निवडा.
 homePageCapturePage = पृष्ठ कॅप्चर करा
 homePageCapturePageDescription = वरील उजवी बटने पूर्ण पृष्ठ साठवण्यासाठी वापरा. आपण स्क्रोल न करता पाहू शकणारे क्षेत्र दर्शनीय साठवा बटन साठवेल, आणि पूर्ण पृष्ठ साठवा बटन पूर्ण पृष्ठ साठवेल.
-homePageSaveShare = जतन करा आणि सामायिक करा
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = जेव्हा आपण स्क्रीनशॉट घेता, Firefox त्याला ऑनलाईन स्क्रीनशॉट लायब्ररी वर ठेवतो आणि आपल्या क्लीपबोर्ड वर दुव्याची प्रत बनवतो. आम्ही आपोआप आपला स्क्रीनशॉट दोन आठवड्यासाठी साठवून ठेवतो, पण आपण त्याला केव्हाही नष्ट करू शकता किंवा नष्ट होण्याची तारीख बदलून जास्त काळ साठवू शकता.
 homePageLegalLink = कायदेशीर
 homePagePrivacyLink = गुप्तता
 homePageTermsLink = अटी
@@ -70,8 +64,6 @@ homePageCookiesLink = कुकीज
 ## Leave Screenshots page
 
 leavePageRemoveAllData = सगळा डेटा काढून टाका
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = आपले खाते काढण्यासाठी आपल्याकडे Firefox स्क्रीनशॉट्स स्थापित असणे आवश्यक आहे
 leavePageErrorGeneric = एक त्रुटी आली.
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = हे आपले सर्व Firefox स्क्रीनशॉट्स डेटा कायमचे पुसून टाकेल.
@@ -95,7 +87,9 @@ shotPageAlertErrorUpdatingTitle = शीर्षक जतन करतान�
 shotPageConfirmDelete = आपल्याला खात्री आहे आपण हा शॉट कायमचा हटवू इच्छिता?
 shotPageShareButton =
     .title = सामायिक करा
-shotPageCopy = प्रत बनवा
+shotPageCopyButton =
+    .title = प्रतिमा क्लिपबोर्डवर कॉपी करा
+shotPageCopyActionLabel = प्रत बनवा
 shotPageCopied = प्रतिकृत केली
 shotPageShareFacebook =
     .title = Facebook वर सामायिक करा
@@ -120,17 +114,14 @@ shotPageExpiredMessage = हा शॉट कालबाह्य झाला 
 shotPageExpiredMessageDetails = या पृष्ठावरुन हे तयार करण्यात आले होते:
 shotPageDeleteButton =
     .title = हा शॉट हटवा
-shotPageAbuseButton =
-    .title = दुरुपयोग, स्पॅम किंवा इतर समस्यांसाठी हा शॉट नोंदवा
 shotPageDownloadShot =
     .title = डाउनलोड
 shotPageEditButton =
     .title = ही प्रतिमा संपादित करा
 shotPagefavoriteButton =
     .title = हा शॉट आवडता म्हणून चिन्हांकित करा
-shotPageDownload = डाउनलोड
-shotPageScreenshotsDescription = Screenshots झाले सोपे. Firefox ला न सोडता स्क्रीनशॉट्स घ्या, जतन करा आणि सामयिक करा.
-shotPageUpsellFirefox = आत्ता Firefox मिळवा
+shotPageAllShotsButton =
+    .title = सर्व शॉट
 shotPageDMCAMessage = तृतीय पक्ष बौद्धिक संपत्ती दाव्यामुळे हा शॉट उपलब्ध नाही.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = अधिक माहिती साठी कृपया { $dmca } ला इमेल करा.
@@ -260,17 +251,20 @@ textToolCancelButton = रद्द करा
 textToolInputPlaceholder =
     .placeholder = नमस्कार
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+
 ## Settings Page
 
 settingsDisconnectButton = जोडणी मोडा
     .title = जोडणी मोडा
 settingsGuestAccountMessage = अतिथी खाते
-settingsSignInInvite = उपकरणांवर ताळमेळ साधण्यासाठी साइन इन करा
 settingsSignInButton = साइन इन
     .title = साइन इन
 SettingsPageHeader = Firefox स्क्रीनशॉट्स सेटिंग्ज
-settingsDescription = आपण Firefox खात्यासह साइन इन करून आपले स्क्रीनशॉट ताळमेळ करून इतर उपकरणांवर खाजगीत वापरू शकता.
-settingsPageSubHeader = ताळमेळ व खाती
+settingsFirefoxAccountSubHeader = Firefox खाते
 settingsClosePreferences =
     .title = प्राधान्यता बंद करा
 
@@ -286,13 +280,13 @@ shotIndexPageSearchResultsTitle = माझे शॉट्स: { $searchTerm } 
 shotIndexPageErrorRendering = पृष्ठ सादर करताना त्रुटी:{ $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = माझे शॉट्स शोधा
-shotIndexPageSearchButton =
-    .title = शोधा
 shotIndexPageNoShotsMessage = कोणतेही जतन केलेले शॉट्स नाहीत
 shotIndexPageNoShotsInvitation = चला, काही तरी तयार करा.
 shotIndexPageLookingForShots = आपले शॉट्स शोधत आहे...
 shotIndexPageNoSearchResultsIntro = हम्म
 shotIndexPageNoSearchResults = आम्ही आपल्या शोधाशी जुळणारे कोणतेही शॉट्स शोधू शकत नाही.
+shotIndexPageMyShotsButton =
+    .title = माझे शॉट
 shotIndexPageClearSearchButton =
     .title = शोध नष्ट करा
 shotIndexPageConfirmShotDelete = हा शॉट हटवायचा?
@@ -300,13 +294,7 @@ shotIndexPagePreviousPage =
     .title = मागील पृष्ठ
 shotIndexPageNextPage =
     .title = पुढील पृष्ठ
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = ∞
-# This is the tooltip for a "heart" symbol in the lower right corner of the
+# This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
@@ -319,6 +307,9 @@ shotDeleteCancel = रद्द करा
     .title = रद्द करा
 shotDeleteConfirm = नष्ट करा
     .title = नष्ट करा
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
