@@ -20,6 +20,7 @@ screenshotsLogo =
     .title = Cartref Screenshots
 bannerSignIn = <a>Mewngofnodwch neu ymunwch</a> i gael mynediad at eich lluniau ar draws dyfeisiau a chadw eich ffefrynnau am byth.
 bannerUpsell = { gScreenshotsDescription } <a>Defnyddiwch Firefox</a>
+shutdownWarning = <b> Mae lluniau sgrin wedi'u cadw yn dod i ben cyn bo hir. </b>O fis Mehefin, fydd Screenshots ddim yn cynnig cadw ar-lein bellach. Eisiau cadw lluniau o'ch llyfrgell? Llwythwch nhw i lawr i'ch cyfrifiadur.</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Beth sy'n newydd gyda Firefox Screenshots?
