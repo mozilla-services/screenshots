@@ -73,6 +73,8 @@ homePageCaptureRegionDescription = Klikoni dhe tërhiqeni që të përzgjidhni f
 homePageCapturePage = Fotografoni një Faqe
 homePageCapturePageDescription = Përdorni butonat në cepin e sipërm djathtas që të fotografoni faqe të plota. Përmes butonit Ruaj Sa Duket do të fotografohet fusha që mund të shihni pa bërë rrëshqitje në faqe, dhe Ruaj Faqen e Plotë do të fotografojë gjithçka në faqe.
 homePageDownloadCopy = Shkarkojeni ose Kopjojeni
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Bëni foton tuaj më të bukur. Fotot e Ekranit ju lejojnë të shkarkoni ose kopjoni përzgjedhjen tuaj drejt e në të papastër.
 homePageLegalLink = Ligjore
 homePagePrivacyLink = Privatësi
 homePageTermsLink = Kushte
@@ -143,6 +145,7 @@ shotPageBackToHomeButton =
     .title = Kreu
 shotPageAllShotsButton =
     .title = Krejt Shkrepjet
+shotPageScreenshotsDescriptionServerless = Foto të kollajshme ekrani. Bëni dhe shkarkoni foto ekrani pa dalë nga Firefox-i.
 shotPageDMCAMessage = Kjo foto s’mund të kihet më, për shkak pretendimesh pronësie intelektuale nga palë e tretë.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Që të kërkoni informacione të mëtejshme, ju lutemi, dërgoni një email te { $dmca }.
@@ -342,6 +345,8 @@ shotDeleteConfirm = Fshije
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Për eksportim: përdorni Kartelë > Ruajeni Faqen Si… dhe do t’i gjeni fotot tuaja të ekrani te dosja { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
