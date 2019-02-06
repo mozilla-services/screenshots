@@ -77,7 +77,7 @@ homePageCapturePageDescription = Utilize os botões no canto superior direito pa
 homePageDownloadCopy = Transferir ou copiar
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageDownloadCopyDescription = Dê o seu melhor tiro. As capturas de ecrã permitem-lhe transferir a sua seleção ou copiá-la diretamente para a área de transferência.
-homePageLegalLink = Informações legais
+homePageLegalLink = Informação legal
 homePagePrivacyLink = Privacidade
 homePageTermsLink = Termos
 homePageCookiesLink = Cookies
