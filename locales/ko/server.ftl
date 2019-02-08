@@ -27,7 +27,7 @@ footerLinkPrivacy = 개인 정보 보호 안내
 footerLinkFaqs = 자주 묻는 질문들
 footerLinkDMCA = IP 침해 신고
 footerLinkDiscourse = 사용자 의견
-footerLinkRemoveAllData = 모든 데이타 삭제
+footerLinkRemoveAllData = 모든 데이터 삭제
 
 ## Creating page
 
@@ -66,7 +66,7 @@ homePageCookiesLink = 쿠키
 leavePageRemoveAllData = 모든 데이터 삭제
 leavePageErrorGeneric = 오류 발생
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageWarning = 모든 Firefox Screenshots 데이타가 영구적으로 지워집니다.
+leavePageWarning = 모든 Firefox Screenshots 데이터가 영구적으로 지워집니다.
 leavePageButtonProceed = 진행
 leavePageButtonCancel = 취소
 leavePageDeleted = 모든 스크린샷이 삭제되었습니다!
