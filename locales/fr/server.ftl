@@ -73,6 +73,8 @@ homePageCaptureRegionDescription = Sélectionnez une zone de la page par cliquer
 homePageCapturePage = Capturez une page
 homePageCapturePageDescription = Utilisez les boutons en haut à droite pour capturer des pages complètes. Le bouton « Capturer la zone visible » permet de capturer la zone que vous pouvez afficher sans faire défiler la page, et le bouton « Capturer la page complète » capturera l’ensemble de la page.
 homePageDownloadCopy = Téléchargez ou copiez
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Faites votre plus belle capture : Screenshots vous permet de la télécharger ou de la copier dans le presse-papiers.
 homePageLegalLink = Mentions légales
 homePagePrivacyLink = Confidentialité
 homePageTermsLink = Conditions d’utilisation
