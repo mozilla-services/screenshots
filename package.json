@@ -23,7 +23,7 @@
     "express": "4.16.4",
     "fluent": "0.9.1",
     "fluent-intl-polyfill": "0.1.0",
-    "fluent-langneg": "0.1.0",
+    "fluent-langneg": "0.1.1",
     "fluent-react": "0.8.2",
     "form-data": "2.3.3",
     "hawk": "7.0.10",
