@@ -8,9 +8,7 @@ gMyShots = Skrinshotlar
 gHomeLink = Uy
 gNoShots =
     .alt = Rasmlar topilmadi
-gScreenshotsDescription = Skrinshot olish osonlashdi. Firefox brauzeridan chiqmasdan skrinshot olish, saqlash va bo‘lishish mumkin.
-gSettings = Sozlamalar
-gSignIn = Kirish
+gScreenshotsDescriptionServerless = Skrinshot olish juda oson. Firefoxdan chiqmasdan turib skrinshot olish va ularni yuklab olish mumkin.
 
 ## Header
 
@@ -20,8 +18,9 @@ buttonSignIn =
     .title = Kirish
 screenshotsLogo =
     .title = Screenshots bosh sahifasi
-bannerMessage = Turli qurilmalaringizdan skrinshotlarga kirish va saqlash uchun hisobingizga kiring yoki ro‘yxatdan o‘ting.
+bannerSignIn = Turli qurilmalarda olingan skrinshotlar va saqlab qoʻyilgan sevimli skrinshotlaringizdan foydalanish uchun<a>hisobingizga kiring yoki yangisini yarating</a>.
 bannerUpsell = { gScreenshotsDescription } <a>Firefoxni yuklab olish</a>
+shutdownWarning = <b>Saqlangan skrinshotlar yaqin orada oʻchib ketadi.</b> Iyun oyidan boshlab skrinshotlarni onlayn saqlab boʻlmaydi. Kutubxonangizdagi skrinshotlarni saqlab qolishni istaysizmi? <a>Unda ularni kompyuteringizga yuklab oling.</a>
 
 ## Footer
 
@@ -57,17 +56,12 @@ homePageDownloadFirefoxSubTitle = Bepul yuklab olish
 homePageHowScreenshotsWorks = Firefox Screenshots’dan foydalanish
 homePageGetStartedTitle = Boshlash
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Asboblar panelidan yangi Screenshots nishonchasini toping. Uni tanlang va brauzer oynasining tepasida Screenshots menyusi paydo bo‘ladi.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Manzillar panelidagi sahifa amallari menyusidan Screenshots nishonchasini tanlang. Shundan keyin Screenshots menyusi brauzer oynasining tepa qismida paydo bo‘ladi.
 homePageCaptureRegion = Hududni rasmga olish
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Sichqoncha tugmasini bosing va belgilash uchun kerakli hudud ustida surib tanlang. Yoki shunchaki sinchqonchani kerakli hudud usitga olib keling va bosing – Screenshots siz uchun hududni o‘zi tanlaydi. Sizga yoqdimi? Unda skrinshotlarni onlayn e’lon qilish uchun "Saqlash" tugmasini, kompyuterga yuklab olish uchun esa pastga qaragan ko‘rsatkich tugmasini bosing.
 homePageCapturePage = Sahifani rasmga olish
 homePageCapturePageDescription = Butun sahifani rasmga tushirish uchun tepa o‘ng burchakdagi tugmalardan foydalaning. "Ko‘rinadiganini saqlash" tugmasi bilan sizga ko‘rinib turgan hududni boshqa amal bajarmasdan rasmga olish va "To‘liq sahifani saqlash" bilan esa sahifani to‘liq rasmga olish mumkin.
-homePageSaveShare = Saqlash va bo‘lishish
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Skrinshot olsangiz, Firefox uni onlayn skrinshotlar kutubxonasiga joylaydi va havolasidan vaqtinchalik xotiraga nusxa oladi. Biz skrinshotlarni 2 hafta saqlab turamiz. Bu vaqt ichida xohlagan vaqtingizda ularni o‘chirishingiz yoki saqlanish muddatini uzaytirishingiz mumkin.
 homePageLegalLink = Qonuniy
 homePagePrivacyLink = Maxfiylik
 homePageTermsLink = Shartlar
@@ -76,8 +70,6 @@ homePageCookiesLink = Kukilar
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Barcha ma’lumotlarni olib tashlash
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Hisobingizni o‘chirish uchun Firefox Screenshots o‘rnatilgan bo‘lishi lozim
 leavePageErrorGeneric = Xato yuz berdi
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Firefox Skrinshotlar ma’lumotlari tozalab tashlanadi.
@@ -101,7 +93,6 @@ shotPageAlertErrorUpdatingTitle = Nomi saqlanmadi
 shotPageConfirmDelete = Bu skrinshotni o‘chirmoqchimisiz?
 shotPageShareButton =
     .title = Bo‘lishish
-shotPageCopy = Nusxa olish
 shotPageCopyButton =
     .title = Rasmga vaqtinchalik xotiraga nusxa olish
 shotPageCopied = Nusxa olindi
@@ -138,14 +129,6 @@ shotPageBackToHomeButton =
     .title = Bosh sahifa
 shotPageAllShotsButton =
     .title = Barcha skrinshotlar
-shotPageAllShots = Barcha skrinshotlar
-shotPageDownload = Yuklab olish
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Chizish
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Sevimli
-shotPageDelete = O‘chirish
-shotPageScreenshotsDescription = Skrinshot olish juda oson. Skrinshot oling, saqlang va Firefoxdan chiqmasdan skrinshotlarni bo‘lishing.
 shotPageDMCAMessage = Bu skrinshot uchinchi tomonga tegishli intellektual boylik bo‘lganligi uchun endi mavjud emas.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Batafsil ma’lumot uchun { $dmca } pochtasiga xat yozing.
@@ -287,12 +270,9 @@ copyImageErrorMessage = Skrinshotdan vaqtinchalik xotiraga nusxa olinmadi.
 settingsDisconnectButton = Uzish
     .title = Uzish
 settingsGuestAccountMessage = Mehmon hisobi
-settingsSignInInvite = Barcha qurilmalaringizda sinxronlash uchun hisobingizga kiring
 settingsSignInButton = Kirish
     .title = Kirish
 SettingsPageHeader = Firefox Screenshots sozlamalari
-settingsDescription = Barcha skrinshotlarni turli qurilmalaringizga sinxronlash va ulardan maxfiy foydalanishingiz uchun Firefox hisobi bilan kiring.
-settingsPageSubHeader = Sinxronizatsiya va hisoblar
 settingsClosePreferences =
     .title = Parametrlarni yopish
 
@@ -341,6 +321,9 @@ shotDeleteCancel = Bekor qilish
     .title = Bekor qilish
 shotDeleteConfirm = O‘chirsh
     .title = O‘chirsh
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
