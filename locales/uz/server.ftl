@@ -21,6 +21,16 @@ screenshotsLogo =
 bannerSignIn = Turli qurilmalarda olingan skrinshotlar va saqlab qoʻyilgan sevimli skrinshotlaringizdan foydalanish uchun<a>hisobingizga kiring yoki yangisini yarating</a>.
 bannerUpsell = { gScreenshotsDescription } <a>Firefoxni yuklab olish</a>
 shutdownWarning = <b>Saqlangan skrinshotlar yaqin orada oʻchib ketadi.</b> Iyun oyidan boshlab skrinshotlarni onlayn saqlab boʻlmaydi. Kutubxonangizdagi skrinshotlarni saqlab qolishni istaysizmi? <a>Unda ularni kompyuteringizga yuklab oling.</a>
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Firefox Screenshots taʼminotiga qanday yangi xususiyatlar qoʻshildi?
+onboardingPromoMessage = Endi Firefox hisobingiz bilan skrinsholtarga kirish va boshqa koʻplab ishlarni amalga oshirish mumkin:
+onboardingPromoMessageListItem1 = Barcha qurilmalaringizdagi kutubxonalaringizga kira olasiz
+onboardingPromoMessageListItem2 = Sevimli skrinshotlaringizni saqlab qola olasiz
+onboardingPromoDismissButton = Yopish
+    .title = Yopish
+onboardingPromoSigninButton = Hisobga kirish
+    .title = Hisobga kirish
 
 ## Footer
 
@@ -62,6 +72,9 @@ homePageCaptureRegion = Hududni rasmga olish
 homePageCaptureRegionDescription = Sichqoncha tugmasini bosing va belgilash uchun kerakli hudud ustida surib tanlang. Yoki shunchaki sinchqonchani kerakli hudud usitga olib keling va bosing – Screenshots siz uchun hududni o‘zi tanlaydi. Sizga yoqdimi? Unda skrinshotlarni onlayn e’lon qilish uchun "Saqlash" tugmasini, kompyuterga yuklab olish uchun esa pastga qaragan ko‘rsatkich tugmasini bosing.
 homePageCapturePage = Sahifani rasmga olish
 homePageCapturePageDescription = Butun sahifani rasmga tushirish uchun tepa o‘ng burchakdagi tugmalardan foydalaning. "Ko‘rinadiganini saqlash" tugmasi bilan sizga ko‘rinib turgan hududni boshqa amal bajarmasdan rasmga olish va "To‘liq sahifani saqlash" bilan esa sahifani to‘liq rasmga olish mumkin.
+homePageDownloadCopy = Yuklab olish yoki nusxa olish
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Eng zoʻr skrinshotni hoziroq oling. Endi skrinshotlarni tanlab yuklab olish yoki toʻgʻridan toʻgʻri vaqtinchalik xotiraga nusxa olish mumkin.
 homePageLegalLink = Qonuniy
 homePagePrivacyLink = Maxfiylik
 homePageTermsLink = Shartlar
