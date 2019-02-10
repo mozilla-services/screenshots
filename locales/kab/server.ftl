@@ -8,7 +8,7 @@ gMyShots = Tuṭṭfiwin-iw
 gHomeLink = Asebter agejdan
 gNoShots =
     .alt = Ulac tuṭṭfiwin
-gScreenshotsDescription = Tuṭṭfiwin γef afus. Ṭṭef agdil, sekles sakin bḍu war ma teffγeḍ si Firefox.
+gScreenshotsDescriptionServerless = Tuṭṭfiwin n ugdil fessus-it. Eg sakin sider tuṭṭfiwin n ugdil mebla ma teffɣeḍ seg Firefox.
 
 ## Header
 
@@ -71,11 +71,7 @@ homePageCaptureRegion = Ṭṭef tamnaḍt
 homePageCaptureRegionDescription = Senned u zuγer akken ad tferneḍ tamnaḍt i tebγiḍ ad teṭfeḍ. Neγ mbiwwel γer temnaḍt u sakin Screenshots ad ifren tamnaḍt-agi. sakin senned γef sekles akken ad tawiḍ tiwlafin srid neγ γef tqefalt aneccab d akkesar akken ad d-saliḍ γer uselkim inek.
 homePageCapturePage = Ṭṭef asebter
 homePageCapturePageDescription = Seqdec taqefalt d afella $yef uyfus akken ad teṭfeḍ akk asebter.Taqefal " sekles tamnaḍt" ad k-teǧǧ ad teṭfeḍ i tzemrepd ad skeneḍ war adrurem, sakin sekles akk asebter.
-homePageSaveShare = Sekles u bḍu
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Awi tuṭṭfa_inek ifazen. sakin sekles-itt ɣer temkarḍit n tuṭṭfiwin, Firefox ad inɣel aseɣwen ɣer "ΓEf ufus" akken ad tt-tebḍuḍ s wudem fesussen. ttṭṭfiwin n tmekarḍit ad mtent s wudem awurman seld snat n dwaṛ, maca tzemreḍ ad tent-kkseḍ melmi tebɣiḍ neɣ ad tent-ḥarzeḍ ugar n wakud.
-homePageSignInTitle = Tuṭṭfiwin-inek anda tebɣuḍ tiliḍ.
-homePageSignInDescription = Jerred ɣer Screenshotss umiḍan-ik n Firefox akken ad tkecmeḍ ɣer tuṭṭfiwin-inek anda tebɣuḍ tilliḍ s Firefox. ad tili daɣen tarzebt, temreḍ daɣ ad teskelseḍ  tuṭṭfiwin-inek i tḥemleḍ i lebda.
+homePageDownloadCopy = Sider neɣ nɣel
 homePageLegalLink = Usḍif
 homePagePrivacyLink = Tabaḍnit
 homePageTermsLink = Tiwtilin
@@ -146,7 +142,6 @@ shotPageBackToHomeButton =
     .title = Asebter agejdan
 shotPageAllShotsButton =
     .title = Tuṭṭfiwin meṛṛa
-shotPageScreenshotsDescription = Tuṭṭfa fessusen. Ṭṭef, sekles, sakin bḍu tuṭṭfa war ma tefγeḍ seg Firefox.
 shotPageDMCAMessage = Tuṭṭfa-agi ur tezgi tella imi yella ucetki ɣef wayla agzayan i d-yekkan seg wis kraḍ.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Azen-d { $dmca } akken ad tsutreḍ ugar n telɣut.
@@ -340,6 +335,9 @@ shotDeleteCancel = Sefsex
     .title = Sefsex
 shotDeleteConfirm = Kkes
     .title = Kkes
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
