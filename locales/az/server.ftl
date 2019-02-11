@@ -8,7 +8,7 @@ gMyShots = Ekran Görüntülərim
 gHomeLink = Ev
 gNoShots =
     .alt = Ekran görüntüsü tapılmadı
-gScreenshotsDescription = Ekran Görüntüləri asanlaşdırıldı. Firefox-u tərk etmədən ekran görüntülərini çəkin, saxlayın və paylaşın.
+gScreenshotsDescriptionServerless = Ekran görüntüləri asanlaşdırıldı. Ekran görüntülərinizi Firefox səyyahınızı tərk etmədən çəkin və endirin.
 
 ## Header
 
@@ -71,11 +71,6 @@ homePageCaptureRegion = Bölgəni çək
 homePageCaptureRegionDescription = Çəkmək istədiyiniz sahəni seçmək üçün klikləyin və daşıyın. Ya da sadəcə üzərinə gəlin və klikləyin — Screenshots sahəni sizin üçün seçəcək. Gördüyünüzü bəyəndiniz? Ekran görüntünüzü onlayn saxlamaq üçün Saxla seçin və ya aşağı ox düyməsi ilə kompüterinizə endirin.
 homePageCapturePage = Səhifəni çək
 homePageCapturePageDescription = Bütün səhifəni çəkmək üçün sağ yuxarı küncdəki düymələrdən istifadə edin. Görünəni Saxla düyməsi səhifənin sürüşdürmədən gördüyünüz hissəsini, Bütün Səhifəni Saxla düyməsi isə səhifədə olan hər şeyi çəkəcək.
-homePageSaveShare = Saxla və Paylaş
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Görüntünüzü alın. Sonra onu onlayn Screenshots kitabxanasına saxlayın, Firefox asanlıqla paylaşmağınız üçün keçidi köçürəcək. Kitabxanadakı görüntülər avtomatik olaraq iki həftə sonra silinirlər, amma siz istədiyiniz vaxt silə və ya vaxtını istədiyiniz qədər uzada bilərsiz.
-homePageSignInTitle = Görüntüləriniz Hər Yerdə
-homePageSignInDescription = Screenshots xidmətinə Firefox Hesabınız ilə daxil olun və Firefox işlətdiyiniz hər yerdə ekran görüntülərinizi asanlıqla görün. Əlavə bonus: seçilmiş görüntülərinizi həmişəlik saxlaya bilərsiz.
 homePageLegalLink = Hüquqi
 homePagePrivacyLink = Məxfilik
 homePageTermsLink = Şərtlər
@@ -146,7 +141,6 @@ shotPageBackToHomeButton =
     .title = Ana Səhifə
 shotPageAllShotsButton =
     .title = Bütün Görüntülər
-shotPageScreenshotsDescription = Ekran görüntülərini almağı asanlaşdırdıq. Firefox-u tərk etmədən ekran görüntülərini alın, saxlayın və paylaşın.
 shotPageDMCAMessage = Bu görüntü üçüncü tərəfin müəllif hüquqlarının pozuntusu tələbinə görə artıq əlçatan deyil.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Lütfən, əlavə məlumat üçün { $dmca } ilə əlaqə saxlayın.
@@ -344,6 +338,9 @@ shotDeleteCancel = Ləğv et
     .title = Ləğv et
 shotDeleteConfirm = Sil
     .title = Sil
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
