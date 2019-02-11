@@ -20,6 +20,7 @@ screenshotsLogo =
     .title = Screenshots Ana Səhifəsi
 bannerSignIn = Cihazlarınız arasında görüntülərinizi görmək üçün <a>daxil olun və ya qeyd olun</a> və seçilmiş görüntülərinizi daimi olaraq saxlayın.
 bannerUpsell = { gScreenshotsDescription } <a>Firefox Endir</a>
+shutdownWarning = <b>Saxlanılmış ekran görüntülərinin vaxtı yaxında çıxacaq.</b> İyun ayından etibarən Ekran Görüntüləri onlayn saxlama xidmətini dayandıracaq. Kitabxananızdaki görüntüləri saxlamaq istəyirsiniz? <a>Kompüterinizə endirin.</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Firefox Screenshots-dakı yeniliklər nələrdir?
@@ -71,6 +72,9 @@ homePageCaptureRegion = Bölgəni çək
 homePageCaptureRegionDescription = Çəkmək istədiyiniz sahəni seçmək üçün klikləyin və daşıyın. Ya da sadəcə üzərinə gəlin və klikləyin — Screenshots sahəni sizin üçün seçəcək. Gördüyünüzü bəyəndiniz? Ekran görüntünüzü onlayn saxlamaq üçün Saxla seçin və ya aşağı ox düyməsi ilə kompüterinizə endirin.
 homePageCapturePage = Səhifəni çək
 homePageCapturePageDescription = Bütün səhifəni çəkmək üçün sağ yuxarı küncdəki düymələrdən istifadə edin. Görünəni Saxla düyməsi səhifənin sürüşdürmədən gördüyünüz hissəsini, Bütün Səhifəni Saxla düyməsi isə səhifədə olan hər şeyi çəkəcək.
+homePageDownloadCopy = Endir və ya Köçür
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Ən yaxşı görüntülərinizi çəkin. Screenshots ilə görüntülərinizi endirə və ya birbaşa mübadilə buferinə köçürdə bilərsiz.
 homePageLegalLink = Hüquqi
 homePagePrivacyLink = Məxfilik
 homePageTermsLink = Şərtlər
@@ -141,6 +145,7 @@ shotPageBackToHomeButton =
     .title = Ana Səhifə
 shotPageAllShotsButton =
     .title = Bütün Görüntülər
+shotPageScreenshotsDescriptionServerless = Ekran görüntüləri asanlaşdırıldı. Firefox səyyahınızı tərk etmədən ekran görüntülərinizi çəkin və endirin.
 shotPageDMCAMessage = Bu görüntü üçüncü tərəfin müəllif hüquqlarının pozuntusu tələbinə görə artıq əlçatan deyil.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Lütfən, əlavə məlumat üçün { $dmca } ilə əlaqə saxlayın.
@@ -341,6 +346,8 @@ shotDeleteConfirm = Sil
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = İxrac etmək üçün: Fayl > Fərqli saxla… seçin və { $folder } qovluğunda ekran görüntülərinizi tapacaqsınız
 
 ## Metrics page
 ## All metrics strings are optional for translation
