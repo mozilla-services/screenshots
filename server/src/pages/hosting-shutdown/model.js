@@ -1,5 +1,5 @@
 exports.createModel = function(req) {
   return {
-    title: "shutdown" /* req.getText("shutdownPageTitle") */,
+    title: req.getText("shutdownPageTitle"),
   };
 };
