@@ -6,20 +6,22 @@ import io
 import re
 
 skipFiles = [
-    "manifest.json.template"
+    "manifest.json.template",
+    "test",
 ]
 
 
 def getFullFileList(outputLoc, dirName):
     result = {dirName: []}
     for entry in os.listdir(outputLoc):
+        if entry in skipFiles:
+            continue
         if os.path.isdir(os.path.join(outputLoc, entry)):
             result.update(getFullFileList(os.path.join(outputLoc, entry), os.path.join(dirName, entry)))
-        elif entry not in skipFiles:
-            if dirName:
-                result[dirName].append(os.path.join(dirName, entry))
-            else:
-                result[dirName].append(entry)
+        elif dirName:
+            result[dirName].append(os.path.join(dirName, entry))
+        else:
+            result[dirName].append(entry)
 
     return result
 
@@ -37,7 +39,10 @@ def rewriteMozBuild(outputLoc, fileList):
             if not fileList[dir]:
                 continue
 
-            mozBuildPathName = '["' + '"]["'.join(dir.split(os.sep)) + '"]'
+            if not dir:
+                mozBuildPathName = ""
+            else:
+                mozBuildPathName = '["' + '"]["'.join(dir.split(os.sep)) + '"]'
 
             insertion_text += \
                 "FINAL_TARGET_FILES.features['screenshots@mozilla.org']%s += [\n" % mozBuildPathName + \
@@ -59,7 +64,7 @@ def rewriteMozBuild(outputLoc, fileList):
 def main(mcRepoPath, mcSubDir):
     outputLoc = os.path.join(mcRepoPath, mcSubDir)
 
-    fileList = getFullFileList(os.path.join(outputLoc, "webextension"), "webextension")
+    fileList = getFullFileList(outputLoc, "")
 
     rewriteMozBuild(outputLoc, fileList)
 
