@@ -8,6 +8,7 @@ gMyShots = Mis capturas
 gHomeLink = Inicio
 gNoShots =
     .alt = No se econtraron capturas
+gScreenshotsDescriptionServerless = Capturas de pantalla simplificadas. Toma capturas de pantalla y descárgalas sin salir de Firefox.
 
 ## Header
 
@@ -19,6 +20,7 @@ screenshotsLogo =
     .title = Inicio de Screenshots
 bannerSignIn = <a>Conéctate o regístrate</a> para acceder a tus capturas en todos tus dispositivos y guardar tus favoritas para siempre.
 bannerUpsell = { gScreenshotsDescription } <a>Obtener Firefox ahora</a>
+shutdownWarning = <b>Las capturas de pantalla guardadas serán eliminadas dentro de poco.</b> A partir de junio Screenshots ya no ofrecerá almacenamiento en línea. ¿Quieres mantener las capturas de tu biblioteca? <a>Descárgalas a tu computador.</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = ¿Qué hay de nuevo en Firefox Screenshots?
@@ -143,6 +145,7 @@ shotPageBackToHomeButton =
     .title = Página de inicio
 shotPageAllShotsButton =
     .title = Todas las capturas
+shotPageScreenshotsDescriptionServerless = Capturas de pantalla simplificadas. Toma capturas de pantalla y descárgalas sin salir de Firefox.
 shotPageDMCAMessage = Esta captura ya no eá disponible debido a un reclamo de propiedad intelectual de un tercero.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Por favor, envía un correo a { $dmca } para solicitar más información.
@@ -342,6 +345,8 @@ shotDeleteConfirm = Eliminar
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Para exportar: usa Archivo > Guardar página como… y encontrarás tu captura de pantalla dentro de la carpeta { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
