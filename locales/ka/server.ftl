@@ -8,7 +8,6 @@ gMyShots = ჩემი გადაღებულები
 gHomeLink = მთავარი
 gNoShots =
     .alt = ვერ მოიძებნა
-gScreenshotsDescription = ეკრანისთვის სურათის გადაღება უმარტივესია. გადაუღეთ, შეინახეთ და გააზიარეთ სურათები Firefox-ის დატოვების გარეშე.
 
 ## Header
 
@@ -71,11 +70,9 @@ homePageCaptureRegion = სივრცისთვის სურათის 
 homePageCaptureRegionDescription = დააწკაპეთ და გადაადგილეთ მაჩვენებელი ისარი, გადასაღები სივრცის მოსანიშნად. ან უბრალოდ ზემოდან გადაატარეთ სასურველ არეს და დააწკაპეთ – Screenshots თავად მონიშნავს საჭირო სივრცეს. გაკმაყოფილებთ შედეგი? დააჭირეთ „შენახვას“, თქვენი სურათის ინტერნეტში განსათავსებლად, ან დააჭირეთ ჩამოტვირთვის ღილაკს, კომპიუტერში შესანახად.
 homePageCapturePage = გვერდისთვის სურათის გადაღება
 homePageCapturePageDescription = მთლიანი გვერდისთვის სურათის გადასაღებად ისარგებლეთ ზედა მარჯვენა კუთხეში განთავსებული ღილაკებით. ხილული ნაწილის შენახვის ღილაკით, მხოლოდ იმ ნაწილს გადაიღებთ, რასაც ეკრანზე ხედავთ, ხოლო მთლიანი გვერდის შენახვის ღილაკით, ვებგვერდის სრულ სურათს მიიღებთ.
-homePageSaveShare = შენახვა და გაზიარება
+homePageDownloadCopy = ჩამოტვირთვა ან ასლის აღება
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = გადაიღეთ სასურველი სურათი. შემდეგ შეინახეთ სურათების ინტერნეტ-ბიბლიოთეკაში და Firefox თავისით აიღებს ბმულის ასლს, მარტივად გაზიარებისთვის. ბიბლიოთეკაში არსებულ გადაღებულ სურათებს ვადა გაუვა ორ კვირაში, თუმცა ნებისმიერ დროს შეგიძლიათ მათი წაშლა ან ვადის გახანგრძლივება.
-homePageSignInTitle = თან წაიყოლეთ ყველგან გადაღებული სურათები
-homePageSignInDescription = შედით Screenshots-ის ანგარიშზე თქვენი Firefox-ანგარიშის მეშვეობით და მიიღეთ წვდომა გადაღებულ სურათებზე ყველგან, სადაც გამოიყენებთ Firefox-ს. დამატებითი უპირატესობა: შეგეძლებათ თქვენი რჩეული სურათების სამუდამოდ შენახვა.
+homePageDownloadCopyDescription = გადაიღეთ საუკეთესო სურათები. Screenshots საშუალებას გაძლევთ, რომ ჩამოტვირთოთ მონიშნული არე ან პირდაპირ ასლი აიღოთ.
 homePageLegalLink = სამართლებრივი საკითხები
 homePagePrivacyLink = პირადულობა
 homePageTermsLink = პირობები
@@ -146,7 +143,6 @@ shotPageBackToHomeButton =
     .title = მთავარი გვერდი
 shotPageAllShotsButton =
     .title = ყველა გადაღებული
-shotPageScreenshotsDescription = ეკრანისთვის სურათის გადაღება უმარტივესია. გადაუღეთ, შეინახეთ და გააზიარეთ სურათები Firefox-ის დატოვების გარეშე.
 shotPageDMCAMessage = სურათი წაიშალა მესამე მხარის მოთხოვნით, საავტორო უფლების დარღვევის საფუძველზე.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = გთხოვთ მოგვწეროთ მისამართზე { $dmca } დამატებითი ინფორმაციისთვის.
@@ -340,6 +336,9 @@ shotDeleteCancel = გაუქმება
     .title = გაუქმება
 shotDeleteConfirm = წაშლა
     .title = წაშლა
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
