@@ -8,6 +8,7 @@ gMyShots = ჩემი გადაღებულები
 gHomeLink = მთავარი
 gNoShots =
     .alt = ვერ მოიძებნა
+gScreenshotsDescriptionServerless = Screenshots მარტივად მუშაობს. გადაიღეთ და ჩამოტვირთეთ ეკრანის სურათები Firefox-ის დატოვების გარეშე.
 
 ## Header
 
@@ -19,6 +20,7 @@ screenshotsLogo =
     .title = Screenshots მთავარი
 bannerSignIn = <a>შედით ან შექმენით ანგარიში</a> თქვენ მიერ გადაღებულ სურათებთან წვდომის მისაღებად სხვადასხვა მოწყობილობებიდან და მათ სამუდამოდ შესანახად.
 bannerUpsell = { gScreenshotsDescription } <a>გადმოწერეთ Firefox ახლავე</a>
+shutdownWarning = <b>სურათების შენახვის ვადა მალე ამოიწურება.</b> ივნისიდან მოყოლებული, Screenshots-ს აღარ ექნება ინტერნეტ-საცავის მომსახურება. გსურთ სურათების შენარჩუნება თქვენი ბიბლიოთეკიდან? <a>ჩამოტვირთეთ თქვენს კომპიუტერში.</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = რა სიახლეებია Firefox Screenshots-ში?
@@ -143,6 +145,7 @@ shotPageBackToHomeButton =
     .title = მთავარი გვერდი
 shotPageAllShotsButton =
     .title = ყველა გადაღებული
+shotPageScreenshotsDescriptionServerless = Screenshots მარტივად მუშაობს. გადაიღეთ და ჩამოტვირთეთ ეკრანის სურათები Firefox-ის დატოვების გარეშე.
 shotPageDMCAMessage = სურათი წაიშალა მესამე მხარის მოთხოვნით, საავტორო უფლების დარღვევის საფუძველზე.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = გთხოვთ მოგვწეროთ მისამართზე { $dmca } დამატებითი ინფორმაციისთვის.
@@ -339,6 +342,8 @@ shotDeleteConfirm = წაშლა
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = გასატანად: მენიუდან აირჩიეთ ფაილი > გვერდის შენახვა, როგორც... და თქვენი სურათები განთავსდება საქაღალდეში { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
