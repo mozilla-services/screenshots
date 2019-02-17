@@ -8,7 +8,7 @@ gMyShots = تصاویر من
 gHomeLink = خانه
 gNoShots =
     .alt = هیچ تصویری پیدا نشد
-gScreenshotsDescription = عکس گرفتن از صفحه آسان شده است. بگیرید، ذخیره‌ کنید و عکس گرفته شده از صفحه را بدون ترک فایرفاکس همرسانی کنید.
+gScreenshotsDescriptionServerless = گرفتن تصویر از صفحه آسان است. تصویر را بگیرید و ذخیره کنید بدون ترک کردن فایرفاکس.
 
 ## Header
 
@@ -20,6 +20,7 @@ screenshotsLogo =
     .title = صفحه خانگی تصاویر صفحه
 bannerSignIn = <a>وارد شوید یا ثبت نام کنید</a> برای دسترسی به تصاویر که بر روی دستگاه‌ های شما هستند و تصویر مورد علاقه خود را برای همیشه ذخیره کنید.
 bannerUpsell = { gScreenshotsDescription } <a>هم‌اکنون فایرفاکس را دریافت کنید</a>
+shutdownWarning = <b>تصاویر ذخیره شده از صفحه به زودی منقضی خواهند شد</b> آغاز از ماه جون،‌ برنامه گرفتن تصویر از صفحه بعد از این تاریخ امکان ذخیره تصاویر به صورت آنلاین را ارائه نمی‌کند. می‌خواهید تصاویر خود را حفظ کنید؟ <a> آن ها رو بر روی کامپیوتر خود ذخیره کنید.</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = چه چیزهایی جدیدی در Firefox Screenshots وجود دارد؟
@@ -71,11 +72,9 @@ homePageCaptureRegion = گرفتن عکس از یک ناحیه
 homePageCaptureRegionDescription = ناحیه که می‌خواهید ثبت کنید را انتخاب کنید و بکشید. یا فقط به روی آن بروید و کلیک کنید — Screenshots برای شما محدوده مورد نظر را انتخاب‌ می‌کند. دقیقا همانند چیزی که می بینید؟ بر روی ذخیره کلیک کنید تا عکس‌های گرفته شده  به صورت آنلاین ذخیره شود یا برای ذخیره بر روی کامپیوتر بر روی دکمه فلش به سمت پایین کلیک کنید.
 homePageCapturePage = گرفتن عکس از صفحه
 homePageCapturePageDescription = از دکمه ظاهر شده در راست برای گرفتن تمام صفحه تصویر استفاده کنید. دکمه ذخیره آشکار این امکان را به شما می‌دهد بدون اسکرول کردن به پایین، قسمت های پایین را ثبت کنید و ذخیره به صورت تمام صفحه هر‌آنچه در صفحه دارید را ذخیره می‌کند.
-homePageSaveShare = ذخیره و اشتراک‌گذاری
+homePageDownloadCopy = دریافت یا برداشت
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = بهترین تصویر خودتون رو بگیرید. بعد در کتابخوانه آنلاین ذخیره سازی کنید و فایرفاکس یک برداشت از آدرس به این تصویر رو در داخل کلیپ بورد شما برای همرسانی راحت تر قرار می‌دهد. تصاویر داخل کتابخوانه به صورت خودکار بعد از دو هفته منقضی می‌شود اما شما می‌توانید تصاویر پاک کنید یا برای هر زمانی بیشتری که بخواید نگه دارید.
-homePageSignInTitle = تصاویر شما همه‌ جا
-homePageSignInDescription = وارد حساب فایرفاکس خود شوید تا به تصاویر خود در همه جا که از فایرفاکس استفاده می‌کنید دسترسی داشته باشید. به عنوان جایزتون هم می‌توانید تصاویر مورد علاقه خود برای همیشه ذخیره کنید.
+homePageDownloadCopyDescription = بهترین تصویر خود را بگیرید. برنامه گرفتن تصویر از صفحه این امکان را به شما می دهد تا انتخاب های خود را دریافت کنید یا آن ها را به صورت مستقیم بر روی بخش برداشت خود انتقال دهید.
 homePageLegalLink = حقوقی
 homePagePrivacyLink = حریم‌خصوصی
 homePageTermsLink = شرایط
@@ -146,7 +145,7 @@ shotPageBackToHomeButton =
     .title = صفحه خانگی
 shotPageAllShotsButton =
     .title = همه عکس‌ها
-shotPageScreenshotsDescription = Screenshots ساده ساخته شده است. بدون خروج از فایرفاکس عکس بگیرید، ذخیره و هم‌رسان کنید.
+shotPageScreenshotsDescriptionServerless = از صفحه برنامه های خود به آسانی تصویر بگیرید. گرفتن تصویر و دریافت آن بدون ترک فایرفاکس.
 shotPageDMCAMessage = این عکس به دلیل درخواست مالکیت معنوی یک شخص ثالث، دیگر در دسترس نیست.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = لطفا برای درخواست اطلاعات بیشتر به { $dmca } ایمیل بزنید.
@@ -344,6 +343,11 @@ shotDeleteCancel = لغو
     .title = لغو
 shotDeleteConfirm = حذف
     .title = حذف
+
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = برای گرفتن خروجی: به بخش File > Save Page As…  رفته و سپس می‌توانید تصاویر گرفته شده را در پوشه { $folder } پیدا کنید
 
 ## Metrics page
 ## All metrics strings are optional for translation
