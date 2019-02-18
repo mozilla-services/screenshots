@@ -8,7 +8,6 @@ gMyShots = Mine skjermbilde
 gHomeLink = Heim
 gNoShots =
     .alt = Fann ingen skjermbilde
-gScreenshotsDescription = Skjermbilete gjort enkelt. Ta, lagre og del skjermbilde utan å forlate Firefox.
 
 ## Header
 
@@ -71,8 +70,7 @@ homePageCaptureRegion = Knips eit områdde
 homePageCaptureRegionDescription = Klikk og dra for å velje området du vil ta skjermbilde av. Eller berre hald musa over og klikk — Screenshots vil velje området for deg. Likar du det du ser? Vel Lagre for å få tilgang til dei knipsa bilda dine på nettet eller pil ned-knappen for å laste dei ned til datamaskina di.
 homePageCapturePage = Knips ei side
 homePageCapturePageDescription = Bruk knappene øvst til høgre for å ta skjermbilde av heile sider. Knappen «Lagre synleg område» tar skjermbilde av området du kan sjå utan å rulle, og «Lagre heile sida» vil ta skjermbilde av alt på sida.
-homePageSaveShare = Lagre og del
-homePageSignInTitle = Dine skjermbilde overalt
+homePageDownloadCopy = Last ned eller kopier
 homePageLegalLink = Juridisk
 homePagePrivacyLink = Personvern
 homePageTermsLink = Vilkår
@@ -141,7 +139,6 @@ shotPageBackToHomeButton =
     .title = Startside
 shotPageAllShotsButton =
     .title = Alle skjermbilde
-shotPageScreenshotsDescription = Skjermbilde gjort enkelt. Ta, lagre og del skjermbilde utan å forlate Firefox.
 shotPageDMCAMessage = Dette bildet er ikkje lenger tilgjengeleg på grunn av ein tredjepart sitt immaterielle krav.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Send ein e-post til { $dmca } for å be om ytterlegare informasjon.
@@ -336,6 +333,9 @@ shotDeleteCancel = Avbryt
     .title = Avbryt
 shotDeleteConfirm = Slett
     .title = Slett
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
