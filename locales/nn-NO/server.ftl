@@ -20,6 +20,7 @@ screenshotsLogo =
     .title = Startside for Screenshots
 bannerSignIn = <a>Logg på eller registrer deg</a> for å få tilgang til bilda dine på tvers av einingar, og lagre favorittane dine for alltid.
 bannerUpsell = { gScreenshotsDescription } <a>Hent Firefox no</a>
+shutdownWarning = <b>Lagra skjermbilde går ut snart.</b>Frå og med juni tilbyr Screenshots ikkje lenger lagring på nettet. Vil du behalde bilde frå biblioteket ditt? <a>Last dei ned til datamaskina di.</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Nyheiter i Firefox Screenshots
@@ -72,6 +73,8 @@ homePageCaptureRegionDescription = Klikk og dra for å velje området du vil ta 
 homePageCapturePage = Knips ei side
 homePageCapturePageDescription = Bruk knappene øvst til høgre for å ta skjermbilde av heile sider. Knappen «Lagre synleg område» tar skjermbilde av området du kan sjå utan å rulle, og «Lagre heile sida» vil ta skjermbilde av alt på sida.
 homePageDownloadCopy = Last ned eller kopier
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Ta eit godt skjermbilde. Med Screenshots kan du laste ned di markering eller kopiere direkte til utklippstavla.
 homePageLegalLink = Juridisk
 homePagePrivacyLink = Personvern
 homePageTermsLink = Vilkår
@@ -80,6 +83,8 @@ homePageCookiesLink = Infokapslar
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Fjern alle data
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = Du må ha Firefox Screenshots installerat eller vere innlogga på Firefox-kontoen din for å slette kontoen din
 leavePageErrorGeneric = Det oppstod ein feil
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Dette vil permanent slette alle dataa dine i Firefox Screenshots.
@@ -288,6 +293,7 @@ SettingsPageHeader = Innstillingar for Firefox Screenshots
 settingsFirefoxAccountSubHeader = Firefox-konto
 settingsClosePreferences =
     .title = Lat att innstillingar
+settingsFxaDisconnectAlertMessage = Er du sikker på at du vil kople frå denne eininga frå Firefox-kontoen din?
 settingsFxaDisconnectDescription = Om du loggar ut, må du logge inn att for å få tilgang til skjermbilda dine.
 settingsFxaConnectDescription = Du kan logge inn og få tilgang til skjermbilda dine på alle einingar.
 
