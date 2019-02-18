@@ -8,6 +8,7 @@ gMyShots = Mine skjermbilde
 gHomeLink = Heim
 gNoShots =
     .alt = Fann ingen skjermbilde
+gScreenshotsDescriptionServerless = Skjermbilde gjort enkelt. Ta og last ned skjermbilde utan å forlate Firefox.
 
 ## Header
 
@@ -139,6 +140,7 @@ shotPageBackToHomeButton =
     .title = Startside
 shotPageAllShotsButton =
     .title = Alle skjermbilde
+shotPageScreenshotsDescriptionServerless = Skjermbilde gjort enkelt. Ta og last ned skjermbilde utan å forlate. Firefox.
 shotPageDMCAMessage = Dette bildet er ikkje lenger tilgjengeleg på grunn av ein tredjepart sitt immaterielle krav.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Send ein e-post til { $dmca } for å be om ytterlegare informasjon.
@@ -286,6 +288,8 @@ SettingsPageHeader = Innstillingar for Firefox Screenshots
 settingsFirefoxAccountSubHeader = Firefox-konto
 settingsClosePreferences =
     .title = Lat att innstillingar
+settingsFxaDisconnectDescription = Om du loggar ut, må du logge inn att for å få tilgang til skjermbilda dine.
+settingsFxaConnectDescription = Du kan logge inn og få tilgang til skjermbilda dine på alle einingar.
 
 ## Shotindex page
 
@@ -336,6 +340,8 @@ shotDeleteConfirm = Slett
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = For å eksportere: bruk Fil > Lagre sida som… og du vil finne skjermbilda dine i mappa { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
