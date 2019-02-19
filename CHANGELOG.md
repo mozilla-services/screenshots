@@ -1,3 +1,29 @@
+## Version 38.0.0
+
+This is a server-only release.
+
+* Add text to /hosting-shutdown page. Fixes [#5275](https://github.com/mozilla-services/screenshots/issues/5275) [b253620](https://github.com/mozilla-services/screenshots/commit/b253620)
+* Suppress the upsell promotion strategy. This is the top banner for Chrome users [00b73ff](https://github.com/mozilla-services/screenshots/commit/00b73ff)
+* Small text changes [32a6f6a](https://github.com/mozilla-services/screenshots/commit/32a6f6a)
+* Use proper ellipsis and small l10n comment change [a12a601](https://github.com/mozilla-services/screenshots/commit/a12a601)
+* Implement /api/tmp-do-not-ship-set-all-indefinite. This is to help QA set their shots to indefinite expiration, even though the frontend of the website has removed that functionality. [cbddd7c](https://github.com/mozilla-services/screenshots/commit/cbddd7c)
+* Disable shutdown header. Fixes [#5299](https://github.com/mozilla-services/screenshots/issues/5299) [f275f3a](https://github.com/mozilla-services/screenshots/commit/f275f3a)
+* Create export page. This creates a page at /export that's just a simplified version of My Shots to use with Save As
+  Previous commits make it easier to include less other files to keep the number of extraneous files saved to a minimum. Fixes [#5249](https://github.com/mozilla-services/screenshots/issues/5249) [6c84920](https://github.com/mozilla-services/screenshots/commit/6c84920)
+* Don't include locale scripts or Raven if there isn't JavaScript on the page [bd566fd](https://github.com/mozilla-services/screenshots/commit/bd566fd)
+* Add parameter for the number of shots in a page. Previously it was only hardcoded. [2e31e65](https://github.com/mozilla-services/screenshots/commit/2e31e65)
+* Do not include inline JSON data if the page isn't going to be rehydrated [b2610e2](https://github.com/mozilla-services/screenshots/commit/b2610e2)
+* Remove FxA marketing ([#5272](https://github.com/mozilla-services/screenshots/issues/5272))This simply says to never show the promotions (but does not remove the promotion code). Fixes [#5254](https://github.com/mozilla-services/screenshots/issues/5254) Fixes [#5253](https://github.com/mozilla-services/screenshots/issues/5253) [daec240](https://github.com/mozilla-services/screenshots/commit/daec240)
+* Start [#5248](https://github.com/mozilla-services/screenshots/issues/5248), create site-wide notice about the shutdown ([#5283](https://github.com/mozilla-services/screenshots/issues/5283)) [8541651](https://github.com/mozilla-services/screenshots/commit/8541651)
+* Remove shot favoriting ([#5281](https://github.com/mozilla-services/screenshots/issues/5281)). Fixes [#5252](https://github.com/mozilla-services/screenshots/issues/5252) [cf9b159](https://github.com/mozilla-services/screenshots/commit/cf9b159)
+* Add a column to /metrics that shows the number of shots that are set to never expire ([#5271](https://github.com/mozilla-services/screenshots/issues/5271)) [e2ace50](https://github.com/mozilla-services/screenshots/commit/e2ace50)
+* Add endpoint to check for indefinite shots ([#5273](https://github.com/mozilla-services/screenshots/issues/5273)). Fixes [#5251](https://github.com/mozilla-services/screenshots/issues/5251) [c6c7490](https://github.com/mozilla-services/screenshots/commit/c6c7490)
+* Put shutdown placeholder page in place ([#5274](https://github.com/mozilla-services/screenshots/issues/5274)). This uses /hosting-shutdown, to try to make it clear that only the server is going away, not the other aspects of the product. Fixes [#5247](https://github.com/mozilla-services/screenshots/issues/5247) [a1ac977](https://github.com/mozilla-services/screenshots/commit/a1ac977)
+
+### Add-on changes
+
+* Don't ship files in test/ with Firefox. Also changes the base path from ./webextension->webextension, to be ./->, which makes the copying work; I'm not sure why this was necessary or why it worked before, but it made it work this time. Fixes [#5241](https://github.com/mozilla-services/screenshots/issues/5241) [b4d3873](https://github.com/mozilla-services/screenshots/commit/b4d3873)
+
 ## Version 37.1.0
 
 A Firefox release.
@@ -34,24 +60,7 @@ This is a Firefox release. A server release to go with this will follow shortly.
 
 ### Server changes
 
-Note: unreleased
-
-* Suppress the upsell promotion strategy. This is the top banner for Chrome users [00b73ff](https://github.com/mozilla-services/screenshots/commit/00b73ff)
-* Small text changes [32a6f6a](https://github.com/mozilla-services/screenshots/commit/32a6f6a)
-* Use proper ellipsis and small l10n comment change [a12a601](https://github.com/mozilla-services/screenshots/commit/a12a601)
-* Implement /api/tmp-do-not-ship-set-all-indefinite. This is to help QA set their shots to indefinite expiration, even though the frontend of the website has removed that functionality. [cbddd7c](https://github.com/mozilla-services/screenshots/commit/cbddd7c)
-* Disable shutdown header. Fixes [#5299](https://github.com/mozilla-services/screenshots/issues/5299) [f275f3a](https://github.com/mozilla-services/screenshots/commit/f275f3a)
-* Create export page. This creates a page at /export that's just a simplified version of My Shots to use with Save As
-  Previous commits make it easier to include less other files to keep the number of extraneous files saved to a minimum. Fixes [#5249](https://github.com/mozilla-services/screenshots/issues/5249) [6c84920](https://github.com/mozilla-services/screenshots/commit/6c84920)
-* Don't include locale scripts or Raven if there isn't JavaScript on the page [bd566fd](https://github.com/mozilla-services/screenshots/commit/bd566fd)
-* Add parameter for the number of shots in a page. Previously it was only hardcoded. [2e31e65](https://github.com/mozilla-services/screenshots/commit/2e31e65)
-* Do not include inline JSON data if the page isn't going to be rehydrated [b2610e2](https://github.com/mozilla-services/screenshots/commit/b2610e2)
-* Remove FxA marketing ([#5272](https://github.com/mozilla-services/screenshots/issues/5272))This simply says to never show the promotions (but does not remove the promotion code). Fixes [#5254](https://github.com/mozilla-services/screenshots/issues/5254) Fixes [#5253](https://github.com/mozilla-services/screenshots/issues/5253) [daec240](https://github.com/mozilla-services/screenshots/commit/daec240)
-* Start [#5248](https://github.com/mozilla-services/screenshots/issues/5248), create site-wide notice about the shutdown ([#5283](https://github.com/mozilla-services/screenshots/issues/5283)) [8541651](https://github.com/mozilla-services/screenshots/commit/8541651)
-* Remove shot favoriting ([#5281](https://github.com/mozilla-services/screenshots/issues/5281)). Fixes [#5252](https://github.com/mozilla-services/screenshots/issues/5252) [cf9b159](https://github.com/mozilla-services/screenshots/commit/cf9b159)
-* Add a column to /metrics that shows the number of shots that are set to never expire ([#5271](https://github.com/mozilla-services/screenshots/issues/5271)) [e2ace50](https://github.com/mozilla-services/screenshots/commit/e2ace50)
-* Add endpoint to check for indefinite shots ([#5273](https://github.com/mozilla-services/screenshots/issues/5273)). Fixes [#5251](https://github.com/mozilla-services/screenshots/issues/5251) [c6c7490](https://github.com/mozilla-services/screenshots/commit/c6c7490)
-* Put shutdown placeholder page in place ([#5274](https://github.com/mozilla-services/screenshots/issues/5274)). This uses /hosting-shutdown, to try to make it clear that only the server is going away, not the other aspects of the product. Fixes [#5247](https://github.com/mozilla-services/screenshots/issues/5247) [a1ac977](https://github.com/mozilla-services/screenshots/commit/a1ac977)
+Note: unreleased, see 38.0.0
 
 ## Version 36.5.0
 
