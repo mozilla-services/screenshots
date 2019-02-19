@@ -44,6 +44,7 @@ let driver;
 async function getDriver(preferences) {
   if (driver) {
     await driver.quit();
+    driver = null;
   }
 
   // const servicebuilder = new ServiceBuilder().enableVerboseLogging(true).setStdio("inherit");
@@ -174,9 +175,10 @@ describe("Test Screenshots", function() {
     // await driver.switchTo().defaultContent();
   });
 
-  after(function() {
+  after(async function() {
     if (!process.env.NO_CLOSE) {
-      return driver.quit();
+      await driver.quit();
+      driver = null;
     }
     console.info("Note: leaving browser open");
     return null;
