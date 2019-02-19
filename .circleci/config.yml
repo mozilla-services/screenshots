@@ -160,7 +160,7 @@ workflows:
               only: master
       - deploy_stage:
           requires:
-            - test
+            - build
           filters:
             branches:
               only: server-prod
