@@ -21,6 +21,9 @@ screenshotsLogo =
 bannerSignIn = <a>Asup atawa daptar</a> pikeun muka téwakan ti sakur gawai sarta teundeun anu petinganana salilana.
 bannerUpsell = { gScreenshotsDescription } <a>Cokot Firefox ayeuna</a>
 shutdownWarning = <b>Téwakan layar anu diteundeun sakeudeung deui kadaluwarsa.</b> Ti Juni, Screenshots moal nawaran deui teundeunan onlén. Rék nyimpen téwakan ti pabukon anjeun? <a>Unduh kana komputer.</a>
+shutdownPageTitle = Screenshots robah
+shutdownPageDescription = Mimiti Juni, Screenshots moal nawaran deui gudang daring. Rék nyimpen téwakan tina pabukon anjeun? Unduh hiji-hiji atawa <a>disabuntelkeun</a>. Nuhun geus maké ieu fitur, hampura bisi matak riweuh.
+shutdownPageContinue = Mangga lajengkeun migunakeun Screenshots pikeun nyimpen, nyalin, jeung ngundeur tétéwakan.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Naon nu anyar ti Firefox Screenshots?
