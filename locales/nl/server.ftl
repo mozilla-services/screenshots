@@ -22,6 +22,7 @@ bannerSignIn = <a>Meld u aan of registreer</a> om uw afbeeldingen op meerdere ap
 bannerUpsell = { gScreenshotsDescription } <a>Firefox nu downloaden</a>
 shutdownWarning = <b>De opgeslagen schermafbeeldingen verlopen binnenkort.</b> Vanaf juni biedt Screenshots geen online opslag meer aan. Wilt u afbeeldingen uit uw bibliotheek bewaren? <a>Download ze dan naar uw computer.</a>
 shutdownPageTitle = Screenshots gaat veranderen
+shutdownPageDescription = Vanaf juni biedt Screenshots geen offlineopslag meer. Wilt u afbeeldingen uit uw bibliotheek behouden? Download ze apart of <a>gebundeld</a>. Bedankt voor het gebruik van deze functie, en excuses voor het eventuele ongemak.
 shutdownPageContinue = We hopen dat u Screenshots blijft gebruiken voor het vastleggen, kopiëren en downloaden van afbeeldingen.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
