@@ -22,6 +22,8 @@ bannerSignIn = Cihazlarınız arasında görüntülərinizi görmək üçün <a>
 bannerUpsell = { gScreenshotsDescription } <a>Firefox Endir</a>
 shutdownWarning = <b>Saxlanılmış ekran görüntülərinin vaxtı yaxında çıxacaq.</b> İyun ayından etibarən Ekran Görüntüləri onlayn saxlama xidmətini dayandıracaq. Kitabxananızdaki görüntüləri saxlamaq istəyirsiniz? <a>Kompüterinizə endirin.</a>
 shutdownPageTitle = Screenshots xidməti dəyişir
+shutdownPageDescription = İyun ayından etibarən Screenshots xidməti ekran görüntülərini onlayn saxlama imkanını qaldıracaq. Kitabxananızdakı görüntüləri saxlamaq istəyirsiniz? Görüntüləri bir-bir və ya <a>toplu halda</a> endirin. Bu özəlliyi işlətdiyiniz üçün təşəkkürlər, narahatçılıq üçün üzr istəyirik.
+shutdownPageContinue = Ümid edirik Screenshots özəlliyini ekran görüntülərinizi çəkmək, köçürmək və endirmək üçün işlətməyə davam edəcəksiniz.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Firefox Screenshots-dakı yeniliklər nələrdir?
