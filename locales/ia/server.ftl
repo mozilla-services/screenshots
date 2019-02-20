@@ -21,6 +21,8 @@ screenshotsLogo =
 bannerSignIn = <a>Authentica te o registra te</a> pro acceder tu instantaneos trans apparatos e salvar sempre tu favoritos.
 bannerUpsell = { gScreenshotsDescription } <a>Prende Firefox ora</a>
 shutdownWarning = <b>Le instantaneos salvate expirara tosto.</b> A initiar de junio, Screenshots non offerera plus magazinage online. Vole tu retener tu capturas ex tu bibliotheca? <a>Discarga los in tu computator.</a>
+shutdownPageTitle = Screenshots cambia
+shutdownPageContinue = Nos spera que vos continuara a usar Screenshots pro capturar, copiar e discargar instantaneos.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Que novas con Firefox Screenshots?
