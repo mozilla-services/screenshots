@@ -21,6 +21,8 @@ screenshotsLogo =
 bannerSignIn = <a>შედით ან შექმენით ანგარიში</a> თქვენ მიერ გადაღებულ სურათებთან წვდომის მისაღებად სხვადასხვა მოწყობილობებიდან და მათ სამუდამოდ შესანახად.
 bannerUpsell = { gScreenshotsDescription } <a>გადმოწერეთ Firefox ახლავე</a>
 shutdownWarning = <b>სურათების შენახვის ვადა მალე ამოიწურება.</b> ივნისიდან მოყოლებული, Screenshots-ს აღარ ექნება ინტერნეტ-საცავის მომსახურება. გსურთ სურათების შენარჩუნება თქვენი ბიბლიოთეკიდან? <a>ჩამოტვირთეთ თქვენს კომპიუტერში.</a>
+shutdownPageTitle = Screenshots-ში ცვლილებებია
+shutdownPageDescription = ივნისიდან მოყოლებული, Screenshots-ს აღარ ექნება ინტერნეტ-საცავის მომსახურება. გსურთ სურათების შენარჩუნება თქვენი ბიბლიოთეკიდან? ჩამოტვირთეთ სათითაოდ <a>ან ერთიანად</a>. გმადლობთ, რომ სარგებლობდით ამ შესაძლებლობით და ვწუხვართ, უხერხულობის შექმნისთვის.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = რა სიახლეებია Firefox Screenshots-ში?
