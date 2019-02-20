@@ -23,6 +23,7 @@ bannerUpsell = { gScreenshotsDescription } <a>გადმოწერეთ Fir
 shutdownWarning = <b>სურათების შენახვის ვადა მალე ამოიწურება.</b> ივნისიდან მოყოლებული, Screenshots-ს აღარ ექნება ინტერნეტ-საცავის მომსახურება. გსურთ სურათების შენარჩუნება თქვენი ბიბლიოთეკიდან? <a>ჩამოტვირთეთ თქვენს კომპიუტერში.</a>
 shutdownPageTitle = Screenshots-ში ცვლილებებია
 shutdownPageDescription = ივნისიდან მოყოლებული, Screenshots-ს აღარ ექნება ინტერნეტ-საცავის მომსახურება. გსურთ სურათების შენარჩუნება თქვენი ბიბლიოთეკიდან? ჩამოტვირთეთ სათითაოდ <a>ან ერთიანად</a>. გმადლობთ, რომ სარგებლობდით ამ შესაძლებლობით და ვწუხვართ, უხერხულობის შექმნისთვის.
+shutdownPageContinue = ვიმედოვნებთ, რომ ჩვეულებრივ განაგრძობთ Screenshots-ის გამოყენებას სურათების გადასაღებად, ასლის ასაღებად და ჩამოსატვირთად.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = რა სიახლეებია Firefox Screenshots-ში?
