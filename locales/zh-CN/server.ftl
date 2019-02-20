@@ -21,6 +21,7 @@ screenshotsLogo =
 bannerSignIn = 请<a>注册或登录</a>，即可跨设备访问您的截图，并永久保存收藏的截图。
 bannerUpsell = { gScreenshotsDescription }<a>立即下载 Firefox</a>
 shutdownWarning = <b>已保存的屏幕截图即将到期。</b>从六月开始，Screenshots 将不再提供在线存储空间。想要保留图库中的截图吗？<a>将它们下载到您的计算机中。</a>
+shutdownPageDescription = 自六月起，Screenshots 将不再提供在线存储空间。想要保留图库中的截图吗？请将截图单张或<a>批量</a>下载至本地。感谢您使用此功能，对于给您带来的不便，我们深表歉意。
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Firefox Screenshots 有什么新变化？
