@@ -21,6 +21,9 @@ screenshotsLogo =
 bannerSignIn = <a>Đăng nhập hoặc đăng ký</a> để truy cập ảnh của bạn trên các thiết bị và lưu các mục yêu thích của bạn mãi mãi.
 bannerUpsell = { gScreenshotsDescription } <a>Tải Firefox ngay</a>
 shutdownWarning = <b>Ảnh chụp màn hình đã lưu sắp hết hạn.</b> Bắt đầu từ tháng 6, Screenshots sẽ không còn cung cấp lưu trữ trực tuyến. Bạn muốn giữ bức ảnh từ thư viện của bạn? <a>Tải chúng xuống máy tính của bạn.</a>
+shutdownPageTitle = Screenshots đang thay đổi
+shutdownPageDescription = Bắt đầu từ tháng 6, Screenshots sẽ không còn cung cấp lưu trữ trực tuyến. Bạn muốn giữ bức ảnh từ thư viện của bạn? Tải xuống các ảnh riêng lẻ hoặc <a>theo đợt</a>. Cảm ơn bạn đã sử dụng tính năng này và chúng tôi xin lỗi vì sự bất tiện này.
+shutdownPageContinue = Chúng tôi hy vọng bạn sẽ tiếp tục sử dụng Screenshots để chụp, sao chép và tải xuống ảnh.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Có gì mới trong Firefox Screenshots?
@@ -37,7 +40,7 @@ onboardingPromoSigninButton = Đăng nhập
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Điều khoản
-footerLinkPrivacy = Chính sách Riêng tư
+footerLinkPrivacy = Chính sách riêng tư
 footerReportShot = Báo cáo ảnh chụp
     .title = Báo cáo ảnh chụp này vì lạm dụng, spam hay các vấn đề khác
 footerLinkFaqs = Câu hỏi thường gặp
