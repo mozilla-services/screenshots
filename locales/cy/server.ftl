@@ -21,6 +21,9 @@ screenshotsLogo =
 bannerSignIn = <a>Mewngofnodwch neu ymunwch</a> i gael mynediad at eich lluniau ar draws dyfeisiau a chadw eich ffefrynnau am byth.
 bannerUpsell = { gScreenshotsDescription } <a>Defnyddiwch Firefox</a>
 shutdownWarning = <b> Mae lluniau sgrin wedi'u cadw yn dod i ben cyn bo hir. </b>O fis Mehefin, fydd Screenshots ddim yn cynnig cadw ar-lein bellach. Eisiau cadw lluniau o'ch llyfrgell? Llwythwch nhw i lawr i'ch cyfrifiadur.</a>
+shutdownPageTitle = Mae Screenshots yn newid
+shutdownPageDescription = O fis Mehefin, ni fydd Screenshots yn cynnig storio ar-lein. Eisiau cadw'ch lluniau o'ch llyfrgell. Llwythwch y lluniau i lawr yn unigol neu <a>fel swp</a>. Diolch am ddefnyddio'r nodwedd hon ac rydym yn ymddiheuro am unrhyw anghyfleuster.
+shutdownPageContinue = Rydym yn gobeithio y byddwch yn parhau i ddefnyddio Screenshots i gipio, copïo a llwytho lluniau i lawr.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Beth sy'n newydd gyda Firefox Screenshots?
