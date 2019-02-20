@@ -23,6 +23,11 @@ bannerUpsell = { gScreenshotsDescription } <a>Obter o Firefox agora</a>
 shutdownWarning =
     <b>As capturas de ecrã guardadas vão expirar brevemente.</b> A começar em junho, o Screenshots não irá mais oferecer armazenamento online. Pretende manter capturas da sua biblioteca?
     <a>Transfira-as para o seu computador.</a>
+shutdownPageTitle = O Screenshots está a alterar
+shutdownPageDescription =
+    A partir de junho, o Screenshots não irá mais oferecer armazenamento online. Pretende manter capturas da sua biblioteca? Transfira capturas individualmente ou <a>em lote</a>.
+    Obrigado por utilizar esta funcionalidade e pedimos desculpa por qualquer inconveniência.
+shutdownPageContinue = Esperamos que continue a utilizar o Screenshots para capturar, copiar e transferir capturas.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = O que há de novo no Firefox Screenshots?
