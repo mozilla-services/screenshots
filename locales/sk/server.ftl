@@ -21,6 +21,9 @@ screenshotsLogo =
 bannerSignIn = Pre prístup ku snímkam z iných zariadení alebo pre ich ukladanie sa, prosím, <a>prihláste alebo zaregistrujte</a>.
 bannerUpsell = { gScreenshotsDescription } <a>Prevezmite si Firefox hneď teraz</a>
 shutdownWarning = <b>Uloženým snímkam čoskoro vyprší platnosť.</b> Od júna už služba Screenshots nebude ponúkať možnosť nahrávať snímky na internet. Svoje nahrané snímky si môžete <a>prevziať do počítača</a>.
+shutdownPageTitle = Službu Screenshots čaká zmena
+shutdownPageDescription = Od júna nebude služba Screenshots naďalej ponúkať online úložisko. Ak si chcete ponechať snímky uložené vo vašej knižnici, prevezmite si ich. Môžete si ich prevziať jednotlivo alebo <a>naraz</a>. Ďakujeme vám, za používanie tejto funkcie a ospravedlňujeme sa za prípadné nepríjemnosti.
+shutdownPageContinue = Dúfame, že budete našu službu používať aj naďalej.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Čo je nové vo Firefox Screenshots?
