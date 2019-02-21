@@ -8,7 +8,7 @@ gMyShots = Мої знімки
 gHomeLink = Домівка
 gNoShots =
     .alt = Знімків не знайдено
-gScreenshotsDescriptionServerless = Робити знімки екрану тепер просто. Створюйте і завантажуйте знімки екрану, не покидаючи Firefox.
+gScreenshotsDescriptionServerless = Робити знімки екрану тепер простіше. Створюйте і завантажуйте знімки екрану, не покидаючи Firefox.
 
 ## Header
 
@@ -20,6 +20,10 @@ screenshotsLogo =
     .title = Домівка Screenshots
 bannerSignIn = <a>Зареєструйтеся або увійдіть</a>, щоб мати доступ до знімків на всіх пристроях та зберігати обрані назавжди.
 bannerUpsell = { gScreenshotsDescription } <a>Отримати Firefox</a>
+shutdownWarning = <b>Термін зберігання знімків екрану невдовзі завершиться.</b> Починаючи з Червня, Screenshots більше не пропонуватимуть онлайн сховище. Хочете зберегти свої знімки? <a>Завантажте їх на свій комп'ютер.</a>
+shutdownPageTitle = Screenshots змінюється
+shutdownPageDescription = Починаючи з Червня, Screenshots більше не пропонуватимуть онлайн сховище. Хочете зберегти свої знімки? Завантажте їх поодинці чи <a>всі разом</a>. Дякуємо за користування цією функцією та перепрошуємо за незручності.
+shutdownPageContinue = Сподіваємося, ви продовжите використовувати Screenshots для створення, копіювання та завантаження знімків.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Що нового в Firefox Screenshots?
@@ -71,6 +75,9 @@ homePageCaptureRegion = Захопити область
 homePageCaptureRegionDescription = Натисніть і потягніть, щоб вибрати область для знімку. Або просто наведіть і клацніть мишею — буде обрано область. Якщо знімок вам подобається, натисніть Зберегти, щоб отримати доступ до своїх знімків в мережі, або стрілку вниз для завантаження на комп'ютер.
 homePageCapturePage = Захопити сторінку
 homePageCapturePageDescription = Використовуйте кнопки справа вгорі для захоплення цілих сторінок. Кнопка Зберегти видиму область захопить область, яку видно без прокручування, а кнопка Зберегти всю сторінку захопить сторінку повністю.
+homePageDownloadCopy = Завантажити чи копіювати
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Зробіть свій найкращий знімок. Screenshots дозволяють вам завантажувати чи копіювати його копію безпосередньо в буфер обміну.
 homePageLegalLink = Юридична інформація
 homePagePrivacyLink = Приватність
 homePageTermsLink = Умови
@@ -141,6 +148,7 @@ shotPageBackToHomeButton =
     .title = Домівка
 shotPageAllShotsButton =
     .title = Всі знімки
+shotPageScreenshotsDescriptionServerless = Робити знімки екрану тепер простіше. Створюйте і завантажуйте знімки екрану, не покидаючи Firefox.
 shotPageDMCAMessage = Цей знімок більше недоступний через порушення авторських прав третьої сторони.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Будь ласка, напишіть на { $dmca }, щоб запитати додаткову інформацію.
@@ -347,6 +355,8 @@ shotDeleteConfirm = Видалити
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Для експорту використайте меню: Файл > Зберегти сторінку як… і ви знайдете свої знімки в теці { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
