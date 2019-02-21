@@ -21,6 +21,9 @@ screenshotsLogo =
 bannerSignIn = <a>Hyni ose regjistrohuni</a>, që të përdorni shkrepjet tuaj nëpër pajisje dhe t’i ruani të parapëlqyerat tuaja përgjithmonë.
 bannerUpsell = { gScreenshotsDescription } <a>Merreni Firefox-in që tani</a>
 shutdownWarning = <b>Fotot e ruajtura të ekranit skadojnë së shpejti.</b> Duke filluar nga qershori, Fotot e Ekranit nuk do të ofrojnë më hapësirë depozitimi në internet. Doni të mbani foto nga fototeka juaj? <a>Shkarkojini ato te kompjuteri juaj.</a>
+shutdownPageTitle = Fotot e ekranit po ndryshojnë
+shutdownPageDescription = Duke filluar nga qershori, Fotot e Ekranit s’do të ofrojnë më depozitim në internet. Doni të mbani foto nga fototeka juaj? Shkarkojini foto një nga një ose <a>në grup</a>. Faleminderit që e përdorët këtë veçori, dhe na ndjeni për çfarëdo sikleti që mund të sjellë.
+shutdownPageContinue = Shpresojmë se do të vazhdoni të përdorni Foto Ekrani, për të bërë, kopjuar dhe shkarkuar foto.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Ç’ka të re te Firefox Screenshots?
