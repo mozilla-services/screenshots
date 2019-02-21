@@ -21,6 +21,9 @@ screenshotsLogo =
 bannerSignIn = <a>T'annunzia u ta registrescha</a> per acceder a tes maletgs dal visur cun agid da mintga apparat e memorisar tes favurits per adina.
 bannerUpsell = { gScreenshotsDescription } <a>Telechargiar Firefox</a>
 shutdownWarning = <b>Ils maletgs dal visur memorisads vegnan prest eliminads.</b> A partir dal zercladur na porscha Screenshots nagin arcun online pli. Vuls ti salvar ils maletgs da tia biblioteca? <a>Als telechargia sin tes computer.</a>
+shutdownPageTitle = Screenshots sa mida
+shutdownPageDescription = A partir dal zercladur na porscha Screenshots nagina memoria online pli. Vuls ti preservar maletgs da tia biblioteca? Telechargia ils maletgs in ad in u <a>tuts en ina</a>. Grazia per utilisar questa funcziunalitad. Nus ans perstgisain per las fadias che quest pass chaschuna.
+shutdownPageContinue = Nus sperain che ti cuntinueschias ad utilisar Screenshots per far, copiar e telechargiar maletgs dal visur.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Tge datti da nov en Firefox Screenshots?
