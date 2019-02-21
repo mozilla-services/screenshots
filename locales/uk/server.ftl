@@ -8,7 +8,7 @@ gMyShots = Мої знімки
 gHomeLink = Домівка
 gNoShots =
     .alt = Знімків не знайдено
-gScreenshotsDescription = Знімки стали простішими. Робіть, зберігайте й діліться знімками екрану, не покидаючи Firefox.
+gScreenshotsDescriptionServerless = Робити знімки екрану тепер просто. Створюйте і завантажуйте знімки екрану, не покидаючи Firefox.
 
 ## Header
 
@@ -71,11 +71,6 @@ homePageCaptureRegion = Захопити область
 homePageCaptureRegionDescription = Натисніть і потягніть, щоб вибрати область для знімку. Або просто наведіть і клацніть мишею — буде обрано область. Якщо знімок вам подобається, натисніть Зберегти, щоб отримати доступ до своїх знімків в мережі, або стрілку вниз для завантаження на комп'ютер.
 homePageCapturePage = Захопити сторінку
 homePageCapturePageDescription = Використовуйте кнопки справа вгорі для захоплення цілих сторінок. Кнопка Зберегти видиму область захопить область, яку видно без прокручування, а кнопка Зберегти всю сторінку захопить сторінку повністю.
-homePageSaveShare = Зберегти й поділитися
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Зробіть свій найкращий знімок. Потім збережіть його до онлайн бібліотеки знімків екрану, а Firefox скопіює посилання в буфер обміну, щоб ви могли легко його оприлюднити. Знімки екрану зберігаються в бібліотеці протягом двох тижнів, але ви можете видалити їх будь-коли, або зберігати довше.
-homePageSignInTitle = Ваші знімки всюди з вами
-homePageSignInDescription = Увійдіть до Screenshots з використанням облікового запису Firefox, щоб мати доступ до своїх знімків на всіх пристроях з Firefox. Крім того, ви можете зберігати обрані знімки без обмеження терміну дії.
 homePageLegalLink = Юридична інформація
 homePagePrivacyLink = Приватність
 homePageTermsLink = Умови
@@ -146,7 +141,6 @@ shotPageBackToHomeButton =
     .title = Домівка
 shotPageAllShotsButton =
     .title = Всі знімки
-shotPageScreenshotsDescription = Знімки екрану стали простими. Робіть, зберігайте і поширюйте знімки екрану, не залишаючи Firefox.
 shotPageDMCAMessage = Цей знімок більше недоступний через порушення авторських прав третьої сторони.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Будь ласка, напишіть на { $dmca }, щоб запитати додаткову інформацію.
@@ -350,6 +344,9 @@ shotDeleteCancel = Скасувати
     .title = Скасувати
 shotDeleteConfirm = Видалити
     .title = Видалити
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
