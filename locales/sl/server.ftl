@@ -21,6 +21,8 @@ screenshotsLogo =
 bannerSignIn = <a>Prijavite ali registrirajte se</a>, da boste lahko svoje posnetke uporabljali na več napravah in priljubljene trajno shranili.
 bannerUpsell = { gScreenshotsDescription }<a>Prenesite Firefox zdaj</a>
 shutdownWarning = <b>Shranjeni posnetki bodo kmalu potekli.</b> Od junija ne bomo več ponujali spletne shrambe. Želite obdržati posnetke iz svoje knjižnice? <a> Prenesite si jih na računalnik.</a>
+shutdownPageTitle = Screenshots se spreminja
+shutdownPageDescription = Screenshots od junija naprej ne bo več ponujal spletne shrambe. Želite obdržati posnetke iz svoje knjižnice? Prenesite posnetke posamično ali <a>v paketu</a>. Zahvaljujemo se vam za uporabo te možnosti in se opravičujemo za morebitne nevšečnosti.
 shutdownPageContinue = Upamo, da boste še naprej uporabljali Screenshots za zajem, kopiranje in prenos posnetkov.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
