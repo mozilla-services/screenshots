@@ -20,6 +20,9 @@ screenshotsLogo =
     .title = Screenshots kuatiarogue ñepyrũ
 bannerSignIn = <a>Emoñepyrũ tembiapo térã eñemboheraguapy</a> ehecha hag̃ua ne ra’anga opaite mba’e’okápe ha eñongatuete umi eguerohoryvéva.
 bannerUpsell = { gScreenshotsDescription } <a>Eguereko Firefox ko'ág̃a</a>
+shutdownWarning = <b>Umi mba’erechaha japyhypy ñongatupyre oñemboguétama vokoiete.</b> Jasypoteĩ guive, Screenshots noñongatumo’ãvéima ñandutípe. ¿Eguerekosépa nde japypyhypyre ne arandukarendápe? <a>Emboguejy ne mohendahápe.</a>
+shutdownPageTitle = Screenshots iñambuehína
+shutdownPageContinue = Hi’ã oréve eipurumeme Screenshots ejapo, embokuatia ha emboguejy hag̃ua mba’erechaha japyhypyre.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = ¿Mba’e ipyahúva ejuhukuaa Firefox Screenshots-pe?
