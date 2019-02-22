@@ -22,6 +22,7 @@ bannerSignIn = <a>Emoñepyrũ tembiapo térã eñemboheraguapy</a> ehecha hag̃u
 bannerUpsell = { gScreenshotsDescription } <a>Eguereko Firefox ko'ág̃a</a>
 shutdownWarning = <b>Umi mba’erechaha japyhypy ñongatupyre oñemboguétama vokoiete.</b> Jasypoteĩ guive, Screenshots noñongatumo’ãvéima ñandutípe. ¿Eguerekosépa nde japypyhypyre ne arandukarendápe? <a>Emboguejy ne mohendahápe.</a>
 shutdownPageTitle = Screenshots iñambuehína
+shutdownPageDescription = Jasypoteĩ guive, Screenshots noñongatumo’ãvéima ñandutípe. ¿Eguerekosépa nde japypyhypyre ne arandukarendápe? Emboguejy ha’eñomínte térã <a>hetaháicha</a>. Aguyje eipuru haguére ko tembiapoite ha rombyasy pe atõivai.
 shutdownPageContinue = Hi’ã oréve eipurumeme Screenshots ejapo, embokuatia ha emboguejy hag̃ua mba’erechaha japyhypyre.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
