@@ -21,6 +21,9 @@ screenshotsLogo =
 bannerSignIn = <a>Prijavite se ili registrirajte</a> kako biste imali pristup svojim snimkama sa svih uređaja i spremili vaše omiljene zauvijek.
 bannerUpsell = { gScreenshotsDescription }<a>Preuzmite Fiirefox sada</a>
 shutdownWarning = <b>Spremljene snimke uskoro istječu.</b> Od lipnja, snimke zaslona neće više nuditi pohranu na mreži. Želite li zadržati svoju biblioteku? <a>Preuzmite snimke na svoje računalo.</a>
+shutdownPageTitle = Snimke ekrana se mijenjaju
+shutdownPageDescription = Počevši od lipnja, snimke ekrana neće više pružati mogućnost pohrane na mreži. Želite li zadržati snimke iz vaše zbirke? Preuzmite snimke pojedinačno ili <a>grupno</a>. Hvala vam što koristite ovu mogućnost i žao nam je zbog neugodnosti.
+shutdownPageContinue = Nadamo se da ćete i dalje koristiti snimke zaslona za snimanje, kopiranje i preuzimanje snimaka.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Što je novo u Firefox snimkama zaslona?
