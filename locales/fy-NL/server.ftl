@@ -21,6 +21,9 @@ screenshotsLogo =
 bannerSignIn = Meld jo oan of registrearje om jo ôfbyldingen op mear apparaten te benaderjen en jo favoriten foar altyd te bewarjen.
 bannerUpsell = { gScreenshotsDescription } <a>Firefox no downloade</a>
 shutdownWarning = <b>De bewarre skermôfbyldingen ferrinne ynkoarten.</b> Fan juny ôf biedt Screenshots gjin online ûnthâld mear oan. Wolle jo ôfbyldingen út jo biblioteek bewarje? <a>Download se dan nei jo kompjûter.</a>
+shutdownPageTitle = Screenshots giet feroarje
+shutdownPageDescription = Fan juny ôf biedt Screenshots gjin offlineûnthâld mear. Wolle jo ôfbyldingen út jo biblioteek behâlde? Download se apart of <a>bondele</a>. Tank foar it gebrûk fan dizze funksje, en ekskús foar it eventuele ûngemak.
+shutdownPageContinue = Wy hoopje dat jo Screenshots brûke bliuwe foar it fêstlizzen, kopiearjen en downloaden fan ôfbyldingen.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Wat is der nij by Firefox Screenshots?
