@@ -149,6 +149,12 @@ workflows:
   build_test_deploy:
     jobs:
       - build
+      - deploy_stage:
+          requires:
+            - build
+          filters:
+            branches:
+              only: server-prod
       - test:
           requires:
             - build
@@ -158,9 +164,3 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy_stage:
-          requires:
-            - build
-          filters:
-            branches:
-              only: server-prod
