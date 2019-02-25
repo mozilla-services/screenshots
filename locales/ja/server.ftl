@@ -20,6 +20,8 @@ screenshotsLogo =
 bannerSignIn = <a>ログインまたはアカウント登録</a> してショットにアクセス。端末を問わずにショットへアクセスし、あなたのお気に入りを保存しましょう。
 bannerUpsell = { gScreenshotsDescription } <a>Firefox を今すぐ入手</a>
 shutdownWarning = <b>間もなく保存したスクリーンショットの有効期限が切れます。</b> 6 月以降、Screenshots はオンラインストレージの提供を終了します。オンライン上に保存したスクリーンショットは、<a>コンピューターにダウンロードしてください。</a>
+shutdownPageTitle = Screenshots が変わります
+shutdownPageDescription = 5月末で Screenshots のオンラインストレージの提供を終了します。オンラインストレージ上のショットを保存しておきたい場合は、個別または <a>バッチ処理</a> でダウンロードしてください。この機能をご使用いただきありがとうございました。ご不便をおかけして申し訳ありません。
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Firefox Screenshots の新機能
