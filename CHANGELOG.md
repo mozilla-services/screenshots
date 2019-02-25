@@ -1,3 +1,12 @@
+## Version 38.1.0
+
+* Bring in updated locales for production release
+
+### Build/test changes
+
+* Only do a build and not test before stage, so add-on intermittents don't prevent a deploy [f03e116](https://github.com/mozilla-services/screenshots/commit/f03e116)
+* Speculative help for CircleCI failures. This probably won't fix anything, but might make the failures clearer [e29a593](https://github.com/mozilla-services/screenshots/commit/e29a593)
+
 ## Version 38.0.0
 
 This is a server-only release.
