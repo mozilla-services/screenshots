@@ -22,6 +22,8 @@ bannerSignIn = <a>Kennaskit pe marilhit</a> evit haeziñ ho tapadennoù war ho h
 bannerUpsell = { gScreenshotsDescription } <a>Kaout Firefox bremañ</a>
 shutdownWarning = <b>Tapadennoù skramm enrollet a ziamzero a-benn nebeut.</b> Adalek miz Mezheven ne ginnigimp ket ar c'hadaviñ enlinenn ken. Fellout a ra deoc'h mirout ho tapadennoù? <a>Pellgargit anezho war hoc'h urzhiataer.</a>
 shutdownPageTitle = Kemmañ a ra Screenshots
+shutdownPageDescription = Adalek miz Mezheven ne vo ket ken a gadaviñ enlinenn evit Screenshot. Fellout a ra deoc'h mirout ho tapadennoù en ho skeudennaoueg? Pellgargit anezho unan dre unan pe <a>a bakadoù</a>. Ho trugarekaat a reomp evit ho implij, hag en em digareziñ a reomp mard oc'h lakaet diaes gant ar serradur-se.
+shutdownPageContinue = Spi hon eus e kendalc'hot da arverañ Screenshots evit tapout, eilañ ha pellgargañ tapadennoù.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Petra nevez gant Firefox Screenshots?
