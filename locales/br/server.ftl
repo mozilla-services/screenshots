@@ -21,6 +21,7 @@ screenshotsLogo =
 bannerSignIn = <a>Kennaskit pe marilhit</a> evit haeziñ ho tapadennoù war ho holl drevnadoù hag enrollit ho pennrolloù da viken.
 bannerUpsell = { gScreenshotsDescription } <a>Kaout Firefox bremañ</a>
 shutdownWarning = <b>Tapadennoù skramm enrollet a ziamzero a-benn nebeut.</b> Adalek miz Mezheven ne ginnigimp ket ar c'hadaviñ enlinenn ken. Fellout a ra deoc'h mirout ho tapadennoù? <a>Pellgargit anezho war hoc'h urzhiataer.</a>
+shutdownPageTitle = Kemmañ a ra Screenshots
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Petra nevez gant Firefox Screenshots?
