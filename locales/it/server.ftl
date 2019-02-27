@@ -21,6 +21,9 @@ screenshotsLogo =
 bannerSignIn = <a>Accedi o registrati</a> per accedere alle tue immagini da qualsiasi dispositivo e conservare per sempre le tue preferite.
 bannerUpsell = { gScreenshotsDescription } <a>Scarica subito Firefox</a>
 shutdownWarning = <b>Gli screenshot salvati verranno eliminati a breve.</b> A partire da giugno, Screenshot non offrirà più il servizio di archiviazione online. Se non vuoi perdere le tue immagini, <a>scaricale sul computer.</a>
+shutdownPageTitle = Screenshots sta cambiando
+shutdownPageDescription = A partire da giugno, Screenshots non offrirà più spazio di archiviazione online. Se vuoi conservare le immagini della tua libreria, scaricale singolarmente o <a>in blocco</a>. Ti ringraziamo per aver utilizzato questa funzione e ci scusiamo per qualsiasi inconveniente.
+shutdownPageContinue = Ci auguriamo che continuerai a utilizzare Screenshots per acquisire, copiare e scaricare schermate.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Cosa c'è di nuovo in Firefox Screenshots?
