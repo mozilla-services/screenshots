@@ -8,13 +8,14 @@ gMyShots = Taq Nuwachib'al
 gHomeLink = Tikirib'äl
 gNoShots =
     .alt = Majun wachib'äl xilitäj
-gScreenshotsDescription = Relik b'anon chi re ri chapoj wachib'äl. Man k'atzinel ta yatel el pa Firefox richin nachap, nayak, chuqa' nakomonij ri chapoj wachib'äl.
 
 ## Header
 
 buttonSettings =
     .title = Taq nuk'ulem
 buttonSignIn =
+    .title = Titikirisäx molojri'ïl
+onboardingPromoSigninButton = Titikirisäx molojri'ïl
     .title = Titikirisäx molojri'ïl
 
 ## Footer
@@ -49,15 +50,12 @@ homePageDownloadFirefoxSubTitle = Sipan Ruqasaxik
 homePageHowScreenshotsWorks = Achike rub'eyal nisamäj Firefox Chapoj Wachib'äl
 homePageGetStartedTitle = Titikirisäx
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Tawila' ri k'ak'a' ruwachaj Chapoj Wachib'äl pan asamajib'al. Tacha', chi ri rucha'osamaj Chapoj Wachib'äl niwachin pe ajsik pa rutzuwäch okik'amaya'l.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Ticha' ruwachaj Chapoj Wachib'äl pa ri ruxaq ruk'utsamaj b'anoj pa rukajtz'ik ochochib'äl, ri ruk'utsamaj Chapoj Wachib'äl xtib'ewachin pe ajsik rutzuwäch okik'amaya'l.
 homePageCaptureRegion = Tachapa' jun Ruwa
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Tapitz'a' chuqa' taqirirej richin nacha' ri k'ojlib'äl nawajo' nachäp. O xa xe taya' ri retal ch'oy pa ruwi' — ja ri Chapoj Wachib'äl xticha'o ri k'ojlib'äl chawäch. ¿La jeb'ël ri natz'ët? Tacha' Tiyak richin yatok pa chapoj awachib'al pa k'amab'ey o ri xulan ch'ab' richin nayäk qa pan akematz'ib'.
 homePageCapturePage = Tichap ruwachib'al jun Ruxaq
 homePageCapturePageDescription = Ke'okisäx ri ajsik ajkiq'a' taq pitz'b'äl richin ye'achäp chijun ruxaq. Ri Tiyak Wachel pitz'b'äl xtuchäp ri k'ojlem; man k'atzinel ta yatel richin natz'ët, chuqa' ri Tiyak Tz'aqät Ruxaq ronojel xtuchäq pa ri ruxaq.
-homePageSaveShare = Tiyak chuqa' Tikomonïx
 homePageLegalLink = Taqanel
 homePagePrivacyLink = Ichinanem
 homePageTermsLink = Taq Ojqanem
@@ -91,6 +89,7 @@ shotPageShareButton =
     .title = Tikomonïx
 shotPageCopyButton =
     .title = Tiwachib'ëx wachib'äl pa molwuj
+shotPageCopyActionLabel = Tiwachib'ëx
 shotPageCopied = Xwachib'ëx
 shotPageShareFacebook =
     .title = Tikomonïx pa Facebook
@@ -121,7 +120,6 @@ shotPageEditButton =
     .title = Tinuk' re wachib'äl re'
 shotPageBackToHomeButton =
     .title = Tikirib'äl ruxaq
-shotPageScreenshotsDescription = Relik b'anon chi re ri chapoj wachib'äl. Man k'atzinel ta yatel el pa Firefox richin nachap, nayak, chuqa' nakomonij ri chapoj wachib'äl.
 shotPageDMCAMessage = Man wachel ta chik re wachib'äl re' ruma juley winaqi' nikich'ojij  jun na'owinäq ichinem.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Tataqa' { $dmca } richin nak'utuj juley rutzijol.
@@ -262,12 +260,10 @@ copyImageErrorTitle = K'o itzel xub'än
 settingsDisconnectButton = Tichup
     .title = Tichup
 settingsGuestAccountMessage = Rub'i' Rutaqoya'l Peyon
-settingsSignInInvite = Titikirisäx molojri'ïl richin nib'an ximoj chi kikojol okisaxel
 settingsSignInButton = Titikirisäx molojri'ïl
     .title = Titikirisäx molojri'ïl
 SettingsPageHeader = Taq Runuk'ulem Firefox Screenshots
-settingsDescription = Yatikïr natikirisaj molojri'ïl pa ri Rub'i' Taqoya'l richin Firefox richin ye'axïm konojel ri chapoj kiwäch taq awokisaxel chuqa' richin ichinan rub'eyal yatok chi kipam.
-settingsPageSubHeader = Sync & Rub'i' Taqoya'l
+settingsFirefoxAccountSubHeader = Rub'i' Rutaqoya'l Firefox
 settingsClosePreferences =
     .title = Ketz'apïx taq ajowanïk
 
@@ -288,6 +284,8 @@ shotIndexPageNoShotsInvitation = Tatz'aqa' chi re, ke'anuk'u' jujun.
 shotIndexPageLookingForShots = Tajin yekanöx ri  taq awachib'al...
 shotIndexPageNoSearchResultsIntro = Aaa
 shotIndexPageNoSearchResults = Man yeqïl ta taq wachib'äl, achi'el ri nakanoj.
+shotIndexPageMyShotsButton =
+    .title = Taq Nuwachib'al
 shotIndexPageClearSearchButton =
     .title = Tijosq'ïx kanoxïk
 shotIndexPageConfirmShotDelete = ¿La niyuj re wachib'äl re'?
@@ -303,6 +301,9 @@ shotDeleteCancel = Tiq'at
     .title = Tiq'at
 shotDeleteConfirm = Tiyuj
     .title = Tiyuj
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
