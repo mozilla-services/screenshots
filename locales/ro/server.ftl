@@ -21,6 +21,9 @@ screenshotsLogo =
 bannerSignIn = <a>Autentifică-te sau înregistrează-te</a> pentru a accesa propriile capturi pe toate dispozitivele și pentru a-ți salva favoritele pentru totdeauna.
 bannerUpsell = { gScreenshotsDescription }<a>Obține Firefox acum</a>
 shutdownWarning = <b> Capturile de ecran salvate expiră în curând. </b> Începând din iunie, Screenshots nu va mai oferi spațiu de stocare online. Vrei să îți păstrezi capturile din bibliotecă? <a>Descarcă-le pe calculator.</a>
+shutdownPageTitle = Screenshots se modifică
+shutdownPageDescription = Începând cu luna iunie, Screenshots nu va mai oferi spațiu de stocare online. Vrei să păstrezi fotografiile din bibliotecă? Descarcă individual capturile de ecran salvate sau <a> pe loturi </a>. Îți mulțumim pentru utilizarea acestei funcții și ne cerem scuze pentru orice inconveniențe.
+shutdownPageContinue = Sperăm că vei continua să utilizezi Screenshot pentru a captura, descărca și copia capturi de ecran.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Ce este nou cu Firefox Screenshots?
