@@ -22,7 +22,7 @@ bannerSignIn = Görüntülerinize tüm cihazlarınızdan ulaşmak ve favorilerin
 bannerUpsell = { gScreenshotsDescription } <a>Firefox’u indir</a>
 shutdownWarning = <b>Kayıtlı ekran görüntüleriniz bir süre sonra silinecek.</b> Screenshots, Haziran'dan itibaren çevrimiçi depolama olanağı sunmayacak. Arşivinizdeki görüntüleri saklamak istiyorsanız <a>onları bilgisayarınıza indirin</a>.
 shutdownPageTitle = Screenshots değişiyor
-shutdownPageDescription = Haziran ayından itibaren Screenshots çevrimiçi depolama olanağı sunmayacak. Arşivinizde ekran görüntülerinizi kaydetmek isterseniz hepsini <a>topluca indirebilirsiniz</a>. Bu özelliği kullandığınız için teşekkür eder, zahmet verdiysek özür dileriz.
+shutdownPageDescription = Haziran ayından itibaren Screenshots çevrimiçi depolama olanağı sunmayacak. Arşivinizdeki ekran görüntülerinizi saklamak isterseniz hepsini <a>topluca indirebilirsiniz</a>. Bu özelliği kullandığınız için teşekkür eder, zahmet verdiysek özür dileriz.
 shutdownPageContinue = Ekran görüntüleri almak, kopyalamak ve kaydetmek için Screenshots’ı eskisi gibi kullanmaya devam edebilirsiniz.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
