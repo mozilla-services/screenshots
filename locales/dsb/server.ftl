@@ -22,6 +22,8 @@ bannerSignIn = <a>Pśizjawśo se abo registrěrujśo se</a>, aby pśez rědy pś
 bannerUpsell = { gScreenshotsDescription } <a>Wobstarajśo se Firefox něnto</a>
 shutdownWarning = <b>Skłaźone fota wobrazowki skóro spadnu.</b> Wót junija Screenshots žeden składowak online njepóbitujo. Cośo fota wobrazowki ze swójeje biblioteki wobchowaś? <a>Ześěgniśo je do swójogo licadła.</a>
 shutdownPageTitle = Screenshots se změnja
+shutdownPageDescription = Wót junija Screenshots wěcej składowak njepóbitujo. Cośo fota wobrazowki ze swójeje biblioteki wobchowaś? Ześěgniśo fota wobrazowki jadno pó jadnom abo <a>pó kupkach</a>. Źěkujomy se za wužywanje toś teje funkcije a wódajśo pšosym wobuznosći.
+shutdownPageContinue = Naźejamy se, až Screenshots dalej wužywaśo, aby wy fota wobrazowki napórał, kopěrował a ześěgnuł.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Co jo nowe w Firefox Screenshots?
