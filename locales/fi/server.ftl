@@ -18,6 +18,9 @@ buttonSignIn =
 screenshotsLogo =
     .title = Screenshots-etusivu
 bannerUpsell = { gScreenshotsDescription } <a>Hanki Firefox nyt</a>
+onboardingPromoMessageListItem2 = Tallenna suosikkikuvasi ikuisesti
+onboardingPromoDismissButton = Hylkää
+    .title = Hylkää
 onboardingPromoSigninButton = Kirjaudu sisään
     .title = Kirjaudu sisään
 
@@ -70,6 +73,8 @@ homePageCookiesLink = Evästeet
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Poista kaikki tiedot
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = Sinulla tulee olla Firefox Screenshots asennettuna tai kirjautuneena Firefox-tilillesi, jos haluat poistaa tilisi
 leavePageErrorGeneric = Tapahtui virhe
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Tämä poistaa kaikki Firefox Screenshots -palvelun tietosi pysyvästi.
