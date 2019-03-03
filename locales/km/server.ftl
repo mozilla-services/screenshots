@@ -4,23 +4,31 @@
 
 ## Global phrases shared across pages, prefixed with 'g'
 
-gSettings = ការ​កំណត់
-gSignIn = ចូល
+gMyShots = រូបថត​របស់​ខ្ញុំ
+gHomeLink = ទំព័រដើម
 
 ## Header
 
-signInButton =
-    .aria-label = ចូល
-settingsButton =
-    .aria-label = ការកំណត់
 
 ## Footer
 
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = លក្ខខណ្ឌ
+footerLinkPrivacy = ការ​ជូន​ដំណឹង​​ឯកជនភាព
+footerLinkFaqs = សំណួរ​ដែល​សួរ​ញឹកញាប់
+footerLinkDMCA = រាយការណ៍ការបំពាន​តាម IP
+footerLinkDiscourse = ផ្ដល់​មតិ​កែលម្អ
+footerLinkRemoveAllData = យកទិន្នន័យទាំងអស់ចេញ
 
 ## Creating page
 
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
+creatingPageTitle = កំពុង​បង្កើត { $title }
+creatingPageTitleDefault = ទំព័រ
+creatingPageWaitMessage = កំពុងរក្សាទុករូបថតរបស់អ្នក…
 
 ## Home page
 
@@ -43,7 +51,6 @@ notFoundPageDescription = រក​មិន​ឃើញ​ទំព័រ។
 shotPageAlertErrorUpdatingTitle = កំហុសក្នុងការរក្សាទុកចំណងជើង
 shotPageShareButton =
     .title = ចែករំលែក
-shotPageCopy = ចម្លង
 shotPageCopied = បានចម្លង
 shotPageShareFacebook =
     .title = ចែករំលែកលើ Facebook
@@ -57,7 +64,6 @@ shotPageShareEmail =
 shotPageExpiredMessageDetails = នេះជាទំព័រដែលវាត្រូវបានបង្កើតដំបូងពី៖
 shotPageDownloadShot =
     .title = ទាញយក
-shotPageDownload = ទាញយក
 shotPageSaveExpiration = រក្សាទុក
 shotPageCancelExpiration = បោះបង់
 
@@ -78,13 +84,16 @@ annotationCancelEditButton = បោះបង់
 annotationColorWhite =
     .title = ពណ៌ស
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+
 ## Settings Page
 
 
 ## Shotindex page
 
-shotIndexPageSearchButton =
-    .title = ស្វែងយក
 shotIndexPageClearSearchButton =
     .title = ជម្រះ​ការ​ស្វែងរក
 shotIndexPagePreviousPage =
@@ -99,6 +108,9 @@ shotDeleteCancel = បោះបង់
     .title = បោះបង់
 shotDeleteConfirm = លុប
     .title = លុប
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
