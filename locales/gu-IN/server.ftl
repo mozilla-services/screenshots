@@ -8,6 +8,7 @@ gMyShots = મારા શોટ્સ
 gHomeLink = મુખ્ય પૃષ્ઠ
 gNoShots =
     .alt = કોઈ શૉટ્સ મળ્યાં નથી
+gScreenshotsDescriptionServerless = સ્ક્રીનશોટ ને સરળ બનાવ્યુ છે. Firefox છોડ્યાં વિના સ્ક્રીનશોટને કૅપ્ચર અને ડાઉનલોડ કરો.
 
 ## Header
 
