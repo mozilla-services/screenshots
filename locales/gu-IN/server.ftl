@@ -20,7 +20,10 @@ screenshotsLogo =
     .title = સ્ક્રીનશૉટ્સ હોમ
 bannerSignIn = તમારા ઉપકરણને તમારા ઉપકરણ પર ઍક્સેસ કરવા અને તમારા મનપસંદ્સને હંમેશાં સાચવવા માટે<a>સાઇન ઇન કરો અથવા સાઇન અપ કરો</a>.
 bannerUpsell = { gScreenshotsDescription } <a>હવે Firefox મેળવો</a>
+shutdownWarning = <b>સાચવેલા સ્ક્રીનશૉટ્સ ટૂંક સમયમાં સમાપ્ત થાય છે.</b> જૂનથી શરૂ થતાં, સ્ક્રીનશોટ્સ હવે ઑનલાઇન સ્ટોરેજ ઓફર કરશે નહીં. તમારી લાઇબ્રેરીમાંથી શોટ રાખવા માંગો છો?<a>તેમને તમારા કમ્પ્યુટર પર ડાઉનલોડ કરો.</a>
 shutdownPageTitle = સ્ક્રીનશોટ બદલાતી રહે છે
+shutdownPageDescription = જૂનથી શરૂ થતાં, સ્ક્રીનશોટ્સ હવે ઑનલાઇન સ્ટોરેજ ઓફર કરશે નહીં. તમારી લાઇબ્રેરીમાંથી શોટ રાખવા માંગો છો? વ્યક્તિગત રૂપે શોટ અથવા <a> બેચમાં </a> ડાઉનલોડ કરો. આ સુવિધાનો ઉપયોગ કરવા બદલ આભાર, અને કોઈપણ અસુવિધા બદલ અમને દિલગીર છે.
+shutdownPageContinue = અમે આશા રાખીએ છીએ કે તમે શૉટ્સને કેપ્ચર, કૉપિ અને ડાઉનલોડ કરવા માટે સ્ક્રીનશોટનો ઉપયોગ કરવાનું ચાલુ રાખશો.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Firefox Screenshots સાથે નવું શું છે?
@@ -72,6 +75,9 @@ homePageCaptureRegion = પ્રદેશને પકડો
 homePageCaptureRegionDescription = તમે પકડવા માંગો છો તે ક્ષેત્રને પસંદ કરવા માટે ક્લિક કરો અને ખેંચો. અથવા માત્ર હૉવર કરો અને ક્લિક કરો - સ્ક્રીનશોટ તમારા માટે વિસ્તાર પસંદ કરશે. તમે શું જુઓ છો? તમારા કમ્પ્યુટર પર તેને ડાઉનલોડ કરવા માટે તમારા સ્ક્રીનશૉટ અથવા નીચે તીર બટનને ઍક્સેસ કરવા માટે સાચવો પસંદ કરો.
 homePageCapturePage = પૃષ્ઠને પકડો
 homePageCapturePageDescription = સંપૂર્ણ પૃષ્ઠોને પકડવા માટે ઉપલા જમણા બટન્સનો ઉપયોગ કરો. સાચવો દૃશ્યમાન બટન તે વિસ્તારને પકડવા કરશે જે તમે સ્ક્રોલિંગ વગર જોઈ શકો છો, અને પૂર્ણ પેજમાં સાચવો પૃષ્ઠ પર બધું પકડશે.
+homePageDownloadCopy = ડાઉનલોડ કરો અથવા કૉપિ કરો
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = તમારું શ્રેષ્ઠ શૉટ લો. સ્ક્રીનશોટથી તમે તમારી પસંદગીને ડાઉનલોડ કરી શકો છો અથવા તેને તમારા ક્લિપબોર્ડ પર કૉપિ કરી શકો છો.
 homePageLegalLink = કાયદાકીય
 homePagePrivacyLink = ખાનગીપણું
 homePageTermsLink = શરતો
@@ -142,6 +148,7 @@ shotPageBackToHomeButton =
     .title = મુખ્યપૃષ્ઠ
 shotPageAllShotsButton =
     .title = બધા સ્ક્રીનશૉટ્સ
+shotPageScreenshotsDescriptionServerless = સ્ક્રીનશોટ ને સરળ બનાવ્યુ છે. Firefox છોડ્યાં વિના સ્ક્રીનશોટને કૅપ્ચર અને ડાઉનલોડ કરો.
 shotPageDMCAMessage = તૃતીય પક્ષ બૌદ્ધિક સંપદા દાવાને કારણે આ શોટ હવે ઉપલબ્ધ નથી.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = વધુ માહિતી માટે વિનંતી કરવા માટે { $dmca } ઇમેઇલ કરો.
