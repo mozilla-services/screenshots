@@ -8,7 +8,7 @@ gMyShots = Cuplikan Saya
 gHomeLink = Beranda
 gNoShots =
     .alt = Tidak ada cuplikan ditemukan
-gScreenshotsDescription = Screenshots membuatnya sederhana. Ambil, simpan, dan bagikan tangkapan layar tanpa meninggalkan Firefox.
+gScreenshotsDescriptionServerless = Screenshots dibuat sederhana. Ambil dan unduh tangkapan layar tanpa meninggalkan Firefox.
 
 ## Header
 
@@ -71,11 +71,7 @@ homePageCaptureRegion = Tangkap Bagian
 homePageCaptureRegionDescription = Klik dan seret untuk memilih area yang ingin Anda tangkap. Atau arahkan dan klik  — Screenshots akan memilih area untuk Anda. Sudah pas? Pilih Simpan untuk mengakses tangkapan layar secara daring atau tombol panah ke bawah untuk mengunduhnya ke komputer Anda.
 homePageCapturePage = Tangkap Laman
 homePageCapturePageDescription = Gunakan tombol di kanan atas untuk merekam seluruh laman. Tombol Simpan yang Terlihat akan menangkap area yang Anda lihat tanpa menggulir, dan Simpan Laman Sepenuhnya akan menangkap semua yang ada di laman.
-homePageSaveShare = Simpan dan Bagikan
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Ambil cuplikan terbaik Anda. Lalu simpan ke pustaka daring Screenshots, dan Firefox menyalin tautan ke papan klip agar mudah dibagikan. Cuplikan di dalam pustaka secara otomatis kadaluarsa setelah dua pekan, tetapi Anda dapat menghapusnya kapanpun atau menyimpannya lebih lama.
-homePageSignInTitle = Cuplikan Anda Di Mana Saja
-homePageSignInDescription = Masuk ke Screenshots menggunakan Firefox Account Anda untuk mengakses cuplikan Anda di mana saja Anda menggunakan Firefox. Bonus tambahan: Anda juga dapat menyimpan cuplikan favorit selamanya.
+homePageDownloadCopy = Unduh atau Salin
 homePageLegalLink = Legal
 homePagePrivacyLink = Privasi
 homePageTermsLink = Ketentuan
@@ -146,7 +142,7 @@ shotPageBackToHomeButton =
     .title = Beranda
 shotPageAllShotsButton =
     .title = Semua Tangkapan Layar
-shotPageScreenshotsDescription = Screenshots sangat mudah. Tangkap, simpan, dan bagikan tangkapan layar tanpa meninggalkan Firefox.
+shotPageScreenshotsDescriptionServerless = Screenshots dibuat sederhana. Ambil dan unduh tangkapan layar tanpa meninggalkan Firefox.
 shotPageDMCAMessage = Tangkapan ini tidak lagi tersedia karena klaim hak kekayaan intelektual pihak ketiga.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Kirimkan surel ke { $dmca } untuk meminta informasi lebih lanjut.
@@ -320,6 +316,9 @@ shotDeleteCancel = Batal
     .title = Batal
 shotDeleteConfirm = Hapus
     .title = Hapus
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
