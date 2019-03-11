@@ -8,7 +8,6 @@ gMyShots = Моите снимки
 gHomeLink = Начална страница
 gNoShots =
     .alt = Няма снимки на екрана
-gScreenshotsDescription = Лесни снимки на екрана. Създавате, запазвате и споделяте снимки на екрана без да напускате Firefox.
 
 ## Header
 
@@ -20,6 +19,9 @@ screenshotsLogo =
     .title = Страница на Screenshots
 bannerSignIn = <a>Впишете се или се регистрирайте</a>, за да получите достъп до вашите снимки от други устройства и за да запазите вашите любими снимки завинаги.
 bannerUpsell = { gScreenshotsDescription } <a>Вземете Firefox сега</a>
+shutdownPageTitle = Screenshots се променя
+shutdownPageDescription = Считано но юни Screenshots няма да предлага съхранение онлайн. Искате ли да запазите снимките от библиотеката си? Изтеглете ги поединично или <a>в пакет</a>. Благодарим ви, че използвахте тази функция и съжаляваме за създадените неудобства.
+shutdownPageContinue = Надяваме се да продължите да използвате Screenshots, за да правите, копирате и изтегляте снимки.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Какво е новото във Firefox Screenshots?
@@ -71,11 +73,7 @@ homePageCaptureRegion = Улавяне на част от екрана
 homePageCaptureRegionDescription = Натиснете и влачете, за да изберете областта която желаете да уловите. Или просто поставете курсора отгоре и натиснете – Screenshots сама ще избере площта вместо вас. Харесва ли ви? Изберете „Запазване“, за да имате снимката онлайн или бутона със стрелка надолу, за да я изтеглите на вашия компютър.
 homePageCapturePage = Улавяне на страница
 homePageCapturePageDescription = Използвайте бутоните в горния десен ъгъл, за да снимате цели страници. Бутонът „Запазване на видимата област“ ще улови областта, която виждате без прелистване, а „Запазване на цялата страница“ – всичко на страницата.
-homePageSaveShare = Запазване и споделяне
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Направете най-добрата си снимка. След това я запазете в онлайн библиотеката за снимки на екрана и Firefox ще копира препратката в системния буфер, така че лесно да я споделите. Снимките в библиотеката се изтриват автоматично след 2 седмици, но може да ги изтриете по всяко време или да ги задържите по-дълго.
-homePageSignInTitle = Вашите снимки – навсякъде
-homePageSignInDescription = Впишете се в Снимки на екрана с вашия Firefox Account, за да получите достъп до вашите снимки отвсякъде, където използвате Firefox. Като добавка: можете да запазите вашите любими снимки завинаги.
+homePageDownloadCopy = Изтегляне или копиране
 homePageLegalLink = Правни въпроси
 homePagePrivacyLink = Поверителност
 homePageTermsLink = Условия
@@ -146,7 +144,6 @@ shotPageBackToHomeButton =
     .title = Страница
 shotPageAllShotsButton =
     .title = Всички снимки
-shotPageScreenshotsDescription = Лесни снимки на екрана. Създавате, запазвате и споделяте снимки на екрана без да напускате Firefox.
 shotPageDMCAMessage = Това изображение вече не е налично, защото е докладвано като обект на авторско право.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Моля, за повече информация пишете до { $dmca }.
@@ -344,6 +341,9 @@ shotDeleteCancel = Отказ
     .title = Отказ
 shotDeleteConfirm = Изтриване
     .title = Изтриване
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
