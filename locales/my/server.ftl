@@ -8,6 +8,7 @@ gMyShots = ကိုယ်တိုင်ရိုက်ဓါတ်ပုံမ
 gHomeLink = မူလ
 gNoShots =
     .alt = ရိုက်ကူးထားခြင်း မရှိပါ
+gScreenshotsDescriptionServerless = Screenshots ကို အရိုးရှင်းဆုံး ပြုလုပ်ထားသည်။ Firefox ကို ပိတ်စရာမလိုပဲ မျက်နှာပြင် ပုံဖမ်းချက်များကို ရိုက်ကူးပြီး ဆွဲယူနိုင်သည်။
 
 ## Header
 
@@ -19,8 +20,10 @@ screenshotsLogo =
     .title = Screenshots မူလစာမျက်နှာ
 bannerSignIn = သင့်ရိုက်ချက်အသုံးပြုခြင်းရရှိရန် အကောင့်အသစ်ဝင်ရောက်ခြင်း သို့မဟုတ် အကောင့်ဝင်ရောက်ခြင်းကိုလုပ်ဆောင်ပြီး သင့်ကြိုက်နှစ်သက်ရာများကို အမြဲသိမ်းမည်
 bannerUpsell = { gScreenshotsDescription } <a>Firefox ကို ယခုပင် ရယူပါ</a>
+shutdownWarning = <b>သိမ်းထားသည့် ပုံဖမ်းချက်များသည် မကြာမီ သက်တမ်းကုန်ဆုံးပါတော့မည်။</b> ဂျွန်လမှစတင်ပြီး Screenshots သည် အွန်လိုင်းပေါ်တွင် သိမ်းစေနိုင်မည် မဟုတ်ပါ။ သင့်စာကြည့်တိုက်ထဲမှ ဖမ်းယူချက်များကို သိမ်းထားလိုပါသလား။ <a>၎င်းတို့ကို သင့်ကွန်ပျူတာထဲသို့ ဆွဲယူပါ။</a>
 shutdownPageTitle = Screenshots သည် ပြောင်းလဲနေသည်
-shutdownPageDescription = ဂျွန်လက စတင်ပြီး Screenshots ကို အွန်လိုင်းပေါ်တွင် သိမ်းလို့ မရနိုင်တော့ပါ။ သင့်စာကြည့်တိုက်ထဲမှ ပုံဖမ်းချက်များကို သိမ်းထားလိုပါသလား။ ပုံဖမ်းချက်များကို သီးခြားစီ သို့မဟုတ် <a>ဖိုင်တွဲလိုက်</a> ဆွဲယူပါ။ ယခုလုပ်ဆောင်ချက်ကို အသုံးပြုသည့်အတွက် ကျေးဇူးတင်ပါသည်။ ထို့ပြင် အဆင်မပြေမှုများအတွက်လည်း တောင်းပန်ပါသည်။
+shutdownPageDescription = ဂျွန်လက စတင်ပြီး Screenshots သည် အွန်လိုင်းပေါ်တွင် သိမ်းစေနိုင်မည် မဟုတ်ပါ။ သင့်စာကြည့်တိုက်ထဲမှ ပုံဖမ်းချက်များကို သိမ်းထားလိုပါသလား။ ပုံဖမ်းချက်များကို သီးခြားစီ သို့မဟုတ် <a>ဖိုင်တွဲလိုက်</a> ဆွဲယူပါ။ ယခုလုပ်ဆောင်ချက်ကို အသုံးပြုသည့်အတွက် ကျေးဇူးတင်ပါသည်။ ထို့ပြင် အဆင်မပြေမှုများအတွက်လည်း တောင်းပန်ပါသည်။
+shutdownPageContinue = ပုံဖမ်းချက်များကို ရိုက်ကူး၊ ကူးပွား၊ ဆွဲယူရန် Screenshots ကို ဆက်လက်အသုံးပြုမည်ကို မျှော်လင့်ပါသည်။
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Firefoxရဲ့ရိုက်ချက်များနှင့်ပတ်သက်၍ အသစ်များ
@@ -73,6 +76,8 @@ homePageCaptureRegionDescription = မိမိပုံဖမ်းလိုသ
 homePageCapturePage = စာမျက်နှာကို ပုံဖမ်းရန်
 homePageCapturePageDescription = စာမျက်နှာများကို အပြည့်ဖမ်းယူရန် ညာဘက်အပေါ်ဘက်ရှိ ခလုတ်များကို အသုံးပြုပါ။ မြင်ရသည်ကို သိမ်းပါ သည် အပေါ်အောက်ရွှေ့စရာမလိုပဲ မြင်ရသော အကျယ်အဝန်းကို ဖမ်းယူပါမည်။ ထို့ပြင် စာမျက်နှာအပြည့်သိမ်းပါ သည် လက်ရှိစာမျက်နှာတွင် မြင်ရသည်အကုန်လုံးကို ဖမ်းယူပါမည်။
 homePageDownloadCopy = ဆွဲယူ သို့မဟုတ် ပွားယူပါ
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = အကောင်းဆုံး ဖမ်းယူပါ။ Screenshots သည် ရွေးချယ်ထားသည့် ဖမ်းယူချက်ကို ဆွဲယူ သို့မဟုတ် ကလစ်ဘုတ်ပေါ်သို့ ကူးယူနိုင်စေသည်။
 homePageLegalLink = ဥပဒေရေးရာ
 homePagePrivacyLink = ကိုယ်ရေးလုံခြုံမှု
 homePageTermsLink = စည်းမျဉ်းများ
@@ -143,6 +148,7 @@ shotPageBackToHomeButton =
     .title = အဖွင့်စာမျက်နှာ
 shotPageAllShotsButton =
     .title = ရိုက်ကူးထားသော ပုံများ
+shotPageScreenshotsDescriptionServerless = Screenshots ကို အရိုးရှင်းဆုံး ပြုလုပ်ထားသည်။ Firefox ကနေ ထွက်စရာမလိုပဲ မျက်နှာပြင်ပုံဖမ်းချက်များကို ရိုက်ယူပြီး ဆွဲယူပါ။
 shotPageDMCAMessage = ဖောက်ဖျက်မှုတစ်ခုခုဖြင့် အဆိုတင်သွင်းမှုကြောင့် ဒီရိုက်ချက်အား မရရှိနိုင်တော့ပါ
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = နောက်ထပ်အချက်အလက်များ တောင်းဆိုလိုပါက { $dmca } သို့ ကျေးဇူးပြု၍ အီးမေးလ်ပို့ပါ။
@@ -337,6 +343,8 @@ shotDeleteConfirm = ဖျက်သိမ်းပါ
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = ထုတ်ယူရန် ဖိုင် > စာမျက်နှာကို သိမ်းမည်... ကို အသုံးပြုပါ၊ သင့် ဖမ်းယူချက်များကို { $folder } ဖိုင်တွဲအတွင်းတွင် တွေ့နိုင်ပါသည်။
 
 ## Metrics page
 ## All metrics strings are optional for translation
