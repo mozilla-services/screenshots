@@ -8,7 +8,6 @@ gMyShots = ကိုယ်တိုင်ရိုက်ဓါတ်ပုံမ
 gHomeLink = မူလ
 gNoShots =
     .alt = ရိုက်ကူးထားခြင်း မရှိပါ
-gScreenshotsDescription = မျက်နှာပြင်ဖမ်းယူခြင်းကို လွယ်ကူစေရန် ပြုလုပ်ထားသည်။ Firefox ကနေ ထွက်ခွာစရာမလိုပဲ မျက်နှာပြင်ဖမ်းယူထားခြင်းများကို ရိုက်ကူး၊ သိမ်းဆည်းပြီး မျှဝေပါ။
 
 ## Header
 
@@ -20,6 +19,8 @@ screenshotsLogo =
     .title = Screenshots မူလစာမျက်နှာ
 bannerSignIn = သင့်ရိုက်ချက်အသုံးပြုခြင်းရရှိရန် အကောင့်အသစ်ဝင်ရောက်ခြင်း သို့မဟုတ် အကောင့်ဝင်ရောက်ခြင်းကိုလုပ်ဆောင်ပြီး သင့်ကြိုက်နှစ်သက်ရာများကို အမြဲသိမ်းမည်
 bannerUpsell = { gScreenshotsDescription } <a>Firefox ကို ယခုပင် ရယူပါ</a>
+shutdownPageTitle = Screenshots သည် ပြောင်းလဲနေသည်
+shutdownPageDescription = ဂျွန်လက စတင်ပြီး Screenshots ကို အွန်လိုင်းပေါ်တွင် သိမ်းလို့ မရနိုင်တော့ပါ။ သင့်စာကြည့်တိုက်ထဲမှ ပုံဖမ်းချက်များကို သိမ်းထားလိုပါသလား။ ပုံဖမ်းချက်များကို သီးခြားစီ သို့မဟုတ် <a>ဖိုင်တွဲလိုက်</a> ဆွဲယူပါ။ ယခုလုပ်ဆောင်ချက်ကို အသုံးပြုသည့်အတွက် ကျေးဇူးတင်ပါသည်။ ထို့ပြင် အဆင်မပြေမှုများအတွက်လည်း တောင်းပန်ပါသည်။
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Firefoxရဲ့ရိုက်ချက်များနှင့်ပတ်သက်၍ အသစ်များ
@@ -71,11 +72,7 @@ homePageCaptureRegion = နယ်ပယ် တစ်ခုကို ပုံဖ
 homePageCaptureRegionDescription = မိမိပုံဖမ်းလိုသော အကျယ်အဝန်းကို တိုင်းတာရွေးရန် ကလစ်နှိပ်ပြီး ဖိဆွဲပါ။ သို့မဟုတ် ပွိုင်တာမြားကို နှစ်သက်ရာပေါ်သို့ ရွှေ့တင်ပြီး ကလစ်နှိပ်ပါ — Screenshots က သင့်အတွက် အကျယ်အဝန်းကို တိုင်းတာရွေးချယ်ပေးပါမည်။ ၎င်းလုပ်ဆောင်ချက်ကို နှစ်သက်ပါသလား။ မျက်နှာပြင်ပုံဖမ်းချက်ကို အွန်လိုင်းပေါ်တွင် အသုံးပြုရန် သိမ်းပါ ကို ရွေးပါ သို့မဟုတ် ကွန်ပျူတာထဲသို့ ဆွဲယူသိမ်းရန် အောက်ညွှန်ပြမြားကို ရွေးပါ။
 homePageCapturePage = စာမျက်နှာကို ပုံဖမ်းရန်
 homePageCapturePageDescription = စာမျက်နှာများကို အပြည့်ဖမ်းယူရန် ညာဘက်အပေါ်ဘက်ရှိ ခလုတ်များကို အသုံးပြုပါ။ မြင်ရသည်ကို သိမ်းပါ သည် အပေါ်အောက်ရွှေ့စရာမလိုပဲ မြင်ရသော အကျယ်အဝန်းကို ဖမ်းယူပါမည်။ ထို့ပြင် စာမျက်နှာအပြည့်သိမ်းပါ သည် လက်ရှိစာမျက်နှာတွင် မြင်ရသည်အကုန်လုံးကို ဖမ်းယူပါမည်။
-homePageSaveShare = သိမ်းပြီးမျှဝေရန်
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = အကောင်းဆုံးရိုက်ကူးချက်ကို မှတ်သားပါ။ ထို့နောက် အွန်လိုင်း Screenshots မှတ်တမ်းတွင် သိမ်းဆည်းပါ။ အလွယ်တကူ မျှဝေနိုင်ရန်အတွက် Firefox သည် ရိုက်ကူးချက်၏ လင့်ခ်ကို ကလစ်ဘုတ်ပေါ်သို့ ကူးယူပေးပါမည်။ မှတ်တမ်းရှိ ရိုက်ကူးချက်များသည် နှစ်ပတ်ပြည့်လျှင် အလိုအလျောက် သက်တမ်းကုန်ပါမည်။ သို့သော်လည်း သင် အလိုမရှိပါက ဖျက်နိုင်သည် သို့မဟုတ် နှစ်သက်ရာများကို ကြာရှည်စွာ သိမ်းထားရန် ရွေးချယ်နိုင်သည်။
-homePageSignInTitle = နေရာတိုင်းမှာ ရှိနေမည့် သင့်ဖမ်းယူချက်များ
-homePageSignInDescription = Firefox ကို အသုံးပြုသည့် နေတိုင်းမှာ သင့် ရိုက်ကူးချက်များကို အသုံးပြုရန် Firefox Account နှင့် Screenshots သို့ ဝင်ရောက်ပါ။ အပိုဆုအနေနှင့် အကြိုက်ဆုံးရိုက်ကူးချက်များကို အမြဲ သိမ်းထားနိုင်သည်။
+homePageDownloadCopy = ဆွဲယူ သို့မဟုတ် ပွားယူပါ
 homePageLegalLink = ဥပဒေရေးရာ
 homePagePrivacyLink = ကိုယ်ရေးလုံခြုံမှု
 homePageTermsLink = စည်းမျဉ်းများ
@@ -146,7 +143,6 @@ shotPageBackToHomeButton =
     .title = အဖွင့်စာမျက်နှာ
 shotPageAllShotsButton =
     .title = ရိုက်ကူးထားသော ပုံများ
-shotPageScreenshotsDescription = Screenshots ကို ရိုးရှင်းစေရန် ပြုလုပ်ထားသည်။ Firefox ကနေ ထွက်ခွာစရာ မလိုပဲ မျက်နှာပြင်ပုံဖမ်းချက်များကို ဖမ်းယူ၊ သိမ်းဆည်း၊ မျှဝေပါ။
 shotPageDMCAMessage = ဖောက်ဖျက်မှုတစ်ခုခုဖြင့် အဆိုတင်သွင်းမှုကြောင့် ဒီရိုက်ချက်အား မရရှိနိုင်တော့ပါ
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = နောက်ထပ်အချက်အလက်များ တောင်းဆိုလိုပါက { $dmca } သို့ ကျေးဇူးပြု၍ အီးမေးလ်ပို့ပါ။
@@ -338,6 +334,9 @@ shotDeleteCancel = မလုပ်ဆောင်ပါ
     .title = မလုပ်ဆောင်ပါ
 shotDeleteConfirm = ဖျက်သိမ်းပါ
     .title = ဖျက်သိမ်းပါ
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
