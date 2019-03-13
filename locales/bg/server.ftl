@@ -8,6 +8,7 @@ gMyShots = Моите снимки
 gHomeLink = Начална страница
 gNoShots =
     .alt = Няма снимки на екрана
+gScreenshotsDescriptionServerless = Лесно правене на екранни снимки. Създавайте и изтегляйте снимки на екрана без да напускате Firefox.
 
 ## Header
 
@@ -145,6 +146,7 @@ shotPageBackToHomeButton =
     .title = Страница
 shotPageAllShotsButton =
     .title = Всички снимки
+shotPageScreenshotsDescriptionServerless = Лесно правене на екранни снимки. Създавайте и изтегляйте снимки на екрана без да напускате Firefox.
 shotPageDMCAMessage = Това изображение вече не е налично, защото е докладвано като обект на авторско право.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Моля, за повече информация пишете до { $dmca }.
