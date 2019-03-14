@@ -76,6 +76,8 @@ homePageCaptureRegionDescription = Натиснете и влачете, за д
 homePageCapturePage = Улавяне на страница
 homePageCapturePageDescription = Използвайте бутоните в горния десен ъгъл, за да снимате цели страници. Бутонът „Запазване на видимата област“ ще улови областта, която виждате без прелистване, а „Запазване на цялата страница“ – всичко на страницата.
 homePageDownloadCopy = Изтегляне или копиране
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Вземете най-добрите си снимки. Screenshots ви дава възможност да изтеглите избрани снмики или да ги копирате в системния буфер.
 homePageLegalLink = Правни въпроси
 homePagePrivacyLink = Поверителност
 homePageTermsLink = Условия
