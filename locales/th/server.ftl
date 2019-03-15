@@ -59,7 +59,11 @@ homePageDownloadFirefoxSubTitle = ดาวน์โหลดฟรี
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots ทำงานอย่างไร
 homePageGetStartedTitle = เริ่มต้น
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = เลือกไอคอน Screenshots จากเมนูการกระทำหน้าในแถบที่อยู่ แล้วเมนู Screenshots จะปรากฏบนด้านบนของหน้าต่างเบราว์เซอร์ของคุณ
 homePageCaptureRegion = จับภาพเป็นบริเวณ
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = คลิกและลากเพื่อเลือกพื้นที่ที่คุณต้องการจับภาพ หรือเพียงแค่วางเมาส์และคลิก เท่านี้ Screenshots ก็จะเลือกพื้นที่ให้คุณเอง ชอบสิ่งที่คุณเห็นงั้นหรือ? เลือก บันทึก เพื่อเข้าถึงภาพหน้าจอของคุณทางออนไลน์ หรือเลือกปุ่มลูกศรลงเพื่อดาวน์โหลดลงบนคอมพิวเตอร์ของคุณ
 homePageCapturePage = จับภาพหน้า
 homePageDownloadCopy = ดาวน์โหลดหรือคัดลอก
 homePageLegalLink = ข้อกฎหมาย
@@ -71,6 +75,8 @@ homePageCookiesLink = คุกกี้
 
 leavePageRemoveAllData = เอาข้อมูลทั้งหมดออก
 leavePageErrorGeneric = เกิดข้อผิดพลาด
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = การดำเนินการนี้จะลบข้อมูล Firefox Screenshots ทั้งหมดของคุณอย่างถาวร
 leavePageButtonProceed = ดำเนินการต่อ
 leavePageButtonCancel = ยกเลิก
 leavePageDeleted = ภาพถ่ายหน้าจอของคุณทั้งหมดถูกลบแล้ว!
@@ -88,6 +94,7 @@ shotPageTitle = ภาพหน้าจอ: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = เกิดข้อผิดพลาดในการบันทึกการหมดอายุ
 shotPageAlertErrorDeletingShot = เกิดข้อผิดพลาดในการลบภาพหน้าจอ
 shotPageAlertErrorUpdatingTitle = เกิดข้อผิดพลาดในการบันทึกชื่อเรื่อง
+shotPageConfirmDelete = คุณแน่ใจหรือไม่ที่ต้องการจะลบภาพนี้อย่างถาวร?
 shotPageShareButton =
     .title = แบ่งปัน
 shotPageCopyButton =
@@ -103,12 +110,16 @@ shotPageSharePinterest =
 shotPageShareEmail =
     .title = แบ่งปันลิงก์ทางอีเมล
 shotPageShareLink = รับลิงก์ที่แบ่งปันได้ไปยังภาพหน้าจอนี้:
+shotPagePrivacyMessage = ใครก็ตามที่มีลิงก์นี้สามารถดูภาพนี้ได้
 shotPageCopyImageText =
     .label = คัดลอกข้อความภาพ
+shotPageConfirmDeletion = คุณแน่ใจหรือไม่ที่ต้องการจะลบภาพนี้อย่างถาวร?
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = กู้คืนจนถึง { $date }
 shotPageExpiredMessage = ภาพหน้าจอนี้หมดอายุแล้ว
+# Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = นี่คือหน้าที่ใช้สร้างตอนแรก:
 shotPageDeleteButton =
     .title = ลบภาพหน้าจอนี้
 shotPageDownloadShot =
@@ -121,8 +132,14 @@ shotPageBackToHomeButton =
     .title = หน้าแรก
 shotPageAllShotsButton =
     .title = ช็อตทั้งหมด
+shotPageDMCAMessage = ภาพนี้ไม่พร้อมใช้งานอีกต่อไปเนื่องจากมีการอ้างสิทธิ์ทรัพย์สินทางปัญญาจากบุคคลที่สาม
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = โปรดอีเมลมายัง { $dmca } เพื่อขอข้อมูลเพิ่มเติม
+# Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = ถ้าภาพที่คุณจับมีการอ้างสิทธิ์จากหลาย ๆ คน เราอาจเพิกถอนการเข้าถึง Firefox Screenshots ของคุณ
+# Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = กรุณาใส่ URL ของภาพนี้ในอีเมลของคุณ: { $url }
+shotPageKeepFor = ควรจัดเก็บภาพนี้ไว้นานเท่าใด?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = เลือกเวลา
 # The ∞ is used to indicate that the shot won't expire. It is also used in
@@ -168,6 +185,7 @@ timeDiffFutureDays =
     { $number ->
        *[other] ใน { $number } วัน
     }
+errorThirdPartyCookiesEnabled = ถ้าคุณจับภาพนี้และไม่สามารถลบภาพนี้ได้ คุณอาจจำเป็นต้องเปิดใช้งานคุกกี้จากบุคคลที่สามชั่วคราวจากการตั้งค่าเบราว์เซอร์ของคุณ
 
 ## Shot Page New Feature Promotion Dialog.
 
@@ -254,6 +272,9 @@ settingsClosePreferences =
 
 ## Shotindex page
 
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = เกิดข้อผิดพลาดในการลบภาพ: { $status } { $statusText }
 # { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = ภาพหน้าจอของฉัน: ค้นหา { $searchTerm }
 # { $error } is a placeholder for a non-translated error message that could be shared
@@ -265,6 +286,7 @@ shotIndexPageNoShotsMessage = ไม่มีภาพหน้าจอที�
 shotIndexPageNoShotsInvitation = เริ่มจับภาพหน้าจอ
 shotIndexPageLookingForShots = กำลังมองหาภาพหน้าจอของคุณ…
 shotIndexPageNoSearchResultsIntro = หืมม
+shotIndexPageNoSearchResults = เราไม่พบภาพใด ๆ ที่ตรงกับการค้นหาของคุณ
 shotIndexPageMyShotsButton =
     .title = ภาพหน้าจอของฉัน
 shotIndexPageClearSearchButton =
@@ -277,6 +299,7 @@ shotIndexPageNextPage =
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = คุณแน่ใจหรือไม่ที่ต้องการจะลบภาพนี้?
 shotDeleteCancel = ยกเลิก
     .title = ยกเลิก
 shotDeleteConfirm = ลบ
@@ -288,6 +311,8 @@ shotDeleteConfirm = ลบ
 ## Metrics page
 ## All metrics strings are optional for translation
 
+# Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = ข้อมูลสถิติ Firefox Screenshots
 metricsPageTotalsQueryTitle = รวม
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = ภาพรวมของ Screenshots
@@ -296,18 +321,28 @@ metricsPageTotalsQueryActiveShots = ภาพที่ใช้งานอย�
 metricsPageTotalsQueryExpiredShots = หมดอายุ (แต่สามารถกู้คืนได้)
 metricsPageTotalsQueryExpiredDeletedShots = หมดอายุ (และถูกลบแล้ว)
 metricsPageShotsQueryTitle = จำนวนภาพตามวัน
+metricsPageShotsQueryDescription = จำนวนภาพที่จับในแต่ละวัน (30 วันหลังสุด)
 metricsPageShotsQueryCount = จำนวนภาพหน้าจอ
 metricsPageShotsQueryDay = วัน
 metricsPageUsersQueryTitle = ผู้ใช้ตามวัน
+metricsPageUsersQueryDescription = จำนวนผู้ใช้ที่จับภาพอย่างน้อยหนึ่งภาพตามวัน (30 วันหลังสุด)
 metricsPageUsersQueryCount = จำนวนผู้ใช้
 metricsPageUsersQueryDay = วัน
 metricsPageUserShotsQueryTitle = จำนวนภาพหน้าจอต่อผู้ใช้
+metricsPageUserShotsQueryDescription = จำนวนผู้ใช้ที่จับภาพทั้งหมด N ครั้ง
 metricsPageUserShotsQueryCount = จำนวนผู้ใช้
+metricsPageUserShotsQueryShots = จำนวนภาพที่ใช้งานอยู่ (ที่ยังไม่หมดอายุ) โดยประมาณ
 metricsPageRetentionQueryTitle = การเก็บข้อมูลตามสัปดาห์
+metricsPageRetentionQueryDescription = จำนวนวันตั้งแต่วันที่ผู้ใช้จับภาพครั้งแรกจนถึงวันที่จับภาพล่าสุด จัดกลุ่มตามสัปดาห์แรก
 metricsPageRetentionQueryUsers = จำนวนผู้ใช้
+metricsPageRetentionQueryDays = จำนวนวันตั้งแต่วันที่ผู้ใช้จับภาพครั้งแรกจนถึงวันที่จับภาพล่าสุด
+metricsPageRetentionQueryFirstWeek = สัปดาห์ที่ผู้ใช้จับภาพครั้งแรก
 metricsPageTotalRetentionQueryTitle = การเก็บข้อมูลทั้งหมด
+metricsPageTotalRetentionQueryDescription = ระยะเวลาที่ผู้ใช้ได้จับภาพ จัดกลุ่มตามสัปดาห์
 metricsPageTotalRetentionQueryUsers = จำนวนผู้ใช้
+metricsPageTotalRetentionQueryDays = จำนวนวันที่ผู้ใช้จับภาพ
 metricsPageVersionQueryTitle = รุ่นส่วนเสริม
+metricsPageVersionQueryDescription = รุ่นของส่วนเสริมที่ใช้ระหว่างเข้าสู่ระบบ ใน 14 วันหลังสุด
 metricsPageVersionQueryUsers = จำนวนผู้ใช้ที่เข้าสู่ระบบ
 metricsPageVersionQueryVersion = รุ่นส่วนเสริม
 metricsPageVersionQueryLastSeen = วัน
