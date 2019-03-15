@@ -349,6 +349,8 @@ shotDeleteConfirm = Изтриване
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = За да изтеглите изберете: Файл > Запазване като… и ще намерите снимките в папка { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
