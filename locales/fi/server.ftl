@@ -8,6 +8,7 @@ gMyShots = Omat kaappaukset
 gHomeLink = Etusivu
 gNoShots =
     .alt = Kaappauksia ei löytynyt
+gScreenshotsDescriptionServerless = Kuvakaappaukset helposti. Ota ja lataa kuvakaappauksia poistumatta Firefoxista.
 
 ## Header
 
@@ -18,6 +19,11 @@ buttonSignIn =
 screenshotsLogo =
     .title = Screenshots-etusivu
 bannerUpsell = { gScreenshotsDescription } <a>Hanki Firefox nyt</a>
+shutdownPageTitle = Screenshots on muuttumassa
+shutdownPageDescription = Alkaen kesäkuusta Screenshots ei enää tarjoa tallentamista verkkoon. Haluatko pitää omat kaappauksesi? Voit ladata kaappaukset yksitellen tai <a>pakettina</a>. Kiitos, että käytit ominaisuutta.
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Mitä uutta Firefox Screenshots -palvelussa?
 onboardingPromoMessageListItem2 = Tallenna suosikkikuvasi ikuisesti
 onboardingPromoDismissButton = Hylkää
     .title = Hylkää
@@ -332,6 +338,8 @@ shotDeleteConfirm = Poista
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Kuvien vienti: napsauta Tiedosto > Tallenna sivu nimellä… ja löydät kuvakaappauksesi kansiosta { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
