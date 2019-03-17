@@ -349,6 +349,8 @@ shotDeleteConfirm = કાઢો
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = નિકાસ કરવા માટે: ફાઇલનો ઉપયોગ કરો> આ તરીકે પૃષ્ઠ સાચવો... અને તમને ફોલ્ડરમાં { $folder } માં તમારા સ્ક્રીનશૉટ્સ મળશે
 
 ## Metrics page
 ## All metrics strings are optional for translation
