@@ -1,2 +1,0 @@
-ALTER TABLE images DROP COLUMN url;
-ALTER TABLE images ADD COLUMN image bytea NOT NULL;

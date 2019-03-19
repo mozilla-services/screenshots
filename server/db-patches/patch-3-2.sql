@@ -1,3 +1,0 @@
-ALTER TABLE data DROP COLUMN url;
-ALTER TABLE data DROP COLUMN expire_time;
-ALTER TABLE data DROP COLUMN deleted;

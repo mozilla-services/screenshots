@@ -1,1 +1,0 @@
-ALTER TABLE images DROP COLUMN size;

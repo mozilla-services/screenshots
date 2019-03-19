@@ -1,2 +1,0 @@
-ALTER TABLE images DROP COLUMN image;
-ALTER TABLE images ADD COLUMN url TEXT;

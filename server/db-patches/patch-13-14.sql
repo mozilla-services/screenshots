@@ -1,2 +1,0 @@
-ALTER TABLE data DROP COLUMN head;
-ALTER TABLE data DROP COLUMN body;
