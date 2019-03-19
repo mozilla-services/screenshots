@@ -28,13 +28,11 @@ this.startBackground = (function() {
     "blobConverters.js",
     "background/selectorLoader.js",
     "background/communication.js",
-    "background/auth.js",
     "background/senderror.js",
     "build/raven.js",
     "build/shot.js",
     "build/thumbnailGenerator.js",
     "background/analytics.js",
-    "background/deviceInfo.js",
     "background/takeshot.js",
     "background/main.js",
   ];

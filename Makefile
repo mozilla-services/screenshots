@@ -1,11 +1,8 @@
 PATH := ./node_modules/.bin:./bin/:$(PATH)
 SHELL := /bin/bash
-BABEL := babel --retain-lines
 RSYNC := rsync --archive
 VENV := .venv
 .DEFAULT_GOAL := help
-# Sets $(SCREENSHOTS_BACKEND) to http://localhost:10080 only if it isn't set
-SCREENSHOTS_BACKEND ?= http://localhost:10080
 
 # Here we have source/dest variables for many files and their destinations;
 # we use these each to enumerate categories of source files, and translate
@@ -15,21 +12,12 @@ SCREENSHOTS_BACKEND ?= http://localhost:10080
 shared_source := $(wildcard shared/*.js)
 shared_server_dest := $(shared_source:%.js=build/%.js)
 
-# static/js only gets copied to the server
-static_js_source := $(wildcard static/js/*.js)
-static_js_dest := $(static_js_source:%.js=build/server/%.js)
-
-server_source := $(shell find server/src -name '*.js')
-server_dest := $(server_source:server/src/%.js=build/server/%.js)
-
 # Also scss gets put into two locations:
 sass_source := $(wildcard static/css/*.scss)
-sass_server_dest := $(sass_source:%.scss=build/server/%.css) $(sass_source:%.scss=build/server/%.ltr.css) $(sass_source:%.scss=build/server/%.rtl.css)
 partials_source := $(wildcard static/css/partials/*.scss)
 
 # And static images get placed somewhat eclectically:
 imgs_source := $(wildcard static/img/*)
-imgs_server_dest := $(imgs_source:%=build/server/%)
 
 raven_source := $(shell node -e 'console.log(require.resolve("raven-js/dist/raven.js"))')
 
@@ -39,59 +27,11 @@ l10n_dest := $(l10n_source:%/webextension.properties=webextension/_locales/%/mes
 ## General transforms:
 # These cover standard ways of building files given a source
 
-# Need to put these two rules before the later general rule, so that we don't
-# run babel on vendor libraries or the homepage libraries:
-build/server/static/homepage/%.js: static/homepage/%.js
-	@mkdir -p $(@D)
-	cp $< $@
-
-build/server/static/js/%.js: build/static/js/%.js
-	@mkdir -p $(@D)
-	cp $< $@
-
-build/%.js: %.js
-	@mkdir -p $(@D)
-	$(BABEL) $< > $@
-
-build/server/%.js: server/src/%.js
-	@mkdir -p $(@D)
-	$(BABEL) $< > $@
-
-build/%.css: %.scss $(partials_source)
-	@mkdir -p $(@D)
-	node-sass $< $@
-
 %.ltr.css: %.css
 	postcss $< -o $@ --config .postcss/ltr
 
 %.rtl.css: %.css
 	postcss $< -o $@ --config .postcss/rtl
-
-## Static files to be copied:
-
-build/%.png: %.png
-	@mkdir -p $(@D)
-	cp $< $@
-
-build/%.css: %.css
-	@mkdir -p $(@D)
-	cp $< $@
-
-build/%.svg: %.svg
-	@mkdir -p $(@D)
-	./node_modules/.bin/svgo -q -i $< -o $@
-
-build/%.sql: %.sql
-	@mkdir -p $(@D)
-	cp $< $@
-
-build/%.ttf: %.ttf
-	@mkdir -p $(@D)
-	cp $< $@
-
-build/%.html: %.html
-	@mkdir -p $(@D)
-	cp $< $@
 
 .PHONY: addon
 addon: npm set_backend set_sentry webextension/manifest.json addon_locales webextension/build/selection.js webextension/build/shot.js webextension/build/thumbnailGenerator.js webextension/build/inlineSelectionCss.js webextension/build/raven.js webextension/build/onboardingCss.js webextension/build/onboardingHtml.js webextension/build/buildSettings.js
@@ -161,85 +101,14 @@ webextension/build/raven.js: $(raven_source)
 	@mkdir -p $(@D)
 	cp $< $@
 
-## Server related rules:
-
-# Copy shared files in from static/:
-build/server/static/css/%.css: build/static/css/%.css
-	@mkdir -p $(@D)
-	cp $< $@
-
-build/server/static/img/%: build/static/img/%
-	@mkdir -p $(@D)
-	cp $< $@
-
-build/server/package.json: package.json
-	@mkdir -p $(@D)
-	cp $< $@
-
-shot_dependencies := $(shell ./bin/build-scripts/bundle_dependencies shot getdeps "$(server_dest)")
-build/server/static/js/shot-bundle.js: $(shot_dependencies)
-	./bin/build-scripts/bundle_dependencies shot build ./build/server/pages/shot/controller.js
-
-homepage_dependencies := $(shell ./bin/build-scripts/bundle_dependencies homepage getdeps "$(server_dest)")
-build/server/static/js/homepage-bundle.js: $(homepage_dependencies)
-	./bin/build-scripts/bundle_dependencies homepage build ./build/server/pages/homepage/controller.js
-
-shotindex_dependencies := $(shell ./bin/build-scripts/bundle_dependencies shotindex getdeps "$(server_dest)")
-build/server/static/js/shotindex-bundle.js: $(shotindex_dependencies)
-	./bin/build-scripts/bundle_dependencies shotindex build ./build/server/pages/shotindex/controller.js
-
-leave_dependencies := $(shell ./bin/build-scripts/bundle_dependencies leave getdeps "$(server_dest)")
-build/server/static/js/leave-bundle.js: $(leave_dependencies)
-	./bin/build-scripts/bundle_dependencies leave build ./build/server/pages/leave-screenshots/controller.js
-
-creating_dependencies := $(shell ./bin/build-scripts/bundle_dependencies creating getdeps "$(server_dest)")
-build/server/static/js/creating-bundle.js: $(creating_dependencies)
-	./bin/build-scripts/bundle_dependencies creating build ./build/server/pages/creating/controller.js
-
-settings_dependencies := $(shell ./bin/build-scripts/bundle_dependencies settings getdeps "$(server_dest)")
-build/server/static/js/settings-bundle.js: $(settings_dependencies)
-	./bin/build-scripts/bundle_dependencies settings build ./build/server/pages/settings/controller.js
-
-
-# The intention here is to only write build-time when something else needs
-# to be regenerated, but for some reason this gets rewritten every time
-# anyway:
-build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass_server_dest) $(imgs_server_dest) $(static_js_dest) $(patsubst server/db-patches/%,build/server/db-patches/%,$(wildcard server/db-patches/*))
-	@mkdir -p $(@D)
-	./bin/build-scripts/write_build_time.py > build/server/build-time.js
-
-# Convert all the server.ftl files into build/server/static/locales/[locale].js
-build/server/static/locales: $(wildcard locales/**/server.ftl)
-	@mkdir -p $@
-	./bin/build-scripts/ftl-to-js.js $@ $^
-
-.PHONY: server
-server: npm build/server/build-time.js build/server/package.json build/server/static/js/shot-bundle.js build/server/static/js/homepage-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/leave-bundle.js build/server/static/js/creating-bundle.js build/server/static/js/settings-bundle.js build/server/static/locales
-
-## Homepage related rules:
-
-build/server/static/homepage/%: static/homepage/%
-	@mkdir -p $(@D)
-	cp $< $@
-
-.PHONY: homepage
-homepage: $(patsubst static/homepage/%,build/server/static/homepage/%,$(shell find static/homepage -type f ! -name index.html))
-
 ## npm rule
 
 .PHONY: npm
 npm: build/.npm-install.log
 
-build/.backend.txt: set_backend
-
-.PHONY: set_backend
-set_backend:
-	@echo "Setting backend to ${SCREENSHOTS_BACKEND}"
-	./bin/build-scripts/set_file build/.backend.txt $(SCREENSHOTS_BACKEND)
-
 webextension/build/buildSettings.js: set_build_settings
 
-.PHONY: set_build_settings
+.PHONY: set_sentry
 set_sentry:
 	@if [[ -z "$(SCREENSHOTS_SENTRY)" ]] ; then echo "No default Sentry" ; fi
 	@if [[ -n "$(SCREENSHOTS_SENTRY)" ]] ; then echo "Setting default Sentry ${SCREENSHOTS_SENTRY}" ; fi
@@ -256,11 +125,11 @@ build/.npm-install.log: package.json package-lock.json
 .SECONDARY:
 
 .PHONY: all
-all: addon server
+all: addon
 
 .PHONY: clean
 clean:
-	rm -rf build/ webextension/build/ webextension/manifest.json webextension/_locales/
+	rm -rf webextension/build/ webextension/manifest.json webextension/_locales/
 
 .PHONY: distclean
 distclean: clean
@@ -269,14 +138,12 @@ distclean: clean
 
 .PHONY: help
 help:
-	@echo "Makes the addon and server"
+	@echo "Makes the addon"
 	@echo "Commands:"
 	@echo "  make addon"
 	@echo "    make/update the addon directly in webextension/ (built files in webextension/build/)"
-	@echo "  make server"
-	@echo "    make the server in build/server/"
 	@echo "  make all"
-	@echo "    equivalent to make server addon"
+	@echo "    equivalent to make addon"
 	@echo "  make clean"
 	@echo "    rm -rf build/ webextension/build"
 	@echo "  make zip"
