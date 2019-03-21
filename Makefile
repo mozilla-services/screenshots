@@ -10,7 +10,6 @@ VENV := .venv
 # requirements for the other rules
 
 shared_source := $(wildcard shared/*.js)
-shared_server_dest := $(shared_source:%.js=build/%.js)
 
 # Also scss gets put into two locations:
 sass_source := $(wildcard static/css/*.scss)
@@ -34,7 +33,7 @@ l10n_dest := $(l10n_source:%/webextension.properties=webextension/_locales/%/mes
 	postcss $< -o $@ --config .postcss/rtl
 
 .PHONY: addon
-addon: npm set_backend set_sentry webextension/manifest.json addon_locales webextension/build/selection.js webextension/build/shot.js webextension/build/thumbnailGenerator.js webextension/build/inlineSelectionCss.js webextension/build/raven.js webextension/build/onboardingCss.js webextension/build/onboardingHtml.js webextension/build/buildSettings.js
+addon: npm set_sentry webextension/manifest.json addon_locales webextension/build/selection.js webextension/build/shot.js webextension/build/thumbnailGenerator.js webextension/build/inlineSelectionCss.js webextension/build/raven.js webextension/build/onboardingCss.js webextension/build/onboardingHtml.js webextension/build/buildSettings.js
 
 $(VENV): requirements.txt
 	virtualenv -p python2.7 $(VENV)
@@ -70,7 +69,11 @@ signed_xpi: addon
 addon_locales:
 	./node_modules/.bin/pontoon-to-webext --dest webextension/_locales > /dev/null
 
-webextension/manifest.json: webextension/manifest.json.template build/.backend.txt package.json
+build/static/%.css: static/%.scss $(partials_source)
+	@mkdir -p $(@D)
+	node-sass $< $@
+
+webextension/manifest.json: webextension/manifest.json.template package.json
 	./bin/build-scripts/update_manifest.py $< $@
 
 webextension/build/selection.js: shared/selection.js
@@ -85,11 +88,11 @@ webextension/build/thumbnailGenerator.js: shared/thumbnailGenerator.js
 	@mkdir -p $(@D)
 	./bin/build-scripts/modularize thumbnailGenerator $< > $@
 
-webextension/build/inlineSelectionCss.js: build/server/static/css/inline-selection.css
+webextension/build/inlineSelectionCss.js: build/static/css/inline-selection.css
 	@mkdir -p $(@D)
 	./bin/build-scripts/css_to_js.py inlineSelectionCss $< > $@
 
-webextension/build/onboardingCss.js: build/server/static/css/onboarding.css
+webextension/build/onboardingCss.js: build/static/css/onboarding.css
 	@mkdir -p $(@D)
 	./bin/build-scripts/css_to_js.py onboardingCss $< > $@
 
@@ -104,7 +107,7 @@ webextension/build/raven.js: $(raven_source)
 ## npm rule
 
 .PHONY: npm
-npm: build/.npm-install.log
+npm: .npm-install.log
 
 webextension/build/buildSettings.js: set_build_settings
 
@@ -114,12 +117,12 @@ set_sentry:
 	@if [[ -n "$(SCREENSHOTS_SENTRY)" ]] ; then echo "Setting default Sentry ${SCREENSHOTS_SENTRY}" ; fi
 	./bin/build-scripts/substitute-env.js webextension/buildSettings.js.template | ./bin/build-scripts/set_file webextension/build/buildSettings.js -
 
-build/.npm-install.log: package.json package-lock.json
+.npm-install.log: package.json package-lock.json
 	# Essentially .npm-install.log is just a timestamp showing the last time we ran
 	# the command
 	@mkdir -p $(@D)
-	echo "Installing at $(shell date)" > build/.npm-install.log
-	npm install >> build/.npm-install.log
+	echo "Installing at $(shell date)" > .npm-install.log
+	npm install >> .npm-install.log
 
 # This causes intermediate files to be kept (e.g., files in static/ which are copied to the addon and server but aren't used/required directly):
 .SECONDARY:
@@ -145,7 +148,7 @@ help:
 	@echo "  make all"
 	@echo "    equivalent to make addon"
 	@echo "  make clean"
-	@echo "    rm -rf build/ webextension/build"
+	@echo "    rm -rf webextension/build build"
 	@echo "  make zip"
 	@echo "    make an unsigned zip of the webextension in build/screenshots.zip"
 	@echo "  make unsigned_xpi"

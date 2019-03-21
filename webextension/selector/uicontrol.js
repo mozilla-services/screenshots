@@ -154,7 +154,8 @@ this.uicontrol = (function() {
       exports.deactivate();
     }, save: () => {
       sendEvent("save-shot", "overlay-save-button");
-      shooter.takeShot("selection", selectedPos);
+      // FIXME-server: remove this branch
+      throw new Error("Disabled");
     }, download: () => {
       sendEvent("download-shot", "overlay-download-button");
       downloadShot();
@@ -216,7 +217,8 @@ this.uicontrol = (function() {
           Math.min(selectedPos.bottom, MAX_PAGE_HEIGHT));
         dataUrl = null;
       }
-      shooter.takeShot(captureType, selectedPos, dataUrl);
+      // FIXME-server: remove this branch
+      throw new Error("Disabled");
     },
     onDownloadPreview: () => {
       sendEvent(`download-${captureType.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()}`, "download-preview-button");

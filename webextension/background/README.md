@@ -7,4 +7,3 @@ These are all the files/modules for the background worker.  This is the higher-p
 - `deviceinfo.js` gets information about this device that is used in some logging and analytics.
 - `selectorLoader.js` handles loading the selector worker, and contains the list of files that the selector loads.
 - `main.js` launches everything
-- `takeshot.js` takes the shot the content worker has constructed, sends it to the server, and handles copying and opening the tab.

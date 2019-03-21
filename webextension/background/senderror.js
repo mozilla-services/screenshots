@@ -1,4 +1,4 @@
-/* globals startBackground, analytics, communication, makeUuid, Raven, catcher, auth, log */
+/* globals startBackground, analytics, communication, makeUuid, Raven, catcher, buildSettings, log */
 
 "use strict";
 
@@ -92,7 +92,7 @@ this.senderror = (function() {
       log.error("Telemetry disabled. Not sending critical error:", e);
       return;
     }
-    const dsn = auth.getSentryPublicDSN();
+    const dsn = buildSettings.defaultSentryDsn;
     if (!dsn) {
       log.warn("Screenshots error:", e);
       return;

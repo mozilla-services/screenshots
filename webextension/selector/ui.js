@@ -80,7 +80,8 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
   }
 
   const showMyShots = exports.showMyShots = function() {
-    return window.hasAnyShots;
+    // FIXME-server: we should remove the my shots code
+    return false;
   };
 
   function initializeIframe() {
