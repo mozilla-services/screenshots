@@ -217,20 +217,10 @@ this.main = (function() {
     });
   });
 
-  // A Screenshots page wants us to start/force onboarding
-  communication.register("requestOnboarding", (sender) => {
-    return startSelectionWithOnboarding(sender.tab);
-  });
-
   communication.register("getPlatformOs", () => {
     return catcher.watchPromise(browser.runtime.getPlatformInfo().then(platformInfo => {
       return platformInfo.os;
     }));
-  });
-
-  // This allows the web site show notifications through sitehelper.js
-  communication.register("showNotification", (sender, notification) => {
-    return browser.notifications.create(notification);
   });
 
   return exports;

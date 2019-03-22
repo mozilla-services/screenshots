@@ -27,18 +27,6 @@
       "description": "Open the Firefox Screenshots UI"
     }
   },
-  "content_scripts": [
-    {
-      "matches": ["http://localhost/*"],
-      "js": [
-        "build/buildSettings.js",
-        "log.js",
-        "catcher.js",
-        "selector/callBackground.js",
-        "sitehelper.js"
-      ]
-    }
-  ],
   "page_action": {
     "browser_style": true,
     "default_icon" : {
