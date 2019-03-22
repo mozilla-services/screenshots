@@ -1,3 +1,6 @@
+this.selection = (function() {
+const exports = {};
+
 class Selection {
   constructor(x1, y1, x2, y2) {
     this.x1 = x1;
@@ -114,3 +117,7 @@ class Selection {
 if (typeof exports !== "undefined") {
   exports.Selection = Selection;
 }
+
+return exports;
+})();
+null;

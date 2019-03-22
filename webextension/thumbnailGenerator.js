@@ -1,3 +1,6 @@
+this.thumbnailGenerator = (function() {
+const exports = {};
+
 // This is used in webextension/background/takeshot.js,
 // server/src/pages/shot/controller.js, and
 // server/scr/pages/shotindex/view.js. It is used in a browser
@@ -143,3 +146,7 @@ if (typeof exports !== "undefined") {
   exports.createThumbnailUrl = createThumbnailUrl;
   exports.createThumbnailBlobFromPromise = createThumbnailBlobFromPromise;
 }
+
+return exports;
+})();
+null;

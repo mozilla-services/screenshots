@@ -1,3 +1,6 @@
+this.shot = (function() {
+const exports = {};
+
 // Note: in this library we can't use any "system" dependencies because this can be used from multiple
 // environments
 
@@ -743,3 +746,7 @@ if (typeof exports !== "undefined") {
   exports.originFromUrl = originFromUrl;
   exports.isValidClipImageUrl = isValidClipImageUrl;
 }
+
+return exports;
+})();
+null;
