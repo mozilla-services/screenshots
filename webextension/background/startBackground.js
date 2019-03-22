@@ -20,8 +20,8 @@ this.startBackground = (function() {
     "background/communication.js",
     "background/senderror.js",
     "build/raven.js",
-    "build/shot.js",
-    "build/thumbnailGenerator.js",
+    "shot.js",
+    "thumbnailGenerator.js",
     "background/analytics.js",
     "background/main.js",
   ];

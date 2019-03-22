@@ -11,7 +11,7 @@ This contains all the files for the WebExtension.  Most files are not "built", b
 - The selector content worker is loaded with a list in `background/selectorLoader.js`.  Again this must be manually maintained.
 - The site helper worker is loaded via a separate list in `manifest.json.template`
 
-Note that shared files are located directly in this directory.  These files should have minimal (ideally no) requirements.  Note that `shot.js` is *also* shared with the server, and is wrapped in a simple module pattern into `webextension/build/shot.js`
+Note that shared files are located directly in this directory.
 
 - `catcher.js` has some functions for catching and reporting exceptions.
 - `randomString.js` generates a random string, typically for in shot IDs.
@@ -26,7 +26,7 @@ The basic flow:
 1. In response to a click, other files are loaded (these are listed in `startBackground.js`) and `main.onClicked()` called.
 2. The background page loads the content worker with `background/selectorLoader.js`
 3. `selector/shooter.js` handles most communication logic from the selector side
-4. `shooter.js` collects the information and creates a Shot object.  
+4. `shooter.js` collects the information and creates a Shot object.
 5. `selector/uicontrol.js` handles the UI logic, button handlers, selection process, etc.
 6. When you hit **Download** and [canvas.drawWindow](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawWindow) is supported, then the `data:` URL is created immediately, an `<a download="filename" href="data:...">` link is created and synthetically clicked.
 7. When you hit **Download** and `canvas.drawWindow` isn't supported, then we send a message to ask the background page to capture the selection, turn it into a data URL, return the data URL, and then we continue with creating the anchor.

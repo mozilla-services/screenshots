@@ -130,7 +130,6 @@ make addon
 
 run_nodemon() {
   nodemon \
-    -w shared/shot.js \
     -w Makefile \
     -w static/css/inline-selection.scss \
     -w static/css/onboarding.scss \

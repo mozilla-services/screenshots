@@ -30,7 +30,7 @@ l10n_dest := $(l10n_source:%/webextension.properties=webextension/_locales/%/mes
 	postcss $< -o $@ --config .postcss/rtl
 
 .PHONY: addon
-addon: npm set_sentry webextension/manifest.json addon_locales webextension/build/selection.js webextension/build/shot.js webextension/build/thumbnailGenerator.js webextension/build/inlineSelectionCss.js webextension/build/raven.js webextension/build/onboardingCss.js webextension/build/onboardingHtml.js webextension/build/buildSettings.js
+addon: npm set_sentry webextension/manifest.json addon_locales webextension/build/inlineSelectionCss.js webextension/build/raven.js webextension/build/onboardingCss.js webextension/build/onboardingHtml.js webextension/build/buildSettings.js
 
 $(VENV): requirements.txt
 	virtualenv -p python2.7 $(VENV)
@@ -72,18 +72,6 @@ build/static/%.css: static/%.scss $(partials_source)
 
 webextension/manifest.json: webextension/manifest.json.template package.json
 	./bin/build-scripts/update_manifest.py $< $@
-
-webextension/build/selection.js: shared/selection.js
-	@mkdir -p $(@D)
-	./bin/build-scripts/modularize selection $< > $@
-
-webextension/build/shot.js: shared/shot.js
-	@mkdir -p $(@D)
-	./bin/build-scripts/modularize shot $< > $@
-
-webextension/build/thumbnailGenerator.js: shared/thumbnailGenerator.js
-	@mkdir -p $(@D)
-	./bin/build-scripts/modularize thumbnailGenerator $< > $@
 
 webextension/build/inlineSelectionCss.js: build/static/css/inline-selection.css
 	@mkdir -p $(@D)

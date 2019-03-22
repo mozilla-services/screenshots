@@ -25,8 +25,8 @@ this.selectorLoader = (function() {
   const selectorScripts = [
     "clipboard.js",
     "makeUuid.js",
-    "build/selection.js",
-    "build/shot.js",
+    "selection.js",
+    "shot.js",
     "randomString.js",
     "domainFromUrl.js",
     "build/inlineSelectionCss.js",
