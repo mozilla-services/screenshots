@@ -15,9 +15,6 @@ shared_source := $(wildcard shared/*.js)
 sass_source := $(wildcard static/css/*.scss)
 partials_source := $(wildcard static/css/partials/*.scss)
 
-# And static images get placed somewhat eclectically:
-imgs_source := $(wildcard static/img/*)
-
 raven_source := $(shell node -e 'console.log(require.resolve("raven-js/dist/raven.js"))')
 
 l10n_source := $(wildcard locales/*)
