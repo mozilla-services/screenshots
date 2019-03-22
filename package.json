@@ -54,8 +54,8 @@
     "lint:deps": "npm audit --json | audit-filter --nsp-config=.nsprc --audit=-",
     "postlint": "npm audit || true",
     "posttest": "npm run lint",
-    "test": "bin/test-helpers/make_addon_with_unavailable_server && mocha test/ test/server/unit/*",
-    "test:selenium": "bin/test-helpers/make_addon_with_unavailable_server && mocha test/test.js",
+    "test": "mocha test/",
+    "test:selenium": "mocha test/test.js",
     "test:accessibility": "make .venv && .venv/bin/pytest test/accessibility --driver Firefox -srx --axe --verbose",
     "make_versions_exact": "node bin/build-scripts/make_versions_exact.js",
     "svgo": "find webextension/icons/*.svg | grep -v icon-v2.svg | xargs svgo && svgo --folder=static/img"
