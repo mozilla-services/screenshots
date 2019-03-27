@@ -20,6 +20,10 @@ screenshotsLogo =
     .title = Beranda Screenshots
 bannerSignIn = <a>Masuk atau daftar</a> untuk mengakses tangkapan layar lintas peranti dan simpan favorit Anda untuk seterusnya.
 bannerUpsell = { gScreenshotsDescription } <a>Dapatkan Firefox sekarang juga</a>
+shutdownWarning = <b>Cuplikan layar tersimpan akan segera kadaluarsa.</b> Mulai Juni, Screenshots tidak akan menawarkan penyimpanan daring. Ingin tetap menyimpan cuplikan dari pustaka Anda? <a>Unduh semua ke komputer Anda.</a>
+shutdownPageTitle = Screenshot berubah
+shutdownPageDescription = Mulai Juni, Screenshots tidak akan menawarkan penyimpanan daring. Ingin tetap menyimpan cuplikan dari pustaka Anda? Unduh cuplikan secara satuan maupun <a>dalam kumpulan</a>. Terima kasih telah menggunakan fitur ini, dan kami memohon maaf atas segala ketidaknyamanan.
+shutdownPageContinue = Kami harap Anda akan tetap menggunakan Screenshots untuk menangkap, menyalin, dan mengunduh cuplikan layar.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Apa yang baru dari Firefox Screenshots?
@@ -72,6 +76,8 @@ homePageCaptureRegionDescription = Klik dan seret untuk memilih area yang ingin 
 homePageCapturePage = Tangkap Laman
 homePageCapturePageDescription = Gunakan tombol di kanan atas untuk merekam seluruh laman. Tombol Simpan yang Terlihat akan menangkap area yang Anda lihat tanpa menggulir, dan Simpan Laman Sepenuhnya akan menangkap semua yang ada di laman.
 homePageDownloadCopy = Unduh atau Salin
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Ambil cuplikan terbaik Anda. Screenshots membolehkan Anda mengunduh cuplikan pilihan atau menyalinnya langsung ke papan klip Anda.
 homePageLegalLink = Legal
 homePagePrivacyLink = Privasi
 homePageTermsLink = Ketentuan
