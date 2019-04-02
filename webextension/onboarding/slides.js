@@ -89,38 +89,6 @@ this.slides = (function() {
       const text = browser.i18n.getMessage(id);
       el.setAttribute("aria-label", text);
     }
-    // termsAndPrivacyNoticeCloudServices is a more complicated substitution:
-    const termsContainer = doc.querySelector(".onboarding-legal-notice");
-    termsContainer.innerHTML = "";
-    const termsSentinel = "__TERMS__";
-    const privacySentinel = "__PRIVACY__";
-    const sentinelSplitter = "!!!";
-    const linkTexts = {
-      [termsSentinel]: browser.i18n.getMessage("termsAndPrivacyNoticeTermsLink"),
-      [privacySentinel]: browser.i18n.getMessage("termsAndPrivacyNoticyPrivacyLink"),
-    };
-    const linkUrls = {
-      [termsSentinel]: "https://www.mozilla.org/about/legal/terms/services/",
-      [privacySentinel]: "https://www.mozilla.org/privacy/firefox/",
-    };
-    const text = browser.i18n.getMessage(
-      "termsAndPrivacyNotice2",
-      [sentinelSplitter + termsSentinel + sentinelSplitter,
-       sentinelSplitter + privacySentinel + sentinelSplitter]);
-    const parts = text.split(sentinelSplitter);
-    for (const part of parts) {
-      let el;
-      if (part === termsSentinel || part === privacySentinel) {
-        el = doc.createElement("a");
-        el.href = linkUrls[part];
-        el.textContent = linkTexts[part];
-        el.target = "_blank";
-        el.id = (part === termsSentinel) ? "terms" : "privacy";
-      } else {
-        el = doc.createTextNode(part);
-      }
-      termsContainer.appendChild(el);
-    }
   }
 
   function activateSlide(doc) {
