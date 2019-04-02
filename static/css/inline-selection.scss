@@ -432,7 +432,7 @@ $very-light-grey: #ededed;
   pointer-events: all;
 }
 
-.myshots-all-buttons-container {
+.all-buttons-container {
   @include flex-container(row-reverse, flex-start, stretch);
   background: #f5f5f5;
   border-radius: 2px;
@@ -480,10 +480,6 @@ $very-light-grey: #ededed;
     }
   }
 
-  .myshots-button {
-    background-image: url("MOZ_EXTENSION/icons/menu-myshot.svg");
-  }
-
   .full-page {
     background-image: url("MOZ_EXTENSION/icons/menu-fullpage.svg");
   }
@@ -491,10 +487,6 @@ $very-light-grey: #ededed;
   .visible {
     background-image: url("MOZ_EXTENSION/icons/menu-visible.svg");
   }
-}
-
-.myshots-button-container {
-  @include flex-container(row, center, center);
 }
 
 @keyframes pulse {

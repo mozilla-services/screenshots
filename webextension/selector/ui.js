@@ -11,8 +11,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
   exports.isHeader = function(el) {
     while (el) {
       if (el.classList &&
-          (el.classList.contains("myshots-button") ||
-           el.classList.contains("visible") ||
+          (el.classList.contains("visible") ||
            el.classList.contains("full-page") ||
            el.classList.contains("cancel-shot"))) {
         return true;
@@ -78,11 +77,6 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     // image URLs with the string "none".
     return (computed && computed.backgroundImage === "none");
   }
-
-  const showMyShots = exports.showMyShots = function() {
-    // FIXME-server: we should remove the my shots code
-    return false;
-  };
 
   function initializeIframe() {
     const el = document.createElement("iframe");
@@ -273,11 +267,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
                      </div>
                      <div class="preview-instructions" data-l10n-id="screenshotInstructions"></div>
                      <button class="cancel-shot">${browser.i18n.getMessage("cancelScreenshot")}</button>
-                     <div class="myshots-all-buttons-container">
-                       ${showMyShots() ? `
-                         <button class="myshots-button" tabindex="3" data-l10n-id="myShotsLink"></button>
-                         <div class="spacer"></div>
-                       ` : ""}
+                     <div class="all-buttons-container">
                        <button class="visible" tabindex="2" data-l10n-id="saveScreenshotVisibleArea"></button>
                        <button class="full-page" tabindex="1" data-l10n-id="saveScreenshotFullPage"></button>
                      </div>
@@ -292,10 +282,6 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
             this.document.documentElement.lang = browser.i18n.getMessage("@@ui_locale");
             const overlay = this.document.querySelector(".preview-overlay");
             localizeText(this.document);
-            if (showMyShots()) {
-              overlay.querySelector(".myshots-button").addEventListener(
-                "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onOpenMyShots)));
-            }
             overlay.querySelector(".visible").addEventListener(
               "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickVisible)));
             overlay.querySelector(".full-page").addEventListener(
