@@ -11,38 +11,12 @@ this.senderror = (function() {
   const ERROR_TIME_LIMIT = 3000;
 
   const messages = {
-    REQUEST_ERROR: {
-      title: browser.i18n.getMessage("requestErrorTitle"),
-      info: browser.i18n.getMessage("requestErrorDetails"),
-    },
-    CONNECTION_ERROR: {
-      title: browser.i18n.getMessage("connectionErrorTitle"),
-      info: browser.i18n.getMessage("connectionErrorDetails"),
-    },
-    LOGIN_ERROR: {
-      title: browser.i18n.getMessage("requestErrorTitle"),
-      info: browser.i18n.getMessage("loginErrorDetails"),
-    },
-    LOGIN_CONNECTION_ERROR: {
-      title: browser.i18n.getMessage("connectionErrorTitle"),
-      info: browser.i18n.getMessage("connectionErrorDetails"),
-    },
     UNSHOOTABLE_PAGE: {
       title: browser.i18n.getMessage("unshootablePageErrorTitle"),
       info: browser.i18n.getMessage("unshootablePageErrorDetails"),
     },
-    SHOT_PAGE: {
-      title: browser.i18n.getMessage("selfScreenshotErrorTitle"),
-    },
-    MY_SHOTS: {
-      title: browser.i18n.getMessage("selfScreenshotErrorTitle"),
-    },
     EMPTY_SELECTION: {
       title: browser.i18n.getMessage("emptySelectionErrorTitle"),
-    },
-    PRIVATE_WINDOW: {
-      title: browser.i18n.getMessage("privateWindowErrorTitle"),
-      info: browser.i18n.getMessage("privateWindowErrorDetails"),
     },
     generic: {
       title: browser.i18n.getMessage("genericErrorTitle"),
