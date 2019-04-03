@@ -8,6 +8,7 @@ gMyShots = Mis capturas
 gHomeLink = Inicio
 gNoShots =
     .alt = No se encontraron capturas
+gScreenshotsDescriptionServerless = Capturas de pantalla simplificadas. Toma capturas de pantalla y descárgalas sin salir de Firefox.
 
 ## Header
 
@@ -19,6 +20,10 @@ screenshotsLogo =
     .title = Página de inicio de Screenshots
 bannerSignIn = <a>Iniciar sesión o registrarse</a> para acceder a tus capturas a través de tus dispositivos y guardar tus favoritos para siempre.
 bannerUpsell = { gScreenshotsDescription } <a>Obtener Firefox ahora</a>
+shutdownWarning = <b>Las capturas de pantalla guardadas serán eliminadas dentro de poco.</b> A partir de junio Screenshots ya no ofrecerá almacenamiento en línea. ¿Quieres mantener las capturas de tu biblioteca? <a>Descárgalas a tu computadora.</a>
+shutdownPageTitle = Screenshots está cambiando
+shutdownPageDescription = Desde junio, Screenshots ya no ofrecerá almacenamiento en línea. ¿Quieres mantener tus capturas que tienes en la biblioteca? Bájalas de forma individual o <a>en lote</a>. Gracias por usar esta función, y lamentamos cualquier inconveniente.
+shutdownPageContinue = Esperamos que sigas usando Screenshots para capturar, copiar y descargar capturas.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = ¿Qué hay de nuevo en Firefox Screenshots?
