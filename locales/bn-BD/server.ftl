@@ -18,6 +18,7 @@ buttonSignIn =
 screenshotsLogo =
     .title = Screenshots নীড়
 bannerUpsell = { gScreenshotsDescription } <a>Firefox ডাউনলোড করুন</a>
+shutdownPageTitle = Screenshots পরিবর্তন হচ্ছে
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Firefox Screenshots এ নতুন কি আছে?
