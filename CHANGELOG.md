@@ -1,3 +1,8 @@
+## Version 38.2.0
+
+* Always show the server removal notice. Fixes [#5314](https://github.com/mozilla-services/screenshots/issues/5314) [b2c084a](https://github.com/mozilla-services/screenshots/commit/b2c084a)
+* Do stage deploy first, before other steps [9aa4af7](https://github.com/mozilla-services/screenshots/commit/9aa4af7)
+
 ## Version 38.1.0
 
 * Bring in updated locales for production release
