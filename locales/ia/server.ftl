@@ -22,6 +22,7 @@ bannerSignIn = <a>Authentica te o registra te</a> pro acceder tu instantaneos tr
 bannerUpsell = { gScreenshotsDescription } <a>Prende Firefox ora</a>
 shutdownWarning = <b>Le instantaneos salvate expirara tosto.</b> A initiar de junio, Screenshots non offerera plus magazinage online. Vole tu retener tu capturas ex tu bibliotheca? <a>Discarga los in tu computator.</a>
 shutdownPageTitle = Screenshots cambia
+shutdownPageDescription = Desde Junio, Screenshots non offerera plus immagazinage online. Vole tu retener instantaneos de tu libreria? Discarga tu instantaneos  singularmente o <a>in lot</a>. Gratias pro usar iste functionalitate, nos regretta pro ulle incommoditate.
 shutdownPageContinue = Nos spera que vos continuara a usar Screenshots pro capturar, copiar e discargar instantaneos.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
