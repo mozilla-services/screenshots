@@ -8,7 +8,7 @@ gMyShots = Na dealbhan agam
 gHomeLink = Dhachaigh
 gNoShots =
     .alt = Cha deach glacadh a lorg
-gScreenshotsDescription = Glacaidhean-sgrìn gun duilgheadas sam bith. Tog, sàbhail is co-roinn iad gun Firefox fhàgail idir.
+gScreenshotsDescriptionServerless = Glacaidhean-sgrìn gun duilgheadasan. Glac is luchdaich a-nuas glacaidhean-sgrìn gun Firefox fhàgail.
 
 ## Header
 
@@ -65,19 +65,12 @@ homePageDownloadFirefoxSubTitle = Luchdadh a-nuas an-asgaidh
 homePageHowScreenshotsWorks = Mar a dh’obraicheas glacaidhean-sgrìn Firefox
 homePageGetStartedTitle = Toiseach tòiseachaidh
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Thoir sùil airson ìomhaigheag ùr nan glacaidhean-sgrìn air bàr nan inneal agad. Tagh e ’s nochdaidh clàr-taice nan glacaidhean-sgrìn aig barr uinneag a’ bhrabhsair agad.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Tagh ìomhaigheag nan glacaidhean-sgrìn ann an clàr-taice gnìomhan na duilleige ann am bàr an t-seòlaidh is nochdaidh clàr-taice nan glacaidhean-sgrìn aig barr uinneag a’ bhrabhsair agad.
 homePageCaptureRegion = Glac raon
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Dèan briogadh is slaodadh airson an raon a tha ri ghlacadh a thaghadh. No fan os a chionn is dèan briogadh agus taghaidh an gleus againn an raon dhut. Dìreach na bha a dhìth ort? Tagh “Sàbhail” airson cothrom fhaighinn air air loidhne no an t-saighead sìos airson a luchdadh a-nuas dhan choimpiutair agad.
 homePageCapturePage = Glac duilleag
 homePageCapturePageDescription = Cleachd na putanan air an taobh deas gu h-àrd airson duilleag shlàn a ghlacadh. Glacaidh am putan “Sàbhail na tha ri fhaicinn” gach rud a chì thu gun a bhith a’ sgroladh agus glacaidh “Sàbhail an duilleag shlàn” gach rud air an duilleag.
-homePageSaveShare = Sàbhail is co-roinn
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Tog glacadh agus sàbhail e ann an leabhar-lann nan glacaidhean-sgrìn air loidhne agad. Cuiridh Firefox lethbhreac dhen cheangal air an stòr-bhòrd agad airson ’s gum bi e furasta a cho-roinneadh. Falbhaidh an ùine air glacaidhean-sgrìn san leabhar-lann gu fèin-obrachail an dèidh cola-deug ach is urrainn dhut an sguabadh às uair sam bith no an cumail nas fhaide na sin.
-homePageSignInTitle = Thoir leat na glacaidhean-sgrìn agad
-homePageSignInDescription = Clàraich a-steach gu gleus nan glacaidhean-sgrìn leis a’ chunntas Firefox a dh’fhaighinn greim air na glacaidhean-sgrìn agad àite sam bith a chleachdas tu Firefox. Agus is urrainn dhut an fheadhainn chudromach a shàbhaladh gu buan.
 homePageLegalLink = Nòtaichean laghail
 homePagePrivacyLink = Prìobhaideachd
 homePageTermsLink = Na teirmichean
@@ -148,7 +141,6 @@ shotPageBackToHomeButton =
     .title = Duilleag-dhachaigh
 shotPageAllShotsButton =
     .title = A h-uile glacadh
-shotPageScreenshotsDescription = Glacaidhean-sgrìn gun duilgheadas sam bith. Tog, sàbhail is co-roinn iad gun Firefox fhàgail idir.
 shotPageDMCAMessage = Chan eil an glacadh seo ri fhaighinn tuilleadh air sgàth tagradh an aghaidh briseadh IP a rinn cuideigin.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Cuir post-d gu { $dmca } airson barrachd fiosrachaidh.
@@ -302,11 +294,9 @@ copyImageErrorMessage = Chan urrainn dhuinn an glacadh a chur air an stòr-bhòr
 settingsDisconnectButton = Dì-cheangail
     .title = Dì-cheangail
 settingsGuestAccountMessage = Cunntas aoigh
-settingsSignInInvite = Clàraich a-steach airson sioncronachadh air feadh uidheaman a dhèanamh
 settingsSignInButton = Clàraich a-steach
     .title = Clàraich a-steach
 SettingsPageHeader = Roghainnean ghlacaidhean-sgrìn Firefox
-settingsDescription = ’S urrainn dhut clàradh a-steach gu cunntasan Firefox airson na glacaidhean-sgrìn agad a shioncronachadh air feadh nan uidheaman agad is cothrom fhaighinn orra gu prìobhaideach.
 settingsFirefoxAccountSubHeader = Cunntas Firefox
 settingsClosePreferences =
     .title = Dùin na roghainnean
@@ -359,6 +349,9 @@ shotDeleteCancel = Sguir dheth
     .title = Sguir dheth
 shotDeleteConfirm = Sguab às
     .title = Sguab às
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
