@@ -23,6 +23,7 @@ bannerUpsell = { gScreenshotsDescription } <a>Faigh Firefox an-dràsta</a>
 shutdownWarning = <b>Falbhaidh an ùine air na glacaidhean-sgrìn a shàbhail thu</b> Chan fhaighear stòras far loidhne airson nan glacaidhean-sgrìn tuilleadh a-mach on Ògmhios. A bheil thu airson na tha san leabhar-lann agad a chumail? <a>Luchdaich a-nuas iad dhan choimpiutair agad.</a>
 shutdownPageTitle = Tha atharrachadh a’ tighinn air gleus nan glacadh-sgrìn
 shutdownPageDescription = Chan fhaighear stòras far loidhne o ghleus nan glacadh-sgrìn a-mach on Ògmhios. A bheil thu airson na tha san leabhar-lann agad a chumail? Luchdaich a-nuas iad aon air aon no <a>ann am badan</a>. Mòran taing airson an gleus seo a chleachdadh agus tha sinn duilich ma chuireas seo fo mhì-ghoireas thu.
+shutdownPageContinue = Tha sinn an dòchas gun sìor-chleachd thu an gleus fhathast airson glacaidhean-sgrìn a ghlacadh, a luchdadh a-nuas no lethbhreac a dhèanamh dhiubh.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Dè tha ùr ann an gleus nan glacaidhean-sgrìn aig Firefox?
@@ -74,6 +75,9 @@ homePageCaptureRegion = Glac raon
 homePageCaptureRegionDescription = Dèan briogadh is slaodadh airson an raon a tha ri ghlacadh a thaghadh. No fan os a chionn is dèan briogadh agus taghaidh an gleus againn an raon dhut. Dìreach na bha a dhìth ort? Tagh “Sàbhail” airson cothrom fhaighinn air air loidhne no an t-saighead sìos airson a luchdadh a-nuas dhan choimpiutair agad.
 homePageCapturePage = Glac duilleag
 homePageCapturePageDescription = Cleachd na putanan air an taobh deas gu h-àrd airson duilleag shlàn a ghlacadh. Glacaidh am putan “Sàbhail na tha ri fhaicinn” gach rud a chì thu gun a bhith a’ sgroladh agus glacaidh “Sàbhail an duilleag shlàn” gach rud air an duilleag.
+homePageDownloadCopy = Luchdaich a-nuas no dèan lethbhreac
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Glac na tha air an sgrìn. Bheir an gleus seo comas dhut na ghlac thu a luchdadh a-nuas no lethbhreac dheth a chur air an stòr-bhòrd.
 homePageLegalLink = Nòtaichean laghail
 homePagePrivacyLink = Prìobhaideachd
 homePageTermsLink = Na teirmichean
@@ -144,6 +148,7 @@ shotPageBackToHomeButton =
     .title = Duilleag-dhachaigh
 shotPageAllShotsButton =
     .title = A h-uile glacadh
+shotPageScreenshotsDescriptionServerless = Glacaidhean-sgrìn gun duilgheadas sam bith. Glac na tha air an sgrìn is luchdaich a-nuas e gun Firefox fhàgail.
 shotPageDMCAMessage = Chan eil an glacadh seo ri fhaighinn tuilleadh air sgàth tagradh an aghaidh briseadh IP a rinn cuideigin.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Cuir post-d gu { $dmca } airson barrachd fiosrachaidh.
@@ -305,6 +310,7 @@ settingsClosePreferences =
     .title = Dùin na roghainnean
 settingsFxaDisconnectAlertMessage = A bheil thu cinnteach gu bheil thu airson an t-uidheam seo a dhì-cheangal on chunntas Firefox agad?
 settingsFxaDisconnectDescription = Ma chlàraicheas tu a-mach, bidh agad ri clàradh a-steach a-rithist mus fhaigh thu cothrom air na glacaidhean-sgrìn agad.
+settingsFxaConnectDescription = ’S urrainn dhut clàradh a-steach a dh’fhaighinn greim air na ghlac thu, air feadh uidheaman.
 
 ## Shotindex page
 
@@ -355,6 +361,8 @@ shotDeleteConfirm = Sguab às
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Airson às-phortadh a dhèanamh, cleachd “Faidhle” » “Sàbhail an duilleag mar…” agus gheibh thu na glacaidhean-sgrìn agad sa phasgan { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
