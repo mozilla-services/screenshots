@@ -20,6 +20,9 @@ screenshotsLogo =
     .title = Dachaidh nan glacadh-sgrìn
 bannerSignIn = <a>Clàraich leinn no clàraich a-steach</a> a dh’fhaighinn greim air glacaidhean-sgrìn air feadh nan uidheaman agad is sàbhail an fheadhainn chudromach gu buan.
 bannerUpsell = { gScreenshotsDescription } <a>Faigh Firefox an-dràsta</a>
+shutdownWarning = <b>Falbhaidh an ùine air na glacaidhean-sgrìn a shàbhail thu</b> Chan fhaighear stòras far loidhne airson nan glacaidhean-sgrìn tuilleadh a-mach on Ògmhios. A bheil thu airson na tha san leabhar-lann agad a chumail? <a>Luchdaich a-nuas iad dhan choimpiutair agad.</a>
+shutdownPageTitle = Tha atharrachadh a’ tighinn air gleus nan glacadh-sgrìn
+shutdownPageDescription = Chan fhaighear stòras far loidhne o ghleus nan glacadh-sgrìn a-mach on Ògmhios. A bheil thu airson na tha san leabhar-lann agad a chumail? Luchdaich a-nuas iad aon air aon no <a>ann am badan</a>. Mòran taing airson an gleus seo a chleachdadh agus tha sinn duilich ma chuireas seo fo mhì-ghoireas thu.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Dè tha ùr ann an gleus nan glacaidhean-sgrìn aig Firefox?
