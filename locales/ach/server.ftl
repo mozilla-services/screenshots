@@ -4,7 +4,10 @@
 
 ## Global phrases shared across pages, prefixed with 'g'
 
+gMyShots = Cal Mamega
 gHomeLink = Gang
+gNoShots =
+    .alt = Pe ki nongo cal
 
 ## Header
 
@@ -12,6 +15,9 @@ buttonSettings =
     .title = Ter
 buttonSignIn =
     .title = Dony iyie
+bannerSignIn = <a>Dony iyie onyo Coone</a> me nongo cal mamegi weng i nyonyo ki gwoko ma imaro weng matwal.
+bannerUpsell = { gScreenshotsDescription } <a>Nong Firefox kombedi</a>
+onboardingPromoMessageListItem2 = Gwok cal mamegi ma imaro matwal
 onboardingPromoSigninButton = Dony Iyie
     .title = Dony Iyie
 
@@ -32,9 +38,11 @@ footerLinkRemoveAllData = Kwany data weng
 # creatingPageTitleDefault.
 creatingPageTitle = Cweyo { $title }
 creatingPageTitleDefault = potbuk
+creatingPageWaitMessage = Gwoko cal mamegi…
 
 ## Home page
 
+homePageButtonMyShots = Wot i Cal Mamega
 homePageTeaser = Cok Bino
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Gam me nono
@@ -68,7 +76,9 @@ notFoundPageDescription = Potbuk pe ononge.
 
 ## Shot page
 
+shotPageAlertErrorDeletingShot = Bal i kwanyo cal
 shotPageAlertErrorUpdatingTitle = Bal i gwoko wiye
+shotPageConfirmDelete = Imoko ada ni imito kwanyo cal man matwal?
 shotPageShareButton =
     .title = Poki
 shotPageCopyButton =
@@ -302,6 +312,8 @@ metricsPageTotalsQueryDescription = Wiye-wiye me Screenshots
 metricsPageTotalsQueryDevices = Wel nyonyo ma kicoyo
 metricsPageTotalsQueryExpiredShots = Kare ne okato (ento pud romo nonge)
 metricsPageTotalsQueryExpiredDeletedShots = Kare ne okato (ki bene kikwanyo woko)
+metricsPageShotsQueryDescription = Wel cal ma ki yubo nino weng (pi nino 30 ma okato)
+metricsPageShotsQueryCount = Wel cal
 metricsPageShotsQueryDay = Diceng
 metricsPageUsersQueryTitle = Lutic kudiceng
 metricsPageUsersQueryCount = Wel Lutic
