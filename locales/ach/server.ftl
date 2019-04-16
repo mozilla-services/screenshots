@@ -173,6 +173,10 @@ promoCloseButton =
 
 ## Annotations
 
+annotationPenButton =
+    .title = Kalam
+annotationHighlighterButton =
+    .title = Lawer
 annotationUndoButton =
     .title = Gony
 annotationRedoButton =
@@ -192,6 +196,27 @@ annotationCropConfirmButton = Moki
     .title = Mok yer
 annotationCropCancelButton = Juki
     .title = Juk yer
+annotationColorWhite =
+    .title = Tar
+annotationColorBlack =
+    .title = Col
+annotationColorRed =
+    .title = Kwar
+annotationColorGreen =
+    .title = Girin
+annotationColorBlue =
+    .title = Buluu
+annotationColorYellow =
+    .title = Yelo
+annotationColorPurple =
+    .title = Papul
+annotationColorSeaGreen =
+    .title = Pe girin tutwal
+annotationColorGrey =
+    .title = Buru buru
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Dit me coc
 # Values shown in text size selection dropdown
 textSizeSmall = Matidi
 textSizeMedium = Ladyere
@@ -201,12 +226,16 @@ textToolConfirmButton = Moki
     .title = Moki
 textToolCancelButton = Juki
     .title = Juki
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Itye
 
 ## The following are the title and message for an error displayed as a Firefox
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
 copyImageErrorTitle = Gin mo otime marac
+copyImageErrorMessage = Pe twero loko cal mamegi i baococ.
 
 ## Settings Page
 
@@ -215,21 +244,47 @@ settingsDisconnectButton = Wek kube
 settingsGuestAccountMessage = Akaunt pa welo
 settingsSignInButton = Dony iyie
     .title = Dony iyie
+settingsFirefoxAccountSubHeader = Akaunt me Firefox
+settingsFxaDisconnectAlertMessage = Imoko ada ni imito kwanyo woko nyonyo man ki i Akaunt me Firefox mamegi?
 
 ## Shotindex page
 
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Bal i kwanyo cal: { $status } { $statusText }
+# { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Cal mamega: yeny pi { $searchTerm }
+shotIndexPageSearchPlaceholder =
+    .placeholder = Yeny cal mamega
+shotIndexPageNoShotsMessage = Cal ma kigwoko pe.
 shotIndexPageNoShotsInvitation = Mede, cwe mogo.
+shotIndexPageLookingForShots = Tye ka yenyo pi cali…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Pe watwero nongo cal ma rwate ki yeny mamegi.
+shotIndexPageMyShotsButton =
+    .title = Cal Mamega
 shotIndexPageClearSearchButton =
     .title = Jwa yeny
+shotIndexPageConfirmShotDelete = Kwany cal man?
 shotIndexPagePreviousPage =
     .title = potbuk mukato
 shotIndexPageNextPage =
     .title = potbuk malubu
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Man pe cal ma kiaro loyo ki kare ne bitum woko
+# This is the tooltip for a "heart" symbol in the upper top corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Man cal ma kimaro ki kare ne pe bitum
+shotIndexSyncedShot =
+    .title = Cal ma kimako i nyonyo mukene
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = I moko ada ni i mito kwanyo cal man?
 shotDeleteCancel = Juki
     .title = Juki
 shotDeleteConfirm = Kwany
