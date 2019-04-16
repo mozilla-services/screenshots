@@ -45,7 +45,7 @@ homePageGetStartedTitle = Caki
 homePageGetStartedDescriptionPageAction = Yer cal me Screenshots ki i jami ayera me potbuk ma i lanyut me kanonge, ka jami ayera me Screenshots bi nyute iwi dirica me layeny mamegi.
 homePageCaptureRegion = Mak bute
 homePageCapturePage = mak potbuk
-homePageSaveShare = Gwokki ki Nywaki
+homePageDownloadCopy = Gam onyo Loki
 homePageLegalLink = Cik
 homePagePrivacyLink = Mung
 homePageTermsLink = Cik
@@ -71,6 +71,9 @@ notFoundPageDescription = Potbuk pe ononge.
 shotPageAlertErrorUpdatingTitle = Bal i gwoko wiye
 shotPageShareButton =
     .title = Poki
+shotPageCopyButton =
+    .title = Lok cal i bao coc
+shotPageCopyActionLabel = Loki
 shotPageCopied = Kiloko
 shotPageShareFacebook =
     .title = Poki i Facebook
@@ -80,19 +83,34 @@ shotPageSharePinterest =
     .title = poki i pinterest
 shotPageShareEmail =
     .title = Nywak kakube i email
+shotPageShareLink = Nong kakube ma nywake pi cal man:
+shotPagePrivacyMessage = Ngat mo keken ki kakube ne twero neno cal man.
 shotPageCopyImageText =
     .label = Lok coc me cal
+shotPageConfirmDeletion = I moko ada ni imito kwanyo cal man matwal?
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = Ka pe itimo gin mo, ki bikwanyo cal man matwal <timediff></timediff>.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = dwoki naka wa { $date }
+shotPageExpiredMessage = Kare pa cal man otum woko.
 # Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Man aye potbuk ma ki cweyo ki iye wiya atii:
+shotPageDeleteButton =
+    .title = Kwany cal man
 shotPageDownloadShot =
     .title = Gam
 shotPageEditButton =
     .title = Yub cal man
+shotPageBackToHomeButton =
+    .title = Potbuk me acakki
+shotPageAllShotsButton =
+    .title = Cal weng
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Tim ber i cwal email bot { $dmca } me penyo pi ngec mapol.
+# Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Tim ber iket URL pa cal man i email mamegi: { $url }
+shotPageKeepFor = Kigwok cal man pi kare ma rom mene?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Yer cawa
 # The ∞ is used to indicate that the shot won't expire. It is also used in
@@ -216,6 +234,9 @@ shotDeleteCancel = Juki
     .title = Juki
 shotDeleteConfirm = Kwany
     .title = Kwany
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
