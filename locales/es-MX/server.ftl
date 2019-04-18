@@ -76,6 +76,8 @@ homePageCaptureRegionDescription = Haz clic y arrastra para seleccionar el área
 homePageCapturePage = Captura una página
 homePageCapturePageDescription = Utiliza los botones de la parte superior derecha para capturar páginas completas. El botón Guardar área visible capturará lo que puedes ver sin deslizarte; Guardar página completa guardará todo lo que aparece en la página.
 homePageDownloadCopy = Descargar o copiar
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Haz tu mejor captura. Screenshots te permite descargar tu selección o copiarla directamente en tu portapapeles.
 homePageLegalLink = Legal
 homePagePrivacyLink = Privacidad
 homePageTermsLink = Términos
@@ -146,6 +148,7 @@ shotPageBackToHomeButton =
     .title = Página de inicio
 shotPageAllShotsButton =
     .title = Todas las capturas
+shotPageScreenshotsDescriptionServerless = Capturas de pantalla simplificadas. Toma capturas de pantalla y descárgalas sin salir de Firefox.
 shotPageDMCAMessage = Esta captura ya no está disponible debido a un reclamo de derechos de autor.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Envía un correo a { $dmca } para solicitar más información.
@@ -346,6 +349,8 @@ shotDeleteConfirm = Eliminar
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Para exportar: usa Archivo > Guardar página como… y encontrarás tu captura de pantalla dentro de la carpeta { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
