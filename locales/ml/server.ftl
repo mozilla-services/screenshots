@@ -9,6 +9,11 @@ gHomeLink = പൂമുഖം
 gNoShots =
     .alt = ഷോട്ടുകൾ ഒന്നും കണ്ടില്ല
 
+## Header
+
+buttonSettings =
+    .title = ക്രമീകരണങ്ങള്‍
+
 ## Footer
 
 # Note: link text for a link to mozilla.org
@@ -34,13 +39,9 @@ homePageButtonMyShots = എന്റെ ഷോട്ടുകളിലേക്�
 homePageTeaser = ഉടൻ വരുന്നു...
 homePageDownloadFirefoxTitle = ഫയര്‍ഫോക്സ്
 homePageDownloadFirefoxSubTitle = സൗജന്യ ഡൗണ്‍ലോഡ്
-homePageGetStarted = ഉപയോഗിച്ചു് തൂടങ്ങൂ
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = ഫയർഫോക്സ് സ്കീൻഷോട്ടുകൾ എങ്ങനെ പ്രവര്‍ത്തിക്കുന്നു
 homePageGetStartedTitle = ഉപയോഗിച്ചു് തൂടങ്ങൂ
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = നിങ്ങളുടെ ടൂള്‍ബാറില്‍ സ്ക്രീന്‍ഷോട്ട് ഐക്കണ്‍ ഉണ്ട്. അത് തെരഞ്ഞെടുക്കുമ്പോള്‍ ബ്രൌസര്‍ വിന്റോയുടെ മുകളില്‍ സ്ക്രീന്‍ഷോട്ട് മെനു വരും.
-homePageSaveShare = സൂക്ഷിച്ച ശേഷം പങ്കുവെക്കൂ
 homePageLegalLink = നിയമപരം
 homePagePrivacyLink = സ്വകാര്യത
 homePageTermsLink = നിബന്ധനകൾ
@@ -68,7 +69,6 @@ shotPageAlertErrorUpdatingTitle = തലക്കെട്ട് സൂക്ഷ
 shotPageConfirmDelete = ഷോട്ട് എന്നേക്കുമായി ഒഴിവാക്കണം എന്ന് ഉറപ്പാണോ?
 shotPageShareButton =
     .title = പങ്കുവെക്കുക
-shotPageCopy = പകര്‍ത്തുക
 shotPageCopied = പകർത്തി!
 shotPageShareFacebook =
     .title = ഫേയ്സ്ബുക്കിൽ പങ്കുവെക്കുക
@@ -87,8 +87,6 @@ shotPageDeleteButton =
     .title = ഈ ഷോട്ട് നീക്കം ചെയ്യുക
 shotPageDownloadShot =
     .title = ഡൗണ്‍ലോഡ്
-shotPageDownload = ഡൗണ്‍ലോഡ്
-shotPageUpsellFirefox = ഫയർഫോക്സ് ഇപ്പോൾ നേടൂ
 # Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = ഈ ഷോട്ടിന്റെ യുആ‍ർഎൽ നിങ്ങളുടെ ഇമെയിലിൽ ഉൾക്കൊള്ളിക്കുക: { $url }
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
@@ -135,7 +133,15 @@ timeDiffFutureDays =
        *[other] { $number } ദിവസങ്ങൾക്കുള്ളിൽ
     }
 
+## Shot Page New Feature Promotion Dialog.
+
+
 ## Annotations
+
+
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
 
 
 ## Settings Page
@@ -145,14 +151,15 @@ timeDiffFutureDays =
 
 shotIndexPageSearchPlaceholder =
     .placeholder = എന്റെ ഷോട്ടുകൾ തിരയുക
-shotIndexPageSearchButton =
-    .title = തിരയുക
 shotIndexPagePreviousPage =
     .title = മുൻപത്തെ താൾ
 shotIndexPageNextPage =
     .title = അടുത്ത താൾ
 
 ## Delete Confirmation Dialog
+
+
+## Export page
 
 
 ## Metrics page
