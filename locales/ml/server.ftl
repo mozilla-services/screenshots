@@ -188,11 +188,14 @@ textSizeLarge = വലിയ
 
 ## Settings Page
 
+settingsSignInButton = പ്രവേശിക്കുക
+    .title = പ്രവേശിക്കുക
 
 ## Shotindex page
 
 shotIndexPageSearchPlaceholder =
     .placeholder = എന്റെ ഷോട്ടുകൾ തിരയുക
+shotIndexPageNoSearchResultsIntro = ഉം
 shotIndexPagePreviousPage =
     .title = മുൻപത്തെ താൾ
 shotIndexPageNextPage =
@@ -200,6 +203,8 @@ shotIndexPageNextPage =
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirm = കളയുക
+    .title = കളയുക
 
 ## Export page
 
