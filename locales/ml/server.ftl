@@ -13,6 +13,12 @@ gNoShots =
 
 buttonSettings =
     .title = ക്രമീകരണങ്ങള്‍
+buttonSignIn =
+    .title = പ്രവേശിക്കുക
+onboardingPromoDismissButton = കളയുക
+    .title = കളയുക
+onboardingPromoSigninButton = പ്രവേശിക്കുക
+    .title = പ്രവേശിക്കുക
 
 ## Footer
 
@@ -69,6 +75,7 @@ shotPageAlertErrorUpdatingTitle = തലക്കെട്ട് സൂക്ഷ
 shotPageConfirmDelete = ഷോട്ട് എന്നേക്കുമായി ഒഴിവാക്കണം എന്ന് ഉറപ്പാണോ?
 shotPageShareButton =
     .title = പങ്കുവെക്കുക
+shotPageCopyActionLabel = പകര്‍ത്തുക
 shotPageCopied = പകർത്തി!
 shotPageShareFacebook =
     .title = ഫേയ്സ്ബുക്കിൽ പങ്കുവെക്കുക
@@ -87,6 +94,8 @@ shotPageDeleteButton =
     .title = ഈ ഷോട്ട് നീക്കം ചെയ്യുക
 shotPageDownloadShot =
     .title = ഡൗണ്‍ലോഡ്
+shotPageBackToHomeButton =
+    .title = ആസ്ഥാന താള്‍
 # Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = ഈ ഷോട്ടിന്റെ യുആ‍ർഎൽ നിങ്ങളുടെ ഇമെയിലിൽ ഉൾക്കൊള്ളിക്കുക: { $url }
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
@@ -138,6 +147,39 @@ timeDiffFutureDays =
 
 ## Annotations
 
+annotationPenButton =
+    .title = പേന
+annotationUndoButton =
+    .title = വേണ്ട
+annotationRedoButton =
+    .title = ആവര്‍ത്തിക്കുക
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
+    .title = വെടിപ്പാക്കുക
+annotationSaveEditButton = സൂക്ഷിക്കുക
+    .title = സൂക്ഷിക്കുക
+annotationCancelEditButton = റദ്ദാക്കുക
+    .title = റദ്ദാക്കുക
+annotationColorWhite =
+    .title = വെള്ള
+annotationColorBlack =
+    .title = കറുപ്പ്
+annotationColorRed =
+    .title = ചുവപ്പ്
+annotationColorGreen =
+    .title = പച്ച
+annotationColorBlue =
+    .title = നീല
+annotationColorYellow =
+    .title = മഞ്ഞ
+annotationColorPurple =
+    .title = പര്‍പ്പിള്‍
+annotationColorGrey =
+    .title = ചാരം
+# Values shown in text size selection dropdown
+textSizeSmall = ചെറുത്
+textSizeMedium = ഇടത്തരം
+textSizeLarge = വലിയ
 
 ## The following are the title and message for an error displayed as a Firefox
 ## notification. It is triggered by an action in the shot page and the strings
