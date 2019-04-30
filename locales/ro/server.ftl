@@ -356,7 +356,7 @@ shotDeleteConfirm = Șterge
 ## Export page
 
 # Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
-exportInstructions = Pentru export: Folosește Fișier > Salvează pagina ca… și îți vei regăsi capturile de ecran în dosarul { $folder }
+exportInstructions = Pentru a exporta: Folosește Fișier > Salvează pagina ca… și îți vei regăsi capturile de ecran în dosarul { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
