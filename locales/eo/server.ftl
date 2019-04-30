@@ -8,6 +8,7 @@ gMyShots = Miaj ekrankopioj
 gHomeLink = Eka paĝo
 gNoShots =
     .alt = Neniu ekrankopio trovita
+gScreenshotsDescriptionServerless = Ekrankopioj simpligitaj. Fari kaj elŝuti ekrankopiojn sen forlasi Firefox.
 
 ## Header
 
@@ -19,6 +20,10 @@ screenshotsLogo =
     .title = Eka paĝo de ekrankopioj
 bannerSignIn = <a>Komencu seancon aŭ registriĝu</a> por aliri viajn ekrankopiojn en ĉiuj aparatoj kaj konservi la plej ŝatatajn por ĉiam.
 bannerUpsell = { gScreenshotsDescription } <a>Ricevi Firefox nun</a>
+shutdownWarning = <b>Konservitaj ekrankopioj baldaŭ malaperos.</b> Ekde Junio 2019 la servo Firefox Screenshots ne plu ofertas enretan konservejon. Ĉu vi volas konservi ekrankopiojn en via biblioteko? <a>Elŝutu ilin al via komputilo/</a>
+shutdownPageTitle = Screenshots ŝanĝiĝas
+shutdownPageDescription = Ekde 2019-06 la servo Firefox Screenshots ne plu ofertos enratan konservejon. Ĉu vi volas konservi ekrankopiojn en via biblioteko? Elŝutu ilin po unu aŭ <a>ĉiujn samtempe</a>. Dankon por uzi tiun ĉi funkcion kaj ni pardonpetas pro la maloportunaĵo.
+shutdownPageContinue = Ni esperas, ke vi plu uzos Screenshots por fari, kopii kaj elŝuti ekrankopiojn.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Kio estas nova en Firefox Screenshots?
@@ -71,6 +76,8 @@ homePageCaptureRegionDescription = Alklaku kaŭ trenu por elekti la areon, kion 
 homePageCapturePage = Kapti paĝon
 homePageCapturePageDescription = Uzu la butonojn supre kaj dekstre por kapti tutajn paĝojn. La butono 'Konservi tion, kio videblas' kaptos la areon, kiun vi vidas se vi ne ŝovas. La butono 'Konservi tutan paĝon'  kaptos ĉion en la paĝo.
 homePageDownloadCopy = Elŝuti aŭ kopii
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Faru vian plej bonan ekrankopion. Screenshots ebligas al vi elŝuti vian kaptaĵon aŭ kopii ĝin al tondujo.
 homePageLegalLink = Leĝaĵoj
 homePagePrivacyLink = Privateco
 homePageTermsLink = Kondiĉoj
@@ -141,6 +148,7 @@ shotPageBackToHomeButton =
     .title = Eka paĝo
 shotPageAllShotsButton =
     .title = Ĉiuj ekrankopioj
+shotPageScreenshotsDescriptionServerless = Ekrankopioj simpligitaj. Fari kaj elŝuti ekrankopiojn sen forlasi Firefox.
 shotPageDMCAMessage = Tiu ĉi ekrankopio ne plu estas havebla pro plendo pri intelekta kopirajto.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Bonvolu skribi retpoŝte al { $dmca } por peti pli da informo.
@@ -341,6 +349,8 @@ shotDeleteConfirm = Forigi
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Por elporti: alklaku “Dosiero” > “Konservi paĝon kiel…” kaj viaj ekrankopioj troviĝos en la dosierujo { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
