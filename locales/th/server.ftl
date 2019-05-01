@@ -312,7 +312,7 @@ shotDeleteConfirm = ลบ
 ## All metrics strings are optional for translation
 
 # Note: 'Firefox Screenshots' should not be translated
-metricsPageTitle = ข้อมูลสถิติ Firefox Screenshots
+metricsPageTitle = เกณฑ์ชี้วัด Firefox Screenshots
 metricsPageTotalsQueryTitle = รวม
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = ภาพรวมของ Screenshots
@@ -346,7 +346,7 @@ metricsPageVersionQueryDescription = รุ่นของส่วนเสร�
 metricsPageVersionQueryUsers = จำนวนผู้ใช้ที่เข้าสู่ระบบ
 metricsPageVersionQueryVersion = รุ่นส่วนเสริม
 metricsPageVersionQueryLastSeen = วัน
-metricsPageHeader = ข้อมูลสถิติ
+metricsPageHeader = เกณฑ์ชี้วัด
 # Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = สร้างขึ้นเมื่อ: { $created }
 # Note { $time } is a placeholder for a number of milliseconds, like '100'
