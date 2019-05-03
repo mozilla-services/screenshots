@@ -21,6 +21,8 @@ bannerUpsell = { gScreenshotsDescription } <a>รับ Firefox ตอนนี�
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = มีอะไรใหม่ใน Firefox Screenshots?
+onboardingPromoMessageListItem1 = เข้าถึงห้องสมุดของคุณในอุปกรณ์ทั้งหมดของคุณ
+onboardingPromoMessageListItem2 = เก็บภาพหน้าจอโปรดของคุณตลอดไป
 onboardingPromoDismissButton = ยกเลิก
     .title = ยกเลิก
 onboardingPromoSigninButton = ลงชื่อเข้า
@@ -269,6 +271,8 @@ SettingsPageHeader = การตั้งค่า Firefox Screenshots
 settingsFirefoxAccountSubHeader = Firefox Account
 settingsClosePreferences =
     .title = ปิดค่ากำหนด
+settingsFxaDisconnectAlertMessage = คุณแน่ใจหรือไม่ว่าต้องการตัดการเชื่อมต่ออุปกรณ์นี้จากบัญชี Firefox ของคุณ?
+settingsFxaConnectDescription = คุณสามารถลงชื่อเข้าเพื่อเข้าถึงภาพหน้าจอของคุณในอุปกรณ์ต่าง ๆ
 
 ## Shotindex page
 
@@ -296,6 +300,9 @@ shotIndexPagePreviousPage =
     .title = หน้าก่อนหน้า
 shotIndexPageNextPage =
     .title = หน้าถัดไป
+shotIndexSyncedShot =
+    .title = ภาพหน้าจอที่จับในอุปกรณ์อื่น
+shotIndexAlertErrorFavoriteShot = เกิดข้อผิดพลาดในการอัปเดตสถานะภาพหน้าจอโปรด
 
 ## Delete Confirmation Dialog
 
