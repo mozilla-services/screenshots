@@ -255,6 +255,8 @@ settingsGuestAccountMessage = Akaunt pa welo
 settingsSignInButton = Dony iyie
     .title = Dony iyie
 settingsFirefoxAccountSubHeader = Akaunt me Firefox
+settingsClosePreferences =
+    .title = Lor ter
 settingsFxaDisconnectAlertMessage = Imoko ada ni imito kwanyo woko nyonyo man ki i Akaunt me Firefox mamegi?
 
 ## Shotindex page
