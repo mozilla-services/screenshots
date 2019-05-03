@@ -20,6 +20,10 @@ screenshotsLogo =
     .title = Startside for Screenshots
 bannerSignIn = <a>Log ind eller tilmeld dig</a> for at få adgang til dine skærmbilleder på alle dine enheder, og gem dine favoritter for evigt.
 bannerUpsell = { gScreenshotsDescription } <a>Hent Firefox nu</a>
+shutdownWarning = <b>Gemte skærmbilleder udløber snart.</b> Fra starten af juni vil Screenshoots ikke længere tilbyde, at du kan gemme dine skærmbilleder online. Hvis du vil gemme skærmbilleder fra dit arkiv, så kan du <a>hente dem ned på din computer.</a>
+shutdownPageTitle = Ændringer til Screenshots
+shutdownPageDescription = Fra starten af juni vil Screenshoots ikke længere tilbyde, at du kan gemme dine skærmbilleder online. Hvis du vil gemme skærmbilleder fra dit arkiv, så kan du hente dem ned på din computer enkeltvis eller <a>samlet</a>. Vi er glade for, at du har brugt denne funktion - og beklager, hvis ændringerne medfører ulemper.
+shutdownPageContinue = Vi håber, at du vil fortsætte med at bruge Screenshots til at tage, kopiere og hente skærmbilleder.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Nyheder i Firefox Screenshots
