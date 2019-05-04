@@ -72,7 +72,7 @@ homePageGetStartedTitle = Jak začít
 homePageGetStartedDescriptionPageAction = V adresním řádku v nabídce akcí stránky klepněte na pořízení snímku, a v horní částí okna prohlížeče se objeví nabídka služby Screenshots.
 homePageCaptureRegion = Vytvořte snímek oblasti
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Stiskem tlačítka myši a tahem vyberete oblast stránky. A nebo jen najeďte myší — doplněk Screenshots pro vás oblast vybere sám. Líbí se vám to? Klikněte na tlačítko Uložit pro nahrání snímku na internet, nebo na šipku pro jeho stažené do počítače.
+homePageCaptureRegionDescription = Stiskem tlačítka myši a tahem vyberete oblast stránky. A nebo jen najeďte myší – doplněk Screenshots pro vás oblast vybere sám. Líbí se vám to? Klikněte na tlačítko Uložit pro nahrání snímku na internet, nebo na šipku pro jeho stažené do počítače.
 homePageCapturePage = Vytvořte snímek celé stránky
 homePageCapturePageDescription = Použijte tlačítka v pravém horním rohu pro zachycení celé stránky. Tlačítko Uložit viditelnou oblast vybere část stránky, která se vejde na obrazovku a právě ji vidíte, kdežto Uložit celou stránku zachytí i to, co se na obrazovku nevešlo.
 homePageDownloadCopy = Stáhnout nebo zkopírovat
