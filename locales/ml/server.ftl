@@ -365,6 +365,7 @@ metricsPageRetentionQueryFirstWeek = ഉപയോക്താവ്  ഒരു  
 metricsPageTotalRetentionQueryTitle = മൊത്തം നിലനിർത്തൽ
 metricsPageTotalRetentionQueryUsers = ഉപയോക്താക്കളുടെ എണ്ണം
 metricsPageVersionQueryTitle = ആഡ്-ഓൺ പതിപ്പ്
+metricsPageVersionQueryDescription = പ്രവേശന സമയത്ത് ഉപയോഗിച്ച ആഡ്-ഓൺ പതിപ്പ്, കഴിഞ്ഞ 14 ദിവസങ്ങളിൽ
 metricsPageVersionQueryUsers = പ്രവേശിക്കുന്ന ഉപയോക്താക്കളുടെ എണ്ണം
 metricsPageVersionQueryVersion = ആഡ്-ഓൺ പതിപ്പ്
 metricsPageVersionQueryLastSeen = ദിവസം
