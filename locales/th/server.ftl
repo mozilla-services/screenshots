@@ -17,7 +17,9 @@ buttonSignIn =
     .title = ลงชื่อเข้า
 screenshotsLogo =
     .title = หน้าแรก Screenshots
+bannerSignIn = <a>ลงชื่อเข้าหรือลงทะเบียน</a> เพื่อเข้าถึงภาพหน้าจอของคุณในอุปกรณ์ต่าง ๆ และบันทึกรายการโปรดของคุณไว้ตลอดไป
 bannerUpsell = { gScreenshotsDescription } <a>รับ Firefox ตอนนี้</a>
+shutdownPageTitle = ภาพหน้าจอกำลังเปลี่ยนแปลง
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = มีอะไรใหม่ใน Firefox Screenshots?
@@ -191,6 +193,8 @@ errorThirdPartyCookiesEnabled = ถ้าคุณจับภาพนี้แ
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = จดบันทึก!
 promoCloseButton =
     .title = ปิดการแจ้งเตือน
 
@@ -272,6 +276,7 @@ settingsFirefoxAccountSubHeader = Firefox Account
 settingsClosePreferences =
     .title = ปิดค่ากำหนด
 settingsFxaDisconnectAlertMessage = คุณแน่ใจหรือไม่ว่าต้องการตัดการเชื่อมต่ออุปกรณ์นี้จากบัญชี Firefox ของคุณ?
+settingsFxaDisconnectDescription = หากคุณลงชื่อออก คุณจะต้องลงชื่อเข้าอีกครั้งเพื่อเข้าถึงภาพหน้าจอของคุณอีกครั้ง
 settingsFxaConnectDescription = คุณสามารถลงชื่อเข้าเพื่อเข้าถึงภาพหน้าจอของคุณในอุปกรณ์ต่าง ๆ
 
 ## Shotindex page
