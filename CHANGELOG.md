@@ -1,3 +1,10 @@
+## Version 39.0.0
+
+Note: Firefox-only release
+
+* remove Library and My Shots links. This removes all the code to check the server, including checking if we want to open the proactive shutdown notice.
+  This does not remove the supporting code for adding the library button and My Shots (the code exists but isn't called). Fixes [#5381](https://github.com/mozilla-services/screenshots/issues/5381) [a5c2208](https://github.com/mozilla-services/screenshots/commit/a5c2208)
+
 ## Version 38.2.0
 
 * Always show the server removal notice. Fixes [#5314](https://github.com/mozilla-services/screenshots/issues/5314) [b2c084a](https://github.com/mozilla-services/screenshots/commit/b2c084a)
