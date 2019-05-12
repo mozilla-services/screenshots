@@ -8,6 +8,7 @@ gMyShots = ภาพหน้าจอของฉัน
 gHomeLink = หน้าแรก
 gNoShots =
     .alt = ไม่พบภาพหน้าจอ
+gScreenshotsDescriptionServerless = จัดการภาพหน้าจอได้อย่างง่ายดาย จับและดาวน์โหลดภาพหน้าจอโดยไม่ต้องออกจาก Firefox
 
 ## Header
 
@@ -23,6 +24,7 @@ shutdownPageTitle = ภาพหน้าจอกำลังเปลี่ย
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = มีอะไรใหม่ใน Firefox Screenshots?
+onboardingPromoMessage = ตอนนี้ให้ลงชื่อเข้า Screenshots ด้วยบัญชี Firefox และทำสิ่งต่าง ๆ เพิ่มเติม:
 onboardingPromoMessageListItem1 = เข้าถึงห้องสมุดของคุณในอุปกรณ์ทั้งหมดของคุณ
 onboardingPromoMessageListItem2 = เก็บภาพหน้าจอโปรดของคุณตลอดไป
 onboardingPromoDismissButton = ยกเลิก
@@ -78,6 +80,8 @@ homePageCookiesLink = คุกกี้
 ## Leave Screenshots page
 
 leavePageRemoveAllData = เอาข้อมูลทั้งหมดออก
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = คุณต้องติดตั้ง Firefox Screenshots หรือลงชื่อเข้าบัญชี Firefox เพื่อลบบัญชีของคุณ
 leavePageErrorGeneric = เกิดข้อผิดพลาด
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = การดำเนินการนี้จะลบข้อมูล Firefox Screenshots ทั้งหมดของคุณอย่างถาวร
@@ -136,6 +140,7 @@ shotPageBackToHomeButton =
     .title = หน้าแรก
 shotPageAllShotsButton =
     .title = ช็อตทั้งหมด
+shotPageScreenshotsDescriptionServerless = จัดการภาพหน้าจอได้อย่างง่ายดาย จับและดาวน์โหลดภาพหน้าจอโดยไม่ต้องออกจาก Firefox
 shotPageDMCAMessage = ภาพนี้ไม่พร้อมใช้งานอีกต่อไปเนื่องจากมีการอ้างสิทธิ์ทรัพย์สินทางปัญญาจากบุคคลที่สาม
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = โปรดอีเมลมายัง { $dmca } เพื่อขอข้อมูลเพิ่มเติม
