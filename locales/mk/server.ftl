@@ -8,10 +8,15 @@ gMyShots = Мои слики
 gHomeLink = Почетна
 gNoShots =
     .alt = Нема слики од екран
-gScreenshotsDescription = Слики од екран поедноставени. Фаќајте, снимајте и споделувајте слики од екран без да го напуштите Firefox.
 
 ## Header
 
+buttonSettings =
+    .title = Поставки
+buttonSignIn =
+    .title = Најавете се
+screenshotsLogo =
+    .title = Почетна на Screenshots
 
 ## Footer
 
@@ -19,6 +24,8 @@ gScreenshotsDescription = Слики од екран поедноставени.
 footerLinkMozilla = Mozilla
 footerLinkTerms = Услови
 footerLinkPrivacy = Известување за приватност
+footerReportShot = Пријави слика
+    .title = Пријави ја оваа слика за злоупотреба, спам или други проблеми
 footerLinkFaqs = ЧПП
 footerLinkDMCA = Пријавете злоупотреба на интелектуална сопственост
 footerLinkDiscourse = Оставете мислење
@@ -45,17 +52,12 @@ homePageDownloadFirefoxSubTitle = Слободно преземање
 homePageHowScreenshotsWorks = Како работи Firefox Screenshots
 homePageGetStartedTitle = Вовед
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Пронајдете ја новата иконка на Screenshots во вашиот алатник. Изберете ја и менито на Screenshots ќе се појави над прозорецот на вашиот прелистувач.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Изберете ја иконката на Screenshots од менито со активности за страница во адресната лента и менито на Screenshots ќе се прикаже врз прозорецот на вашиот прелистувачот.
 homePageCaptureRegion = Фати слика од регион
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Кликнете и влечете за да означите зона за снимање. Или пак, застанете со покажувачот и кликнете — Screenshots ќе ја избере зоната за Вас. Ви се допаѓа тоа што го гледате? Изберете Сними за да ја зачувате сликата на Интернет или пак, копчето со стрелка надолу за да ја преземете сликата на вашиот компјутер.
 homePageCapturePage = Фати слика од страница
 homePageCapturePageDescription = Користете ги копчињата горе-десно за да фатите слики од цели страници. Копчето Сними видлив дел ќе го фати делот што е видлив без лизгање, а Сними цела страница ќе ја фати целата страница.
-homePageSaveShare = Сними и сподели
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Кога ќе фатите слика од екран, Firefox ја снима на Интернет, во вашата библиотека Screenshots и ја копира адресата до сликата во меморија. Автоматски ги чуваме вашите слики во времетраење од две недели, но вие можете да ги избришете во било кој момент или пак да го промените рокот на чување за да ги задржите подолго во вашата библиотека.
 homePageLegalLink = Правна напомена
 homePagePrivacyLink = Приватност
 homePageTermsLink = Услови
@@ -64,8 +66,6 @@ homePageCookiesLink = Колачиња
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Отстрани ги сите податоци
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Морате да го имате инсталирано Firefox Screenshots за да ја избришете вашата сметка
 leavePageErrorGeneric = Се случи грешка
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Со ова ќе ги избришете сите податоци на Firefox Screenshots трајно.
@@ -89,7 +89,6 @@ shotPageAlertErrorUpdatingTitle = Грешка при снимањето на н
 shotPageConfirmDelete = Сигурно сакате да ја избришете оваа слика од екран трајно?
 shotPageShareButton =
     .title = Сподели
-shotPageCopy = Копирај
 shotPageCopied = Ископирано
 shotPageShareFacebook =
     .title = Сподели на Facebook
@@ -118,9 +117,10 @@ shotPageDownloadShot =
     .title = Преземи
 shotPageEditButton =
     .title = Уреди ја оваа слика
-shotPageDownload = Преземи
-shotPageScreenshotsDescription = Слики од екран поедноставени. Фаќајте, снимајте и споделувајте слики од екран без да го напуштите Firefox.
-shotPageUpsellFirefox = Земете Firefox сега
+shotPageBackToHomeButton =
+    .title = Домашна страница
+shotPageAllShotsButton =
+    .title = Сите слики
 shotPageDMCAMessage = Оваа слика од екран не е повеќе достапна заради жалба за нарушена интелектуална сопственост
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = За повеќе информации, Ве молиме испратете порака на { $dmca }.
@@ -184,7 +184,12 @@ errorThirdPartyCookiesEnabled = Ако вие ја фативте оваа сл�
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Забележи!
+promoMessage = Ажурираните алатки за уредување ви овозможуваат да сечете, обележувате, дури и да додавате текст на вашата снимка.
 promoLink = Пробајте ги
+promoCloseButton =
+    .title = Затвори известување
 
 ## Annotations
 
@@ -245,17 +250,19 @@ textToolCancelButton = Откажи
 textToolInputPlaceholder =
     .placeholder = Здраво
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+
 ## Settings Page
 
 settingsDisconnectButton = Исклучи се
     .title = Исклучи се
 settingsGuestAccountMessage = Гостинска сметка
-settingsSignInInvite = Најавете се за синхронизација помеѓу уреди
 settingsSignInButton = Најавете се
     .title = Најавете се
 SettingsPageHeader = Поставки на Firefox Screenshots
-settingsDescription = Можете да се најавите со сметка на Firefox за да ги синхронизирате сите ваши слики помеѓу уреди и да им пристапувате приватно.
-settingsPageSubHeader = Синхронизација и сметки
 settingsClosePreferences =
     .title = Затвори поставки
 
@@ -271,13 +278,13 @@ shotIndexPageSearchResultsTitle = Мои слики: пребарување за
 shotIndexPageErrorRendering = Грешка во прикажувањето на страницата: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Пребарај низ моите слики
-shotIndexPageSearchButton =
-    .title = Барај
 shotIndexPageNoShotsMessage = Нема снимени слики од екран.
 shotIndexPageNoShotsInvitation = Повелете, направете некоја.
 shotIndexPageLookingForShots = Ги барам вашите слики од екран...
 shotIndexPageNoSearchResultsIntro = Хм
 shotIndexPageNoSearchResults = Не можеме да пронајдеме слики што одговараат на вашето пребарување.
+shotIndexPageMyShotsButton =
+    .title = Мои слики
 shotIndexPageClearSearchButton =
     .title = Исчисти пребарување
 shotIndexPageConfirmShotDelete = Да ја избришам оваа слика?
@@ -285,12 +292,6 @@ shotIndexPagePreviousPage =
     .title = Претходна страница
 shotIndexPageNextPage =
     .title = Следна страница
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = Оваа слика нема рок на траење
 
 ## Delete Confirmation Dialog
 
@@ -299,6 +300,9 @@ shotDeleteCancel = Откажи
     .title = Откажи
 shotDeleteConfirm = Избриши
     .title = Избриши
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
