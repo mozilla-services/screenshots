@@ -200,6 +200,7 @@ errorThirdPartyCookiesEnabled = ถ้าคุณจับภาพนี้แ
 
 # Note: If possible, choose a short translation to better fit into the card.
 promoTitle = จดบันทึก!
+promoMessage = เครื่องมือแก้ไขที่ได้รับการอัปเดตช่วยให้คุณครอบตัด เน้นสี และแม้แต่เพิ่มข้อความไปยังภาพหน้าจอของคุณ
 promoCloseButton =
     .title = ปิดการแจ้งเตือน
 
@@ -310,6 +311,15 @@ shotIndexPagePreviousPage =
     .title = หน้าก่อนหน้า
 shotIndexPageNextPage =
     .title = หน้าถัดไป
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = นี่ไม่ใช่ภาพหน้าจอโปรดและจะหมดอายุ
+# This is the tooltip for a "heart" symbol in the upper top corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = นี่เป็นภาพหน้าจอโปรดและจะไม่หมดอายุ
 shotIndexSyncedShot =
     .title = ภาพหน้าจอที่จับในอุปกรณ์อื่น
 shotIndexAlertErrorFavoriteShot = เกิดข้อผิดพลาดในการอัปเดตสถานะภาพหน้าจอโปรด
@@ -324,6 +334,8 @@ shotDeleteConfirm = ลบ
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = เพื่อส่งออก: ใช้ ไฟล์ > บันทึกหน้าเป็น… และคุณจะพบภาพหน้าจอของคุณในโฟลเดอร์ { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
