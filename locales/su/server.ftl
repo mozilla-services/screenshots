@@ -40,7 +40,7 @@ onboardingPromoSigninButton = Asup
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Katangtuan
-footerLinkPrivacy = Iber Privasi
+footerLinkPrivacy = Wawar Privasi
 footerReportShot = Laporkeun Téwakan
     .title = Laporkeun ieu téwakan ku alesan penyalahgunaan, spam, atawa masalah lianna
 footerLinkFaqs = LD
