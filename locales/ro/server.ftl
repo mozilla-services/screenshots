@@ -40,7 +40,7 @@ onboardingPromoSigninButton = Autentifică-te
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Termeni
-footerLinkPrivacy = Politica de confidențialitate
+footerLinkPrivacy = Declarație de confidențialitate
 footerReportShot = Raportează captura
     .title = Raportează această captură pentru abuz, spam sau alte probleme
 footerLinkFaqs = Întrebări frecvente
