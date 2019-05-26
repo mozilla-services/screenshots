@@ -8,7 +8,6 @@ gMyShots = E mæ föto
 gHomeLink = Pagina prinçipâ
 gNoShots =
     .alt = Nisciunn-a föto atrovâ
-gScreenshotsDescription = O Screenshots o vegnî e cöse façili. Fanni föto, sarvili e condividdili sensa mai lasciâ Firefox.
 
 ## Header
 
@@ -64,7 +63,7 @@ shotPageShareButton =
     .title = Condividdi
 shotPageCopyButton =
     .title = Còpia inmagine inti aponti
-shotPageCopied = Copiou
+shotPageCopied = Copiòu
 
 ## Shot Page New Feature Promotion Dialog.
 
@@ -85,6 +84,9 @@ copyImageErrorMessage = No riescio a copiâ a teu föto inti aponti.
 
 
 ## Delete Confirmation Dialog
+
+
+## Export page
 
 
 ## Metrics page
