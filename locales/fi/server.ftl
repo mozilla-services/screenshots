@@ -141,6 +141,7 @@ shotPageBackToHomeButton =
     .title = Etusivu
 shotPageAllShotsButton =
     .title = Kaikki kaappaukset
+shotPageScreenshotsDescriptionServerless = Kuvakaappaukset tehtynä helposti. Kaappaa kuva ja lataa se poistumatta Firefoxista.
 shotPageDMCAMessage = Tämä kaappaus ei ole enää saatavissa, koska kolmas osapuoli teki immateriaalioikeusvaatimuksen.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Pyydä lisätietoja lähettämällä sähköpostia osoitteeseen { $dmca }.
