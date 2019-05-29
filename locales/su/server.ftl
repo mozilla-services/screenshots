@@ -277,7 +277,7 @@ textToolInputPlaceholder =
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
-copyImageErrorTitle = Aya masalah
+copyImageErrorTitle = Aya nu salah
 copyImageErrorMessage = Teu bisa niron téwakan anjeun kana papan klip.
 
 ## Settings Page
