@@ -291,8 +291,8 @@ copyImageErrorMessage = Não foi possível copiar a sua captura para a área de 
 
 ## Settings Page
 
-settingsDisconnectButton = Desligar
-    .title = Desligar
+settingsDisconnectButton = Desassociar
+    .title = Desassociar
 settingsGuestAccountMessage = Conta de convidado
 settingsSignInButton = Iniciar sessão
     .title = Iniciar sessão
@@ -300,7 +300,7 @@ SettingsPageHeader = Definições do Firefox Screenshots
 settingsFirefoxAccountSubHeader = Conta Firefox
 settingsClosePreferences =
     .title = Fechar preferências
-settingsFxaDisconnectAlertMessage = Tem a certeza de que pretende desligar este dispositivo da sua Conta Firefox?
+settingsFxaDisconnectAlertMessage = Tem a certeza de que pretende desassociar este dispositivo da sua Conta Firefox?
 settingsFxaDisconnectDescription = Se terminar sessão, irá precisar de iniciar sessão novamente para recuperar o acesso às suas capturas de ecrã.
 settingsFxaConnectDescription = Pode iniciar sessão para aceder às suas capturas de ecrã entre dispositivos.
 
