@@ -27,7 +27,7 @@ shutdownPageContinue = Mangga lajengkeun migunakeun Screenshots pikeun nyimpen, 
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Naon nu anyar ti Firefox Screenshots?
-onboardingPromoMessage = Ayeuna, asup ka Screenshots maké Firefox Account laju hanca leuwih loba:
+onboardingPromoMessage = Ayeuna, asup ka Screenshots maké Firefox Account laju lampah leuwih loba:
 onboardingPromoMessageListItem1 = Buka pabukon anjeun ti sakur gawai anjeun
 onboardingPromoMessageListItem2 = Teundeun téwakan layar kameumeut anjeun salilana
 onboardingPromoDismissButton = Tutup
