@@ -122,6 +122,8 @@ shotPagePrivacyMessage = ใครก็ตามที่มีลิงก์�
 shotPageCopyImageText =
     .label = คัดลอกข้อความภาพ
 shotPageConfirmDeletion = คุณแน่ใจหรือไม่ที่ต้องการจะลบภาพนี้อย่างถาวร?
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = หากคุณไม่ทำอะไรเลยภาพถ่ายนี้จะถูกลบอย่างถาวร <timediff> </timediff>
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = กู้คืนจนถึง { $date }
@@ -201,6 +203,7 @@ errorThirdPartyCookiesEnabled = ถ้าคุณจับภาพนี้แ
 # Note: If possible, choose a short translation to better fit into the card.
 promoTitle = จดบันทึก!
 promoMessage = เครื่องมือแก้ไขที่ได้รับการอัปเดตช่วยให้คุณครอบตัด เน้นสี และแม้แต่เพิ่มข้อความไปยังภาพหน้าจอของคุณ
+promoLink = ลองดูหน่อยสิ
 promoCloseButton =
     .title = ปิดการแจ้งเตือน
 
