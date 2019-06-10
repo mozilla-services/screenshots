@@ -20,6 +20,8 @@ screenshotsLogo =
     .title = Tuṭṭfa n wegdil agejdan
 bannerSignIn = <a>Qqen neɣ jerred</a> akken ad tkecmeḍ ar tuṭṭfiwin-ik deg ibenkan daɣen ad teskelseḍ ayen tḥemmleḍ i lebda.
 bannerUpsell = { gScreenshotsDescription }<a>Awi Firefox tura</a>
+shutdownWarning = <b>Tuṭṭfiwin yettwaskelsen ad ttwakksent.</b> Seg yunyu d afella, Screenshots ur yessumur ara asekles srid. Tebɣiḍ ad tḥerzeḍ tuṭṭfiwin-ik ? <a>Sider-itent-id ɣef uselkim-ik.</a>
+shutdownPageTitle = Screenshots yettbeddil
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Amaynut deg Firefox Screenshots?
