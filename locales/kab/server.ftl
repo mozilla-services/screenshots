@@ -22,6 +22,8 @@ bannerSignIn = <a>Qqen neɣ jerred</a> akken ad tkecmeḍ ar tuṭṭfiwin-ik de
 bannerUpsell = { gScreenshotsDescription }<a>Awi Firefox tura</a>
 shutdownWarning = <b>Tuṭṭfiwin yettwaskelsen ad ttwakksent.</b> Seg yunyu d afella, Screenshots ur yessumur ara asekles srid. Tebɣiḍ ad tḥerzeḍ tuṭṭfiwin-ik ? <a>Sider-itent-id ɣef uselkim-ik.</a>
 shutdownPageTitle = Screenshots yettbeddil
+shutdownPageDescription = Seg yunyu, Screenshots ur d-yessumur ara asekles srid. Tebɣiḍ ad tḥerzeḍ tuṭṭfiwin deg temkerḍit-ik? Sider tuṭṭfiwi yiwen yiwet neɣ <a><a> s uqettun</a>. Tanemmirt imi tesqedceḍ tamahit-a daɣen suref-aɣ ɣef tmeɣtirt.
+shutdownPageContinue = Nessaram d akken ad tkemmleḍ ad tesqedced Screenshots  i tuṭṭfa, anɣal, akked usider n tuṭṭfiwin n ugdil.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Amaynut deg Firefox Screenshots?
@@ -74,6 +76,8 @@ homePageCaptureRegionDescription = Senned u zuγer akken ad tferneḍ tamnaḍt 
 homePageCapturePage = Ṭṭef asebter
 homePageCapturePageDescription = Seqdec taqefalt d afella $yef uyfus akken ad teṭfeḍ akk asebter.Taqefal " sekles tamnaḍt" ad k-teǧǧ ad teṭfeḍ i tzemrepd ad skeneḍ war adrurem, sakin sekles akk asebter.
 homePageDownloadCopy = Sider neɣ nɣel
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Eg tuṭṭfa-i tucbiḥt: Screenshots ad k-yeǧǧ ad tessidreḍ neɣ ad tneɣleḍ ɣef afus.
 homePageLegalLink = Usḍif
 homePagePrivacyLink = Tabaḍnit
 homePageTermsLink = Tiwtilin
@@ -144,6 +148,7 @@ shotPageBackToHomeButton =
     .title = Asebter agejdan
 shotPageAllShotsButton =
     .title = Tuṭṭfiwin meṛṛa
+shotPageScreenshotsDescriptionServerless = Tuṭṭfiwin n ugdil s wudem fessusen,. Eg daɣen sider tuṭṭfiwin n ugdil war ma teffɣeḍ seg Firefox.
 shotPageDMCAMessage = Tuṭṭfa-agi ur tezgi tella imi yella ucetki ɣef wayla agzayan i d-yekkan seg wis kraḍ.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Azen-d { $dmca } akken ad tsutreḍ ugar n telɣut.
@@ -340,6 +345,8 @@ shotDeleteConfirm = Kkes
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = I usifeḍ: seqdec Afaylu > Sekles s yisem... sakin af-d tuṭṭfiwin-ik n ugdil deg ukaram { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
