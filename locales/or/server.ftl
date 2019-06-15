@@ -159,3 +159,6 @@ metricsPageShotsQueryTitle = ଦିନ ହିସାବରେ ଛବିଗୁଡ�
 metricsPageShotsQueryCount = ଛବିଗୁଡ଼ିକର ସଂଖ୍ୟା
 metricsPageShotsQueryDay = ଦିନ
 metricsPageUsersQueryTitle = ଦିନ ହିସାବରେ ବ୍ୟବହାରକାରୀ
+metricsPageUsersQueryCount = ବ୍ୟବହାରକାରୀଙ୍କ ସଂଖ୍ୟା
+metricsPageUsersQueryDay = ଦିନ
+metricsPageUserShotsQueryCount = ବ୍ୟବହାରକାରୀଙ୍କ ସଂଖ୍ୟା
