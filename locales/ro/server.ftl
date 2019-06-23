@@ -72,7 +72,7 @@ homePageGetStartedTitle = Începe
 homePageGetStartedDescriptionPageAction = Selectează pictograma Screenshots din meniul de acțiuni pe pagină în bara de adrese și meniul Screenshots va apărea în partea de sus în fereastra browserului.
 homePageCaptureRegion = Capturează o regiune
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Dă clic și trage pentru a selecta zona pe care vrei s-o capturezi. Sau pur și simplu poziționează cursorul deasupra și dă clic — Screenshots va selecta zona pentru tine. Îți place ce vezi? Selectează Salvează pentru a-ți accesa online captura de ecran sau butonul săgeată în jos pentru a o descărca pe calculator.
+homePageCaptureRegionDescription = Dă clic și trage pentru selectarea zonei de capturat sau pur și simplu poziționează cursorul deasupra și dă clic — Screenshots va selecta zona pentru tine. Îți place ce vezi? Selectează Salvează pentru accesarea online a capturii de ecran sau butonul săgeată în jos ca să o descarci pe calculator.
 homePageCapturePage = Fă o captură de pagină
 homePageCapturePageDescription = Folosește butoanele din dreapta sus pentru a captura pagini întregi. Butonul Salvează porțiunea vizibilă va captura zona pe care o poți vedea fără să derulezi și butonul Salvează pagina completă va captura toată pagina.
 homePageDownloadCopy = Descarcă sau copiază
@@ -288,7 +288,7 @@ textToolInputPlaceholder =
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
-copyImageErrorTitle = Ceva a mers prost
+copyImageErrorTitle = Ceva nu a funcționat
 copyImageErrorMessage = Nu se poate copia captura pe clipboard.
 
 ## Settings Page
@@ -356,7 +356,7 @@ shotDeleteConfirm = Șterge
 ## Export page
 
 # Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
-exportInstructions = Pentru a exporta: Folosește Fișier > Salvează pagina ca… și îți vei regăsi capturile de ecran în dosarul { $folder }
+exportInstructions = Pentru export: Folosește Fișier > Salvează pagina ca… și îți vei regăsi capturile de ecran în dosarul { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
