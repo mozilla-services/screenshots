@@ -8,7 +8,7 @@ gMyShots = Mine skjermbilder
 gHomeLink = Hjem
 gNoShots =
     .alt = Ingen skjermbilder funnet
-gScreenshotsDescription = Skjermbilder gjort enkelt. Ta, lagre og del skjermbilder uten å forlate Firefox.
+gScreenshotsDescriptionServerless = Skjermbilder gjort enkelt. Ta og last ned skjermbilder uten å forlate Firefox.
 
 ## Header
 
@@ -20,6 +20,10 @@ screenshotsLogo =
     .title = Startside for Screenshots
 bannerSignIn = <a>Logg på eller registrer deg</a> for å få tilgang til bildene dine på tvers av enheter og lagre favorittene dine for alltid.
 bannerUpsell = { gScreenshotsDescription } <a>Hent Firefox nå</a>
+shutdownWarning = <b>Lagrede skjermbilder utløper snart.</b> Fra og med juni, vil Screenshots ikke lenger tilby online lagring. Vil du beholde bilder fra biblioteket ditt?<a> Last dem ned til datamaskinen din.</a>
+shutdownPageTitle = Screenshots endres
+shutdownPageDescription = Fra og med juni, vil Screenshots ikke lenger tilby online lagring. Vil du beholde bilder fra biblioteket ditt?<a> Last ned skjermbilder enkeltvis eller <a>samlet</a>. Takk for at du brukte denne funksjonen, og vi beklager ulempen.
+shutdownPageContinue = Vi håper du fortsetter å bruke Screenshots for å ta, kopiere og laste ned skjermbilder.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Nyheter i Firefox Screenshots
@@ -71,8 +75,9 @@ homePageCaptureRegion = Ta skjermbilde av et område
 homePageCaptureRegionDescription = Klikk og dra for å velge området du vil ta skjermbilde av. Eller bare holde musen over og klikk — Screenshots vil velge området for deg. Liker du hva du ser? Velg Lagre for å få tilgang til skjermdumpet ditt på nettet eller pil ned-knappen for å laste den ned til datamaskinen.
 homePageCapturePage = Ta skjermbilde av en side
 homePageCapturePageDescription = Bruk knappene øverst til høyre for å ta skjermbilde av hele sider. Knappen «Lagre synlig område» tar skjermbilde av området du kan se uten å rulle, og «Lagre hele siden» vil ta skjermbilde av alt på siden.
-homePageSaveShare = Lagre og del
-homePageSignInTitle = Dine skjermbilder overalt
+homePageDownloadCopy = Last ned eller kopier
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Ta ditt beste skjermbilde. Screenshots lar deg laste ned dit utvalg eller kopiere direkte til utklippstavlen.
 homePageLegalLink = Juridisk
 homePagePrivacyLink = Personvern
 homePageTermsLink = Vilkår
@@ -81,6 +86,8 @@ homePageCookiesLink = Infokapsler
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Fjern alle data
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = Du må ha Firefox Screenshots installert eller være innlogget på Firefox-kontoen din for å slette kontoen din
 leavePageErrorGeneric = Det oppstod en feil
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Dette vil permanent slette alle dine data for Firefox Screenshots.
@@ -141,7 +148,7 @@ shotPageBackToHomeButton =
     .title = Startside
 shotPageAllShotsButton =
     .title = Alle skjermbilder
-shotPageScreenshotsDescription = Skjermbilder gjort enkelt. Ta, lagre og del skjermbilder uten å forlate Firefox.
+shotPageScreenshotsDescriptionServerless = Skjermbilder gjort enkelt. Ta og last ned skjermbilder uten å forlate Firefox.
 shotPageDMCAMessage = Dette bildet er ikke lenger tilgjengelig på grunn av en tredjeparts immaterielle krav.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Send en e-post til { $dmca } for å be om ytterligere informasjon.
@@ -339,6 +346,11 @@ shotDeleteCancel = Avbryt
     .title = Avbryt
 shotDeleteConfirm = Slett
     .title = Slett
+
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = For å eksportere: bruk Fil > Lagre side som… og du vil finne skjermbilder i mappen { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
