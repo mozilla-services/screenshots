@@ -87,7 +87,7 @@ homePageCookiesLink = Infokapslar
 
 leavePageRemoveAllData = Fjern alle data
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAuthRequired = Du må ha Firefox Screenshots installerat eller vere innlogga på Firefox-kontoen din for å slette kontoen din
+leavePageErrorAuthRequired = Du må ha Firefox Screenshots installert eller vere innlogga på Firefox-kontoen din for å slette kontoen din
 leavePageErrorGeneric = Det oppstod ein feil
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Dette vil permanent slette alle dataa dine i Firefox Screenshots.
