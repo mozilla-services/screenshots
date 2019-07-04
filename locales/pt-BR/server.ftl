@@ -143,7 +143,7 @@ shotPageDownloadShot =
 shotPageEditButton =
     .title = Editar esta imagem
 shotPagefavoriteButton =
-    .title = Adicionar esta captura de tela aos favoritos
+    .title = Adicionar esta captura de tela às preferidas
 shotPageBackToHomeButton =
     .title = Página inicial
 shotPageAllShotsButton =
@@ -329,15 +329,15 @@ shotIndexPageNextPage =
 # This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
 # My Shots page to indicate that the shot does expire.
 shotIndexNonFavoriteIcon =
-    .title = Esta captura de tela expirará pois não foi marcada como favorita
+    .title = Esta captura de tela expirará pois não foi marcada como preferida
 # This is the tooltip for a "heart" symbol in the upper top corner of the
 # card for a shot on the My Shots page. It indicate that the shot was marked as
 # a favorite by the owner.
 shotIndexFavoriteIcon =
-    .title = Esta captura de tela não expira pois foi marcada como favorita
+    .title = Esta captura de tela não expira pois foi marcada como preferida
 shotIndexSyncedShot =
     .title = Captura obtida em outro dispositivo
-shotIndexAlertErrorFavoriteShot = Erro ao atualizar o status da captura de tela favorita
+shotIndexAlertErrorFavoriteShot = Erro ao atualizar o status de preferida da captura de tela
 
 ## Delete Confirmation Dialog
 
