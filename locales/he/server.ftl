@@ -8,7 +8,6 @@ gMyShots = צילומי המסך שלי
 gHomeLink = בית
 gNoShots =
     .alt = לא נמצאו צילומי מסך
-gScreenshotsDescription = כעת קל יותר ללכוד צילומי מסך. ניתן לצלם, לשמור ולשתף צילומי מסך מבלי לעזוב את Firefox.
 
 ## Header
 
@@ -18,10 +17,14 @@ buttonSignIn =
     .title = כניסה
 screenshotsLogo =
     .title = דף הבית של Screenshots
+bannerSignIn = עליך <a>להיכנס או להירשם</a> כדי לגשת לצילומים שלך בכל המכשירים ולשמור את המועדפים שלך לעד.
 bannerUpsell = { gScreenshotsDescription } <a>קבלת Firefox כעת</a>
+shutdownWarning = <b>צילומי מסך שמורים יפוגו בקרוב.</b> החל מחודש יוני, Screenshots לא יציע עוד אחסון מקוון. רוצה לשמור צילומים מהספרייה שלך? <a>ניתן להוריד אותם למחשב שלך.</a>
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = מה חדש ב־Firefox Screenshots?
+onboardingPromoMessageListItem1 = גישה לספרייה שלך מכל המכשירים שלך
+onboardingPromoMessageListItem2 = אחסון הצילומים המועדפים עליך לעד
 onboardingPromoDismissButton = סגירה
     .title = סגירה
 onboardingPromoSigninButton = כניסה
@@ -67,11 +70,7 @@ homePageCaptureRegion = לכידת אזור
 homePageCaptureRegionDescription = יש ללחוץ ולגרור כדי לבחור את האזור לצילום. או לעבור מעל ואז ללחוץ - Screenshots יבחר את האזור בשבילך. אהבת את התוצאה? יש לבחור בשמירה כדי לגשת לצילומי המסך המקוונים שלך או בחץ כלפי מטה כדי להוריד אותו למחשב שלך.
 homePageCapturePage = לכידת דף
 homePageCapturePageDescription = ניתן להשתמש בכפתורים שבפינה השמאלית העליונה כדי לצלם עמודים שלמים. הכפתור לשמירת הגלוי יצלם את האיזור הגלוי מבלי לגלול לעומת שמירת העמוד במלואו שיצלם את כל העמוד.
-homePageSaveShare = שמירה ושיתוף
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = אפשר לשמור את צילום המסך בספריה המקוונת. לאחר השמירה Firefox יעתיק קישור לתמונה, וכך ניתן לשתף את הצילום בקלות. הצילומים בספריה נשמרים אוטומטית למשך שבועיים, אבל ניתן למחוק אותם בכל עת, או לשמור לזמן ארוך יותר.
-homePageSignInTitle = הצילומים שלך בכל מקום
-homePageSignInDescription = אפשר להירשם ל-Screenshots עם חשבון Firefox, וכך לגשת לתמונות שלך מכל התקנה של Firefox. בונוס נוסף: משתמשים רשומים יכולים לשמור את התמונות המועדפות שלהם לנצח.
+homePageDownloadCopy = הורדה או העתקה
 homePageLegalLink = מידע משפטי
 homePagePrivacyLink = פרטיות
 homePageTermsLink = תנאים
@@ -140,7 +139,6 @@ shotPageBackToHomeButton =
     .title = דף הבית
 shotPageAllShotsButton =
     .title = כל צילומי המסך
-shotPageScreenshotsDescription = כעת קל יותר ללכוד צילומי מסך. ניתן לצלם, לשמור ולשתף צילומי מסך מבלי לעזוב את Firefox.
 shotPageDMCAMessage = צילום מסך זה אינו זמין עוד עקב דרישת קניין רוחני על ידי גורם צד שלישי.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = נא לשלוח דוא״ל אל { $dmca } על מנת לבקש מידע נוסף.
@@ -290,6 +288,7 @@ SettingsPageHeader = הגדרות צילומי המסך של Firefox
 settingsFirefoxAccountSubHeader = חשבון Firefox
 settingsClosePreferences =
     .title = סגירת העדפות
+settingsFxaDisconnectAlertMessage = האם ברצונך לנתק את המכשיר הזה מחשבון ה־Firefox שלך?
 
 ## Shotindex page
 
@@ -338,6 +337,11 @@ shotDeleteCancel = ביטול
 shotDeleteConfirm = מחיקה
     .title = מחיקה
 
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = כדי לייצא: יש להשתמש בקובץ > שמירת עמוד בשם… ושם יופיעו צילומי המסך שלך בתיקייה { $folder }
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
@@ -346,7 +350,7 @@ metricsPageTitle = מדדים של Firefox Screenshots
 metricsPageTotalsQueryTitle = סיכומים
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = סקירה של Screenshots
-metricsPageTotalsQueryDevices = סך כל ההתקנים הרשומים
+metricsPageTotalsQueryDevices = סך כל המכשירים הרשומים
 metricsPageTotalsQueryActiveShots = צילומי מסך פעילים
 metricsPageTotalsQueryExpiredShots = פג (אך ניתן לשחזור)
 metricsPageTotalsQueryExpiredDeletedShots = פג (ונמחק)
