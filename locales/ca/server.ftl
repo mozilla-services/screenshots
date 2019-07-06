@@ -20,6 +20,9 @@ screenshotsLogo =
     .title = Pàgina d'inici del Firefox Screenshots
 bannerSignIn = <a>Registreu-vos o inicieu la sessió</a> per accedir a les vostres captures en tots els dispositius i conservar les vostres preferides per sempre.
 bannerUpsell = { gScreenshotsDescription } <a>Baixeu el Firefox ara</a>
+shutdownPageTitle = El Firefox Screenshots està canviant
+shutdownPageDescription = A partir del juny, el Firefox Screenshots deixarà d'oferir emmagatzematge en línia. Voleu desar les captures de la vostra biblioteca? Baixeu-les individualment o <a>totes alhora</a>. Gràcies per utilitzar aquesta funció i perdoneu les molèsties.
+shutdownPageContinue = Esperem que continueu utilitzant el Firefox Screenshots per capturar, copiar i baixar captures de pantalla.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Novetats del Firefox Screenshots
@@ -71,6 +74,9 @@ homePageCaptureRegion = Captureu una àrea
 homePageCaptureRegionDescription = Feu clic i arrossegueu per seleccionar l'àrea que voleu capturar. O bé, passeu-hi el ratolí per sobre i feu clic: el Firefox Screenshots seleccionarà l'àrea automàticament. Us agrada? Trieu «Desa» per accedir a la captura de pantalla en línia o premeu el botó de fletxa cap avall per baixar-la a l'ordinador.
 homePageCapturePage = Captureu una pàgina
 homePageCapturePageDescription = Utilitzeu els botons de la part superior dreta per capturar pàgines senceres. El botó «Captura la part visible» capturarà l'àrea que es visualitza sense desplaçar-se, i el botó «Captura tota la pàgina» capturarà tot el contingut de la pàgina.
+homePageDownloadCopy = Baixa o copia
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Feu una captura de pantalla. El Firefox Screenshots us permet baixar la selecció o copiar-la al porta-retalls.
 homePageLegalLink = Avís legal
 homePagePrivacyLink = Privadesa
 homePageTermsLink = Condicions d'ús
@@ -342,6 +348,8 @@ shotDeleteConfirm = Suprimeix
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Per exportar: seleccioneu Fitxer > Anomena i desa la pàgina... i trobareu les vostres captures de pantalla en la carpeta { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
