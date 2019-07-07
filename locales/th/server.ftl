@@ -20,7 +20,10 @@ screenshotsLogo =
     .title = หน้าแรก Screenshots
 bannerSignIn = <a>ลงชื่อเข้าหรือลงทะเบียน</a> เพื่อเข้าถึงภาพหน้าจอของคุณในอุปกรณ์ต่าง ๆ และบันทึกรายการโปรดของคุณไว้ตลอดไป
 bannerUpsell = { gScreenshotsDescription } <a>รับ Firefox ตอนนี้</a>
+shutdownWarning = <b>ภาพหน้าจอที่บันทึกไว้จะหมดอายุเร็ว ๆ นี้</b> ตั้งแต่เดือนมิถุนายนเป็นต้นไป Screenshots จะไม่ให้บริการที่เก็บข้อมูลออนไลน์อีกต่อไป ต้องการเก็บภาพหน้าจอจากห้องสมุดของคุณหรือไม่? <a>ดาวน์โหลดมาไว้ที่คอมพิวเตอร์ของคุณ</a>
 shutdownPageTitle = ภาพหน้าจอกำลังเปลี่ยนแปลง
+shutdownPageDescription = ตั้งแต่เดือนมิถุนายนเป็นต้นไป Screenshots จะไม่ให้บริการที่เก็บข้อมูลออนไลน์อีกต่อไป ต้องการเก็บภาพหน้าจอจากห้องสมุดของคุณหรือไม่? ดาวน์โหลดภาพหน้าจอแต่ละภาพหรือ<a>ทั้งหมด</a> ขอบคุณที่ใช้คุณลักษณะนี้ และเราขออภัยในความไม่สะดวก
+shutdownPageContinue = เราหวังว่าคุณจะใช้ Screenshots เพื่อจับภาพ คัดลอก และดาวน์โหลดภาพหน้าจอต่อไป
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = มีอะไรใหม่ใน Firefox Screenshots?
