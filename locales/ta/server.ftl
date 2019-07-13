@@ -44,7 +44,7 @@ creatingPageWaitMessage = உங்களது படத்தைச் சே�
 
 homePageButtonMyShots = எனது பிடிப்புகளுக்கு செல்க
 homePageTeaser = விரைவில் வருகிறது...
-homePageDownloadFirefoxTitle = பயர்பாஃசு
+homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = இலவச பிதிவிறக்கம்
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = பயர்பாஃசு திரைப்பிடிப்புகள் எவ்வாறு வேலைச்செய்கிறது
@@ -184,13 +184,7 @@ shotIndexPageSearchPlaceholder =
     .placeholder = எனது பிடிப்பைத் தேடு
 shotIndexPageNoShotsMessage = சேமித்த பிடிப்புகள் இல்லை.
 shotIndexPageNoSearchResultsIntro = Hmm
-shotIndexPageClearSearchButton =
-    .title = தேடலை அழிக்கவும்
 shotIndexPageConfirmShotDelete = இந்த பிடிப்பை நீக்கவா?
-shotIndexPagePreviousPage =
-    .title = முந்தைய பக்கம்
-shotIndexPageNextPage =
-    .title = அடுத்த பக்கம்
 
 ## Delete Confirmation Dialog
 
