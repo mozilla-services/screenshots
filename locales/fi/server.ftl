@@ -18,12 +18,17 @@ buttonSignIn =
     .title = Kirjaudu sisään
 screenshotsLogo =
     .title = Screenshots-etusivu
+bannerSignIn = <a>Kirjaudu sisään tai rekisteröidy</a> käyttääksesi kuvakaappauksiasi kaikilta laitteiltasi ja tallentaaksesi suosikkisi ikuisesti.
 bannerUpsell = { gScreenshotsDescription } <a>Hanki Firefox nyt</a>
+shutdownWarning = <b>Tallennetut kuvakaappaukset vanhenevat pian.</b> Kesäkuusta lähtien Screenshots ei tarjoa enää verkossa toimivaa tallennustilaa. Haluatko säilyttää kuvakaappaukset kirjastossasi? <a>Lataa ne tietokoneellesi.</a>
 shutdownPageTitle = Screenshots on muuttumassa
 shutdownPageDescription = Alkaen kesäkuusta Screenshots ei enää tarjoa tallentamista verkkoon. Haluatko pitää omat kaappauksesi? Voit ladata kaappaukset yksitellen tai <a>pakettina</a>. Kiitos, että käytit ominaisuutta.
+shutdownPageContinue = Toivomme, että jatkat Screenshotsin käyttöä kuvakaappausten ottamiseen, kopioimiseen ja lataamiseen.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Mitä uutta Firefox Screenshots -palvelussa?
+onboardingPromoMessage = Kirjaudu Screenshotsiin Firefox-tililläsi ja tee enemmän:
+onboardingPromoMessageListItem1 = Käytä kirjastoasi kaikilla laitteillasi
 onboardingPromoMessageListItem2 = Tallenna suosikkikuvasi ikuisesti
 onboardingPromoDismissButton = Hylkää
     .title = Hylkää
@@ -71,6 +76,8 @@ homePageCaptureRegionDescription = Valitse kaapattava alue napsauttamalla ja vet
 homePageCapturePage = Kaappaa sivu
 homePageCapturePageDescription = Kaappaa kokonaisia sivuja käyttämällä yläoikean kulman painikkeita. Tallenna näkyvä alue -painike kaappaa alueen, jonka voit nähdä vierittämättä sivua, ja Tallenna koko sivu -painike tallentaa kaiken sivulla olevan.
 homePageDownloadCopy = Lataa tai kopioi
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Laita kaikki peliin ja ota paras kuva. Screenshots mahdollistaa sinun ladata kuvakaappausvalintasi tai kopioida se suoraan leikepöydälle.
 homePageLegalLink = Lakiteksti
 homePagePrivacyLink = Tietosuoja
 homePageTermsLink = Käyttöehdot
@@ -290,6 +297,8 @@ settingsFirefoxAccountSubHeader = Firefox-tili
 settingsClosePreferences =
     .title = Sulje asetukset
 settingsFxaDisconnectAlertMessage = Haluatko varmasti katkaista tämän laitteen yhteyden Firefox-tiliisi?
+settingsFxaDisconnectDescription = Jos kirjaudut ulos, sinun tulee kirjautua uudelleen sisään käyttääksesi kuvakaappauksiasi uudelleen.
+settingsFxaConnectDescription = Voit kirjautua sisään käyttääksesi kuvakaappauksiasi eri laitteilta.
 
 ## Shotindex page
 
@@ -328,6 +337,7 @@ shotIndexFavoriteIcon =
     .title = Tämä on suosikkikaappaus eikä vanhene
 shotIndexSyncedShot =
     .title = Kuvakaappaus otettu toisella laitteella
+shotIndexAlertErrorFavoriteShot = Virhe päivittäessä suosikkikuvakaappauksen tilaa
 
 ## Delete Confirmation Dialog
 
