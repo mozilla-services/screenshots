@@ -20,6 +20,7 @@ screenshotsLogo =
     .title = Pàgina d'inici del Firefox Screenshots
 bannerSignIn = <a>Registreu-vos o inicieu la sessió</a> per accedir a les vostres captures en tots els dispositius i conservar les vostres preferides per sempre.
 bannerUpsell = { gScreenshotsDescription } <a>Baixeu el Firefox ara</a>
+shutdownWarning = <b>Les captures de pantalla desades caducaran aviat.</b> A partir de juny, el Firefox Screenshots deixarà d'oferir emmagatzematge en línia. Voleu conservar les captures de la vostra biblioteca? <a>Baixeu-les al vostre ordinador</a>.
 shutdownPageTitle = El Firefox Screenshots està canviant
 shutdownPageDescription = A partir del juny, el Firefox Screenshots deixarà d'oferir emmagatzematge en línia. Voleu desar les captures de la vostra biblioteca? Baixeu-les individualment o <a>totes alhora</a>. Gràcies per utilitzar aquesta funció i perdoneu les molèsties.
 shutdownPageContinue = Esperem que continueu utilitzant el Firefox Screenshots per capturar, copiar i baixar captures de pantalla.
