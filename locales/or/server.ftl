@@ -6,6 +6,9 @@
 
 gMyShots = ମୋ ଫଟୋ
 gHomeLink = ମୂଳ ସ୍ଥାନ
+gNoShots =
+    .alt = କୌଣସି ସଟ ମିଳିଲା ନାହିଁ
+gScreenshotsDescriptionServerless = ସ୍କ୍ରିନଶର୍ଟ ସହଜ ହେଲା । ଫାୟାରଫକ୍ସରୁ ବାହାରକୁ ନଯାଇ ସ୍କ୍ରିନଶର୍ଟ ନିଅନ୍ତୁ ।
 
 ## Header
 
