@@ -38,7 +38,10 @@ onboardingPromoSigninButton = ସାଇନ ଇନ
 footerLinkMozilla = ମୋଜିଲା
 footerLinkTerms = ସର୍ତ୍ତାବଳୀ
 footerLinkPrivacy = ଗୋପନୀୟତା ବିଜ୍ଞପ୍ତି
+footerReportShot = ସ୍କ୍ରିନଶର୍ଟ ଉପରେ ଅଭିଯୋଗ କରନ୍ତୁ
+    .title = ସ୍କ୍ରିନଶର୍ଟ ଉପରେ ଅପବ୍ୟବହାର, ସ୍ପାମ କିମ୍ବା ଅନ୍ୟାନ୍ୟ ଅସୁବିଧା ବିଷୟରେ ଅଭିଯୋଗ କରନ୍ତୁ
 footerLinkFaqs = ବାରମ୍ବାର ପଚରାଯାଉଥିବା ପ୍ରଶ୍ନାବଳୀ
+footerLinkDMCA = ଆଇପି ଲଙ୍ଘନ ଅଭିଯୋଗ କରନ୍ତୁ
 footerLinkDiscourse = ମତାମତ ଦିଅନ୍ତୁ
 footerLinkRemoveAllData = ସମସ୍ତ ତଥ୍ୟଗୁଡ଼ିକୁ ହଟାନ୍ତୁ
 
@@ -74,6 +77,7 @@ leavePageRemoveAllData = ସମସ୍ତ ତଥ୍ୟଗୁଡ଼ିକୁ ହ�
 leavePageErrorGeneric = ସବୁ ତ୍ରୁଟି ହେଲା
 leavePageButtonProceed = ଆଗାନ୍ତୁ
 leavePageButtonCancel = ବାତିଲ କରନ୍ତୁ
+leavePageDeleted = ଆପଣଙ୍କର ସମସ୍ତ ସ୍କ୍ରିନଶର୍ଟଗୁଡ଼ିକୁ ବିଲୋପ କରାଯାଇଛି!
 
 ## Not Found page
 
@@ -85,14 +89,49 @@ notFoundPageDescription = ପୃଷ୍ଠା ମିଳୁନାହିଁ
 
 # This is the HTML title tag of the page
 shotPageTitle = ସ୍କ୍ରୀନସର୍ଟ: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = ନଷ୍ଟ ଅବଧି ସଂରକ୍ଷଣ ବେଳେ ତ୍ରୁଟି ଘଟିଲା
+shotPageAlertErrorDeletingShot = ସ୍କ୍ରିନଶର୍ଟ ବିଲୋପ ସମୟରେ ତ୍ରୁଟି ହେଲା
+shotPageAlertErrorUpdatingTitle = ଫାଇଲଟିକୁ ସଂରକ୍ଷଣ କରିବା ସମୟରେ ତ୍ରୁଟି ହେଲା
+shotPageConfirmDelete = ଏହି ସ୍କ୍ରିନଶର୍ଟକୁ ବିଲୋପ କରିବାକୁ ଚାହୁଁଛନ୍ତି ବୋଲି ଆପଣ ନିଶ୍ଚିତ କି?
 shotPageShareButton =
     .title = ସହଭାଗ
+shotPageCopyButton =
+    .title = ଛବିଟିକୁ କ୍ଲିପବୋର୍ଡରେ ନକଲ କରନ୍ତୁ
 shotPageCopyActionLabel = ନକଲ କରନ୍ତୁ
 shotPageCopied = ନକଲ ହୋଇଛି
+shotPageShareFacebook =
+    .title = ଫେସବୁକରେ ବାଣ୍ଟନ୍ତୁ
+shotPageShareTwitter =
+    .title = ଟ୍ୱିଟରରେ ବାଣ୍ଟନ୍ତୁ
+shotPageSharePinterest =
+    .title = ପିନଟେରେଷ୍ଟରେ ବାଣ୍ଟନ୍ତୁ
+shotPageShareEmail =
+    .title = ଇମେଲଦ୍ୱାରା ଲିଙ୍କଟି ବାଣ୍ଟନ୍ତୁ
+shotPageShareLink = ଏହି ସ୍କ୍ରିନଶର୍ଟକୁ ବାଣ୍ଟିବାକୁ ଗୋଟିଏ ଲିଙ୍କ ପାଆନ୍ତୁ
+shotPagePrivacyMessage = ଏହି ଲିଙ୍କ ରଖିଥିବା ଯେକୌଣସି ବ୍ୟକ୍ତି ଏହି ସ୍କ୍ରିନଶର୍ଟକୁ ଦେଖିପାରିବେ
+shotPageCopyImageText =
+    .label = ଛବିଟିର ଲେଖାକୁ ନକଲ କରନ୍ତୁ
+shotPageConfirmDeletion = ଆପଣ ଏହି ସ୍କ୍ରିନଶର୍ଟକୁ ସବୁଦିନ ପାଇଁ ଲିଭାଇବା ବାବଦରେ ନିଶ୍ଚିତ?
+# Note: <timediff></timediff> is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageTimeExpirationMessage = ଆପଣ ଯଦି କିଛି କରିବେ ନାହିଁ ତେବେ ଏହି ସ୍କ୍ରିନଶର୍ଟଟି ସ୍ଥାୟୀ ଭାବେ ବିଲୁପ୍ତ ହୋଇଯିବ <timediff></timediff>
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = { $date } ପର୍ଯ୍ୟନ୍ତ ପୁନର୍ଧାରଣ କରନ୍ତୁ
+shotPageExpiredMessage = ଏହି ସ୍କ୍ରିନଶର୍ଟଟି ନଷ୍ଟ ହୋଇଗଲା
+# Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = ଏହି ପୃଷ୍ଠାରୁ ଏହା ମୂଳରୁ ତିଆରି ହୋଇଥିଲା:
+shotPageDeleteButton =
+    .title = ଏହି ସ୍କ୍ରିନଶର୍ଟକୁ ବିଲୋପ କରନ୍ତୁ
 shotPageDownloadShot =
     .title = ଆହରଣ
+shotPageEditButton =
+    .title = ଏହି ଛବିକୁ ସମ୍ପାଦନ କରନ୍ତୁ
+shotPagefavoriteButton =
+    .title = ଏହି ସ୍କ୍ରିନଶର୍ଟକୁ ପ୍ରିୟ ବୋଲି ଅଭିହିତ କରନ୍ତୁ
 shotPageBackToHomeButton =
     .title = ମୂଳ ପୃଷ୍ଠା
+shotPageAllShotsButton =
+    .title = ସମସ୍ତ ସ୍କ୍ରିନଶର୍ଟଗୁଡ଼ିକ
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = ସମୟକୁ ବାଛନ୍ତୁ
 # The ∞ is used to indicate that the shot won't expire. It is also used in
@@ -107,6 +146,7 @@ shotPageKeepTwoWeeks = ୨ ସପ୍ତାହ
 shotPageKeepOneMonth = ୧ ମାସ
 shotPageSaveExpiration = ସଞ୍ଚୟ କରନ୍ତୁ
 shotPageCancelExpiration = ପ୍ରତ୍ୟାହାର କରନ୍ତୁ
+shotPageDoesNotExpire = ନଷ୍ଟ ହୁଏ ନାହିଁ
 # Note: <timediff></timediff> is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageTimeExpiresIn = ନଷ୍ଟ ହେଇଯିବ <timediff></timediff>
 # Note: <timediff></timediff> is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
@@ -219,15 +259,39 @@ copyImageErrorTitle = କିଛି ଭୁଲ ହେଲା
 
 ## Settings Page
 
+settingsDisconnectButton = ବିଚ୍ଛିନ୍ନ କରନ୍ତୁ
+    .title = ବିଚ୍ଛିନ୍ନ କରନ୍ତୁ
+settingsGuestAccountMessage = କୁଣିଆ ଖାତା
+settingsSignInButton = ସାଇନ ଇନ
+    .title = ସାଇନ ଇନ
+SettingsPageHeader = ଫାୟାରଫକ୍ସ ସ୍କ୍ରିନଶର୍ଟ ସାଜସଜ୍ଜା
 settingsFirefoxAccountSubHeader = ଫାୟାରଫକ୍ସ ଖାତା
 settingsClosePreferences =
     .title = ପସନ୍ଦଗୁଡ଼ିକୁ ବନ୍ଦକରନ୍ତୁ
+settingsFxaDisconnectAlertMessage = ଏହି ଫାୟାରଫକ୍ସ ଖାତାରୁ ଆପଣ ବିଛିନ୍ନ ହେବେ ବୋଲି ନିଶ୍ଚିତ ତ?
 
 ## Shotindex page
 
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = ସ୍କ୍ରିନଶର୍ଟଟିକୁ ବିଲୋପ କରିବା ସମୟରେ ତ୍ରୁଟି ଘଟିଛି { $status } { $statusText }
+# { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = ମୋ ସ୍କ୍ରିନଶର୍ଟଗୁଡ଼ିକ: { $searchTerm } ପାଇଁ ଖୋଜନ୍ତୁ
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
+shotIndexPageErrorRendering = ପୃଷ୍ଠାଟି ରେଣ୍ଡର କରିବାରେ ତ୍ରୁଟି ଘଟିଛି: { $error }
+shotIndexPageSearchPlaceholder =
+    .placeholder = ମୋ ସ୍କ୍ରିନଶର୍ଟଗୁଡ଼ିକୁ ଖୋଜନ୍ତୁ
+shotIndexPageNoShotsMessage = କୌଣସି ସ୍କ୍ରିନଶର୍ଟ ସଂରକ୍ଷିତ ହୋଇନାହିଁ
+shotIndexPageNoShotsInvitation = ଚାଲନ୍ତୁ, କିଛି ତିଆରି କରନ୍ତୁ
+shotIndexPageLookingForShots = ସ୍କ୍ରିନଶର୍ଟଗୁଡ଼ିକ ପାଇଁ ଯାଞ୍ଚ କରୁଅଛି…
 shotIndexPageNoSearchResultsIntro = ଆଛା
+shotIndexPageNoSearchResults = ଆପଣଙ୍କର ସନ୍ଧାନସହ ମିଶିଲାଭଳି ଆମକୁ କିଛି ସ୍କ୍ରିନଶର୍ଟ ମିଳିଲା ନାହିଁ
 shotIndexPageMyShotsButton =
     .title = ମୋ ଫଟୋ
+shotIndexPageClearSearchButton =
+    .title = ସନ୍ଧାନ ସଫା କରିଦିଅନ୍ତୁ
+shotIndexPageConfirmShotDelete = ସ୍କ୍ରିନଶର୍ଟକୁ ବିଲୋପ କରିଦେବେ?
 shotIndexPagePreviousPage =
     .title = ପୂର୍ବବର୍ତ୍ତୀ ପୃଷ୍ଠା
 shotIndexPageNextPage =
