@@ -4,10 +4,19 @@
 
 ## Global phrases shared across pages, prefixed with 'g'
 
-gMyShots = ਮੇਰੇ ਸ਼ਾਟ
-gHomeLink = ਘਰ
+gMyShots = ਮੇਰੇ ਚਿੱਤਰ
+gHomeLink = ਮੁੱਖ-ਸਕਰੀਨ
 gNoShots =
-    .alt = ਕੋਈ ਸ਼ਾਟ ਨਹੀਂ ਲੱਭਿਆ
+    .alt = ਕੋਈ ਚਿੱਤਰ ਨਹੀਂ ਲੱਭੇ
+
+## Header
+
+buttonSettings =
+    .title = ਸੈਟਿੰਗਾਂ
+buttonSignIn =
+    .title = ਸਾਈਨ ਇਨ
+screenshotsLogo =
+    .title = ਸਕਰੀਨਸ਼ਾਟ ਮੁੱਖ-ਸਕਰੀਨ
 
 ## Footer
 
@@ -31,17 +40,15 @@ creatingPageWaitMessage = ਤੁਹਾਡੇ ਸ਼ਾਟ ਨੂੰ ਸੰਭਾ
 
 ## Home page
 
-homePageButtonMyShots = ਮੇਰੇ ਸ਼ੌਟਸ ਤੇ ਜਾਓ
+homePageButtonMyShots = ਮੇਰੇ ਚਿੱਤਰ ਉੱਤੇ ਜਾਓ
 homePageTeaser = ਜਲਦੀ ਆ ਰਿਹਾ....
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ਮੁਫ਼ਤ ਡਾਊਨਲੋਡ ਕਰੋ
-homePageGetStarted = ਸ਼ੁਰੂ ਕਰੋ
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox ਸਕਰੀਨਸ਼ਾਟ ਵਰਕਸ ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ
 homePageGetStartedTitle = ਸ਼ੁਰੂਆਤ ਕਰੋ
 homePageCaptureRegion = ਕਿਸੇ ਖੇਤਰ ਨੂੰ ਕੈਪਚਰ ਕਰੋ
 homePageCapturePage = ਕੋਈ ਕੈਪਚਰ ਕਰੋ
-homePageSaveShare = ਸੰਭਾਲੋ ਅਤੇ ਸਾਂਝਾ ਕਰੋ
 homePageLegalLink = ਕਨੂੰਨੀ
 homePagePrivacyLink = ਪਰਦੇਦਾਰੀ
 homePageTermsLink = ਸ਼ਰਤਾਂ
@@ -50,8 +57,6 @@ homePageCookiesLink = ਕੂਕੀਜ਼
 ## Leave Screenshots page
 
 leavePageRemoveAllData = ਸਾਰਾ ਡਾਟਾ ਹਟਾਓ
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = ਤੁਹਾਡੇ ਖਾਤੇ ਨੂੰ ਮਿਟਾਉਣ ਲਈ ਤੁਹਾਡੇ ਕੋਲ Firefox ਸਕਰੀਨਸ਼ਾਟ ਸਥਾਪਤ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ
 leavePageErrorGeneric = ਇੱਕ ਗਲਤੀ ਆਈ ਹੈ
 leavePageButtonProceed = ਅੱਤੇ ਵੱਧਣਾ
 leavePageButtonCancel = ਰੱਦ ਕਰੋ
@@ -73,7 +78,6 @@ shotPageAlertErrorUpdatingTitle = ਸਿਰਲੇਖ ਸੰਭਾਲ ਵਿੱ�
 shotPageConfirmDelete = ਕੀ ਤੁਸੀਂ ਯਕੀਨਨ ਹੀ ਇਸ ਸ਼ਾੱਟ ਨੂੰ ਹਮੇਸ਼ਾ ਲਈ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋਂ?
 shotPageShareButton =
     .title = ਸਾਂਝਾ ਕਰੋ
-shotPageCopy = ਕਾਪੀ ਕਰੋ
 shotPageCopied = ਕਾਪੀ ਕੀਤਾ
 shotPageShareFacebook =
     .title = ਫੇਸਬੁੱਕ ਉੱਤੇ ਸਾਂਝਾ ਕਰੋ
@@ -94,14 +98,10 @@ shotPageRestoreButton = { $date } ਤੱਕ ਮੁੜ ਪ੍ਰਾਪਤ ਕਰ�
 shotPageExpiredMessage = ਇਹ ਸ਼ਾੱਟ ਖਤਮ ਹੋ ਗਿਆ ਹੈ।
 shotPageDeleteButton =
     .title = ਇਹ ਸ਼ਾੱਟ ਮਿਟਾਓ
-shotPageAbuseButton =
-    .title = ਇਸ ਸ਼ਾਟ ਨੂੰ ਦੁਰਵਿਹਾਰ, ਸਪੈਮ ਜਾਂ ਹੋਰ ਸਮੱਸਿਆਵਾਂ ਲਈ ਰਿਪੋਰਟ ਕਰੋ
 shotPageDownloadShot =
     .title = ਡਾਊਨਲੋਡ ਕਰੋ
 shotPageEditButton =
     .title = ਇਹ ਚਿੱਤਰ ਨੂੰ ਸੋਧੋ
-shotPageDownload = ਡਾਊਨਲੋਡ ਕਰੋ
-shotPageUpsellFirefox = Firefox ਹੁਣੇ ਪ੍ਰਾਪਤ ਕਰੋ
 shotPageKeepFor = ਕਿੰਨੀ ਦੇਰ ਤੱਕ ਇਸ ਸ਼ਾਟ ਨੂੰ ਬਰਕਰਾਰ ਰੱਖਿਆ ਜਾਣਾ ਚਾਹੀਦਾ ਹੈ?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = ਸਮਾਂ ਚੁਣੋ
@@ -155,6 +155,9 @@ timeDiffFutureDays =
        *[other] { $number }ਦਿਨਾਂ ਵਿੱਚ
     }
 
+## Shot Page New Feature Promotion Dialog.
+
+
 ## Annotations
 
 annotationPenButton =
@@ -178,7 +181,7 @@ annotationCancelEditButton = ਰੱਦ ਕਰੋ
     .title = ਸੰਪਾਦਨ ਨੂੰ ਰੱਦ ਕਰੋ
 annotationCropConfirmButton = ਪੁਸ਼ਟੀ ਕਰੋ
     .title = ਚੋਣ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ
-annotationCropCancelButton = ਰੱਦ ਕਰੋ 
+annotationCropCancelButton = ਰੱਦ ਕਰੋ
     .title = ਚੋਣ ਨੂੰ ਰੱਦ ਕਰੋ
 annotationColorWhite =
     .title = ਚਿੱਟਾ
@@ -205,14 +208,14 @@ annotationTextSize =
 textSizeSmall = ਛੋਟਾ
 textSizeMedium = ਵਿਚਕਾਰਲਾ
 textSizeLarge = ਵੱਡਾ
-# Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
-    .title = ਪੁਸ਼ਟੀ ਕਰਨਾ
-annotationTextCancelButton =
-    .title = ਰੱਦ ਕਰੋ
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
     .placeholder = ਹੈਲੋ
+
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
 
 ## Settings Page
 
@@ -222,7 +225,6 @@ settingsGuestAccountMessage = ਮਹਿਮਾਨ ਖਾਤੇ
 settingsSignInButton = ਸਾਇਨ ਇਨ
     .title = ਸਾਇਨ ਇਨ
 SettingsPageHeader = ਫਾਇਰਫਾਕਸ ਸਕਰੀਨਸ਼ਾੱਟ ਸੈਟਿੰਗਾਂ
-settingsPageSubHeader = ਸਿੰਕ ਅਤੇ ਖਾਤੇ
 
 ## Shotindex page
 
@@ -233,8 +235,6 @@ shotIndexPageErrorDeletingShot = ਸ਼ਾੱਟ ਮਿਟਾਉਣ ਵਿੱਚ �
 shotIndexPageSearchResultsTitle = ਮੇਰੇ ਸ਼ਾੱਟ: ਖੋਜ ਲਈ { $searchTerm }
 shotIndexPageSearchPlaceholder =
     .placeholder = ਮੇਰੇ ਸ਼ਾੱਟ ਖੋਜੋ
-shotIndexPageSearchButton =
-    .title = ਖੋਜਣਾ
 shotIndexPageNoShotsMessage = ਸ਼ਾੱਟ ਸੰਭਾਲੇ ਨਹੀਂ।
 shotIndexPageNoShotsInvitation = ਜਾਓ, ਕੁਝ ਬਣਾਉ।
 shotIndexPageLookingForShots = ਆਪਣੇ ਸ਼ਾਟਾਂ ਦੀ ਖੋਜ ਕਰ ਰਿਹਾ ਹੈ ...
@@ -247,12 +247,6 @@ shotIndexPagePreviousPage =
     .title = ਪਹਿਲਾ ਸਫਾ
 shotIndexPageNextPage =
     .title = ਅਗਲਾ ਸਫਾ
-# This symbol is used in the lower right corner of the card for a shot on the
-# My Shots page to indicate that the shot does not expire. It should be a
-# single character (or simply nothing if no such symbol is available for a
-# language/culture).
-shotIndexNoExpirationSymbol = ∞
-    .title = ਇਸ ਸ਼ਾੱਟ ਦੀ ਮਿਆਦ ਖਤਮ ਨਹੀਂ ਹੋਈ
 
 ## Delete Confirmation Dialog
 
@@ -261,6 +255,9 @@ shotDeleteCancel = ਰੱਦ ਕਰੋ
     .title = ਰੱਦ ਕਰੋ
 shotDeleteConfirm = ਮਿਟਾਓ
     .title = ਮਿਟਾਓ
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
