@@ -40,7 +40,7 @@ onboardingPromoSigninButton = Entrar
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Termos
-footerLinkPrivacy = Política de Privacidade
+footerLinkPrivacy = Aviso de privacidade
 footerReportShot = Reportar captura
     .title = Reportar esta captura por abuso, spam ou outros problemas
 footerLinkFaqs = Perguntas frequentes
