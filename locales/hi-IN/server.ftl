@@ -8,6 +8,7 @@ gMyShots = मेरे चित्र
 gHomeLink = मुख्य
 gNoShots =
     .alt = कोई शॉट नहीं मिला
+gScreenshotsDescriptionServerless = स्क्रीनशॉट अब और भी आसान। Firefox से निकले बिना स्क्रीनशॉट लें और डाउनलोड करें।
 
 ## Header
 
