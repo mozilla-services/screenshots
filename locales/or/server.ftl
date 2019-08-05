@@ -310,7 +310,11 @@ shotDeleteConfirm = ଲିଭାନ୍ତୁ
 ## Metrics page
 ## All metrics strings are optional for translation
 
+# Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = ଫାୟାରଫକ୍ସ ସ୍କ୍ରିନ୍‌ସଟ୍‌ ପରିସଂଖ୍ୟାନ
 metricsPageTotalsQueryTitle = ମୋଟ
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = ସ୍କ୍ରିନ୍‌ସଟ୍‌ର ସଂକ୍ଷିପ୍ତ ବିବରଣୀ
 metricsPageTotalsQueryDevices = ଏହି ଉପକରଣଟି ପଞ୍ଜିକୃତ ହୋଇଛି
 metricsPageTotalsQueryActiveShots = ସକ୍ରିୟ ଛବିଗୁଡ଼ିକ
 metricsPageShotsQueryTitle = ଦିନ ହିସାବରେ ଛବିଗୁଡ଼ିକ
@@ -319,4 +323,5 @@ metricsPageShotsQueryDay = ଦିନ
 metricsPageUsersQueryTitle = ଦିନ ହିସାବରେ ବ୍ୟବହାରକାରୀ
 metricsPageUsersQueryCount = ବ୍ୟବହାରକାରୀଙ୍କ ସଂଖ୍ୟା
 metricsPageUsersQueryDay = ଦିନ
+metricsPageUserShotsQueryTitle = ପ୍ରତି ବ୍ୟବହାରକାରୀ ପିଛା ସ୍କ୍ରିନ୍‌ସଟ୍‌ ସଂଖ୍ୟା
 metricsPageUserShotsQueryCount = ବ୍ୟବହାରକାରୀଙ୍କ ସଂଖ୍ୟା
