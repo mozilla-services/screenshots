@@ -289,6 +289,7 @@ settingsFirefoxAccountSubHeader = חשבון Firefox
 settingsClosePreferences =
     .title = סגירת העדפות
 settingsFxaDisconnectAlertMessage = האם ברצונך לנתק את המכשיר הזה מחשבון ה־Firefox שלך?
+settingsFxaConnectDescription = ניתן להתחבר כדי לגשת לצילומי המסך שלך בכל המכשירים.
 
 ## Shotindex page
 
