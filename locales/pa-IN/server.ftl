@@ -17,6 +17,10 @@ buttonSignIn =
     .title = ਸਾਈਨ ਇਨ
 screenshotsLogo =
     .title = ਸਕਰੀਨਸ਼ਾਟ ਮੁੱਖ-ਸਕਰੀਨ
+onboardingPromoDismissButton = ਖ਼ਾਰਜ ਕਰੋ
+    .title = ਖ਼ਾਰਜ ਕਰੋ
+onboardingPromoSigninButton = ਸਾਈਨ ਇਨ
+    .title = ਸਾਈਨ ਇਨ ਕਰੋ
 
 ## Footer
 
@@ -24,6 +28,8 @@ screenshotsLogo =
 footerLinkMozilla = ਮੌਜ਼ੀਲਾ
 footerLinkTerms = ਸ਼ਰਤਾਂ
 footerLinkPrivacy = ਪਰਦੇਦਾਰੀ ਨੋਟਿਸ
+footerReportShot = ਤਸਵੀਰ ਬਾਰੇ ਇਤਲਾਹ ਦਿਓ
+    .title = ਇਸ ਤਸਵੀਰ ਬਾਰੇ ਧੱਕਾ, ਬੇਲੋੜੇ ਇਸ਼ਤਿਹਾਰ ਜਾਂ ਹੋਰ ਸਮੱਸਿਆਵਾ ਬਾਰੇ ਇਤਲਾਹ ਦਿਓ
 footerLinkFaqs = ਸਵਾਲ-ਜਵਾਬ
 footerLinkDMCA = IP ਉਲੰਘਣ ਦੀ ਰਿਪੋਰਟ ਕਰੋ
 footerLinkDiscourse = ਸੁਝਾਅ ਦਿਓ
@@ -49,6 +55,7 @@ homePageHowScreenshotsWorks = Firefox ਸਕਰੀਨਸ਼ਾਟ ਵਰਕਸ �
 homePageGetStartedTitle = ਸ਼ੁਰੂਆਤ ਕਰੋ
 homePageCaptureRegion = ਕਿਸੇ ਖੇਤਰ ਨੂੰ ਕੈਪਚਰ ਕਰੋ
 homePageCapturePage = ਕੋਈ ਕੈਪਚਰ ਕਰੋ
+homePageDownloadCopy = ਡਾਊਨਲੋਡ ਜਾਂ ਨਕਲ ਕਰੋ
 homePageLegalLink = ਕਨੂੰਨੀ
 homePagePrivacyLink = ਪਰਦੇਦਾਰੀ
 homePageTermsLink = ਸ਼ਰਤਾਂ
@@ -78,6 +85,9 @@ shotPageAlertErrorUpdatingTitle = ਸਿਰਲੇਖ ਸੰਭਾਲ ਵਿੱ�
 shotPageConfirmDelete = ਕੀ ਤੁਸੀਂ ਯਕੀਨਨ ਹੀ ਇਸ ਸ਼ਾੱਟ ਨੂੰ ਹਮੇਸ਼ਾ ਲਈ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋਂ?
 shotPageShareButton =
     .title = ਸਾਂਝਾ ਕਰੋ
+shotPageCopyButton =
+    .title = ਚਿੱਤਰ ਕਲਿੱਪਬੋਰਡ ‘ਚ ਨਕਲ ਕਰੋ
+shotPageCopyActionLabel = ਨਕਲ ਕਰੋ
 shotPageCopied = ਕਾਪੀ ਕੀਤਾ
 shotPageShareFacebook =
     .title = ਫੇਸਬੁੱਕ ਉੱਤੇ ਸਾਂਝਾ ਕਰੋ
@@ -102,6 +112,10 @@ shotPageDownloadShot =
     .title = ਡਾਊਨਲੋਡ ਕਰੋ
 shotPageEditButton =
     .title = ਇਹ ਚਿੱਤਰ ਨੂੰ ਸੋਧੋ
+shotPageBackToHomeButton =
+    .title = ਮੁੱਖ ਸਫ਼ਾ
+shotPageAllShotsButton =
+    .title = ਸਾਰੀਆਂ ਤਸਵੀਰਾਂ
 shotPageKeepFor = ਕਿੰਨੀ ਦੇਰ ਤੱਕ ਇਸ ਸ਼ਾਟ ਨੂੰ ਬਰਕਰਾਰ ਰੱਖਿਆ ਜਾਣਾ ਚਾਹੀਦਾ ਹੈ?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = ਸਮਾਂ ਚੁਣੋ
@@ -157,6 +171,10 @@ timeDiffFutureDays =
 
 ## Shot Page New Feature Promotion Dialog.
 
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = ਨੋਟ ਲਵੋ!
+promoCloseButton =
+    .title = ਸੂਚਨਾ ਬੰਦ ਕਰੋ
 
 ## Annotations
 
@@ -208,6 +226,11 @@ annotationTextSize =
 textSizeSmall = ਛੋਟਾ
 textSizeMedium = ਵਿਚਕਾਰਲਾ
 textSizeLarge = ਵੱਡਾ
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = ਤਸਦੀਕ
+    .title = ਤਸਦੀਕ ਕਰੋ
+textToolCancelButton = ਰੱਦ
+    .title = ਰੱਦ ਕਰੋ
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
     .placeholder = ਹੈਲੋ
@@ -216,6 +239,7 @@ textToolInputPlaceholder =
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = ਕੁਝ ਗ਼ਲਤ ਵਾਪਰਿਆ ਹੈ
 
 ## Settings Page
 
@@ -225,6 +249,9 @@ settingsGuestAccountMessage = ਮਹਿਮਾਨ ਖਾਤੇ
 settingsSignInButton = ਸਾਇਨ ਇਨ
     .title = ਸਾਇਨ ਇਨ
 SettingsPageHeader = ਫਾਇਰਫਾਕਸ ਸਕਰੀਨਸ਼ਾੱਟ ਸੈਟਿੰਗਾਂ
+settingsFirefoxAccountSubHeader = ਫਾਇਰਫਾਕਸ ਖਾਤਾ
+settingsClosePreferences =
+    .title = ਪਸੰਦਾਂ ਬੰਦ ਕਰੋ
 
 ## Shotindex page
 
