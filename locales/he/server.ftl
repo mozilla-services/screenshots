@@ -22,7 +22,7 @@ bannerSignIn = עליך <a>להיכנס או להירשם</a> כדי לגשת ל
 bannerUpsell = { gScreenshotsDescription } <a>קבלת Firefox כעת</a>
 shutdownWarning = <b>צילומי מסך שמורים יפוגו בקרוב.</b> החל מחודש יוני, Screenshots לא יציע עוד אחסון מקוון. רוצה לשמור צילומים מהספרייה שלך? <a>ניתן להוריד אותם למחשב שלך.</a>
 shutdownPageTitle = Screenshots משתנה
-shutdownPageDescription = החל מיוני, Screenshots לא תציע עוד אחסון מקוון. רוצה לשמור צילומים מהספרייה שלך? באפשרותך להוריד צילומים בנפרד או <a>בקבוצה</a>. תודה על השימוש בתכונה זו, ואנו מצטערים על אי הנוחות.
+shutdownPageDescription = החל מחודש יוני, Screenshots לא יציע עוד אחסון מקוון. רוצה לשמור צילומים מהספרייה שלך? באפשרותך להוריד צילומים בנפרד או <a>בקבוצה</a>. תודה על השימוש בתכונה זו, ואנו מצטערים על אי הנוחות.
 shutdownPageContinue = אנו מקווים שתמשיכו להשתמש בֿScreenshots כדי לצלם, להעתיק ולהוריד צילומים.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
@@ -296,6 +296,7 @@ settingsFirefoxAccountSubHeader = חשבון Firefox
 settingsClosePreferences =
     .title = סגירת העדפות
 settingsFxaDisconnectAlertMessage = האם ברצונך לנתק את המכשיר הזה מחשבון ה־Firefox שלך?
+settingsFxaDisconnectDescription = לאחר יציאה מהחשבון, יהיה עליך להתחבר שוב כדי לקבל גישה לצילומי המסך שלך.
 settingsFxaConnectDescription = ניתן להתחבר כדי לגשת לצילומי המסך שלך בכל המכשירים.
 
 ## Shotindex page
