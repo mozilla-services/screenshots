@@ -8,6 +8,7 @@ gMyShots = צילומי המסך שלי
 gHomeLink = בית
 gNoShots =
     .alt = לא נמצאו צילומי מסך
+gScreenshotsDescriptionServerless = צילומי מסך בקלות. צילום והורדת צילומי מסך מבלי לעזוב את Firefox.
 
 ## Header
 
@@ -20,6 +21,9 @@ screenshotsLogo =
 bannerSignIn = עליך <a>להיכנס או להירשם</a> כדי לגשת לצילומים שלך בכל המכשירים ולשמור את המועדפים שלך לעד.
 bannerUpsell = { gScreenshotsDescription } <a>קבלת Firefox כעת</a>
 shutdownWarning = <b>צילומי מסך שמורים יפוגו בקרוב.</b> החל מחודש יוני, Screenshots לא יציע עוד אחסון מקוון. רוצה לשמור צילומים מהספרייה שלך? <a>ניתן להוריד אותם למחשב שלך.</a>
+shutdownPageTitle = Screenshots משתנה
+shutdownPageDescription = החל מיוני, Screenshots לא תציע עוד אחסון מקוון. רוצה לשמור צילומים מהספרייה שלך? באפשרותך להוריד צילומים בנפרד או <a>בקבוצה</a>. תודה על השימוש בתכונה זו, ואנו מצטערים על אי הנוחות.
+shutdownPageContinue = אנו מקווים שתמשיכו להשתמש בֿScreenshots כדי לצלם, להעתיק ולהוריד צילומים.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = מה חדש ב־Firefox Screenshots?
@@ -71,6 +75,8 @@ homePageCaptureRegionDescription = יש ללחוץ ולגרור כדי לבחו�
 homePageCapturePage = לכידת דף
 homePageCapturePageDescription = ניתן להשתמש בכפתורים שבפינה השמאלית העליונה כדי לצלם עמודים שלמים. הכפתור לשמירת הגלוי יצלם את האיזור הגלוי מבלי לגלול לעומת שמירת העמוד במלואו שיצלם את כל העמוד.
 homePageDownloadCopy = הורדה או העתקה
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = התמונה הטובה ביותר שלך. Screenshots מאפשרת לך להוריד אזור נבחר או להעתיק אותו ישירות ללוח העריכה שלך.
 homePageLegalLink = מידע משפטי
 homePagePrivacyLink = פרטיות
 homePageTermsLink = תנאים
@@ -139,6 +145,7 @@ shotPageBackToHomeButton =
     .title = דף הבית
 shotPageAllShotsButton =
     .title = כל צילומי המסך
+shotPageScreenshotsDescriptionServerless = צילומי מסך בקלות. צילום והורדת צילומי מסך מבלי לעזוב את Firefox.
 shotPageDMCAMessage = צילום מסך זה אינו זמין עוד עקב דרישת קניין רוחני על ידי גורם צד שלישי.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = נא לשלוח דוא״ל אל { $dmca } על מנת לבקש מידע נוסף.
