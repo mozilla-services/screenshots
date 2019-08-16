@@ -17,6 +17,11 @@ buttonSignIn =
     .title = ప్రవేశించండి
 screenshotsLogo =
     .title = తెరపట్ల ముంగిలి
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = Firefox Screenshotsలో కొత్తవి ఏమిటి?
+onboardingPromoSigninButton = ప్రవేశించు
+    .title = ప్రవేశించండి
 
 ## Footer
 
@@ -49,7 +54,6 @@ homePageHowScreenshotsWorks = Firefox Screenshots ఎలాపని చేస�
 homePageGetStartedTitle = మొదలుపెట్టడం
 homePageCaptureRegion = ఒక ప్రాంతాన్ని క్యాప్చర్ చేయండి
 homePageCapturePage = ఒక పేజీని క్యాప్చర్ చేయండి
-homePageSaveShare = భద్రపరుచుకొని పంచుకోండి
 homePageLegalLink = చట్టపరమైన
 homePagePrivacyLink = గోప్యం
 homePageTermsLink = నియమాలు
@@ -116,7 +120,6 @@ shotPageBackToHomeButton =
     .title = ముంగిలి పేజీ
 shotPageAllShotsButton =
     .title = అన్ని పట్లు
-shotPageScreenshotsDescription = తెరపట్లు సులభతరమైనాయి. Firefoxను వదలకుండా తెరపట్లను తీసుకోండి,  భద్రపరచండి మరియు పంచుకోండి.
 shotPageDMCAMessage = మూడవ పార్టీ మేధో సంపత్తి హక్కు కారణంగా ఈ తెరపట్టు అందుబాటులో లేదు.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = దయచేసి మరింత సమాచారం అభ్యర్థించడానికి { $dmca }కి ఇమెయిల్ చేయండి.
@@ -248,8 +251,10 @@ settingsGuestAccountMessage = అతిథి ఖాతా
 settingsSignInButton = ప్రవేశించండి
     .title = ప్రవేశించండి
 SettingsPageHeader = Firefox తెరపట్ల అమరికలు
+settingsFirefoxAccountSubHeader = Firefox ఖాతా
 settingsClosePreferences =
     .title = అభిరుచులను మూసివేయి
+settingsFxaDisconnectAlertMessage = మీ Firefox ఖాతా నుండి ఈ పరికరాన్ని డిస్‌కనెక్ట్ చేయాలనుకుంటున్నారా?
 
 ## Shotindex page
 
@@ -282,6 +287,9 @@ shotDeleteCancel = రద్దుచేయి
     .title = రద్దుచేయి
 shotDeleteConfirm = తొలగించు
     .title = తొలగించు
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
