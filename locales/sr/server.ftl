@@ -8,9 +8,6 @@ gMyShots = Моји снимци
 gHomeLink = Почетна
 gNoShots =
     .alt = Нема пронађених снимака
-gScreenshotsDescription = Веома једноставни снимци екрана. Начините, сачувајте и делите ваше снимке екрана без напуштања Firefox-а.
-gSettings = Поставке
-gSignIn = Пријавите се
 
 ## Header
 
@@ -20,7 +17,10 @@ buttonSignIn =
     .title = Пријави се
 screenshotsLogo =
     .title = Почетна снимака екрана
-bannerMessage = Пријавите се или се региструјте да приступите вашим снимцима путем разних уређаја и да сачувате ваше омиљене заувек.
+onboardingPromoDismissButton = Одбаци
+    .title = Одбаци
+onboardingPromoSigninButton = Пријавите се
+    .title = Пријавите се
 
 ## Footer
 
@@ -56,17 +56,13 @@ homePageDownloadFirefoxSubTitle = Бесплатно преузимање
 homePageHowScreenshotsWorks = Како Firefox Screenshots ради
 homePageGetStartedTitle = Почните са коришћењем
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Нађите нову иконицу Screenshots-а међу вашим алатима. Изаберите је и мени снимака екрана ће се појавити у врху прозора вашег прегледача.
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Изаберите иконицу снимака екрана из менија странице у адресној траци и мени снимака екрана ће се појавити на врху прозора вашег прегледача.
 homePageCaptureRegion = Ухватите део странице
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Кликните и повуците да бисте изабрали део странице који желите да сачувате. Или само померите миш на жељени део и кликните, Screenshots ће изабрати део за вас. Свиђа вам се то што видите? Изаберите „Сачувај“ да бисте приступили свом снимку екрана на мрежи или притисните стрелицу надоле да бисте га сачували на свој рачунар.
 homePageCapturePage = Ухватите целу страницу
 homePageCapturePageDescription = Користите дугмад у горњем десном да бисте сачували целе странице. Дугме „Сачувај видљиво“ ће ухватити део који можете видети без клизања а дугме „Сачувај целу страницу“ ће ухватити све на страници.
-homePageSaveShare = Сачувај и подели
-# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Када ухватите снимак, Firefox складишти ваш снимак екрана у вашу мрежну библиотеку снимака екрана и копира везу у вашу оставу. Аутоматски чувамо снимак екрана две недеље али можете обрисати снимке у било ком тренутку или променити време истека да бисте их задржали дуже у библиотеци.
+homePageDownloadCopy = Преузмите или копирајте
 homePageLegalLink = Правни подаци
 homePagePrivacyLink = Приватност
 homePageTermsLink = Услови
@@ -75,8 +71,6 @@ homePageCookiesLink = Колачићи
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Уклони све податке
-# Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Морате имати инсталиран Firefox Screenshots да бисте обрисали ваш налог
 leavePageErrorGeneric = Догодила се грешка
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ово ће трајно обрисати све ваше Firefox Screenshots податке.
@@ -100,7 +94,7 @@ shotPageAlertErrorUpdatingTitle = Грешка при чувању наслов�
 shotPageConfirmDelete = Да ли сте сигурни да желите обрисати овај снимак трајно?
 shotPageShareButton =
     .title = Подели
-shotPageCopy = Копирај
+shotPageCopyActionLabel = Копираj
 shotPageCopied = Копирано
 shotPageShareFacebook =
     .title = Подели на Facebook-у
@@ -135,15 +129,6 @@ shotPageBackToHomeButton =
     .title = Почетна страница
 shotPageAllShotsButton =
     .title = Сви снимци
-shotPageAllShots = Сви снимци
-shotPageDownload = Преузми
-# Note: Draw text is used on shot page as a verb (action)
-shotPageDraw = Фиока
-# Note: Favorite text is used on shot page as a verb (action)
-shotPageFavorite = Омиљени
-shotPageDelete = Обриши
-shotPageScreenshotsDescription = Снимци екрана, поједностављени. Ухватите, сачувајте и делите снимке екрана без напуштања Firefox-а.
-shotPageUpsellFirefox = Преузмите Firefox сада
 shotPageDMCAMessage = Овај снимак није више доступан зато што је примљен извештај о повреди ауторских права.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = За више података, пошаљите мејл на { $dmca }.
@@ -279,17 +264,21 @@ textToolCancelButton = Откажи
 textToolInputPlaceholder =
     .placeholder = Здраво
 
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
+
+copyImageErrorTitle = Дошло је до грешке
+
 ## Settings Page
 
 settingsDisconnectButton = Прекини везу
     .title = Прекини везу
 settingsGuestAccountMessage = Налог госта
-settingsSignInInvite = Пријавите се да синхронизујете уређаје
 settingsSignInButton = Пријави се
     .title = Пријави се
 SettingsPageHeader = Firefox Screenshots поставке
-settingsDescription = Можете се пријавити са Firefox налогом да синхронизујете све ваше снимке екрана са другим уређајима и да приступате са њих.
-settingsPageSubHeader = Sync и налози
+settingsFirefoxAccountSubHeader = Firefox налог
 settingsClosePreferences =
     .title = Затвори поставке
 
@@ -305,8 +294,6 @@ shotIndexPageSearchResultsTitle = Моји снимци: претрага за {
 shotIndexPageErrorRendering = Грешка при исцртавању странице: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Претражи моје снимке
-shotIndexPageSearchButton =
-    .title = Претрага
 shotIndexPageNoShotsMessage = Нема сачуваних снимака.
 shotIndexPageNoShotsInvitation = Слободно, направите неки.
 shotIndexPageLookingForShots = Тражим ваше снимке…
@@ -338,6 +325,9 @@ shotDeleteCancel = Откажи
     .title = Откажи
 shotDeleteConfirm = Обриши
     .title = Обриши
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
