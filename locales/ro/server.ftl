@@ -192,8 +192,8 @@ timeDiffHoursAgo =
 timeDiffDaysAgo =
     { $number ->
         [one] ieri
-        [few] în urmă cu { $number } zile
-       *[other] în urmă cu { $number } de zile
+        [few] acum { $number } zile
+       *[other] acum { $number } de zile
     }
 timeDiffFutureSeconds = în câteva secunde
 timeDiffFutureMinutes =
