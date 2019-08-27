@@ -27,6 +27,7 @@ shutdownPageContinue = אנו מקווים שתמשיכו להשתמש בֿScree
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = מה חדש ב־Firefox Screenshots?
+onboardingPromoMessage = כעת ניתן להתחבר אל Screenshots עם חשבון Firefox כדי לעשות יותר:
 onboardingPromoMessageListItem1 = גישה לספרייה שלך מכל המכשירים שלך
 onboardingPromoMessageListItem2 = אחסון הצילומים המועדפים עליך לעד
 onboardingPromoDismissButton = סגירה
