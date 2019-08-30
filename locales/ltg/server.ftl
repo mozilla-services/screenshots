@@ -8,7 +8,15 @@ gMyShots = Muni ekranšōvīņi
 gHomeLink = Sōkums
 gNoShots =
     .alt = Nav nivīna ekranšōvīņa
-gScreenshotsDescription = Ekranšōvīņus taisēt palics sprosta. Taisi, sagloboj un dolīs ar ekranšōvīņim napamatūt Firefox.
+
+## Header
+
+buttonSettings =
+    .title = Īstatiejumi
+buttonSignIn =
+    .title = Pīsasliegt
+screenshotsLogo =
+    .title = Ekranšōviņu sātys lopa
 
 ## Footer
 
@@ -35,13 +43,11 @@ homePageButtonMyShots = Īt pi munim ekranšōvīnim
 homePageTeaser = Dreiži...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Nūlōdēt bez moksys
-homePageGetStarted = Sōkums
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kai strōdoj Firefox Screenshots
 homePageGetStartedTitle = Sōkums
 homePageCaptureRegion = Saglobōt ekrana apgobolu
 homePageCapturePage = Saglobōt lopu
-homePageSaveShare = Saglobōt un pazadalēt
 homePageLegalLink = Juridiska informaceja
 homePagePrivacyLink = Privātums
 homePageTermsLink = Lītōšonys nūteikumi
@@ -57,7 +63,15 @@ leavePageRemoveAllData = Dzēst vysus datus
 ## Shot page
 
 
+## Shot Page New Feature Promotion Dialog.
+
+
 ## Annotations
+
+
+## The following are the title and message for an error displayed as a Firefox
+## notification. It is triggered by an action in the shot page and the strings
+## are passed from the shot page to the addon.
 
 
 ## Settings Page
@@ -67,6 +81,9 @@ leavePageRemoveAllData = Dzēst vysus datus
 
 
 ## Delete Confirmation Dialog
+
+
+## Export page
 
 
 ## Metrics page
