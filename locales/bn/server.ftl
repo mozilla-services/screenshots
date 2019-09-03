@@ -8,6 +8,7 @@ gMyShots = আমার শটসমূহ
 gHomeLink = হোম
 gNoShots =
     .alt = কোন শট পাওয়া যায়নি
+gScreenshotsDescriptionServerless = স্ক্রিনশট নেওয়া এখন অনেক সহজ। Firefox ছেড়ে না গিয়েই স্ক্রিনশট নিন এবং ডাউনলোড করুন।
 
 ## Header
 
@@ -22,6 +23,8 @@ shutdownPageTitle = Screenshots পরিবর্তন হচ্ছে
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Firefox Screenshots এ নতুন কি আছে?
+onboardingPromoMessageListItem1 = আপনার সমস্ত ডিভাইসে আপনার লাইব্রে্রি ব্যবহার করুন
+onboardingPromoMessageListItem2 = আপনার প্রিয় সটগুলো চিরদিনের জন্য সংরক্ষণ করুন
 onboardingPromoDismissButton = বাতিল
     .title = বাতিল
 onboardingPromoSigninButton = সাইন ইন
@@ -282,6 +285,8 @@ SettingsPageHeader = Firefox স্ক্রিনশট সেটিংস
 settingsFirefoxAccountSubHeader = Firefox Account
 settingsClosePreferences =
     .title = পছন্দসমূহ বন্ধ করুন
+settingsFxaDisconnectAlertMessage = আপনি কি নিশ্চিত আপনার Firefox অ্যাকাউন্ট থেকে এই ডিভাইসটি বিচ্ছিন্ন করতে চান?
+settingsFxaConnectDescription = আপনার সকল ডিভাইসে আপনার স্ক্রিনশটগুলো ব্যবহার করতে সাইন ইন করতে পারেন।
 
 ## Shotindex page
 
