@@ -314,6 +314,8 @@ shotIndexPagePreviousPage =
     .title = আগের পাতা
 shotIndexPageNextPage =
     .title = পরের পাতা
+shotIndexSyncedShot =
+    .title = শট অন্য ডিভাইসে নেওয়া হয়েছে
 
 ## Delete Confirmation Dialog
 
