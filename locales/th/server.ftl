@@ -74,6 +74,7 @@ homePageCaptureRegion = จับภาพเป็นบริเวณ
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = คลิกและลากเพื่อเลือกพื้นที่ที่คุณต้องการจับภาพ หรือเพียงแค่วางเมาส์และคลิก เท่านี้ Screenshots ก็จะเลือกพื้นที่ให้คุณเอง ชอบสิ่งที่คุณเห็นงั้นหรือ? เลือก บันทึก เพื่อเข้าถึงภาพหน้าจอของคุณทางออนไลน์ หรือเลือกปุ่มลูกศรลงเพื่อดาวน์โหลดลงบนคอมพิวเตอร์ของคุณ
 homePageCapturePage = จับภาพหน้า
+homePageCapturePageDescription = กดปุ่มที่อยู่มุมบนขวาเพื่อจับภาพเต็มหน้า ปุ่ม บันทึกส่วนที่มองเห็น จะจับภาพพื้นที่ที่คุณสามารถมองเห็นได้โดยไม่เลื่อนแถบเลื่อน และปุ่ม บันทึกเต็มหน้า เพื่อจับภาพทุกอย่างที่อยู่บนนั้น
 homePageDownloadCopy = ดาวน์โหลดหรือคัดลอก
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageDownloadCopyDescription = ถ่ายภาพคุณให้ดีที่สุด Screenshotsให้คุณดาวน์โหลดสิ่งที่คุณเลือกหรือคัดลอกไปยังคลิปบอร์ดของคุณ
