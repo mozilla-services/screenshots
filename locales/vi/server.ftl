@@ -40,7 +40,7 @@ onboardingPromoSigninButton = Đăng nhập
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Điều khoản
-footerLinkPrivacy = Chính sách riêng tư
+footerLinkPrivacy = Thông báo bảo mật
 footerReportShot = Báo cáo ảnh chụp
     .title = Báo cáo ảnh chụp này vì lạm dụng, spam hay các vấn đề khác
 footerLinkFaqs = Câu hỏi thường gặp
@@ -79,7 +79,7 @@ homePageDownloadCopy = Tải về hoặc sao chép
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageDownloadCopyDescription = Tạo ảnh chụp tốt nhất cho bạn. Screenshots cho phép bạn tải xuống lựa chọn của bạn hoặc sao chép nó ngay vào clipboard của bạn.
 homePageLegalLink = Thông tin pháp lý
-homePagePrivacyLink = Chính sách riêng tư
+homePagePrivacyLink = Quyền riêng tư
 homePageTermsLink = Điều khoản
 homePageCookiesLink = Cookie
 
