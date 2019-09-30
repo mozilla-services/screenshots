@@ -86,6 +86,8 @@ homePageCookiesLink = עוגיות
 ## Leave Screenshots page
 
 leavePageRemoveAllData = הסרת כל הנתונים
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = עליך להתקין את Firefox Screenshots או להתחבר לחשבונך ב־Firefox כדי למחוק את חשבונך.
 leavePageErrorGeneric = אירעה שגיאה
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = פעולה זו תמחק לצמיתות את כל נתוני ה־Firefox Screenshots שלך.
