@@ -1,7 +1,6 @@
 const React = require("react");
 const PropTypes = require("prop-types");
 const reactruntime = require("../../reactruntime");
-const sendEvent = require("../../browser-send-event.js");
 const { Footer } = require("../../footer-view.js");
 const { Localized } = require("fluent-react/compat");
 const { HomePageHeader } = require("./homepage-header");
@@ -19,10 +18,7 @@ class Head extends React.Component {
           href={this.props.staticLink("/static/css/home.css")}
         />
         <script src={this.props.staticLink("/static/js/UITour-lib.js")} async />
-        <script
-          src={this.props.staticLink("/static/js/homepage-bundle.js")}
-          async
-        />
+        <script src={this.props.staticLink("/static/js/homepage-tour.js")} />
         <Localized id="homePageDescription" attrs={{ content: true }}>
           <meta
             name="description"
@@ -62,48 +58,13 @@ class Head extends React.Component {
 Head.propTypes = {
   backend: PropTypes.string,
   staticLink: PropTypes.func,
-  title: PropTypes.string,
+  title: PropTypes.string
 };
 
 class Body extends React.Component {
-  onClickInstallFirefox() {
-    sendEvent("click-install-firefox-home", { useBeacon: true });
-  }
-
-  renderGetFirefox() {
-    if (this.props.isFirefox) {
-      return null;
-    }
-    return (
-      <a
-        href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition&utm_content=from-home"
-        className="button primary download-firefox"
-        onClick={this.onClickInstallFirefox.bind(this)}
-      >
-        <div className="button-icon">
-          <div className="button-icon-badge" />
-        </div>
-        <div className="button-copy">
-          <Localized id="homePageDownloadFirefoxTitle">
-            <div className="button-title">Firefox</div>
-          </Localized>
-          <Localized id="homePageDownloadFirefoxSubTitle">
-            <div className="button-description">Free Download</div>
-          </Localized>
-        </div>
-      </a>
-    );
-  }
-
   render() {
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <HomePageHeader
-          isOwner={this.props.authenticated}
-          hasFxa={this.props.hasFxa}
-          staticLink={this.props.staticLink}
-          hasFxaOnboardingDialog={this.props.hasFxaOnboardingDialog}
-        />
         <div className="banner">
           <div className="banner-image-back" />
           <div className="banner-container">
@@ -115,7 +76,6 @@ class Body extends React.Component {
                   without leaving Firefox.
                 </p>
               </Localized>
-              {this.renderGetFirefox()}
             </div>
             <div className="banner-image-front" />
           </div>
@@ -203,7 +163,7 @@ Body.propTypes = {
   hasFxa: PropTypes.bool,
   isFirefox: PropTypes.bool,
   authenticated: PropTypes.bool,
-  staticLink: PropTypes.func,
+  staticLink: PropTypes.func
 };
 
 exports.HeadFactory = React.createFactory(Head);
