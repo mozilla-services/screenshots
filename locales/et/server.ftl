@@ -8,7 +8,7 @@ gMyShots = Minu pildid
 gHomeLink = Avaleht
 gNoShots =
     .alt = Pilte ei leitud
-gScreenshotsDescription = Ekraanipildid lihtsalt. Tee, salvesta ja jaga ekraanipilte Firefoxist lahkumata.
+gScreenshotsDescriptionServerless = Ekraanipildid lihtsalt. Tee ja salvesta ekraanipilte Firefoxist lahkumata.
 
 ## Header
 
@@ -20,6 +20,10 @@ screenshotsLogo =
     .title = Avaleht
 bannerSignIn = <a>Logi sisse või registreeru kasutajaks</a>, et pääseda ligi ekraanipiltidele kõigist oma seadmetest ning salvestada lemmikud jäädavalt.
 bannerUpsell = { gScreenshotsDescription } <a>Hangi Firefox</a>
+shutdownWarning = <b>Salvestatud ekraanipildid aeguvad varsti.</b> Alates juunist ei võimalda Screenshots enam ekraanipilte võrku salvestada. Kas soovid oma kogumikus olevaid pilte säilitada? <a>Laadi need siis oma arvutisse alla.</a>
+shutdownPageTitle = Screenshots on muutumas
+shutdownPageDescription = Alates juunist ei võimalda Screenshots enam ekraanipilte võrku salvestada. Kas soovid oma kogumikus olevaid pilte säilitada? Laadi siis üksikud pildid või <a>kogu kogumik</a> oma arvutisse alla. Täname, et kasutasid seda funktsionaalsust ja palume ebamugavuste pärast vabandust.
+shutdownPageContinue = Loodame, et jätkad Screenshotsi kasutamist ekraanipiltide tegemiseks, kopeerimiseks ja allalaadimiseks.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Mis on uut Firefox Screenshots keskkonnas?
@@ -71,11 +75,9 @@ homePageCaptureRegion = Piirkonna valimine
 homePageCaptureRegionDescription = Klõpsa ja lohista alal, mida salvestada soovid. Või lihtsalt hoia kursorit selle kohal ja klõpsa — Screenshots valib ala sinu eest. Oled nähtavaga rahul? Vali Salvesta ekraanipildile võrgus ligipääsuks või vajuta nupule noolega alla, kui soovid selle enda arvutisse alla laadida.
 homePageCapturePage = Lehe salvestamine
 homePageCapturePageDescription = Tervete lehtede salvestamiseks kasuta nuppe ülal paremal. Salvesta nähtav nupp valib ala, mida näed kerimata, ja Salvesta terve leht valib kogu lehe.
-homePageSaveShare = Salvestamine ja jagamine
+homePageDownloadCopy = Laadi alla või kopeeri
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageShaveShareFavoriteDescription = Tee oma parim pilt. Seejärel salvesta see võrgus olevasse kuvapiltide kogumikku ning Firefox kopeerib lingi pildile sinu seadme vahemällu, et saaksid pilti lihtsalt jagada. Kogumikku lisatud pildid aeguvad automaatselt kahe nädala pärast, aga sa võid kustutada need ka kiiremini või säilitada neid soovi korral kauem.
-homePageSignInTitle = Sinu pildid kõikjal
-homePageSignInDescription = Logi sisse oma Firefoxi kontoga, et pääseda ekraanipiltidele ligi kõikjalt, kus kasutad Firefoxi. Lisatud boonusena saad siis lemmik ekraanipilte säilitada jäädavalt.
+homePageDownloadCopyDescription = Tee oma parim pilt. Screenshots võimaldab sul valitud alast pildi alla laadida või kopeerida otse arvuti vahemällu.
 homePageLegalLink = Õiguslik teave
 homePagePrivacyLink = Privaatsus
 homePageTermsLink = Kasutustingimused
@@ -146,7 +148,7 @@ shotPageBackToHomeButton =
     .title = Avalehele
 shotPageAllShotsButton =
     .title = Kõik pildid
-shotPageScreenshotsDescription = Ekraanipildid lihtsalt. Tee, salvesta ja jaga ekraanipilte Firefoxist lahkumata.
+shotPageScreenshotsDescriptionServerless = Ekraanipildid lihtsalt. Tee ja salvesta ekraanipilte Firefoxist lahkumata.
 shotPageDMCAMessage = See pilt pole enam saadaval intellektuaalomandi nõude tõttu kolmandalt osapoolelt.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Palun kirjuta { $dmca }, kui soovid rohkem teavet.
@@ -344,6 +346,11 @@ shotDeleteCancel = Loobu
     .title = Loobu
 shotDeleteConfirm = Kustuta
     .title = Kustuta
+
+## Export page
+
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Eksportimiseks tee järgmist: File > Salvesta veebileht kui… ja leiad oma ekraanipildid kaustast { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
