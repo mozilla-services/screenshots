@@ -45,7 +45,7 @@ footerReportShot = Prijavi snimku
     .title = Prijavi ovu snimku zbog kršenja pravila, neželjene pošte ili drugih problema
 footerLinkFaqs = ČPP
 footerLinkDMCA = Prijavite kršenje vlasničkih prava
-footerLinkDiscourse = Pošaljite nam povratnu informaciju
+footerLinkDiscourse = Pošalji povratne informacije
 footerLinkRemoveAllData = Uklonite sve podatke
 
 ## Creating page
