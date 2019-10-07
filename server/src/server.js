@@ -233,6 +233,13 @@ app.post("/api/login", function(req, res) {
   );
 });
 
+app.get("/images/:imageid", serveImage);
+app.get("/images/:imageid/:filename", serveImage);
+
+function serveImage(req, res) {
+  simpleResponse(res, "Service Discontinued", 410);
+}
+
 app.post("/api/set-login-cookie", function(req, res) {
   simpleResponse(res, "", 200);
 });
@@ -341,13 +348,6 @@ app.use((req, res, next) => {
   });
 });
 
-app.use(
-  "/homepage",
-  express.static(path.join(__dirname, "static/homepage"), {
-    index: false
-  })
-);
-
 // This is a minimal heartbeat that only indicates the server process is up and responding
 app.get("/__lbheartbeat__", function(req, res) {
   res.send("OK");
@@ -371,12 +371,6 @@ app.get("/__heartbeat__", function(req, res) {
       res.status(500).send("database fail");
     });
 });
-
-app.use("/export", require("./pages/export/server").app);
-
-app.use("/leave-screenshots", require("./pages/leave-screenshots/server").app);
-
-app.use("/hosting-shutdown", require("./pages/hosting-shutdown/server").app);
 
 app.use("/", require("./pages/homepage/server").app);
 
