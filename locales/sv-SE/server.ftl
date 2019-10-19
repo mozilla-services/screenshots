@@ -44,7 +44,7 @@ footerLinkPrivacy = Sekretesspolicy
 footerReportShot = Rapportera skärmbild
     .title = Rapportera denna skärmbild för missbruk, spam eller andra problem
 footerLinkFaqs = Vanliga frågor
-footerLinkDMCA = Rapportera IP-överträdelse
+footerLinkDMCA = Rapportera överträdelse av immaterialrätt
 footerLinkDiscourse = Ge återkoppling
 footerLinkRemoveAllData = Ta bort alla data
 
