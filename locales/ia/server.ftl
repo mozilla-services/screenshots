@@ -18,7 +18,7 @@ buttonSignIn =
     .title = Apertura de session
 screenshotsLogo =
     .title = Pagina initial de Screenshots
-bannerSignIn = <a>Authentica te o registra te</a> pro acceder tu instantaneos trans apparatos e salvar sempre tu favoritos.
+bannerSignIn = <a>Authentica te o registra te</a> pro acceder a tu instantaneos inter apparatos e salvar sempre tu favorites.
 bannerUpsell = { gScreenshotsDescription } <a>Prende Firefox ora</a>
 shutdownWarning = <b>Le instantaneos salvate expirara tosto.</b> A initiar de junio, Screenshots non offerera plus magazinage online. Vole tu retener tu capturas ex tu bibliotheca? <a>Discarga los in tu computator.</a>
 shutdownPageTitle = Screenshots cambia
@@ -298,7 +298,7 @@ settingsClosePreferences =
     .title = Clauder le preferentias
 settingsFxaDisconnectAlertMessage = Desira tu vermente disconnecter iste apparato ex tu conto Firefox?
 settingsFxaDisconnectDescription = Si tu te disconnecte, pois tu besoniara de authenticar te de novo pro reganiar le accesso a tu instantaneos de schermo.
-settingsFxaConnectDescription = Tu pote authenticar te pro acceder a tu instantaneos de schermo trans apparatos differente.
+settingsFxaConnectDescription = Tu pote authenticar te pro acceder a tu instantaneos de schermo inter apparatos.
 
 ## Shotindex page
 
