@@ -18,18 +18,18 @@ buttonSignIn =
     .title = Jeike
 screenshotsLogo =
     .title = Screenshots kuatiarogue ñepyrũ
-bannerSignIn = <a>Emoñepyrũ tembiapo térã eñemboheraguapy</a> ehecha hag̃ua ne ra’anga opaite mba’e’okápe ha eñongatuete umi eguerohoryvéva.
+bannerSignIn = <a>Eñepyrũ tembiapo térã eñemboheraguapy</a> ehecha hag̃ua ne ra’ãnga opa mba’e’okápe ha eñongatu umi erohoryvéva.
 bannerUpsell = { gScreenshotsDescription } <a>Eguereko Firefox ko'ág̃a</a>
-shutdownWarning = <b>Umi mba’erechaha japyhypy ñongatupyre oñemboguétama vokoiete.</b> Jasypoteĩ guive, Screenshots noñongatumo’ãvéima ñandutípe. ¿Eguerekosépa nde japypyhypyre ne arandukarendápe? <a>Emboguejy ne mohendahápe.</a>
+shutdownWarning = <b>Mba’erechaha japyhypy ñongatupy oguétama vokoiete.</b> Jasypoteĩ guive, Screenshots noñongatumo’ãvéima ñandutípe. ¿Eguerekosépa japypyhypyre ne arandukarendápe? <a>Emboguejy mohendahápe.</a>
 shutdownPageTitle = Screenshots iñambuehína
-shutdownPageDescription = Jasypoteĩ guive, Screenshots noñongatumo’ãvéima ñandutípe. ¿Eguerekosépa nde japypyhypyre ne arandukarendápe? Emboguejy ha’eñomínte térã <a>hetaháicha</a>. Aguyje eipuru haguére ko tembiapoite ha rombyasy pe atõivai.
-shutdownPageContinue = Hi’ã oréve eipurumeme Screenshots ejapo, embokuatia ha emboguejy hag̃ua mba’erechaha japyhypyre.
+shutdownPageDescription = Jasypoteĩ guive, Screenshots noñongatumo’ãvéima ñandutípe. ¿Eguerekosépa nde japypyhypyre ne arandukarendápe? Emboguejy ha’eñomínte térã <a>hetaháicha</a>. Aguyje eipurúre ko tembiapoite ha rombyasy pe atõivai.
+shutdownPageContinue = Hi’ã oréve eipuru Screenshots ejapo, embokuatia ha emboguejy hag̃ua mba’erechaha japyhypyre.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
-onboardingPromoTitle = ¿Mba’e ipyahúva ejuhukuaa Firefox Screenshots-pe?
-onboardingPromoMessage = Ko’ág̃a, emoñepyrũ tembiapo Screenshots-pe Firefox mba’ete ndive ha ndepya’eve hag̃ua:
-onboardingPromoMessageListItem1 = Eike ne arandukarendápe opaite ne mba’e’oka guive.
-onboardingPromoMessageListItem2 = Eñongatu ne ra’ãnga opa árape g̃uarã
+onboardingPromoTitle = ¿Mba’e pyahu ejuhukuaa Firefox Screenshots-pe?
+onboardingPromoMessage = Eñepyrũ tembiapo Screenshots-pe Firefox mba’etépe ha nde pya’evéta:
+onboardingPromoMessageListItem1 = Eike arandukarendápe opaite ne mba’e’okágui.
+onboardingPromoMessageListItem2 = Eñongatu ne ra’ãnga opa ára pegua
 onboardingPromoDismissButton = Mboyke
     .title = Mboyke
 onboardingPromoSigninButton = Emoñepyrũ tembiapo
@@ -43,10 +43,10 @@ footerLinkTerms = Jejapopy
 footerLinkPrivacy = Mombe'u ñeñomipy
 footerReportShot = Emomarandu japyhypy rehegua
     .title = Emomarandu ko ta'anga imarãha, spam ha ambue apañuãi
-footerLinkFaqs = Porandu py'ỹi
+footerLinkFaqs = FAQs
 footerLinkDMCA = Emombe’u IP-pe oĩvaíva
 footerLinkDiscourse = Ñe'ẽte ñemondo
-footerLinkRemoveAllData = Emboguete opaite mba’ekuaarã
+footerLinkRemoveAllData = Embogue mba’ekuaarã
 
 ## Creating page
 
@@ -60,8 +60,8 @@ creatingPageWaitMessage = Oñongatuhína japyhypy...
 ## Home page
 
 homePageDescription =
-    .content = Mba’erechaha japyhypy oñandúva kundaha ryepýpe. Ejapyhy, eñongatu ha emoherakuã mba’erechaha japyhypy eikundahakuévo ñandutípe eipurúvo Firefox.
-homePageButtonMyShots = Eho che japyhypýpe
+    .content = Mba’erechaha japyhypy oñandúva kundaha ryepýpe. Ejapyhy, eñongatu ha emoherakuã mba’erechaha japyhypy eikundahávo Firefox-pe.
+homePageButtonMyShots = Eho japyhypýpe
 homePageTeaser = Namombyryvéima…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Emboguejy reiete
@@ -69,11 +69,11 @@ homePageDownloadFirefoxSubTitle = Emboguejy reiete
 homePageHowScreenshotsWorks = Mba’éicha omba’apo Firefox Screenshots
 homePageGetStartedTitle = Jeguata ñepyrũ
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescriptionPageAction = Embosa’y Screenshots ra’anga’i poravorã oku’éva tembipuru rendápe ha ehecháta pe poravorã kundaha rovetã yvate gotyo.
+homePageGetStartedDescriptionPageAction = Embosa’y Screenshots ra’ãnga’i poravorã oku’éva tembipuru rendápe ha ehecháta pe poravorã kundaha rovetã yvate gotyo.
 homePageCaptureRegion = Ejapyhy peteĩ tendaguasu
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Ehesakutu ha embosyryry eiporavo hag̃ua umi rejapyhyséva. Térã ehasánte hi’ári ha eikutu — Screenshots oiporavóta pe korá ndéve g̃uarã. ¿Emoneĩpa pe ehecháva? Eiporavo Ñongatu eike hag̃ua nde japyhypy ñandutiguáva térã pe votõ hu’y yvy gotyogua eñongatu hag̃ua ne mohendahápe.
-homePageCapturePage = Peteĩ kuatiarogue jejapyhy
+homePageCaptureRegionDescription = Ehesakutu ha embosyryry eiporavóvo ejapyhyséva. Térã ehasánte hi’ári ha eikutu — Screenshots oiporavóta pe kora ndéve g̃uarã. ¿Emoneĩ pe ehecháva? Eiporavo Ñongatu eike hag̃ua japyhypy ñandutiguáva térã pe votõ hu’y yvy gotyogua eñongatúvo mohendahápe.
+homePageCapturePage = Kuatiarogue jejapyhy
 homePageCapturePageDescription = Eipuru umi votõ yvategua akatúvape oĩva ejapyhy hag̃ua kuatiarogue tuichaháicha. Pe votõ Ñongatu Jehecháva ojapyhýta pe kora ikatúva rehecha eku’e’ỹre ha Kuatiarogue Tuichaháicha Ñongatu ojapyhypáta kuatiaroguépe.
 homePageDownloadCopy = Emboguejy térã embokuatia
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
