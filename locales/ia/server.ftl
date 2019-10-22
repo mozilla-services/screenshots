@@ -156,7 +156,7 @@ shotPageDMCAContact = Per favor invia un email a { $dmca } pro querer altere inf
 shotPageDMCAWarning = Si tu Instantaneos es subjecte a trop reclamationes, nos pote revocar tu accesso a Firefox Screenshots.
 # Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Per favor include le URL del iste instantaneo in tu email: { $url }
-shotPageKeepFor = Quante tempore debe ser reservate iste instantaneo?
+shotPageKeepFor = Quante tempore debe iste captura esser retenite?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Eliger le tempore
 # The ∞ is used to indicate that the shot won't expire. It is also used in
