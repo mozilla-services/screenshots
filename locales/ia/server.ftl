@@ -22,7 +22,7 @@ bannerSignIn = <a>Authentica te o registra te</a> pro acceder tu instantaneos tr
 bannerUpsell = { gScreenshotsDescription } <a>Prende Firefox ora</a>
 shutdownWarning = <b>Le instantaneos salvate expirara tosto.</b> A initiar de junio, Screenshots non offerera plus magazinage online. Vole tu retener tu capturas ex tu bibliotheca? <a>Discarga los in tu computator.</a>
 shutdownPageTitle = Screenshots cambia
-shutdownPageDescription = Desde Junio, Screenshots non offerera plus immagazinage online. Vole tu retener instantaneos de tu libreria? Discarga tu instantaneos  singularmente o <a>per lotes</a>. Gratias pro usar iste functionalitate, nos regretta pro ulle incommoditate.
+shutdownPageDescription = A partir de junio, Screenshots non offerera plus le immagazinage in linea. Vole tu retener instantaneos de tu bibliotheca? Discarga tu instantaneos individualmente o <a>per lot</a>. Gratias pro usar iste functionalitate, nos regretta omne incommoditate.
 shutdownPageContinue = Nos spera que vos continuara a usar Screenshots pro capturar, copiar e discargar instantaneos.
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
@@ -316,7 +316,7 @@ shotIndexPageNoShotsMessage = Instantaneos non salvate
 shotIndexPageNoShotsInvitation = Va, crea los.
 shotIndexPageLookingForShots = Recerca de tu instantaneos...
 shotIndexPageNoSearchResultsIntro = Hum…
-shotIndexPageNoSearchResults = Nos non pote trovar ulle instantaneos que concorda con tu recerca.
+shotIndexPageNoSearchResults = Nos non pote trovar instantaneos que corresponde a tu recerca.
 shotIndexPageMyShotsButton =
     .title = Mi instantaneos
 shotIndexPageClearSearchButton =
