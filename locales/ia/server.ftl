@@ -233,7 +233,7 @@ annotationTextButton =
     .title = Adder texto
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
-    .title = Clarar
+    .title = Vacuar
 annotationCropButton =
     .title = Reducer
 annotationSaveEditButton = Salvar
@@ -320,7 +320,7 @@ shotIndexPageNoSearchResults = Nos non pote trovar instantaneos que corresponde 
 shotIndexPageMyShotsButton =
     .title = Mi instantaneos
 shotIndexPageClearSearchButton =
-    .title = Clarar le recerca
+    .title = Vacuar le recerca
 shotIndexPageConfirmShotDelete = Deler iste instantaneo?
 shotIndexPagePreviousPage =
     .title = Pagina previe
