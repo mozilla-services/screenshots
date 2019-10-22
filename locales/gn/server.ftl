@@ -74,10 +74,10 @@ homePageCaptureRegion = Ejapyhy peteĩ tendaguasu
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Ehesakutu ha embosyryry eiporavóvo ejapyhyséva. Térã ehasánte hi’ári ha eikutu — Screenshots oiporavóta pe kora ndéve g̃uarã. ¿Emoneĩ pe ehecháva? Eiporavo Ñongatu eike hag̃ua japyhypy ñandutiguáva térã pe votõ hu’y yvy gotyogua eñongatúvo mohendahápe.
 homePageCapturePage = Kuatiarogue jejapyhy
-homePageCapturePageDescription = Eipuru umi votõ yvategua akatúvape oĩva ejapyhy hag̃ua kuatiarogue tuichaháicha. Pe votõ Ñongatu Jehecháva ojapyhýta pe kora ikatúva rehecha eku’e’ỹre ha Kuatiarogue Tuichaháicha Ñongatu ojapyhypáta kuatiaroguépe.
+homePageCapturePageDescription = Eipuru votõ yvategua akatúagua ejapyhy hag̃ua kuatiarogue tuichaháicha. Pe votõ Ñongatu Jehecháva ojapyhýta pe kora ikatúva ehecha eku’e’ỹre ha Kuatiarogue Tuichaháicha Ñongatu ojapyhypáta kuatiaroguépe.
 homePageDownloadCopy = Emboguejy térã embokuatia
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageDownloadCopyDescription = Ejapo mba’erechaha japyhypy iporãvéva. Screenshots omoneĩ emboguejývo nde poravopy térã embohasávo nde kuatiajokohapetevoi.
+homePageDownloadCopyDescription = Ejapo mba’erechaha japyhypy iporãvéva. Screenshots omoneĩ emboguejývo poravopy térã embohasávo kuatiajokohapetevoi.
 homePageLegalLink = Añetegua
 homePagePrivacyLink = Ñemigua
 homePageTermsLink = Jejapopy
@@ -87,19 +87,19 @@ homePageCookiesLink = Kookie
 
 leavePageRemoveAllData = Emboguete opaite mba’ekuaarã
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAuthRequired = Eguerekova’erã Firefox Screenshots mohendapyre térã Firefox mba’etépe tembiapo emboguete hag̃ua mba’ete
+leavePageErrorAuthRequired = Eguerekóke Firefox Screenshots mohendapyre térã Firefox mba’etépe tembiapo embogue hag̃ua mba’ete
 leavePageErrorGeneric = Oiko peteĩ jejavy
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageWarning = Póva omboguéta tapiaiterã opaite ne mba’ekuaarã Firefox Screenshots-gui.
+leavePageWarning = Kóva omboguetéta opaite ne mba’ekuaarã Firefox Screenshots-gui.
 leavePageButtonProceed = Ku’ejey
 leavePageButtonCancel = Heja
-leavePageDeleted = Opaite nde japyhypy oñemboguepáma
+leavePageDeleted = Opaite nde japyhypy oñemboguepáma!
 
 ## Not Found page
 
-notFoundPageTitle = Kuatiarogue ojejuhu’ỹva
+notFoundPageTitle = Kuatiarogue oĩ’ỹva
 notFoundPageIntro = Oops.
-notFoundPageDescription = Kuatiarogue ojejuhu’ỹva.
+notFoundPageDescription = Kuatiarogue oĩ’ỹva.
 
 ## Shot page
 
