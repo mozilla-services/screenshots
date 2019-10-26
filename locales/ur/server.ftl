@@ -11,6 +11,9 @@ gNoShots =
 
 ## Header
 
+screenshotsLogo =
+    .title = سکرینشاٹ ہوم
+shutdownPageTitle = سکرینشاٹ تبدیل ہو رہا ہے
 
 ## Footer
 
@@ -37,7 +40,6 @@ homePageHowScreenshotsWorks = Firefox Screenshots کیسے کام کرتا ہے
 homePageGetStartedTitle = شروع کریں
 homePageCaptureRegion = ایک خطے پر قبضہ کریں
 homePageCapturePage = ایک صفحہ پر قبضہ کریں
-homePageSaveShare = محفوظ کریں اور شیئر کریں
 homePageLegalLink = قانونی
 homePagePrivacyLink = رازداری
 homePageTermsLink = شرائط
@@ -225,6 +227,9 @@ shotDeleteCancel = منسوخ کریں
     .title = منسوخ کریں
 shotDeleteConfirm = حزف کریں
     .title = جزف کریں
+
+## Export page
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
