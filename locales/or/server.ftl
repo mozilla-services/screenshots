@@ -68,6 +68,8 @@ homePageDownloadFirefoxSubTitle = ମୁକ୍ତ ଆହରଣ
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = ଫାୟାରଫକ୍ସ ସ୍କ୍ରୀନସର୍ଟ କିଭଳି କାମ କରେ
 homePageGetStartedTitle = ଆରମ୍ଭ କରନ୍ତୁ
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = ଠିକଣା ପଟ୍ଟୀରେ Screenshots ଆଇକନକୁ ପୃଷ୍ଠା ଆକ୍ସନ ମେନୁରୁ ବାଛନ୍ତୁ, ଏବଂ ଆପଣଙ୍କର ବ୍ରାଉଜରର ଉପରେ Screenshots ମେନୁ ଦେଖାଯିବ
 homePageCaptureRegion = ଗୋଟିଏ କ୍ଷେତ୍ର ଆବଦ୍ଧ କରନ୍ତୁ
 homePageCapturePage = ଗୋଟିଏ ପୃଷ୍ଠା ଆବଦ୍ଧ କରନ୍ତୁ
 homePageDownloadCopy = ଡାଉନଲୋଡ଼ କିମ୍ବା କପି କରନ୍ତୁ
@@ -304,6 +306,7 @@ shotIndexPageNextPage =
     .title = ପରବର୍ତ୍ତୀ ପୃଷ୍ଠା
 shotIndexSyncedShot =
     .title = screenshotଟି ଅନ୍ୟ ଏକ ଉପକରଣରେ ନିଆଯାଇଥିଲା
+shotIndexAlertErrorFavoriteShot = ପ୍ରିୟ Screenshot ଖବର ଆଣିବାରେ ତ୍ରୁଟି ରହିଗଲା
 
 ## Delete Confirmation Dialog
 
@@ -315,6 +318,8 @@ shotDeleteConfirm = ଲିଭାନ୍ତୁ
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = ରପ୍ତାନି କରିବାକୁ: ବ୍ୟବହାର କରନ୍ତୁ ଫାଇଲ > ଏହି ଭଳି ଭାବେ ପୃଷ୍ଠାକୁ ସଂରକ୍ଷଣ କରନ୍ତୁ… ଏବଂ ଫୋଲ୍ଡରରେ { $folder } ଆପଣଙ୍କର Screenshots ପାଇପାରିବେ
 
 ## Metrics page
 ## All metrics strings are optional for translation
@@ -333,6 +338,7 @@ metricsPageShotsQueryDescription = (ଶେଷ 30 ଦିନ ଧରି) ପ୍ର�
 metricsPageShotsQueryCount = ଛବିଗୁଡ଼ିକର ସଂଖ୍ୟା
 metricsPageShotsQueryDay = ଦିନ
 metricsPageUsersQueryTitle = ଦିନ ହିସାବରେ ବ୍ୟବହାରକାରୀ
+metricsPageUsersQueryDescription = (ଶେଷ 30 ଦିନରେ) ଅତିକମରେ ଦିନକୁ ଗୋଟିଏ Screenshot ତିଆରି କରିଥିବା ବ୍ୟବହାରକାରୀଗଣ
 metricsPageUsersQueryCount = ବ୍ୟବହାରକାରୀଙ୍କ ସଂଖ୍ୟା
 metricsPageUsersQueryDay = ଦିନ
 metricsPageUserShotsQueryTitle = ପ୍ରତି ବ୍ୟବହାରକାରୀ ପିଛା ସ୍କ୍ରିନ୍‌ସଟ୍‌ ସଂଖ୍ୟା
