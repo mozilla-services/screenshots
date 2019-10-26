@@ -112,7 +112,7 @@ shotPageConfirmDelete = Desira tu vermente deler permanentemente iste instantane
 shotPageShareButton =
     .title = Compartir
 shotPageCopyButton =
-    .title = Copiate imagine al area de transferentia!
+    .title = Copiar le imagine al area de transferentia
 shotPageCopyActionLabel = Copiar
 shotPageCopied = Copiate
 shotPageShareFacebook =
@@ -283,7 +283,7 @@ textToolInputPlaceholder =
 ## are passed from the shot page to the addon.
 
 copyImageErrorTitle = Alco errate eveniva
-copyImageErrorMessage = Impossibile copiar tu instantaneo al tabula de transferentia
+copyImageErrorMessage = Impossibile copiar tu instantaneo al area de transferentia.
 
 ## Settings Page
 
