@@ -15,10 +15,10 @@ gScreenshotsDescriptionServerless = Instantaneos rendite simple. Captura e disca
 buttonSettings =
     .title = Parametros
 buttonSignIn =
-    .title = Apertura de session
+    .title = Aperir session
 screenshotsLogo =
     .title = Pagina initial de Screenshots
-bannerSignIn = <a>Authentica te o registra te</a> pro acceder a tu instantaneos inter apparatos e salvar sempre tu favorites.
+bannerSignIn = <a>Aperi session o inscribe te</a> pro acceder a tu instantaneos inter apparatos e salvar sempre tu favorites.
 bannerUpsell = { gScreenshotsDescription } <a>Prende Firefox ora</a>
 shutdownWarning = <b>Le instantaneos salvate expirara tosto.</b> A initiar de junio, Screenshots non offerera plus magazinage online. Vole tu retener tu capturas ex tu bibliotheca? <a>Discarga los in tu computator.</a>
 shutdownPageTitle = Screenshots cambia
@@ -27,13 +27,13 @@ shutdownPageContinue = Nos spera que vos continuara a usar Screenshots pro captu
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Que novas con Firefox Screenshots?
-onboardingPromoMessage = Ora authentica te a Screenshots con un conto de Firefox e face plus:
+onboardingPromoMessage = Ora aperi session a Screenshots con un conto de Firefox e face plus:
 onboardingPromoMessageListItem1 = Accede a tu bibliotheca sur tote tu apparatos
 onboardingPromoMessageListItem2 = Reserva tu instantaneos favorite per sempre
 onboardingPromoDismissButton = Dimitter
     .title = Dimitter
-onboardingPromoSigninButton = Authenticar se
-    .title = Authenticar se
+onboardingPromoSigninButton = Aperir session
+    .title = Aperir session
 
 ## Footer
 
@@ -87,7 +87,7 @@ homePageCookiesLink = Cookies
 
 leavePageRemoveAllData = Remover tote le datos
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAuthRequired = Tu debe haber Firefox Screenshots installate o esser authenticate in un conto de Firefox pro deler tu proprie conto
+leavePageErrorAuthRequired = Tu debe haber Firefox Screenshots installate o aperir session a un conto de Firefox pro deler tu conto
 leavePageErrorGeneric = Un error occurreva
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Isto cancellara permanentemente tote le datos de tu Firefox Screenshots.
@@ -290,15 +290,15 @@ copyImageErrorMessage = Impossibile copiar tu instantaneo al area de transferent
 settingsDisconnectButton = Disconnecter
     .title = Disconnecter
 settingsGuestAccountMessage = Conto hospite
-settingsSignInButton = Authenticar se
-    .title = Authenticar se
+settingsSignInButton = Aperir session
+    .title = Aperir session
 SettingsPageHeader = Configurationes de Firefox Screenshots
 settingsFirefoxAccountSubHeader = Conto Firefox
 settingsClosePreferences =
     .title = Clauder le preferentias
 settingsFxaDisconnectAlertMessage = Desira tu vermente disconnecter iste apparato ex tu conto Firefox?
-settingsFxaDisconnectDescription = Si tu te disconnecte, pois tu besoniara de authenticar te de novo pro reganiar le accesso a tu instantaneos de schermo.
-settingsFxaConnectDescription = Tu pote authenticar te pro acceder a tu instantaneos de schermo inter apparatos.
+settingsFxaDisconnectDescription = Si tu claude session, tu debera reaperir session pro reganiar le accesso a tu capturas de schermo.
+settingsFxaConnectDescription = Tu pote aperir session pro acceder a tu instantaneos de schermo inter apparatos.
 
 ## Shotindex page
 
