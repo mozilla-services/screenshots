@@ -15,7 +15,7 @@
     "classnames": "2.2.6",
     "content-disposition": "0.5.3",
     "convict": "4.4.1",
-    "cookies": "0.7.3",
+    "cookies": "0.8.0",
     "core-js": "2.6.2",
     "csurf": "1.9.0",
     "envc": "2.5.0",
