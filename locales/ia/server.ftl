@@ -208,7 +208,7 @@ timeDiffFutureDays =
         [one] deman
        *[other] in { $number } dies
     }
-errorThirdPartyCookiesEnabled = Si tu ha prendite iste instantaneo e non pote lo deler, tu pote besoniar de activar temporarimente le cookies de tertie partes in le preferentias de tu navigator.
+errorThirdPartyCookiesEnabled = Si tu ha prendite iste instantaneo e non pote deler lo, tu debe forsan activar temporarimente le cookies de tertie parte in le preferentias de tu navigator.
 
 ## Shot Page New Feature Promotion Dialog.
 
