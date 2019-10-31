@@ -15,8 +15,12 @@ buttonSettings =
     .title = सेटिंग
 buttonSignIn =
     .title = साइन इन करा
+screenshotsLogo =
+    .title = स्क्रीनशॉट मुख्यपृष्ठ
 onboardingPromoDismissButton = बरखास्त
     .title = बरखास्त
+onboardingPromoSigninButton = साइन इन करा
+    .title = साइन इन करा
 
 ## Footer
 
@@ -56,6 +60,7 @@ homePageCaptureRegion = क्षेत्र कॅप्चर करा
 homePageCaptureRegionDescription = प्रतिमा बनवायचे क्षेत्र निवडण्यासाठी क्लिक करून ओढा. किंवा फक्त वरचेवर फिरवा आणि क्लिक करा — स्क्रीनशॉट्स आपल्यासाठी क्षेत्र निवडेल. आपण पाहिले ते आवडले का? आपले स्क्रीनशॉट नंतर वापरण्यासाठी जतन करणे निवडा किंवा डाउनलोड करण्यासाठी खालील बाणाचे बटन निवडा.
 homePageCapturePage = पृष्ठ कॅप्चर करा
 homePageCapturePageDescription = वरील उजवी बटने पूर्ण पृष्ठ साठवण्यासाठी वापरा. आपण स्क्रोल न करता पाहू शकणारे क्षेत्र दर्शनीय साठवा बटन साठवेल, आणि पूर्ण पृष्ठ साठवा बटन पूर्ण पृष्ठ साठवेल.
+homePageDownloadCopy = डाउनलोड किंवा कॉपी करा
 homePageLegalLink = कायदेशीर
 homePagePrivacyLink = गुप्तता
 homePageTermsLink = अटी
@@ -120,6 +125,8 @@ shotPageEditButton =
     .title = ही प्रतिमा संपादित करा
 shotPagefavoriteButton =
     .title = हा शॉट आवडता म्हणून चिन्हांकित करा
+shotPageBackToHomeButton =
+    .title = मुखपृष्ठ
 shotPageAllShotsButton =
     .title = सर्व शॉट
 shotPageDMCAMessage = तृतीय पक्ष बौद्धिक संपत्ती दाव्यामुळे हा शॉट उपलब्ध नाही.
@@ -255,6 +262,7 @@ textToolInputPlaceholder =
 ## notification. It is triggered by an action in the shot page and the strings
 ## are passed from the shot page to the addon.
 
+copyImageErrorTitle = काहीतरी चुकत आहे
 
 ## Settings Page
 
