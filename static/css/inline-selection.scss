@@ -70,7 +70,7 @@ $very-light-grey: #ededed;
 .mover-target.direction-topLeft {
   cursor: nwse-resize;
   height: $mover-size;
-  inset-inline-start: -$mover-outer;
+  left: -$mover-outer;
   top: -$mover-outer;
   width: $mover-size;
 }
@@ -88,7 +88,7 @@ $very-light-grey: #ededed;
 .mover-target.direction-topRight {
   cursor: nesw-resize;
   height: $mover-size;
-  inset-inline-end: -$mover-outer;
+  right: -$mover-outer;
   top: -$mover-outer;
   width: $mover-size;
 }
@@ -96,7 +96,7 @@ $very-light-grey: #ededed;
 .mover-target.direction-left {
   cursor: ew-resize;
   height: 100%;
-  inset-inline-start: -$mover-outer;
+  left: -$mover-outer;
   top: 0;
   width: $mover-size;
   z-index: 4;
@@ -105,7 +105,7 @@ $very-light-grey: #ededed;
 .mover-target.direction-right {
   cursor: ew-resize;
   height: 100%;
-  inset-inline-end: -$mover-outer;
+  right: -$mover-outer;
   top: 0;
   width: $mover-size;
   z-index: 4;
@@ -115,7 +115,7 @@ $very-light-grey: #ededed;
   bottom: -$mover-outer;
   cursor: nesw-resize;
   height: $mover-size;
-  inset-inline-start: -$mover-outer;
+  left: -$mover-outer;
   width: $mover-size;
 }
 
@@ -132,7 +132,7 @@ $very-light-grey: #ededed;
   bottom: -$mover-outer;
   cursor: nwse-resize;
   height: $mover-size;
-  inset-inline-end: -$mover-outer;
+  right: -$mover-outer;
   width: $mover-size;
 }
 
@@ -159,7 +159,7 @@ $very-light-grey: #ededed;
 .direction-topLeft .mover,
 .direction-left .mover,
 .direction-bottomLeft .mover {
-  inset-inline-start: $handle-mover-offset;
+  left: $handle-mover-offset;
 }
 
 .direction-topLeft .mover,
@@ -171,7 +171,7 @@ $very-light-grey: #ededed;
 .direction-topRight .mover,
 .direction-right .mover,
 .direction-bottomRight .mover {
-  inset-inline-end: $handle-mover-offset;
+  right: $handle-mover-offset;
 }
 
 .direction-bottomRight .mover,
