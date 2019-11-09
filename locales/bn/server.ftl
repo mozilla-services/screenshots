@@ -49,7 +49,7 @@ footerLinkRemoveAllData = সকল ডাটা অপসারণ করুন
 # captured in the screenshot. The default, for pages without titles, is
 # creatingPageTitleDefault.
 creatingPageTitle = { $title } তৈরি করছে
-creatingPageTitleDefault = পৃষ্ঠা
+creatingPageTitleDefault = পাতা
 creatingPageWaitMessage = আপনার শট সংরক্ষিত হচ্ছে...
 
 ## Home page
@@ -203,7 +203,7 @@ errorThirdPartyCookiesEnabled = আপনি যদি শট নেন, কি�
 ## Shot Page New Feature Promotion Dialog.
 
 # Note: If possible, choose a short translation to better fit into the card.
-promoTitle =   নোট করুন!
+promoTitle = নোট করুন!
 promoMessage = আপডেট করা সম্পাদনার সরঞ্জাম আপনাকে ক্রপ, হাইলাইট এবং এমনকি আপনার শটে টেক্সট লিখতে দিবে।
 promoLink = এগুলে একবার চেষ্টা করে দেখুন
 promoCloseButton =
@@ -273,6 +273,7 @@ textToolInputPlaceholder =
 ## are passed from the shot page to the addon.
 
 copyImageErrorTitle = কোন একটা সমস্যা হয়েছে
+copyImageErrorMessage = ক্লিপবোর্ডে আপনার শটটি কপি করতে অক্ষম।
 
 ## Settings Page
 
@@ -286,6 +287,7 @@ settingsFirefoxAccountSubHeader = Firefox Account
 settingsClosePreferences =
     .title = পছন্দসমূহ বন্ধ করুন
 settingsFxaDisconnectAlertMessage = আপনি কি নিশ্চিত আপনার Firefox অ্যাকাউন্ট থেকে এই ডিভাইসটি বিচ্ছিন্ন করতে চান?
+settingsFxaDisconnectDescription = আপনি যদি সাইন আউট করেন, তবে আপনার স্ক্রিনশট পুনরায় ব্যবহার করতে আপনাকে আবার সাইন ইন করতে হবে।
 settingsFxaConnectDescription = আপনার সকল ডিভাইসে আপনার স্ক্রিনশটগুলো ব্যবহার করতে সাইন ইন করতে পারেন।
 
 ## Shotindex page
@@ -303,7 +305,7 @@ shotIndexPageSearchPlaceholder =
 shotIndexPageNoShotsMessage = কোন সংরক্ষিত শট নেই।
 shotIndexPageNoShotsInvitation = নিন, কিছু তৈরি করুন।
 shotIndexPageLookingForShots = আপনার শট খোঁজ করছি...
-shotIndexPageNoSearchResultsIntro = হমম
+shotIndexPageNoSearchResultsIntro = হুম
 shotIndexPageNoSearchResults = আমরা আপনার খোঁজার সাথে সম্পর্কিত কোন শট পাই নাই।
 shotIndexPageMyShotsButton =
     .title = আমার শট
@@ -314,8 +316,18 @@ shotIndexPagePreviousPage =
     .title = আগের পাতা
 shotIndexPageNextPage =
     .title = পরের পাতা
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = এটি কোনও ফেভারিট শট নয় এবং এটির মেয়াদ শেষ হবে
+# This is the tooltip for a "heart" symbol in the upper top corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = এটি একটি ফেভারিট শট এবং এটির মেয়াদ শেষ হয় না
 shotIndexSyncedShot =
     .title = শট অন্য ডিভাইসে নেওয়া হয়েছে
+shotIndexAlertErrorFavoriteShot = ফেভারিট শট স্ট্যাটাস আপডেট করতে ত্রুটি
 
 ## Delete Confirmation Dialog
 
@@ -327,6 +339,8 @@ shotDeleteConfirm = অপসারণ
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = এক্সপোর্ট করতে:File > Save Page As... ব্যবহার করুন এবং আপনি আপনার স্ক্রিনশটগুলি ফোল্ডারে { $folder }খুঁজুন
 
 ## Metrics page
 ## All metrics strings are optional for translation
