@@ -71,6 +71,8 @@ homePageCaptureRegionDescription = ক্লিক এবং ড্রাগ ক
 homePageCapturePage = একটি পেজ ক্যাপচার করুন
 homePageCapturePageDescription = পেজসমূহ সম্পূর্ণ ক্যাপচার করতে চাইলে উপরের ডান দিকের বোতাম ব্যবহার করুন। আপনি স্ক্রলিং না করে একটি ওয়েব পেজের যতটুকু অংশ দেখতে পান, তা ক্যাপচার করে দৃশ্যমান সংরক্ষণ বোতামটি, আর সম্পূর্ণ পেজ সংরক্ষণ ওই ওয়েবে পেজের সবকিছু ক্যাপচার করে।
 homePageDownloadCopy = ডাউনলোড অথবা অনুলিপি
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = আপনার সেরা শট নিন। Screenshots আপনার নির্বাচিত অংশ ডাউনলোড করতে বা সরাসরি ক্লিপবোর্ডে কপি করতে দেয়।
 homePageLegalLink = আইনগত
 homePagePrivacyLink = গোপনীয়তা
 homePageTermsLink = শর্তাবলী
@@ -79,6 +81,8 @@ homePageCookiesLink = কুকি
 ## Leave Screenshots page
 
 leavePageRemoveAllData = সকল ডাটা অপসারণ করুন
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = আপনার অ্যাকাউন্ট মুছে ফেলার জন্য আপনাকে অবশ্যই Firefox Screenshots ইনস্টল করা বা Firefox Account এ সাইন ইন থাকতে হবে
 leavePageErrorGeneric = একটি ত্রুটি দেখা দিয়েছে।
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = এতে করে আপনার Firefox Screenshots এর সকল ডাটা স্থায়ীরূপে মুছে যাবে।
@@ -139,6 +143,7 @@ shotPageBackToHomeButton =
     .title = নীড়পাতা
 shotPageAllShotsButton =
     .title = সব শট
+shotPageScreenshotsDescriptionServerless = Screenshots এখন অনেক সহজ। Firefox ছেড়ে না গিয়েই স্ক্রিনশট নিন এবং ডাউনলোড করুন।
 shotPageDMCAMessage = এক তৃতীয় পক্ষের মেধাসত্ত্ব দাবীর প্রেক্ষিতে শটটি আর পাওয়া যাবে না।
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = আরও তথ্যের জন্যে { $dmca } কে মেইল করে অনুরোধ করুন।
