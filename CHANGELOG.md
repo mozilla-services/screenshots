@@ -1,3 +1,14 @@
+## Version 40.0.0
+
+This is a server-only release. It removes all dynamic portions of the server, replaces a few API endpoints with null implementations, and responds with 410 Gone to all image requests.
+
+* Put in an explicit route for images, and remove pages. We don't want any user-visible pages besides the homepage. This removes some related routes.
+* Also this makes image requests return a 410 Gone response so we are more explicit that they weren't lost, but instead everything is discontinued. [9c3dc51](https://github.com/mozilla-services/screenshots/commit/9c3dc51)
+* Server-removal: remove all dynamic portions of the server. This replaces a few endpoints with null implementations, so that a client can submit events or attempt login and receive a null but valid result. [4d731ea](https://github.com/mozilla-services/screenshots/commit/4d731ea)
+* Make the homepage entirely static. This removes any dynamic properties, makes the homepage no longer login-aware, and does no React rendering on the client. Only the most minimal tour-related code is included the the homepage-tour.js file.  This does not remove the old now-unused code. [a87cd0e](https://github.com/mozilla-services/screenshots/commit/a87cd0e)
+* Rename bn-BD as bn, remove bn-IN ([#5386](https://github.com/mozilla-services/screenshots/issues/5386)) [cef0a85](https://github.com/mozilla-services/screenshots/commit/cef0a85)
+* Import upstream Bug 1531650 [306f65a](https://github.com/mozilla-services/screenshots/commit/306f65a)
+
 ## Version 39.0.0
 
 Note: Firefox-only release
