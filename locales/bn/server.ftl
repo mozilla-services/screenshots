@@ -19,7 +19,9 @@ buttonSignIn =
 screenshotsLogo =
     .title = Screenshots নীড়
 bannerUpsell = { gScreenshotsDescription } <a>Firefox ডাউনলোড করুন</a>
+shutdownWarning = <b> সংরক্ষিত স্ক্রিনশটগুলির মেয়াদ শীঘ্রই শেষ হচ্ছে </ b> জুনের শুরু থেকে, স্ক্রিনশটগুলি আর অনলাইনে জমা থাকবে না। আপনার লাইব্রেরী থেকে শট রাখতে চান? <a>এগুলি আপনার কম্পিউটারে ডাউনলোড করুন।</a>
 shutdownPageTitle = Screenshots পরিবর্তন হচ্ছে
+shutdownPageDescription = জুনে শুরু থেকে, স্ক্রিনশটগুলি আর অনলাইন স্টোরেজ সরবরাহ করবে না। আপনার লাইব্রেরী থেকে শট রাখতে চান? শটগুলি পৃথকভাবে বা <a>ব্যাচে</a> ডাউনলোড করুন। এই বৈশিষ্ট্যটি ব্যবহার করার জন্য আপনাকে ধন্যবাদ, এবং অসুবিধার জন্য আমরা দুঃখিত।
 # Text used in Firefox Account onboarding promo shown below
 # Sign in button in header
 onboardingPromoTitle = Firefox Screenshots এ নতুন কি আছে?
