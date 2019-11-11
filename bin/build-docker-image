@@ -25,7 +25,9 @@ make server
 
 xpi="build/screenshots.xpi"
 if [[ ! -e "$xpi" ]] ; then
-  make signed_xpi
+  # Disabled because making this kind of signed XPI is not currently working:
+  # make signed_xpi
+  echo "Skipping"
 fi
 
 echo "Creating docker image $1/screenshots:$version"
