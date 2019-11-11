@@ -21,7 +21,7 @@ Start the system addon release process by copying the following checklist into a
   - Make sure the mozilla-central branch is checked out in your local copy of Gecko, and make sure it is up to date
   - Export changes: `EXPORT_MC_LOCATION=path/to/gecko ./bin/export_mc.py --no-commit --no-switch-branch`
 - [ ] In your copy of Gecko, double-check the diff, and split the changes into two commits: one containing any translations and any translation-related changes to the `moz.build` file, and one containing non-translation code.
-  - Ensure your commit messages follow the [Firefox bug conventions](https://mdn.io/Committing_Rules_and_Responsibilities), for example: 
+  - Ensure your commit messages follow the [Firefox bug conventions](https://mdn.io/Committing_Rules_and_Responsibilities), for example:
     - `"Bug 1436218 - Export Screenshots 29.0.0 to Firefox (code excluding translations); r?ianbicking"`
     - `"Bug 1436218 - Export Screenshots 29.0.0 to Firefox (translations only); r?ianbicking"`
   - Choosing reviewers:
@@ -35,9 +35,7 @@ Start the system addon release process by copying the following checklist into a
   - When running tests against mozilla-beta, run the above incantation for regular unit tests and Talos testing against osx, then also run this separate build to test Talos against pgo builds for windows and linux: `./mach try fuzzy -q 'pgo talos-'`
   - See [#2822](https://github.com/mozilla-services/screenshots/issues/2822) for Talos and Treeherder basics
 - [ ] Add the Try links to the release bug
-- [ ] Push the review request to reviewboard using mozreview, also known as [Mozilla VCS tools](https://mozilla-version-control-tools.readthedocs.io/en/latest/)
-  - `git mozreview push` will work if you are using git-cinnabar and have mozreview configured
-  - To configure mozreview for use with git and git-cinnabar, see [this helpful blog post](https://sny.no/2016/03/geckogit)
+- [ ] Push the review request using [moz-phab](https://github.com/mozilla/subhub)
   - Note that this step should automatically attach the patch to the Bugzilla bug and request review from the reviewer mentioned in the commit message (should be reflected as an r? flag on the Bugzilla attachment)
 - [ ] Check that the Try build works (the decision step and build tasks in treeherder should be green)
   - If the build looks ok, send an email to the QA email alias (testpilot-qa) and CC the team alias (team-screenshots), asking QA to verify closed bugs are fixed and no new bugs are present.
