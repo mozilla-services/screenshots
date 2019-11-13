@@ -153,7 +153,7 @@ shotPageDMCAMessage = Iste instantaneo non es plus disponibile per un reclamatio
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Per favor invia un email a { $dmca } pro querer altere informationes.
 # Note: do not translate 'Firefox Screenshots' when translating this string
-shotPageDMCAWarning = Si tu Instantaneos es subjecte a trop reclamationes, nos pote revocar tu accesso a Firefox Screenshots.
+shotPageDMCAWarning = Si tu capturas es subjecte a multiple reclamationes, nos pote revocar tu accesso a Firefox Screenshots.
 # Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Per favor include le URL del iste instantaneo in tu email: { $url }
 shotPageKeepFor = Quante tempore debe iste captura esser retenite?
