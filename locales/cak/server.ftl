@@ -8,6 +8,7 @@ gMyShots = Taq Nuwachib'al
 gHomeLink = Tikirib'äl
 gNoShots =
     .alt = Majun wachib'äl xilitäj
+gScreenshotsDescriptionServerless = Relik chapoj wachib'äl. Man k'atzinel ta yatel el pa Firefox richin nachap, nayak ri chapoj wachib'äl.
 
 ## Header
 
@@ -15,6 +16,22 @@ buttonSettings =
     .title = Taq nuk'ulem
 buttonSignIn =
     .title = Titikirisäx molojri'ïl
+screenshotsLogo =
+    .title = Tikirib'äl Ruxaq Screenshots
+bannerSignIn = <a>Titikirisäx molojri'ïl o titz'ib'äx b'i'aj</a> richin yatok pa ri taq achapoj pa ri taq awokisab'al chuqa' jantape' keyake' ri taq ajawab'äl.
+bannerUpsell = { gScreenshotsDescription } <a>Tik'ul Firefox wakami</a>
+shutdownWarning = <b>Ri chapon taq wachib'äl eyakon xkeyuj yan el.</b> Pa junio ri Screenshots man xtiyakon ta chik pa k'amab'ey. ¿La nawajo' ye'aköl ri taq achapoj pa wujb'äl? <a>Ke'aqasaj kan pan akematz'ib'.</a>
+shutdownPageTitle = Nijalatäj ri screenshots
+shutdownPageDescription = Pa junio, ri Screenshots man xtiyakon ta chik pa k'amab'ey. ¿La nawajo' ye'ayäk ri taq achapoj e k'o pa awujb'al? Chi jujun ke'aqasaj o <a>pa molaj</a>. Matyox ruma nawokisaj re samaj re', kojakuyu' we yatqatz'ila'.
+shutdownPageContinue = Niqoyob'ej chi jantape' nawokisaj ri Screenshots richin yachapon, yawachib'en chuqa' ye'aqasaj taq chapoj.
+# Text used in Firefox Account onboarding promo shown below
+# Sign in button in header
+onboardingPromoTitle = ¿Achike k'ak'a' ruk'amon pe ri Firefox Screenshots?
+onboardingPromoMessage = Wakami, tatikirisaj molojri'ïl pa Screenshots rik'in jun Rub'i' Rutaqoya'l Firefox chuqa' tab'ana' k'ïy.
+onboardingPromoMessageListItem1 = Katok pan awujib'al pa ronojel taq awokisab'al
+onboardingPromoMessageListItem2 = Jumul ke'ayaka' ri jeb'ël taq awachib'al
+onboardingPromoDismissButton = Tich'aqïx
+    .title = Tich'aqïx
 onboardingPromoSigninButton = Titikirisäx molojri'ïl
     .title = Titikirisäx molojri'ïl
 
