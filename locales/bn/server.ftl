@@ -18,6 +18,7 @@ buttonSignIn =
     .title = সাইন ইন
 screenshotsLogo =
     .title = Screenshots নীড়
+bannerSignIn = ডিভাইস জুড়ে আপনার শটগুলি ব্যবহার করতে এবং আপনার ফেভারিট চিরতরে সংরক্ষণ করতে <a>সাইন ইন বা সাইন আপ করুন</a>।
 bannerUpsell = { gScreenshotsDescription } <a>Firefox ডাউনলোড করুন</a>
 shutdownWarning = <b> সংরক্ষিত স্ক্রিনশটগুলির মেয়াদ শীঘ্রই শেষ হচ্ছে </ b> জুনের শুরু থেকে, স্ক্রিনশটগুলি আর অনলাইনে জমা থাকবে না। আপনার লাইব্রেরী থেকে শট রাখতে চান? <a>এগুলি আপনার কম্পিউটারে ডাউনলোড করুন।</a>
 shutdownPageTitle = Screenshots পরিবর্তন হচ্ছে
