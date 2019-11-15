@@ -41,6 +41,8 @@ onboardingPromoSigninButton = Titikirisäx molojri'ïl
 footerLinkMozilla = Mozilla
 footerLinkTerms = Taq ojqanem
 footerLinkPrivacy = Rutzijol Ichinanem
+footerReportShot = Tiya' Rutzijol ri Chapoj
+    .title = Tiya' rutzijol re chapoj re' ruma tz'ilanem, seq'taqoj o jun chik k'ayewal
 footerLinkFaqs = Junelïk taq k'utunïk
 footerLinkDMCA = Rutzijol IP K'ayewal
 footerLinkDiscourse = Titaq Na'oj
@@ -73,6 +75,9 @@ homePageCaptureRegion = Tachapa' jun Ruwa
 homePageCaptureRegionDescription = Tapitz'a' chuqa' taqirirej richin nacha' ri k'ojlib'äl nawajo' nachäp. O xa xe taya' ri retal ch'oy pa ruwi' — ja ri Chapoj Wachib'äl xticha'o ri k'ojlib'äl chawäch. ¿La jeb'ël ri natz'ët? Tacha' Tiyak richin yatok pa chapoj awachib'al pa k'amab'ey o ri xulan ch'ab' richin nayäk qa pan akematz'ib'.
 homePageCapturePage = Tichap ruwachib'al jun Ruxaq
 homePageCapturePageDescription = Ke'okisäx ri ajsik ajkiq'a' taq pitz'b'äl richin ye'achäp chijun ruxaq. Ri Tiyak Wachel pitz'b'äl xtuchäp ri k'ojlem; man k'atzinel ta yatel richin natz'ët, chuqa' ri Tiyak Tz'aqät Ruxaq ronojel xtuchäq pa ri ruxaq.
+homePageDownloadCopy = Tiqasäx o Tiwachib'ëx
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageDownloadCopyDescription = Tab'ana' ri jeb'ël achapoj. Screenshots nuya' q'ij chawe naqasaj ri nacha' o nawachib'ej pa ri amolwuj.
 homePageLegalLink = Taqanel
 homePagePrivacyLink = Ichinanem
 homePageTermsLink = Taq Ojqanem
@@ -81,6 +86,8 @@ homePageCookiesLink = Taq Kaxlanwey
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Ke'elesäx el Konojel ri Taq Tzij
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAuthRequired = K'o chi ayakon ri Firefox Screenshots o yatok pa ri rub'i' ataqoya'l richin nayüj el ri rub'i' ataqoya'l.
 leavePageErrorGeneric = Xk'ulwachitäj jun sachoj
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Re re' xkeruyüj el konojel taq rutzij Firefox Chapoj Awachib'al.
@@ -135,8 +142,13 @@ shotPageDownloadShot =
     .title = Tiqasäx
 shotPageEditButton =
     .title = Tinuk' re wachib'äl re'
+shotPagefavoriteButton =
+    .title = Jeb'ël re chapoj re'
 shotPageBackToHomeButton =
     .title = Tikirib'äl ruxaq
+shotPageAllShotsButton =
+    .title = Ronojel Chapoj
+shotPageScreenshotsDescriptionServerless = Relik chapoj wachib'äl. Man k'atzinel ta yatel el pa Firefox richin nachap, nayak ri chapoj wachib'äl.
 shotPageDMCAMessage = Man wachel ta chik re wachib'äl re' ruma juley winaqi' nikich'ojij  jun na'owinäq ichinem.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Tataqa' { $dmca } richin nak'utuj juley rutzijol.
@@ -271,6 +283,7 @@ textToolInputPlaceholder =
 ## are passed from the shot page to the addon.
 
 copyImageErrorTitle = K'o itzel xub'än
+copyImageErrorMessage = Man tikirel ta niyak ri achapoj pa ri molwuj.
 
 ## Settings Page
 
@@ -283,6 +296,9 @@ SettingsPageHeader = Taq Runuk'ulem Firefox Screenshots
 settingsFirefoxAccountSubHeader = Rub'i' Rutaqoya'l Firefox
 settingsClosePreferences =
     .title = Ketz'apïx taq ajowanïk
+settingsFxaDisconnectAlertMessage = ¿La kan nawajo' nachüp re okisab'äl re' pa ri Rub'i' Ataqoya'l richin Firefox?
+settingsFxaDisconnectDescription = We natz'apij molojri'ïl, k'o chi natikirisaj chik richin ye'aköl ri taq okem pa ri chapoj taq awachib'al.
+settingsFxaConnectDescription = Yatikïr natikirisaj molojri'ïl richin yatok pa ri chapoj taq awachib'al pa jalajöj taq okisab'äl.
 
 ## Shotindex page
 
@@ -310,6 +326,18 @@ shotIndexPagePreviousPage =
     .title = Chuwäch ruxaq
 shotIndexPageNextPage =
     .title = Jun chik ruxaq
+# This is tooltip for a "blank heart" symbol used in the upper top corner of the card for a shot on the
+# My Shots page to indicate that the shot does expire.
+shotIndexNonFavoriteIcon =
+    .title = Man jun ta jeb'ël chapoj re re' chuqa' xtik'is yan ruq'ijul
+# This is the tooltip for a "heart" symbol in the upper top corner of the
+# card for a shot on the My Shots page. It indicate that the shot was marked as
+# a favorite by the owner.
+shotIndexFavoriteIcon =
+    .title = Jun jeb'ël chapoj re re' chuqa' man xtik'is ta ruq'ijul
+shotIndexSyncedShot =
+    .title = Chapoj chapon pa jun chik okisab'äl
+shotIndexAlertErrorFavoriteShot = Xsach toq nuk'ëx ri rub'anikil ri jeb'ël chapoj
 
 ## Delete Confirmation Dialog
 
@@ -321,6 +349,8 @@ shotDeleteConfirm = Tiyuj
 
 ## Export page
 
+# Note: "File" should match the name of the File Menu, and "Save Page As" should match that menu item. $folder is replaced with the name of the folder that will be created
+exportInstructions = Richin najïk' el: tawokisaj Yakb'äl > Tiyak Ruxaq Achi'el… richin nawïl ri chapoj awachib'al pa ri molyakb'äl { $folder }
 
 ## Metrics page
 ## All metrics strings are optional for translation
