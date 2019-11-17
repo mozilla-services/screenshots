@@ -25,7 +25,7 @@
     "fluent-intl-polyfill": "0.1.0",
     "fluent-langneg": "0.1.0",
     "fluent-react": "0.8.2",
-    "form-data": "2.3.3",
+    "form-data": "2.5.1",
     "hawk": "7.0.10",
     "jpm": "1.3.1",
     "jsdom": "13.1.0",
