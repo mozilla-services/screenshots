@@ -20,7 +20,7 @@
     "csurf": "1.9.0",
     "envc": "2.5.0",
     "escape-html": "1.0.3",
-    "express": "4.16.4",
+    "express": "4.17.1",
     "fluent": "0.9.1",
     "fluent-intl-polyfill": "0.1.0",
     "fluent-langneg": "0.1.0",
