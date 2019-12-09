@@ -23,8 +23,14 @@ class PromotionStrategy {
   }
 
   /* Display edit tool promotion on shot page below edit button */
-  shouldShowEditToolPromotion(isOwner, enableAnnotations, hasFxaOnboardingDialog) {
+  shouldShowEditToolPromotion(
+    isOwner,
+    enableAnnotations,
+    hasFxaOnboardingDialog
+  ) {
+    return false;
     // Hide edit tool promotion when showing fxaOnboarding dialog
+    /*
     if (!isOwner || !enableAnnotations || hasFxaOnboardingDialog) {
       return false;
     }
@@ -38,6 +44,7 @@ class PromotionStrategy {
       show = true;
     }
     return show;
+    */
   }
 
   /* Highlight edit tool icon on the shot page when user lands on shot page
@@ -77,7 +84,7 @@ class PromotionStrategy {
   }
 
   shouldShowDeprecation() {
-    return true;
+    return false;
   }
 }
 
