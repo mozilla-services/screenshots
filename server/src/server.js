@@ -355,21 +355,7 @@ app.get("/__lbheartbeat__", function(req, res) {
 
 // This tests if the server is really working
 app.get("/__heartbeat__", function(req, res) {
-  dbschema
-    .connectionOK()
-    .then(ok => {
-      if (!ok) {
-        statsd.increment("heartbeat.fail");
-        res.status(500).send("schema fail");
-      } else {
-        statsd.increment("heartbeat.pass");
-        res.send("OK");
-      }
-    })
-    .catch(error => {
-      statsd.increment("heartbeat.fail");
-      res.status(500).send("database fail");
-    });
+  res.send("OK");
 });
 
 app.use("/", require("./pages/homepage/server").app);
