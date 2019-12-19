@@ -1,3 +1,13 @@
+## Version 40.1.0
+
+Some small tweaks to 40.0.0 for release:
+
+* Remove renovatebot [54538d8](https://github.com/mozilla-services/screenshots/commit/54538d8)
+* Remove deprecation warning. Fixes [#5422](https://github.com/mozilla-services/screenshots/issues/5422) [8716fe6](https://github.com/mozilla-services/screenshots/commit/8716fe6)
+* Remove heartbeat database check. Fixes [#5423](https://github.com/mozilla-services/screenshots/issues/5423) [68243ed](https://github.com/mozilla-services/screenshots/commit/68243ed)
+* Also disable AMO-signed xpis [3825efd](https://github.com/mozilla-services/screenshots/commit/3825efd)
+* Disabling generation of the signed XPIs [9e159af](https://github.com/mozilla-services/screenshots/commit/9e159af)
+
 ## Version 40.0.0
 
 This is a server-only release. It removes all dynamic portions of the server, replaces a few API endpoints with null implementations, and responds with 410 Gone to all image requests.
