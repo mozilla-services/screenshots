@@ -6,7 +6,6 @@ COPY build/static /app/build/static
 COPY build/shared /app/build/shared
 COPY node_modules /app/node_modules
 COPY bin/_run-docker /app/bin/
-COPY build/screenshots.xpi /app/build/xpi/screenshots.xpi
 RUN cd app && npm install
 ENV NODE_ENV ${NODE_ENV:-production}
 
