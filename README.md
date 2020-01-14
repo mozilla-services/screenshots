@@ -4,6 +4,8 @@
 
 [Screenshots server status page](https://status.services.mozilla.com/)
 
+[Clarifying the Future of Firefox Screenshots](https://blog.mozilla.org/futurereleases/2019/01/24/clarifying-the-future-of-firefox-screenshots/)
+
 ----
 
 This is a screenshot tool for Firefox. It is available in Firefox 56 and later versions, as part of the default Firefox distribution.
@@ -60,7 +62,7 @@ For example, `MOZ_HEADLESS=1 SCREENSHOTS_BACKEND=https://screenshots.dev.mozaws.
 
 ### Getting to know the code
 
-There is documentation in [`addon/`](https://github.com/mozilla-services/screenshots/blob/master/addon/), [`addon/webextension/`](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/), [`addon/webextension/background/`](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/background/), and [`addon/webextension/selector/`](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/selector) that talks about the code layout and architecture of the add-on.
+There is documentation in [`webextension/`](https://github.com/mozilla-services/screenshots/blob/master/webextension/), [`webextension/background/`](https://github.com/mozilla-services/screenshots/blob/master/webextension/background/), and [`webextension/selector/`](https://github.com/mozilla-services/screenshots/blob/master/webextension/selector) that talks about the code layout and architecture of the webextension.
 
 [`server/view-docs.md`](https://github.com/mozilla-services/screenshots/blob/master/server/views-docs.md) talks about how the server React pages are setup, along with the server-side rendering of pages.
 
