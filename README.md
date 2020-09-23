@@ -7,6 +7,11 @@
 [Clarifying the Future of Firefox Screenshots](https://blog.mozilla.org/futurereleases/2019/01/24/clarifying-the-future-of-firefox-screenshots/)
 
 ----
+### Important Note
+The frontend for screenshots is now maintianed in mozilla-central. Bugs should now be filed in bugzilla under Firefox::screenshots.
+This repo currently contains server code that has been disabled. We are archiving this repo, and all future bugs should be directed to bugzilla.
+
+
 
 This is a screenshot tool for Firefox. It is available in Firefox 56 and later versions, as part of the default Firefox distribution.
 
