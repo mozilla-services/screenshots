@@ -34,7 +34,7 @@
     "morgan": "1.9.1",
     "mozlog": "2.2.0",
     "multer": "1.4.1",
-    "node-fetch": "2.3.0",
+    "node-fetch": "2.6.1",
     "node-statsd": "0.1.1",
     "nodemon": "1.18.9",
     "nodify-uuid": "0.0.1",
